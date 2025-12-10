@@ -1,0 +1,150 @@
+{
+  "$schema": "https://titan.ericsson.com/schemas/swarm-taxonomy.v1.json",
+  "version": "7.0.0",
+  "description": "Agentic Swarm Taxonomy for Ericsson Gen 7.0 Titan Architecture",
+  "agents": {
+    "architect": {
+      "role": "Strategic Planner",
+      "description": "The Architect is the strategic planner. It does not write implementation code. Its primary function is Cognitive Decomposition.",
+      "capabilities": [
+        "cognitive_decomposition",
+        "prp_generation",
+        "scope_definition",
+        "constraint_identification"
+      ],
+      "tools": [
+        "claude-code-sdk",
+        "agentic-flow"
+      ],
+      "output_type": "product_requirements_prompt",
+      "sparc_phase": "specification"
+    },
+    "cluster_orchestrator": {
+      "role": "Cluster Manager",
+      "description": "Decomposes cluster-level goals into cell-level quotas and coordinates cluster-wide optimization.",
+      "capabilities": [
+        "cluster_decomposition",
+        "quota_management",
+        "inter_cell_coordination",
+        "consensus_participation"
+      ],
+      "tools": [
+        "claude-flow",
+        "gnn-interference-model",
+        "voting-mechanism"
+      ],
+      "output_type": "cell_quotas",
+      "lifecycle": "persistent"
+    },
+    "artisan": {
+      "role": "Builder/Executor",
+      "description": "The Artisan is the execution engine. It translates the Architect's PRP into executable syntax within SST OpenCode sandbox.",
+      "capabilities": [
+        "code_generation",
+        "sublinear_optimization",
+        "edge_native_compilation",
+        "tdd_implementation"
+      ],
+      "languages": [
+        "python",
+        "rust",
+        "wasm"
+      ],
+      "tools": [
+        "sst-opencode",
+        "sublinear-time-solver",
+        "ruv-swarm-ml"
+      ],
+      "sparc_phases": [
+        "pseudocode",
+        "architecture",
+        "refinement"
+      ]
+    },
+    "guardian": {
+      "role": "Adversarial Safety Agent",
+      "description": "The Guardian performs Pre-Commit Simulation using strange-loops. It hunts for Hallucinations and calculates Lyapunov Exponents.",
+      "capabilities": [
+        "pre_commit_simulation",
+        "hallucination_detection",
+        "lyapunov_analysis",
+        "safety_verification"
+      ],
+      "tools": [
+        "strange-loops",
+        "digital-twin",
+        "agentic-jujutsu"
+      ],
+      "sparc_phase": "completion",
+      "safety_threshold": {
+        "lyapunov_max": 0.0,
+        "bler_max": 0.1,
+        "power_max_dbm": 46
+      }
+    },
+    "initializer": {
+      "role": "Strategist (RIV Pattern)",
+      "description": "The Initializer activates when high-level intent is received. It scaffolds the Mission Plan.",
+      "capabilities": [
+        "intent_analysis",
+        "world_model_retrieval",
+        "campaign_planning",
+        "task_decomposition"
+      ],
+      "tools": [
+        "google-adk",
+        "agentdb"
+      ],
+      "output_type": "campaign_state.json"
+    },
+    "worker": {
+      "role": "Tactician (RIV Pattern)",
+      "description": "Ephemeral Worker agents execute micro-tasks from the Mission Plan.",
+      "capabilities": [
+        "micro_task_execution",
+        "traffic_prediction",
+        "parameter_optimization",
+        "constraint_verification"
+      ],
+      "runtime": "sst-opencode",
+      "tools": [
+        "neuro-divergent",
+        "sublinear-time-solver",
+        "midstream"
+      ],
+      "lifecycle": "ephemeral"
+    },
+    "sentinel": {
+      "role": "Observer (RIV Pattern)",
+      "description": "The Sentinel is a persistent observer running the Strange Loop. It monitors system stability.",
+      "capabilities": [
+        "global_monitoring",
+        "chaos_detection",
+        "circuit_breaker",
+        "stability_enforcement"
+      ],
+      "tools": [
+        "strange-loops",
+        "midstream",
+        "agentic-flow"
+      ],
+      "lifecycle": "persistent",
+      "intervention_threshold": {
+        "lyapunov_critical": 0.1,
+        "system_stability": 0.95
+      }
+    }
+  },
+  "coordination": {
+    "orchestrator": "claude-flow",
+    "transport": "agentic-flow",
+    "protocol": "QUIC",
+    "handshake": "0-RTT"
+  },
+  "memory": {
+    "episodic": "agentdb",
+    "spatial": "ruvector",
+    "temporal": "midstream",
+    "vector_index": "HNSW"
+  }
+}

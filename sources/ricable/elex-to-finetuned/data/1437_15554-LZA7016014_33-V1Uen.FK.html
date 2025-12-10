@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:xalan="http://xml.apache.org/xalan" xmlns:lxslt="http://xml.apache.org/xslt" lang="en" xml:lang="en">
+<head>
+<meta name="HTMLPACKLINKS" content="10" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="PREP" content="" />
+<meta name="DATE" content="2025-05-26" />
+<meta name="DOCNO" content="1437/155 54-LZA 701 6014/33-V1 Uen" />
+<meta name="REV" content="FK" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-type" />
+<meta name="THEMES" content="MOM" />
+<meta name="DOCNAME" content="MANAGED OBJECT MODEL" />
+<meta name="TITLE" content="class MacSecUcp" />
+<meta name="SUBTITLE" content="G3G4_MOMCPI CXP2020502_2 R32C08" />
+<link title="Style" href="edw:/alex?fn=hilda.css" type="text/css" rel="stylesheet" />
+<link title="Style" href="edw:/alex?fn=3_15554-LZA7016014_33-V1Uen.FK.css" type="text/css" rel="stylesheet" />
+<script src="edw:/alex?fn=dwcommon.js" language="javascript" type="text/javascript"> </script>
+<title>class MacSecUcp</title>
+</head>
+<body>
+
+<script language="JavaScript" src="edw:/alex?fn=switch_theme.js" type="text/javascript"></script>
+<div id="header">
+<table class="docinfo">
+<tr>
+<td>&nbsp; &nbsp; <span class="fcaption"><span class="caption">Managed Object Model</span>&nbsp; &nbsp; &nbsp; &nbsp; 1437/155 54-LZA 701 6014/33-V1 Uen FK</span>&nbsp; &nbsp; </td>
+</tr>
+</table>
+</div>
+<h1 class="TITLE">
+<a name="TITLE">class&#160;MacSecUcp</a>
+</h1>
+<dl>
+<dd>
+<a href="edw:/alex?fn=210_15554-LZA7016014_33-V1Uen.FK.html">ManagedElement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=219_15554-LZA7016014_33-V1Uen.FK.html">Transport</a>
+<dl class="child_tree">
+<dd>
+<b><a href="edw:/alex?fn=1437_15554-LZA7016014_33-V1Uen.FK.html">MacSecUcp</a></b>
+<dl class="child_tree"></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<p>
+<span class="desc">Represents Uncontrolled Port and it can exist regardless if underlying hardware supports MACsec.<br />
+<br />Only created when RiLink MO is created with following conditions:<br />- When one MacSecProfile MO is associated with RiLink MO.<br />- When Ethernet is detected on link.</span>
+<br />
+<br />
+<span class="pmhd">Specification: </span>IEEE 802.1AE 2018<br />
+<br />
+<br />
+<br />
+<b>This MO is created by the system.</b>
+<br />
+<br />
+<br />
+<br />
+</p>
+</td>
+</tr>
+</table>
+<dl>
+<dt>
+<b>References to:</b>
+</dt>
+<dd>
+<a href="edw:/alex?fn=261_15554-LZA7016014_33-V1Uen.FK.html">ManagedObject</a>;
+			</dd>
+</dl>
+<table width="100%" cellspacing="0" cellpadding="3" border="1" class="tblcnt">
+<tr class="TableSubHeadingColor">
+<td colspan="2"><b>Attributes</b></td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=1609_15554-LZA7016014_33-V1Uen.FK.html">AvailStatus</a>[0..]<br />noNotification<br />readOnly</code></td><td>
+<dl>
+<dt>
+<code><b><a name="availabilityStatus">availabilityStatus</a></b></code>
+</dt>
+<dd>
+<span class="desc">The availability status.<br />
+<br />It contains details about operationalState.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=261_15554-LZA7016014_33-V1Uen.FK.html">ManagedObject</a>[0..]<br />noNotification<br />readOnly</code></td><td>
+<dl>
+<dt>
+<code><b><a name="caRef">caRef</a></b></code>
+</dt>
+<dd>
+<span class="desc">Reference to MacSecCa MOs.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string<br />key<br />mandatory<br />noNotification<br />restricted</code></td><td>
+<dl>
+<dt>
+<code><b><a name="macSecUcpId">macSecUcpId</a></b></code>
+</dt>
+<dd>
+<span class="desc">The value component of the RDN.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=1610_15554-LZA7016014_33-V1Uen.FK.html">OperState</a>
+<br />noNotification<br />readOnly</code></td><td>
+<dl>
+<dt>
+<code><b><a name="operationalState">operationalState</a></b></code>
+</dt>
+<dd>
+<span class="desc">The operational state.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=261_15554-LZA7016014_33-V1Uen.FK.html">ManagedObject</a>[0..]<br />noNotification<br />readOnly</code></td><td>
+<dl>
+<dt>
+<code><b><a name="portRef">portRef</a></b></code>
+</dt>
+<dd>
+<span class="desc">Reference to RiPort MOs.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=261_15554-LZA7016014_33-V1Uen.FK.html">ManagedObject</a>[0..]<br />noNotification<br />readOnly</code></td><td>
+<dl>
+<dt>
+<code><b><a name="profileRef">profileRef</a></b></code>
+</dt>
+<dd>
+<span class="desc">Reference to MacSecProfile MOs.</span>
+</dd>
+</dl>
+</td>
+</tr>
+</table>
+<p></p>
+<div align="center" class="footer-info">
+<div class="footer-line">
+<span class="legal-lid">&#160;&#160;class&#160;MacSecUcp</span>
+</div>
+</div>
+</body>
+</html>

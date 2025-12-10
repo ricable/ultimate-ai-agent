@@ -1,0 +1,83 @@
+{
+    "name": "Polyglot Rust Development Environment",
+    "image": "mcr.microsoft.com/devcontainers/rust:1-bullseye",
+    "features": {
+        "ghcr.io/devcontainers/features/rust:1": {
+            "version": "latest",
+            "profile": "default"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rust-lang.rust-analyzer",
+                "vadimcn.vscode-lldb",
+                "serayuzgur.crates",
+                "tamasfe.even-better-toml"
+            ],
+            "settings": {
+                "rust-analyzer.cargo.autoreload": true,
+                "rust-analyzer.check.command": "clippy",
+                "rust-analyzer.cargo.features": "all"
+            }
+        },
+        "devpod": {
+            "prebuildRepository": "ghcr.io/ricable/polyglot-devenv-rust"
+        }
+    },
+    "containerEnv": {
+        "RUST_BACKTRACE": "1",
+        "CARGO_TARGET_DIR": "/workspace/target",
+        "DEVBOX_ENV": "rust",
+        "CLAUDE_PROJECT_ROOT": "/workspace"
+    },
+    "mounts": [
+        "type=volume,source=cargo-cache,target=/home/vscode/.cargo",
+        "type=volume,source=cargo-target,target=/workspace/target"
+    ],
+    "forwardPorts": [
+        8000,
+        3030
+    ],
+    "portsAttributes": {
+        "8000": {
+            "label": "HTTP Server",
+            "onAutoForward": "notify"
+        },
+        "3030": {
+            "label": "Rust Web Server",
+            "onAutoForward": "notify"
+        }
+    },
+    "postCreateCommand": [
+        "echo 'Setting up Rust environment...'",
+        "cargo fetch",
+        "echo 'Installing Node.js for claude-flow...'",
+        "curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -",
+        "sudo apt-get install -y nodejs",
+        "echo 'Setting up Claude Code hooks...'",
+        "if [ -d '/workspace/devpod-automation/templates/.claude-core' ]; then cp -r /workspace/devpod-automation/templates/.claude-core /workspace/.claude && chmod +x /workspace/.claude/hooks/*.py /workspace/.claude/mcp/*.sh /workspace/.claude/test-hooks.sh; fi",
+        "echo 'Installing MCP dependencies...'",
+        "if [ -f '/workspace/.claude/mcp/requirements-mcp.txt' ]; then if command -v python3 > /dev/null; then python3 -m pip install -r /workspace/.claude/mcp/requirements-mcp.txt; else echo 'Python3 not available, skipping MCP dependencies'; fi; fi",
+        "echo 'Installing claude-flow...'",
+        "npm install -g claude-flow@alpha",
+        "echo 'Rust environment with Claude Code hooks and claude-flow ready'"
+    ],
+    "postStartCommand": [
+        "echo 'Rust DevPod ready. Claude Code hooks: /workspace/.claude/ Run: cargo run'",
+        "echo 'Initializing claude-flow...'",
+        "npx --yes claude-flow@alpha init --force",
+        "echo 'Starting claude-flow hive-mind wizard...'",
+        "npx --yes claude-flow@alpha hive-mind wizard",
+        "echo 'Spawning snake game task...'",
+        "npx --yes claude-flow@alpha hive-mind spawn \"create a snake game in the language of your devpod dev env\" --claude"
+    ],
+    "postAttachCommand": [
+        "echo 'Welcome to Rust DevPod with AI automation! \ud83e\udd16 \ud83e\udd80'",
+        "echo 'Claude-flow commands available:'",
+        "echo '  npx claude-flow@alpha --help'",
+        "echo '  npx claude-flow@alpha status'",
+        "echo '  npx claude-flow@alpha hive-mind wizard'",
+        "echo '  npx claude-flow@alpha hive-mind spawn \"<task>\" --claude'"
+    ]
+}

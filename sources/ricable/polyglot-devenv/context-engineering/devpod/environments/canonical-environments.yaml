@@ -1,0 +1,393 @@
+# Canonical Environment Definitions - Single Source of Truth
+# This file defines all development environments in a unified format
+# All devbox.json, devcontainer.json, and other configs are GENERATED from this file
+
+environments:
+  python:
+    name: "Python Development Environment"
+    description: "Python 3.12 with uv package manager and modern tooling"
+    
+    # Language and runtime configuration
+    language:
+      name: "python"
+      version: "3.12"
+      package_manager: "uv"
+    
+    # Packages and dependencies
+    packages:
+      devbox:
+        - "python@3.12"
+        - "uv"
+        - "ruff"
+        - "mypy"
+        - "nushell"
+      
+      devcontainer:
+        base_image: "mcr.microsoft.com/devcontainers/python:3.12-bullseye"
+        features:
+          python:
+            version: "3.12"
+            install_tools: true
+    
+    # Environment variables
+    environment:
+      PYTHONPATH: "$PWD/src"
+      UV_CACHE_DIR: "$PWD/.uv-cache"
+      UV_PYTHON_PREFERENCE: "only-managed"
+      # DevContainer specific
+      devcontainer:
+        PYTHONPATH: "/workspace/src"
+        UV_CACHE_DIR: "/workspace/.uv-cache"
+    
+    # Development scripts
+    scripts:
+      setup: "uv sync --dev"
+      install: "uv sync --dev"
+      add: "uv add"
+      remove: "uv remove"
+      format: "uv run ruff format ."
+      lint: "uv run ruff check . --fix"
+      type-check: "uv run mypy ."
+      test: "uv run pytest --cov=src"
+      test-watch: "uv run pytest --cov=src -f"
+      clean: "find . -type d -name '__pycache__' -exec rm -rf {} + && find . -name '*.pyc' -delete"
+      build: "uv build"
+      deps: "uv tree"
+      lock: "uv lock"
+      sync: "uv sync --dev"
+      run: "uv run"
+      watch: "uv run pytest --cov=src -f"
+    
+    # VS Code integration
+    vscode:
+      extensions:
+        - "ms-python.python"
+        - "ms-python.pylint"
+        - "ms-python.mypy-type-checker"
+        - "charliermarsh.ruff"
+        - "ms-python.debugpy"
+      settings:
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
+        "python.formatting.provider": "none"
+        "[python]":
+          "editor.defaultFormatter": "charliermarsh.ruff"
+          "editor.codeActionsOnSave":
+            "source.organizeImports": "explicit"
+    
+    # Container configuration
+    container:
+      ports:
+        - port: 8000
+          label: "HTTP Server"
+          auto_forward: true
+        - port: 5000
+          label: "Python Web Server"
+          auto_forward: true
+      mounts:
+        - type: "volume"
+          source: "uv-cache"
+          target: "/workspace/.uv-cache"
+      post_create:
+        - "echo 'Setting up Python environment...'"
+        - "pip install uv"
+        - "uv sync --dev"
+        - "echo 'Python environment ready'"
+      post_start: "echo 'Python DevPod ready. Run: uv run <script>'"
+      post_attach: "echo 'Welcome to Python DevPod! 🐍'"
+
+  typescript:
+    name: "TypeScript Development Environment"
+    description: "Node.js 20 with TypeScript and modern tooling"
+    
+    language:
+      name: "typescript"
+      version: "20"
+      package_manager: "npm"
+    
+    packages:
+      devbox:
+        - "nodejs@20"
+        - "typescript"
+        - "eslint"
+        - "prettier"
+        - "jest"
+        - "nushell"
+      
+      devcontainer:
+        base_image: "mcr.microsoft.com/devcontainers/typescript-node:20-bullseye"
+        features:
+          node:
+            version: "20"
+            install_tools: true
+    
+    environment:
+      NODE_ENV: "development"
+      NPM_CONFIG_CACHE: "$PWD/.npm-cache"
+      devcontainer:
+        NODE_ENV: "development"
+        NPM_CONFIG_CACHE: "/workspace/.npm-cache"
+    
+    scripts:
+      install: "npm install"
+      add: "npm install"
+      remove: "npm uninstall"
+      format: "prettier --write ."
+      lint: "eslint . --fix"
+      type-check: "tsc --noEmit"
+      test: "jest"
+      test-watch: "jest --watch"
+      clean: "rm -rf node_modules package-lock.json && npm install"
+      build: "tsc"
+      dev: "npm run dev"
+      start: "npm start"
+      watch: "npm run dev"
+    
+    vscode:
+      extensions:
+        - "ms-vscode.vscode-typescript-next"
+        - "esbenp.prettier-vscode"
+        - "dbaeumer.vscode-eslint"
+        - "ms-vscode.vscode-json"
+      settings:
+        "typescript.preferences.importModuleSpecifier": "relative"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.formatOnSave": true
+        "eslint.autoFixOnSave": true
+    
+    container:
+      ports:
+        - port: 3000
+          label: "Development Server"
+          auto_forward: true
+        - port: 8080
+          label: "API Server"
+          auto_forward: true
+      mounts:
+        - type: "volume"
+          source: "npm-cache"
+          target: "/workspace/.npm-cache"
+      post_create:
+        - "echo 'Setting up TypeScript environment...'"
+        - "npm install"
+        - "echo 'TypeScript environment ready'"
+      post_start: "echo 'TypeScript DevPod ready. Run: npm run dev'"
+      post_attach: "echo 'Welcome to TypeScript DevPod! 📘'"
+
+  rust:
+    name: "Rust Development Environment"
+    description: "Rust stable with cargo and modern tooling"
+    
+    language:
+      name: "rust"
+      version: "stable"
+      package_manager: "cargo"
+    
+    packages:
+      devbox:
+        - "rustc"
+        - "cargo"
+        - "rust-analyzer"
+        - "clippy"
+        - "rustfmt"
+        - "nushell"
+      
+      devcontainer:
+        base_image: "mcr.microsoft.com/devcontainers/rust:1-bullseye"
+        features:
+          rust:
+            version: "stable"
+            profile: "default"
+    
+    environment:
+      CARGO_TARGET_DIR: "$PWD/target"
+      RUST_BACKTRACE: "1"
+      devcontainer:
+        CARGO_TARGET_DIR: "/workspace/target"
+        RUST_BACKTRACE: "1"
+    
+    scripts:
+      build: "cargo build"
+      run: "cargo run"
+      test: "cargo test"
+      test-watch: "cargo watch -x test"
+      format: "cargo fmt"
+      lint: "cargo clippy -- -D warnings"
+      clean: "cargo clean"
+      check: "cargo check"
+      doc: "cargo doc --open"
+      update: "cargo update"
+      watch: "cargo watch -x run"
+    
+    vscode:
+      extensions:
+        - "rust-lang.rust-analyzer"
+        - "vadimcn.vscode-lldb"
+        - "serayuzgur.crates"
+        - "tamasfe.even-better-toml"
+      settings:
+        "rust-analyzer.checkOnSave.command": "clippy"
+        "rust-analyzer.cargo.features": "all"
+        "editor.formatOnSave": true
+    
+    container:
+      ports:
+        - port: 8080
+          label: "Rust Server"
+          auto_forward: true
+        - port: 3000
+          label: "Web Server"
+          auto_forward: true
+      mounts:
+        - type: "volume"
+          source: "cargo-cache"
+          target: "/usr/local/cargo/registry"
+      post_create:
+        - "echo 'Setting up Rust environment...'"
+        - "cargo --version"
+        - "echo 'Rust environment ready'"
+      post_start: "echo 'Rust DevPod ready. Run: cargo run'"
+      post_attach: "echo 'Welcome to Rust DevPod! 🦀'"
+
+  go:
+    name: "Go Development Environment"
+    description: "Go 1.22 with modern tooling and linting"
+    
+    language:
+      name: "go"
+      version: "1.22"
+      package_manager: "go"
+    
+    packages:
+      devbox:
+        - "go@1.22"
+        - "golangci-lint@latest"
+        - "nushell"
+      
+      devcontainer:
+        base_image: "mcr.microsoft.com/devcontainers/go:1.22-bullseye"
+        features:
+          go:
+            version: "1.22"
+    
+    environment:
+      CGO_ENABLED: "0"
+      GOPROXY: "https://proxy.golang.org,direct"
+      devcontainer:
+        GO111MODULE: "on"
+        GOPROXY: "https://proxy.golang.org,direct"
+    
+    scripts:
+      build: "go build ./..."
+      run: "go run ./cmd/main.go"
+      test: "go test ./..."
+      test-watch: "find . -name '*.go' | entr -r go test ./..."
+      format: "gofmt -w ."
+      lint: "golangci-lint run"
+      clean: "go clean -cache -modcache -testcache"
+      mod-tidy: "go mod tidy"
+      mod-download: "go mod download"
+      vet: "go vet ./..."
+      watch: "find . -name '*.go' | entr -r go run ./cmd/main.go"
+    
+    vscode:
+      extensions:
+        - "golang.go"
+        - "golang.go-nightly"
+      settings:
+        "go.useLanguageServer": true
+        "go.lintOnSave": "package"
+        "go.formatTool": "goimports"
+        "editor.formatOnSave": true
+    
+    container:
+      ports:
+        - port: 8080
+          label: "API Server"
+          auto_forward: true
+        - port: 3000
+          label: "Frontend Development Server"
+          auto_forward: true
+      mounts:
+        - type: "volume"
+          source: "go-cache"
+          target: "/home/vscode/go/pkg"
+      post_create:
+        - "echo 'Setting up Go environment...'"
+        - "go mod download"
+        - "echo 'Go environment ready'"
+      post_start: "echo 'Go DevPod ready. Run: go run ./cmd'"
+      post_attach: "echo 'Welcome to Go DevPod! 🐹'"
+
+  nushell:
+    name: "Nushell Scripting Environment"
+    description: "Nushell with automation and scripting tools"
+    
+    language:
+      name: "nushell"
+      version: "0.105.1"
+      package_manager: "devbox"
+    
+    packages:
+      devbox:
+        - "nushell@0.105.1"
+        - "teller"
+        - "git"
+      
+      devcontainer:
+        base_image: "mcr.microsoft.com/devcontainers/base:bullseye"
+        features:
+          common-utils:
+            install_zsh: true
+            install_oh_my_zsh: true
+    
+    environment:
+      NU_LOG_LEVEL: "info"
+      NU_PLUGIN_DIRS: "$PWD/plugins"
+      devcontainer:
+        NU_LOG_LEVEL: "info"
+        NU_PLUGIN_DIRS: "/workspace/plugins"
+    
+    scripts:
+      setup: "mkdir -p scripts config plugins"
+      check: "nu --ide-check scripts/*.nu"
+      format: "nu scripts/format.nu --fix"
+      test: "nu scripts/test.nu"
+      validate: "nu scripts/validate.nu"
+      watch: "nu scripts/watch.nu"
+      clean: "rm -rf tmp/*.log"
+    
+    vscode:
+      extensions:
+        - "TheNuProjectContributors.vscode-nushell-lang"
+        - "ms-vscode.vscode-json"
+      settings:
+        "nushell.configPath": "./config/config.nu"
+        "editor.formatOnSave": true
+    
+    container:
+      ports:
+        - port: 8000
+          label: "Web Interface"
+          auto_forward: false
+      post_create:
+        - "echo 'Setting up Nushell environment...'"
+        - "nu --version"
+        - "mkdir -p scripts config plugins"
+        - "echo 'Nushell environment ready'"
+      post_start: "echo 'Nushell DevPod ready. Run: nu scripts/<script>'"
+      post_attach: "echo 'Welcome to Nushell DevPod! 🐚'"
+
+# DevPod integration settings
+devpod:
+  resource_limits:
+    max_per_command: 10
+    max_total: 15
+    max_per_environment: 5
+  
+  naming_convention: "polyglot-{language}-devpod-{timestamp}-{index}"
+  
+  common_settings:
+    prebuild_repository: "ghcr.io/ricable/polyglot-devenv-{language}"
+    auto_vscode: true
+    ssh_access: true
+    performance_tracking: true

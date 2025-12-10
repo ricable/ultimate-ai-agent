@@ -1,0 +1,324 @@
+# DevPod Docker Provider Configuration
+# Optimized for polyglot development environments
+
+# Provider configuration
+provider:
+  name: docker
+  version: latest
+  
+# Docker daemon settings
+docker:
+  # Use Docker Desktop or Docker Engine
+  socket: unix:///var/run/docker.sock
+  
+  # Build optimizations
+  build:
+    # Use BuildKit for faster builds
+    buildkit: true
+    # Enable build cache
+    cache: true
+    # Parallel builds
+    parallel: true
+    # Build context optimizations
+    ignore_patterns:
+      - "*.log"
+      - "*.tmp"
+      - "node_modules"
+      - "target"
+      - ".git"
+      - ".devbox"
+      - "__pycache__"
+      - ".pytest_cache"
+      - ".mypy_cache"
+      - ".ruff_cache"
+      - "dist"
+      - "build"
+  
+  # Resource limits for containers
+  resources:
+    # Memory limits (adjust based on your system)
+    memory: "4g"
+    # CPU limits
+    cpus: "2.0"
+    # Disk space
+    storage: "20g"
+    # Shared memory size
+    shm_size: "512m"
+  
+  # Network configuration
+  network:
+    # Use bridge network for better isolation
+    driver: bridge
+    # Enable IPv6 if needed
+    enable_ipv6: false
+    # Custom network name
+    name: "devpod-polyglot"
+
+# Container optimizations
+container:
+  # Base image preferences
+  base_images:
+    # Use minimal but complete base images
+    default: "ubuntu:22.04"
+    python: "python:3.12-slim"
+    node: "node:20-slim"
+    rust: "rust:1.75-slim"
+    go: "golang:1.22-alpine"
+    
+  # Runtime optimizations
+  runtime:
+    # Enable security features
+    security_opt:
+      - "seccomp:unconfined"
+      - "apparmor:unconfined"
+    
+    # Capabilities for development
+    cap_add:
+      - "SYS_PTRACE"  # For debugging
+      - "NET_ADMIN"   # For network tools
+    
+    # Environment variables
+    env:
+      # Improve performance
+      - "DEBIAN_FRONTEND=noninteractive"
+      - "PIP_NO_CACHE_DIR=1"
+      - "NPM_CONFIG_CACHE=/tmp/.npm"
+      - "CARGO_HOME=/tmp/.cargo"
+      - "RUSTUP_HOME=/tmp/.rustup"
+      
+  # Volume mounts for performance
+  volumes:
+    # Cache directories for better performance
+    caches:
+      - type: "volume"
+        source: "devpod-npm-cache"
+        target: "/root/.npm"
+      - type: "volume"
+        source: "devpod-cargo-cache"
+        target: "/usr/local/cargo"
+      - type: "volume"
+        source: "devpod-pip-cache"
+        target: "/root/.cache/pip"
+      - type: "volume"
+        source: "devpod-go-cache"
+        target: "/go/pkg"
+    
+    # Persistent directories
+    persistent:
+      - type: "bind"
+        source: "${DEVPOD_WORKSPACE_SOURCE}"
+        target: "/workspace"
+        consistency: "cached"
+      - type: "bind"
+        source: "${HOME}/.ssh"
+        target: "/root/.ssh"
+        readonly: true
+      - type: "bind"
+        source: "${HOME}/.gitconfig"
+        target: "/root/.gitconfig"
+        readonly: true
+
+# Development tools configuration
+tools:
+  # VS Code Server settings
+  vscode:
+    # Extensions to install automatically
+    extensions:
+      # Language support
+      - "ms-python.python"
+      - "ms-python.vscode-pylance"
+      - "bradlc.vscode-tailwindcss"
+      - "rust-lang.rust-analyzer"
+      - "golang.go"
+      - "ms-vscode.vscode-typescript-next"
+      
+      # Development tools
+      - "ms-vscode.vscode-json"
+      - "redhat.vscode-yaml"
+      - "ms-vscode.vscode-markdown"
+      - "eamodio.gitlens"
+      - "ms-vscode.vscode-docker"
+      
+      # Polyglot development
+      - "ms-vscode.vscode-multilang"
+      - "formulahendry.code-runner"
+      
+    # Settings
+    settings:
+      "python.defaultInterpreterPath": "/usr/local/bin/python"
+      "rust-analyzer.server.path": "/usr/local/bin/rust-analyzer"
+      "go.gopath": "/go"
+      "typescript.preferences.importModuleSpecifier": "relative"
+      "editor.formatOnSave": true
+      "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.organizeImports": true
+      }
+  
+  # Git configuration
+  git:
+    # Global git settings for containers
+    config:
+      user.name: "${GIT_USER_NAME:-DevPod User}"
+      user.email: "${GIT_USER_EMAIL:-devpod@example.com}"
+      init.defaultBranch: "main"
+      pull.rebase: true
+      core.editor: "code --wait"
+      
+  # Shell configuration
+  shell:
+    # Default shell
+    default: "/bin/bash"
+    # Shell customizations
+    customizations:
+      - "echo 'alias ll=\"ls -la\"' >> /root/.bashrc"
+      - "echo 'alias la=\"ls -A\"' >> /root/.bashrc"
+      - "echo 'alias l=\"ls -CF\"' >> /root/.bashrc"
+      - "echo 'export PS1=\"\\[\\033[01;32m\\]\\u@devpod\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ \"' >> /root/.bashrc"
+
+# Performance monitoring
+monitoring:
+  # Enable container metrics
+  enabled: true
+  
+  # Metrics to collect
+  metrics:
+    - "cpu_usage"
+    - "memory_usage"
+    - "disk_io"
+    - "network_io"
+    - "container_stats"
+  
+  # Alerts
+  alerts:
+    memory_threshold: 80  # Alert when memory usage > 80%
+    cpu_threshold: 90     # Alert when CPU usage > 90%
+    disk_threshold: 85    # Alert when disk usage > 85%
+
+# Cleanup policies
+cleanup:
+  # Auto-cleanup settings
+  auto_cleanup: true
+  
+  # Retention policies
+  retention:
+    # Keep containers for 7 days after last use
+    containers: "7d"
+    # Keep images for 30 days
+    images: "30d"
+    # Keep volumes for 14 days
+    volumes: "14d"
+    # Keep build cache for 3 days
+    build_cache: "3d"
+  
+  # Cleanup schedule (cron format)
+  schedule: "0 2 * * *"  # Daily at 2 AM
+
+# Security settings
+security:
+  # Container security
+  container:
+    # Run as non-root when possible
+    user: "1000:1000"
+    # Read-only root filesystem for security
+    read_only: false  # Disabled for development convenience
+    # No new privileges
+    no_new_privileges: true
+    
+  # Image security
+  image:
+    # Verify image signatures
+    verify_signatures: false  # Disabled for development speed
+    # Scan for vulnerabilities
+    vulnerability_scan: true
+    # Allow only trusted registries
+    trusted_registries:
+      - "docker.io"
+      - "ghcr.io"
+      - "gcr.io"
+      - "quay.io"
+
+# Backup and sync
+backup:
+  # Enable automatic backups
+  enabled: true
+  
+  # Backup configuration
+  config:
+    # Backup workspace data
+    workspace: true
+    # Backup container state
+    container_state: false
+    # Backup frequency
+    frequency: "daily"
+    # Retention period
+    retention: "30d"
+    # Backup location
+    location: "${HOME}/.devpod/backups"
+
+# Integration settings
+integrations:
+  # Devbox integration
+  devbox:
+    # Automatically sync devbox.json changes
+    auto_sync: true
+    # Generate devcontainer.json from devbox
+    auto_generate: true
+    # Preserve devbox environment variables
+    preserve_env: true
+    
+  # Claude Code integration
+  claude:
+    # Enable Claude Code features in containers
+    enabled: true
+    # Share Claude Code configuration
+    share_config: true
+    # Enable intelligence systems
+    intelligence: true
+    
+  # GitHub integration
+  github:
+    # Enable GitHub CLI in containers
+    gh_cli: true
+    # Share GitHub credentials
+    share_credentials: true
+    # Enable GitHub Actions runner
+    actions_runner: false
+
+# Development profiles
+profiles:
+  # Performance profile for development
+  development:
+    resources:
+      memory: "4g"
+      cpus: "2.0"
+    build:
+      cache: true
+      parallel: true
+    monitoring:
+      enabled: true
+      
+  # Lightweight profile for testing
+  testing:
+    resources:
+      memory: "2g"
+      cpus: "1.0"
+    build:
+      cache: false
+      parallel: false
+    monitoring:
+      enabled: false
+      
+  # Production-like profile
+  production:
+    resources:
+      memory: "8g"
+      cpus: "4.0"
+    build:
+      cache: true
+      parallel: true
+    security:
+      enhanced: true
+    monitoring:
+      enabled: true
+      alerts: true

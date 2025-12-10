@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["next", "react", "react-dom", "node"]
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.test.*",
+    "**/*.spec.*",
+    "**/__tests__/**/*",
+    "src/test/**/*",
+    "vitest.config.ts",
+    "playwright.config.ts"
+  ]
+}

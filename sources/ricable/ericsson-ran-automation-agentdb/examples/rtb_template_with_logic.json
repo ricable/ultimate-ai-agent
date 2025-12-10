@@ -1,0 +1,513 @@
+[
+  {
+    "$meta": {
+      "version": "2.0.0",
+      "author": [
+        "Ericsson RAN Cognitive Automation System",
+        "AI-Optimized Configuration Engine"
+      ],
+      "description": "Advanced RTB template with embedded Python logic for autonomous RAN optimization",
+      "tags": ["5G", "LTE", "CA", "MIMO", "AI-Optimized"],
+      "environment": "prod"
+    }
+  },
+  {
+    "$custom": [
+      {
+        "name": "calculateOptimalTilt",
+        "args": ["distance", "cell_height", "traffic_load"],
+        "body": [
+          "# Calculate optimal antenna tilt based on distance and load",
+          "base_tilt = 0.0",
+          "distance_factor = min(1.0, distance / 5.0)  # 5km max distance",
+          "load_factor = traffic_load / 100.0",
+          "",
+          "# Urban macro cell optimization",
+          "if cell_height > 30:  # Macro cell",
+          "    optimal_tilt = base_tilt + (10 * distance_factor) + (5 * load_factor)",
+          "else:  # Small cell",
+          "    optimal_tilt = base_tilt + (5 * distance_factor) + (2 * load_factor)",
+          "",
+          "# Constrain to physical limits",
+          "optimal_tilt = max(-15, min(15, optimal_tilt))",
+          "return round(optimal_tilt, 1)"
+        ]
+      },
+      {
+        "name": "optimizeCarrierAggregation",
+        "args": ["cell_count", "ue_count", "traffic_profile"],
+        "body": [
+          "# Determine optimal CA configuration",
+          "ue_per_cell = ue_count / cell_count if cell_count > 0 else ue_count",
+          "",
+          "# Traffic profile mapping",
+          "profile_weights = {",
+          "    'video': 3,",
+          "    'voice': 1,",
+          "    'data': 2,",
+          "    'gaming': 4,",
+          "    'streaming': 5",
+          "}",
+          "",
+          "traffic_weight = sum(profile_weights.get(p, 1) for p in traffic_profile if p in profile_weights)",
+          "traffic_weight = traffic_weight / len(traffic_profile) if traffic_profile else 1",
+          "",
+          "# CA decision logic",
+          "if cell_count >= 2 and ue_per_cell > 50:",
+          "    ca_config = {",
+          "        'enabled': True,",
+          "        'max_scells': min(4, cell_count - 1),",
+          "        'primary_cell': 'band78',",
+          "        'secondary_cells': ['band1800', 'band2600'],",
+          "        'strategy': 'load_balanced' if traffic_weight > 3 else 'performance'",
+          "    }",
+          "elif cell_count >= 2:",
+          "    ca_config = {",
+          "        'enabled': True,",
+          "        'max_scells': 2,",
+          "        'primary_cell': 'band78',",
+          "        'secondary_cells': ['band1800'],",
+          "        'strategy': 'coverage'",
+          "    }",
+          "else:",
+          "    ca_config = {",
+          "        'enabled': False,",
+          "        'reason': 'Insufficient cells for CA'",
+          "    }",
+          "",
+          "return ca_config"
+        ]
+      },
+      {
+        "name": "calculatePowerSaving",
+        "args": ["hour_of_day", "traffic_load", "energy_cost_tier"],
+        "body": [
+          "# Calculate power saving configuration based on time and load",
+          "base_power = 43  # dBm",
+          "",
+          "# Time-based adjustments",
+          "if 0 <= hour_of_day < 6:  # Night hours",
+          "    time_factor = 0.7",
+          "elif 6 <= hour_of_day < 18:  # Business hours",
+          "    time_factor = 1.0",
+          "else:  # Evening hours",
+          "    time_factor = 0.85",
+          "",
+          "# Load-based adjustment",
+          "load_factor = max(0.3, traffic_load / 100.0)",
+          "",
+          "# Energy cost consideration",
+          "energy_factor = {",
+          "    'low': 0.9,",
+          "    'medium': 1.0,",
+          "    'high': 1.1,",
+          "}.get(energy_cost_tier, 1.0)",
+          "",
+          "# Calculate final power",
+          "optimal_power = base_power * time_factor * load_factor * energy_factor",
+          "",
+          "power_config = {",
+          "    'target_power': round(optimal_power, 1),",
+          "    'sleep_mode_cells': int(cell_count * (1 - load_factor)) if 'cell_count' in locals() else 0,",
+          "    'energy_efficiency': round(load_factor / (optimal_power / base_power), 2)",
+          "    'estimated_savings': round((1 - (optimal_power / base_power)) * 100, 1)",
+          "}",
+          "",
+          "return power_config"
+        ]
+      },
+      {
+        "name": "determineQciProfile",
+        "args": ["service_type", "priority", "latency_requirement", "throughput_mbps"],
+        "body": [
+          "# Advanced QCI profile selection",
+          "service_map = {",
+          "    'emergency': {'qci': 1, 'priority': 1, 'type': 'GBR'},",
+          "    'voip': {'qci': 2, 'priority': 2, 'type': 'GBR'},",
+          "    'video_call': {'qci': 3, 'priority': 3, 'type': 'GBR'},",
+          "    'live_streaming': {'qci': 4, 'priority': 4, 'type': 'GBR'},",
+          "    'video_buffering': {'qci': 5, 'priority': 5, 'type': 'NON-GBR'},",
+          "    'tcp_ack': {'qci': 6, 'priority': 6, 'type': 'NON-GBR'},",
+          "    'voip_gaming': {'qci': 7, 'priority': 7, 'type': 'NON-GBR'},",
+          "    'tcp_background': {'qci': 8, 'priority': 8, 'type': 'NON-GBR'},",
+          "    'tcp_default': {'qci': 9, 'priority': 9, 'type': 'NON-GBR'},",
+          "}",
+          "",
+          "profile = service_map.get(service_type, service_map['tcp_default'])",
+          "",
+          "# Adjust based on requirements",
+          "if latency_requirement == 'ultra_low':  # < 10ms",
+          "    profile['qci'] = min(profile['qci'], 2)",
+          "    profile['priority'] = min(profile['priority'], 2)",
+          "elif latency_requirement == 'low':  # < 50ms",
+          "    profile['qci'] = min(profile['qci'], 4)",
+          "",
+          "# Adjust for high throughput",
+          "if throughput_mbps > 10:",
+          "    profile['qci'] = 5  # Video streaming profile",
+          "    profile['throughput'] = throughput_mbps",
+          "",
+          "# Override with explicit priority if specified",
+          "if priority > 0 and priority <= 15:",
+          "    profile['priority'] = priority",
+          "",
+          "return profile"
+        ]
+      },
+      {
+        "name": "optimizeHandoverParameters",
+        "args": ["cell_density", "user_velocity", "interference_level"],
+        "body": [
+          "# Optimize handover parameters for mobility",
+          "density_factor = min(1.0, cell_density / 100.0)",
+          "velocity_factor = min(1.0, user_velocity / 120.0)  # Normalize to 120 km/h",
+          "interference_factor = min(1.0, interference_level / 10.0)",
+          "",
+          "# Base hysteresis calculation",
+          "base_hysteresis = 2.0  # dB",
+          "hysteresis_adjustment = (3 * density_factor) + (2 * velocity_factor)",
+          "optimal_hysteresis = base_hysteresis + hysteresis_adjustment",
+          "",
+          "# Time-to-trigger calculation",
+          "base_ttt = 320  # ms",
+          "velocity_adjustment = int(velocity_factor * 640)  # Up to 640ms for high velocity",
+          "optimal_ttt = base_ttt + velocity_adjustment",
+          "",
+          "# Cell individual offset for load balancing",
+          "load_balance_offset = 3 * interference_factor",
+          "",
+          "handover_config = {",
+          "    'hysteresis': round(optimal_hysteresis, 1),",
+          "    'time_to_trigger': optimal_ttt,",
+          "    'cell_individual_offset': round(load_balance_offset, 1),",
+          "    'a3_offset': 2 if density_factor > 0.5 else 4,",
+          "    'handover_type': 'make_before_break' if velocity_factor > 0.5 else 'break_before_make'",
+          "}",
+          "",
+          "return handover_config"
+        ]
+      }
+    ]
+  },
+  {
+    "managedElement": {
+      "managedElementId": "RAN-COGNITIVE-001",
+      "userLabel": "AI-Optimized RAN Node",
+      "managedElementType": "RBS",
+      "release": "L21.0",
+      "siteLocation": "Urban Dense Area",
+      "aiEnabled": true,
+      "cognitiveLevel": "maximum"
+    }
+  },
+  {
+    "GNBCUCPFunction": {
+      "gNBCUName": "gnb-cognitive-01",
+      "gNBId": "123456",
+      "gNBIdLength": "22",
+      "pLMNId": {
+        "mcc": "208",
+        "mnc": "01",
+        "mncLength": "2"
+      },
+      "ranNodeName": "cognitive-gnb-example",
+      "maxCommonProcTime": 30,
+      "maxNgRetryTime": 30,
+      "nasInactivityTime": 5,
+      "extendedBandN78Supported": true,
+      "extendedXnConnAllowed": true,
+      "nrNeedForGapsSupported": true,
+      "noOfSupportedNRCellCU": 8,
+      "resourceStatusReportDefault": -2,
+      "resourceStatusReportF1Enabled": true,
+      "cognitiveOptimization": true
+    }
+  },
+  {
+    "NRCellCU": [
+      {
+        "nrCellCuId": "nr-cell-cu-001",
+        "cellIdentity": {
+          "pci": "100",
+          "tac": "12345",
+          "cellId": "1",
+          "eci": "208012345001"
+        },
+        "frequencyBandInfo": {
+          "bandList": "78",
+          "arfcn": "632000",
+          "bandwidthDl": "100000",
+          "bandwidthUl": "100000",
+          "subCarrierSpacing": "30"
+        },
+        "powerConfig": {
+          "pMax": "43",
+          "totalTilt": "0",
+          "minTotalTilt": "-10",
+          "maxTotalTilt": "10",
+          "antennaGain": "18"
+        },
+        "cellState": "ACTIVE",
+        "administrativeState": "UNLOCKED",
+        "operationalState": "ENABLED",
+        "qRxLevMin": -140,
+        "qQualMin": -20,
+        "siWindowLength": "SF40",
+        "dl256QamEnabled": true,
+        "ul256QamEnabled": true,
+        "caEnabled": true,
+        "massiveMimoEnabled": true,
+        "beamManagement": {
+          "beamformingEnabled": true,
+          "maxBeamStates": 8,
+          "beamSwitchingPeriod": "20"
+        }
+      },
+      {
+        "nrCellCuId": "nr-cell-cu-002",
+        "cellIdentity": {
+          "pci": "101",
+          "tac": "12345",
+          "cellId": "2",
+          "eci": "208012345002"
+        },
+        "frequencyBandInfo": {
+          "bandList": "1800",
+          "arfcn": "1736000",
+          "bandwidthDl": "150000",
+          "bandwidthUl": "150000",
+          "subCarrierSpacing": "30"
+        },
+        "powerConfig": {
+          "pMax": "43",
+          "totalTilt": "0",
+          "minTotalTilt": "-10",
+          "maxTotalTilt": "10",
+          "antennaGain": "18"
+        },
+        "cellState": "ACTIVE",
+        "administrativeState": "UNLOCKED",
+        "operationalState": "ENABLED",
+        "qRxLevMin": -140,
+        "qQualMin": -20,
+        "siWindowLength": "SF40",
+        "dl256QamEnabled": true,
+        "ul256QamEnabled": true,
+        "caEnabled": true,
+        "massiveMimoEnabled": true,
+        "beamManagement": {
+          "beamformingEnabled": true,
+          "maxBeamStates": 8,
+          "beamSwitchingPeriod": "20"
+        }
+      }
+    ]
+  },
+  {
+    "AnrFunction": {
+      "anrFunctionId": "anr-cognitive-01",
+      "removeEnbTime": 7,
+      "removeGnbTime": 7,
+      "removeFreqRelTime": 15,
+      "demoteCellRelMobAttThresh": 100,
+      "promoteCellRelMobAttThresh": 110,
+      "pciConflictCellSelection": "ON",
+      "maxTimeEventBasedPciConf": 30,
+      "plmnWhiteListEnabled": true,
+      "anrCgiMeasIntraFreqEnabled": true,
+      "detectObsoleteExtCellsEnabled": true,
+      "cognitiveLearning": true,
+      "mlBasedPrediction": true
+    }
+  },
+  {
+    "CarrierAggregationFunction": {
+      "carrierAggregationFunctionId": "ca-cognitive-01",
+      "waitForCaOpportunity": 10000,
+      "sCellsUpswitchTimer": 50,
+      "dynamicSCellSelectionMethod": "AI_OPTIMIZED",
+      "caOffloadingMode": "ENABLED_SELECTED_SCELLS",
+      "sCellsUpswitchDataThres": 100,
+      "sCellActDeactUlDataThreshHyst": 90,
+      "sCellDeactProhibitTimer": 200,
+      "sCellDeactOutOfCoverageTimer": 100,
+      "sCellActDeactUlDataThresh": 100,
+      "sCellActProhibitTimer": 10,
+      "caPreemptionThreshold": 50,
+      "effectiveBwImpactDl4Layer": 150,
+      "waitForBetterSCellRep": 1000,
+      "caUsageLimit": 65535,
+      "enhancedSelectionOfMimoAndCa": true,
+      "offloadingDataThresh": 100,
+      "dcSCellDeactDelayTimer": 50,
+      "waitForAdditionalSCellOpportunity": 10000,
+      "maxNoInitSCells": 4,
+      "sCellScheduleSinrThres": 0,
+      "endcCaPolicy": "NR_PREFERRED",
+      "caMaxSCellsPreemptionThres": 100,
+      "sCellDeactDelayTimer": 50,
+      "fddTddSCellPriority": "NONE",
+      "sCellActDeactDataThresh": 100,
+      "sCellEvaluationLevel": "AI_ENHANCED",
+      "waitForBlindSelSCellRepLessTtt": 600,
+      "sCellActDeactDataThreshHyst": 90,
+      "caPCellOnlyInitialSetup": true,
+      "selectionPolicyUlWeighting": 50,
+      "useAbsolutePrioForCspEffBw": false,
+      "a6TriggerSCellDeconfig": true,
+      "dlOnlySCellPriorityEnabled": false,
+      "sCellSelectionMode": "AI_GUIDED",
+      "sCellPdcchOuterLoopMargin": 100,
+      "fourLayerMimoPreferred": true,
+      "caRateAdjustCoeff": 10,
+      "caPreference": "DL",
+      "caUpswitchPreemptionThres": 100,
+      "aiOptimizationEnabled": true
+    }
+  },
+  {
+    "QciProfilePredefined": [
+      {
+        "serviceType": "CONVERSATIONAL",
+        "pdcpSNLength": "12",
+        "pdbOffset": "0",
+        "dataFwdPerQciEnabled": "true",
+        "essResourceAllocationMode": "SCHED_POLICY",
+        "endcProfileRef": "SubNetwork=ENM_IDF3,MeContext=COEUR_DEFENSE_T_LTE,ManagedElement=COEUR_DEFENSE_T_LTE,vsDataENodeBFunction=1,vsDataEndcProfilePredefined=1",
+        "counterActiveMode": "false",
+        "dscp": "46",
+        "srsAllocationStrategy": "DEACTIVATED",
+        "qci": "1",
+        "dlMaxWaitingTime": "0",
+        "inactivityTimerOffset": "0",
+        "tReorderingDl": "35",
+        "harqPriority": "3",
+        "relativePriorityBr": "4",
+        "qciProfilePredefinedId": "qci1",
+        "priority": "1",
+        "tReorderingUl": "35",
+        "laaSupported": "false",
+        "rlfProfileRef": "SubNetwork=ENM_IDF3,MeContext=COEUR_DEFENSE_T_LTE,ManagedElement=COEUR_DEFENSE_T_LTE,vsDataENodeBFunction=1,vsDataRlfProfile=0",
+        "aqmMode": "OFF",
+        "dlMaxHARQTxQci": "4",
+        "rohcForUlDataEnabled": "false",
+        "rlcMode": "AM",
+        "rlfPriority": "0",
+        "ulMaxHARQTxQci": "4",
+        "dlResourceAllocationStrategy": "FREQUENCY_SELECTIVE",
+        "relativePriority": "100",
+        "ulMaxWaitingTime": "0",
+        "schedulingAlgorithm": "RESOURCE_FAIR",
+        "dlMinBitRate": "0",
+        "priorityFraction": "0",
+        "absPrioOverride": "NO_OVERRIDE",
+        "caOffloadingEnabled": "true",
+        "qciACTuning": "1000",
+        "logicalChannelGroupRef": "SubNetwork=ENM_IDF3,MeContext=COEUR_DEFENSE_T_LTE,ManagedElement=COEUR_DEFENSE_T_LTE,vsDataENodeBFunction=1,vsDataQciTable=default,vsDataLogicalChannelGroup=1",
+        "drxProfileRef": "SubNetwork=ENM_IDF3,MeContext=COEUR_DEFENSE_T_LTE,ManagedElement=COEUR_DEFENSE_T_LTE,vsDataENodeBFunction=1,vsDataDrxProfile=0",
+        "qciSubscriptionQuanta": "50",
+        "rlcSNLength": "10",
+        "pdb": "50",
+        "drxPriority": "0",
+        "rohcEnabled": "false",
+        "lessMaxDelayThresholdWindow2": "0",
+        "resourceAllocationStrategy": "FREQUENCY_SELECTIVE",
+        "zzzTemporary3": "-2000000000",
+        "ulMinBitRate": "0",
+        "zzzTemporary4": "-2000000000",
+        "zzzTemporary5": "-2000000000",
+        "dscpArpMap": {
+          "dscpArp14": "-1",
+          "dscpArp3": "-1",
+          "dscpArp13": "-1",
+          "dscpArp1": "-1",
+          "dscpArp5": "-1",
+          "dscpArp7": "-1",
+          "dscpArp15": "-1",
+          "dscpArp11": "-1",
+          "dscpArp10": "-1",
+          "dscpArp4": "-1",
+          "dscpArp8": "-1",
+          "dscpArp6": "-1",
+          "dscpArp2": "-1",
+          "dscpArp12": "-1",
+          "dscpArp9": "-1"
+        },
+        "timerPriority": "0",
+        "lessMaxDelayThreshold": "0",
+        "bitRateRecommendationEnabled": "false",
+        "paPartitionOverride": "false",
+        "resourceType": "GBR"
+      }
+    ]
+  },
+  {
+    "$cond": {
+      "enableMassiveMIMO": {
+        "if": "cell_count >= 1 and user_density > 100",
+        "then": {
+          "massiveMimoEnabled": true,
+          "beamManagement": {
+            "maxBeamStates": 16,
+            "beamTrainingEnabled": true
+          }
+        },
+        "else": "__ignore__"
+      },
+      "enablePowerSaving": {
+        "if": "hour_of_day >= 23 or hour_of_day <= 5",
+        "then": {
+          "powerSavingMode": "ACTIVE",
+          "sleepModeCells": 1
+        },
+        "else": "__ignore__"
+      },
+      "dynamicBandwidth": {
+        "if": "traffic_load > 80",
+        "then": {
+          "bandwidthAdaptation": "ENABLED",
+          "maxBandwidth": "200MHz"
+        },
+        "else": {
+          "if": "traffic_load > 40",
+            "then": {
+              "bandwidthAdaptation": "ENABLED",
+              "maxBandwidth": "100MHz"
+            },
+            "else": "__ignore__"
+          }
+        }
+      }
+    }
+  },
+  {
+    "$eval": {
+      "optimalTilt": {
+        "eval": "calculateOptimalTilt",
+        "args": ["average_distance", "cell_height", "current_load"]
+      },
+      "caConfiguration": {
+        "eval": "optimizeCarrierAggregation",
+        "args": ["cell_count", "active_ue_count", "traffic_mix"]
+      },
+      "powerOptimization": {
+        "eval": "calculatePowerSaving",
+        "args": ["current_hour", "traffic_percentage", "energy_tier"]
+      },
+      "qciSelection": {
+        "eval": "determineQciProfile",
+        "args": ["service_type", "user_priority", "latency_req", "throughput"],
+        "kwargs": {
+          "service_type": "video_streaming",
+          "priority": 4,
+          "latency_requirement": "low",
+          "throughput_mbps": 5
+        }
+      },
+      "handoverOptimization": {
+        "eval": "optimizeHandoverParameters",
+        "args": ["cell_density_per_km2", "average_velocity", "interference_index"]
+      }
+    }
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "packages": [
+    "nodejs@20",
+    "python@3.11",
+    "git",
+    "curl",
+    "jq",
+    "docker",
+    "kubectl",
+    "terraform",
+    "teller",
+    "nushell",
+    "uv"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to UAP Development Environment'",
+      "echo 'Node.js version:' && node --version",
+      "echo 'Python version:' && python --version",
+      "echo 'Available commands: uap-agent-status, uap-deploy-agent, etc.'",
+      "export UAP_ENV=development",
+      "export PATH=$PWD/scripts:$PATH",
+      "if [ -f frontend/package.json ]; then cd frontend && npm install && cd ..; fi",
+      "if [ -f backend/requirements.txt ]; then cd backend && pip install -r requirements.txt && cd ..; fi"
+    ],
+    "scripts": {
+      "dev": [
+        "echo 'Starting UAP development servers...'",
+        "teller run -- concurrently \"npm --prefix frontend run dev\" \"python -m uvicorn backend.main:app --reload --host 0.0.0.0\""
+      ],
+      "build": [
+        "echo 'Building UAP for production...'",
+        "npm --prefix frontend run build",
+        "cd backend && python -m build"
+      ],
+      "test": [
+        "echo 'Running UAP test suite...'",
+        "npm --prefix frontend test",
+        "cd backend && pytest"
+      ],
+      "deploy": [
+        "echo 'Deploying UAP to cloud...'",
+        "teller run -- skypilot up -c skypilot/uap-production.yaml"
+      ]
+    }
+  },
+  "env": {
+    "UAP_VERSION": "3.0.0",
+    "NODE_ENV": "development",
+    "PYTHONPATH": "./backend"
+  }
+}

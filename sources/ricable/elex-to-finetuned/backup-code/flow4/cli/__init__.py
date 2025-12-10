@@ -1,0 +1,1 @@
+"""Command line interface for Flow4 document processing pipeline."""

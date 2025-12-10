@@ -1,0 +1,35 @@
+{
+    "adapter_path": "./examples/outputs/quotes_lora_adapter",
+    "batch_size": 1,
+    "config": null,
+    "data": "./examples/data",
+    "fine_tune_type": "lora",
+    "grad_checkpoint": true,
+    "iters": 50,
+    "learning_rate": 0.0001,
+    "lora_parameters": {
+        "rank": 8,
+        "dropout": 0.0,
+        "scale": 20.0
+    },
+    "lr_schedule": null,
+    "mask_prompt": false,
+    "max_seq_length": 512,
+    "model": "./models/mlx/tinyllama-1.1b-chat",
+    "num_layers": 16,
+    "optimizer": "adam",
+    "optimizer_config": {
+        "adam": {},
+        "adamw": {}
+    },
+    "resume_adapter_file": null,
+    "save_every": 100,
+    "seed": 42,
+    "steps_per_eval": 20,
+    "steps_per_report": 5,
+    "test": false,
+    "test_batches": 500,
+    "train": true,
+    "val_batches": 25,
+    "wandb": null
+}

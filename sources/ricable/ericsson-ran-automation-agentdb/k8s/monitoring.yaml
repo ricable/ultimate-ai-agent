@@ -1,0 +1,466 @@
+# Monitoring Stack for RAN Automation System
+# Phase 5: Pydantic Schema Generation & Production Integration
+
+---
+# ServiceMonitor for Prometheus
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ran-automation-sdk-metrics
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: monitoring
+    phase: "5"
+  annotations:
+    description: "ServiceMonitor for RAN Automation System metrics collection"
+spec:
+  selector:
+    matchLabels:
+      app: ran-automation-sdk
+  endpoints:
+  - port: metrics
+    path: /metrics
+    interval: 30s
+    scrapeTimeout: 10s
+    honorLabels: true
+  namespaceSelector:
+    any: true
+
+---
+# PrometheusRule for alerting
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: ran-automation-sdk-alerts
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: monitoring
+    phase: "5"
+    role: alert-rules
+  annotations:
+    description: "Alerting rules for RAN Automation System"
+spec:
+  groups:
+  - name: ran-automation-sdk.rules
+    rules:
+    # Alert for high error rate
+    - alert: RanAutomationHighErrorRate
+      expr: rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m]) > 0.05
+      for: 5m
+      labels:
+        severity: critical
+        service: ran-automation-sdk
+        component: application
+      annotations:
+        summary: "RAN Automation System high error rate"
+        description: "Error rate is {{ $value | humanizePercentage }} for {{ $labels.instance }}"
+
+    # Alert for high response time
+    - alert: RanAutomationHighResponseTime
+      expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 2
+      for: 5m
+      labels:
+        severity: warning
+        service: ran-automation-sdk
+        component: application
+      annotations:
+        summary: "RAN Automation System high response time"
+        description: "95th percentile response time is {{ $value }}s for {{ $labels.instance }}"
+
+    # Alert for high memory usage
+    - alert: RanAutomationHighMemoryUsage
+      expr: (container_memory_usage_bytes{pod=~"ran-automation-sdk-.*"} / container_spec_memory_limit_bytes) > 0.9
+      for: 10m
+      labels:
+        severity: warning
+        service: ran-automation-sdk
+        component: infrastructure
+      annotations:
+        summary: "RAN Automation System high memory usage"
+        description: "Memory usage is {{ $value | humanizePercentage }} for {{ $labels.pod }}"
+
+    # Alert for high CPU usage
+    - alert: RanAutomationHighCPUUsage
+      expr: rate(container_cpu_usage_seconds_total{pod=~"ran-automation-sdk-.*"}[5m]) > 0.8
+      for: 10m
+      labels:
+        severity: warning
+        service: ran-automation-sdk
+        component: infrastructure
+      annotations:
+        summary: "RAN Automation System high CPU usage"
+        description: "CPU usage is {{ $value | humanizePercentage }} for {{ $labels.pod }}"
+
+    # Alert for pod restarts
+    - alert: RanAutomationPodRestarts
+      expr: increase(kube_pod_container_status_restarts_total{pod=~"ran-automation-sdk-.*"}[1h]) > 3
+      for: 0m
+      labels:
+        severity: warning
+        service: ran-automation-sdk
+        component: infrastructure
+      annotations:
+        summary: "RAN Automation System pod restarts"
+        description: "Pod {{ $labels.pod }} has restarted {{ $value }} times in the last hour"
+
+    # Alert for consciousness level drop (cognitive monitoring)
+    - alert: RanAutomationConsciousnessLevelDrop
+      expr: ran_consciousness_level < 0.7
+      for: 5m
+      labels:
+        severity: warning
+        service: ran-automation-sdk
+        component: cognitive
+      annotations:
+        summary: "RAN Automation System consciousness level dropped"
+        description: "Consciousness level is {{ $value }} for {{ $labels.instance }}"
+
+    # Alert for optimization cycle failures
+    - alert: RanAutomationOptimizationFailure
+      expr: rate(optimization_cycles_failed_total[5m]) > 0.1
+      for: 5m
+      labels:
+        severity: critical
+        service: ran-automation-sdk
+        component: optimization
+      annotations:
+        summary: "RAN Automation System optimization failures"
+        description: "Optimization failure rate is {{ $value | humanizePercentage }}"
+
+    # Alert for ENM CLI command failures
+    - alert: RanAutomationENMCLICommandFailures
+      expr: rate(enm_cli_commands_failed_total[5m]) > 0.05
+      for: 5m
+      labels:
+        severity: warning
+        service: ran-automation-sdk
+        component: enm-cli
+      annotations:
+        summary: "RAN Automation System ENM CLI command failures"
+        description: "ENM CLI command failure rate is {{ $value | humanizePercentage }}"
+
+---
+# Grafana Dashboard ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ran-automation-dashboard
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: monitoring
+    phase: "5"
+  annotations:
+    description: "Grafana dashboard configuration for RAN Automation System"
+data:
+  ran-automation-dashboard.json: |
+    {
+      "dashboard": {
+        "id": null,
+        "title": "RAN Automation System Dashboard",
+        "tags": ["ran-automation", "ericsson", "cognitive"],
+        "timezone": "browser",
+        "panels": [
+          {
+            "id": 1,
+            "title": "Request Rate",
+            "type": "graph",
+            "targets": [
+              {
+                "expr": "rate(http_requests_total[5m])",
+                "legendFormat": "{{method}} {{status}}"
+              }
+            ],
+            "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}
+          },
+          {
+            "id": 2,
+            "title": "Response Time",
+            "type": "graph",
+            "targets": [
+              {
+                "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))",
+                "legendFormat": "95th percentile"
+              },
+              {
+                "expr": "histogram_quantile(0.50, rate(http_request_duration_seconds_bucket[5m]))",
+                "legendFormat": "50th percentile"
+              }
+            ],
+            "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}
+          },
+          {
+            "id": 3,
+            "title": "Error Rate",
+            "type": "stat",
+            "targets": [
+              {
+                "expr": "rate(http_requests_total{status=~\"5..\"}[5m]) / rate(http_requests_total[5m])",
+                "legendFormat": "Error Rate"
+              }
+            ],
+            "gridPos": {"h": 4, "w": 6, "x": 0, "y": 8}
+          },
+          {
+            "id": 4,
+            "title": "Consciousness Level",
+            "type": "gauge",
+            "targets": [
+              {
+                "expr": "ran_consciousness_level",
+                "legendFormat": "Consciousness Level"
+              }
+            ],
+            "gridPos": {"h": 4, "w": 6, "x": 6, "y": 8}
+          },
+          {
+            "id": 5,
+            "title": "Memory Usage",
+            "type": "graph",
+            "targets": [
+              {
+                "expr": "container_memory_usage_bytes{pod=~\"ran-automation-sdk-.*\"} / 1024 / 1024",
+                "legendFormat": "{{pod}}"
+              }
+            ],
+            "gridPos": {"h": 8, "w": 12, "x": 0, "y": 12}
+          },
+          {
+            "id": 6,
+            "title": "CPU Usage",
+            "type": "graph",
+            "targets": [
+              {
+                "expr": "rate(container_cpu_usage_seconds_total{pod=~\"ran-automation-sdk-.*\"}[5m])",
+                "legendFormat": "{{pod}}"
+              }
+            ],
+            "gridPos": {"h": 8, "w": 12, "x": 12, "y": 12}
+          }
+        ],
+        "time": {"from": "now-1h", "to": "now"},
+        "refresh": "30s"
+      }
+    }
+
+---
+# PodMonitor for detailed pod metrics
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: ran-automation-sdk-pods
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: monitoring
+    phase: "5"
+  annotations:
+    description: "PodMonitor for detailed RAN Automation System pod metrics"
+spec:
+  selector:
+    matchLabels:
+      app: ran-automation-sdk
+  podMetricsEndpoints:
+  - port: metrics
+    path: /metrics
+    interval: 30s
+    relabelings:
+    - sourceLabels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+      action: keep
+      regex: "true"
+
+---
+# PrometheusRule for cognitive monitoring
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: ran-automation-cognitive-alerts
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: cognitive-monitoring
+    phase: "5"
+  annotations:
+    description: "Cognitive monitoring alerting rules for RAN Automation System"
+spec:
+  groups:
+  - name: ran-automation-cognitive.rules
+    rules:
+    # Alert for strange-loop optimization failures
+    - alert: RanAutomationStrangeLoopFailure
+      expr: rate(strange_loop_optimization_failures_total[5m]) > 0.1
+      for: 5m
+      labels:
+        severity: warning
+        service: ran-automation-sdk
+        component: cognitive-strange-loop
+      annotations:
+        summary: "RAN Automation System strange-loop optimization failures"
+        description: "Strange-loop optimization failure rate is {{ $value | humanizePercentage }}"
+
+    # Alert for temporal reasoning performance degradation
+    - alert: RanAutomationTemporalReasoningDegradation
+      expr: temporal_reasoning_expansion_factor < 500
+      for: 10m
+      labels:
+        severity: warning
+        service: ran-automation-sdk
+        component: cognitive-temporal
+      annotations:
+        summary: "RAN Automation System temporal reasoning degradation"
+        description: "Temporal reasoning expansion factor dropped to {{ $value }}"
+
+    # Alert for learning pattern anomalies
+    - alert: RanAutomationLearningAnomaly
+      expr: learning_pattern_discovery_rate < 0.5
+      for: 15m
+      labels:
+        severity: warning
+        service: ran-automation-sdk
+        component: cognitive-learning
+      annotations:
+        summary: "RAN Automation System learning pattern anomaly"
+        description: "Learning pattern discovery rate is {{ $value | humanizePercentage }}"
+
+    # Alert for AgentDB synchronization issues
+    - alert: RanAutomationAgentDBSyncIssue
+      expr: agentdb_sync_latency_seconds > 5
+      for: 5m
+      labels:
+        severity: critical
+        service: ran-automation-sdk
+        component: agentdb-sync
+      annotations:
+        summary: "RAN Automation System AgentDB synchronization issue"
+        description: "AgentDB sync latency is {{ $value }} seconds"
+
+    # Alert for swarm coordination failures
+    - alert: RanAutomationSwarmCoordinationFailure
+      expr: swarm_coordination_failure_rate > 0.1
+      for: 5m
+      labels:
+        severity: critical
+        service: ran-automation-sdk
+        component: swarm-coordination
+      annotations:
+        summary: "RAN Automation System swarm coordination failure"
+        description: "Swarm coordination failure rate is {{ $value | humanizePercentage }}"
+
+---
+# Custom Metrics ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ran-automation-custom-metrics
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: custom-metrics
+    phase: "5"
+  annotations:
+    description: "Custom metrics ServiceMonitor for RAN Automation System"
+spec:
+  selector:
+    matchLabels:
+      app: ran-automation-sdk
+  endpoints:
+  - port: metrics
+    path: /metrics/cognitive
+    interval: 30s
+    honorLabels: true
+  - port: metrics
+    path: /metrics/enm-cli
+    interval: 30s
+    honorLabels: true
+  - port: metrics
+    path: /metrics/optimization
+    interval: 30s
+    honorLabels: true
+
+---
+# Alertmanager Config for custom alert routing
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ran-automation-alertmanager-config
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: alertmanager
+    phase: "5"
+  annotations:
+    description: "Alertmanager configuration for RAN Automation System"
+data:
+  alertmanager.yml: |
+    global:
+      smtp_smarthost: 'smtp.ericsson.com:587'
+      smtp_from: 'ran-automation-alerts@ericsson.com'
+      smtp_auth_username: 'ran-automation-alerts@ericsson.com'
+      smtp_auth_password: 'password'
+
+    route:
+      group_by: ['alertname', 'cluster', 'service']
+      group_wait: 10s
+      group_interval: 10s
+      repeat_interval: 12h
+      receiver: 'default-receiver'
+      routes:
+      - match:
+          severity: critical
+        receiver: 'critical-alerts'
+      - match:
+          severity: warning
+        receiver: 'warning-alerts'
+      - match:
+          component: cognitive
+        receiver: 'cognitive-alerts'
+
+    receivers:
+    - name: 'default-receiver'
+      slack_configs:
+      - api_url: 'https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK'
+        channel: '#ran-automation'
+        title: 'RAN Automation System Alert'
+        text: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'
+
+    - name: 'critical-alerts'
+      slack_configs:
+      - api_url: 'https://hooks.slack.com/services/YOUR/SLACK/CRITICAL'
+        channel: '#ran-automation-critical'
+        title: '🚨 CRITICAL: RAN Automation System'
+        color: 'danger'
+        text: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'
+      email_configs:
+      - to: 'ran-ops-team@ericsson.com'
+        subject: '🚨 CRITICAL: RAN Automation System Alert'
+        body: |
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Instance: {{ .Labels.instance }}
+          {{ end }}
+
+    - name: 'warning-alerts'
+      slack_configs:
+      - api_url: 'https://hooks.slack.com/services/YOUR/SLACK/WARNING'
+        channel: '#ran-automation-warnings'
+        title: '⚠️ WARNING: RAN Automation System'
+        color: 'warning'
+        text: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'
+
+    - name: 'cognitive-alerts'
+      slack_configs:
+      - api_url: 'https://hooks.slack.com/services/YOUR/SLACK/COGNITIVE'
+        channel: '#ran-automation-cognitive'
+        title: '🧠 COGNITIVE: RAN Automation System'
+        color: '#8A2BE2'
+        text: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'
+
+    inhibit_rules:
+    - source_match:
+        severity: 'critical'
+      target_match:
+        severity: 'warning'
+      equal: ['alertname', 'cluster', 'service']

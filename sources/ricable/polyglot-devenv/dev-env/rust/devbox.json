@@ -1,0 +1,47 @@
+{
+  "packages": ["rustc", "cargo", "rust-analyzer", "clippy", "rustfmt", "nodejs@20", "nushell"],
+  "shell": {
+    "init_hook": [
+      "echo 'Rust Development Environment'",
+      "rustc --version",
+      "cargo --version",
+      "echo 'Initializing claude-flow...'",
+      "npx --yes claude-flow@alpha init --force",
+      "echo 'Starting claude-flow hive-mind...'",
+      "npx --yes claude-flow@alpha hive-mind wizard"
+    ],
+    "scripts": {
+      "build": "cargo build",
+      "build-release": "cargo build --release",
+      "run": "cargo run",
+      "test": "cargo test",
+      "test-watch": "cargo watch -x test",
+      "format": "cargo fmt",
+      "lint": "cargo clippy -- -D warnings",
+      "clean": "cargo clean",
+      "check": "cargo check",
+      "doc": "cargo doc --open",
+      "watch": "cargo watch -x 'run'",
+      "devpod:provision": "nu ../../host-tooling/devpod-management/manage-devpod.nu provision rust",
+      "devpod:connect": "nu ../../host-tooling/devpod-management/manage-devpod.nu connect rust",
+      "devpod:start": "nu ../../host-tooling/devpod-management/manage-devpod.nu start rust",
+      "devpod:stop": "nu ../../host-tooling/devpod-management/manage-devpod.nu stop rust",
+      "devpod:delete": "nu ../../host-tooling/devpod-management/manage-devpod.nu delete rust",
+      "devpod:sync": "nu ../../host-tooling/devpod-management/manage-devpod.nu sync rust",
+      "devpod:status": "nu ../../host-tooling/devpod-management/manage-devpod.nu status rust",
+      "devpod:help": "nu ../../host-tooling/devpod-management/manage-devpod.nu help rust",
+      "claude-flow:init": "npx --yes claude-flow@alpha init --force",
+      "claude-flow:help": "npx --yes claude-flow@alpha --help",
+      "claude-flow:wizard": "npx --yes claude-flow@alpha hive-mind wizard",
+      "claude-flow:start": "npx --yes claude-flow@alpha start --daemon",
+      "claude-flow:status": "npx --yes claude-flow@alpha status",
+      "claude-flow:stop": "npx --yes claude-flow@alpha stop",
+      "claude-flow:monitor": "npx --yes claude-flow@alpha monitor",
+      "claude-flow:logs": "tail -f ./claude-flow.log",
+      "claude-flow:spawn": "npx --yes claude-flow@alpha hive-mind spawn \"create a snake game in the language of your devpod dev env\" --claude"
+    }
+  },
+  "env": {
+    "RUST_BACKTRACE": "1"
+  }
+}

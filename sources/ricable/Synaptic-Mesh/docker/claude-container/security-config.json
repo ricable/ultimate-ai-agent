@@ -1,0 +1,31 @@
+{
+  "maxMemoryMB": 512,
+  "maxExecutionTimeMs": 300000,
+  "allowedApis": [
+    "api.anthropic.com"
+  ],
+  "workspaceDir": "/tmp/claude-work",
+  "readOnlyMode": true,
+  "networkRestricted": true,
+  "rateLimiting": {
+    "maxRequestsPerMinute": 20,
+    "maxRequestsPerHour": 100
+  },
+  "security": {
+    "allowedFileExtensions": [".txt", ".json", ".md", ".js", ".py"],
+    "maxFileSizeBytes": 1048576,
+    "sanitizeInputs": true,
+    "validateOutputs": true
+  },
+  "logging": {
+    "level": "info",
+    "auditEnabled": true,
+    "retentionDays": 7
+  },
+  "compliance": {
+    "mode": "local-api-only",
+    "noSharedSecrets": true,
+    "userControlRequired": true,
+    "auditTrail": true
+  }
+}

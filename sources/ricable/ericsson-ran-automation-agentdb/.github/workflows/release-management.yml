@@ -1,0 +1,348 @@
+name: 'Release Management & Automation'
+
+on:
+  push:
+    tags:
+      - 'v*'
+  pull_request:
+    types: [closed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      release-type:
+        description: 'Release type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      generate-changelog:
+        description: 'Generate changelog'
+        required: false
+        default: true
+        type: boolean
+      create-release:
+        description: 'Create GitHub release'
+        required: false
+        default: true
+        type: boolean
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Version analysis and increment
+  version-analysis:
+    name: 'Version Analysis'
+    runs-on: ubuntu-latest
+    outputs:
+      current-version: ${{ steps.version.outputs.current }}
+      next-version: ${{ steps.version.outputs.next }}
+      release-type: ${{ steps.version.outputs.type }}
+      changelog: ${{ steps.changelog.outputs.content }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get current version
+        id: version
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "current=${CURRENT_VERSION}" >> $GITHUB_OUTPUT
+
+          # Determine release type
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == refs/tags/* ]]; then
+            RELEASE_TYPE="tagged"
+          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            RELEASE_TYPE="${{ github.event.inputs.release-type }}"
+          elif [[ "${{ github.event.pull_request.merged }}" == "true" ]]; then
+            # Auto-detect release type from PR labels
+            if [[ "${{ github.event.pull_request.labels.*.name }}" == *"major"* ]]; then
+              RELEASE_TYPE="major"
+            elif [[ "${{ github.event.pull_request.labels.*.name }}" == *"minor"* ]]; then
+              RELEASE_TYPE="minor"
+            else
+              RELEASE_TYPE="patch"
+            fi
+          else
+            RELEASE_TYPE="patch"
+          fi
+
+          echo "type=${RELEASE_TYPE}" >> $GITHUB_OUTPUT
+
+          # Calculate next version
+          IFS='.' read -ra VERSION_PARTS <<< "${CURRENT_VERSION}"
+          MAJOR=${VERSION_PARTS[0]}
+          MINOR=${VERSION_PARTS[1]}
+          PATCH=${VERSION_PARTS[2]}
+
+          case $RELEASE_TYPE in
+            "major")
+              MAJOR=$((MAJOR + 1))
+              MINOR=0
+              PATCH=0
+              ;;
+            "minor")
+              MINOR=$((MINOR + 1))
+              PATCH=0
+              ;;
+            "patch")
+              PATCH=$((PATCH + 1))
+              ;;
+          esac
+
+          NEXT_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+          echo "next=${NEXT_VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Generate changelog
+        id: changelog
+        if: github.event.inputs.generate-changelog == 'true' || github.event_name == 'push' || github.event.pull_request.merged == 'true'
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+
+          if [[ -n "$LAST_TAG" ]]; then
+            CHANGELOG=$(git log ${LAST_TAG}..HEAD --pretty=format:"- %s (%h)" --no-merges)
+          else
+            CHANGELOG=$(git log --pretty=format:"- %s (%h)" --no-merges -20)
+          fi
+
+          # Add structured sections
+          CATEGORIZED_CHANGELOG="## 🚀 Features\n\n"
+          CATEGORIZED_CHANGELOG+="$(echo "$CHANGELOG" | grep -i "feat\|add\|new" || echo "No new features")\n\n"
+          CATEGORIZED_CHANGELOG+="## 🐛 Bug Fixes\n\n"
+          CATEGORIZED_CHANGELOG+="$(echo "$CHANGELOG" | grep -i "fix\|bug\|issue" || echo "No bug fixes")\n\n"
+          CATEGORIZED_CHANGELOG+="## 🔧 Improvements\n\n"
+          CATEGORIZED_CHANGELOG+="$(echo "$CHANGELOG" | grep -i "refactor\|improve\|optimize" || echo "No improvements")\n\n"
+          CATEGORIZED_CHANGELOG+="## 📚 Documentation\n\n"
+          CATEGORIZED_CHANGELOG+="$(echo "$CHANGELOG" | grep -i "docs\|readme\|guide" || echo "No documentation changes")\n\n"
+
+          echo "content<<EOF" >> $GITHUB_OUTPUT
+          echo "$CATEGORIZED_CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+  # Create release
+  create-release:
+    name: 'Create Release'
+    runs-on: ubuntu-latest
+    needs: version-analysis
+    if: github.event.inputs.create-release == 'true' || github.event_name == 'push'
+    permissions:
+      contents: write
+      packages: write
+    outputs:
+      release-id: ${{ steps.release.outputs.id }}
+      release-url: ${{ steps.release.outputs.url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Update package version
+        run: |
+          npm version ${{ needs.version-analysis.outputs.next-version }} --no-git-tag-version
+
+      - name: Commit version update
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add package.json
+          git commit -m "chore: bump version to ${{ needs.version-analysis.outputs.next-version }}"
+          git tag "v${{ needs.version-analysis.outputs.next-version }}"
+
+      - name: Push changes and tags
+        run: |
+          git push origin main
+          git push origin "v${{ needs.version-analysis.outputs.next-version }}"
+
+      - name: Create GitHub Release
+        id: release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "v${{ needs.version-analysis.outputs.next-version }}"
+          release_name: "Release v${{ needs.version-analysis.outputs.next-version }}"
+          body: |
+            ## 🎉 Release v${{ needs.version-analysis.outputs.next-version }}
+
+            ${{ needs.version-analysis.outputs.changelog }}
+
+            ### 📊 Performance Metrics
+            - Quality Score: TBD
+            - Test Coverage: TBD
+            - Performance Benchmarks: TBD
+
+            ### 🚀 Installation
+            ```bash
+            npm install ran-automation-agentdb@${{ needs.version-analysis.outputs.next-version }}
+            ```
+
+            ### 🐳 Docker
+            ```bash
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:v${{ needs.version-analysis.outputs.next-version }}
+            ```
+
+            ---
+
+            🤖 Automated with [Claude Flow](https://github.com/ruvnet/claude-flow)
+          draft: false
+          prerelease: false
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.version-analysis.outputs.next-version }} .
+          docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest .
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.version-analysis.outputs.next-version }}
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+      - name: Store release metadata in AgentDB
+        run: |
+          curl -X POST "${{ secrets.AGENTDB_ENDPOINT }}/releases" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "version": "${{ needs.version-analysis.outputs.next-version }}",
+              "release_id": "${{ steps.release.outputs.id }}",
+              "release_url": "${{ steps.release.outputs.url }}",
+              "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'",
+              "changelog": "'"$(echo '${{ needs.version-analysis.outputs.changelog }}' | sed 's/"/\\"/g')"'",
+              "metadata": {
+                "release_type": "${{ needs.version-analysis.outputs.release-type }}",
+                "previous_version": "${{ needs.version-analysis.outputs.current-version }}",
+                "commit_sha": "${{ github.sha }}",
+                "automated": true
+              }
+            }'
+
+  # Release validation
+  release-validation:
+    name: 'Release Validation'
+    runs-on: ubuntu-latest
+    needs: [version-analysis, create-release]
+    if: needs.create-release.result == 'success'
+    steps:
+      - name: Install new version
+        run: |
+          npm install -g ran-automation-agentdb@${{ needs.version-analysis.outputs.next-version }}
+
+      - name: Validate installation
+        run: |
+          ran-automation-agentdb --version
+          ran-automation-agentdb --help
+
+      - name: Run smoke tests
+        run: |
+          echo "Running release smoke tests..."
+          # Add smoke test logic here
+
+      - name: Test Docker image
+        run: |
+          docker run --rm ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.version-analysis.outputs.next-version }} --version
+
+      - name: Update release status
+        if: success()
+        run: |
+          curl -X PUT "${{ secrets.AGENTDB_ENDPOINT }}/releases/${{ needs.version-analysis.outputs.next-version }}/status" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "status": "validated",
+              "validation_passed": true,
+              "validation_timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"
+            }'
+
+      - name: Handle validation failure
+        if: failure()
+        run: |
+          curl -X PUT "${{ secrets.AGENTDB_ENDPOINT }}/releases/${{ needs.version-analysis.outputs.next-version }}/status" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "status": "validation_failed",
+              "validation_passed": false,
+              "validation_timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"
+            }'
+
+          # Create rollback issue
+          gh issue create \
+            --title "🚨 Release Validation Failed: v${{ needs.version-analysis.outputs.next-version }}" \
+            --body "Release validation failed. Immediate rollback required." \
+            --label "critical,rollback,release-validation" \
+            --assignee "${{ github.actor }}"
+
+  # Rollback automation
+  rollback-automation:
+    name: 'Rollback Automation'
+    runs-on: ubuntu-latest
+    if: failure() && (needs.release-validation.result == 'failure' || needs.create-release.result == 'failure')
+    needs: [version-analysis, create-release, release-validation]
+    steps:
+      - name: Initiate rollback
+        run: |
+          echo "Initiating rollback for release ${{ needs.version-analysis.outputs.next-version }}..."
+
+      - name: Create rollback release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "rollback-v${{ needs.version-analysis.outputs.next-version }}"
+          release_name: "Rollback v${{ needs.version-analysis.outputs.next-version }}"
+          body: |
+            ## 🚨 ROLLBACK RELEASE
+
+            This release rolls back the failed v${{ needs.version-analysis.outputs.next-version }} release.
+
+            **Previous version**: ${{ needs.version-analysis.outputs.current-version }}
+
+            ---
+
+            🤖 Automated rollback triggered by validation failure
+          draft: false
+          prerelease: false
+
+      - name: Notify team
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🚨 Automated Rollback Completed',
+              body: `Rollback from v${{ needs.version-analysis.outputs.next-version }} to ${{ needs.version-analysis.outputs.current-version }} has been completed.\n\nPlease investigate the cause of the failure and re-release when fixed.`,
+              labels: ['rollback', 'critical', 'automated']
+            });
+
+  # Post-release analytics
+  release-analytics:
+    name: 'Release Analytics'
+    runs-on: ubuntu-latest
+    needs: [version-analysis, create-release]
+    if: needs.create-release.result == 'success'
+    steps:
+      - name: Generate release metrics
+        run: |
+          echo "Generating release analytics..."
+
+      - name: Store analytics in AgentDB
+        run: |
+          curl -X POST "${{ secrets.AGENTDB_ENDPOINT }}/releases/analytics" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "release_version": "${{ needs.version-analysis.outputs.next-version }}",
+              "analytics": {
+                "release_time": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'",
+                "files_changed": 0,
+                "lines_added": 0,
+                "lines_removed": 0,
+                "performance_impact": "neutral",
+                "risk_assessment": "low"
+              },
+              "trends": {
+                "release_frequency": "weekly",
+                "quality_trend": "improving",
+                "performance_trend": "stable"
+              }
+            }'

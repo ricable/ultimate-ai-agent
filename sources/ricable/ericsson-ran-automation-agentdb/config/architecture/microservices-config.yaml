@@ -1,0 +1,785 @@
+# Phase 2 ML Microservices Configuration
+# Comprehensive configuration for distributed ML services with performance optimization
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ml-platform-config
+  namespace: ran-automation
+data:
+  # Global Configuration
+  PLATFORM_VERSION: "2.0.0"
+  ENVIRONMENT: "production"
+  LOG_LEVEL: "INFO"
+  METRICS_ENABLED: "true"
+
+  # AgentDB Configuration
+  AGENTDB_URL: "quic://agentdb-service:7890"
+  AGENTDB_SYNC_INTERVAL: "100"  # ms
+  AGENTDB_BATCH_SIZE: "1000"
+  AGENTDB_COMPRESSION: "lz4"
+  AGENTDB_QUANTIZATION: "int8"
+
+  # Swarm Configuration
+  SWARM_COORDINATOR_URL: "http://swarm-coordinator:8080"
+  SWARM_TOPOLOGY: "hierarchical"
+  SWARM_MAX_AGENTS: "50"
+  SWARM_HEARTBEAT_INTERVAL: "5000"  # ms
+
+  # Performance Configuration
+  TARGET_LATENCY: "1"  # ms for QUIC sync
+  TARGET_THROUGHPUT: "10000"  # requests/second
+  CACHE_TTL: "300"  # seconds
+  MAX_BATCH_SIZE: "500"
+
+  # Security Configuration
+  ENCRYPTION_LEVEL: "high"
+  AUTH_METHOD: "oauth2"
+  TLS_VERSION: "1.3"
+  AUDIT_LEVEL: "detailed"
+
+---
+# Reinforcement Learning Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rl-training-service
+  namespace: ran-automation
+  labels:
+    app: rl-training-service
+    component: ml-core
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rl-training-service
+  template:
+    metadata:
+      labels:
+        app: rl-training-service
+        component: ml-core
+    spec:
+      containers:
+      - name: rl-service
+        image: ml-platform/rl-service:2.0.0
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        - containerPort: 8001
+          name: grpc
+          protocol: TCP
+        env:
+        - name: SERVICE_NAME
+          value: "rl-training-service"
+        - name: SERVICE_PORT
+          value: "8000"
+        - name: GRPC_PORT
+          value: "8001"
+        - name: AGENTDB_URL
+          valueFrom:
+            configMapKeyRef:
+              name: ml-platform-config
+              key: AGENTDB_URL
+        - name: SWARM_COORDINATOR_URL
+          valueFrom:
+            configMapKeyRef:
+              name: ml-platform-config
+              key: SWARM_COORDINATOR_URL
+        - name: TRAINING_BATCH_SIZE
+          value: "512"
+        - name: EXPERIENCE_BUFFER_SIZE
+          value: "1000000"
+        - name: SYNCHRONIZATION_INTERVAL
+          value: "1000"  # ms
+        - name: DISTRIBUTED_WORKERS
+          value: "8"
+        resources:
+          requests:
+            cpu: "2000m"
+            memory: "8Gi"
+            nvidia.com/gpu: "1"
+          limits:
+            cpu: "4000m"
+            memory: "16Gi"
+            nvidia.com/gpu: "2"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: model-storage
+          mountPath: /models
+        - name: cache-storage
+          mountPath: /cache
+      volumes:
+      - name: model-storage
+        persistentVolumeClaim:
+          claimName: model-storage-pvc
+      - name: cache-storage
+        persistentVolumeClaim:
+          claimName: cache-storage-pvc
+
+---
+# Causal Inference Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: causal-inference-service
+  namespace: ran-automation
+  labels:
+    app: causal-inference-service
+    component: ml-core
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: causal-inference-service
+  template:
+    metadata:
+      labels:
+        app: causal-inference-service
+        component: ml-core
+    spec:
+      containers:
+      - name: causal-service
+        image: ml-platform/causal-inference-service:2.0.0
+        ports:
+        - containerPort: 8100
+          name: http
+          protocol: TCP
+        - containerPort: 8101
+          name: grpc
+          protocol: TCP
+        env:
+        - name: SERVICE_NAME
+          value: "causal-inference-service"
+        - name: SERVICE_PORT
+          value: "8100"
+        - name: GRPC_PORT
+          value: "8101"
+        - name: AGENTDB_URL
+          valueFrom:
+            configMapKeyRef:
+              name: ml-platform-config
+              key: AGENTDB_URL
+        - name: CAUSAL_ALGORITHM
+          value: "GPCM"
+        - name: MAX_SAMPLE_SIZE
+          value: "100000"
+        - name: INFERENCE_TIMEOUT
+          value: "30"  # seconds
+        - name: CACHE_ENABLED
+          value: "true"
+        resources:
+          requests:
+            cpu: "1000m"
+            memory: "4Gi"
+          limits:
+            cpu: "2000m"
+            memory: "8Gi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8100
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8100
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: causal-models
+          mountPath: /models
+      volumes:
+      - name: causal-models
+        persistentVolumeClaim:
+          claimName: causal-models-pvc
+
+---
+# DSPy Optimization Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dspy-optimization-service
+  namespace: ran-automation
+  labels:
+    app: dspy-optimization-service
+    component: ml-core
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dspy-optimization-service
+  template:
+    metadata:
+      labels:
+        app: dspy-optimization-service
+        component: ml-core
+    spec:
+      containers:
+      - name: dspy-service
+        image: ml-platform/dspy-optimization-service:2.0.0
+        ports:
+        - containerPort: 8200
+          name: http
+          protocol: TCP
+        - containerPort: 8201
+          name: grpc
+          protocol: TCP
+        env:
+        - name: SERVICE_NAME
+          value: "dspy-optimization-service"
+        - name: SERVICE_PORT
+          value: "8200"
+        - name: GRPC_PORT
+          value: "8201"
+        - name: AGENTDB_URL
+          valueFrom:
+            configMapKeyRef:
+              name: ml-platform-config
+              key: AGENTDB_URL
+        - name: LLM_API_URL
+          value: "http://llm-service:8300"
+        - name: PROGRAM_SYNTHESIS_TIMEOUT
+          value: "60"  # seconds
+        - name: MAX_PROGRAM_LENGTH
+          value: "1000"
+        - name: OPTIMIZATION_ITERATIONS
+          value: "10"
+        resources:
+          requests:
+            cpu: "1500m"
+            memory: "6Gi"
+          limits:
+            cpu: "3000m"
+            memory: "12Gi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8200
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8200
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: dspy-programs
+          mountPath: /programs
+      volumes:
+      - name: dspy-programs
+        persistentVolumeClaim:
+          claimName: dspy-programs-pvc
+
+---
+# AgentDB Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agentdb-service
+  namespace: ran-automation
+  labels:
+    app: agentdb-service
+    component: infrastructure
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: agentdb-service
+  template:
+    metadata:
+      labels:
+        app: agentdb-service
+        component: infrastructure
+    spec:
+      containers:
+      - name: agentdb
+        image: agentdb/agentdb:2.0.0
+        ports:
+        - containerPort: 7890
+          name: quic
+          protocol: UDP
+        - containerPort: 7891
+          name: http
+          protocol: TCP
+        env:
+        - name: SERVICE_NAME
+          value: "agentdb-service"
+        - name: QUIC_PORT
+          value: "7890"
+        - name: HTTP_PORT
+          value: "7891"
+        - name: SYNC_INTERVAL
+          valueFrom:
+            configMapKeyRef:
+              name: ml-platform-config
+              key: AGENTDB_SYNC_INTERVAL
+        - name: BATCH_SIZE
+          valueFrom:
+            configMapKeyRef:
+              name: ml-platform-config
+              key: AGENTDB_BATCH_SIZE
+        - name: COMPRESSION_ALGORITHM
+          valueFrom:
+            configMapKeyRef:
+              name: ml-platform-config
+              key: AGENTDB_COMPRESSION
+        - name: QUANTIZATION_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: ml-platform-config
+              key: AGENTDB_QUANTIZATION
+        - name: CLUSTER_SIZE
+          value: "3"
+        - name: REPLICATION_FACTOR
+          value: "2"
+        resources:
+          requests:
+            cpu: "1000m"
+            memory: "16Gi"
+          limits:
+            cpu: "2000m"
+            memory: "32Gi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 7891
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 7891
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: agentdb-data
+          mountPath: /data
+        - name: agentdb-logs
+          mountPath: /logs
+      volumes:
+      - name: agentdb-data
+        persistentVolumeClaim:
+          claimName: agentdb-data-pvc
+      - name: agentdb-logs
+        persistentVolumeClaim:
+          claimName: agentdb-logs-pvc
+
+---
+# Swarm Coordinator Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swarm-coordinator
+  namespace: ran-automation
+  labels:
+    app: swarm-coordinator
+    component: coordination
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swarm-coordinator
+  template:
+    metadata:
+      labels:
+        app: swarm-coordinator
+        component: coordination
+    spec:
+      containers:
+      - name: swarm-coordinator
+        image: ml-platform/swarm-coordinator:2.0.0
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        env:
+        - name: SERVICE_NAME
+          value: "swarm-coordinator"
+        - name: SERVICE_PORT
+          value: "8080"
+        - name: TOPOLOGY_TYPE
+          valueFrom:
+            configMapKeyRef:
+              name: ml-platform-config
+              key: SWARM_TOPOLOGY
+        - name: MAX_AGENTS
+          valueFrom:
+            configMapKeyRef:
+              name: ml-platform-config
+              key: SWARM_MAX_AGENTS
+        - name: HEARTBEAT_INTERVAL
+          valueFrom:
+            configMapKeyRef:
+              name: ml-platform-config
+              key: SWARM_HEARTBEAT_INTERVAL
+        - name: LOAD_BALANCING_STRATEGY
+          value: "adaptive"
+        - name: TASK_DISTRIBUTION_ALGORITHM
+          value: "work-stealing"
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "2Gi"
+          limits:
+            cpu: "1000m"
+            memory: "4Gi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: swarm-state
+          mountPath: /state
+      volumes:
+      - name: swarm-state
+        persistentVolumeClaim:
+          claimName: swarm-state-pvc
+
+---
+# Performance Monitoring Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: performance-monitoring-service
+  namespace: ran-automation
+  labels:
+    app: performance-monitoring-service
+    component: monitoring
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: performance-monitoring-service
+  template:
+    metadata:
+      labels:
+        app: performance-monitoring-service
+        component: monitoring
+    spec:
+      containers:
+      - name: monitoring-service
+        image: ml-platform/performance-monitoring:2.0.0
+        ports:
+        - containerPort: 9000
+          name: http
+          protocol: TCP
+        env:
+        - name: SERVICE_NAME
+          value: "performance-monitoring-service"
+        - name: SERVICE_PORT
+          value: "9000"
+        - name: PROMETHEUS_URL
+          value: "http://prometheus:9090"
+        - name: GRAFANA_URL
+          value: "http://grafana:3000"
+        - name: METRICS_COLLECTION_INTERVAL
+          value: "5"  # seconds
+        - name: ALERT_THRESHOLD_CPU
+          value: "80"
+        - name: ALERT_THRESHOLD_MEMORY
+          value: "85"
+        - name: ALERT_THRESHOLD_LATENCY
+          value: "100"  # ms
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "1Gi"
+          limits:
+            cpu: "1000m"
+            memory: "2Gi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 9000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: monitoring-data
+          mountPath: /data
+      volumes:
+      - name: monitoring-data
+        persistentVolumeClaim:
+          claimName: monitoring-data-pvc
+
+---
+# Service Definitions
+apiVersion: v1
+kind: Service
+metadata:
+  name: rl-training-service
+  namespace: ran-automation
+spec:
+  selector:
+    app: rl-training-service
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 8000
+    protocol: TCP
+  - name: grpc
+    port: 8001
+    targetPort: 8001
+    protocol: TCP
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: causal-inference-service
+  namespace: ran-automation
+spec:
+  selector:
+    app: causal-inference-service
+  ports:
+  - name: http
+    port: 8100
+    targetPort: 8100
+    protocol: TCP
+  - name: grpc
+    port: 8101
+    targetPort: 8101
+    protocol: TCP
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dspy-optimization-service
+  namespace: ran-automation
+spec:
+  selector:
+    app: dspy-optimization-service
+  ports:
+  - name: http
+    port: 8200
+    targetPort: 8200
+    protocol: TCP
+  - name: grpc
+    port: 8201
+    targetPort: 8201
+    protocol: TCP
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: agentdb-service
+  namespace: ran-automation
+spec:
+  selector:
+    app: agentdb-service
+  ports:
+  - name: quic
+    port: 7890
+    targetPort: 7890
+    protocol: UDP
+  - name: http
+    port: 7891
+    targetPort: 7891
+    protocol: TCP
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: swarm-coordinator
+  namespace: ran-automation
+spec:
+  selector:
+    app: swarm-coordinator
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: performance-monitoring-service
+  namespace: ran-automation
+spec:
+  selector:
+    app: performance-monitoring-service
+  ports:
+  - name: http
+    port: 9000
+    targetPort: 9000
+    protocol: TCP
+  type: ClusterIP
+
+---
+# Horizontal Pod Autoscaler for ML Services
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: rl-training-service-hpa
+  namespace: ran-automation
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: rl-training-service
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  - type: Pods
+    pods:
+      metric:
+        name: rl_training_queue_length
+      target:
+        type: AverageValue
+        averageValue: "10"
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 10
+        periodSeconds: 60
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: agentdb-service-hpa
+  namespace: ran-automation
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: agentdb-service
+  minReplicas: 3
+  maxReplicas: 6
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 60
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 75
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Percent
+        value: 50
+        periodSeconds: 30
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 25
+        periodSeconds: 60
+
+---
+# Network Policies for Security
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ml-platform-network-policy
+  namespace: ran-automation
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ran-automation
+    ports:
+    - protocol: TCP
+      port: 8000  # RL Service
+    - protocol: TCP
+      port: 8001  # RL gRPC
+    - protocol: TCP
+      port: 8100  # Causal Inference Service
+    - protocol: TCP
+      port: 8101  # Causal Inference gRPC
+    - protocol: TCP
+      port: 8200  # DSPy Service
+    - protocol: TCP
+      port: 8201  # DSPy gRPC
+    - protocol: UDP
+      port: 7890  # AgentDB QUIC
+    - protocol: TCP
+      port: 7891  # AgentDB HTTP
+    - protocol: TCP
+      port: 8080  # Swarm Coordinator
+    - protocol: TCP
+      port: 9000  # Monitoring Service
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: ran-automation
+  - to: []
+    ports:
+    - protocol: TCP
+      port: 53    # DNS
+    - protocol: UDP
+      port: 53    # DNS
+    - protocol: TCP
+      port: 443   # HTTPS
+    - protocol: TCP
+      port: 80    # HTTP

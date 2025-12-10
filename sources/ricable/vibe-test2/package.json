@@ -1,0 +1,47 @@
+{
+  "name": "vibe-test2",
+  "version": "1.0.0",
+  "description": "3GPP Knowledge Graph integration with PostgreSQL using @ruvector/postgres-cli and Hugging Face dataset",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "download": "node download-dataset.js",
+    "load": "node load-to-postgres.js",
+    "setup": "node index.js",
+    "query": "node query-examples.js",
+    "advanced": "node advanced-examples.js",
+    "install-ruvector": "npx @ruvector/postgres-cli install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:55918/git/ricable/vibe-test2"
+  },
+  "keywords": [
+    "3gpp",
+    "knowledge-graph",
+    "postgresql",
+    "graphml",
+    "huggingface",
+    "vector-database",
+    "telecom",
+    "5g",
+    "ruvector",
+    "gnn",
+    "graph-neural-network",
+    "cypher",
+    "neo4j",
+    "hyperbolic-embeddings",
+    "attention-mechanisms"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@huggingface/hub": "^2.7.1",
+    "@ruvector/postgres-cli": "^0.2.5",
+    "dotenv": "^17.2.3",
+    "graphml-js": "^0.4.0",
+    "pg": "^8.16.3",
+    "xml2js": "^0.6.2"
+  }
+}

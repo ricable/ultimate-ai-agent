@@ -1,0 +1,130 @@
+# Development Dockerfile for Synaptic Neural Mesh
+# Optimized for development with hot reload and debugging capabilities
+
+FROM rust:1.75-slim AS rust-dev-base
+
+# Install development dependencies
+RUN apt-get update && apt-get install -y \
+    pkg-config \
+    libssl-dev \
+    cmake \
+    g++ \
+    git \
+    curl \
+    ca-certificates \
+    gdb \
+    lldb \
+    valgrind \
+    strace \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install rust development tools
+RUN rustup component add clippy rustfmt rust-src rust-analyzer && \
+    cargo install cargo-watch cargo-expand cargo-edit wasm-pack
+
+WORKDIR /build
+
+# Copy and prepare Rust workspace for development
+COPY src/rs/ ./rs/
+COPY Cargo.toml Cargo.lock ./
+
+# Build in debug mode for faster compilation and debugging
+RUN cd rs/QuDAG/QuDAG-main && \
+    cargo build --bin qudag --features "cli full exchange" && \
+    cargo build --bin qudag-exchange --manifest-path ./qudag-exchange/cli/Cargo.toml
+
+# ==============================================================================
+# Development Node.js Environment
+# ==============================================================================
+FROM node:20-slim AS development
+
+# Install development tools and debugging utilities
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    git \
+    sqlite3 \
+    curl \
+    wget \
+    htop \
+    procps \
+    net-tools \
+    iputils-ping \
+    telnet \
+    nano \
+    vim \
+    jq \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install global development packages
+RUN npm install -g \
+    nodemon \
+    pm2 \
+    @types/node \
+    typescript \
+    ts-node \
+    jest \
+    eslint \
+    prettier \
+    concurrently
+
+# Create non-root development user with sudo
+RUN groupadd -g 1000 neural && \
+    useradd -u 1000 -g neural -m -s /bin/bash neural && \
+    apt-get update && apt-get install -y sudo && \
+    echo "neural ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy Rust debug binaries
+COPY --from=rust-dev-base /build/rs/QuDAG/QuDAG-main/target/debug/qudag /app/bin/
+COPY --from=rust-dev-base /build/rs/QuDAG/QuDAG-main/target/debug/qudag-exchange /app/bin/
+
+# Create development directory structure
+RUN mkdir -p /app/{bin,src,wasm,data,config,logs,tests,benchmarks} && \
+    chown -R neural:neural /app
+
+# Copy package files
+COPY package*.json /app/
+COPY src/js/ /app/src/js/
+COPY src/mcp/ /app/src/mcp/
+
+# Install development dependencies
+RUN npm install && npm cache clean --force
+
+# Create development configuration files
+COPY docker/dev/ /app/docker/
+COPY config/dev/ /app/config/
+COPY scripts/ /app/scripts/
+
+# Set up development environment
+RUN chmod +x /app/bin/* /app/scripts/* /app/docker/*.sh && \
+    chown -R neural:neural /app
+
+# Switch to development user
+USER neural
+
+# Development environment variables
+ENV NODE_ENV=development
+ENV DEBUG=*
+ENV RUST_LOG=debug,qudag=trace,neural_mesh=trace
+ENV RUST_BACKTRACE=full
+ENV CARGO_INCREMENTAL=1
+ENV RUSTC_FORCE_INCREMENTAL=1
+ENV PATH="/app/bin:${PATH}"
+
+# Development ports
+EXPOSE 4001 8080 8081 3000 9229 5005
+
+# Volume mounts for hot reload
+VOLUME ["/app/src", "/app/config", "/app/data", "/app/logs"]
+
+# Development health check (more frequent)
+HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=5 \
+    CMD /app/docker/dev-healthcheck.sh
+
+# Development entrypoint with hot reload
+ENTRYPOINT ["/app/docker/dev-start.sh"]
+CMD ["dev"]

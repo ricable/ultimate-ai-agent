@@ -1,0 +1,50 @@
+{
+  "packages": ["nushell@0.103.0", "teller@2.0.7", "git@2.49.0", "nodejs@20"],
+  "shell": {
+    "init_hook": [
+      "echo 'Nushell Automation Environment'",
+      "nu --version",
+      "echo 'Available scripts: nu scripts/list.nu'",
+      "echo 'Initializing claude-flow...'",
+      "npx --yes claude-flow@alpha init --force",
+      "echo 'Starting claude-flow hive-mind...'",
+      "npx --yes claude-flow@alpha hive-mind wizard"
+    ],
+    "scripts": {
+      "setup": "mkdir -p scripts config && nu scripts/setup.nu",
+      "format": "nu scripts/format.nu",
+      "check": "nu scripts/check.nu",
+      "test": "nu scripts/test.nu",
+      "clean": "rm -rf .env *.log tmp/ || true",
+      "watch": "nu scripts/watch.nu",
+      "list": "nu scripts/list.nu",
+      "validate": "nu scripts/validate.nu",
+      "deploy": "nu scripts/deploy.nu",
+      "secrets": "teller scan",
+      "env-sync": "nu scripts/env-sync.nu",
+      "devpod:provision": "nu ../../host-tooling/devpod-management/manage-devpod.nu provision nushell",
+      "devpod:connect": "nu ../../host-tooling/devpod-management/manage-devpod.nu connect nushell",
+      "devpod:start": "nu ../../host-tooling/devpod-management/manage-devpod.nu start nushell",
+      "devpod:stop": "nu ../../host-tooling/devpod-management/manage-devpod.nu stop nushell",
+      "devpod:delete": "nu ../../host-tooling/devpod-management/manage-devpod.nu delete nushell",
+      "devpod:sync": "nu ../../host-tooling/devpod-management/manage-devpod.nu sync nushell",
+      "devpod:status": "nu ../../host-tooling/devpod-management/manage-devpod.nu status nushell",
+      "devpod:help": "nu ../../host-tooling/devpod-management/manage-devpod.nu help nushell",
+      "claude-flow:init": "npx --yes claude-flow@alpha init --force",
+      "claude-flow:help": "npx --yes claude-flow@alpha --help",
+      "claude-flow:wizard": "npx --yes claude-flow@alpha hive-mind wizard",
+      "claude-flow:start": "npx --yes claude-flow@alpha start --daemon",
+      "claude-flow:status": "npx --yes claude-flow@alpha status",
+      "claude-flow:stop": "npx --yes claude-flow@alpha stop",
+      "claude-flow:monitor": "npx --yes claude-flow@alpha monitor",
+      "claude-flow:logs": "tail -f ./claude-flow.log",
+      "claude-flow:spawn": "npx --yes claude-flow@alpha hive-mind spawn \"create a snake game in the language of your devpod dev env\" --claude"
+    }
+  },
+  "env": {
+    "NU_LIB_DIRS": "$PWD/scripts",
+    "NU_PLUGIN_DIRS": "$PWD/.nu-plugins",
+    "NUSHELL_CONFIG_DIR": "$PWD/config",
+    "TELLER_CONFIG": "$PWD/.teller.yml"
+  }
+}

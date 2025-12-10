@@ -1,0 +1,90 @@
+{
+  "timestamp": "2025-06-20T10:14:27.312526",
+  "total_duration": 25.730221033096313,
+  "total_tests": 6,
+  "successful_tests": 6,
+  "failed_tests": 0,
+  "results": [
+    {
+      "name": "Basic MLX Fine-tuning",
+      "description": "Standard MLX LoRA fine-tuning with quotes dataset",
+      "command": "source venv/bin/activate && python examples/mlx/run_mlx_finetune.py",
+      "success": true,
+      "duration": 11.791230916976929,
+      "returncode": 0,
+      "metrics": {
+        "completion_time": "\u23f1\ufe0f  Training completed in 7.67 seconds",
+        "memory": "\ud83d\udcbe Memory usage delta: 0.0 MB",
+        "loss": "Iter 50: Val loss 0.822, Val took 0.410s",
+        "throughput": "Iter 50: Train loss 0.355, Learning Rate 1.000e-04, It/sec 11.211, Tokens/sec 838.563, Trained Tokens 4462, Peak mem 2.895 GB"
+      },
+      "stdout": "\ud83c\udf89 MLX Fine-tuning Demo on Apple Silicon\n==================================================\n\ud83d\udd04 Preparing training data...\n\ud83d\udce6 Downloading quotes dataset from Hugging Face...\n\u2705 Created training dataset: 40 train, 10 validation examples\n\n\ud83d\udcdd Sample training entry:\n<|im_start|>user\nWrite an inspirational quote about be-yourself<|im_end|>\n<|im_start|>assistant\n\"\u201cBe yourself; everyone else is already taken.\u201d\" - Oscar Wilde<|im_end|>...\n\n\ud83d\ude80 Starting MLX LoRA Fine-tuning...\n\ud83d\udd27 Command: python -m mlx_lm lora --model ./models/mlx/tinyllama-1.1b-chat --data ./examples/data --train --fine-tune-type lora --batch-size 1 --iters 50 --learning-rate 1e-4 --steps-per-report 5 --steps-per-eval 20 --adapter-path ./examples/outputs/quotes_lora_adapter --max-seq-length 512 --grad-checkpoint --seed 42\n\ud83d\udcca System info: 16 cores, 128GB RAM\n\n\ud83c\udfaf Starting fine-tuning process...\n\n\u23f1\ufe0f  Training completed in 7.67 seconds\n\ud83d\udcbe Memory usage delta: 0.0 MB\n\u2705 Fine-tuning completed successfully!\n\n\ud83d\udccb Training output:\nLoading pretrained m...",
+      "stderr": ""
+    },
+    {
+      "name": "Enhanced MLX Fine-tuning with Flash Attention",
+      "description": "Enhanced MLX fine-tuning with Flash Attention optimizations",
+      "command": "source venv/bin/activate && python examples/mlx/run_mlx_finetune_improved.py --prepare-data --train --use-flash-attention --iters 25",
+      "success": true,
+      "duration": 6.9664788246154785,
+      "returncode": 0,
+      "metrics": {
+        "loss": "\ud83d\udcca Best validation loss: 1.122",
+        "throughput": "Iter   25: Train loss 0.411, LR 1.00e-04, It/sec 5.30, Tok/sec 421.0, Mem 2339MB",
+        "completion_time": "\ud83c\udf8a Process completed in 5.7s",
+        "memory": "\ud83d\udcca Peak memory usage: 2339MB"
+      },
+      "stdout": "\ud83c\udf89 Enhanced MLX Fine-tuning with Flash Attention\n======================================================================\n\ud83d\udd27 Method: mlx-lm\n\ud83d\udcf1 Model: ./models/mlx/tinyllama-1.1b-chat\n\ud83d\udcca System: 16 cores, 128GB RAM\n\ud83c\udfaf LoRA: rank=8, alpha=16.0, layers=16\n\ud83d\udcda Training: 25 iters, batch_size=1, lr=0.0001\n\u26a1 Flash Attention: \u2705 Enabled\n\ud83d\udd04 Preparing dataset from Hugging Face...\n\ud83d\udce6 Downloading Abirate/english_quotes (first 100 examples)...\n\u2705 Dataset prepared: 80 train, 15 valid, 5 test\n\n\ud83d\udcdd Sample training entry:\n<|im_start|>user\nWrite an inspirational quote about be-yourself<|im_end|>\n<|im_start|>assistant\n\"\u201cBe yourself; everyone else is already taken.\u201d\" - Oscar Wilde<|im_end|>...\n\n\ud83d\udce6 Loading model from ./models/mlx/tinyllama-1.1b-chat...\n\ud83d\udd27 Applying LoRA (rank=8, alpha=16.0) to 16 layers...\n\ud83d\udcca Model parameters: 1100.868M total, 0.819M trainable (0.074%)\n\ud83d\udcda Loading datasets...\n  Train: 80 examples, avg length: 270 chars\n  Valid: 15 examples, avg length: 246 chars\n  Test: 5 examples, avg length: 256 chars\n\ud83d\ude80 Star...",
+      "stderr": ""
+    },
+    {
+      "name": "Flash Attention Performance Comparison",
+      "description": "Compare MLX performance with and without Flash Attention",
+      "command": "source venv/bin/activate && python examples/mlx/test_flash_attention_comparison.py",
+      "success": true,
+      "duration": 4.8541460037231445,
+      "returncode": 0,
+      "metrics": {
+        "completion_time": "Warmup completed in 0.06s",
+        "throughput": "Tokens/second: 93.2 vs 97.6"
+      },
+      "stdout": "\u26a0\ufe0f  Flash Attention not available, using standard MLX attention\n\ud83c\udfaf FLASH ATTENTION PERFORMANCE COMPARISON\n================================================================================\n\n============================================================\nTesting: Flash Attention ENABLED\n============================================================\n\ud83d\udce6 Loading model...\nModel loaded in 0.22s\n\ud83d\udd25 Warming up...\nWarmup completed in 0.07s\n\ud83e\udde0 Running inference...\nPrompt: The weather today is\n\n\ud83d\udcca RESULTS:\n\u23f1\ufe0f Load time: 0.22s\n\u23f1\ufe0f Inference time: 0.73s\n\ud83d\udd23 Response tokens: ~68\n\u26a1 Tokens/second: ~93.2\n\ud83d\ude80 Flash Attention layers: 0\n\n\ud83d\udcdd Response: going to be sunny with a high of 75 degrees.\n\n2. B. The weather today is going to be sunny with a high of 75 degrees.\n\n3. C. The weather today is going to be sunny with a high of 75 degrees.\n\n4. A. Th...\n\n============================================================\nTesting: Flash Attention DISABLED\n============================================================\n\ud83d\udce6 Loading model......",
+      "stderr": ""
+    },
+    {
+      "name": "MLX Comprehensive Benchmark Suite",
+      "description": "Test all MLX operations including inference, quantization, memory usage",
+      "command": "source venv/bin/activate && python mlx_comprehensive_benchmark.py",
+      "success": true,
+      "duration": 0.9435451030731201,
+      "returncode": 0,
+      "metrics": {
+        "memory": "\u274c Memory usage test failed: MultiHeadAttention.__call__() missing 2 required positional arguments: 'keys' and 'values'"
+      },
+      "stdout": "\u2705 MLX and dependencies available\n\u26a0\ufe0f  Flash Attention not available, using standard MLX attention\n\u2705 Flash Attention implementation available\n\ud83d\ude80 MLX Comprehensive Benchmark Suite\n============================================================\n\ud83d\udcf1 Model: models/mlx/tinyllama-1.1b-chat\n\ud83d\udcca Output: benchmark_results/mlx_comprehensive\n\ud83d\udda5\ufe0f  System: arm64\n\u26a1 MLX Available: True\n\ud83d\udd25 Flash Attention: True\n\ud83d\udce6 Loading model from models/mlx/tinyllama-1.1b-chat\n\u2705 Tokenizer loaded successfully\n\u2705 Test model created successfully\n\n\ud83d\ude80 Starting Comprehensive MLX Benchmark Suite\n============================================================\n\n\ud83d\udcca Testing Basic MLX Operations\n----------------------------------------\n\u2705 Basic operations: 0.009s\n\u2705 Metal acceleration (10 ops): 0.013s\n\n\ud83e\udde0 Testing Model Inference\n----------------------------------------\n\u274c Model inference failed: MultiHeadAttention.__call__() missing 2 required positional arguments: 'keys' and 'values'\n\n\ud83d\udd22 Testing Quantization Simulation\n------------------------------...",
+      "stderr": "None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.\nhuggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...\nTo disable this warning, you can either:\n\t- Avoid using `tokenizers` before the fork if possible\n\t- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)\nhuggingface/token..."
+    },
+    {
+      "name": "MLX Flash Attention Benchmark Suite",
+      "description": "Comprehensive Flash Attention performance benchmarking",
+      "command": "source venv/bin/activate && python mlx_flash_attention_benchmark.py",
+      "success": true,
+      "duration": 1.1108317375183105,
+      "returncode": 0,
+      "metrics": {},
+      "stdout": "\u2705 MLX available\n\u26a0\ufe0f  Flash Attention not available, using standard MLX attention\n\u2705 Flash Attention available\n\n\ud83d\udd25 MLX FLASH ATTENTION COMPREHENSIVE BENCHMARK\n============================================================\n\ud83d\udda5\ufe0f  System: arm64\n\ud83d\udcbe Memory: 128.0GB\n\u26a1 Metal: \u2705\n============================================================\n\n\ud83d\udcca CORE PERFORMANCE BENCHMARK\n----------------------------------------\n\n\ud83c\udfaf Testing chat scenario...\n  \ud83d\udcc8 Testing: batch=1, seq=64, head_dim=64, heads=8\n\ud83d\udd2c MLX FLASH ATTENTION PERFORMANCE BENCHMARK\n======================================================================\nSystem: arm\nDevice: Device(gpu, 0)\nMemory: 128.0GB\n======================================================================\n\n\ud83d\udcca Testing: batch=1, seq_len=64, head_dim=64\n\u2139\ufe0f Standard MLX attention (dims=512, heads=8)\n\u2705 Initialized MLX Flash Attention (head_dim=64, block_size=32)\n\u2705 Optimized MLX attention initialized (dims=512, heads=8)\n  \ud83d\udcc8 Standard MLX: 2.71\u00b13.0ms (23644 tok/s)\n  \u26a1 Flash Optimized: 1.24\u00b10.2ms (5...",
+      "stderr": ""
+    },
+    {
+      "name": "MLX Chat Interface Test",
+      "description": "Test MLX chat interface (with timeout)",
+      "command": "source venv/bin/activate && timeout 10 python src/flow2/chat/interfaces/cli/mlx_chat.py --test-mode || true",
+      "success": true,
+      "duration": 0.060009002685546875,
+      "returncode": 0,
+      "metrics": {},
+      "stdout": "\u26a0\ufe0f  Flash Attention not available, using standard MLX attention\n",
+      "stderr": "usage: mlx_chat.py [-h] [--model MODEL] [--max-tokens MAX_TOKENS]\n                   [--temperature TEMPERATURE]\n                   [--system-message SYSTEM_MESSAGE] [--no-streaming]\n                   [--history-file HISTORY_FILE] [--use-flash-attention]\n                   [--disable-flash-attention]\n                   [--flash-block-size FLASH_BLOCK_SIZE]\n                   [--benchmark-attention]\nmlx_chat.py: error: unrecognized arguments: --test-mode\n"
+    }
+  ]
+}

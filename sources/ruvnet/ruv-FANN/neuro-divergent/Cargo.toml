@@ -1,0 +1,157 @@
+[package]
+name = "neuro-divergent"
+version = "0.1.0"
+edition = "2021"
+authors = ["Claude Code <noreply@anthropic.com>"]
+description = "High-performance neural forecasting library providing 100% compatibility with NeuralForecast Python API, built on ruv-FANN foundation"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/your-org/ruv-FANN"
+homepage = "https://github.com/your-org/ruv-FANN"
+documentation = "https://docs.rs/neuro-divergent"
+keywords = ["neural-network", "forecasting", "time-series", "machine-learning", "rust"]
+categories = ["science", "algorithms", "mathematics"]
+readme = "README.md"
+
+[workspace]
+members = [
+    ".",
+    "neuro-divergent-core",
+    "neuro-divergent-data",
+    "neuro-divergent-models",
+    "neuro-divergent-registry", 
+    "neuro-divergent-training"
+]
+
+[lib]
+name = "neuro_divergent"
+path = "src/lib.rs"
+
+[dependencies]
+# Core numeric traits and operations
+num-traits = "0.2"
+num-complex = "0.4"
+
+# Data structures and manipulation
+polars = { version = "0.35", features = ["lazy", "temporal", "csv", "parquet", "json"] }
+ndarray = "0.15"
+
+# Serialization and configuration
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Date and time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Parallel processing
+rayon = "1.8"
+
+# Async support
+tokio = { version = "1.0", features = ["full"], optional = true }
+futures = { version = "0.3", optional = true }
+
+# Optional GPU support
+candle-core = { version = "0.3", optional = true }
+candle-nn = { version = "0.3", optional = true }
+
+# Logging and monitoring
+log = "0.4"
+tracing = { version = "0.1", optional = true }
+
+# Internal neuro-divergent crates (using published versions)
+neuro-divergent-core = "0.1.0"
+neuro-divergent-models = { version = "0.1.0", optional = true }
+neuro-divergent-registry = { version = "0.1.0", optional = true }
+
+# ruv-FANN dependency
+ruv-fann = "0.1"
+
+[dev-dependencies]
+approx = "0.5"
+tempfile = "3.8"
+criterion = { version = "0.5", features = ["html_reports"] }
+proptest = "1.4"
+rand = "0.8"
+rand_distr = "0.4"
+serde_json = "1.0"
+quickcheck = "1.0"
+arbitrary = { version = "1.3", features = ["derive"] }
+crossbeam = "0.8"
+plotly = "0.8"
+csv = "1.3"
+
+# For benchmarking
+pprof = { version = "0.13", features = ["flamegraph"] }
+
+# For memory profiling
+stats_alloc = "0.1"
+parking_lot = "0.12"
+dashmap = "5.5"
+once_cell = "1.19"
+sysinfo = "0.30"
+bincode = "1.3"
+jemalloc-ctl = "0.5"
+
+[features]
+default = ["std", "models", "registry"]
+std = []
+async = ["tokio", "futures"]
+gpu = ["candle-core", "candle-nn"]
+tracing = ["dep:tracing"]
+models = ["dep:neuro-divergent-models"]
+registry = ["dep:neuro-divergent-registry"]
+python-compat = []  # Enable Python-specific compatibility features
+# plotting = ["plotly"]  # Enable plotting support for examples (dev-dependency only)
+
+# WASM support
+wasm = ["dep:ruv-fann/wasm"]
+no_std = []
+
+
+[[test]]
+name = "memory_tests"
+path = "tests/performance/memory_tests.rs"
+
+[[test]]
+name = "scaling_tests"
+path = "tests/performance/scaling_tests.rs"
+
+[[example]]
+name = "basic_usage"
+path = "examples/basic_usage.rs"
+
+[[example]]
+name = "lstm_forecasting"
+path = "examples/lstm_forecasting.rs"
+
+[[example]]
+name = "multiple_models"
+path = "examples/multiple_models.rs"
+
+[[example]]
+name = "cross_validation"
+path = "examples/cross_validation.rs"
+
+[[example]]
+name = "complete_workflow"
+path = "examples/complete_workflow.rs"
+
+[[example]]
+name = "ensemble_forecasting"
+path = "examples/ensemble_forecasting.rs"
+
+[[example]]
+name = "advanced_features"
+path = "examples/advanced_features.rs"
+
+[[test]]
+name = "integration"
+path = "tests/integration/mod.rs"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

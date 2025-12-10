@@ -1,0 +1,37 @@
+# MCP Service - Lightweight HTTP-based microservice  
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.mcp.txt .
+RUN pip install --no-cache-dir -r requirements.mcp.txt
+
+# Create minimal directory structure
+RUN mkdir -p src/mcp/modules src/server/services src/server/config
+
+# Copy only MCP-specific files (lightweight protocol wrapper)
+COPY src/mcp/ src/mcp/
+COPY src/__init__.py src/
+
+# Copy only the minimal server files MCP needs for HTTP communication
+COPY src/server/__init__.py src/server/
+COPY src/server/services/__init__.py src/server/services/
+COPY src/server/services/mcp_service_client.py src/server/services/
+COPY src/server/services/client_manager.py src/server/services/
+COPY src/server/services/mcp_session_manager.py src/server/services/
+COPY src/server/config/__init__.py src/server/config/
+COPY src/server/config/service_discovery.py src/server/config/
+COPY src/server/config/logfire_config.py src/server/config/
+
+# Set environment variables
+ENV PYTHONPATH="/app:$PYTHONPATH"
+ENV PYTHONUNBUFFERED=1
+
+# Expose MCP port
+ARG ARCHON_MCP_PORT=8051
+ENV ARCHON_MCP_PORT=${ARCHON_MCP_PORT}
+EXPOSE ${ARCHON_MCP_PORT}
+
+# Run the MCP server
+CMD ["python", "-m", "src.mcp.mcp_server"]

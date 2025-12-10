@@ -1,0 +1,44 @@
+# Generated dirs
+.vscode
+.idea
+.coverage
+node_modules
+dist
+sdist
+*__pycache__*
+**/.pytest_cache
+**/.ipynb_checkpoints/
+**/.DS_Store
+
+# Server static files
+/src/phoenix/server/static/*
+
+# Data files
+*.csv
+!tests/**/fixtures/*.csv
+*.hdf
+*.hdf5
+
+# Testing
+coverage.xml
+.tox
+
+# devtools
+pyrightconfig.json
+
+# Demo data
+tutorials/internal/demo_llama_index/*.json
+examples/agent_framework_comparison/utils/saved_traces/*.parquet
+.env
+
+# python environments
+.conda
+.venv
+
+# Symbolic links
+# Note that this can affect hatch build for those packages. That's why
+# we need to un-ignore it if it's an actual folder (i.e. with the trailing /).
+/src/phoenix/evals
+!src/phoenix/evals/
+/src/phoenix/otel
+!src/phoenix/otel/

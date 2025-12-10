@@ -1,0 +1,121 @@
+{
+  "name": "@deco/deco",
+  "version": "1.108.0",
+  "lock": false,
+  "nodeModulesDir": true,
+  "exports": {
+    ".": "./mod.ts",
+    "./web": "./mod.web.ts",
+    "./htmx": "./runtime/htmx/mod.ts",
+    "./o11y": "./observability/mod.ts",
+    "./utils": "./utils/mod.ts",
+    "./blocks": "./blocks/mod.ts",
+    "./hooks": "./hooks/mod.ts",
+    "./scripts/run": "./daemon/main.ts",
+    "./daemon": "./daemon/mod.ts",
+    "./jwt": "./commons/jwt/mod.ts",
+    "./scripts/bundle": "./scripts/apps/bundle.ts",
+    "./scripts/dev": "./scripts/dev.ts",
+    "./engine": "./engine/mod.ts"
+  },
+  "publish": {
+    "exclude": [
+      "./dev",
+      "**/*.bench.ts",
+      "**/*.test.ts",
+      "./scripts/codemod.ts",
+      "./plugins",
+      "live.gen.ts",
+      "MAINTAINERS.txt",
+      "live.ts",
+      "CODE_OF_CONDUCT.md",
+      ".gitattributes",
+      ".github",
+      "./assets"
+    ]
+  },
+  "tasks": {
+    "start": "deno task check",
+    "component": "deno eval 'import \"deco/scripts/component.ts\"'",
+    "order_imports": "deno eval 'import \"deco/scripts/order_imports.ts\"'",
+    "release": "deno run -A ./scripts/release.ts",
+    "check": "deno fmt && deno check live.ts && deno test --unstable-http -A . && deno bench -A .",
+    "cache_clean": "rm deno.lock; deno cache -r live.ts",
+    "info_json": "deno info --json live.ts > deps.json",
+    "detective": "deno run -A https://deno.land/x/detective/detective.ts deps.json",
+    "deps": "deno task cache_clean && deno task info_json && deno task detective"
+  },
+  "githooks": {
+    "pre-commit": "check"
+  },
+  "fmt": {
+    "files": {
+      "exclude": [
+        "static/",
+        "README.md"
+      ]
+    }
+  },
+  "scopes": {
+    "https://denopkg.com/deco-cx/deco@1.26.0/": {
+      "$live/": "https://denopkg.com/deco-cx/deco@1.26.0/",
+      "std/": "https://deno.land/std@0.203.0/",
+      "partytown/": "https://deno.land/x/partytown@0.3.0/",
+      "deco/": "https://denopkg.com/deco-cx/deco@1.26.0/"
+    }
+  },
+  "imports": {
+    "$fresh/": "https://denopkg.com/denoland/fresh@1.6.8/",
+    "@cliffy/prompt": "jsr:@cliffy/prompt@^1.0.0-rc.5",
+    "@core/asyncutil": "jsr:@core/asyncutil@^1.0.2",
+    "@deco/codemod-toolkit": "jsr:@deco/codemod-toolkit@^0.3.4",
+    "@deco/deno-ast-wasm": "jsr:@deco/deno-ast-wasm@^0.5.4",
+    "@deco/durable": "jsr:@deco/durable@^0.5.3",
+    "@deco/warp": "jsr:@deco/warp@^0.3.8",
+    "@hono/hono": "jsr:@hono/hono@^4.5.4",
+    "@std/assert": "jsr:@std/assert@^1.0.2",
+    "@std/async": "jsr:@std/async@^0.224.1",
+    "@std/cli": "jsr:@std/cli@^1.0.3",
+    "@std/crypto": "jsr:@std/crypto@1.0.0-rc.1",
+    "@std/datetime": "jsr:@std/datetime@^0.224.0",
+    "@std/encoding": "jsr:@std/encoding@^1.0.0-rc.1",
+    "@std/flags": "jsr:@std/flags@^0.224.0",
+    "@std/fmt": "jsr:@std/fmt@^0.225.3",
+    "@std/fs": "jsr:@std/fs@^0.229.1",
+    "@std/http": "jsr:@std/http@^1.0.0",
+    "@std/io": "jsr:@std/io@^0.224.4",
+    "@std/log": "jsr:@std/log@^0.224.5",
+    "@std/media-types": "jsr:@std/media-types@^1.0.0-rc.1",
+    "@std/path": "jsr:@std/path@^0.225.2",
+    "@std/semver": "jsr:@std/semver@^0.224.3",
+    "@std/streams": "jsr:@std/streams@^1.0.0",
+    "@std/testing": "jsr:@std/testing@^1.0.0",
+    "@zaubrik/djwt": "jsr:@zaubrik/djwt@^3.0.2",
+    "fast-json-patch": "npm:fast-json-patch@^3.1.1",
+    "langchain/": "npm:langchain@0.1.25/",
+    "@langchain/openai": "npm:@langchain/openai@0.0.23",
+    "@langchain/core/": "npm:@langchain/core@0.1.25/",
+    "partytown/": "https://deno.land/x/partytown@0.3.0/",
+    "preact": "npm:preact@10.23.1",
+    "preact-render-to-string": "npm:preact-render-to-string@6.4.0",
+    "simple-git": "npm:simple-git@^3.25.0",
+    "std/": "https://deno.land/std@0.203.0/",
+    "@deco/deco": "undefined/mod.ts",
+    "@deco/deco/web": "undefined/mod.web.ts",
+    "@deco/deco/htmx": "undefined/runtime/htmx/mod.ts",
+    "@deco/deco/o11y": "undefined/observability/mod.ts",
+    "@deco/deco/utils": "undefined/utils/mod.ts",
+    "@deco/deco/blocks": "undefined/blocks/mod.ts",
+    "@deco/deco/hooks": "undefined/hooks/mod.ts",
+    "@deco/deco/scripts/run": "undefined/daemon/main.ts",
+    "@deco/deco/daemon": "undefined/daemon/mod.ts",
+    "@deco/deco/jwt": "undefined/commons/jwt/mod.ts",
+    "@deco/deco/scripts/bundle": "undefined/scripts/apps/bundle.ts",
+    "@deco/deco/scripts/dev": "undefined/scripts/dev.ts",
+    "@deco/deco/engine": "undefined/engine/mod.ts"
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  }
+}

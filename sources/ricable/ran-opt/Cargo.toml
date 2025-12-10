@@ -1,0 +1,148 @@
+[package]
+name = "ran-opt"
+version = "1.0.0"
+edition = "2021"
+authors = ["RAN-OPT Swarm <swarm@ran-opt.ai>"]
+description = "Unified AI-Powered RAN Intelligence and Optimization Platform"
+license = "MIT"
+repository = "https://github.com/ran-opt/ran-opt"
+categories = ["network-programming", "machine-learning", "telecommunications"]
+keywords = ["5g", "ran", "ai", "optimization", "neural-networks"]
+
+[dependencies]
+# Core Neural Networks
+candle-core = { version = "0.3", features = ["cuda"] }
+candle-nn = "0.3"
+candle-transformers = "0.3"
+tch = "0.13"
+ndarray = "0.15"
+ndarray-linalg = "0.16"
+nalgebra = "0.32"
+faiss = "0.11"
+
+# Data Processing
+arrow = { version = "53", features = ["json", "csv"] }
+parquet = "53"
+polars = { version = "0.35", features = ["lazy", "sql", "parquet"] }
+memmap2 = "0.9"
+crossbeam = "0.8"
+rayon = "1.8"
+
+# Async & Networking
+tokio = { version = "1.35", features = ["full"] }
+reqwest = { version = "0.11", features = ["json", "stream"] }
+hyper = { version = "0.14", features = ["full"] }
+tonic = { version = "0.10", features = ["default"], optional = true }
+prost = { version = "0.12", optional = true }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+bincode = "1.3"
+rmp-serde = "1.1"
+
+# Performance
+mimalloc = "0.1"
+jemalloc = "0.3"
+packed_simd_2 = "0.3"
+half = "2.4"
+zstd = "0.13"
+
+# Graph & Spatial
+petgraph = "0.6"
+kdtree = "0.6"
+geo = "0.27"
+# rtree = "0.1"  # Removed due to missing lib target
+
+# Time Series
+chrono = { version = "0.4", features = ["serde"] }
+time = "0.3"
+
+# Logging & Monitoring
+tracing = "0.1"
+tracing-subscriber = "0.3"
+prometheus = "0.13"
+metrics = "0.22"
+
+# Testing
+criterion = { version = "0.5", optional = true }
+proptest = { version = "1.4", optional = true }
+approx = "0.5"
+
+# Parsing & Text
+regex = { version = "1.10", optional = true }
+quick-xml = { version = "0.36", optional = true }
+nom = "7.1"
+aho-corasick = "1.1"
+
+# Crypto & Security
+blake3 = "1.5"
+argon2 = "0.5"
+ring = "0.17"
+
+# CUDA & GPU
+cudarc = { version = "0.10", optional = true }
+cuda-runtime-sys = "0.3.0-alpha.1"
+cublas-sys = "0.1"
+
+# Database & Storage
+rusqlite = "0.30"
+rocksdb = "0.22"
+redis = "0.24"
+qdrant-client = "1.7"
+
+# Configuration
+config = "0.13"
+clap = { version = "4.4", features = ["derive"] }
+
+# Error Handling
+anyhow = "1.0"
+thiserror = "1.0"
+color-eyre = "0.6"
+
+[dev-dependencies]
+tokio-test = "0.4"
+wiremock = "0.5"
+tempfile = "3.8"
+serial_test = "3.0"
+
+[[bin]]
+name = "ran-opt"
+path = "src/main.rs"
+
+[[bench]]
+name = "pfs_core_bench"
+harness = false
+
+[[bench]]
+name = "pfs_data_bench"
+harness = false
+
+[[bench]]
+name = "afm_detect_bench"
+harness = false
+
+[[bench]]
+name = "dtm_power_bench"
+harness = false
+
+[[bench]]
+name = "pfs_logs_bench"
+harness = false
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+opt-level = 3
+
+[profile.dev]
+opt-level = 1
+debug = true
+
+[features]
+default = ["gpu", "distributed", "ericsson"]
+gpu = ["cudarc", "candle-core/cuda"]
+distributed = ["tonic", "prost"]
+ericsson = ["quick-xml", "regex"]
+testing = ["criterion", "proptest"]

@@ -1,0 +1,100 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2024-01-15T00:00:00.000Z",
+  "complianceFramework": {
+    "name": "Anthropic ToS Compliant Claude Max Sharing",
+    "description": "Peer-to-peer compute federation model for voluntary Claude capacity sharing"
+  },
+  "requirements": {
+    "noSharedApiKeys": {
+      "description": "API keys must remain local to each user",
+      "required": true,
+      "implementation": "Environment variables only, never transmitted"
+    },
+    "peerOrchestrated": {
+      "description": "Tasks route to willing participants, not centralized accounts",
+      "required": true,
+      "implementation": "Docker orchestration with local execution"
+    },
+    "voluntaryParticipation": {
+      "description": "Users must opt-in explicitly and can revoke consent",
+      "required": true,
+      "implementation": "Interactive consent flow with granular controls"
+    },
+    "userControl": {
+      "description": "Users approve tasks, set limits, and maintain full control",
+      "required": true,
+      "implementation": "Approval prompts, usage limits, audit logs"
+    },
+    "tokenIncentives": {
+      "description": "Tokens reward contribution, not access purchase",
+      "required": true,
+      "implementation": "RUV tokens for successful task completion"
+    }
+  },
+  "checks": [
+    {
+      "id": "api_key_isolation",
+      "name": "API Key Isolation",
+      "description": "Verify API keys are never transmitted or stored remotely",
+      "frequency": "on_startup",
+      "critical": true
+    },
+    {
+      "id": "user_consent",
+      "name": "User Consent Flow",
+      "description": "Ensure explicit opt-in with clear explanations",
+      "frequency": "on_first_use",
+      "critical": true
+    },
+    {
+      "id": "approval_mechanism",
+      "name": "Job Approval",
+      "description": "Verify user approval is required for job execution",
+      "frequency": "per_job",
+      "critical": true
+    },
+    {
+      "id": "usage_limits",
+      "name": "Usage Controls",
+      "description": "Implement and enforce usage limits",
+      "frequency": "per_job",
+      "critical": false
+    },
+    {
+      "id": "audit_logging",
+      "name": "Audit Trail",
+      "description": "Log all activities for transparency",
+      "frequency": "continuous",
+      "critical": false
+    },
+    {
+      "id": "opt_out_capability",
+      "name": "Opt-out Mechanism",
+      "description": "Provide immediate and complete opt-out",
+      "frequency": "on_demand",
+      "critical": true
+    }
+  ],
+  "legalNotice": {
+    "text": "Synaptic Mesh does not proxy or resell access to Claude Max. All compute is run locally by consenting nodes with individual Claude subscriptions. Participation is voluntary. API keys are never shared or transmitted.",
+    "acknowledgmentRequired": true,
+    "displayOnFirstUse": true
+  },
+  "userRights": [
+    "Approve or deny each individual task",
+    "Set daily, weekly, and monthly usage limits", 
+    "Opt out completely at any time",
+    "View detailed audit logs of all activities",
+    "Revoke consent with immediate effect",
+    "Access comprehensive usage statistics",
+    "Request deletion of all stored data",
+    "Report compliance violations"
+  ],
+  "reporting": {
+    "auditFrequency": "daily",
+    "complianceReportFormat": "json",
+    "retentionPeriod": "90_days",
+    "exportCapability": true
+  }
+}

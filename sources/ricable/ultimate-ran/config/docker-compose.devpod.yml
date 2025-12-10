@@ -1,0 +1,132 @@
+# Docker Compose for DevPod Environment
+# Optimized for Mac Silicon (ARM64)
+
+version: '3.9'
+
+services:
+  # Main TITAN application
+  titan-app:
+    build:
+      context: ..
+      dockerfile: ./config/Dockerfile.arm64
+      platform: linux/arm64
+    container_name: titan-app
+    environment:
+      - NODE_ENV=development
+      - RUNTIME_MODE=devpod
+      - PLATFORM_ARCH=arm64
+      # API Keys (passed from .env)
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GOOGLE_AI_API_KEY=${GOOGLE_AI_API_KEY}
+      - E2B_API_KEY=${E2B_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      # Database
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=agentdb
+      - POSTGRES_USER=titan
+      - POSTGRES_PASSWORD=titan_secure_password
+      # Redis
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    ports:
+      - "3000:3000"  # UI Dashboard
+      - "3001:3001"  # AG-UI Server
+      - "4433:4433"  # QUIC Transport
+    volumes:
+      - ../:/workspace:cached
+      - node_modules:/workspace/node_modules
+      - agentdb-data:/var/lib/agentdb
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    command: >
+      sh -c "
+        echo '🚀 Starting TITAN in DevPod mode...' &&
+        npm install &&
+        npm run build &&
+        npm run agui:start &
+        npm start
+      "
+    restart: unless-stopped
+    networks:
+      - titan-network
+
+  # PostgreSQL for AgentDB
+  postgres:
+    image: postgres:16-alpine
+    platform: linux/arm64
+    container_name: titan-postgres
+    environment:
+      POSTGRES_DB: agentdb
+      POSTGRES_USER: titan
+      POSTGRES_PASSWORD: titan_secure_password
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ../scripts/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U titan -d agentdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - titan-network
+
+  # Redis for caching and pub/sub
+  redis:
+    image: redis:7-alpine
+    platform: linux/arm64
+    container_name: titan-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - titan-network
+
+  # E2B Sandbox Environment (optional local replacement)
+  # Note: This is a local alternative if you want to test without E2B cloud
+  sandbox-runner:
+    image: node:20-alpine
+    platform: linux/arm64
+    container_name: titan-sandbox
+    environment:
+      - SANDBOX_MODE=local
+      - SANDBOX_TIMEOUT=300
+    volumes:
+      - ../:/workspace:ro
+      - sandbox-workspace:/sandbox
+    working_dir: /sandbox
+    command: sh -c "while true; do sleep 3600; done"
+    restart: unless-stopped
+    networks:
+      - titan-network
+
+volumes:
+  node_modules:
+    driver: local
+  agentdb-data:
+    driver: local
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+  sandbox-workspace:
+    driver: local
+
+networks:
+  titan-network:
+    driver: bridge

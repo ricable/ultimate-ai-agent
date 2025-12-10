@@ -1,0 +1,20 @@
+{
+  "safla_mcp": {
+    "server_url": "https://safla.fly.dev",
+    "timeout": 30,
+    "retry_attempts": 3,
+    "optimization_config": {
+      "batch_size": 256,
+      "use_flash_attention_2": true,
+      "mixed_precision": "fp32",
+      "cache_embeddings": true,
+      "normalize_embeddings": true
+    },
+    "endpoints": {
+      "health": "/health",
+      "api": "/api/safla",
+      "optimize": "/api/safla/optimize",
+      "benchmark": "/api/safla/benchmark"
+    }
+  }
+}

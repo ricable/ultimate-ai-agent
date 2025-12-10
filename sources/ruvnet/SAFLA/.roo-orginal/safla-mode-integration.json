@@ -1,0 +1,519 @@
+{
+  "saflaIntegratedModes": {
+    "architect": {
+      "name": "🏗️ Architect",
+      "slug": "architect",
+      "description": "Design robust system architectures with SAFLA-enhanced planning and validation",
+      "rulesPath": ".roo/rules-architect/rules.md",
+      "mcpServers": ["safla"],
+      "saflaIntegration": {
+        "core_capabilities": [
+          "system_validation",
+          "deployment_planning", 
+          "performance_analysis",
+          "meta_cognitive_planning"
+        ],
+        "workflow_phases": {
+          "requirements_analysis": {
+            "tools": ["get_system_info", "analyze_system_introspection"],
+            "resources": ["safla://config", "safla://system-logs"]
+          },
+          "system_decomposition": {
+            "tools": ["create_goal", "select_optimal_strategy"],
+            "resources": ["safla://strategies", "safla://goals"]
+          },
+          "interface_design": {
+            "tools": ["validate_installation", "test_mcp_connectivity"],
+            "resources": ["safla://agent-capabilities"]
+          },
+          "validation": {
+            "tools": ["run_integration_tests", "analyze_performance_bottlenecks"],
+            "resources": ["safla://test-results", "safla://performance-metrics"]
+          }
+        }
+      }
+    },
+    "code": {
+      "name": "🧠 Auto-Coder",
+      "slug": "code", 
+      "description": "Implement, refactor, and self-test modular code with SAFLA optimization",
+      "rulesPath": ".roo/rules-code/rules.md",
+      "mcpServers": ["safla"],
+      "saflaIntegration": {
+        "core_capabilities": [
+          "code_optimization",
+          "test_validation",
+          "performance_monitoring",
+          "adaptive_learning"
+        ],
+        "workflow_phases": {
+          "input_analysis": {
+            "tools": ["get_system_info", "check_gpu_status"],
+            "resources": ["safla://config", "safla://performance-baselines"]
+          },
+          "test_first_approach": {
+            "tools": ["run_integration_tests", "validate_memory_operations"],
+            "resources": ["safla://test-results", "safla://test-coverage"]
+          },
+          "code_implementation": {
+            "tools": ["optimize_vector_operations", "optimize_memory_usage"],
+            "resources": ["safla://optimization-recommendations"]
+          },
+          "code_validation": {
+            "tools": ["benchmark_vector_operations", "analyze_performance_bottlenecks"],
+            "resources": ["safla://benchmark-results", "safla://performance-metrics"]
+          },
+          "refinement_loop": {
+            "tools": ["trigger_learning_cycle", "update_learning_parameters"],
+            "resources": ["safla://learning-metrics", "safla://adaptation-patterns"]
+          }
+        }
+      }
+    },
+    "orchestrator": {
+      "name": "🤖 aiGI Orchestrator",
+      "slug": "orchestrator",
+      "description": "Coordinate aiGI workflow with SAFLA-enhanced meta-cognitive capabilities",
+      "rulesPath": ".roo/rules-orchestrator/rules.md", 
+      "mcpServers": ["safla"],
+      "saflaIntegration": {
+        "core_capabilities": [
+          "workflow_coordination",
+          "meta_cognitive_control",
+          "agent_orchestration",
+          "adaptive_recursion"
+        ],
+        "workflow_phases": {
+          "initialization": {
+            "tools": ["get_system_awareness", "create_goal"],
+            "resources": ["safla://meta-cognitive-state", "safla://goals"]
+          },
+          "layer_management": {
+            "tools": ["create_agent_session", "interact_with_agent"],
+            "resources": ["safla://agent-sessions", "safla://agent-capabilities"]
+          },
+          "decision_points": {
+            "tools": ["select_optimal_strategy", "evaluate_goal_progress"],
+            "resources": ["safla://strategies", "safla://adaptation-patterns"]
+          },
+          "reflection_control": {
+            "tools": ["analyze_system_introspection", "update_awareness_state"],
+            "resources": ["safla://meta-cognitive-state", "safla://learning-metrics"]
+          },
+          "workflow_optimization": {
+            "tools": ["trigger_learning_cycle", "analyze_adaptation_patterns"],
+            "resources": ["safla://performance-metrics", "safla://optimization-recommendations"]
+          }
+        }
+      }
+    },
+    "memory-manager": {
+      "name": "🧠 Memory Manager",
+      "slug": "memory-manager",
+      "description": "Manage vector memory with SAFLA-enhanced storage and retrieval",
+      "rulesPath": ".roo/rules-memory-manager/rules.md",
+      "mcpServers": ["safla"],
+      "saflaIntegration": {
+        "core_capabilities": [
+          "vector_memory_optimization",
+          "similarity_search_enhancement", 
+          "novelty_detection",
+          "memory_performance_tuning"
+        ],
+        "workflow_phases": {
+          "storage_optimization": {
+            "tools": ["optimize_vector_operations", "optimize_memory_usage"],
+            "resources": ["safla://performance-metrics", "safla://optimization-recommendations"]
+          },
+          "retrieval_enhancement": {
+            "tools": ["benchmark_vector_operations", "analyze_performance_bottlenecks"],
+            "resources": ["safla://benchmark-results", "safla://performance-baselines"]
+          },
+          "novelty_detection": {
+            "tools": ["trigger_learning_cycle", "get_learning_metrics"],
+            "resources": ["safla://learning-metrics", "safla://adaptation-patterns"]
+          },
+          "memory_validation": {
+            "tools": ["validate_memory_operations", "benchmark_memory_performance"],
+            "resources": ["safla://test-results", "safla://benchmark-results"]
+          }
+        }
+      }
+    },
+    "critic": {
+      "name": "🧐 Critic",
+      "slug": "critic",
+      "description": "Review code outputs with SAFLA-enhanced analysis and optimization",
+      "rulesPath": ".roo/rules-critic/rules.md",
+      "mcpServers": ["safla"],
+      "saflaIntegration": {
+        "core_capabilities": [
+          "performance_analysis",
+          "code_quality_assessment",
+          "optimization_recommendations",
+          "learning_feedback"
+        ],
+        "workflow_phases": {
+          "code_analysis": {
+            "tools": ["analyze_performance_bottlenecks", "run_integration_tests"],
+            "resources": ["safla://test-results", "safla://performance-metrics"]
+          },
+          "quality_assessment": {
+            "tools": ["benchmark_vector_operations", "validate_memory_operations"],
+            "resources": ["safla://benchmark-results", "safla://test-coverage"]
+          },
+          "optimization_identification": {
+            "tools": ["optimize_vector_operations", "optimize_memory_usage"],
+            "resources": ["safla://optimization-recommendations", "safla://performance-baselines"]
+          },
+          "feedback_generation": {
+            "tools": ["trigger_learning_cycle", "update_learning_parameters"],
+            "resources": ["safla://learning-metrics", "safla://adaptation-patterns"]
+          }
+        }
+      }
+    },
+    "scorer": {
+      "name": "🎯 Scorer", 
+      "slug": "scorer",
+      "description": "Evaluate code batches with SAFLA-enhanced metrics and benchmarking",
+      "rulesPath": ".roo/rules-scorer/rules.md",
+      "mcpServers": ["safla"],
+      "saflaIntegration": {
+        "core_capabilities": [
+          "performance_benchmarking",
+          "quality_metrics",
+          "comparative_analysis",
+          "trend_tracking"
+        ],
+        "workflow_phases": {
+          "performance_evaluation": {
+            "tools": ["benchmark_vector_operations", "benchmark_memory_performance"],
+            "resources": ["safla://benchmark-results", "safla://performance-baselines"]
+          },
+          "quality_scoring": {
+            "tools": ["run_integration_tests", "validate_memory_operations"],
+            "resources": ["safla://test-results", "safla://test-coverage"]
+          },
+          "comparative_analysis": {
+            "tools": ["analyze_performance_bottlenecks", "get_learning_metrics"],
+            "resources": ["safla://performance-metrics", "safla://learning-metrics"]
+          },
+          "trend_analysis": {
+            "tools": ["analyze_adaptation_patterns", "evaluate_goal_progress"],
+            "resources": ["safla://adaptation-patterns", "safla://goals"]
+          }
+        }
+      }
+    },
+    "tdd": {
+      "name": "🧪 Test-Driven Development",
+      "slug": "tdd",
+      "description": "Focus on TDD principles with SAFLA-enhanced testing and validation",
+      "rulesPath": ".roo/rules-tdd/rules.md",
+      "mcpServers": ["safla"],
+      "saflaIntegration": {
+        "core_capabilities": [
+          "comprehensive_testing",
+          "test_optimization",
+          "coverage_analysis",
+          "quality_assurance"
+        ],
+        "workflow_phases": {
+          "test_creation": {
+            "tools": ["run_integration_tests", "validate_memory_operations"],
+            "resources": ["safla://test-coverage", "safla://test-results"]
+          },
+          "test_execution": {
+            "tools": ["benchmark_vector_operations", "benchmark_memory_performance"],
+            "resources": ["safla://benchmark-results", "safla://performance-metrics"]
+          },
+          "coverage_analysis": {
+            "tools": ["analyze_performance_bottlenecks", "get_learning_metrics"],
+            "resources": ["safla://test-coverage", "safla://optimization-recommendations"]
+          },
+          "quality_validation": {
+            "tools": ["trigger_learning_cycle", "update_learning_parameters"],
+            "resources": ["safla://learning-metrics", "safla://adaptation-patterns"]
+          }
+        }
+      }
+    },
+    "debug": {
+      "name": "🪲 Debug",
+      "slug": "debug",
+      "description": "Systematic problem diagnosis with SAFLA-enhanced analysis",
+      "rulesPath": ".roo/rules-debug/rules.md",
+      "mcpServers": ["safla"],
+      "saflaIntegration": {
+        "core_capabilities": [
+          "system_diagnostics",
+          "performance_profiling",
+          "error_analysis",
+          "resolution_tracking"
+        ],
+        "workflow_phases": {
+          "problem_identification": {
+            "tools": ["analyze_performance_bottlenecks", "monitor_system_health"],
+            "resources": ["safla://system-logs", "safla://performance-metrics"]
+          },
+          "diagnostic_analysis": {
+            "tools": ["run_integration_tests", "validate_memory_operations"],
+            "resources": ["safla://test-results", "safla://benchmark-results"]
+          },
+          "resolution_implementation": {
+            "tools": ["optimize_vector_operations", "optimize_memory_usage"],
+            "resources": ["safla://optimization-recommendations"]
+          },
+          "validation_testing": {
+            "tools": ["benchmark_vector_operations", "trigger_learning_cycle"],
+            "resources": ["safla://learning-metrics", "safla://adaptation-patterns"]
+          }
+        }
+      }
+    },
+    "mcp": {
+      "name": "♾️ MCP Integration",
+      "slug": "mcp",
+      "description": "Integrate external services with SAFLA-enhanced connectivity and management",
+      "rulesPath": ".roo/rules-mcp/rules.md",
+      "mcpServers": ["safla"],
+      "saflaIntegration": {
+        "core_capabilities": [
+          "mcp_connectivity_testing",
+          "service_integration",
+          "performance_monitoring",
+          "deployment_management"
+        ],
+        "workflow_phases": {
+          "connectivity_validation": {
+            "tools": ["test_mcp_connectivity", "validate_installation"],
+            "resources": ["safla://config", "safla://system-logs"]
+          },
+          "service_integration": {
+            "tools": ["deploy_safla_instance", "check_deployment_status"],
+            "resources": ["safla://deployments", "safla://deployment-templates"]
+          },
+          "performance_monitoring": {
+            "tools": ["benchmark_mcp_throughput", "monitor_system_health"],
+            "resources": ["safla://performance-metrics", "safla://benchmark-results"]
+          },
+          "optimization": {
+            "tools": ["scale_deployment", "optimize_memory_usage"],
+            "resources": ["safla://optimization-recommendations"]
+          }
+        }
+      }
+    },
+    "reflection": {
+      "name": "🔄 Reflection",
+      "slug": "reflection",
+      "description": "Generate refined prompts with SAFLA-enhanced meta-cognitive capabilities",
+      "rulesPath": ".roo/rules-reflection/rules.md",
+      "mcpServers": ["safla"],
+      "saflaIntegration": {
+        "core_capabilities": [
+          "meta_cognitive_reflection",
+          "strategy_optimization",
+          "learning_adaptation",
+          "goal_refinement"
+        ],
+        "workflow_phases": {
+          "introspective_analysis": {
+            "tools": ["analyze_system_introspection", "get_system_awareness"],
+            "resources": ["safla://meta-cognitive-state", "safla://adaptation-patterns"]
+          },
+          "strategy_evaluation": {
+            "tools": ["select_optimal_strategy", "evaluate_strategy_performance"],
+            "resources": ["safla://strategies", "safla://goals"]
+          },
+          "learning_integration": {
+            "tools": ["trigger_learning_cycle", "get_learning_metrics"],
+            "resources": ["safla://learning-metrics", "safla://adaptation-patterns"]
+          },
+          "goal_refinement": {
+            "tools": ["update_goal", "create_goal"],
+            "resources": ["safla://goals", "safla://meta-cognitive-state"]
+          }
+        }
+      }
+    },
+    "prompt-generator": {
+      "name": "💬 Prompt Generator",
+      "slug": "prompt-generator",
+      "description": "Generate code-centric prompts with SAFLA-enhanced intelligence",
+      "rulesPath": ".roo/rules-prompt-generator/rules.md",
+      "mcpServers": ["safla"],
+      "saflaIntegration": {
+        "core_capabilities": [
+          "intelligent_prompt_generation",
+          "context_optimization",
+          "learning_integration",
+          "strategy_application"
+        ],
+        "workflow_phases": {
+          "context_analysis": {
+            "tools": ["get_system_awareness", "analyze_system_introspection"],
+            "resources": ["safla://meta-cognitive-state", "safla://learning-metrics"]
+          },
+          "strategy_selection": {
+            "tools": ["select_optimal_strategy", "list_strategies"],
+            "resources": ["safla://strategies", "safla://goals"]
+          },
+          "prompt_optimization": {
+            "tools": ["trigger_learning_cycle", "update_learning_parameters"],
+            "resources": ["safla://adaptation-patterns", "safla://optimization-recommendations"]
+          },
+          "validation": {
+            "tools": ["evaluate_goal_progress", "get_learning_metrics"],
+            "resources": ["safla://goals", "safla://learning-metrics"]
+          }
+        }
+      }
+    },
+    "final-assembly": {
+      "name": "🏁 Final Assembly",
+      "slug": "final-assembly",
+      "description": "Compile deliverables with SAFLA-enhanced validation and documentation",
+      "rulesPath": ".roo/rules-final-assembly/rules.md",
+      "mcpServers": ["safla"],
+      "saflaIntegration": {
+        "core_capabilities": [
+          "comprehensive_validation",
+          "performance_verification",
+          "documentation_generation",
+          "deployment_preparation"
+        ],
+        "workflow_phases": {
+          "validation": {
+            "tools": ["run_integration_tests", "validate_memory_operations"],
+            "resources": ["safla://test-results", "safla://test-coverage"]
+          },
+          "performance_verification": {
+            "tools": ["benchmark_vector_operations", "analyze_performance_bottlenecks"],
+            "resources": ["safla://benchmark-results", "safla://performance-metrics"]
+          },
+          "documentation": {
+            "tools": ["get_system_info", "evaluate_goal_progress"],
+            "resources": ["safla://goals", "safla://meta-cognitive-state"]
+          },
+          "deployment_preparation": {
+            "tools": ["backup_safla_data", "check_deployment_status"],
+            "resources": ["safla://deployments", "safla://backup-status"]
+          }
+        }
+      }
+    },
+    "tutorial": {
+      "name": "📘 aiGI Tutorial",
+      "slug": "tutorial",
+      "description": "Educational guidance with SAFLA-enhanced learning capabilities",
+      "rulesPath": ".roo/rules-tutorial/rules.md",
+      "mcpServers": ["safla"],
+      "saflaIntegration": {
+        "core_capabilities": [
+          "adaptive_learning",
+          "progress_tracking",
+          "personalized_guidance",
+          "knowledge_assessment"
+        ],
+        "workflow_phases": {
+          "assessment": {
+            "tools": ["get_system_awareness", "analyze_system_introspection"],
+            "resources": ["safla://meta-cognitive-state", "safla://learning-metrics"]
+          },
+          "content_delivery": {
+            "tools": ["select_optimal_strategy", "create_goal"],
+            "resources": ["safla://strategies", "safla://goals"]
+          },
+          "progress_tracking": {
+            "tools": ["evaluate_goal_progress", "get_learning_metrics"],
+            "resources": ["safla://goals", "safla://adaptation-patterns"]
+          },
+          "adaptation": {
+            "tools": ["trigger_learning_cycle", "update_learning_parameters"],
+            "resources": ["safla://learning-metrics", "safla://adaptation-patterns"]
+          }
+        }
+      }
+    }
+  },
+  "configuration": {
+    "saflaServer": {
+      "name": "safla",
+      "command": "python safla/mcp_stdio_server.py",
+      "timeout": 60,
+      "retryAttempts": 3,
+      "healthCheck": true
+    },
+    "integration": {
+      "enableMetaCognitive": true,
+      "enableAdaptiveLearning": true,
+      "enablePerformanceOptimization": true,
+      "enableSystemMonitoring": true
+    },
+    "fallback": {
+      "mode": "standard",
+      "disableMcpOnFailure": false,
+      "logFailures": true
+    }
+  },
+  "toolCategories": {
+    "system": [
+      "validate_installation",
+      "get_system_info", 
+      "check_gpu_status",
+      "get_config_summary"
+    ],
+    "deployment": [
+      "deploy_safla_instance",
+      "check_deployment_status",
+      "scale_deployment"
+    ],
+    "optimization": [
+      "optimize_memory_usage",
+      "optimize_vector_operations",
+      "analyze_performance_bottlenecks"
+    ],
+    "admin": [
+      "manage_user_sessions",
+      "backup_safla_data",
+      "restore_safla_data",
+      "monitor_system_health"
+    ],
+    "testing": [
+      "run_integration_tests",
+      "validate_memory_operations",
+      "test_mcp_connectivity"
+    ],
+    "benchmarking": [
+      "benchmark_vector_operations",
+      "benchmark_memory_performance",
+      "benchmark_mcp_throughput"
+    ],
+    "agents": [
+      "create_agent_session",
+      "interact_with_agent",
+      "list_agent_sessions",
+      "terminate_agent_session"
+    ],
+    "meta_cognitive": [
+      "get_system_awareness",
+      "update_awareness_state",
+      "analyze_system_introspection",
+      "create_goal",
+      "list_goals",
+      "update_goal",
+      "delete_goal",
+      "evaluate_goal_progress",
+      "list_strategies",
+      "select_optimal_strategy",
+      "create_custom_strategy",
+      "evaluate_strategy_performance",
+      "trigger_learning_cycle",
+      "get_learning_metrics",
+      "update_learning_parameters",
+      "analyze_adaptation_patterns"
+    ]
+  }
+}

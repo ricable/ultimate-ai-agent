@@ -1,0 +1,81 @@
+[package]
+name = "ruv-fann-wasm"
+version = "1.0.0"
+edition = "2021"
+authors = ["rUv Contributors"]
+description = "WASM-optimized Fast Artificial Neural Network library with SIMD acceleration"
+repository = "https://github.com/ruvnet/Synaptic-Neural-Mesh"
+license = "MIT OR Apache-2.0"
+homepage = "https://github.com/ruvnet/Synaptic-Neural-Mesh"
+documentation = "https://docs.rs/ruv-fann-wasm"
+readme = "../../README.md"
+keywords = ["neural-network", "wasm", "simd", "machine-learning", "fann"]
+categories = ["science", "wasm", "algorithms"]
+exclude = ["tests/*", "benches/*", "examples/*"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Core ruv-FANN
+ruv-fann = { path = "../ruv-FANN", features = ["wasm", "simd"] }
+
+# WASM bindings
+wasm-bindgen = { version = "0.2", features = ["serde-serialize"] }
+js-sys = "0.3"
+web-sys = { version = "0.3", features = [
+  "console", "Performance", "Window", "Worker", "MessageChannel",
+  "Gpu", "GpuAdapter", "GpuDevice", "GpuBuffer", "GpuCommandEncoder",
+  "GpuComputePipeline", "GpuBindGroup", "GpuQueue", "Document",
+  "Element", "HtmlCanvasElement", "WebGl2RenderingContext",
+  "WebGlProgram", "WebGlShader", "WebGlBuffer", "WebGlTexture",
+  "WebGlUniformLocation", "MessageEvent", "MessagePort",
+  "BroadcastChannel", "SharedArrayBuffer", "GpuTexture",
+  "GpuComputePassEncoder", "GpuPipelineLayout", "GpuShaderModule",
+  "GpuCanvasContext", "OffscreenCanvas", "ImageData", "Storage"
+] }
+
+# Error handling
+wasm-bindgen-futures = "0.4"
+console_error_panic_hook = { version = "0.1", optional = true }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde-wasm-bindgen = "0.6"
+
+# Performance
+rayon = { version = "1.8", features = ["web_spin_lock"], optional = true }
+
+# Utilities
+uuid = { version = "1.0", features = ["v4", "js"] }
+getrandom = { version = "0.2", features = ["js"] }
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[features]
+default = ["simd", "gpu"]
+simd = []
+gpu = []
+threading = ["rayon"]
+debug = ["console_error_panic_hook"]
+optimal = ["simd", "gpu", "threading"]
+minimal = []
+production = ["simd", "gpu"]
+
+[profile.release]
+opt-level = "s"  # Optimize for size
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = ["-Oz", "--enable-simd", "--enable-bulk-memory", "--enable-reference-types"]
+
+[package.metadata.wasm-pack.profile.release-wasm]
+wasm-opt = ["-Os", "--enable-simd", "--enable-bulk-memory", "--strip-debug"]
+
+[[bench]]
+name = "wasm_benchmarks"
+harness = false

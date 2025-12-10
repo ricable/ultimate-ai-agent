@@ -1,0 +1,66 @@
+{
+  "phases": [
+    {
+      "id": "specification",
+      "name": "Specification",
+      "description": "Define detailed requirements and acceptance criteria",
+      "icon": "document",
+      "color": "#42A5F5",
+      "templates": ["requirements.md", "user-stories.md", "acceptance-criteria.md"],
+      "aiPrompts": ["Generate requirements", "Create user stories", "Define acceptance criteria"]
+    },
+    {
+      "id": "pseudocode",
+      "name": "Pseudocode",
+      "description": "Create implementation pseudocode and logic flow",
+      "icon": "code",
+      "color": "#66BB6A",
+      "templates": ["pseudocode.md", "flow-diagram.md", "data-structures.md"],
+      "aiPrompts": ["Generate pseudocode", "Create flow diagram", "Define data structures"]
+    },
+    {
+      "id": "architecture",
+      "name": "Architecture",
+      "description": "Design system architecture and component interactions",
+      "icon": "package",
+      "color": "#FFA726",
+      "templates": ["architecture.md", "components.md", "interfaces.md"],
+      "aiPrompts": ["Design architecture", "Define components", "Specify interfaces"]
+    },
+    {
+      "id": "refinement",
+      "name": "Refinement",
+      "description": "Implement iterative improvements and testing",
+      "icon": "tools",
+      "color": "#EC407A",
+      "templates": ["implementation.md", "tests.md", "refactoring.md"],
+      "aiPrompts": ["Implement feature", "Write tests", "Refactor code"]
+    },
+    {
+      "id": "completion",
+      "name": "Completion",
+      "description": "Finalize documentation, deployment, and maintenance",
+      "icon": "check",
+      "color": "#AB47BC",
+      "templates": ["documentation.md", "deployment.md", "maintenance.md"],
+      "aiPrompts": ["Generate documentation", "Create deployment plan", "Define maintenance procedures"]
+    }
+  ],
+  "templates": {
+    "requirements.md": "# Requirements\n\n## Functional Requirements\n\n- [ ] Requirement 1\n- [ ] Requirement 2\n- [ ] Requirement 3\n\n## Non-Functional Requirements\n\n- [ ] Performance\n- [ ] Security\n- [ ] Usability\n\n## Constraints\n\n- [ ] Constraint 1\n- [ ] Constraint 2\n- [ ] Constraint 3",
+    "user-stories.md": "# User Stories\n\n## User Story 1\n\nAs a [user type], I want to [action] so that [benefit].\n\n### Acceptance Criteria\n\n- [ ] Criteria 1\n- [ ] Criteria 2\n- [ ] Criteria 3\n\n## User Story 2\n\nAs a [user type], I want to [action] so that [benefit].\n\n### Acceptance Criteria\n\n- [ ] Criteria 1\n- [ ] Criteria 2\n- [ ] Criteria 3",
+    "acceptance-criteria.md": "# Acceptance Criteria\n\n## Feature 1\n\n- [ ] Criteria 1\n- [ ] Criteria 2\n- [ ] Criteria 3\n\n## Feature 2\n\n- [ ] Criteria 1\n- [ ] Criteria 2\n- [ ] Criteria 3",
+    "pseudocode.md": "# Pseudocode\n\n```\nFUNCTION main():\n    // Initialize\n    \n    // Process\n    \n    // Output\n    \nEND FUNCTION\n```",
+    "flow-diagram.md": "# Flow Diagram\n\n```mermaid\nflowchart TD\n    A[Start] --> B{Decision}\n    B -->|Yes| C[Process 1]\n    B -->|No| D[Process 2]\n    C --> E[End]\n    D --> E\n```",
+    "data-structures.md": "# Data Structures\n\n## Structure 1\n\n```\nStructure1 {\n    field1: Type,\n    field2: Type,\n    field3: Type\n}\n```\n\n## Structure 2\n\n```\nStructure2 {\n    field1: Type,\n    field2: Type,\n    field3: Type\n}\n```",
+    "architecture.md": "# Architecture\n\n## Components\n\n- Component 1\n- Component 2\n- Component 3\n\n## Interactions\n\n```mermaid\nflowchart LR\n    A[Component 1] --> B[Component 2]\n    B --> C[Component 3]\n    C --> A\n```",
+    "components.md": "# Components\n\n## Component 1\n\n- Responsibility: \n- Dependencies: \n- Interfaces: \n\n## Component 2\n\n- Responsibility: \n- Dependencies: \n- Interfaces: ",
+    "interfaces.md": "# Interfaces\n\n## Interface 1\n\n```typescript\ninterface Interface1 {\n    method1(): ReturnType;\n    method2(param: Type): ReturnType;\n    property1: Type;\n}\n```\n\n## Interface 2\n\n```typescript\ninterface Interface2 {\n    method1(): ReturnType;\n    method2(param: Type): ReturnType;\n    property1: Type;\n}\n```",
+    "implementation.md": "# Implementation\n\n## Component 1\n\n```typescript\nclass Component1 implements Interface1 {\n    // Implementation\n}\n```\n\n## Component 2\n\n```typescript\nclass Component2 implements Interface2 {\n    // Implementation\n}\n```",
+    "tests.md": "# Tests\n\n## Unit Tests\n\n```typescript\ndescribe('Component1', () => {\n    test('should do something', () => {\n        // Test implementation\n    });\n});\n```\n\n## Integration Tests\n\n```typescript\ndescribe('Integration', () => {\n    test('should integrate components', () => {\n        // Test implementation\n    });\n});\n```",
+    "refactoring.md": "# Refactoring\n\n## Code Smells\n\n- Code smell 1\n- Code smell 2\n- Code smell 3\n\n## Refactoring Steps\n\n1. Step 1\n2. Step 2\n3. Step 3",
+    "documentation.md": "# Documentation\n\n## Overview\n\n## Installation\n\n## Usage\n\n## API Reference\n\n## Examples\n\n## Troubleshooting",
+    "deployment.md": "# Deployment\n\n## Prerequisites\n\n## Installation\n\n## Configuration\n\n## Verification\n\n## Rollback Plan",
+    "maintenance.md": "# Maintenance\n\n## Routine Maintenance\n\n## Monitoring\n\n## Backup and Recovery\n\n## Upgrades\n\n## Support"
+  }
+}

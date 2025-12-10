@@ -1,0 +1,53 @@
+[package]
+name = "asa-int"
+version = "0.1.0"
+edition = "2021"
+description = "ASA-INT-01 - Uplink Interference Classifier with >95% accuracy"
+
+[dependencies]
+# Core dependencies
+tokio = { version = "1.0", features = ["full"] }
+anyhow = "1.0"
+thiserror = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Machine Learning
+candle-core = "0.3"
+candle-nn = "0.3"
+ndarray = "0.15"
+linfa = "0.7"
+linfa-svm = "0.7"
+linfa-trees = "0.7"
+linfa-ensemble = "0.7"
+
+# Signal Processing
+rustfft = "6.0"
+dasp = "0.11"
+
+# gRPC
+tonic = "0.10"
+prost = "0.12"
+
+# Statistics
+statrs = "0.16"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Configuration
+config = "0.13"
+toml = "0.8"
+
+# Shared components
+ran-common = { path = "../../../shared/common" }
+ran-proto = { path = "../../../shared/proto" }
+
+[build-dependencies]
+tonic-build = "0.10"
+
+[[bin]]
+name = "asa-int-server"
+path = "src/main.rs"

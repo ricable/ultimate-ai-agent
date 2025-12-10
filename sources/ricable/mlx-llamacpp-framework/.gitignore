@@ -1,0 +1,217 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Node.js (for any web components)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Flow2 Data Organization
+# Keep benchmark results but ignore some large/temporary files
+data/results/*.csv
+data/results/*.log
+data/results/temp/
+data/results/cache/
+
+# Keep some output examples but ignore large temporary outputs
+data/outputs/temp_*/
+data/outputs/test_*/
+data/outputs/benchmark_*/
+data/outputs/cache/
+
+# Logs and temporary files
+*.log
+logs/
+*.log.*
+model_manager.log
+quantization.log
+training.log
+
+# Large model files - ignore entire models directory
+models/
+*.pkl
+
+# Training and fine-tuning temporary outputs
+checkpoints/
+wandb/
+tensorboard_logs/
+*.checkpoint
+*.ckpt
+
+# Benchmark and test artifacts
+benchmark_results/
+*.benchmark
+test_results/
+performance_*.json
+*.prof
+*.profile
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+scratch/
+
+# Cache directories
+.cache/
+*.cache
+__pycache__/
+.pytest_cache/
+mlx_cache/
+llama_cache/
+hf_cache/
+
+# Coverage and testing
+.coverage
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+coverage.xml
+
+# Documentation builds
+docs/_build/
+site/
+_site/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Configuration files with secrets
+config.json
+secrets.json
+credentials.json
+api_keys.json
+.secrets
+
+# Backup files
+*.bak
+*.backup
+*.orig
+*~
+
+# IDE/Editor files
+*.swp
+*.swo
+.vscode/settings.json
+.idea/
+
+# Git
+.git/index.lock
+
+# MLX specific
+*.mlx
+.mlx/
+
+# LlamaCpp specific  
+*.gguf.tmp
+llama.cpp/
+llamacpp-setup/
+
+# HuggingFace specific
+.huggingface/
+transformers_cache/
+
+# Apple Silicon / MPS specific
+mps_cache/
+metal_cache/
+
+# Training output directories (temporary test outputs)
+*_test_output/
+*_benchmark_output/
+*_training_output/
+
+# Flash Attention specific
+flash_attention_cache/
+*.flash

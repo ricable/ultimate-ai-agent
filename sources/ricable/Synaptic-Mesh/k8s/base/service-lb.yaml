@@ -1,0 +1,118 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: neural-mesh-lb
+  labels:
+    component: load-balancer
+    tier: frontend
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    service.beta.kubernetes.io/azure-load-balancer-mode: "auto"
+    cloud.google.com/load-balancer-type: "External"
+spec:
+  type: LoadBalancer
+  selector:
+    tier: core
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+    protocol: TCP
+  - name: https
+    port: 443
+    targetPort: 8080
+    protocol: TCP
+  - name: p2p
+    port: 4001
+    targetPort: 4001
+    protocol: TCP
+  - name: neural-api
+    port: 8081
+    targetPort: 8081
+    protocol: TCP
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: neural-mesh-bootstrap
+  labels:
+    component: bootstrap
+    tier: core
+spec:
+  type: ClusterIP
+  selector:
+    component: bootstrap
+  ports:
+  - name: p2p
+    port: 4001
+    targetPort: 4001
+    protocol: TCP
+  - name: rpc
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  - name: api
+    port: 8081
+    targetPort: 8081
+    protocol: TCP
+  - name: metrics
+    port: 9090
+    targetPort: 9090
+    protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: neural-mesh-worker
+  labels:
+    component: worker
+    tier: compute
+spec:
+  type: ClusterIP
+  selector:
+    component: worker
+  ports:
+  - name: p2p
+    port: 4001
+    targetPort: 4001
+    protocol: TCP
+  - name: rpc
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  - name: api
+    port: 8081
+    targetPort: 8081
+    protocol: TCP
+  - name: metrics
+    port: 9090
+    targetPort: 9090
+    protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: neural-mesh-mcp
+  labels:
+    component: mcp
+    tier: api
+spec:
+  type: ClusterIP
+  selector:
+    component: mcp
+  ports:
+  - name: mcp
+    port: 3000
+    targetPort: 3000
+    protocol: TCP
+  - name: metrics
+    port: 9090
+    targetPort: 9090
+    protocol: TCP

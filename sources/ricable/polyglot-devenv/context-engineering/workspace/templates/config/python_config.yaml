@@ -1,0 +1,50 @@
+environment: "python-env"
+devbox_config: "python-env/devbox.json"
+language: "python"
+
+dependencies:
+  - "fastapi[all]"
+  - "uvicorn[standard]"
+  - "pydantic[email]"
+  - "sqlalchemy[asyncio]"
+
+install_command: "uv add {package} && uv sync"
+format_command: "uv run ruff format src/ tests/"
+lint_command: "uv run ruff check src/ tests/ --fix"
+type_check_command: "uv run mypy src/ tests/"
+test_command: "uv run pytest tests/ -v --cov=src"
+integration_test_command: "uv run pytest tests/test_integration/ -v"
+
+current_structure: |
+  python-env/
+  ├── devbox.json         # Python 3.12, uv, ruff, mypy, pytest
+  ├── src/
+  │   ├── __init__.py
+  │   └── main.py         # FastAPI app entry point
+  ├── tests/
+  │   └── __init__.py
+  ├── pyproject.toml      # uv dependencies and tool config
+  └── README.md
+
+environment_gotchas: |
+  # CRITICAL: Python environment-specific gotchas
+  # uv: Use 'uv add package' not 'pip install package'
+  # uv: Run commands with 'uv run command' for proper environment
+  # FastAPI: All endpoints must be async def for proper performance
+  # Pydantic: Use v2 syntax - Field() instead of field parameters
+  # mypy: Strict mode enabled - all functions need return type hints
+  # pytest: Use async tests with pytest-asyncio for FastAPI testing
+
+anti_patterns:
+  - "❌ Don't use pip, poetry, or pipenv - use uv exclusively"
+  - "❌ Don't create sync endpoints - use async def"
+  - "❌ Don't skip type hints - mypy strict mode requires them"
+  - "❌ Don't use Pydantic v1 patterns - use v2 syntax"
+  - "❌ Don't ignore uv run prefix for commands"
+
+environment_guidelines:
+  - "✅ Use uv for all package management operations"
+  - "✅ Activate devbox environment before all operations"
+  - "✅ Use async/await consistently throughout FastAPI code"
+  - "✅ Leverage Pydantic v2 for data validation and serialization"
+  - "✅ Follow dependency injection patterns for services"

@@ -1,0 +1,27 @@
+sites:
+  clinical_trials:
+    name: "Clinical Trials Demo"
+    description: "Extract data from EU Clinical Trials website"
+    url_pattern: "https://euclinicaltrials.eu/ctis-public/view/{trial_id}"
+    selectors:
+      title:
+        css: "h1.trial-title"
+        description: "Trial title"
+      summary:
+        css: "div.trial-summary"
+        description: "Trial summary"
+      details:
+        css: "div.trial-details div"
+        description: "Trial detail sections"
+      download_button:
+        css: "button:contains('Download clinical trial')"
+        description: "Download button"
+      notifications_tab:
+        css: "button:has-text('Notifications')"
+        description: "Notifications tab"
+      serious_breach:
+        css: "div:has-text('Serious Breach')"
+        description: "Serious breach section"
+      breach_details:
+        css: ".breach-details"
+        description: "Breach detail content"

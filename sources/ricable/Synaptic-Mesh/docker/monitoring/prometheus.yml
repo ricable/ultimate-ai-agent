@@ -1,0 +1,219 @@
+# Prometheus configuration for Synaptic Neural Mesh monitoring
+# Comprehensive metrics collection and alerting
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'neural-mesh-production'
+    environment: 'production'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+
+# Rule files
+rule_files:
+  - "/etc/prometheus/alert_rules.yml"
+  - "/etc/prometheus/neural_mesh_rules.yml"
+
+# Scrape configurations
+scrape_configs:
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    scrape_interval: 30s
+    metrics_path: /metrics
+
+  # Neural Mesh Bootstrap Node
+  - job_name: 'neural-mesh-bootstrap'
+    static_configs:
+      - targets: ['neural-mesh-node-1:9090']
+    scrape_interval: 15s
+    metrics_path: /metrics
+    params:
+      format: ['prometheus']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'bootstrap-node'
+      - source_labels: []
+        target_label: service
+        replacement: 'neural-mesh-bootstrap'
+      - source_labels: []
+        target_label: role
+        replacement: 'bootstrap'
+
+  # Neural Mesh Worker Nodes
+  - job_name: 'neural-mesh-workers'
+    static_configs:
+      - targets: 
+        - 'neural-mesh-node-2:9090'
+        - 'neural-mesh-node-3:9090'
+    scrape_interval: 15s
+    metrics_path: /metrics
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: 'neural-mesh-node-([0-9]+):9090'
+        target_label: instance
+        replacement: 'worker-node-${1}'
+      - source_labels: []
+        target_label: service
+        replacement: 'neural-mesh-worker'
+      - source_labels: []
+        target_label: role
+        replacement: 'worker'
+
+  # MCP Server
+  - job_name: 'mcp-server'
+    static_configs:
+      - targets: ['neural-mesh-mcp:9090']
+    scrape_interval: 30s
+    metrics_path: /metrics
+    relabel_configs:
+      - source_labels: []
+        target_label: service
+        replacement: 'mcp-server'
+
+  # QuDAG Specific Metrics
+  - job_name: 'qudag-metrics'
+    static_configs:
+      - targets:
+        - 'neural-mesh-node-1:8080'
+        - 'neural-mesh-node-2:8080'
+        - 'neural-mesh-node-3:8080'
+    scrape_interval: 15s
+    metrics_path: /metrics/qudag
+    params:
+      format: ['prometheus']
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: 'neural-mesh-node-([0-9]+):8080'
+        target_label: instance
+        replacement: 'qudag-node-${1}'
+      - source_labels: []
+        target_label: service
+        replacement: 'qudag'
+      - source_labels: []
+        target_label: component
+        replacement: 'dag-consensus'
+
+  # Neural Network Metrics
+  - job_name: 'neural-network-metrics'
+    static_configs:
+      - targets:
+        - 'neural-mesh-node-1:8081'
+        - 'neural-mesh-node-2:8081'
+        - 'neural-mesh-node-3:8081'
+    scrape_interval: 30s
+    metrics_path: /metrics/neural
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: 'neural-mesh-node-([0-9]+):8081'
+        target_label: instance
+        replacement: 'neural-node-${1}'
+      - source_labels: []
+        target_label: service
+        replacement: 'neural-network'
+      - source_labels: []
+        target_label: component
+        replacement: 'wasm-neural'
+
+  # Container Metrics (cAdvisor)
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+    scrape_interval: 30s
+    metrics_path: /metrics
+    relabel_configs:
+      - source_labels: [__meta_docker_container_label_com_docker_compose_service]
+        target_label: service
+      - source_labels: [__meta_docker_container_name]
+        target_label: container_name
+
+  # Node Exporter (System Metrics)
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    scrape_interval: 30s
+    relabel_configs:
+      - source_labels: []
+        target_label: service
+        replacement: 'node-exporter'
+
+  # Redis Metrics
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+    scrape_interval: 30s
+
+  # PostgreSQL Metrics  
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+    scrape_interval: 30s
+
+  # NGINX Metrics
+  - job_name: 'nginx'
+    static_configs:
+      - targets: ['nginx-exporter:9113']
+    scrape_interval: 30s
+
+  # Blackbox Exporter (Health Checks)
+  - job_name: 'blackbox-http'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+        - http://neural-mesh-node-1:8080/health
+        - http://neural-mesh-node-2:8080/health
+        - http://neural-mesh-node-3:8080/health
+        - http://neural-mesh-mcp:3000/health
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox-exporter:9115
+
+  # P2P Network Connectivity
+  - job_name: 'blackbox-p2p'
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]
+    static_configs:
+      - targets:
+        - neural-mesh-node-1:4001
+        - neural-mesh-node-2:4001
+        - neural-mesh-node-3:4001
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox-exporter:9115
+      - source_labels: []
+        target_label: probe_type
+        replacement: 'p2p'
+
+# Remote write configuration (for long-term storage)
+remote_write:
+  - url: "http://victoria-metrics:8428/api/v1/write"
+    queue_config:
+      max_samples_per_send: 1000
+      batch_send_deadline: 5s
+      min_shards: 1
+      max_shards: 200
+
+# Storage configuration
+storage:
+  tsdb:
+    retention.time: 30d
+    retention.size: 50GB

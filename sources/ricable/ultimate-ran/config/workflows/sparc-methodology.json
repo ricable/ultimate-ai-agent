@@ -1,0 +1,143 @@
+{
+  "$schema": "https://titan.ericsson.com/schemas/sparc-workflow.v1.json",
+  "version": "7.0.0",
+  "methodology": "SPARC",
+  "description": "Rigorous Agentic Engineering methodology - hard-coded workflow constraint within claude-flow",
+  "phases": {
+    "specification": {
+      "order": 1,
+      "symbol": "S",
+      "name": "Specification",
+      "description": "Generate formal Specification - semantic contract defining input/output behavior and side effects",
+      "agent": "architect",
+      "required_outputs": [
+        "objective_function",
+        "safety_constraints",
+        "interface_definitions",
+        "data_structures"
+      ],
+      "validation": {
+        "grounding_check": true,
+        "constraint_completeness": true,
+        "mental_model_verification": true
+      },
+      "example": {
+        "objective": "Maximize Throughput + Fairness",
+        "constraints": {
+          "bler_max": 0.1,
+          "power_max_dbm": 46,
+          "latency_max_ms": 10
+        }
+      }
+    },
+    "pseudocode": {
+      "order": 2,
+      "symbol": "P",
+      "name": "Pseudocode",
+      "description": "Convert Specification into Pseudocode - bridge between abstract requirements and concrete syntax",
+      "agent": "artisan",
+      "required_outputs": [
+        "algorithmic_logic",
+        "data_flow",
+        "control_structures",
+        "edge_cases"
+      ],
+      "validation": {
+        "logic_coherence": true,
+        "guardian_review": true
+      }
+    },
+    "architecture": {
+      "order": 3,
+      "symbol": "A",
+      "name": "Architecture",
+      "description": "Select appropriate components from the Ruvnet stack",
+      "agent": "artisan",
+      "required_outputs": [
+        "component_selection",
+        "storage_strategy",
+        "processing_model",
+        "integration_plan"
+      ],
+      "stack_mandate": {
+        "required": ["agentdb", "ruvector", "midstream"],
+        "forbidden": ["pandas", "pytorch", "tensorflow"],
+        "preferred": ["polars", "burn", "ruv-swarm-ml"]
+      },
+      "decision_points": [
+        {
+          "storage": {
+            "long_term_causal": "agentdb",
+            "fast_spatial": "ruvector"
+          }
+        },
+        {
+          "processing": {
+            "neural_networks": "ruv-fann",
+            "linear_regression": "lightweight"
+          }
+        }
+      ]
+    },
+    "refinement": {
+      "order": 4,
+      "symbol": "R",
+      "name": "Refinement",
+      "description": "Iterative coding loop with Test-Driven Development (TDD)",
+      "agent": "artisan",
+      "runtime": "sst-opencode",
+      "required_outputs": [
+        "unit_tests",
+        "implementation_code",
+        "edge_validation"
+      ],
+      "constraints": {
+        "sandbox": true,
+        "resource_limits": {
+          "memory_max_mb": 512,
+          "cpu_time_max_ms": 5000
+        },
+        "edge_native": true
+      },
+      "tdd_flow": [
+        "generate_tests_from_specification",
+        "write_implementation",
+        "run_tests",
+        "iterate_until_pass"
+      ]
+    },
+    "completion": {
+      "order": 5,
+      "symbol": "C",
+      "name": "Completion",
+      "description": "Final verification, documentation, and commit",
+      "agent": "guardian",
+      "required_outputs": [
+        "3gpp_compliance_report",
+        "safety_audit",
+        "documentation",
+        "signed_commit"
+      ],
+      "validation": {
+        "psycho_symbolic_integration": true,
+        "standards_check": ["3GPP"],
+        "lyapunov_verification": true
+      },
+      "vcs": {
+        "system": "agentic-jujutsu",
+        "signature": "ML-DSA",
+        "quantum_resistant": true
+      }
+    }
+  },
+  "gate_enforcement": {
+    "strict": true,
+    "bypass_allowed": false,
+    "rollback_on_failure": true
+  },
+  "metrics": {
+    "hallucination_rate": 0.0,
+    "safety_violations": 0,
+    "compliance_score": 1.0
+  }
+}

@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+
+import sys
+import click
+from browser_automation.cli import cli
+
+if __name__ == '__main__':
+    # Set program name
+    sys.argv[0] = 'auto-browser'
+
+    # Run CLI with proper Click context
+    try:
+        cli(prog_name='auto-browser', obj={}, auto_envvar_prefix='AUTO_BROWSER')
+    except click.exceptions.Exit as e:
+        sys.exit(e.exit_code)
+    except Exception as e:
+        click.echo(f"Error: {e}", err=True)
+        sys.exit(1)

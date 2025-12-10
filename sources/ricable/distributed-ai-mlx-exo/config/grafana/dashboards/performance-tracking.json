@@ -1,0 +1,320 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "MLX Cluster Performance Tracking",
+    "tags": ["mlx", "performance", "inference"],
+    "style": "dark",
+    "timezone": "browser",
+    "refresh": "5s",
+    "time": {
+      "from": "now-30m",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Tokens per Second by Model",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+        "targets": [
+          {
+            "expr": "mlx_cluster_tokens_per_second",
+            "refId": "A",
+            "legendFormat": "{{model}} - {{node}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Tokens/sec",
+            "min": 0
+          }
+        ],
+        "legend": {
+          "show": true,
+          "values": true,
+          "current": true,
+          "max": true,
+          "avg": true
+        },
+        "thresholds": [
+          {"value": 10, "colorMode": "custom", "line": true, "lineColor": "green", "op": "gt"},
+          {"value": 5, "colorMode": "custom", "line": true, "lineColor": "yellow", "op": "gt"}
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Inference Duration Distribution",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.50, rate(mlx_cluster_inference_duration_seconds_bucket[5m]))",
+            "refId": "A",
+            "legendFormat": "50th percentile"
+          },
+          {
+            "expr": "histogram_quantile(0.90, rate(mlx_cluster_inference_duration_seconds_bucket[5m]))",
+            "refId": "B", 
+            "legendFormat": "90th percentile"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(mlx_cluster_inference_duration_seconds_bucket[5m]))",
+            "refId": "C",
+            "legendFormat": "95th percentile"
+          },
+          {
+            "expr": "histogram_quantile(0.99, rate(mlx_cluster_inference_duration_seconds_bucket[5m]))",
+            "refId": "D",
+            "legendFormat": "99th percentile"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Duration (seconds)",
+            "min": 0
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Time to First Token",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 8, "x": 0, "y": 8},
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(mlx_cluster_time_to_first_token_seconds_bucket[5m]))",
+            "refId": "A",
+            "legendFormat": "{{model}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Time (seconds)",
+            "min": 0
+          }
+        ],
+        "thresholds": [
+          {"value": 0.1, "colorMode": "critical", "op": "gt"}
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Inference Requests Rate",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 8, "x": 8, "y": 8},
+        "targets": [
+          {
+            "expr": "rate(mlx_cluster_inference_requests_total[5m])",
+            "refId": "A",
+            "legendFormat": "{{model}} - {{status}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Requests/sec",
+            "min": 0
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Model Load Times",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 8, "x": 16, "y": 8},
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(mlx_cluster_model_load_duration_seconds_bucket[1h]))",
+            "refId": "A",
+            "legendFormat": "{{model}} - {{node_id}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Load Time (seconds)",
+            "min": 0
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Memory Usage by Model",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 16},
+        "targets": [
+          {
+            "expr": "mlx_cluster_model_memory_usage_bytes / (1024*1024*1024)",
+            "refId": "A",
+            "legendFormat": "{{model}} - {{node_id}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Memory (GB)",
+            "min": 0
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "API Request Size Distribution",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 16},
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.50, rate(mlx_cluster_api_request_size_bytes_bucket[5m]))",
+            "refId": "A",
+            "legendFormat": "50th percentile"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(mlx_cluster_api_request_size_bytes_bucket[5m]))",
+            "refId": "B",
+            "legendFormat": "95th percentile"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Size (bytes)",
+            "min": 0
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Performance Summary",
+        "type": "table",
+        "gridPos": {"h": 8, "w": 24, "x": 0, "y": 24},
+        "targets": [
+          {
+            "expr": "avg by (model) (mlx_cluster_tokens_per_second)",
+            "refId": "A",
+            "format": "table",
+            "instant": true
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(mlx_cluster_inference_duration_seconds_bucket[5m])) by (model)",
+            "refId": "B",
+            "format": "table", 
+            "instant": true
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(mlx_cluster_time_to_first_token_seconds_bucket[5m])) by (model)",
+            "refId": "C",
+            "format": "table",
+            "instant": true
+          },
+          {
+            "expr": "rate(mlx_cluster_inference_requests_total[5m]) by (model)",
+            "refId": "D",
+            "format": "table",
+            "instant": true
+          }
+        ],
+        "transformations": [
+          {
+            "id": "merge",
+            "options": {}
+          },
+          {
+            "id": "organize",
+            "options": {
+              "renameByName": {
+                "model": "Model",
+                "Value #A": "Avg Tokens/sec",
+                "Value #B": "95th % Duration (s)",
+                "Value #C": "95th % TTFT (s)",
+                "Value #D": "Request Rate (rps)"
+              },
+              "excludeByName": {
+                "Time": true,
+                "__name__": true,
+                "instance": true,
+                "job": true
+              }
+            }
+          }
+        ],
+        "fieldConfig": {
+          "overrides": [
+            {
+              "matcher": {"id": "byName", "options": "Avg Tokens/sec"},
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "ops"
+                },
+                {
+                  "id": "custom.displayMode",
+                  "value": "gradient-gauge"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "steps": [
+                      {"color": "red", "value": 0},
+                      {"color": "yellow", "value": 5},
+                      {"color": "green", "value": 10}
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {"id": "byName", "options": "95th % Duration (s)"},
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "s"
+                },
+                {
+                  "id": "custom.displayMode",
+                  "value": "color-background"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "steps": [
+                      {"color": "green", "value": 0},
+                      {"color": "yellow", "value": 5},
+                      {"color": "red", "value": 10}
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "templating": {
+      "list": [
+        {
+          "name": "model",
+          "type": "query",
+          "query": "label_values(mlx_cluster_tokens_per_second, model)",
+          "refresh": 1,
+          "includeAll": true,
+          "allValue": ".*"
+        },
+        {
+          "name": "node",
+          "type": "query", 
+          "query": "label_values(mlx_cluster_tokens_per_second, node)",
+          "refresh": 1,
+          "includeAll": true,
+          "allValue": ".*"
+        }
+      ]
+    },
+    "annotations": {
+      "list": [
+        {
+          "name": "Model Loads",
+          "datasource": "Prometheus",
+          "expr": "increase(mlx_cluster_model_load_duration_seconds_count[1m]) > 0",
+          "titleFormat": "Model Load",
+          "textFormat": "{{model}} loaded on {{node_id}}"
+        }
+      ]
+    }
+  }
+}

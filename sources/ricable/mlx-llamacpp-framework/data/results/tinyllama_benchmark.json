@@ -1,0 +1,101 @@
+{
+  "system_info": {
+    "os": "macOS-16.0-arm64-arm-64bit",
+    "cpu": "arm",
+    "python": "3.12.10",
+    "ram_total_gb": 128.0,
+    "ram_available_gb": 110.32034301757812,
+    "mac_info": {
+      "model": "Mac15,9",
+      "cpu_brand": "Apple M3 Max",
+      "cpu_cores": 16,
+      "chip": "Intel",
+      "variant": "N/A",
+      "apple_silicon": false
+    },
+    "metal_info": {
+      "supported": true
+    },
+    "timestamp": "2025-06-20T07:11:16.031037"
+  },
+  "model_info": {
+    "model_name": "./models/mlx/tinyllama-1.1b-chat",
+    "model_size": "Unknown",
+    "model_family": "llama"
+  },
+  "benchmark_configs": {
+    "quantization_types": [
+      null
+    ],
+    "max_tokens_list": [
+      256
+    ],
+    "temperature_list": [
+      0.7
+    ],
+    "repetition_penalty_list": [
+      1.1
+    ]
+  },
+  "all_results": [
+    {
+      "quantization": null,
+      "max_tokens": 256,
+      "temperature": 0.7,
+      "repetition_penalty": 1.1,
+      "prompt_type": "short",
+      "benchmark_result": {
+        "error": "All benchmark runs failed",
+        "runs": [
+          {
+            "run": 1,
+            "error": "load() got an unexpected keyword argument 'quantization'"
+          }
+        ]
+      }
+    },
+    {
+      "quantization": null,
+      "max_tokens": 256,
+      "temperature": 0.7,
+      "repetition_penalty": 1.1,
+      "prompt_type": "medium",
+      "benchmark_result": {
+        "error": "All benchmark runs failed",
+        "runs": [
+          {
+            "run": 1,
+            "error": "load() got an unexpected keyword argument 'quantization'"
+          }
+        ]
+      }
+    },
+    {
+      "quantization": null,
+      "max_tokens": 256,
+      "temperature": 0.7,
+      "repetition_penalty": 1.1,
+      "prompt_type": "long",
+      "benchmark_result": {
+        "error": "All benchmark runs failed",
+        "runs": [
+          {
+            "run": 1,
+            "error": "load() got an unexpected keyword argument 'quantization'"
+          }
+        ]
+      }
+    }
+  ],
+  "optimal_configs": {
+    "speed": {
+      "error": "No valid results"
+    },
+    "memory": {
+      "error": "No valid results"
+    },
+    "balance": {
+      "error": "No valid results"
+    }
+  }
+}

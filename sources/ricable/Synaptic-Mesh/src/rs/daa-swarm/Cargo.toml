@@ -1,0 +1,87 @@
+[package]
+name = "daa-swarm"
+version = "0.2.0"
+edition = "2021"
+authors = ["DAA Team <team@daa.hq>"]
+description = "Dynamic Agent Architecture - Swarm intelligence and autonomous coordination"
+repository = "https://github.com/ruvnet/Synaptic-Neural-Mesh"
+license = "MIT OR Apache-2.0"
+keywords = ["daa", "swarm", "agents", "coordination", "autonomous"]
+categories = ["algorithms", "concurrency", "simulation"]
+
+[dependencies]
+# Core QuDAG integration
+qudag-core = { path = "../qudag-core" }
+
+# Neural mesh integration
+neural-mesh = { path = "../neural-mesh" }
+
+# Async runtime
+tokio = { version = "1.0", features = ["full"] }
+futures = "0.3"
+async-trait = "0.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# UUID and time
+uuid = { version = "1.0", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Concurrency and data structures
+dashmap = "5.5"
+crossbeam = "0.8"
+parking_lot = "0.12"
+tokio-util = "0.7"
+
+# Networking
+reqwest = { version = "0.11", features = ["json"] }
+
+# Error handling and logging
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Math and algorithms
+rand = "0.8"
+petgraph = "0.6"
+
+# Economic and game theory
+num-traits = "0.2"
+
+# Performance monitoring
+metrics = "0.21"
+
+# Optional WASM support
+wasm-bindgen = { version = "0.2", optional = true }
+js-sys = { version = "0.3", optional = true }
+web-sys = { version = "0.3", optional = true }
+
+[dev-dependencies]
+tokio-test = "0.4"
+proptest = "1.0"
+criterion = { version = "0.5", features = ["html_reports"] }
+tempfile = "3.8"
+
+[features]
+default = ["coordination", "economics", "fault-tolerance"]
+coordination = []
+economics = []
+fault-tolerance = []
+simulation = []
+wasm = ["wasm-bindgen", "js-sys", "web-sys"]
+
+[[example]]
+name = "basic_swarm"
+path = "examples/basic_swarm.rs"
+
+[[example]]
+name = "fault_tolerance"
+path = "examples/fault_tolerance.rs"
+
+[[bench]]
+name = "swarm_benchmarks"
+harness = false

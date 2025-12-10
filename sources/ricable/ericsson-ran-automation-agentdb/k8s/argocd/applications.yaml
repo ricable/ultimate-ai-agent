@@ -1,0 +1,371 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ran-automation-root
+  namespace: argocd
+  labels:
+    app: ran-automation
+    component: argocd
+    environment: production
+  annotations:
+    argocd.argoproj.io/sync-options: CreateNamespace=true
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/your-org/ran-automation-agentdb.git
+    targetRevision: main
+    path: k8s
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ran-automation
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ran-automation-monitoring
+  namespace: argocd
+  labels:
+    app: ran-automation
+    component: monitoring
+    environment: production
+  annotations:
+    argocd.argoproj.io/sync-options: CreateNamespace=true
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/your-org/ran-automation-agentdb.git
+    targetRevision: main
+    path: k8s/monitoring
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ran-monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ran-automation-canary
+  namespace: argocd
+  labels:
+    app: ran-automation
+    component: canary
+    environment: production
+  annotations:
+    argocd.argoproj.io/sync-options: CreateNamespace=true
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: ran-automation-alerts
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: ran-automation-alerts
+    notifications.argoproj.io/subscribe.on-health-degraded.slack: ran-automation-alerts
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/your-org/ran-automation-agentdb.git
+    targetRevision: main
+    path: k8s/canary
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ran-automation
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - RespectIgnoreDifferences=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 5m
+  ignoreDifferences:
+  - group: argoproj.io
+    kind: Rollout
+    jsonPointers:
+    - /spec/strategy/canary/steps
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ran-automation-microservices
+  namespace: argocd
+  labels:
+    app: ran-automation
+    component: applicationset
+    environment: production
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/your-org/ran-automation-agentdb.git
+      revision: HEAD
+      directories:
+      - path: k8s/applications/*
+  template:
+    metadata:
+      name: '{{path.basename}}-app'
+      namespace: argocd
+      labels:
+        app: ran-automation
+        component: '{{path.basename}}'
+        environment: production
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/your-org/ran-automation-agentdb.git
+        targetRevision: main
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: ran-automation
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+          allowEmpty: false
+        syncOptions:
+        - CreateNamespace=true
+        - PrunePropagationPolicy=foreground
+        - PruneLast=true
+        retry:
+          limit: 5
+          backoff:
+            duration: 5s
+            factor: 2
+            maxDuration: 3m
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: ran-automation-project
+  namespace: argocd
+  labels:
+    app: ran-automation
+    component: project
+    environment: production
+spec:
+  description: RAN Intelligent Automation System Project
+  sourceRepos:
+  - https://github.com/your-org/ran-automation-agentdb.git
+  destinations:
+  - namespace: ran-automation
+    server: https://kubernetes.default.svc
+  - namespace: ran-monitoring
+    server: https://kubernetes.default.svc
+  - namespace: ran-logging
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
+  - group: rbac.authorization.k8s.io
+    kind: Role
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+  namespaceResourceWhitelist:
+  - group: ''
+    kind: ConfigMap
+  - group: ''
+    kind: Secret
+  - group: ''
+    kind: Service
+  - group: ''
+    kind: ServiceAccount
+  - group: apps
+    kind: Deployment
+  - group: apps
+    kind: StatefulSet
+  - group: apps
+    kind: DaemonSet
+  - group: networking.k8s.io
+    kind: Ingress
+  - group: networking.k8s.io
+    kind: NetworkPolicy
+  - group: policy
+    kind: PodDisruptionBudget
+  - group: autoscaling
+    kind: HorizontalPodAutoscaler
+  - group: batch
+    kind: Job
+  - group: batch
+    kind: CronJob
+  orphanedResources:
+    warn: false
+  roles:
+  - name: ran-automation-admin
+    description: Admin access to RAN automation resources
+    policies:
+    - p, proj:ran-automation-project:ran-automation-admin, applications, *, ran-automation-project/*, allow
+    - p, proj:ran-automation-project:ran-automation-admin, applications, sync, ran-automation-project/*, allow
+    - p, proj:ran-automation-project:ran-automation-admin, applications, override, ran-automation-project/*, allow
+    - p, proj:ran-automation-project:ran-automation-admin, clusters, *, *, allow
+    groups:
+    - ran-automation:admins
+  - name: ran-automation-readonly
+    description: Read-only access to RAN automation resources
+    policies:
+    - p, proj:ran-automation-project:ran-automation-readonly, applications, get, ran-automation-project/*, allow
+    - p, proj:ran-automation-project:ran-automation-readonly, applications, sync, ran-automation-project/*, deny
+    groups:
+    - ran-automation:readonly
+    - ran-automation:developers
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-notifications-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  service.slack: |
+    token: $slack-token
+    username: argocd
+    icon: :argo:
+  context: |
+    args:
+      version: "{{.app.status.operationState.startedAt}}"
+      app: "{{.app.metadata.name}}"
+      status: "{{.app.status.sync.status}}"
+  template.app-deployed: |
+    message: |
+      Application {{.app.metadata.name}} has been successfully deployed to {{.app.status.operationState.operation.sync.resources}} resources.
+      Version: {{.app.status.operationState.startedAt}}
+    slack:
+      attachments: |
+        [{
+          "title": "{{.app.metadata.name}} Deployed",
+          "title_link": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+          "color": "#18be52",
+          "fields": [{
+            "title": "Sync Status",
+            "value": "{{.app.status.sync.status}}",
+            "short": true
+          }, {
+            "title": "Repository",
+            "value": "{{.app.spec.source.repoURL}}",
+            "short": true
+          }, {
+            "title": "Revision",
+            "value": "{{.app.status.sync.revision}}",
+            "short": true
+          }]
+        }]
+  template.app-degraded: |
+    message: |
+      Application {{.app.metadata.name}} is degraded. Please check the status.
+      Status: {{.app.status.health.status}}
+    slack:
+      attachments: |
+        [{
+          "title": "{{.app.metadata.name}} Degraded",
+          "title_link": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+          "color": "#ff0000",
+          "fields": [{
+            "title": "Health Status",
+            "value": "{{.app.status.health.status}}",
+            "short": true
+          }, {
+            "title": "Repository",
+            "value": "{{.app.spec.source.repoURL}}",
+            "short": true
+          }, {
+            "title": "Last Synced",
+            "value": "{{.app.status.operationState.startedAt}}",
+            "short": true
+          }]
+        }]
+  template.app-sync-failed: |
+    message: |
+      Application {{.app.metadata.name}} sync failed.
+      Error: {{.app.status.operationState.message}}
+    slack:
+      attachments: |
+        [{
+          "title": "{{.app.metadata.name}} Sync Failed",
+          "title_link": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+          "color": "#ff4444",
+          "fields": [{
+            "title": "Error Message",
+            "value": "{{.app.status.operationState.message}}",
+            "short": false
+          }, {
+            "title": "Repository",
+            "value": "{{.app.spec.source.repoURL}}",
+            "short": true
+          }, {
+            "title": "Revision",
+            "value": "{{.app.status.operationState.operation.sync.revision}}",
+            "short": true
+          }]
+        }]
+  triggers: |
+    - name: on-sync-succeeded
+      condition: ApplicationStatus
+      when:
+        any:
+        - key: application.status.operationState.phase
+          operator: Equals
+          value: Succeeded
+      template: app-deployed
+    - name: on-sync-failed
+      condition: ApplicationStatus
+      when:
+        any:
+        - key: application.status.operationState.phase
+          operator: Equals
+          value: Failed
+        - key: application.status.operationState.phase
+          operator: Equals
+          value: Error
+      template: app-sync-failed
+    - name: on-health-degraded
+      condition: ApplicationStatus
+      when:
+        any:
+        - key: application.status.health.status
+          operator: Equals
+          value: Degraded
+      template: app-degraded

@@ -1,0 +1,41 @@
+{
+  "node": {
+    "id": "76550434-1db6-4b16-8ad3-98c52b82a7a5",
+    "name": "test-node",
+    "version": "1.0.0",
+    "created": "2025-07-13T03:49:55.551Z"
+  },
+  "network": {
+    "port": 9090,
+    "network": "testnet",
+    "bootstrapPeers": [
+      "/ip4/testnet.synaptic.network/tcp/8080/p2p/QmTestnet1..."
+    ],
+    "protocols": [
+      "/synaptic/1.0.0",
+      "/qudag/1.0.0",
+      "/neural/1.0.0"
+    ]
+  },
+  "security": {
+    "quantumResistant": true,
+    "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAbBWjdyEt1mp9dafU8UHdgTDt1i17PT2zqqhyycXDxHU=\n-----END PUBLIC KEY-----\n",
+    "algorithm": "ml-dsa-65"
+  },
+  "neural": {
+    "defaultArchitecture": "adaptive",
+    "maxAgents": 1000,
+    "memoryLimit": "50MB",
+    "inferenceTimeout": 100
+  },
+  "dag": {
+    "consensus": "qr-avalanche",
+    "maxVertices": 10000,
+    "pruningInterval": 3600
+  },
+  "storage": {
+    "dataDir": "/workspaces/Synaptic-Neural-Mesh/src/js/synaptic-cli/test-synaptic-init/.synaptic/data",
+    "cacheDir": "/workspaces/Synaptic-Neural-Mesh/src/js/synaptic-cli/test-synaptic-init/.synaptic/cache",
+    "logsDir": "/workspaces/Synaptic-Neural-Mesh/src/js/synaptic-cli/test-synaptic-init/.synaptic/logs"
+  }
+}

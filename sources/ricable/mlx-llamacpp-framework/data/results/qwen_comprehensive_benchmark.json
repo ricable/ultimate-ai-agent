@@ -1,0 +1,127 @@
+{
+  "model_info": {
+    "name": "Qwen2.5-1.5B-Instruct",
+    "path": "./models/mlx/qwen2.5-1.5b-instruct",
+    "size_gb": 2.8902396634221077,
+    "load_time": 0.4696309566497803
+  },
+  "system_info": {
+    "os": "macOS-16.0-arm64-arm-64bit",
+    "cpu": "arm",
+    "python": "3.12.10",
+    "ram_total_gb": 128.0,
+    "ram_available_gb": 110.27195739746094,
+    "cpu_count": 16,
+    "timestamp": "2025-06-20 07:36:48"
+  },
+  "benchmark_results": [
+    {
+      "test_name": "Short prompt",
+      "prompt": "What is AI?",
+      "max_tokens": 50,
+      "avg_generation_time": 0.6342073281606039,
+      "avg_tokens_generated": 42.0,
+      "avg_tokens_per_sec": 66.22440034209775,
+      "avg_memory_delta_mb": 2.8854166666666665,
+      "sample_response": "Artificial intelligence (AI) is a branch of computer science that focuses on creating intelligent machines that can perform tasks that typically require human intelligence, such as visual perception, speech recognition, decision-making, and language translation. AI systems use algorithms and statistical models to",
+      "individual_times": [
+        0.5568850040435791,
+        0.6953411102294922,
+        0.6503958702087402
+      ],
+      "individual_token_counts": [
+        42,
+        42,
+        42
+      ]
+    },
+    {
+      "test_name": "Medium prompt",
+      "prompt": "Explain how machine learning works and provide examples of its applications in daily life",
+      "max_tokens": 150,
+      "avg_generation_time": 1.9615027904510498,
+      "avg_tokens_generated": 128.0,
+      "avg_tokens_per_sec": 65.25608865973943,
+      "avg_memory_delta_mb": 0.06770833333333333,
+      "sample_response": ".\nMachine learning is a subset of artificial intelligence that involves the development of algorithms and statistical models that enable computers to learn from and make predictions or decisions based on data. The process typically involves the following steps:\n\n1. Data collection: Gathering data from various sources, such as sensors, social media, or user interactions.\n\n2. Data preprocessing: Cleaning and transforming the data into a format that can be used for analysis.\n\n3. Feature selection: Identifying the most relevant features or variables that will be used to train the model.\n\n4. Model training: Using the data and selected features to train a machine learning model, which learns to make predictions or decisions based on the data.\n\n5. Model evaluation: Assessing the performance of the model using a validation",
+      "individual_times": [
+        1.9666821956634521,
+        1.9731640815734863,
+        1.944662094116211
+      ],
+      "individual_token_counts": [
+        128,
+        128,
+        128
+      ]
+    },
+    {
+      "test_name": "Long prompt",
+      "prompt": "Write a detailed technical explanation of neural networks, including how they process information, learn from data, and make predictions. Include examples of different types of neural networks and their specific use cases.",
+      "max_tokens": 300,
+      "avg_generation_time": 3.8867383003234863,
+      "avg_tokens_generated": 260.0,
+      "avg_tokens_per_sec": 66.89413588209956,
+      "avg_memory_delta_mb": 0.015625,
+      "sample_response": "Additionally, discuss the challenges and limitations of neural networks, such as overfitting, underfitting, and the need for large amounts of data. Finally, provide a comparison of neural networks to other machine learning models, such as decision trees and support vector machines, and discuss the advantages and disadvantages of each approach. Neural networks are a type of machine learning model that is inspired by the structure and function of the human brain. They are composed of layers of interconnected nodes, or neurons, that process and transmit information. Each neuron receives input from other neurons, processes it using a set of weights and biases, and then generates an output that is passed on to the next layer of neurons. This process is repeated until the final output is generated.\n\nNeural networks are trained using a process called backpropagation, which involves adjusting the weights and biases of the neurons in order to minimize the error between the predicted output and the actual output. This process is repeated many times, with the network being exposed to different data sets and learning from the errors made during each iteration. Over time, the network becomes better at predicting the output for new data, as it has learned to recognize patterns and relationships in the data.\n\nThere are many different types of neural networks, each with its own specific use case. Some examples include:\n\n- Feedforward neural networks: These are the most common type of neural network, and are used for tasks such as image recognition, speech recognition, and natural language processing. They work by passing input",
+      "individual_times": [
+        3.957070827484131,
+        3.8775861263275146,
+        3.8255579471588135
+      ],
+      "individual_token_counts": [
+        260,
+        260,
+        260
+      ]
+    },
+    {
+      "test_name": "Code generation",
+      "prompt": "Write a Python function that implements a binary search algorithm with proper error handling and documentation",
+      "max_tokens": 200,
+      "avg_generation_time": 2.566697359085083,
+      "avg_tokens_generated": 148.0,
+      "avg_tokens_per_sec": 57.66164813944236,
+      "avg_memory_delta_mb": 0.07291666666666667,
+      "sample_response": ". The function should accept a list of integers and a target integer as input, and return the index of the target integer in the list if found, or -1 if the target is not present. The function should also include a docstring that describes the function's purpose, parameters, and return value. Additionally, the function should include a check function that tests the binary search function with various test cases to ensure its correctness. ```python\ndef binary_search(arr, target):\n    \"\"\"\n    Perform a binary search on a sorted list to find the index of a target integer.\n    \n    Parameters:\n    arr (list of int): A sorted list of integers.\n    target (int): The integer to search for in the list.\n    \n    Returns:\n    int: The index of the target integer in the list if found, otherwise -1.\n    \n    Raises:\n    ValueError: If the input list is not sorted.\n    \"\"\"\n    if not arr:\n        return -1\n    \n    if not all",
+      "individual_times": [
+        2.5778610706329346,
+        2.5661849975585938,
+        2.5560460090637207
+      ],
+      "individual_token_counts": [
+        148,
+        148,
+        148
+      ]
+    },
+    {
+      "test_name": "Creative writing",
+      "prompt": "Write a creative short story about a time traveler who discovers that changing small things in the past has unexpected consequences",
+      "max_tokens": 400,
+      "avg_generation_time": 5.1858328978220625,
+      "avg_tokens_generated": 332.0,
+      "avg_tokens_per_sec": 64.02057423397365,
+      "avg_memory_delta_mb": 0.010416666666666666,
+      "sample_response": ". The story should be written in third person limited point of view and include vivid descriptions of the time traveler's journey and the impact of their actions on the present. The story should also explore themes of responsibility, the nature of time, and the consequences of altering the past. The ending should be unexpected and leave the reader with a sense of wonder and reflection. As the time traveler stepped off the train, the world around them seemed to come alive. The bustling city streets, the towering skyscrapers, and the vibrant energy of the people all seemed to pulse with life. But as he walked through the crowded streets, something felt off. He couldn't quite put his finger on it, but there was a sense of unease that lingered in the air.\n\nAs he made his way to his destination, the time traveler couldn't shake the feeling that he was being watched. He turned a corner and saw a group of people gathered around a small park. As he approached, he saw that they were all staring at him with a mixture of curiosity and suspicion.\n\n\"Excuse me,\" he said, trying to sound friendly. \"I'm looking for a place to park my car.\"\n\nThe group of people looked at each other and then turned to the time traveler. \"You're not from around here,\" one of them said. \"Where are you from?\"\n\nThe time traveler hesitated for a moment, unsure of how to respond. \"I'm from the future,\" he said finally. \"I'm here to help.\"\n\nThe group of people looked at each other again, this time with a mixture of confusion and fear. \"What do you mean?\" one of them asked.\n\n\"I can show you,\" the time traveler said, gesturing towards the park. \"But you have to promise me that you won't tell anyone about what I do.\"\n\nThe group of people looked at each other again, this time with a mixture of fear and determination. \"We'll do our best,\" one of",
+      "individual_times": [
+        5.180145740509033,
+        5.209214925765991,
+        5.168138027191162
+      ],
+      "individual_token_counts": [
+        332,
+        332,
+        332
+      ]
+    }
+  ],
+  "overall_stats": {
+    "total_tests": 5,
+    "avg_generation_time": 2.846995735168457,
+    "avg_tokens_per_sec": 64.01136945147054,
+    "total_tokens_generated": 910.0,
+    "peak_tokens_per_sec": 66.89413588209956,
+    "min_tokens_per_sec": 57.66164813944236
+  }
+}

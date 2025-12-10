@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:xalan="http://xml.apache.org/xalan" xmlns:lxslt="http://xml.apache.org/xslt" lang="en" xml:lang="en">
+<head>
+<meta name="HTMLPACKLINKS" content="10" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="PREP" content="" />
+<meta name="DATE" content="2025-05-26" />
+<meta name="DOCNO" content="1445/155 54-LZA 701 6014/33-V1 Uen" />
+<meta name="REV" content="FK" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-type" />
+<meta name="THEMES" content="MOM" />
+<meta name="DOCNAME" content="MANAGED OBJECT MODEL" />
+<meta name="TITLE" content="class Synchronization" />
+<meta name="SUBTITLE" content="G3G4_MOMCPI CXP2020502_2 R32C08" />
+<link title="Style" href="edw:/alex?fn=hilda.css" type="text/css" rel="stylesheet" />
+<link title="Style" href="edw:/alex?fn=3_15554-LZA7016014_33-V1Uen.FK.css" type="text/css" rel="stylesheet" />
+<script src="edw:/alex?fn=dwcommon.js" language="javascript" type="text/javascript"> </script>
+<title>class Synchronization</title>
+</head>
+<body>
+
+<script language="JavaScript" src="edw:/alex?fn=switch_theme.js" type="text/javascript"></script>
+<div id="header">
+<table class="docinfo">
+<tr>
+<td>&nbsp; &nbsp; <span class="fcaption"><span class="caption">Managed Object Model</span>&nbsp; &nbsp; &nbsp; &nbsp; 1445/155 54-LZA 701 6014/33-V1 Uen FK</span>&nbsp; &nbsp; </td>
+</tr>
+</table>
+</div>
+<h1 class="TITLE">
+<a name="TITLE">class&#160;Synchronization</a>
+</h1>
+<dl>
+<dd>
+<a href="edw:/alex?fn=210_15554-LZA7016014_33-V1Uen.FK.html">ManagedElement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=219_15554-LZA7016014_33-V1Uen.FK.html">Transport</a>
+<dl class="child_tree">
+<dd>
+<b><a href="edw:/alex?fn=1445_15554-LZA7016014_33-V1Uen.FK.html">Synchronization</a></b>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=2019_15554-LZA7016014_33-V1Uen.FK.html">FrequencySyncIO</a>
+			[0..8]
+				</dd>
+<dd>
+<a href="edw:/alex?fn=2020_15554-LZA7016014_33-V1Uen.FK.html">OverTheAirSync</a>
+			[0..1]
+				</dd>
+<dd>
+<a href="edw:/alex?fn=115_15554-LZA7016014_33-V1Uen.FK.html">RadioEquipmentClock</a>
+			[0..1]
+				</dd>
+<dd>
+<a href="edw:/alex?fn=2021_15554-LZA7016014_33-V1Uen.FK.html">SyncEthInput</a>
+			[0..8]
+				</dd>
+<dd>
+<a href="edw:/alex?fn=2022_15554-LZA7016014_33-V1Uen.FK.html">TimeSyncIO</a>
+			[0..8]
+				</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<p>
+<span class="desc">This MO class is the top class for synchronization management.</span>
+<br />
+<br />
+<b>This MO is created by the system.</b>
+<br />
+<br />
+<br />
+<br />
+</p>
+</td>
+</tr>
+</table>
+<dl></dl>
+<table width="100%" cellspacing="0" cellpadding="3" border="1" class="tblcnt">
+<tr class="TableSubHeadingColor">
+<td colspan="2"><b>Attributes</b></td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>boolean</code></td><td>
+<dl>
+<dt>
+<code><b><a name="fixedPosition">fixedPosition</a></b>
+          =
+          true</code>
+</dt>
+<dd>
+<span class="desc">Whether node has fixed position.<br />
+<br />If node does not move, this attribute is set to true. GNSS receiver may lock its position to enhance receiver performance.<br />If node may move, for example on cruise ship, this attribute is set to false. GNSS receiver needs to continuously track its position.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string<br />key<br />mandatory<br />noNotification<br />restricted</code></td><td>
+<dl>
+<dt>
+<code><b><a name="synchronizationId">synchronizationId</a></b></code>
+</dt>
+<dd>
+<span class="desc">The value component of the RDN.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=2023_15554-LZA7016014_33-V1Uen.FK.html">TelecomStandard</a></code></td><td>
+<dl>
+<dt>
+<code><b><a name="telecomStandard">telecomStandard</a></b>
+          =
+          OPTION_I</code>
+</dt>
+<dd>
+<span class="desc">Regional telecom standard option to I, II, or III for ETSI (European Standard), ANSI (US Standard) or TTC (Japanese Standard) respectively.<br />
+<br />This attribute is not applicable, if RadioEquipmentClock::selectionProcessMode attribute is set to QL_DISABLED.</span>
+<br />
+<br />
+<span class="pmhd">Dependencies: </span>If this attribute is changed, RadioEquipmentClockReference::adminQualityLevel, AssistingReference::remappedQualityLevel and RadioEquipmentClock::minQualityLevel attributes are changed to quality level value defined within telecom option.<br />
+</dd>
+</dl>
+</td>
+</tr>
+</table>
+<p></p>
+<div align="center" class="footer-info">
+<div class="footer-line">
+<span class="legal-lid">&#160;&#160;class&#160;Synchronization</span>
+</div>
+</div>
+</body>
+</html>

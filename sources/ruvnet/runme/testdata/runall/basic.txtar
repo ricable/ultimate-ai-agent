@@ -1,0 +1,54 @@
+env SHELL=/bin/bash
+exec runme run --all --filename=README.md
+cmp stdout all.txt
+! stderr .
+
+env SHELL=/bin/bash
+exec runme run foo-command
+cmp stdout skip.txt
+! stderr .
+
+-- all.txt --
+ ►  Running task set-env...
+ ►  ✓ Task set-env exited with code 0
+ ►  Running task print-foo...
+foo!
+ ►  ✓ Task print-foo exited with code 0
+ ►  Running task print-bar...
+bar!
+ ►  ✓ Task print-bar exited with code 0
+-- skip.txt --
+foo-command
+-- README.md --
+---
+skipPrompts: true
+---
+
+```bash {"category":"foo","interactive":true,"name":"set-env"}
+$ export ENV="foo!"
+```
+
+```bash {"category":"foo","interactive":true,"name":"print-foo"}
+$ stty -opost
+$ echo "$ENV"
+```
+
+```bash {"category":"foo,bar","interactive":true,"name":"print-bar"}
+$ stty -opost
+$ echo "bar!"
+```
+
+```bash {"category":"foo,bar","interactive":true,"excludeFromRunAll":true,"name":"excluded"}
+$ stty -opost
+$ echo "excluded!"
+```
+-- SKIP.md --
+---
+skipPrompts: true
+---
+
+```sh {"category":"c1","interactive":true,"name":"foo-command"}
+$ stty -opost
+export BAR="foo-command"
+echo $BAR
+```

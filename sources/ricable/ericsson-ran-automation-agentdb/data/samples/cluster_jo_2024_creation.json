@@ -1,0 +1,151 @@
+[
+  {
+    "$meta": {
+      "version": "2.0.0",
+      "description": "Mise à jour des clusters 'JO_Venue' et 'JO_Spectateurs' regroupant les cellules JO depuis NORIA.",
+      "author": [
+        "MENAT Emmanuel DTSI/DTR <emmanuel.menat@orange.com>",
+        "LAPIERRE Raffael UPR O/IRM <raffael.lapierre@orange.com>"
+      ],
+      "config": {
+        "closed_loop": "false"
+      },
+      "clusters": {
+        "test_CD_JO_Venue": {
+          "description": "Cells with 'JO Venue' Noria tag",
+          "overwrite": "true",
+          "shared": "true"
+        },
+        "test_CD_2G_JO_Venue": {
+          "description": "Cells 2G with 'JO Venue' Noria tag",
+          "overwrite": "true",
+          "shared": "true"
+        },
+        "test_CD_3G_JO_Venue": {
+          "description": "Cells 3G with 'JO Venue' Noria tag",
+          "overwrite": "true",
+          "shared": "true"
+        },
+        "test_CD_4G_JO_Venue": {
+          "description": "Cells 4G with 'JO Venue' Noria tag",
+          "overwrite": "true",
+          "shared": "true"
+        },
+        "test_CD_5G_JO_Venue": {
+          "description": "Cells 5G with 'JO Venue' Noria tag",
+          "overwrite": "true",
+          "shared": "true"
+        },
+        "test_CD_JO_Spectateurs": {
+          "description": "Cells with 'JO Spectateurs' Noria tag",
+          "overwrite": "true",
+          "shared": "true"
+        },
+        "test_CD_2G_JO_Spectateurs": {
+          "description": "Cells 2G with 'JO Spectateurs' Noria tag",
+          "overwrite": "true",
+          "shared": "true"
+        },
+        "test_CD_3G_JO_Spectateurs": {
+          "description": "Cells 3G with 'JO Spectateurs' Noria tag",
+          "overwrite": "true",
+          "shared": "true"
+        },
+        "test_CD_4G_JO_Spectateurs": {
+          "description": "Cells 4G with 'JO Spectateurs' Noria tag",
+          "overwrite": "true",
+          "shared": "true"
+        },
+        "test_CD_5G_JO_Spectateurs": {
+          "description": "Cells 5G with 'JO Spectateurs' Noria tag",
+          "overwrite": "true",
+          "shared": "true"
+        }
+      }
+    }
+  },
+  {
+    "$vars": {
+      "venue_cells": null
+    }
+  },
+  {
+    "$custom": [
+      {
+        "name": "add_to_all_cluster_spectator",
+        "args": [
+          "cell"
+        ],
+        "body": [
+          "for c in cell.cosites() + [cell]:",
+          "    clusters.test_CD_JO_Spectateurs.add(c)",
+          "    if c.technology == 'GSM':",
+          "        clusters.test_CD_2G_JO_Spectateurs.add(c)",
+          "    elif c.technology == 'UMTS':",
+          "        clusters.test_CD_3G_JO_Spectateurs.add(c)",
+          "    elif c.technology == 'LTE':",
+          "        clusters.test_CD_4G_JO_Spectateurs.add(c)",
+          "    elif c.technology == 'NR':",
+          "        clusters.test_CD_5G_JO_Spectateurs.add(c)"
+        ]
+      },
+      {
+        "name": "add_to_all_cluster_venue",
+        "args": [
+          "cell"
+        ],
+        "body": [
+          "for c in cell.cosites() + [cell]:",
+          "    clusters.test_CD_JO_Venue.add(c)",
+          "    if c.technology == 'GSM':",
+          "        clusters.test_CD_2G_JO_Venue.add(c)",
+          "    elif c.technology == 'UMTS':",
+          "        clusters.test_CD_3G_JO_Venue.add(c)",
+          "    elif c.technology == 'LTE':",
+          "        clusters.test_CD_4G_JO_Venue.add(c)",
+          "    elif c.technology == 'NR':",
+          "        clusters.test_CD_5G_JO_Venue.add(c)"
+        ]
+      },
+      {
+        "name": "is_jo_venue",
+        "args": [
+          "cell"
+        ],
+        "body": [
+          "if not vars.venue_cells:",
+          "    with db.noria as noria_db:",
+          "        noria_query = (",
+          "            f\"SELECT \"",
+          "            f\"EVENEMENTIEL, \"",
+          "            f\"COALESCE(NULLIF(CI, ''), NULLIF(LCID, ''), NULLIF(ECI, ''), NULLIF(NCI, '')) AS cell_id \"",
+          "            f\"FROM champs_ihm_noria \"",
+          "            f'WHERE EVENEMENTIEL = \"JO Venue\" '",
+          "            f'OR EVENEMENTIEL = \"JO Spectateurs\";'",
+          "        )",
+          "        result = noria_db.query(noria_query)",
+          "        query_result = result[0]",
+          "        result_by_event = defaultdict(list)",
+          "        for row in query_result:",
+          "            event_type = row[0]",
+          "            cell_id = row[1]",
+          "            result_by_event[event_type].append(cell_id)",
+          "        vars.venue_cells = result_by_event",
+          "target_id = (",
+          "    str(cell.cell_id) if cell.technology != \"UMTS\" else str(cell.dn.split(\"-\")[-1])",
+          ")",
+          "if target_id in vars.venue_cells[\"JO Venue\"]:",
+          "    add_to_all_cluster_venue(cell)",
+          "    return True",
+          "if target_id in vars.venue_cells[\"JO Spectateurs\"]:",
+          "    add_to_all_cluster_spectator(cell)",
+          "    return True",
+          "return False"
+        ]
+      }
+    ]
+  },
+  {
+    "$eval": "custom.is_jo_venue(cell)"
+  }
+]

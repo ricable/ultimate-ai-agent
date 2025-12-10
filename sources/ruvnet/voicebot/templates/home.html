@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Bot - Practice Your Interview Skills</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+
+    <!-- SEO Metadata -->
+    <meta name="description" content="AI Interview Bot - Practice your interview skills with our AI-powered automated phone call system. Improve your chances of landing your dream job!">
+    <meta name="keywords" content="AI, Interview, Practice, Job Skills, Career Development, Phone Interview">
+    <meta name="author" content="ruv">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:title" content="AI Interview Bot - Practice Your Interview Skills">
+    <meta property="og:description" content="Practice your interview skills with our AI-powered automated phone call system. Improve your chances of landing your dream job!">
+    <meta property="og:image" content="{{ url_for('static', filename='og-image.png', _external=True) }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ request.url }}">
+    <meta property="twitter:title" content="AI Interview Bot - Practice Your Interview Skills">
+    <meta property="twitter:description" content="Practice your interview skills with our AI-powered automated phone call system. Improve your chances of landing your dream job!">
+    <meta property="twitter:image" content="{{ url_for('static', filename='og-image.png', _external=True) }}">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontSize: {
+                        'xs': '.75rem',
+                        'sm': '.875rem',
+                        'base': '1rem',
+                        'lg': '1.125rem',
+                        'xl': '1.25rem',
+                        '2xl': '1.5rem',
+                        '3xl': '1.875rem',
+                        '4xl': '2.25rem',
+                        '5xl': '3rem',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @media (max-width: 640px) {
+            html, body {
+                font-size: 16px;
+            }
+        }
+
+        /* Hide inactive tab content */
+        .tabcontent {
+            display: none;
+        }
+
+        /* Show active tab content */
+        .tabcontent.active {
+            display: block;
+        }
+
+        /* Folder style for tabs */
+        .tablinks {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0;
+            margin-right: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .tablinks.active {
+            background-color: #ffffff;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        /* Tab container height to avoid UI adjustment */
+        .tabcontainer {
+            min-height: 500px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0 8px 8px 8px;
+        }
+
+        /* Remove padding or margin below tab buttons */
+        .tabs ul {
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        /* Adjust spacing between subheader and tabs */
+        .subheader {
+            margin-bottom: 16px;
+        }
+    </style>
+    <script>
+        let currentPrompt = '';
+        let promptTabOpened = false;
+
+        function syncDropdowns() {
+            const interviewType = document.getElementById('interview_type');
+            const promptType = document.getElementById('promptType');
+
+            // Sync the dropdowns when one changes
+            interviewType.addEventListener('change', function() {
+                promptType.value = interviewType.value;
+                loadPrompt(interviewType.value);
+            });
+
+            promptType.addEventListener('change', function() {
+                interviewType.value = promptType.value;
+                loadPrompt(promptType.value);
+            });
+        }
+
+        function loadPrompt(promptKey) {
+            const promptEditor = document.getElementById("promptEditor");
+            const selectedPrompt = INTERVIEW_PROMPTS[promptKey];
+            promptEditor.value = selectedPrompt;
+            currentPrompt = selectedPrompt;  // Update the current prompt
+        }
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            // Lazy load the prompts only the first time the "Prompt Management" tab is opened
+            if (tabName === 'PromptManagement' && !promptTabOpened) {
+                loadPrompts();
+                promptTabOpened = true;
+            }
+        }
+
+        function loadPrompts() {
+            const promptTypeSelect = document.getElementById("promptType");
+
+            // Populate interview type options dynamically
+            for (const key in INTERVIEW_PROMPTS) {
+                let option = document.createElement("option");
+                option.value = key;
+                option.textContent = key.replace(/_/g, ' ');
+                promptTypeSelect.appendChild(option);
+            }
+
+            syncDropdowns(); // Sync dropdowns after options are populated
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Sync dropdowns on page load
+            syncDropdowns();
+
+            // Load the initial prompt (AI Specialist) when the page loads
+            loadPrompt('ai_specialist');
+        });
+
+        function showLoading() {
+            document.getElementById('loadingMessage').classList.remove('hidden');
+            document.getElementById('submitButton').disabled = true;
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingMessage').classList.add('hidden');
+            document.getElementById('submitButton').disabled = false;
+        }
+
+        function showMessage(message, isError = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `p-4 mb-4 text-sm rounded-lg ${isError ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`;
+            messageDiv.textContent = message;
+            document.querySelector('form').insertAdjacentElement('afterend', messageDiv);
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            showLoading();
+
+            const formData = new FormData(event.target);
+            formData.append('prompt', currentPrompt);  // Add the updated prompt to the form data
+
+            fetch("{{ url_for('start_call') }}", {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                hideLoading();
+                showMessage('Call started successfully! You should receive a call shortly.');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                hideLoading();
+                showMessage(`An error occurred: ${error.message}`, true);
+            });
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="container mx-auto max-w-md w-full">
+
+        <!-- Page Title and Subtitle -->
+        <div class="text-center mb-4">
+            <h1 class="text-3xl font-bold text-gray-800">AI Conversation Bot</h1>
+            <h2 class="text-base text-gray-600 subheader">Phone-Based AI-Powered Assistant for<br>Mock Interviews and Personal Guidance</h2>
+        </div>
+
+        <!-- Tabs for the main UI, prompt management, and settings -->
+        <div class="tabs">
+            <ul class="flex justify-center mb-0">
+                <li>
+                    <button class="tablinks active" onclick="openTab(event, 'MainUI')">Start</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="openTab(event, 'PromptManagement')">Prompts</button>
+                </li>
+                <li>
+                    <button class="tablinks" onclick="openTab(event, 'Settings')">Settings</button>
+                </li>
+            </ul>
+
+            <div class="tabcontainer">
+                <!-- Main UI Tab Content -->
+                <div id="MainUI" class="tabcontent active">
+                    <div class="bg-white shadow-md rounded px-6 py-8 mb-4">
+                        <p class="mb-6 text-gray-700 text-sm sm:text-base">Refine your skills with our AI-powered phone call system. Choose an interview type, select a voice, and enter your phone number to start an interactive AI conversation.</p>
+                        <form action="{{ url_for('start_call') }}" method="POST" class="mb-6" onsubmit="handleSubmit(event)">
+                            <div class="mb-6">
+                                <label for="interview_type" class="block text-gray-700 text-sm font-bold mb-2">Select Interview Type:</label>
+                                <select id="interview_type" name="interview_type" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <option value="default" selected>AI Interview Bot (Default)</option>
+                                    <option value="cloud_computing">Cloud Computing</option>
+                                    <option value="sales">Sales</option>
+                                    <option value="college_prep">College Preparation</option>
+                                    <option value="counseling">Counseling</option>
+                                    <option value="therapy">Therapy</option>
+                                    <option value="psychoanalysis">Psychoanalysis</option>
+                                    <option value="girlfriend">Girlfriend</option>
+                                    <option value="boyfriend">Boyfriend</option>
+                                    <option value="friend">Just a Friend</option>
+                                    <option value="business_executive">Business Executive</option>
+                                    <option value="entrepreneur_coach">Entrepreneur Coach</option>
+                                    <option value="investor_pitch_advisor">Investor Pitch Advisor</option>
+                                    <option value="hr_interviewer">HR Interviewer</option>
+                                    <option value="technical_support">Technical Support Specialist</option>
+                                    <option value="it_consultant">IT Consultant</option>
+                                    <option value="software_engineer_peer">Software Engineer Peer</option>
+                                    <option value="ai_specialist">AI Specialist</option>
+                                    <option value="drive_through_order_taker">Drive-Through Order Taker</option>
+                                    <option value="call_center_operator">Call Center Operator</option>
+                                    <option value="personal_shopper">Personal Shopper</option>
+                                    <option value="gamer_friend">Gamer Friend</option>
+                                    <option value="game_master">Game Master</option>
+                                    <option value="esports_coach">Esports Coach</option>
+                                    <option value="survey_interviewer">Survey Interviewer</option>
+                                    <option value="political_pollster">Political Pollster</option>
+                                    <option value="fitness_coach">Fitness Coach</option>
+                                    <option value="financial_advisor">Financial Advisor</option>
+                                    <option value="mental_health_coach">Mental Health Coach</option>
+                                    <option value="life_coach">Life Coach</option>
+                                </select>            
+                            </div>
+                            <div class="mb-6">
+                                <label for="voice" class="block text-gray-700 text-sm font-bold mb-2">Select Voice:</label>
+                                <select id="voice" name="voice" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <option value="nat">Nat</option>
+                                    <option value="mason">Mason</option>
+                                    <option value="ryan">Ryan</option>
+                                    <option value="adriana">Adriana</option>
+                                    <option value="tina">Tina</option>
+                                    <option value="evelyn">Evelyn</option>
+                                </select>
+                            </div>
+                            <div class="mb-6">
+                                <label for="phone_number" class="block text-gray-700 text-sm font-bold mb-2">Enter your phone number:</label>
+                                <input type="tel" id="phone_number" name="phone_number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., +1234567890">
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <button id="submitButton" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+                                    Start Call
+                                </button>
+                            </div>
+                        </form>
+                        <div id="loadingMessage" class="hidden mt-4 text-center text-gray-700">
+                            Please wait while we initiate your call...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prompt Management Tab Content -->
+                <div id="PromptManagement" class="tabcontent">
+                    <div class="bg-white shadow-md rounded px-6 py-8 mb-4">
+                        <p class="mb-6 text-gray-700 text-sm sm:text-base">Manage the AI interview prompts. Modify the default prompts for different interview types and customize the AI behavior.</p>
+                        <div class="mb-6">
+                            <label for="promptType" class="block text-gray-700 text-sm font-bold mb-2">Select Interview Type:</label>
+                            <select id="promptType" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <!-- Options dynamically populated by JavaScript -->
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label for="promptEditor" class="block text-gray-700 text-sm font-bold mb-2">Edit Prompt:</label>
+                            <textarea id="promptEditor" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="10" placeholder="Edit the prompt here..."></textarea>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <button id="savePromptButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+                                Save Prompt
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+               <!-- Settings Tab Content -->
+                <div id="Settings" class="tabcontent">
+                    <div class="bg-white shadow-md rounded px-6 py-8 mb-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-bold">Settings</h3>
+                            <button id="loadDefaults" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded">
+                                Load Defaults
+                            </button>
+                        </div>
+
+                        <!-- Webhook URL -->
+                        <div class="mb-6">
+                            <label for="webhook" class="block text-gray-700 text-sm font-bold mb-2">Webhook URL:</label>
+                            <p class="text-xs text-gray-500 mb-2">Define the URL where the webhook will send data after processing the call.</p>
+                            <input type="url" id="webhook" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="https://example.com/webhook">
+                        </div>
+
+                        <!-- Analysis Schema -->
+                        <div class="mb-6">
+                            <label for="analysis_schema" class="block text-gray-700 text-sm font-bold mb-2">Analysis Schema:</label>
+                            <p class="text-xs text-gray-500 mb-2">Set the JSON schema that determines how the AI should analyze and extract data during the conversation.</p>
+                            <textarea id="analysis_schema" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="4" placeholder="Enter JSON schema for analysis"></textarea>
+                        </div>
+
+                        <!-- Timeout -->
+                        <div class="mb-6">
+                            <label for="timeout" class="block text-gray-700 text-sm font-bold mb-2">Timeout (ms):</label>
+                            <p class="text-xs text-gray-500 mb-2">Configure the timeout duration in milliseconds for the request.</p>
+                            <input type="number" id="timeout" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="2000">
+                        </div>
+
+                        <!-- Cache -->
+                        <div class="mb-6">
+                            <label for="cache" class="block text-gray-700 text-sm font-bold mb-2">Cache:</label>
+                            <p class="text-xs text-gray-500 mb-2">Choose whether to enable caching for requests.</p>
+                            <select id="cache" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+
+                        <!-- From (Caller ID) -->
+                        <div class="mb-6">
+                            <label for="from" class="block text-gray-700 text-sm font-bold mb-2">From (Caller ID):</label>
+                            <p class="text-xs text-gray-500 mb-2">Set the caller ID for the outgoing call.</p>
+                            <input type="text" id="from" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., +1234567890">
+                        </div>
+
+                        <!-- Pathway ID -->
+                        <div class="mb-6">
+                            <label for="pathway_id" class="block text-gray-700 text-sm font-bold mb-2">Pathway ID:</label>
+                            <p class="text-xs text-gray-500 mb-2">Define a unique identifier for the call pathway, which may link to specific conversation flows.</p>
+                            <input type="text" id="pathway_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Pathway ID">
+                        </div>
+
+                        <!-- Voice Settings -->
+                        <div class="mb-6">
+                            <label for="voice_settings" class="block text-gray-700 text-sm font-bold mb-2">Voice Settings (JSON):</label>
+                            <p class="text-xs text-gray-500 mb-2">Customize the voice settings such as speed and pitch using a JSON object.</p>
+                            <textarea id="voice_settings" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="4" placeholder='{"speed": 1.0, "pitch": 1.0}'></textarea>
+                        </div>
+
+                        <!-- Local Dialing -->
+                        <div class="mb-6">
+                            <label for="local_dialing" class="block text-gray-700 text-sm font-bold mb-2">Local Dialing:</label>
+                            <p class="text-xs text-gray-500 mb-2">Toggle whether to use local dialing rules for the call.</p>
+                            <select id="local_dialing" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+
+                        <!-- Max Duration -->
+                        <div class="mb-6">
+                            <label for="max_duration" class="block text-gray-700 text-sm font-bold mb-2">Max Duration (minutes):</label>
+                            <p class="text-xs text-gray-500 mb-2">Set the maximum allowed duration for the call in minutes.</p>
+                            <input type="number" id="max_duration" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="2">
+                        </div>
+
+                        <!-- Answered By Enabled -->
+                        <div class="mb-6">
+                            <label for="answered_by_enabled" class="block text-gray-700 text-sm font-bold mb-2">Answered By Detection:</label>
+                            <p class="text-xs text-gray-500 mb-2">Enable or disable the detection of whether the call was answered by a human or a machine.</p>
+                            <select id="answered_by_enabled" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+
+                        <!-- Wait For Greeting -->
+                        <div class="mb-6">
+                            <label for="wait_for_greeting" class="block text-gray-700 text-sm font-bold mb-2">Wait For Greeting:</label>
+                            <p class="text-xs text-gray-500 mb-2">Choose whether the AI should wait for the recipient's greeting before starting the conversation.</p>
+                            <select id="wait_for_greeting" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+
+                        <!-- Record -->
+                        <div class="mb-6">
+                            <label for="record" class="block text-gray-700 text-sm font-bold mb-2">Record Call:</label>
+                            <p class="text-xs text-gray-500 mb-2">Enable or disable the recording of the call.</p>
+                            <select id="record" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+
+                        <!-- AMD (Answering Machine Detection) -->
+                        <div class="mb-6">
+                            <label for="amd" class="block text-gray-700 text-sm font-bold mb-2">Answering Machine Detection:</label>
+                            <p class="text-xs text-gray-500 mb-2">Enable or disable automatic machine detection to check if the call was answered by a machine.</p>
+                            <select id="amd" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+
+                        <!-- Interruption Threshold -->
+                        <div class="mb-6">
+                            <label for="interruption_threshold" class="block text-gray-700 text-sm font-bold mb-2">Interruption Threshold:</label>
+                            <p class="text-xs text-gray-500 mb-2">Set the interruption threshold, determining how the AI handles interruptions during the call.</p>
+                            <input type="number" id="interruption_threshold" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="100">
+                        </div>
+
+                        <!-- Voicemail Message -->
+                        <div class="mb-6">
+                            <label for="voicemail_message" class="block text-gray-700 text-sm font-bold```html
+                        <!-- Voicemail Message -->
+                        <div class="mb-6">
+                            <label for="voicemail_message" class="block text-gray-700 text-sm font-bold mb-2">Voicemail Message:</label>
+                            <p class="text-xs text-gray-500 mb-2">Set a custom voicemail message to be played if the call goes to voicemail.</p>
+                            <textarea id="voicemail_message" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="4" placeholder="Enter voicemail message"></textarea>
+                        </div>
+
+                        <!-- Temperature -->
+                        <div class="mb-6">
+                            <label for="temperature" class="block text-gray-700 text-sm font-bold mb-2">Temperature:</label>
+                            <p class="text-xs text-gray-500 mb-2">Adjust the creativity or randomness level of the AI's responses during the call. Lower values result in more deterministic responses.</p>
+                            <input type="number" id="temperature" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., 0.7">
+                        </div>
+
+                        <!-- Transfer Phone Number -->
+                        <div class="mb-6">
+                            <label for="transfer_phone_number" class="block text-gray-700 text-sm font-bold mb-2">Transfer Phone Number:</label>
+                            <p class="text-xs text-gray-500 mb-2">Define the phone number where the call should be transferred, if applicable.</p>
+                            <input type="text" id="transfer_phone_number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., +1234567890">
+                        </div>
+
+                        <!-- Pronunciation Guide -->
+                        <div class="mb-6">
+                            <label for="pronunciation_guide" class="block text-gray-700 text-sm font-bold mb-2">Pronunciation Guide (JSON):</label>
+                            <p class="text-xs text-gray-500 mb-2">Set custom pronunciations for specific words or names using a JSON format.</p>
+                            <textarea id="pronunciation_guide" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="4" placeholder='[{"word": "example", "pronunciation": "eg-zam-pul"}]'></textarea>
+                        </div>
+
+                        <!-- Start Time -->
+                        <div class="mb-6">
+                            <label for="start_time" class="block text-gray-700 text-sm font-bold mb-2">Start Time:</label>
+                            <p class="text-xs text-gray-500 mb-2">Schedule the start time for the call.</p>
+                            <input type="datetime-local" id="start_time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+
+                        <!-- Request Data -->
+                        <div class="mb-6">
+                            <label for="request_data" class="block text-gray-700 text-sm font-bold mb-2">Request Data (JSON):</label>
+                            <p class="text-xs text-gray-500 mb-2">Provide additional data in JSON format that may be required for the call.</p>
+                            <textarea id="request_data" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="4" placeholder="Enter additional request data"></textarea>
+                        </div>
+
+                        <!-- Tools -->
+                        <div class="mb-6">
+                            <label for="tools" class="block text-gray-700 text-sm font-bold mb-2">Tools (JSON):</label>
+                            <p class="text-xs text-gray-500 mb-2">Configure external tools or services to be used during the call, specified in JSON format.</p>
+                            <textarea id="tools" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="4" placeholder="Enter tools configuration"></textarea>
+                        </div>
+
+                        <!-- Dynamic Data -->
+                        <div class="mb-6">
+                            <label for="dynamic_data" class="block text-gray-700 text-sm font-bold mb-2">Dynamic Data (JSON):</label>
+                            <p class="text-xs text-gray-500 mb-2">Provide dynamic data in JSON format that may be fetched or updated during the call.</p>
+                            <textarea id="dynamic_data" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="4" placeholder="Enter dynamic data"></textarea>
+                        </div>
+
+                        <!-- Analysis Preset -->
+                        <div class="mb-6">
+                            <label for="analysis_preset" class="block text-gray-700 text-sm font-bold mb-2">Analysis Preset:</label>
+                            <p class="text-xs text-gray-500 mb-2">Choose a predefined analysis configuration to apply to the call data.</p>
+                            <input type="text" id="analysis_preset" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter analysis preset">
+                        </div>
+
+                        <!-- Calendly -->
+                        <div class="mb-6">
+                            <label for="calendly" class="block text-gray-700 text-sm font-bold mb-2">Calendly (JSON):</label>
+                            <p class="text-xs text-gray-500 mb-2">Integrate with Calendly for scheduling appointments, using JSON configuration.</p>
+                            <textarea id="calendly" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="4" placeholder="Enter Calendly configuration"></textarea>
+                        </div>
+
+                        <!-- Save Settings Button -->
+                        <div class="flex items-center justify-between">
+                            <button id="saveSettings" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+                                Save Settings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                document.getElementById('loadDefaults').addEventListener('click', function() {
+                    // Load default values for each field
+                    document.getElementById('webhook').value = "https://webhook.site/sample-webhook";
+                    document.getElementById('analysis_schema').value = `{
+                    "email_address": "email",
+                    "first_name": "string",
+                    "last_name": "string",
+                    "wants_to_book_appointment": "boolean",
+                    "appointment_time": "YYYY-MM-DD HH:MM:SS"
+                    }`;
+                    document.getElementById('timeout').value = "2000";
+                    document.getElementById('cache').value = "true";
+                    document.getElementById('from').value = "+1234567890";
+                    document.getElementById('pathway_id').value = "sample_pathway";
+                    document.getElementById('voice_settings').value = `{
+                    "speed": 1.0,
+                    "pitch": 1.0
+                    }`;
+                    document.getElementById('local_dialing').value = "false";
+                    document.getElementById('max_duration').value = "2";
+                    document.getElementById('answered_by_enabled').value = "true";
+                    document.getElementById('wait_for_greeting').value = "true";
+                    document.getElementById('record').value = "true";
+                    document.getElementById('amd').value = "false";
+                    document.getElementById('interruption_threshold').value = "100";
+                    document.getElementById('voicemail_message').value = "Please leave a message after the beep.";
+                    document.getElementById('temperature').value = "0.7";
+                    document.getElementById('transfer_phone_number').value = "+1234567890";
+                    document.getElementById('pronunciation_guide').value = `[{"word": "example", "pronunciation": "eg-zam-pul"}]`;
+                    document.getElementById('start_time').value = "";
+                    document.getElementById('request_data').value = "{}";
+                    document.getElementById('tools').value = "{}";
+                    document.getElementById('dynamic_data').value = "[]";
+                    document.getElementById('analysis_preset').value = "";
+                    document.getElementById('calendly').value = "{}";
+                });
+
+                // Save the settings and apply them in the request
+                document.getElementById('saveSettings').addEventListener('click', function() {
+                    const settings = {
+                        webhook: document.getElementById('webhook').value,
+                        analysis_schema: document.getElementById('analysis_schema').value,
+                        timeout: parseInt(document.getElementById('timeout').value, 10),
+                        cache: document.getElementById('cache').value === "true",
+                        from: document.getElementById('from').value,
+                        pathway_id: document.getElementById('pathway_id').value,
+                        voice_settings: JSON.parse(document.getElementById('voice_settings').value),
+                        local_dialing: document.getElementById('local_dialing').value === "true",
+                        max_duration: parseInt(document.getElementById('max_duration').value, 10),
+                        answered_by_enabled: document.getElementById('answered_by_enabled').value === "true",
+                        wait_for_greeting: document.getElementById('wait_for_greeting').value === "true",
+                        record: document.getElementById('record').value === "true",
+                        amd: document.getElementById('amd').value === "true",
+                        interruption_threshold: parseInt(document.getElementById('interruption_threshold').value, 10),
+                        voicemail_message: document.getElementById('voicemail_message').value,
+                        temperature: parseFloat(document.getElementById('temperature').value),
+                        transfer_phone_number: document.getElementById('transfer_phone_number').value,
+                        pronunciation_guide: JSON.parse(document.getElementById('pronunciation_guide').value),
+                        start_time: document.getElementById('start_time').value,
+                        request_data: JSON.parse(document.getElementById('request_data').value),
+                        tools: JSON.parse(document.getElementById('tools').value),
+                        dynamic_data: JSON.parse(document.getElementById('dynamic_data').value),
+                        analysis_preset: document.getElementById('analysis_preset').value,
+                        calendly: JSON.parse(document.getElementById('calendly').value)
+                    };
+
+                    console.log('Settings saved and applied:', settings);
+                    // You can now use the 'settings' object in your API requests
+                });
+                </script>
+
+
+
+
+        <p class="text-center text-gray-500 text-xs">
+            &copy; AI Conversation Bot. No rights reserved, Go Crazy 🤪<br>
+            Created by <a href="https://github.com/ruvnet/voicebot" class="text-blue-500 hover:text-blue-700">ruv | Open Source Code</a>
+        </p>
+    </div>
+
+    <!-- Embed INTERVIEW_PROMPTS as a JavaScript variable -->
+    <script>
+        const INTERVIEW_PROMPTS = {{ interview_prompts | tojson }};
+    </script>
+</body>
+</html>

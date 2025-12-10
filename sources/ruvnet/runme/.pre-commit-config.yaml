@@ -1,0 +1,55 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-yaml
+        stages: [commit]
+      - id: check-json
+        exclude: "^.vscode/"
+        stages: [commit]
+      - id: check-merge-conflict
+        stages: [commit]
+      - id: check-case-conflict
+        stages: [commit]
+      - id: detect-private-key
+        stages: [commit]
+      - id: end-of-file-fixer
+        stages: [commit]
+      - id: trailing-whitespace
+        stages: [commit]
+  - repo: https://github.com/crate-ci/committed
+    rev: v1.0.20
+    hooks:
+      - id: committed
+        stages: [commit-msg]
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.22.9
+    hooks:
+      - id: typos
+        args: ["--diff", "--force-exclude"]
+        exclude: "^.vscode/|go.mod|_test.go"
+  - repo: local
+    hooks:
+      - id: go-mod-tidy
+        name: go mod tidy
+        entry: go
+        args: ["mod", "tidy"]
+        language: system
+        types: [go]
+        pass_filenames: false
+        stages: [commit]
+      - id: lint
+        name: lint
+        entry: make
+        args: ["lint"]
+        language: system
+        types: [go]
+        pass_filenames: false
+        stages: [commit]
+      - id: build
+        name: build
+        entry: make
+        language: system
+        types: [go]
+        pass_filenames: false
+        stages: [commit]

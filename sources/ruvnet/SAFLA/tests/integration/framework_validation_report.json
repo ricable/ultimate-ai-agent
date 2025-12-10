@@ -1,0 +1,229 @@
+{
+  "validation_timestamp": 1748729397.6058009,
+  "total_duration": 0.056929826736450195,
+  "framework_ready": true,
+  "overall_success_rate": 100.0,
+  "test_summary": {
+    "total_tests": 12,
+    "passed": 12,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "detailed_results": [
+    {
+      "test_name": "_validate_test_file_structure",
+      "status": "ValidationStatus.PASSED",
+      "duration": 0.05065584182739258,
+      "message": "File structure validation passed",
+      "details": {
+        "success": true,
+        "message": "File structure validation passed",
+        "missing_files": [],
+        "invalid_files": [],
+        "total_files_checked": 7
+      },
+      "error_traceback": null
+    },
+    {
+      "test_name": "_validate_test_fixtures",
+      "status": "ValidationStatus.PASSED",
+      "duration": 0.00017213821411132812,
+      "message": "Fixture validation passed",
+      "details": {
+        "success": true,
+        "message": "Fixture validation passed",
+        "missing_fixtures": [],
+        "total_fixtures_checked": 6
+      },
+      "error_traceback": null
+    },
+    {
+      "test_name": "_validate_mock_components",
+      "status": "ValidationStatus.PASSED",
+      "duration": 7.43865966796875e-05,
+      "message": "Mock component validation passed",
+      "details": {
+        "success": true,
+        "message": "Mock component validation passed",
+        "missing_mocks": [],
+        "total_mocks_checked": 6
+      },
+      "error_traceback": null
+    },
+    {
+      "test_name": "_validate_performance_monitoring",
+      "status": "ValidationStatus.PASSED",
+      "duration": 8.511543273925781e-05,
+      "message": "Performance monitoring validation passed",
+      "details": {
+        "success": true,
+        "message": "Performance monitoring validation passed",
+        "has_performance_monitor": true,
+        "missing_methods": [],
+        "total_methods_checked": 4
+      },
+      "error_traceback": null
+    },
+    {
+      "test_name": "_validate_error_injection",
+      "status": "ValidationStatus.PASSED",
+      "duration": 8.845329284667969e-05,
+      "message": "Error injection validation passed",
+      "details": {
+        "success": true,
+        "message": "Error injection validation passed",
+        "has_error_injector": true,
+        "missing_methods": [],
+        "total_methods_checked": 4
+      },
+      "error_traceback": null
+    },
+    {
+      "test_name": "_validate_test_data_generation",
+      "status": "ValidationStatus.PASSED",
+      "duration": 8.797645568847656e-05,
+      "message": "Test data generation validation passed",
+      "details": {
+        "success": true,
+        "message": "Test data generation validation passed",
+        "has_test_data_generator": true,
+        "missing_methods": [],
+        "total_methods_checked": 4
+      },
+      "error_traceback": null
+    },
+    {
+      "test_name": "_validate_integration_context",
+      "status": "ValidationStatus.PASSED",
+      "duration": 9.870529174804688e-05,
+      "message": "Integration context validation passed",
+      "details": {
+        "success": true,
+        "message": "Integration context validation passed",
+        "has_integration_context": true,
+        "missing_methods": [],
+        "total_methods_checked": 4
+      },
+      "error_traceback": null
+    },
+    {
+      "test_name": "_validate_safety_constraints",
+      "status": "ValidationStatus.PASSED",
+      "duration": 7.987022399902344e-05,
+      "message": "Safety constraint validation passed",
+      "details": {
+        "success": true,
+        "message": "Safety constraint validation passed",
+        "missing_tests": [],
+        "total_tests_checked": 6
+      },
+      "error_traceback": null
+    },
+    {
+      "test_name": "_validate_deployment_configurations",
+      "status": "ValidationStatus.PASSED",
+      "duration": 7.2479248046875e-05,
+      "message": "Deployment configuration validation passed",
+      "details": {
+        "success": true,
+        "message": "Deployment configuration validation passed",
+        "missing_tests": [],
+        "total_tests_checked": 4,
+        "environments_supported": [
+          "dev",
+          "staging",
+          "prod",
+          "ha"
+        ]
+      },
+      "error_traceback": null
+    },
+    {
+      "test_name": "_validate_test_runner_functionality",
+      "status": "ValidationStatus.PASSED",
+      "duration": 9.584426879882812e-05,
+      "message": "Test runner validation passed",
+      "details": {
+        "success": true,
+        "message": "Test runner validation passed",
+        "missing_classes": [],
+        "missing_methods": [],
+        "total_classes_checked": 2,
+        "total_methods_checked": 3
+      },
+      "error_traceback": null
+    },
+    {
+      "test_name": "_validate_reporting_mechanisms",
+      "status": "ValidationStatus.PASSED",
+      "duration": 8.845329284667969e-05,
+      "message": "Reporting mechanism validation passed",
+      "details": {
+        "success": true,
+        "message": "Reporting mechanism validation passed",
+        "missing_methods": [],
+        "format_support": {
+          "console": true,
+          "json": true,
+          "html": true
+        },
+        "total_methods_checked": 3
+      },
+      "error_traceback": null
+    },
+    {
+      "test_name": "_validate_tdd_compliance",
+      "status": "ValidationStatus.PASSED",
+      "duration": 0.004765510559082031,
+      "message": "TDD compliance validation passed",
+      "details": {
+        "success": true,
+        "message": "TDD compliance validation passed",
+        "overall_compliance_percentage": 84.0,
+        "compliance_details": {
+          "tests/integration/test_system_integration.py": {
+            "test_count": 17,
+            "has_docstrings": true,
+            "has_assertions": true,
+            "has_setup_teardown": true,
+            "has_error_handling": true
+          },
+          "tests/integration/test_end_to_end_workflows.py": {
+            "test_count": 5,
+            "has_docstrings": true,
+            "has_assertions": true,
+            "has_setup_teardown": false,
+            "has_error_handling": true
+          },
+          "tests/integration/test_performance_integration.py": {
+            "test_count": 6,
+            "has_docstrings": true,
+            "has_assertions": true,
+            "has_setup_teardown": false,
+            "has_error_handling": true
+          },
+          "tests/integration/test_safety_integration.py": {
+            "test_count": 7,
+            "has_docstrings": true,
+            "has_assertions": true,
+            "has_setup_teardown": false,
+            "has_error_handling": true
+          },
+          "tests/integration/test_deployment_readiness.py": {
+            "test_count": 4,
+            "has_docstrings": true,
+            "has_assertions": true,
+            "has_setup_teardown": false,
+            "has_error_handling": true
+          }
+        },
+        "total_files_checked": 5
+      },
+      "error_traceback": null
+    }
+  ],
+  "recommendations": [
+    "Test framework validation passed - ready for integration testing"
+  ]
+}

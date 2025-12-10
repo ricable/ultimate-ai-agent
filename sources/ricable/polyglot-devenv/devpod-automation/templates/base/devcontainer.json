@@ -1,0 +1,71 @@
+{
+    "name": "Polyglot Base Development Environment",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "username": "vscode",
+            "userUid": "1000",
+            "userGid": "1000"
+        },
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": true
+        },
+        "ghcr.io/devcontainers/features/github-cli:1": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "version": "latest",
+            "enableNonRootDocker": true
+        }
+    },
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.vscode-json",
+                "github.vscode-github-actions",
+                "github.vscode-pull-request-github",
+                "eamodio.gitlens",
+                "mkhl.direnv"
+            ],
+            "settings": {
+                "editor.formatOnSave": true,
+                "editor.rulers": [88, 100, 120],
+                "files.trimTrailingWhitespace": true,
+                "git.autofetch": true,
+                "terminal.integrated.defaultProfile.linux": "zsh"
+            }
+        },
+        "devpod": {
+            "prebuildRepository": "ghcr.io/ricable/polyglot-devenv-base"
+        }
+    },
+
+    "containerEnv": {
+        "TERM": "xterm-256color",
+        "COLORTERM": "truecolor"
+    },
+
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+        "type=volume,source=vscode-server-extensions,target=/home/vscode/.vscode-server/extensions"
+    ],
+
+    "postCreateCommand": [
+        "echo 'Base development environment ready'",
+        "curl -fsSL https://get.jetify.com/devbox | bash"
+    ],
+
+    "postStartCommand": "echo 'Base DevPod ready'",
+    
+    "postAttachCommand": "echo 'Welcome to Polyglot DevPod! 🚀'",
+
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+    
+    "remoteUser": "vscode",
+    "updateRemoteUserUID": true
+}

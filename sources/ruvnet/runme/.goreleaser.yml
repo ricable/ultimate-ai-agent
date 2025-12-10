@@ -1,0 +1,217 @@
+project_name: runme
+
+version: 2
+
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+
+git:
+  tag_sort: -version:creatordate
+
+builds:
+  - id: cli
+    main: .
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    mod_timestamp: "{{ .CommitTimestamp }}"
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w
+        -X 'github.com/stateful/runme/v3/internal/version.BuildDate={{ .CommitDate }}'
+        -X 'github.com/stateful/runme/v3/internal/version.BuildVersion={{.Version}}'
+        -X 'github.com/stateful/runme/v3/internal/version.Commit={{.Commit}}'
+  - id: wasm
+    main: ./web
+    goos:
+      - js
+    goarch:
+      - wasm
+    mod_timestamp: "{{ .CommitTimestamp }}"
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w
+        -X 'github.com/stateful/runme/v3/internal/version.BuildDate={{ .CommitDate }}'
+        -X 'github.com/stateful/runme/v3/internal/version.BuildVersion={{.Version}}'
+        -X 'github.com/stateful/runme/v3/internal/version.Commit={{.Commit}}'
+
+release:
+  prerelease: auto
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  sort: asc
+  use: github
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore"
+      - Merge pull request
+      - Merge branch
+      - go mod tidy
+
+archives:
+  - id: cli
+    builds:
+      - cli
+      - wasm
+    name_template: >-
+      {{- .ProjectName }}_
+      {{- .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else }}{{ .Arch }}{{ end -}}
+      {{ if .Arm }}v{{ .Arm }}{{ end -}}
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - README.md
+      - LICENSE
+
+blobs:
+  - provider: gs
+    bucket: "{{ .Env.GS_BUCKET }}"
+    ids:
+      - cli
+    directory: "{{ .Version }}"
+
+brews:
+  - name: runme
+    ids:
+      - cli
+    homepage: https://runme.dev
+    description: "Execute your runbooks, docs, and READMEs."
+    repository:
+      owner: stateful
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    url_template: "https://download.stateful.com/runme/{{ .Version }}/{{ .ArtifactName }}"
+    dependencies: []
+    skip_upload: auto
+    directory: Formula
+    download_strategy: CurlDownloadStrategy
+    commit_author:
+      name: release-bot
+      email: bot@stateful.com
+    install: |
+      bin.install "runme"
+      (bash_completion/"runme").write `#{bin}/runme completion bash`
+      (fish_completion/"runme.fish").write `#{bin}/runme completion fish`
+      (zsh_completion/"_runme").write `#{bin}/runme completion zsh`
+    test: |
+      assert_match "runme #{version}", shell_output("#{bin}/runme version")
+
+nfpms:
+  - id: cli
+    package_name: runme
+    builds:
+      - cli
+    vendor: Stateful Inc.
+    homepage: https://runme.dev
+    maintainer: Sebastian Tiedtke <sebastian@stateful.com>
+    description: "Execute your runbooks, docs, and READMEs."
+    file_name_template: >-
+      {{- .PackageName }}_
+      {{- .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else }}{{ .Arch }}{{ end -}}
+      {{- if .Arm }}v{{ .Arm }}{{ end -}}
+      {{- if .Mips }}_{{ .Mips }}{{ end -}}
+    formats:
+      - deb
+      - apk
+      - rpm
+
+scoops:
+  - url_template: "https://download.stateful.com/runme/{{ .Version }}/{{ .ArtifactName }}"
+    repository:
+      owner: stateful
+      name: scoop-bucket
+      token: "{{ .Env.SCOOP_BUCKET_GITHUB_TOKEN }}"
+    commit_author:
+      name: release-bot
+      email: bot@stateful.com
+    homepage: https://runme.dev
+    description: "Execute your runbooks, docs, and READMEs."
+    skip_upload: auto
+
+dockers:
+  - image_templates:
+      - "statefulhq/runme:{{ .Version }}-alpine-amd64"
+    use: buildx
+    dockerfile: docker/alpine.Dockerfile
+    goos: linux
+    goarch: amd64
+    build_flag_templates:
+      - "--platform=linux/amd64"
+    skip_push: auto
+  - image_templates:
+      - "statefulhq/runme:{{ .Version }}-ubuntu-amd64"
+    use: buildx
+    dockerfile: docker/ubuntu.Dockerfile
+    goos: linux
+    goarch: amd64
+    build_flag_templates:
+      - "--platform=linux/amd64"
+    skip_push: auto
+  - image_templates:
+      - "statefulhq/runme:{{ .Version }}-alpine-arm64v8"
+    use: buildx
+    dockerfile: docker/alpine.Dockerfile
+    goos: linux
+    goarch: arm64
+    build_flag_templates:
+      - "--platform=linux/arm64/v8"
+    skip_push: auto
+  - image_templates:
+      - "statefulhq/runme:{{ .Version }}-ubuntu-arm64v8"
+    use: buildx
+    dockerfile: docker/ubuntu.Dockerfile
+    goos: linux
+    goarch: arm64
+    build_flag_templates:
+      - "--platform=linux/arm64/v8"
+    skip_push: auto
+
+docker_manifests:
+  - name_template: "statefulhq/runme:latest"
+    image_templates:
+      - "statefulhq/runme:{{ .Version }}-alpine-amd64"
+      - "statefulhq/runme:{{ .Version }}-alpine-arm64v8"
+    skip_push: auto
+  - name_template: "statefulhq/runme:latest-alpine"
+    image_templates:
+      - "statefulhq/runme:{{ .Version }}-alpine-amd64"
+      - "statefulhq/runme:{{ .Version }}-alpine-arm64v8"
+    skip_push: auto
+  - name_template: "statefulhq/runme:latest-ubuntu"
+    image_templates:
+      - "statefulhq/runme:{{ .Version }}-ubuntu-amd64"
+      - "statefulhq/runme:{{ .Version }}-ubuntu-arm64v8"
+    skip_push: auto
+  - name_template: "statefulhq/runme:{{ .Version }}"
+    image_templates:
+      - "statefulhq/runme:{{ .Version }}-alpine-amd64"
+      - "statefulhq/runme:{{ .Version }}-alpine-arm64v8"
+    skip_push: auto
+  - name_template: "statefulhq/runme:{{ .Version }}-alpine"
+    skip_push: auto
+    image_templates:
+      - "statefulhq/runme:{{ .Version }}-alpine-amd64"
+      - "statefulhq/runme:{{ .Version }}-alpine-arm64v8"
+  - name_template: "statefulhq/runme:{{ .Version }}-ubuntu"
+    skip_push: auto
+    image_templates:
+      - "statefulhq/runme:{{ .Version }}-ubuntu-amd64"
+      - "statefulhq/runme:{{ .Version }}-ubuntu-arm64v8"

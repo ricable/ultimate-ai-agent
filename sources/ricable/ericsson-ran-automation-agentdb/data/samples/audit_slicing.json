@@ -1,0 +1,633 @@
+[
+  {
+    "$meta": {
+      "version": "1.0.0",
+      "author": [
+        "Cedric Macrez"
+      ],
+      "description": "Slicing FWA"
+    }
+  },
+  {
+    "$custom": [
+      {
+        "name": "is_lte",
+        "args": [
+          "mo"
+        ],
+        "body": [
+          "return bool(mo.get_children('ENodeBFunction'))"
+        ]
+      },
+      {
+        "name": "is_nr",
+        "args": [
+          "mo"
+        ],
+        "body": [
+          "return bool(mo.get_children('GNBCUUPFunction'))"
+        ]
+      },
+      {
+        "name": "is_baseband",
+        "args": [
+          "mo"
+        ],
+        "body": [
+          "return bool(mo.parent(2).get_children('FieldReplaceableUnit'))"
+        ]
+      },
+      {
+        "name": "is_rs",
+        "args": [
+          "cell"
+        ],
+        "body": [
+          "return any([c.get_freq_str() in ['6275', '9335'] for c in cell.cosites('LTE') + [cell]])"
+        ]
+      }
+    ]
+  },
+  {
+    "GNBDUFunction": {
+      "DU5qiTable-1": {
+        "DU5qi-130": {
+          "drbRlcInDu5qiEnabled": "false",
+          "dscp": "12",
+          "logicalChannelGroupId": "5",
+          "packetDelayBudget": "280",
+          "priorityLevel": "80",
+          "profile5qi": "130"
+        }
+      },
+      "DU5qiTable-2": {
+        "DU5qi-1": {
+          "drbRlcInDu5qiEnabled": "false",
+          "dscp": "46",
+          "logicalChannelGroupId": "1",
+          "packetDelayBudget": "80",
+          "priorityLevel": "20",
+          "profile5qi": "1"
+        },
+        "DU5qi-2": {
+          "drbRlcInDu5qiEnabled": "false",
+          "dscp": "46",
+          "logicalChannelGroupId": "1",
+          "packetDelayBudget": "130",
+          "priorityLevel": "40",
+          "profile5qi": "2"
+        },
+        "DU5qi-3": {
+          "drbRlcInDu5qiEnabled": "false",
+          "dscp": "46",
+          "logicalChannelGroupId": "2",
+          "packetDelayBudget": "30",
+          "priorityLevel": "30",
+          "profile5qi": "3"
+        },
+        "DU5qi-4": {
+          "drbRlcInDu5qiEnabled": "false",
+          "dscp": "34",
+          "logicalChannelGroupId": "2",
+          "packetDelayBudget": "280",
+          "priorityLevel": "50",
+          "profile5qi": "4"
+        },
+        "DU5qi-5": {
+          "drbRlcInDu5qiEnabled": "false",
+          "dscp": "26",
+          "logicalChannelGroupId": "3",
+          "packetDelayBudget": "80",
+          "priorityLevel": "10",
+          "profile5qi": "5"
+        },
+        "DU5qi-6": {
+          "drbRlcInDu5qiEnabled": "false",
+          "dscp": "28",
+          "logicalChannelGroupId": "5",
+          "packetDelayBudget": "280",
+          "priorityLevel": "60",
+          "profile5qi": "6"
+        },
+        "DU5qi-7": {
+          "drbRlcInDu5qiEnabled": "false",
+          "dscp": "34",
+          "logicalChannelGroupId": "5",
+          "packetDelayBudget": "80",
+          "priorityLevel": "70",
+          "profile5qi": "7"
+        },
+        "DU5qi-8": {
+          "drbRlcInDu5qiEnabled": "false",
+          "dscp": "10",
+          "logicalChannelGroupId": "5",
+          "packetDelayBudget": "280",
+          "priorityLevel": "80",
+          "profile5qi": "8"
+        },
+        "DU5qi-9": {
+          "drbRlcInDu5qiEnabled": "false",
+          "dscp": "0",
+          "logicalChannelGroupId": "5",
+          "packetDelayBudget": "280",
+          "priorityLevel": "90",
+          "profile5qi": "9"
+        }
+      },
+      "NRCellDU": {
+        "cellResourceMappingRef": {
+          "$eval": "f'{mo.parent().dn}/ResourceAllocationPolicies-1/CellResourceMapping-Premium_CA'"
+        }
+      }
+    },
+    "GNBCUUPFunction": {
+      "CUUP5qiTable-1": {
+        "CUUP5qi-1": {
+          "counterActiveMode": "false",
+          "dscp": "46",
+          "profile5qi": "1",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Default_conversational_media'"
+          }
+        },
+        "CUUP5qi-2": {
+          "counterActiveMode": "false",
+          "dscp": "46",
+          "profile5qi": "2",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_2'"
+          }
+        },
+        "CUUP5qi-3": {
+          "counterActiveMode": "false",
+          "dscp": "46",
+          "profile5qi": "3",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_3'"
+          }
+        },
+        "CUUP5qi-4": {
+          "counterActiveMode": "false",
+          "dscp": "34",
+          "profile5qi": "4",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_4'"
+          }
+        },
+        "CUUP5qi-5": {
+          "counterActiveMode": "false",
+          "dscp": "26",
+          "profile5qi": "5",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Default_application_signaling'"
+          }
+        },
+        "CUUP5qi-6": {
+          "counterActiveMode": "false",
+          "dscp": "28",
+          "profile5qi": "6",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_1'"
+          }
+        },
+        "CUUP5qi-7": {
+          "counterActiveMode": "false",
+          "dscp": "34",
+          "profile5qi": "7",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_1'"
+          }
+        },
+        "CUUP5qi-8": {
+          "counterActiveMode": "false",
+          "dscp": "10",
+          "profile5qi": "8",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_1'"
+          }
+        },
+        "CUUP5qi-9": {
+          "counterActiveMode": "false",
+          "dscp": "0",
+          "profile5qi": "9",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_1'"
+          }
+        },
+        "CUUP5qi-130": {
+          "counterActiveMode": "false",
+          "dscp": "0",
+          "profile5qi": "130",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_1'"
+          }
+        }
+      },
+      "CUUP5qiTable-2": {
+        "CUUP5qi-1": {
+          "counterActiveMode": "false",
+          "dscp": "46",
+          "profile5qi": "1",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Default_conversational_media'"
+          }
+        },
+        "CUUP5qi-2": {
+          "counterActiveMode": "false",
+          "dscp": "46",
+          "profile5qi": "2",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_2'"
+          }
+        },
+        "CUUP5qi-3": {
+          "counterActiveMode": "false",
+          "dscp": "46",
+          "profile5qi": "3",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_3'"
+          }
+        },
+        "CUUP5qi-4": {
+          "counterActiveMode": "false",
+          "dscp": "34",
+          "profile5qi": "4",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_4'"
+          }
+        },
+        "CUUP5qi-5": {
+          "counterActiveMode": "false",
+          "dscp": "26",
+          "profile5qi": "5",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Default_application_signaling'"
+          }
+        },
+        "CUUP5qi-6": {
+          "counterActiveMode": "false",
+          "dscp": "28",
+          "profile5qi": "6",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_1'"
+          }
+        },
+        "CUUP5qi-7": {
+          "counterActiveMode": "false",
+          "dscp": "34",
+          "profile5qi": "7",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_1'"
+          }
+        },
+        "CUUP5qi-8": {
+          "counterActiveMode": "false",
+          "dscp": "10",
+          "profile5qi": "8",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_1'"
+          }
+        },
+        "CUUP5qi-9": {
+          "counterActiveMode": "false",
+          "dscp": "0",
+          "profile5qi": "9",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_1'"
+          }
+        },
+        "CUUP5qi-130": {
+          "counterActiveMode": "false",
+          "dscp": "0",
+          "profile5qi": "130",
+          "drbRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/Drb-Profile_1'"
+          }
+        }
+      },
+      "ResourcePartitions-1": {
+        "ResourcePartition-Transport": {
+          "ResourcePartitionMember-1": {
+            "sNSSAIList": [
+              {
+                "sd": "16777215",
+                "sst": "1"
+              },
+              {
+                "sd": "1",
+                "sst": "1"
+              },
+              {
+                "sd": "3898",
+                "sst": "1"
+              },
+              {
+                "sd": "2",
+                "sst": "1"
+              },
+              {
+                "sd": "4097",
+                "sst": "1"
+              }
+            ],
+            "pLMNIdList": [
+              {
+                "mcc": "208",
+                "mnc": "01"
+              }
+            ],
+            "endpointResourceRef": {
+              "$eval": "f'{mo.parent(3).dn}/EndpointResource-2'"
+            }
+          }
+        },
+        "ResourcePartition-Premium": {
+          "ResourcePartitionMember-1": {
+            "sNSSAIList": [
+              {
+                "sd": "1",
+                "sst": "1"
+              },
+              {
+                "sd": "2",
+                "sst": "1"
+              },
+              {
+                "sd": "4097",
+                "sst": "1"
+              }
+            ],
+            "pLMNIdList": [
+              {
+                "mcc": "208",
+                "mnc": "01"
+              }
+            ],
+            "endpointResourceRef": {
+              "$eval": "__unset__"
+            }
+          }
+        }
+      },
+      "UeCC-1": {
+        "AqmCfg-Profile_1": {
+          "aqmMode": "MODE1",
+          "estimatedE2ERTT": "100",
+          "tDiscardDl": "200",
+          "tOooUlDelivery": "150"
+        },
+        "AqmCfg-Profile_2": {
+          "aqmMode": "MODE2",
+          "estimatedE2ERTT": "0",
+          "tDiscardDl": "130",
+          "tOooUlDelivery": "150"
+        },
+        "AqmCfg-Profile_3": {
+          "aqmMode": "MODE2",
+          "estimatedE2ERTT": "0",
+          "tDiscardDl": "30",
+          "tOooUlDelivery": "150"
+        },
+        "AqmCfg-Profile_4": {
+          "aqmMode": "MODE2",
+          "estimatedE2ERTT": "0",
+          "tDiscardDl": "280",
+          "tOooUlDelivery": "150"
+        },
+        "AqmCfg-Default_other": {
+          "aqmMode": "MODE1",
+          "estimatedE2ERTT": "0",
+          "tDiscardDl": "200",
+          "tOooUlDelivery": "150"
+        },
+        "AqmCfg-Default_application_signaling": {
+          "aqmMode": "OFF",
+          "estimatedE2ERTT": "0",
+          "tDiscardDl": "200",
+          "tOooUlDelivery": "150"
+        },
+        "AqmCfg-Default_conversational_media": {
+          "aqmMode": "MODE2",
+          "estimatedE2ERTT": "0",
+          "tDiscardDl": "130",
+          "tOooUlDelivery": "150"
+        }
+      }
+    },
+    "GNBCUCPFunction": {
+      "CUCP5qiTable-1": {
+        "CUCP5qi-1": {
+          "pdcpSnSize": "12",
+          "profile5qi": "1",
+          "rlcMode": "UM",
+          "tPdcpDiscard": "300",
+          "tReorderingDl": "40",
+          "tReorderingUl": "20"
+        },
+        "CUCP5qi-2": {
+          "pdcpSnSize": "12",
+          "profile5qi": "2",
+          "rlcMode": "UM",
+          "tPdcpDiscard": "150",
+          "tReorderingDl": "40",
+          "tReorderingUl": "20"
+        },
+        "CUCP5qi-3": {
+          "pdcpSnSize": "12",
+          "profile5qi": "3",
+          "rlcMode": "UM",
+          "tPdcpDiscard": "150",
+          "tReorderingDl": "40",
+          "tReorderingUl": "20"
+        },
+        "CUCP5qi-4": {
+          "pdcpSnSize": "12",
+          "profile5qi": "4",
+          "rlcMode": "UM",
+          "tPdcpDiscard": "150",
+          "tReorderingDl": "40",
+          "tReorderingUl": "20"
+        },
+        "CUCP5qi-5": {
+          "pdcpSnSize": "12",
+          "profile5qi": "5",
+          "rlcMode": "AM",
+          "tPdcpDiscard": "2147483646",
+          "tReorderingDl": "200",
+          "tReorderingUl": "200"
+        },
+        "CUCP5qi-6": {
+          "pdcpSnSize": "18",
+          "profile5qi": "6",
+          "rlcMode": "AM",
+          "tPdcpDiscard": "1500",
+          "tReorderingDl": "200",
+          "tReorderingUl": "50"
+        },
+        "CUCP5qi-7": {
+          "pdcpSnSize": "12",
+          "profile5qi": "7",
+          "rlcMode": "AM",
+          "tPdcpDiscard": "1500",
+          "tReorderingDl": "200",
+          "tReorderingUl": "50"
+        },
+        "CUCP5qi-8": {
+          "pdcpSnSize": "18",
+          "profile5qi": "8",
+          "rlcMode": "AM",
+          "tPdcpDiscard": "1500",
+          "tReorderingDl": "200",
+          "tReorderingUl": "50"
+        },
+        "CUCP5qi-9": {
+          "pdcpSnSize": "18",
+          "profile5qi": "9",
+          "rlcMode": "AM",
+          "tPdcpDiscard": "1500",
+          "tReorderingDl": "200",
+          "tReorderingUl": "50"
+        },
+        "CUCP5qi-130": {
+          "pdcpSnSize": "18",
+          "profile5qi": "130",
+          "rlcMode": "AM",
+          "tPdcpDiscard": "1500",
+          "tReorderingDl": "200",
+          "tReorderingUl": "50"
+        }
+      }
+    }
+  },
+  {
+    "GNBDUFunction": {
+      "UeCC-1": {
+        "SchedulingProfile-GBR_RelativePriority_10": {
+          "userLabel": "GBR",
+          "relativePriorityMode": "RP_AND_PDB",
+          "relativePriority": "10",
+          "dlCaSchedulingMode": "UNLIMITED",
+          "schedulingAlgorithm": "RESOURCE_FAIR",
+          "essResourceAllocationMode": "SCHED_POLICY"
+        },
+        "SchedulingProfile-NON_GBR_RelativePriority_1": {
+          "userLabel": "FWA",
+          "relativePriorityMode": "RP_ONLY",
+          "relativePriority": "1",
+          "dlCaSchedulingMode": "UNLIMITED",
+          "schedulingAlgorithm": "RESOURCE_FAIR",
+          "essResourceAllocationMode": "SCHED_POLICY"
+        },
+        "SchedulingProfile-NON_GBR_RelativePriority_50": {
+          "userLabel": "Premium",
+          "relativePriorityMode": "RP_ONLY",
+          "relativePriority": "50",
+          "dlCaSchedulingMode": "UNLIMITED",
+          "schedulingAlgorithm": "RESOURCE_FAIR",
+          "essResourceAllocationMode": "SCHED_POLICY"
+        },
+        "SchedulingProfile-NON_GBR_RelativePriority_10": {
+          "userLabel": "MBB",
+          "relativePriorityMode": "RP_ONLY",
+          "relativePriority": "10",
+          "dlCaSchedulingMode": "UNLIMITED",
+          "schedulingAlgorithm": "RESOURCE_FAIR",
+          "essResourceAllocationMode": "SCHED_POLICY"
+        },
+        "AqmCfg-Profile_1": {
+          "aqmMode": "MODE1",
+          "estimatedE2ERTT": "100",
+          "tDiscardDl": "200"
+        },
+        "AqmCfg-Profile_2": {
+          "aqmMode": "MODE2",
+          "estimatedE2ERTT": "0",
+          "tDiscardDl": "130"
+        },
+        "AqmCfg-Profile_3": {
+          "aqmMode": "MODE2",
+          "estimatedE2ERTT": "0",
+          "tDiscardDl": "30"
+        },
+        "AqmCfg-Profile_4": {
+          "aqmMode": "MODE2",
+          "estimatedE2ERTT": "0",
+          "tDiscardDl": "280"
+        },
+        "AqmCfg-Default_other": {
+          "aqmMode": "MODE1",
+          "estimatedE2ERTT": "0",
+          "tDiscardDl": "200"
+        },
+        "AqmCfg-Default_application_signaling": {
+          "aqmMode": "OFF",
+          "estimatedE2ERTT": "0",
+          "tDiscardDl": "200"
+        },
+        "AqmCfg-Default_conversational_media": {
+          "aqmMode": "MODE2",
+          "estimatedE2ERTT": "0",
+          "tDiscardDl": "130"
+        }
+      },
+      "ResourcePartitions-1": {
+        "ResourcePartition-Premium": {
+          "ResourcePartitionMember-1": {
+            "endpointResourceRef": "__unset__",
+            "trafficCategory": "SA",
+            "sNSSAIList": [
+              {
+                "sd": "1",
+                "sst": "1"
+              },
+              {
+                "sd": "2",
+                "sst": "1"
+              },
+              {
+                "sd": "4097",
+                "sst": "1"
+              }
+            ],
+            "pLMNIdList": [
+              {
+                "mcc": "208",
+                "mnc": "01"
+              }
+            ]
+          }
+        }
+      },
+      "ResourceAllocationPolicies-1": {
+        "CellResourceMapping-Premium_CA": {
+          "PartitionMapping-Premium": {
+            "caPartition": "false",
+            "listResourcePartitionRef": [
+              {
+                "$eval": "f'{mo.parent(3).dn}/ResourcePartitions-1/ResourcePartition-Premium'"
+              }
+            ],
+            "networkId": "__unset__",
+            "partitionId": "1",
+            "partitionMappingName": "Premium",
+            "priorityPartition5qiList": [],
+            "resourceAllocationPolicyRef": {
+              "$eval": "f'{mo.parent(2).dn}/ResourceAllocationPolicy-Premium'"
+            }
+          },
+          "PartitionMapping-CA": {
+            "caPartition": "true",
+            "listResourcePartitionRef": [],
+            "networkId": "__unset__",
+            "partitionId": "2",
+            "partitionMappingName": "CA",
+            "priorityPartition5qiList": [],
+            "resourceAllocationPolicyRef": {
+              "$eval": "f'{mo.parent(2).dn}/ResourceAllocationPolicy-CA'"
+            }
+          }
+        }
+      }
+    }
+  }
+]

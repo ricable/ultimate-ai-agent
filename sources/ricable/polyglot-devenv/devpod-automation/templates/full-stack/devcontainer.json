@@ -1,0 +1,169 @@
+{
+    "name": "Polyglot Full-Stack Development Environment",
+    "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+    
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "username": "vscode",
+            "userUid": "1000",
+            "userGid": "1000"
+        },
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": true
+        },
+        "ghcr.io/devcontainers/features/github-cli:1": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "version": "latest",
+            "enableNonRootDocker": true
+        },
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.12",
+            "installTools": true
+        },
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "20",
+            "nodeGypDependencies": true
+        },
+        "ghcr.io/devcontainers/features/rust:1": {
+            "version": "latest",
+            "profile": "default"
+        },
+        "ghcr.io/devcontainers/features/go:1": {
+            "version": "1.22"
+        }
+    },
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.vscode-json",
+                "github.vscode-github-actions",
+                "github.vscode-pull-request-github",
+                "eamodio.gitlens",
+                "ms-python.python",
+                "ms-python.pylint",
+                "ms-python.mypy-type-checker",
+                "charliermarsh.ruff",
+                "ms-python.debugpy",
+                "ms-vscode.vscode-typescript-next",
+                "bradlc.vscode-tailwindcss",
+                "esbenp.prettier-vscode",
+                "dbaeumer.vscode-eslint",
+                "rust-lang.rust-analyzer",
+                "vadimcn.vscode-lldb",
+                "serayuzgur.crates",
+                "tamasfe.even-better-toml",
+                "golang.go",
+                "golang.go-nightly",
+                "thenuprojectcontributors.vscode-nushell-lang",
+                "mkhl.direnv"
+            ],
+            "settings": {
+                "editor.formatOnSave": true,
+                "editor.rulers": [88, 100, 120],
+                "files.trimTrailingWhitespace": true,
+                "git.autofetch": true,
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.formatting.provider": "none",
+                "[python]": {
+                    "editor.defaultFormatter": "charliermarsh.ruff",
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": true
+                    }
+                },
+                "typescript.preferences.importModuleSpecifier": "relative",
+                "[typescript]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
+                "[javascript]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
+                "rust-analyzer.cargo.autoreload": true,
+                "rust-analyzer.check.command": "clippy",
+                "rust-analyzer.cargo.features": "all",
+                "go.useLanguageServer": true,
+                "go.lintOnSave": "package",
+                "go.formatTool": "goimports"
+            }
+        },
+        "devpod": {
+            "prebuildRepository": "ghcr.io/ricable/polyglot-devenv-full-stack"
+        }
+    },
+
+    "containerEnv": {
+        "TERM": "xterm-256color",
+        "COLORTERM": "truecolor",
+        "PYTHONPATH": "/workspace/python-env/src",
+        "NODE_ENV": "development",
+        "RUST_BACKTRACE": "1",
+        "GO111MODULE": "on",
+        "UV_CACHE_DIR": "/workspace/.uv-cache",
+        "UV_PYTHON_PREFERENCE": "only-managed",
+        "NPM_CONFIG_UPDATE_NOTIFIER": "false",
+        "CARGO_TARGET_DIR": "/workspace/target",
+        "GOPROXY": "https://proxy.golang.org,direct"
+    },
+
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+        "type=volume,source=vscode-server-extensions,target=/home/vscode/.vscode-server/extensions",
+        "type=volume,source=uv-cache,target=/workspace/.uv-cache",
+        "type=volume,source=npm-cache,target=/home/vscode/.npm",
+        "type=volume,source=cargo-cache,target=/home/vscode/.cargo",
+        "type=volume,source=go-cache,target=/home/vscode/go/pkg",
+        "type=volume,source=cargo-target,target=/workspace/target"
+    ],
+
+    "forwardPorts": [3000, 5000, 8000, 8080, 5173],
+    "portsAttributes": {
+        "3000": {
+            "label": "Frontend Development Server",
+            "onAutoForward": "notify"
+        },
+        "5000": {
+            "label": "Python Web Server",
+            "onAutoForward": "notify"
+        },
+        "8000": {
+            "label": "HTTP Server",
+            "onAutoForward": "notify"
+        },
+        "8080": {
+            "label": "API Server",
+            "onAutoForward": "notify"
+        },
+        "5173": {
+            "label": "Vite Development Server",
+            "onAutoForward": "notify"
+        }
+    },
+
+    "postCreateCommand": [
+        "echo 'Setting up polyglot environment...'",
+        "pip install uv",
+        "(cd python-env && uv sync --dev)",
+        "(cd typescript-env && npm install)",
+        "(cd rust-env && cargo fetch)",
+        "(cd go-env && go mod download)",
+        "curl -fsSL https://get.jetify.com/devbox | bash",
+        "curl -s https://api.github.com/repos/nushell/nushell/releases/latest | grep browser_download_url | grep x86_64-unknown-linux-gnu.tar.gz | cut -d '\"' -f 4 | xargs -I {} curl -L {} | tar -xz -C /tmp",
+        "sudo mv /tmp/nu* /usr/local/bin/",
+        "echo 'Polyglot environment ready'"
+    ],
+
+    "postStartCommand": "echo 'Polyglot DevPod ready. All languages available.'",
+    
+    "postAttachCommand": "echo 'Welcome to Polyglot Full-Stack DevPod! 🚀🐍📘🦀🐹🐚'",
+
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+    
+    "remoteUser": "vscode",
+    "updateRemoteUserUID": true
+}

@@ -1,0 +1,515 @@
+# MCP Orchestrator Mode Configuration
+# =====================================
+
+# Core Orchestrator Settings
+orchestrator:
+  name: "mcp-orchestrator"
+  version: "1.0.0"
+  description: "Central coordination hub for complex workflows across multiple MCP servers and aiGI modes"
+  
+  # Core Performance Settings
+  core:
+    max_concurrent_workflows: 10
+    max_concurrent_tasks_per_workflow: 5
+    default_timeout: 300000  # 5 minutes in milliseconds
+    max_workflow_duration: 3600000  # 1 hour in milliseconds
+    retry_attempts: 3
+    circuit_breaker_threshold: 5
+    memory_limit_mb: 2048
+    cpu_limit_percent: 80
+    
+  # Service Discovery Configuration
+  service_discovery:
+    enabled: true
+    refresh_interval: 30000  # 30 seconds
+    health_check_interval: 10000  # 10 seconds
+    failure_threshold: 3
+    recovery_threshold: 2
+    timeout: 5000  # 5 seconds
+    
+  # Performance Monitoring
+  monitoring:
+    enabled: true
+    metrics_collection_interval: 5000  # 5 seconds
+    performance_baseline_window: 3600000  # 1 hour
+    alert_thresholds:
+      error_rate: 0.1  # 10%
+      response_time_degradation: 1.5  # 50% slower than baseline
+      resource_usage: 0.9  # 90% resource usage
+    retention_period: 604800000  # 7 days
+    
+  # Caching Configuration
+  caching:
+    enabled: true
+    default_ttl: 300000  # 5 minutes
+    max_cache_size_mb: 512
+    compression_enabled: true
+    cache_strategies:
+      workflow_results: 
+        ttl: 1800000  # 30 minutes
+        priority: "high"
+      service_responses:
+        ttl: 300000  # 5 minutes
+        priority: "medium"
+      performance_metrics:
+        ttl: 60000  # 1 minute
+        priority: "low"
+
+# Error Handling Configuration
+error_handling:
+  # Circuit Breaker Settings
+  circuit_breaker:
+    failure_threshold: 5
+    recovery_timeout: 60000  # 1 minute
+    half_open_max_calls: 3
+    half_open_success_threshold: 2
+    
+  # Retry Policy Configuration
+  retry_policy:
+    max_attempts: 3
+    base_delay: 1000  # 1 second
+    max_delay: 30000  # 30 seconds
+    strategy: "exponential"  # exponential, linear, fixed
+    jitter: true
+    backoff_multiplier: 2.0
+    
+  # Graceful Degradation Levels
+  degradation:
+    enabled: true
+    levels:
+      - name: "normal"
+        description: "All services available"
+        services: ["all"]
+        performance_target: 1.0
+      - name: "reduced"
+        description: "Essential services only"
+        services: ["safla", "perplexity", "context7"]
+        performance_target: 0.7
+      - name: "minimal"
+        description: "Critical services only"
+        services: ["safla"]
+        performance_target: 0.4
+    
+    # Degradation Triggers
+    triggers:
+      - condition: "error_rate > 0.2"
+        target_level: "reduced"
+      - condition: "error_rate > 0.5"
+        target_level: "minimal"
+      - condition: "available_services < 3"
+        target_level: "reduced"
+      - condition: "available_services < 2"
+        target_level: "minimal"
+
+# MCP Server Dependencies
+mcp_servers:
+  # Required MCP Servers
+  required:
+    - name: "safla"
+      description: "Core SAFLA system integration"
+      tools: ["*"]  # All tools
+      health_check: "get_system_info"
+      timeout: 10000
+      retry_attempts: 3
+      priority: "critical"
+      
+    - name: "perplexity"
+      description: "AI-powered search and research"
+      tools: ["PERPLEXITYAI_PERPLEXITY_AI_SEARCH"]
+      health_check: "ping"
+      timeout: 15000
+      retry_attempts: 2
+      priority: "high"
+      
+    - name: "context7"
+      description: "Technical documentation and library research"
+      tools: ["resolve-library-id", "get-library-docs"]
+      health_check: "status"
+      timeout: 10000
+      retry_attempts: 2
+      priority: "high"
+  
+  # Optional MCP Servers
+  optional:
+    - name: "custom-mcp-server"
+      description: "Custom domain-specific tools"
+      tools: ["custom_tool"]
+      fallback: "safla"
+      timeout: 8000
+      retry_attempts: 1
+      priority: "medium"
+
+# Mode Integration Configuration
+mode_integration:
+  # Supported aiGI Modes
+  supported_modes:
+    # MCP-Optimized Modes (Direct Communication)
+    - name: "mcp-researcher"
+      description: "Deep research and analysis"
+      capabilities: ["research", "analysis", "synthesis"]
+      communication: "direct"
+      priority: "high"
+      timeout: 300000  # 5 minutes
+      
+    - name: "mcp-intelligent-coder"
+      description: "Advanced coding and refactoring"
+      capabilities: ["coding", "refactoring", "optimization"]
+      communication: "direct"
+      priority: "high"
+      timeout: 600000  # 10 minutes
+      
+    - name: "mcp-optimizer"
+      description: "Performance and resource optimization"
+      capabilities: ["optimization", "performance", "resource_management"]
+      communication: "direct"
+      priority: "medium"
+      timeout: 180000  # 3 minutes
+      
+    - name: "mcp-management"
+      description: "System management and administration"
+      capabilities: ["management", "administration", "monitoring"]
+      communication: "direct"
+      priority: "medium"
+      timeout: 120000  # 2 minutes
+    
+    # Traditional aiGI Modes (Bridge Communication)
+    - name: "architect"
+      description: "System design and planning"
+      capabilities: ["design", "planning", "architecture"]
+      communication: "bridge"
+      priority: "high"
+      timeout: 300000  # 5 minutes
+      
+    - name: "code"
+      description: "Code implementation and testing"
+      capabilities: ["implementation", "testing", "debugging"]
+      communication: "bridge"
+      priority: "high"
+      timeout: 600000  # 10 minutes
+      
+    - name: "critic"
+      description: "Code review and validation"
+      capabilities: ["review", "validation", "quality_assurance"]
+      communication: "bridge"
+      priority: "medium"
+      timeout: 180000  # 3 minutes
+      
+    - name: "tdd"
+      description: "Test-driven development"
+      capabilities: ["testing", "validation", "test_design"]
+      communication: "bridge"
+      priority: "high"
+      timeout: 300000  # 5 minutes
+      
+    - name: "memory-manager"
+      description: "Knowledge and context management"
+      capabilities: ["memory", "context", "knowledge_management"]
+      communication: "bridge"
+      priority: "medium"
+      timeout: 120000  # 2 minutes
+      
+    - name: "reflection"
+      description: "Process reflection and improvement"
+      capabilities: ["reflection", "improvement", "learning"]
+      communication: "bridge"
+      priority: "low"
+      timeout: 180000  # 3 minutes
+      
+    - name: "scorer"
+      description: "Performance scoring and evaluation"
+      capabilities: ["scoring", "evaluation", "metrics"]
+      communication: "bridge"
+      priority: "low"
+      timeout: 60000  # 1 minute
+      
+    - name: "final-assembly"
+      description: "Final project assembly and delivery"
+      capabilities: ["assembly", "delivery", "documentation"]
+      communication: "bridge"
+      priority: "medium"
+      timeout: 300000  # 5 minutes
+
+  # Communication Protocols
+  communication_protocols:
+    direct:
+      method: "mcp_tool_call"
+      timeout: 30000
+      retry_attempts: 2
+      
+    bridge:
+      method: "new_task"
+      timeout: 60000
+      retry_attempts: 1
+
+# Workflow Templates
+workflow_templates:
+  # Code Development Workflow
+  code_development:
+    name: "Complete Code Development"
+    description: "End-to-end code development with optimization"
+    phases: ["research", "design", "implement", "test", "review", "optimize"]
+    parallel_phases: ["implement", "test"]
+    critical_path: ["research", "design", "review"]
+    estimated_duration: 3600000  # 1 hour
+    resource_requirements:
+      memory_mb: 1024
+      cpu_percent: 60
+    
+    # Phase Definitions
+    phase_definitions:
+      research:
+        mode: "mcp-researcher"
+        timeout: 300000
+        parallel: false
+        required: true
+      design:
+        mode: "architect"
+        timeout: 300000
+        parallel: false
+        required: true
+        dependencies: ["research"]
+      implement:
+        mode: "code"
+        timeout: 600000
+        parallel: true
+        required: true
+        dependencies: ["design"]
+      test:
+        mode: "tdd"
+        timeout: 300000
+        parallel: true
+        required: true
+        dependencies: ["implement"]
+      review:
+        mode: "critic"
+        timeout: 180000
+        parallel: false
+        required: true
+        dependencies: ["implement", "test"]
+      optimize:
+        mode: "mcp-optimizer"
+        timeout: 300000
+        parallel: false
+        required: false
+        dependencies: ["review"]
+  
+  # Research and Decision Making Workflow
+  research_decision:
+    name: "Research-Driven Decision Making"
+    description: "Comprehensive research and analysis for decision making"
+    phases: ["research", "analyze", "generate_options", "assess_risks", "score", "recommend"]
+    parallel_phases: ["research"]
+    critical_path: ["analyze", "recommend"]
+    estimated_duration: 2400000  # 40 minutes
+    resource_requirements:
+      memory_mb: 512
+      cpu_percent: 40
+    
+    phase_definitions:
+      research:
+        mode: "mcp-researcher"
+        timeout: 600000
+        parallel: true
+        required: true
+      analyze:
+        mode: "critic"
+        timeout: 300000
+        parallel: false
+        required: true
+        dependencies: ["research"]
+      generate_options:
+        mode: "architect"
+        timeout: 180000
+        parallel: false
+        required: true
+        dependencies: ["analyze"]
+      assess_risks:
+        mode: "critic"
+        timeout: 180000
+        parallel: false
+        required: true
+        dependencies: ["generate_options"]
+      score:
+        mode: "scorer"
+        timeout: 120000
+        parallel: false
+        required: true
+        dependencies: ["assess_risks"]
+      recommend:
+        mode: "reflection"
+        timeout: 180000
+        parallel: false
+        required: true
+        dependencies: ["score"]
+  
+  # Adaptive Learning Workflow
+  adaptive_learning:
+    name: "Adaptive Learning and Optimization"
+    description: "Continuous learning and system optimization"
+    phases: ["assess", "analyze_gaps", "strategy", "learn", "integrate", "validate", "optimize", "reflect"]
+    parallel_phases: ["learn"]
+    critical_path: ["assess", "strategy", "reflect"]
+    estimated_duration: 1800000  # 30 minutes
+    resource_requirements:
+      memory_mb: 768
+      cpu_percent: 50
+    
+    phase_definitions:
+      assess:
+        mode: "memory-manager"
+        timeout: 120000
+        parallel: false
+        required: true
+      analyze_gaps:
+        mode: "critic"
+        timeout: 180000
+        parallel: false
+        required: true
+        dependencies: ["assess"]
+      strategy:
+        mode: "architect"
+        timeout: 180000
+        parallel: false
+        required: true
+        dependencies: ["analyze_gaps"]
+      learn:
+        mode: "mcp-researcher"
+        timeout: 300000
+        parallel: true
+        required: true
+        dependencies: ["strategy"]
+      integrate:
+        mode: "memory-manager"
+        timeout: 120000
+        parallel: false
+        required: true
+        dependencies: ["learn"]
+      validate:
+        mode: "tdd"
+        timeout: 180000
+        parallel: false
+        required: true
+        dependencies: ["integrate"]
+      optimize:
+        mode: "mcp-optimizer"
+        timeout: 180000
+        parallel: false
+        required: false
+        dependencies: ["validate"]
+      reflect:
+        mode: "reflection"
+        timeout: 120000
+        parallel: false
+        required: true
+        dependencies: ["optimize", "validate"]
+
+# Resource Management
+resource_management:
+  # Memory Management
+  memory:
+    max_total_usage_mb: 4096
+    per_workflow_limit_mb: 1024
+    per_task_limit_mb: 256
+    garbage_collection_threshold: 0.8
+    
+  # CPU Management
+  cpu:
+    max_total_usage_percent: 80
+    per_workflow_limit_percent: 40
+    per_task_limit_percent: 20
+    throttling_threshold: 0.9
+    
+  # Network Management
+  network:
+    max_concurrent_connections: 50
+    connection_timeout: 10000
+    request_timeout: 30000
+    bandwidth_limit_mbps: 100
+    
+  # Storage Management
+  storage:
+    temp_directory: "/tmp/mcp-orchestrator"
+    max_temp_size_mb: 1024
+    cleanup_interval: 3600000  # 1 hour
+    retention_period: 86400000  # 24 hours
+
+# Logging and Debugging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARN, ERROR
+  format: "structured"  # structured, plain
+  output: "console"  # console, file, both
+  file_path: "/var/log/mcp-orchestrator.log"
+  max_file_size_mb: 100
+  max_files: 5
+  
+  # Component-specific logging
+  components:
+    workflow_execution: "INFO"
+    error_handling: "WARN"
+    performance_monitoring: "INFO"
+    service_discovery: "INFO"
+    mode_integration: "DEBUG"
+
+# Security Configuration
+security:
+  # Authentication
+  authentication:
+    enabled: false  # Enable for production
+    method: "token"  # token, certificate
+    token_expiry: 3600000  # 1 hour
+    
+  # Authorization
+  authorization:
+    enabled: false  # Enable for production
+    default_permissions: ["read", "execute"]
+    admin_permissions: ["read", "write", "execute", "admin"]
+    
+  # Encryption
+  encryption:
+    enabled: false  # Enable for production
+    algorithm: "AES-256-GCM"
+    key_rotation_interval: 86400000  # 24 hours
+
+# Development and Testing
+development:
+  debug_mode: true
+  mock_services: false
+  test_data_enabled: true
+  performance_profiling: true
+  
+  # Test Configuration
+  testing:
+    mock_mcp_servers: true
+    simulate_failures: true
+    performance_benchmarks: true
+    load_testing: false
+
+# Production Overrides
+production:
+  debug_mode: false
+  mock_services: false
+  test_data_enabled: false
+  performance_profiling: false
+  
+  # Enhanced Security
+  security:
+    authentication:
+      enabled: true
+    authorization:
+      enabled: true
+    encryption:
+      enabled: true
+  
+  # Enhanced Monitoring
+  monitoring:
+    alert_thresholds:
+      error_rate: 0.05  # 5%
+      response_time_degradation: 1.2  # 20% slower
+      resource_usage: 0.8  # 80% resource usage
+  
+  # Enhanced Resource Limits
+  resource_management:
+    memory:
+      max_total_usage_mb: 8192
+    cpu:
+      max_total_usage_percent: 70

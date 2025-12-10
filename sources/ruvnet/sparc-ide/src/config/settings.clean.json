@@ -1,0 +1,128 @@
+{
+  "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.lineHeight": 24,
+  "editor.fontLigatures": true,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": true,
+  "editor.suggestSelection": "first",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "off",
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  
+  "workbench.colorTheme": "Dracula Pro",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "welcomePage",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.showTabs": true,
+  "workbench.sideBar.location": "left",
+  "workbench.activityBar.visible": true,
+  "workbench.statusBar.visible": true,
+  "workbench.layoutControl.enabled": true,
+  "workbench.list.smoothScrolling": true,
+  "workbench.tree.indent": 16,
+  "workbench.tree.renderIndentGuides": "always",
+  
+  "terminal.integrated.fontFamily": "'Fira Code', monospace",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true
+  },
+  "files.associations": {
+    "*.md": "markdown",
+    "*.json": "jsonc",
+    "*.js": "javascript",
+    "*.ts": "typescript",
+    "*.jsx": "javascriptreact",
+    "*.tsx": "typescriptreact"
+  },
+  
+  "explorer.confirmDelete": true,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.compactFolders": false,
+  "explorer.sortOrder": "type",
+  
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/dist": true,
+    "**/build": true
+  },
+  "search.smartCase": true,
+  "search.useGlobalIgnoreFiles": true,
+  
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.openRepositoryInParentFolders": "always",
+  
+  "roo-code.defaultModel": "sonnet",
+  "roo-code.apiProvider": "openrouter",
+  "roo-code.customModes": {
+    "QA Engineer": {
+      "prompt": "You are a QA engineer focused on detecting edge cases and writing comprehensive tests. Your goal is to ensure code quality and prevent regressions. Consider all possible inputs, error conditions, and edge cases when analyzing code.",
+      "tools": ["readFile", "writeFile", "runCommand", "searchFiles"]
+    },
+    "Architect": {
+      "prompt": "You are a software architect focused on designing scalable and maintainable systems. Your goal is to create clean, modular architectures with clear separation of concerns. Consider performance, security, and extensibility in your designs.",
+      "tools": ["readFile", "writeFile", "runCommand", "searchFiles"]
+    },
+    "Code Reviewer": {
+      "prompt": "You are a code reviewer focused on identifying issues and suggesting improvements. Your goal is to ensure code quality, maintainability, and adherence to best practices. Look for bugs, performance issues, security vulnerabilities, and style inconsistencies.",
+      "tools": ["readFile", "writeFile", "runCommand", "searchFiles"]
+    },
+    "Documentation Writer": {
+      "prompt": "You are a technical writer focused on creating clear and comprehensive documentation. Your goal is to make complex technical concepts accessible to users of all skill levels. Create well-structured, concise, and accurate documentation with examples.",
+      "tools": ["readFile", "writeFile", "runCommand", "searchFiles"]
+    }
+  },
+  
+  "sparc-workflow.enabled": true,
+  "sparc-workflow.defaultPhase": "specification",
+  "sparc-workflow.phaseTransitionConfirmation": true,
+  "sparc-workflow.artifactTracking": true,
+  "sparc-workflow.templateDirectory": "${workspaceFolder}/.sparc/templates",
+  "sparc-workflow.artifactDirectory": "${workspaceFolder}/.sparc/artifacts",
+  
+  "ai-integration.multiModelSupport": true,
+  "ai-integration.defaultProvider": "openrouter",
+  "ai-integration.contextSize": 8192,
+  "ai-integration.cacheResponses": true,
+  "ai-integration.maxCacheAge": 86400,
+  "ai-integration.secureStorage": true,
+  
+  "ui-ux.minimalMode": false,
+  "ui-ux.focusMode": false,
+  "ui-ux.customLayout": "ai-centric",
+  "ui-ux.animations": true,
+  "ui-ux.customTheme": "dracula-pro",
+  
+  "extensions.autoUpdate": true,
+  "extensions.ignoreRecommendations": false,
+  "extensions.showRecommendationsOnlyOnDemand": false,
+  
+  "telemetry.telemetryLevel": "off",
+  
+  "performance.lazyLoading": true,
+  "performance.caching": true,
+  "performance.resourceManagement": true,
+  "performance.memoryLimit": 4096
+}

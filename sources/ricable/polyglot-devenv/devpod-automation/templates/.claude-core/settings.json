@@ -1,0 +1,139 @@
+{
+  "// Claude Code Hooks Configuration": "Intelligent automation for DevPod containerized polyglot development environment",
+  "// Documentation": "Each hook provides specific automation for code quality, security, and performance in containers",
+  "// Docker MCP Integration": "Docker MCP Toolkit with HTTP/SSE transport for Claude and Gemini clients",
+  "// DevPod Adaptation": "Adapted for containerized development with /workspace mount point",
+  "mcp": {
+    "servers": {
+      "MCP_DOCKER": {
+        "command": "docker",
+        "args": ["mcp", "gateway", "run"],
+        "type": "stdio"
+      }
+    }
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'file_path=$(echo \"$0\" | jq -r \".tool_input.file_path // \\\"\\\"\" 2>/dev/null || echo \"\"); if [[ \"$file_path\" =~ \\.py$ ]] || [[ \"$DEVBOX_ENV\" == \"python\" ]] || [[ -f \"/workspace/pyproject.toml\" ]]; then echo \"🐍 Auto-formatting Python files...\" && cd /workspace && devbox run format --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ \\.(ts|js|tsx|jsx)$ ]] || [[ \"$DEVBOX_ENV\" == \"typescript\" ]] || [[ -f \"/workspace/package.json\" ]]; then echo \"📘 Auto-formatting TypeScript/JavaScript files...\" && cd /workspace && devbox run format --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ \\.rs$ ]] || [[ \"$DEVBOX_ENV\" == \"rust\" ]] || [[ -f \"/workspace/Cargo.toml\" ]]; then echo \"🦀 Auto-formatting Rust files...\" && cd /workspace && devbox run format --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ \\.go$ ]] || [[ \"$DEVBOX_ENV\" == \"go\" ]] || [[ -f \"/workspace/go.mod\" ]]; then echo \"🐹 Auto-formatting Go files...\" && cd /workspace && devbox run format --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ \\.nu$ ]] || [[ \"$DEVBOX_ENV\" == \"nushell\" ]] || [[ -d \"/workspace/scripts\" ]]; then echo \"🐚 Auto-formatting Nushell files...\" && cd /workspace && devbox run format --quiet 2>/dev/null || true; fi'"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'file_path=$(echo \"$0\" | jq -r \".tool_input.file_path // \\\"\\\"\" 2>/dev/null || echo \"\"); if [[ \"$file_path\" =~ test.*\\.py$|.*_test\\.py$|.*\\.test\\.py$ ]]; then echo \"🧪 Running Python tests...\" && cd /workspace && devbox run test --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ .*\\.(test|spec)\\.(ts|js)$|.*\\.test\\.(tsx|jsx)$ ]]; then echo \"🧪 Running TypeScript/JavaScript tests...\" && cd /workspace && devbox run test --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ .*_test\\.rs$|tests/.*\\.rs$ ]]; then echo \"🧪 Running Rust tests...\" && cd /workspace && devbox run test --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ .*_test\\.go$|.*\\.test\\.go$ ]]; then echo \"🧪 Running Go tests...\" && cd /workspace && devbox run test --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ test.*\\.nu$|.*_test\\.nu$ ]]; then echo \"🧪 Running Nushell tests...\" && cd /workspace && devbox run test --quiet 2>/dev/null || true; fi'"
+          }
+        ]
+      },
+      {
+        "// Context Engineering Auto-Triggers Hook": "Automatically generates PRPs when feature files are edited",
+        "// Environment Detection": "Analyzes content to detect target environments (python, typescript, rust, go, nushell)",
+        "// Smart Triggering": "Uses content hashing and cooldown periods to avoid excessive regeneration",
+        "// PRP Generation": "Integrates with existing /generate-prp infrastructure",
+        "// Feature Files": "Monitors context-engineering/workspace/features/ directory",
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "python",
+            "script": "/workspace/.claude/hooks/context-engineering-auto-triggers.py"
+          }
+        ]
+      },
+      {
+        "// Smart Environment Orchestration Hook": "Intelligent DevPod provisioning and environment switching",
+        "// Auto-Provisioning": "Automatically provisions DevPod containers based on file context",
+        "// Usage Analytics": "Tracks environment usage patterns for optimization",
+        "// Resource Management": "Integrates with centralized DevPod management system",
+        "// Multi-Environment": "Coordinates across Python, TypeScript, Rust, Go, and Nushell environments",
+        "matcher": "Edit|MultiEdit|Write|Read",
+        "hooks": [
+          {
+            "type": "python",
+            "script": "/workspace/.claude/hooks/smart-environment-orchestration.py"
+          }
+        ]
+      },
+      {
+        "// Cross-Environment Dependency Tracking Hook": "Monitors package files and validates compatibility",
+        "// Package Monitoring": "Tracks changes in package.json, Cargo.toml, pyproject.toml, go.mod, devbox.json",
+        "// Security Scanning": "Scans for vulnerabilities and suspicious packages",
+        "// Compatibility Analysis": "Detects version conflicts and cross-environment issues",
+        "// Recommendations": "Provides optimization suggestions for dependency management",
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "python",
+            "script": "/workspace/.claude/hooks/cross-environment-dependency-tracking.py"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'command=$(echo \"$0\" | jq -r \".tool_input.command // \\\"\\\"\" 2>/dev/null || echo \"\"); if [[ \"$command\" =~ git.*commit ]]; then echo \"🔍 Running pre-commit validation...\" && cd /workspace && if [[ \"$DEVBOX_ENV\" == \"python\" ]] || [[ -f \"pyproject.toml\" ]]; then devbox run lint --quiet 2>/dev/null || true; elif [[ \"$DEVBOX_ENV\" == \"typescript\" ]] || [[ -f \"package.json\" ]]; then devbox run lint --quiet 2>/dev/null || true; elif [[ \"$DEVBOX_ENV\" == \"rust\" ]] || [[ -f \"Cargo.toml\" ]]; then devbox run lint --quiet 2>/dev/null || true; elif [[ \"$DEVBOX_ENV\" == \"go\" ]] || [[ -f \"go.mod\" ]]; then devbox run lint --quiet 2>/dev/null || true; elif [[ \"$DEVBOX_ENV\" == \"nushell\" ]] || [[ -d \"scripts\" ]]; then devbox run check --quiet 2>/dev/null || true; else echo \"Running devbox validation...\"; devbox run validate --quiet 2>/dev/null || true; fi; fi'"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'file_path=$(echo \"$0\" | jq -r \".tool_input.file_path // \\\"\\\"\" 2>/dev/null || echo \"\"); if [[ \"$file_path\" =~ \\.(env|config|json|yaml|yml)$ ]]; then echo \"🔐 Scanning for secrets in configuration files...\" && (command -v git-secrets >/dev/null && git secrets --scan \"$file_path\" 2>/dev/null || echo \"git-secrets not installed, skipping scan\") || true; fi'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'echo \"🎯 Task completed! Running status check...\"; cd /workspace; git status 2>/dev/null || echo \"Not in a git repository\"; echo \"📊 Running container validation summary...\"; devbox run validate --quiet 2>/dev/null || echo \"Container validation completed\"'"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'echo \"🔔 Claude Code notification: $(echo \"$0\" | jq -r \".message // \\\"Unknown notification\\\"\" 2>/dev/null || echo \"Unknown notification\")\" >> /workspace/.claude/notifications.log'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse_FailureHandling": [
+      {
+        "// Failure Pattern Learning Hook": "Analyzes command failures to learn patterns and improve future error handling",
+        "// Environment Detection": "Automatically detects environment context (python, typescript, rust, go, nushell)",
+        "// Data Collection": "Records command, exit code, output, and environment for pattern analysis",
+        "// AI Learning": "Uses collected data to provide intelligent failure analysis and solution suggestions",
+        "// Trigger Condition": "Only activates when command exit code is non-zero (failure detected)",
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'exit_code=$(echo \"$0\" | jq -r \".exit_code // 0\" 2>/dev/null || echo \"0\"); if [[ \"$exit_code\" != \"0\" ]]; then command=$(echo \"$0\" | jq -r \".tool_input.command // \\\"\\\"\" 2>/dev/null || echo \"\"); output=$(echo \"$0\" | jq -r \".tool_result.stderr // .tool_result.stdout // \\\"\\\"\" 2>/dev/null || echo \"\"); environment=\"$DEVBOX_ENV\"; if [[ -z \"$environment\" ]]; then if [[ -f \"/workspace/pyproject.toml\" ]]; then environment=\"python\"; elif [[ -f \"/workspace/package.json\" ]]; then environment=\"typescript\"; elif [[ -f \"/workspace/Cargo.toml\" ]]; then environment=\"rust\"; elif [[ -f \"/workspace/go.mod\" ]]; then environment=\"go\"; elif [[ -d \"/workspace/scripts\" ]]; then environment=\"nushell\"; else environment=\"unknown\"; fi; fi; echo \"🚨 Command failure detected in $environment environment, analyzing pattern...\"; echo \"$(date): $environment: $command: $exit_code: $output\" >> /workspace/.claude/failure-patterns.log 2>/dev/null || echo \"Failure pattern analysis completed\"; fi'"
+          },
+          {
+            "type": "python",
+            "script": "/workspace/.claude/hooks/intelligent-error-resolution.py"
+          }
+        ]
+      }
+    ]
+  }
+}

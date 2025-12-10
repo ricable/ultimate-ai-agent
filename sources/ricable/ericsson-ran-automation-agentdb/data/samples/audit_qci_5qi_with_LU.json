@@ -1,0 +1,263 @@
+[
+  {
+    "$meta": {
+      "version": "1.2.0",
+      "author": [
+        "LEBOURG Valentin Ext DTSI/DTR <valentin.lebourg.ext@orange.com>",
+        "BOURASSEAU Nicolas DTSI/DTR <nicolas.bourasseau@orange.com>",
+        "NORMAND Julien DTOF/DTR <julien.normand@orange.com>"
+      ],
+      "description": "Audit QCI_130 and 5QI_130 for FWA",
+      "plan_order": [
+        "default",
+        "Lock_Cells",
+        "Unlock_Cells"
+      ]
+    }
+  },
+  {
+    "$vars": {
+      "lock_unlock_cells": [],
+      "lock_unlock_qci_profile_operator_defined_130_params": {
+        "aqmMode": "OFF",
+        "caOffloadingEnabled": "true",
+        "counterActiveMode": "false",
+        "drxPriority": "20",
+        "drxProfileRef": {
+          "$eval": "f'{mo.parent(2).dn}/DrxProfile-3'"
+        },
+        "laaSupported": "false",
+        "pdb": "300",
+        "pdbOffset": "0",
+        "pdcpSNLength": "15",
+        "qci": "130",
+        "resourceType": "NON_GBR",
+        "rlcMode": "AM",
+        "rlcSNLength": "10",
+        "rlfPriority": "0",
+        "rlfProfileRef": "",
+        "serviceType": "UNDEFINED",
+        "timerPriority": "0",
+        "timerProfileRef": "",
+        "tReorderingUl": "35"
+      },
+      "lock_unlock_cuup5qi_130_params": {
+        "counterActiveMode": "false"
+      }
+    }
+  },
+  {
+    "$custom": [
+      {
+        "name": "is_lte",
+        "args": [
+          "mo"
+        ],
+        "body": [
+          "return bool(mo.get_children('ENodeBFunction'))"
+        ]
+      },
+      {
+        "name": "is_nr",
+        "args": [
+          "mo"
+        ],
+        "body": [
+          "return bool(mo.get_children('GNBCUUPFunction'))"
+        ]
+      },
+      {
+        "name": "is_baseband",
+        "args": [
+          "mo"
+        ],
+        "body": [
+          "return bool(mo.parent(2).get_children('FieldReplaceableUnit'))"
+        ]
+      },
+      {
+        "name": "is_rs",
+        "args": [
+          "cell"
+        ],
+        "body": [
+          "return any([c.get_freq_str() in ['6275', '9335'] for c in cell.cosites('LTE') + [cell]])"
+        ]
+      },
+      {
+        "name": "set_parameters_with_lock_unlock",
+        "args": [
+          "cell",
+          "mo",
+          "params"
+        ],
+        "body": [
+          "for key, value in params.items():",
+          "    real_value = value",
+          "    if isinstance(real_value, dict) and real_value.get('$eval'):",
+          "        real_value = eval(real_value.get('$eval'))",
+          "    if getattr(mo, key) != real_value:",
+          "        cells_to_lock_unlock = [cell]",
+          "        if cell.technology == 'LTE' and 'EUtranCellFDD' not in mo.dn:",
+          "            cells_to_lock_unlock += cell.cosites('LTE')",
+          "        if cell.technology == 'NR' and 'NRCellDU' not in mo.dn:",
+          "            cells_to_lock_unlock += cell.cosites('NR')",
+          "        vars.lock_unlock_cells.extend(cells_to_lock_unlock)",
+          "return params"
+        ]
+      },
+      {
+        "name": "apply_lock_unlock",
+        "args": [
+          "cell"
+        ],
+        "body": [
+          "if cell != targets[-1]:",
+          "    return {}",
+          "for c in vars.lock_unlock_cells:",
+          "    enet.set_mo_params(c.dn, { 'administrativeState': 'LOCKED'}, **{'plan': 'Lock_Cells'})",
+          "    enet.set_mo_params(c.dn, { 'administrativeState': 'UNLOCKED'}, **{'plan': 'Unlock_Cells'})"
+        ]
+      }
+    ]
+  },
+  {
+    "ManagedElement": {
+      "$cond": {
+        "if": "custom.is_lte(mo) and not custom.is_rs(cell)",
+        "then": {
+          "SystemFunctions-1": {
+            "$cond": {
+              "if": "custom.is_baseband(mo)",
+              "then": {
+                "Lm-1": {
+                  "FeatureState-CXC4011163": {
+                    "featureState": "ACTIVATED"
+                  }
+                }
+              },
+              "else": {
+                "Licensing-1": {
+                  "OptionalFeatureLicense-OperatorDefinedQci": {
+                    "featureState": "ACTIVATED"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ENodeBFunction": {
+      "QciTable-default": {
+        "QciProfileOperatorDefined-130": {
+          "$eval": "custom.set_parameters_with_lock_unlock(cell, mo, vars.lock_unlock_qci_profile_operator_defined_130_params)",
+          "absPrioOverride": "NO_OVERRIDE",
+          "bitRateRecommendationEnabled": "false",
+          "counterActiveMode": "false",
+          "dataFwdPerQciEnabled": "true",
+          "dlMaxHARQTxQci": "4",
+          "dlMaxWaitingTime": "0",
+          "dlMinBitRate": "0",
+          "dlResourceAllocationStrategy": "FREQUENCY_SELECTIVE",
+          "dscp": "0",
+          "endcProfileRef": {
+            "$eval": "f'{mo.parent(2).dn}/EndcProfile-1'"
+          },
+          "harqPriority": "15",
+          "inactivityTimerOffset": "0",
+          "lessMaxDelayThreshold": "0",
+          "logicalChannelGroupRef": {
+            "$eval": "f'{mo.parent(2).dn}/QciTable-default/LogicalChannelGroup-3'"
+          },
+          "paPartitionOverride": "false",
+          "priority": "13",
+          "priorityFraction": "0",
+          "qciACTuning": "1.0",
+          "qciSubscriptionQuanta": "200",
+          "relativePriority": "10",
+          "resourceAllocationStrategy": "FREQUENCY_SELECTIVE",
+          "rohcEnabled": "false",
+          "rohcForUlDataEnabled": "false",
+          "schedulingAlgorithm": "PROPORTIONAL_FAIR_MEDIUM",
+          "srsAllocationStrategy": "DEACTIVATED",
+          "tReorderingDl": "35",
+          "ulMaxHARQTxQci": "4",
+          "ulMaxWaitingTime": "0",
+          "ulMinBitRate": "0",
+          "userLabel": "QCI130_Latence",
+          "zzzTemporary3": "-2000000000",
+          "zzzTemporary4": "-2000000000",
+          "zzzTemporary5": "-2000000000"
+        }
+      }
+    },
+    "GNBDUFunction": {
+      "UeCC-1": {
+        "SchedulingProfile-NON_GBR_RelativePriority_1": {
+          "dlCaSchedulingMode": "UNLIMITED",
+          "essResourceAllocationMode": "SCHED_POLICY",
+          "relativePriority": "1",
+          "relativePriorityMode": "RP_ONLY",
+          "schedulingAlgorithm": "RESOURCE_FAIR",
+          "userLabel": "FWA"
+        }
+      },
+      "DU5qiTable-1": {
+        "DU5qi-130": {
+          "aqmMode": "MODE1",
+          "drbRlcInDu5qiEnabled": "false",
+          "drbRlcRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/RadioLinkControl-1/DrbRlc-Default'"
+          },
+          "dscp": "12",
+          "estimatedE2ERTT": "50",
+          "logicalChannelGroupId": "5",
+          "packetDelayBudget": "280",
+          "packetDelayBudgetOffset": "0",
+          "priorityLevel": "80",
+          "profile5qi": "130",
+          "puschRepRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/PuschRep-Default'"
+          },
+          "schedulingProfileRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/SchedulingProfile-NON_GBR_RelativePriority_1'"
+          },
+          "srHandlingRef": {
+            "$eval": "f'{mo.parent(2).dn}/UeCC-1/SrHandling-Default'"
+          }
+        }
+      }
+    },
+    "GNBCUCPFunction": {
+      "CUCP5qiTable-1": {
+        "CUCP5qi-130": {
+          "pdcpSnSize": "18",
+          "profile5qi": "130",
+          "rlcMode": "AM",
+          "tPdcpDiscard": "1500",
+          "tReorderingDl": "200",
+          "tReorderingUl": "50"
+        }
+      }
+    },
+    "GNBCUUPFunction": {
+      "CUUP5qiTable-1": {
+        "CUUP5qi-130": {
+          "$eval": "custom.set_parameters_with_lock_unlock(cell, mo, vars.lock_unlock_cuup5qi_130_params)",
+          "aqmMode": "MODE1",
+          "dcDlPdcpAggrPrioCg": "SCG_PRIO",
+          "dscp": "0",
+          "estimatedE2ERTT": "100",
+          "packetDelayBudget": "280",
+          "packetDelayBudgetOffset": "0",
+          "profile5qi": "130",
+          "tOooUlDelivery": "150"
+        }
+      }
+    }
+  },
+  {
+    "$eval": "custom.apply_lock_unlock(cell)"
+  }
+]

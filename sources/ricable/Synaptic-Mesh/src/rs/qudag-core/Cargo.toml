@@ -1,0 +1,86 @@
+[package]
+name = "qudag-core"
+version = "0.1.0"
+edition = "2021"
+authors = ["rUv <https://github.com/ruvnet>"]
+description = "QuDAG core networking and consensus for quantum-resistant DAG-based mesh networks"
+repository = "https://github.com/ruvnet/Synaptic-Neural-Mesh"
+license = "MIT OR Apache-2.0"
+homepage = "https://github.com/ruvnet/Synaptic-Neural-Mesh"
+documentation = "https://docs.rs/qudag-core"
+readme = "../../README.md"
+keywords = ["dag", "p2p", "consensus", "mesh", "network"]
+categories = ["cryptography", "network-programming", "algorithms"]
+exclude = ["tests/*", "benches/*", "examples/*"]
+
+[dependencies]
+# Core networking
+tokio = { version = "1.0", features = ["full"] }
+futures = "0.3"
+async-trait = "0.1"
+
+# Cryptography - Standard
+ed25519-dalek = "2.1"
+x25519-dalek = "2.0"
+blake3 = "1.5"
+rand = "0.8"
+rand_core = "0.6"
+subtle = "2.5"
+zeroize = { version = "1.7", features = ["zeroize_derive"] }
+hex = "0.4"
+sha2 = "0.10"
+aes-gcm = "0.10"
+
+# Networking and P2P
+libp2p = { version = "0.53", features = [
+    "tokio", "tcp", "dns", "noise", "yamux", "gossipsub", 
+    "mdns", "kad", "identify", "ping", "relay", "dcutr",
+    "autonat", "upnp", "websocket"
+] }
+multiaddr = "0.18"
+
+# DAG and consensus
+uuid = { version = "1.0", features = ["v4", "serde"] }
+bincode = "1.3"
+lru = "0.12"
+parking_lot = "0.12"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling and logging
+thiserror = "1.0"
+tracing = "0.1"
+anyhow = "1.0"
+
+# Performance and utilities
+metrics = "0.21"
+dashmap = "5.5"
+crossbeam = "0.8"
+
+# WASM support
+wasm-bindgen = { version = "0.2", optional = true }
+js-sys = { version = "0.3", optional = true }
+web-sys = { version = "0.3", optional = true }
+getrandom = { version = "0.2", features = ["js"] }
+
+[dev-dependencies]
+tokio-test = "0.4"
+proptest = "1.0"
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[features]
+default = ["std"]
+std = []
+wasm = ["wasm-bindgen", "js-sys", "web-sys"]
+optimal = ["std"]
+minimal = []
+
+[[bench]]
+name = "consensus_benchmarks"
+harness = false
+
+[[bench]]
+name = "networking_benchmarks"
+harness = false

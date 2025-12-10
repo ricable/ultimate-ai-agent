@@ -1,0 +1,115 @@
+{
+  "name": "Claude Code Evaluation Environment",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20",
+      "nodeGypDependencies": true
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12",
+      "installTools": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.pylint", 
+        "ms-python.mypy-type-checker",
+        "charliermarsh.ruff",
+        "ms-vscode.vscode-typescript-next",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "github.copilot",
+        "github.copilot-chat",
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "bradlc.vscode-tailwindcss",
+        "eamodio.gitlens",
+        "ms-vscode.test-adapter-converter"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "editor.formatOnSave": true,
+        "editor.rulers": [88, 100, 120],
+        "files.trimTrailingWhitespace": true,
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        },
+        "[typescript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        }
+      }
+    },
+    "devpod": {
+      "prebuildRepository": "ghcr.io/ricable/polyglot-devenv-agentic-claude"
+    }
+  },
+  "containerEnv": {
+    "CLAUDE_API_KEY": "${localEnv:CLAUDE_API_KEY}",
+    "AGENTIC_EVAL_ENV": "claude-focused",
+    "NODE_ENV": "development",
+    "PYTHONPATH": "/workspace/src",
+    "AGENTIC_EVAL_TOOL": "claude-code",
+    "CLAUDE_CODE_MODEL": "claude-3-5-sonnet-20241022",
+    "EVALUATION_MODE": "claude-solo",
+    "DEBUG_CLAUDE": "true"
+  },
+  "mounts": [
+    "type=volume,source=npm-cache,target=/home/vscode/.npm",
+    "type=volume,source=python-cache,target=/home/vscode/.cache/pip",
+    "type=volume,source=claude-eval-results,target=/workspace/agentic-eval/results"
+  ],
+  "forwardPorts": [
+    3000,
+    5000,
+    5173,
+    8000
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Claude Evaluation Frontend",
+      "onAutoForward": "notify"
+    },
+    "5000": {
+      "label": "Python API for Claude Testing",
+      "onAutoForward": "notify"
+    },
+    "5173": {
+      "label": "Vite Dev Server (Claude UI)",
+      "onAutoForward": "notify"
+    },
+    "8000": {
+      "label": "Claude Code Output Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": [
+    "echo 'Setting up Claude Code Evaluation Environment...'",
+    "pip install uv",
+    "npm install -g yarn",
+    "echo 'Installing Claude Code CLI...'",
+    "npm install -g @anthropic-ai/claude-code",
+    "echo 'Installing additional tools...'",
+    "npm install -g ruv-swarm@latest",
+    "npx claude-flow@alpha init",
+    "npm install ruv-swarm-wasm@latest",
+    "echo 'Setting up Claude-focused evaluation framework...'",
+    "bash /workspace/devpod-automation/scripts/setup-agentic-framework.sh claude 2>/dev/null || echo 'Framework setup script not found, creating basic structure'",
+    "mkdir -p /workspace/agentic-eval/{prompts/{ui-components,apis,cli-tools,web-apps,data-processing},templates/claude/{beginner,intermediate,advanced,expert},results/claude/{outputs,logs,metrics,reports},scripts/claude/{automation,analysis,quality-check},configs/claude/{model-settings,prompt-templates,evaluation-criteria},benchmarks/claude/{response-time,code-quality,accuracy-scores}}",
+    "echo 'Installing Claude evaluation dependencies...'",
+    "npm install vue@latest vite@latest vitest@latest @types/node@latest typescript@latest",
+    "pip install fastapi uvicorn pytest requests httpx pydantic anthropic pandas matplotlib",
+    "echo 'Setting up Claude Code configuration...'",
+    "mkdir -p /home/vscode/.claude",
+    "echo 'Copying Claude evaluation framework...'",
+    "cp -r /workspace/agentic-coding-tool-eval/apps/ui_component_eval/* /workspace/agentic-eval/templates/claude/ 2>/dev/null || echo 'Source framework not found, using basic structure'",
+    "echo 'Adapting prompts for Claude environment...'",
+    "python3 /workspace/devpod-automation/scripts/adapt-prompts-for-environment.py claude 2>/dev/null || echo 'Prompt adaptation will be done manually'",
+    "echo 'Claude Code Evaluation Environment ready'"
+  ],
+  "postStartCommand": "echo 'Claude Code Evaluation DevPod ready! 🤖🔥\\nClaude Code CLI available\\nEvaluation Framework: /workspace/agentic-eval/\\nFocus: Claude Code performance analysis'",
+  "postAttachCommand": "echo 'Welcome to Claude Code Evaluation DevPod! ⚡🤖\\n\\n🧠 Claude Code Features:\\n  - Advanced code generation\\n  - Multi-language support\\n  - Context-aware development\\n\\n🔬 Evaluation Focus:\\n  - Code quality assessment\\n  - Response time analysis\\n  - Accuracy scoring\\n  - UI component generation\\n\\n📁 Framework Structure:\\n  - Prompts: /workspace/agentic-eval/prompts/\\n  - Results: /workspace/agentic-eval/results/claude/\\n  - Scripts: /workspace/agentic-eval/scripts/claude/\\n\\n🚀 Ready for Claude Code evaluation!'"
+}

@@ -1,0 +1,220 @@
+# .teller.yml
+# UAP Production Secrets Management Configuration
+# Supports multi-framework AI agent secrets with auto-rotation and environment-specific configs
+
+project: uap-production
+opts:
+  region: us-central1
+  stage: production
+  confirm: false  # Skip confirmations in production
+  providers_priority: ["google_secret_manager", "hashicorp_vault", "aws_secret_manager"]
+
+providers:
+  # Primary secrets provider - Google Secret Manager
+  google_secret_manager:
+    env_sync:
+      path: secretmanager/projects/uap-prod/secrets/
+    
+  # Secondary provider - HashiCorp Vault
+  hashicorp_vault:
+    env_sync:
+      path: kv/data/uap/production/
+      address: https://vault.company.com
+      role_id: "{{ .Env.VAULT_ROLE_ID }}"
+      auth_method: approle
+      
+  # Tertiary provider - AWS Secrets Manager (multi-cloud support)
+  aws_secret_manager:
+    env_sync:
+      region: us-west-2
+      path: uap/production/
+
+env:
+  # === Core LLM API Keys ===
+  OPENAI_API_KEY:
+    provider: google_secret_manager
+    path: openai-api-key/versions/latest
+    redact_with: '***OPENAI***'
+    
+  ANTHROPIC_API_KEY:
+    provider: google_secret_manager
+    path: anthropic-api-key/versions/latest
+    redact_with: '***ANTHROPIC***'
+    
+  # === Framework-Specific API Keys ===
+  # CopilotKit Framework
+  COPILOTKIT_API_KEY:
+    provider: google_secret_manager
+    path: copilotkit-api-key/versions/latest
+    redact_with: '***COPILOTKIT***'
+    
+  COPILOTKIT_WEBHOOK_SECRET:
+    provider: google_secret_manager
+    path: copilotkit-webhook-secret/versions/latest
+    redact_with: '***COPILOT_WEBHOOK***'
+    
+  # Agno Framework
+  AGNO_API_KEY:
+    provider: google_secret_manager
+    path: agno-api-key/versions/latest
+    redact_with: '***AGNO***'
+    
+  AGNO_WORKSPACE_ID:
+    provider: google_secret_manager
+    path: agno-workspace-id/versions/latest
+    redact_with: '***AGNO_WS***'
+    
+  # Mastra Framework
+  MASTRA_API_KEY:
+    provider: google_secret_manager
+    path: mastra-api-key/versions/latest
+    redact_with: '***MASTRA***'
+    
+  MASTRA_WORKFLOW_TOKEN:
+    provider: google_secret_manager
+    path: mastra-workflow-token/versions/latest
+    redact_with: '***MASTRA_WORKFLOW***'
+    
+  # === Database and Storage ===
+  DATABASE_URL:
+    provider: google_secret_manager
+    path: database-url/versions/latest
+    redact_with: '***DB***'
+    
+  REDIS_URL:
+    provider: google_secret_manager
+    path: redis-url/versions/latest
+    redact_with: '***REDIS***'
+    
+  # Vector Database for embeddings
+  PINECONE_API_KEY:
+    provider: google_secret_manager
+    path: pinecone-api-key/versions/latest
+    redact_with: '***PINECONE***'
+    
+  WEAVIATE_API_KEY:
+    provider: google_secret_manager
+    path: weaviate-api-key/versions/latest
+    redact_with: '***WEAVIATE***'
+    
+  # === Application Security ===
+  JWT_SECRET:
+    provider: google_secret_manager
+    path: jwt-secret/versions/latest
+    redact_with: '***JWT***'
+    
+  JWT_REFRESH_SECRET:
+    provider: google_secret_manager
+    path: jwt-refresh-secret/versions/latest
+    redact_with: '***JWT_REFRESH***'
+    
+  ENCRYPTION_KEY:
+    provider: google_secret_manager
+    path: encryption-key/versions/latest
+    redact_with: '***ENCRYPT***'
+    
+  # === External Services ===
+  # Search and web services
+  TAVILY_API_KEY:
+    provider: google_secret_manager
+    path: tavily-api-key/versions/latest
+    redact_with: '***TAVILY***'
+    
+  SERP_API_KEY:
+    provider: google_secret_manager
+    path: serp-api-key/versions/latest
+    redact_with: '***SERP***'
+    
+  # Document processing
+  DOCLING_API_KEY:
+    provider: google_secret_manager
+    path: docling-api-key/versions/latest
+    redact_with: '***DOCLING***'
+    
+  # === Cloud Provider Credentials ===
+  # Google Cloud
+  GOOGLE_APPLICATION_CREDENTIALS_JSON:
+    provider: google_secret_manager
+    path: gcp-service-account-key/versions/latest
+    redact_with: '***GCP_CREDS***'
+    
+  # AWS
+  AWS_ACCESS_KEY_ID:
+    provider: google_secret_manager
+    path: aws-access-key-id/versions/latest
+    redact_with: '***AWS_ACCESS***'
+    
+  AWS_SECRET_ACCESS_KEY:
+    provider: google_secret_manager
+    path: aws-secret-access-key/versions/latest
+    redact_with: '***AWS_SECRET***'
+    
+  # Azure
+  AZURE_CLIENT_ID:
+    provider: google_secret_manager
+    path: azure-client-id/versions/latest
+    redact_with: '***AZURE_CLIENT***'
+    
+  AZURE_CLIENT_SECRET:
+    provider: google_secret_manager
+    path: azure-client-secret/versions/latest
+    redact_with: '***AZURE_SECRET***'
+    
+  # === Monitoring and Observability ===
+  DATADOG_API_KEY:
+    provider: google_secret_manager
+    path: datadog-api-key/versions/latest
+    redact_with: '***DATADOG***'
+    
+  PROMETHEUS_BASIC_AUTH:
+    provider: google_secret_manager
+    path: prometheus-basic-auth/versions/latest
+    redact_with: '***PROMETHEUS***'
+    
+  GRAFANA_API_KEY:
+    provider: google_secret_manager
+    path: grafana-api-key/versions/latest
+    redact_with: '***GRAFANA***'
+    
+  # === Webhook and Integration Secrets ===
+  WEBHOOK_SECRET:
+    provider: google_secret_manager
+    path: webhook-secret/versions/latest
+    redact_with: '***WEBHOOK***'
+    
+  GITHUB_WEBHOOK_SECRET:
+    provider: google_secret_manager  
+    path: github-webhook-secret/versions/latest
+    redact_with: '***GITHUB_WEBHOOK***'
+    
+  # === Performance and Scaling ===
+  # Rate limiting and caching
+  RATE_LIMIT_REDIS_URL:
+    provider: google_secret_manager
+    path: rate-limit-redis-url/versions/latest
+    redact_with: '***RATE_REDIS***'
+    
+  # Session storage
+  SESSION_SECRET:
+    provider: google_secret_manager
+    path: session-secret/versions/latest
+    redact_with: '***SESSION***'
+
+# Environment-specific configurations
+environments:
+  development:
+    providers_priority: ["google_secret_manager"]
+    opts:
+      confirm: true
+      
+  staging:
+    providers_priority: ["google_secret_manager", "hashicorp_vault"]
+    opts:
+      path_prefix: "staging/"
+      
+  production:
+    providers_priority: ["google_secret_manager", "hashicorp_vault", "aws_secret_manager"]
+    opts:
+      path_prefix: "production/"
+      auto_sync: true
+      sync_timeout: 30s

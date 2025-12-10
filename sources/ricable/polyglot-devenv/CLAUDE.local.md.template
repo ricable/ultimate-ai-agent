@@ -1,0 +1,511 @@
+# CLAUDE.local.md - Personal Development Configuration
+
+> **Setup Instructions**: Copy this template to create your personal configuration
+> ```bash
+> cp CLAUDE.local.md.template CLAUDE.local.md
+> ```
+> 
+> **Important**: CLAUDE.local.md is gitignored and contains your personal development preferences.
+> It extends and customizes the project standards defined in CLAUDE.md.
+
+## Personal Workflow & Productivity
+
+### My Development Aliases
+```bash
+# Add your personal shortcuts here
+# Examples:
+# alias pydev="cd dev-env/python && devbox shell"
+# alias tsdev="cd dev-env/typescript && devbox shell"
+# alias rustdev="cd dev-env/rust && devbox shell"
+# alias godev="cd dev-env/go && devbox shell"
+# alias nudev="cd dev-env/nushell && devbox shell"
+
+# Your custom aliases:
+```
+
+### Custom Commands & Scripts
+```bash
+# Personal automation scripts
+# Examples:
+# alias quick-test="devbox run test --verbose"
+# alias full-check="nu dev-env/nushell/scripts/validate-all.nu parallel"
+# alias perf-check="nu dev-env/nushell/scripts/performance-analytics.nu dashboard"
+
+# Claude-Flow SPARC Development Examples:
+# alias sparc-init="./claude-flow init --sparc && echo '🚀 SPARC environment initialized'"
+# alias sparc-modes="./claude-flow sparc modes"
+# alias sparc-tdd="./claude-flow sparc tdd"
+# alias sparc-arch="./claude-flow sparc run architect"
+# alias sparc-code="./claude-flow sparc run code"
+# alias sparc-debug="./claude-flow sparc run debug"
+# alias sparc-security="./claude-flow sparc run security-review"
+# alias sparc-docs="./claude-flow sparc run docs-writer"
+# alias sparc-status="./claude-flow status && ./claude-flow memory stats"
+
+# Claude-Flow Agent Management Examples:
+# alias cf-wizard="./claude-flow start --ui && ./claude-flow hive-mind wizard"
+# alias cf-spawn="./claude-flow hive-mind spawn"
+# alias cf-monitor="./claude-flow monitor"
+# alias cf-logs="./claude-flow logs"
+# alias cf-memory="./claude-flow memory"
+
+# Your custom commands:
+
+# DevPod Management (Centralized ✅) with Claude-Flow Auto-Setup
+# Examples for centralized DevPod management:
+# alias devpod-py="nu host-tooling/devpod-management/manage-devpod.nu provision python"
+# alias devpod-ts="nu host-tooling/devpod-management/manage-devpod.nu provision typescript"
+# alias devpod-rust="nu host-tooling/devpod-management/manage-devpod.nu provision rust"
+# alias devpod-go="nu host-tooling/devpod-management/manage-devpod.nu provision go"
+# alias devpod-status-all="for env in [python typescript rust go nushell] { nu host-tooling/devpod-management/manage-devpod.nu status $env }"
+
+# DevPod + Claude-Flow Integration Examples:
+# alias devpod-sparc-py="devpod-py && cd dev-env/python && devbox run claude-flow:init && sparc-init"
+# alias devpod-sparc-ts="devpod-ts && cd dev-env/typescript && devbox run claude-flow:init && sparc-init"
+# alias devpod-sparc-rust="devpod-rust && cd dev-env/rust && devbox run claude-flow:init && sparc-init"
+# alias devpod-sparc-go="devpod-go && cd dev-env/go && devbox run claude-flow:init && sparc-init"
+
+# Your DevPod management shortcuts:
+```
+
+### Personal Productivity Shortcuts
+```bash
+# IDE/Editor shortcuts
+# Examples:
+# alias code-py="code dev-env/python/src"
+# alias code-ts="code dev-env/typescript/src"
+# alias vim-config="vim ~/.config/nvim/init.vim"
+
+# Your productivity shortcuts:
+```
+
+## Environment Customizations
+
+### Personal Devbox Packages
+```toml
+# Additional packages for your workflow
+# Add to your environment's devbox.json as needed
+# Examples:
+# - ripgrep (for faster searching)
+# - fd (for faster file finding)
+# - bat (for syntax-highlighted cat)
+# - delta (for better git diffs)
+
+# Your preferred packages:
+```
+
+### Local Environment Variables
+```bash
+# Personal environment variables (use .env files or shell config)
+# Examples:
+# export EDITOR="nvim"
+# export BROWSER="firefox"
+# export TERM="xterm-256color"
+
+# Your environment variables:
+```
+
+### Custom Shell Configuration
+```bash
+# Personal shell settings (zsh, bash, fish, nu)
+# Examples for Nushell config.nu:
+# $env.config.table.mode = "compact"
+# $env.config.completions.quick = false
+
+# Your shell customizations:
+```
+
+## Learning & Development Resources
+
+### Personal Bookmarks
+```markdown
+<!-- Add your learning resources and references -->
+
+### Programming Resources
+- [Your favorite Python resources]
+- [Your TypeScript/JavaScript resources]
+- [Your Rust resources]
+- [Your Go resources]
+- [Your Nushell resources]
+
+### Tools & Utilities
+- [Your preferred development tools]
+- [Useful CLI utilities]
+- [Productivity applications]
+
+### Documentation & References
+- [Project-specific documentation]
+- [External API references]
+- [Personal code snippets repositories]
+```
+
+### Personal Notes & Insights
+```markdown
+<!-- Your personal learning notes -->
+
+### Project-Specific Notes
+- Key insights about this project
+- Common gotchas and solutions
+- Performance optimization notes
+
+### Language-Specific Tips
+- Python best practices I've learned
+- TypeScript patterns that work well
+- Rust ownership insights
+- Go concurrency patterns
+- Nushell data manipulation tricks
+
+### Debugging Insights
+- Common issues and their solutions
+- Debugging techniques that work for me
+- Performance profiling approaches
+```
+
+## Context Engineering + Claude-Flow SPARC Integration
+
+### Enhanced Workflows: PRP + SPARC Methodology
+
+**Context Engineering + Claude-Flow** provides systematic TDD with AI assistance:
+
+```bash
+# SPARC + PRP Workspace Development (Enhanced Generation)
+# Examples:
+# alias sparc-prp-gen="./claude-flow sparc run spec-pseudocode && cd context-engineering/workspace && /generate-prp"
+# alias sparc-features="./claude-flow sparc run architect && code context-engineering/workspace/features"
+# alias sparc-templates="./claude-flow sparc modes && code context-engineering/workspace/templates"
+
+# SPARC + DevPod Execution (Centralized Management ✅)  
+# Examples:
+# alias sparc-exec-py="./claude-flow sparc tdd && cd dev-env/python && devbox run devpod:provision && devbox run claude-flow:init && /execute-prp"
+# alias sparc-exec-ts="./claude-flow sparc run code && cd dev-env/typescript && devbox run devpod:provision && devbox run claude-flow:init && /execute-prp"
+# alias sparc-exec-rust="./claude-flow sparc run architect && cd dev-env/rust && devbox run devpod:provision && devbox run claude-flow:init && /execute-prp"
+# alias sparc-exec-go="./claude-flow sparc run debug && cd dev-env/go && devbox run devpod:provision && devbox run claude-flow:init && /execute-prp"
+
+# SPARC Memory Management Examples:
+# alias sparc-save="./claude-flow memory export project-$(date +%Y%m%d).json"
+# alias sparc-load="./claude-flow memory import"
+# alias sparc-query="./claude-flow memory query"
+
+# Your enhanced context engineering + SPARC shortcuts:
+```
+
+### Personal SPARC + PRP Development Patterns
+
+```bash
+# Create your own enhanced SPARC + PRP workflow function
+# Example:
+# personal-sparc-prp-workflow() {
+#     local feature_name=$1
+#     local environment=${2:-python}
+#     
+#     echo "🎯 Starting Enhanced SPARC + PRP workflow for $feature_name in $environment"
+#     
+#     # Phase 1: SPARC Specification + PRP Generation
+#     ./claude-flow sparc run spec-pseudocode "Define $feature_name requirements"
+#     ./claude-flow memory store "spec_$feature_name" "Requirements and constraints for $feature_name"
+#     
+#     cd context-engineering/workspace
+#     /generate-prp features/$feature_name.md --env dev-env/$environment --include-dojo --verbose
+#     
+#     # Phase 2: SPARC Architecture + DevPod Provisioning
+#     ./claude-flow sparc run architect "Design $feature_name architecture"
+#     
+#     # Execute in DevPod environment with Claude-Flow (centralized management)
+#     case $environment in
+#         python) cd dev-env/python && devbox run devpod:provision && devbox run claude-flow:init && /execute-prp context-engineering/devpod/environments/python/PRPs/$feature_name-python.md ;;
+#         typescript) cd dev-env/typescript && devbox run devpod:provision && devbox run claude-flow:init && /execute-prp context-engineering/devpod/environments/typescript/PRPs/$feature_name-typescript.md ;;
+#         rust) cd dev-env/rust && devbox run devpod:provision && devbox run claude-flow:init && /execute-prp context-engineering/devpod/environments/rust/PRPs/$feature_name-rust.md ;;
+#         go) cd dev-env/go && devbox run devpod:provision && devbox run claude-flow:init && /execute-prp context-engineering/devpod/environments/go/PRPs/$feature_name-go.md ;;
+#     esac
+#     
+#     # Phase 3: SPARC TDD + Memory Storage
+#     ./claude-flow sparc tdd "implement $feature_name with TDD"
+#     ./claude-flow memory export "$feature_name-complete-$(date +%Y%m%d).json"
+#     
+#     echo "✅ Enhanced SPARC + PRP workflow completed for $feature_name"
+# }
+
+# Quick SPARC workflow shortcuts examples:
+# alias quick-sparc-py="personal-sparc-prp-workflow"
+# alias quick-sparc-ts="personal-sparc-prp-workflow \$1 typescript"
+# alias quick-sparc-rust="personal-sparc-prp-workflow \$1 rust"
+# alias quick-sparc-go="personal-sparc-prp-workflow \$1 go"
+
+# Your enhanced SPARC + PRP workflow functions:
+```
+
+### Enhanced SPARC + PRP Performance Tracking
+
+```bash
+# Personal performance tracking for enhanced SPARC + PRP workflows
+# Examples:
+# alias prp-perf="nu dev-env/nushell/scripts/performance-analytics.nu report --filter prp-*"
+# alias prp-metrics="nu dev-env/nushell/scripts/performance-analytics.nu optimize --filter prp-*"
+# alias sparc-perf="nu dev-env/nushell/scripts/performance-analytics.nu report --filter sparc-*"
+# alias sparc-metrics="nu dev-env/nushell/scripts/performance-analytics.nu optimize --filter sparc-*"
+
+# Enhanced SPARC + PRP performance tracking function example:
+# track-sparc-prp-performance() {
+#     local feature_name=$1 env=$2
+#     echo "📊 Tracking Enhanced SPARC + PRP performance for $feature_name in $env"
+#     
+#     # Track SPARC phases
+#     nu dev-env/nushell/scripts/performance-analytics.nu measure "sparc-specification" "$feature_name" "./claude-flow sparc run spec-pseudocode"
+#     nu dev-env/nushell/scripts/performance-analytics.nu measure "sparc-architecture" "$feature_name" "./claude-flow sparc run architect"
+#     nu dev-env/nushell/scripts/performance-analytics.nu measure "sparc-tdd" "$feature_name" "./claude-flow sparc tdd"
+#     
+#     # Track PRP integration
+#     nu dev-env/nushell/scripts/performance-analytics.nu measure "prp-generation" "$feature_name" "/generate-prp --include-dojo"
+#     nu dev-env/nushell/scripts/performance-analytics.nu measure "prp-execution" "$feature_name" "/execute-prp --validate"
+#     
+#     # Generate comprehensive report
+#     nu dev-env/nushell/scripts/performance-analytics.nu report --format table --filter "sparc-*|prp-*"
+#     echo "🎯 Enhanced SPARC + PRP workflow performance analysis completed"
+# }
+
+# Your enhanced SPARC + PRP performance tracking:
+```
+
+## Local Tools & Automation
+
+### Personal Development Scripts
+```bash
+# Location: ~/scripts/ or ./local-scripts/
+# Examples:
+# - quick-backup.sh: Backup important work
+# - env-health-check.nu: Validate all environments
+# - performance-monitor.py: Track build performance
+
+# Your personal scripts:
+```
+
+### Custom Hooks & Automation
+```json
+// Additional hooks for .claude/settings.json (if needed)
+// Examples:
+// - Personal notification preferences
+// - Custom validation steps
+// - Individual performance tracking
+
+// Your custom hooks configuration:
+```
+
+### Local Testing & Quality Scripts
+```bash
+# Personal quality assurance automation
+# Examples:
+# alias my-lint="devbox run lint && echo 'Custom lint checks passed'"
+# alias my-test="devbox run test && my-integration-tests"
+
+# Your custom quality scripts:
+```
+
+## IDE & Editor Configuration
+
+### Editor Preferences
+```markdown
+<!-- Your IDE/editor setup -->
+
+### VS Code Extensions
+- Personal extension recommendations
+- Workspace-specific settings
+- Custom snippets and shortcuts
+
+### Vim/Neovim Configuration
+- Personal .vimrc/.init.vim preferences
+- Plugin configurations
+- Custom key mappings
+
+### Other Editors
+- IntelliJ IDEA settings
+- Sublime Text preferences
+- Emacs configuration
+```
+
+### Local Development Tools
+```markdown
+<!-- Personal development environment setup -->
+
+### Terminal Configuration
+- Terminal emulator preferences
+- Shell theme and customizations
+- Font and color scheme choices
+
+### Git Configuration
+- Personal git aliases
+- Custom git hooks
+- Local git configuration preferences
+
+### Database Tools
+- Local database setup
+- GUI tools preferences
+- Connection configurations
+```
+
+## Secrets & Local Configuration
+
+### Environment-Specific Settings
+```bash
+# Local development configuration (use .env files)
+# Store in environment-specific .env files, never commit secrets
+
+# Examples for .env files:
+# API_KEY=your_local_api_key
+# DATABASE_URL=your_local_db_url
+# DEBUG_MODE=true
+
+# Your local configuration patterns:
+```
+
+### Personal API Keys & Credentials
+```bash
+# Use environment variables or secret management tools
+# Examples:
+# - GitHub personal access tokens
+# - Local database credentials
+# - Development API keys
+# - Testing service credentials
+
+# Your secret management approach:
+```
+
+### Local Service Configuration
+```markdown
+<!-- Local development services -->
+
+### Local Databases
+- PostgreSQL/MySQL local setup
+- Redis configuration
+- Local testing data
+
+### External Services
+- Local API testing endpoints
+- Development service configurations
+- Testing webhook URLs
+```
+
+## Performance & Optimization
+
+### Personal Performance Tuning
+```bash
+# Individual performance optimizations
+# Examples:
+# - Custom compiler flags
+# - Build optimization settings
+# - Local caching strategies
+
+# Your performance optimizations:
+```
+
+### Local Monitoring & Metrics
+```bash
+# Personal development metrics
+# Examples:
+# - Build time tracking
+# - Test execution monitoring
+# - Resource usage analysis
+
+# Your monitoring setup:
+```
+
+## Troubleshooting & Debugging
+
+### Personal Debugging Techniques
+```markdown
+<!-- Your debugging approaches -->
+
+### Common Issues & Solutions
+- Issues you've encountered and solved
+- Environment-specific problems
+- Performance bottlenecks and fixes
+
+### Debugging Tools & Commands
+- Your preferred debugging tools
+- Useful diagnostic commands
+- Log analysis techniques
+
+### Emergency Recovery
+- Backup and restore procedures
+- Environment reset commands
+- Quick fix scripts
+```
+
+### Personal Support Resources
+```markdown
+<!-- Your go-to resources when stuck -->
+
+### Team Contacts
+- Who to ask for specific language help
+- Code review preferences
+- Collaboration patterns
+
+### External Support
+- Community forums you use
+- Stack Overflow searches
+- Documentation bookmarks
+```
+
+---
+
+## Template Customization Guide
+
+### Getting Started
+1. Copy this template: `cp CLAUDE.local.md.template CLAUDE.local.md`
+2. Remove sections you don't need
+3. Add your personal configurations
+4. Keep your CLAUDE.local.md updated as you learn and grow
+
+### Best Practices
+- **Keep it Personal**: This file is for YOUR preferences and workflows
+- **Don't Duplicate**: Avoid repeating information from CLAUDE.md
+- **Stay Organized**: Use the provided structure but adapt to your needs
+- **Regular Updates**: Update as your workflow evolves
+- **Security First**: Never commit secrets or credentials
+
+### Integration with CLAUDE.md
+
+**Inheritance Model**:
+- CLAUDE.md provides the foundation and team standards
+- CLAUDE.local.md extends and personalizes those standards
+- When in conflict, team standards (CLAUDE.md) take precedence
+- Use this file to enhance, not replace, project standards
+
+**Cross-Reference Guide**:
+- **Project Setup** → Defined in CLAUDE.md, customize your personal workflow here
+- **Style Guidelines** → Team standards in CLAUDE.md, add personal preferences here
+- **Core Commands** → Essential commands in CLAUDE.md, add personal aliases here
+- **Environment Setup** → Standard setup in CLAUDE.md, add personal packages here
+- **Testing Standards** → Requirements in CLAUDE.md, add personal testing tools here
+- **Hooks & Automation** → Core system in CLAUDE.md, add personal automation here
+
+**Override Patterns**:
+```bash
+# Example: Extending project aliases
+# CLAUDE.md defines: Essential Commands by Environment
+# CLAUDE.local.md adds: Personal shortcuts like "pydev", "quick-test"
+
+# Example: Personal environment variables
+# CLAUDE.md defines: Environment structure and standards
+# CLAUDE.local.md adds: Personal EDITOR, BROWSER, custom paths
+
+# Example: Custom hooks
+# CLAUDE.md defines: Core hooks system and team automation
+# CLAUDE.local.md adds: Personal notification preferences, custom validations
+```
+
+### Example Workflows
+```bash
+# Example: Personal development session startup
+personal-dev-setup() {
+    source ~/.claude-local-env
+    cd $PROJECT_ROOT
+    devbox shell
+}
+
+# Example: Personal quality check before commit
+personal-pre-commit() {
+    devbox run lint
+    devbox run test
+    my-custom-checks
+}
+```

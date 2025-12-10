@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "poker_bot"
+version = "0.1.0"
+authors = [
+    { name = "Your Name", email = "your.email@example.com" },
+]
+description = "A poker decision assistant using AI"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "numpy",
+    "pandas",
+    "treys",
+    "pytest",
+    "dspy-ai[all]",
+    "scikit-learn",
+    "colorama",
+    "matplotlib",
+    "openai",
+    "seaborn",
+    "tqdm",
+    "phoenix-ai==0.2.0",
+    "opentelemetry-api",
+    "opentelemetry-sdk",
+    "opentelemetry-instrumentation",
+    "openinference-instrumentation-dspy",
+    "openinference-instrumentation-litellm"
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}

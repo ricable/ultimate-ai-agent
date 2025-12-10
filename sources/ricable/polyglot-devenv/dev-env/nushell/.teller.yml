@@ -1,0 +1,64 @@
+project: polyglot-dev-env
+
+# Teller configuration for secret management
+# https://github.com/tellerops/teller
+
+# Define providers for secrets
+providers:
+  # Environment variables (local development)
+  env:
+    kind: env
+    
+  # AWS Systems Manager Parameter Store
+  # ssm:
+  #   kind: aws_ssm
+  #   region: us-east-1
+  
+  # HashiCorp Vault
+  # vault:
+  #   kind: hashicorp_vault
+  #   address: https://vault.example.com
+  
+  # 1Password
+  # onepassword:
+  #   kind: 1password
+  #   vault: Development
+
+# Define key-value mappings
+mappings:
+  # Development environment secrets
+  - from: env
+    to:
+      # AWS credentials
+      AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+      AWS_ACCOUNT_ID: AWS_ACCOUNT_ID
+      
+      # Database credentials
+      DATABASE_URL: DATABASE_URL
+      
+      # API keys
+      GITHUB_TOKEN: GITHUB_TOKEN
+      
+      # Container registry credentials
+      REGISTRY_USER: REGISTRY_USER
+      REGISTRY_PASSWORD: REGISTRY_PASSWORD
+      
+  # Production secrets (uncomment when needed)
+  # - from: vault
+  #   to:
+  #     AWS_ACCESS_KEY_ID: /secret/aws/access_key_id
+  #     AWS_SECRET_ACCESS_KEY: /secret/aws/secret_access_key
+
+# Redaction patterns for sensitive data
+redact:
+  - "password"
+  - "secret"
+  - "token"
+  - "key"
+
+# Export configuration
+opts:
+  stage: development
+  carry_env: true
+  sync_timeout: 5s

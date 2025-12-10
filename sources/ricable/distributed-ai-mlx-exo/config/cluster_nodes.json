@@ -1,0 +1,84 @@
+{
+  "cluster": {
+    "name": "mlx-prod-cluster",
+    "environment": "production",
+    "version": "1.0.0"
+  },
+  "nodes": [
+    {
+      "id": "mac-studio-1",
+      "type": "Mac Studio M1 Max",
+      "ip": "10.0.1.10",
+      "port": 52415,
+      "memory_gb": 64,
+      "gpu_cores": 32,
+      "cpu_cores": 10,
+      "role": ["compute", "api"],
+      "ssh_user": "mlx",
+      "ssh_port": 22
+    },
+    {
+      "id": "mac-studio-2", 
+      "type": "Mac Studio M1 Max",
+      "ip": "10.0.1.11",
+      "port": 52415,
+      "memory_gb": 64,
+      "gpu_cores": 32,
+      "cpu_cores": 10,
+      "role": ["compute"],
+      "ssh_user": "mlx",
+      "ssh_port": 22
+    },
+    {
+      "id": "mac-studio-3",
+      "type": "Mac Studio M2 Max", 
+      "ip": "10.0.1.12",
+      "port": 52415,
+      "memory_gb": 32,
+      "gpu_cores": 30,
+      "cpu_cores": 12,
+      "role": ["compute"],
+      "ssh_user": "mlx",
+      "ssh_port": 22
+    }
+  ],
+  "network": {
+    "data_subnet": "10.0.1.0/24",
+    "management_subnet": "10.0.2.0/24",
+    "load_balancer_ip": "10.0.1.100",
+    "dns_servers": ["8.8.8.8", "8.8.4.4"]
+  },
+  "services": {
+    "api_server": {
+      "port": 52415,
+      "workers": 3,
+      "timeout": 300
+    },
+    "health_monitor": {
+      "check_interval": 10,
+      "timeout": 30
+    },
+    "prometheus": {
+      "port": 8000,
+      "retention": "7d"
+    },
+    "grafana": {
+      "port": 3000
+    }
+  },
+  "models": {
+    "default_models": [
+      "llama-7b",
+      "llama-30b",
+      "mistral-7b"
+    ],
+    "model_cache_size_gb": 500,
+    "auto_download": true
+  },
+  "deployment": {
+    "backup_retention_days": 30,
+    "rolling_update_batch_size": 1,
+    "health_check_timeout": 60,
+    "startup_timeout": 120
+  }
+}

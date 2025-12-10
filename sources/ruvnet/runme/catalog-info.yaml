@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: runme
+  namespace: stateful
+  description: Runme CLI
+  annotations:
+    github.com/project-slug: stateful/runme
+spec:
+  type: service
+  owner: user:stateful/sourishkrout
+  lifecycle: production
+  dependsOn:
+    - component:stateful/firefly

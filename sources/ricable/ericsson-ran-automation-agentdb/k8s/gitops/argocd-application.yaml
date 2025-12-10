@@ -1,0 +1,132 @@
+# ArgoCD Application for RAN Optimization Platform
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ran-optimization-platform
+  namespace: argocd
+  labels:
+    app: ran-optimization
+    environment: production
+    version: v4.0.0
+  annotations:
+    argocd.argoproj.io/sync-options: CreateNamespace=true
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: ran-optimization-alerts
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: ran-optimization-alerts
+    notifications.argoproj.io/subscribe.on-health-degraded.slack: ran-optimization-alerts
+spec:
+  project: ericsson-ran
+  source:
+    repoURL: https://github.com/ericsson/ran-automation.git
+    targetRevision: main
+    path: k8s/ran-optimization
+    directory:
+      recurse: true
+    plugin:
+      name: argocd-vault-plugin
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ran-optimization
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - RespectIgnoreDifferences=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
+  - group: autoscaling
+    kind: HorizontalPodAutoscaler
+    jsonPointers:
+    - /spec/minReplicas
+    - /spec/maxReplicas
+  revisionHistoryLimit: 10
+---
+# ArgoCD Project for Ericsson RAN
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: ericsson-ran
+  namespace: argocd
+  labels:
+    app: argocd
+    project: ericsson-ran
+spec:
+  description: Ericsson RAN Intelligent Multi-Agent System Project
+  sourceRepos:
+  - repoURL: https://github.com/ericsson/ran-automation.git
+  destinations:
+  - namespace: ran-optimization
+    server: https://kubernetes.default.svc
+  - namespace: ran-monitoring
+    server: https://kubernetes.default.svc
+  - namespace: argocd
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
+  - group: rbac.authorization.k8s.io
+    kind: Role
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+  namespaceResourceWhitelist:
+  - group: ''
+    kind: ConfigMap
+  - group: ''
+    kind: Secret
+  - group: ''
+    kind: Service
+  - group: ''
+    kind: ServiceAccount
+  - group: apps
+    kind: Deployment
+  - group: apps
+    kind: StatefulSet
+  - group: apps
+    kind: DaemonSet
+  - group: autoscaling
+    kind: HorizontalPodAutoscaler
+  - group: networking.k8s.io
+    kind: Ingress
+  - group: networking.k8s.io
+    kind: NetworkPolicy
+  - group: policy
+    kind: PodDisruptionBudget
+  - group: batch
+    kind: CronJob
+  roles:
+  - name: ci-cd-role
+    description: Role for CI/CD pipelines
+    policies:
+    - p, proj:ericsson-ran:ci-cd-role, applications, *, ericsson-ran/*, allow
+    groups:
+    - ci-cd
+  - name: devops-role
+    description: Role for DevOps team
+    policies:
+    - p, proj:ericsson-ran:devops-role, applications, sync, ericsson-ran/*, allow
+    - p, proj:ericsson-ran:devops-role, applications, override, ericsson-ran/*, allow
+    groups:
+    - devops-team
+  - name: readonly-role
+    description: Read-only role for monitoring
+    policies:
+    - p, proj:ericsson-ran:readonly-role, applications, get, ericsson-ran/*, allow
+    groups:
+    - monitoring-team

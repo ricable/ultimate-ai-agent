@@ -1,0 +1,60 @@
+{
+  "timestamp": "2025-10-31T20:08:01.531Z",
+  "targets": {
+    "maxMemory": 2147483648,
+    "maxDuration": 30000
+  },
+  "summary": {
+    "totalTests": 3,
+    "passedTests": 3,
+    "avgDuration": 25.55648633333334,
+    "maxMemory": 319438848,
+    "maxDuration": 76.26420900000005,
+    "successRate": 100
+  },
+  "detailedResults": [
+    {
+      "component": "ParameterProcessing",
+      "startTime": 438.206833,
+      "endTime": 438.413542,
+      "duration": 0.20670899999998937,
+      "memoryBefore": 116065320,
+      "memoryAfter": 116289392,
+      "peakMemory": 116289392,
+      "success": true,
+      "details": {
+        "testIterations": 1000,
+        "parameterStructure": "RTBParameter"
+      }
+    },
+    {
+      "component": "HierarchyProcessing",
+      "startTime": 438.448667,
+      "endTime": 438.647208,
+      "duration": 0.19854099999997743,
+      "memoryBefore": 116297832,
+      "memoryAfter": 116617304,
+      "peakMemory": 116617304,
+      "success": true,
+      "details": {
+        "testIterations": 500,
+        "hierarchyLevels": 4
+      }
+    },
+    {
+      "component": "MemoryPattern",
+      "startTime": 438.829208,
+      "endTime": 515.093417,
+      "duration": 76.26420900000005,
+      "memoryBefore": 262258688,
+      "memoryAfter": 319438848,
+      "peakMemory": 319438848,
+      "success": true,
+      "details": {
+        "objectCount": 100,
+        "objectsPerArray": 1000,
+        "fieldsPerObject": 4
+      }
+    }
+  ]
+}

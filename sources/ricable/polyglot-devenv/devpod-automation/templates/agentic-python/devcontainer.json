@@ -1,0 +1,133 @@
+{
+  "name": "Agentic Python Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20",
+      "nodeGypDependencies": true
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "dockerDashComposeVersion": "v2"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.pylint",
+        "ms-python.mypy-type-checker",
+        "charliermarsh.ruff",
+        "ms-python.debugpy",
+        "ms-vscode.vscode-json",
+        "tamasfe.even-better-toml",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-typescript-next"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.formatting.provider": "none",
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff",
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        },
+        "python.analysis.typeCheckingMode": "strict"
+      }
+    },
+    "devpod": {
+      "prebuildRepository": "ghcr.io/ricable/polyglot-devenv-agentic-python"
+    }
+  },
+  "containerEnv": {
+    "PYTHONPATH": "/workspace/src",
+    "UV_CACHE_DIR": "/workspace/.uv-cache",
+    "PYTHON_ENV": "development",
+    "AGUI_LOG_LEVEL": "debug",
+    "MCP_SERVER_URL": "http://host.docker.internal:3001",
+    "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}",
+    "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
+    "AGUI_RUNTIME_MODE": "development"
+  },
+  "mounts": [
+    "type=volume,source=uv-cache,target=/workspace/.uv-cache",
+    "type=volume,source=node-modules,target=/workspace/node_modules"
+  ],
+  "forwardPorts": [
+    8000,
+    8001,
+    8002,
+    5000,
+    3000,
+    4111,
+    2024,
+    9000,
+    3001
+  ],
+  "portsAttributes": {
+    "8000": {
+      "label": "FastAPI Agent Server",
+      "onAutoForward": "notify"
+    },
+    "8001": {
+      "label": "AG-UI Python Backend",
+      "onAutoForward": "notify"
+    },
+    "8002": {
+      "label": "Agent Development Server",
+      "onAutoForward": "notify"
+    },
+    "5000": {
+      "label": "Flask/Debug Server",
+      "onAutoForward": "silent"
+    },
+    "3000": {
+      "label": "Frontend Development Server",
+      "onAutoForward": "notify"
+    },
+    "4111": {
+      "label": "Mastra Client",
+      "onAutoForward": "silent"
+    },
+    "2024": {
+      "label": "LangGraph Server",
+      "onAutoForward": "silent"
+    },
+    "9000": {
+      "label": "LlamaIndex Server",
+      "onAutoForward": "silent"
+    },
+    "3001": {
+      "label": "MCP Server",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": [
+    "echo 'Setting up Agentic Python environment...'",
+    "pip install uv",
+    "echo 'Installing base dependencies...'",
+    "uv pip install fastapi uvicorn httpx pydantic pydantic-ai openai anthropic",
+    "echo 'Installing agent and MCP dependencies...'",
+    "uv pip install asyncio aiohttp websockets",
+    "echo 'Installing development tools...'",
+    "uv pip install pytest pytest-asyncio pytest-cov ruff mypy black isort",
+    "echo 'Setting up project structure...'",
+    "mkdir -p src/agents src/agui src/mcp src/api tests",
+    "touch src/__init__.py src/agents/__init__.py src/agui/__init__.py src/mcp/__init__.py src/api/__init__.py",
+    "echo 'Creating basic agent server...'",
+    "cat > src/main.py << 'EOF'\nfrom fastapi import FastAPI\nfrom fastapi.middleware.cors import CORSMiddleware\n\napp = FastAPI(title=\"Agentic Python Server\", version=\"1.0.0\")\n\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Agentic Python Server is running\", \"status\": \"ready\"}\n\n@app.get(\"/health\")\nasync def health():\n    return {\"status\": \"healthy\", \"service\": \"agentic-python\"}\n\nif __name__ == \"__main__\":\n    import uvicorn\n    uvicorn.run(app, host=\"0.0.0.0\", port=8000)\nEOF",
+    "echo 'Creating pyproject.toml...'",
+    "cat > pyproject.toml << 'EOF'\n[project]\nname = \"agentic-python\"\nversion = \"0.1.0\"\ndescription = \"Agentic Python Development Environment\"\nrequires-python = \">=3.12\"\ndependencies = [\n    \"fastapi>=0.104.0\",\n    \"uvicorn[standard]>=0.24.0\",\n    \"httpx>=0.25.0\",\n    \"pydantic>=2.5.0\",\n    \"pydantic-ai>=0.0.1\",\n    \"openai>=1.0.0\",\n    \"anthropic>=0.8.0\",\n    \"asyncio-mqtt>=0.13.0\",\n    \"websockets>=12.0\",\n]\n\n[project.optional-dependencies]\ndev = [\n    \"pytest>=7.4.0\",\n    \"pytest-asyncio>=0.21.0\",\n    \"pytest-cov>=4.1.0\",\n    \"ruff>=0.8.0\",\n    \"mypy>=1.7.0\",\n    \"black>=23.0.0\",\n    \"isort>=5.12.0\",\n]\n\n[build-system]\nrequires = [\"setuptools>=61.0\", \"wheel\"]\nbuild-backend = \"setuptools.build_meta\"\n\n[tool.ruff]\nline-length = 88\ntarget-version = \"py312\"\nselect = [\"E\", \"F\", \"I\", \"N\", \"UP\", \"B\", \"A\", \"C4\", \"T20\"]\n\n[tool.mypy]\nstrict = true\npython_version = \"3.12\"\nwarn_return_any = true\nwarn_unused_configs = true\n\n[tool.pytest.ini_options]\nminversion = \"7.0\"\naddopts = \"-ra -q --strict-markers --cov=src\"\ntestpaths = [\"tests\"]\nasyncio_mode = \"auto\"\nEOF",
+    "echo 'Installing project dependencies...'",
+    "uv sync --dev || echo 'Warning: uv sync failed, continuing with pip install'",
+    "echo 'Agentic Python environment ready! 🤖🐍'"
+  ],
+  "postStartCommand": [
+    "echo 'Agentic Python DevPod ready!'",
+    "echo '🚀 Start FastAPI server: uv run uvicorn src.main:app --reload --host 0.0.0.0 --port 8000'",
+    "echo '🧪 Run tests: uv run pytest'",
+    "echo '🔍 Check code: uv run ruff check && uv run mypy src/'"
+  ],
+  "postAttachCommand": "echo 'Welcome to Agentic Python DevPod! 🤖🐍 Ready for AI agent development.'"
+}

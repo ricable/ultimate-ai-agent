@@ -1,0 +1,105 @@
+[project]
+name = "archon"
+version = "0.1.0"
+description = "MCP server for integrating web crawling and RAG into AI agents and AI coding assistants"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "crawl4ai==0.6.2",
+    "mcp==1.7.1",
+    "supabase==2.15.1",
+    "openai==1.71.0",
+    "dotenv==0.9.9",
+    "python-dotenv>=1.0.0",
+    "sentence-transformers>=4.1.0",
+    "cryptography>=41.0.0",
+    "asyncpg>=0.29.0",
+    "pypdf2>=3.0.1",
+    "python-multipart>=0.0.20",
+    "pdfplumber>=0.11.6",
+    "python-docx>=1.1.2",
+    "markdown>=3.8",
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "pydantic>=2.0.0",
+    "python-jose[cryptography]>=3.3.0",
+    "slowapi>=0.1.9",
+    "httpx>=0.24.0",
+    "pydantic-ai>=0.0.13",
+    "logfire>=0.30.0",
+    "python-socketio[asyncio]>=5.11.0",
+    "pytest-asyncio>=1.0.0",
+    "docker>=7.1.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.12.0",
+    "pytest-timeout>=2.3.0",
+    "httpx>=0.24.0",
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "requests>=2.31.0",
+    "docker>=7.0.0",
+    "factory-boy>=3.3.0",
+]
+api = [
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "pydantic>=2.0.0",
+    "python-jose[cryptography]>=3.3.0",
+    "slowapi>=0.1.9",
+    "httpx>=0.24.0",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.17.0",
+    "pytest-cov>=6.2.1",
+    "ruff>=0.12.5",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501", # line too long - handled by line-length
+    "B008", # do not perform function calls in argument defaults
+    "C901", # too complex
+    "W191", # indentation contains tabs
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_any_unimported = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+check_untyped_defs = true
+
+# Third-party libraries often don't have type stubs
+# We'll explicitly type our own code but not fail on external libs
+ignore_missing_imports = true

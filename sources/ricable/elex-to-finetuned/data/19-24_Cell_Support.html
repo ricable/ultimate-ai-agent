@@ -1,0 +1,1258 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<meta name="HTMLPACKLINKS" content="1" />
+
+<title>19-24 Cell Support</title>
+<meta name="TITLE" content="19-24 Cell Support" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="GENERATOR" content="ELIB CRAH 301 1060 R90" /> 
+<meta name="FILTERTIME" content="2024-07-12 18:37:02" />
+<meta name="SRCDOCTYPE" content="DITA" />
+<meta name="SRCDTD" content="-//OASIS//DTD DITA BookMap//EN" />
+<meta name="APPR" content="XSN/BNEW (Borbala Revesz-Papp) ZREVBOR" />
+<meta name="CONFIDENTIALITY" content="ericsson_internal" />
+<meta name="AUDIENCE" content="all" />
+<meta name="DATE" content="2024-07-11" />
+<meta name="DOCNO" content="347/221 04-LZA 701 6014/1 Uen" />
+<meta name="LANG" content="en-US" />
+<meta name="PREP" content="zvasgab Gábor Vasvári" />
+<meta name="REV" content="BC" />
+<meta name="SUBTITLE" content="" />
+<meta name="DOCNAME" content="Feature Description" />
+<link rel="stylesheet" type="text/css" href="edw:/alex?fn=hilda.css" />
+
+<link rel="stylesheet" type="text/css" href="edw:/alex?fn=dita_cpi.css" />
+
+<script type="text/javascript" src="edw:/alex?fn=dwcommon.js" language="JavaScript"></script>
+</head>
+<body>
+
+<script type="text/javascript" src="edw:/alex?fn=switch_theme.js" language="JavaScript"></script><div id="overlay"><div id="overlayBox"></div></div>
+<!--@@noprnt-->
+<a name="TOP"></a>
+<div id="header-container">
+<span class="header-cap">Feature Description</span>
+<span class="header-docid">347/221 04-LZA 701 6014/1 Uen</span>
+<span class="header-rev">BC</span>
+</div>
+
+<!--@@/noprnt-->
+<div id="content" class="body-content">
+
+<a name="KW:"></a>
+<a name="KW:_19_24_CELL_SUPPORT" data-term="software_features/ers_software_feature/_19_24_cell_support"></a><a name="KW:LTE" data-term="radio_access_technology/lte"></a>
+<h1 class="TITLE"><a name="TITLE"></a></h1><div class="DOCTITLE">19-24 Cell Support</div>
+<div class="SUBTITLE"></div>
+
+<!--@contents-->
+<p class="HDR"><a name="CONTENTS" onclick="showDTOC('toc0');" title="Expand/collapse table of contents"><img id="ce_i1_0" class="ce" src="edw:/alex?ac=image&amp;fn=CP.png" style="display:none" /><img id="ce_i2_0" class="ce" src="edw:/alex?ac=image&amp;fn=EP.png" />Contents</a></p><div id="toc0" style="display: none;">
+<ul class="DWAXEtocTop">
+<li class="DWAXEtoc"><a href="#nwk1500987019154">Overview</a></li>
+<li class="DWAXEtoc"><a href="#nkz1501138038406">Dependencies</a></li>
+<li class="DWAXEtoc"><a href="#abp1501138908173">Feature Operation</a>
+<ul class="DWAXEtocNested">
+<li class="DWAXEtoc"><a href="#mhh1503405836541">License Handling</a></li>
+</ul>
+</li>
+<li class="DWAXEtoc"><a href="#nxe1501139219155">Network Impact</a></li>
+<li class="DWAXEtoc"><a href="#wrh1501139274534">Parameters</a></li>
+<li class="DWAXEtoc"><a href="#vwm1501139327964">Performance</a></li>
+<li class="DWAXEtoc"><a href="#lph1501139398256">Activate</a></li>
+<li class="DWAXEtoc"><a href="#luv1501139550573">Deactivate</a></li>
+<li class="DWAXEtoc"><a href="#nsq1485505972991">Feature Change History</a>
+<ul class="DWAXEtocNested">
+<li class="DWAXEtoc"><a href="#fmw1533305239539">18.Q4: 24 Cells Supported on Baseband 5216, Baseband 6318, and Baseband 6630 also for TDD</a></li>
+<li class="DWAXEtoc"><a href="#vwb1533627838587">18.Q4: 1560 MHz Antenna Bandwidth Support on Baseband 5216, Baseband 6318 and Baseband 6630</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<!--@/contents-->
+
+<br />
+<div class="hd0"></div>
+<div class="hd1"></div>
+
+<!--@BODY--><div class="topic concept nested0" aria-labelledby="ariaid-title1" xml:lang="en-US" lang="en-US" id="nwk1500987019154">	
+
+<h1 class="title topictitle1"><span class="CHAPNUMBER">1  </span><span class="CHAPTITLE"><a name="CHAPTER1" href="#TOP" class="CHAPLINK">19-24 Cell Support Overview</a></span></h1>
+
+	
+	
+	<div class="body conbody"><p class="shortdesc">The 19-24 Cell Support feature increases the number of supported cells from 18 to 24 on
+		a Baseband unit.</p>
+
+		
+<div><div class="tablenoborder"><div class="tbl-exp" id="nwk1500987019154__tblblock_table_jlq_djq_f2b"><table cellpadding="4" cellspacing="0" summary="" id="nwk1500987019154__table_jlq_djq_f2b" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:51.578947368421055%" /><col style="width:48.421052631578945%" /></colgroup><tbody class="tbody">
+					<tr class="row">
+						<td class="entry">
+							<p class="p">Access Type:</p>
+
+						</td>
+
+						<td class="entry">
+							<p class="p"><a title="Long Term Evolution" class="glossexpansion">LTE</a></p>
+
+						</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry">
+							<p class="p">Feature Identity:</p>
+
+						</td>
+
+						<td class="entry">
+							<p class="p">FAJ 121 4426</p>
+
+						</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry">
+							<p class="p">Value Package Name:</p>
+
+						</td>
+
+						<td class="entry">
+							<p class="p">Large <a title="E-UTRAN Node B" class="glossexpansion">eNodeB</a></p>
+
+						</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry">
+							<p class="p">Value Package Identity:</p>
+
+						</td>
+
+						<td class="entry">
+							<p class="p">FAJ 801 0403</p>
+
+						</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry">
+							<p class="p">Node Type:</p>
+
+						</td>
+
+						<td class="entry">
+							<p class="p">Baseband Radio Node</p>
+
+						</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry">
+							<p class="p">Licensing:</p>
+
+						</td>
+
+						<td class="entry">
+							<p class="p">Licensed feature. One license is required for each node.</p>
+
+						</td>
+
+					</tr>
+
+				</tbody>
+</table>
+</div></div></div>
+		<div id="nwk1500987019154__section_N10091_N10031_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Summary</span></p><div class="section">
+			
+			<p class="p">By increasing the number of supported cells on a single Baseband unit, this feature provides
+				the following benefits:</p>
+
+			<ul class="unord" id="nwk1500987019154__ul_ucb_xvh_g4b">
+				<li class="li"><div class="li-block">
+					<p class="p">Using higher antenna bandwidth.</p>
+
+				</div></li>
+
+				<li class="li"><div class="li-block">
+					<p class="p">Using an increased number of carrier branches.</p>
+
+				</div></li>
+
+				<li class="li"><div class="li-block">
+					<p class="p">Using an increased number of frequency bands.</p>
+
+				</div></li>
+
+			</ul>
+
+			<p class="p"></p>
+
+		</div>
+</div>
+		
+	</div>
+
+</div>
+
+
+<div class="topic reference nested0" aria-labelledby="ariaid-title2" xml:lang="en-US" lang="en-US" id="nkz1501138038406">
+    
+<h1 class="title topictitle1"><span class="CHAPNUMBER">2  </span><span class="CHAPTITLE"><a name="CHAPTER2" href="#TOP" class="CHAPLINK">Dependencies of 19-24 Cell Support</a></span></h1>
+
+    
+    
+    <div class="body refbody"><p class="shortdesc">The feature has dependencies with features related to the number of supported cells
+        on a radio node. </p>
+
+        
+<div><div class="tablenoborder"><span class="tablecap"><span class="table--title-label">Table 1&#160;&#160; </span>Feature Dependencies</span><div class="tbl-exp" id="nkz1501138038406__tblblock_table_N1003E_N10033_N1002E_N10001"><table cellpadding="4" cellspacing="0" summary="" id="nkz1501138038406__table_N1003E_N10033_N1002E_N10001" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:40%" /><col style="width:20%" /><col style="width:40%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder fixhdr" id="d4796e86">
+                            <p class="p">Feature</p>
+
+                        </th>
+
+                        <th class="entry cellrowborder fixhdr" id="d4796e92">
+                            <p class="p">Relationship</p>
+
+                        </th>
+
+                        <th class="entry cellrowborder fixhdr" id="d4796e98">
+                            <p class="p">Description</p>
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry" headers="d4796e86 ">
+                            <p class="p"><a href="edw:/alex?fn=53_22104-LZA7016014_1Uen.AL.html" class="xref">6 Cell Support</a> (FAJ 121 1821)</p>
+
+                        </td>
+
+                        <td class="entry" headers="d4796e92 ">
+                            <p class="p">Prerequisite</p>
+
+                        </td>
+
+                        <td class="entry" headers="d4796e98 ">
+                            <p class="p">To use the 19-24 Cell Support feature, the 6 Cell Support feature
+                                must be activated.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry" headers="d4796e86 ">
+                            <p class="p"><a href="edw:/alex?fn=171_22104-LZA7016014_1Uen.BG.html" class="xref">7-12 Cell Support</a> (FAJ 121 3020)</p>
+
+                        </td>
+
+                        <td class="entry" headers="d4796e92 ">
+                            <p class="p">Prerequisite</p>
+
+                        </td>
+
+                        <td class="entry" headers="d4796e98 ">
+                            <p class="p">To use the 19-24 Cell Support feature, the 7-12 Cell Support feature
+                                must be activated.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry" headers="d4796e86 ">
+                            <p class="p"><a href="edw:/alex?fn=4_22104-LZA7016014_1Uen.AY.html" class="xref">13-18 Cell Support</a> (FAJ 121 4242)</p>
+
+                        </td>
+
+                        <td class="entry" headers="d4796e92 ">
+                            <p class="p">Prerequisite</p>
+
+                        </td>
+
+                        <td class="entry" headers="d4796e98 ">
+                            <p class="p">To use the 19-24 Cell Support feature, the 13-18 Cell Support feature
+                                must be activated.</p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+</div></div></div>
+        <div id="nkz1501138038406__section_N100DF_N10032_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Hardware</span></p><div class="section">
+            
+            <p class="p">For a description of supported hardware, configurations, and configuration
+                limitations, see <a title="Links to other libraries are only supported in ELEX library collection" class="libextlnk extlnk" rel="search" data-title="DU and Baseband Configurations and Capacity">DU and Baseband Configurations and Capacity</a> in <a title="Links to other libraries are only supported in ELEX library collection" class="libextlnk extlnk" rel="search" data-title="Radio Node Configurations">Radio Node Configurations</a>.</p>
+
+        </div>
+</div>
+        <div id="nkz1501138038406__section_N100EE_N10032_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Limitations</span></p><div class="section">
+            
+            <p class="p">No known limitations.</p>
+
+        </div>
+</div>
+        <div id="nkz1501138038406__section_xj4_hmq_f2b"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Network Requirements</span></p><div class="section">
+            
+            <p class="p">No specific network requirements.</p>
+
+        </div>
+</div>
+    </div>
+
+</div>
+
+
+<div class="topic concept nested0" aria-labelledby="ariaid-title3" xml:lang="en-US" lang="en-US" id="abp1501138908173">
+ 
+<h1 class="title topictitle1"><span class="CHAPNUMBER">3  </span><span class="CHAPTITLE"><a name="CHAPTER3" href="#TOP" class="CHAPLINK">Feature Operation of 19-24 Cell Support</a></span></h1>
+
+ 
+ 
+
+ <div class="body conbody"><p class="shortdesc">The feature increases the number of cells from 18 to 24 on specific Baseband
+        units.</p>
+
+        <div id="abp1501138908173__section_wr2_mj3_g4b"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Supported Configurations</span></p><div class="section">
+            
+            <p class="p">The feature supports configurations up to 24 cells on Baseband units with an equal or
+                different number of carrier branches on different cells up to the maximum supported
+                antenna bandwidth. The number of supported cells for a Baseband also depends on the
+                total number of TX/RX carrier branches and the cell range configured for each
+                cell.</p>
+
+            <p class="p">For a description of supported configurations, see <a title="Links to other libraries are only supported in ELEX library collection" class="libextlnk extlnk" rel="search" data-title="DU and Baseband Configurations and Capacity">DU and Baseband Configurations and Capacity</a> in <a title="Links to other libraries are only supported in ELEX library collection" class="libextlnk extlnk" rel="search" data-title="Radio Node Configurations">Radio Node Configurations</a>.</p>
+
+            <p class="p">The following Baseband units are supported:</p>
+
+            <ul class="unord" id="abp1501138908173__ul_wwy_bl3_g4b">
+                <li class="li"><div class="li-block">
+                    <p class="p">Baseband 6648</p>
+
+                </div></li>
+
+                <li class="li"><div class="li-block">
+                    <p class="p">Baseband 6651</p>
+
+                </div></li>
+
+            </ul>
+
+        </div>
+</div>
+        <div id="abp1501138908173__section_wgb_4j3_g4b"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Supported Bandwidth Combinations</span></p><div class="section">
+            
+            <p class="p">For the supported bandwidth combinations, see <a title="Links to other libraries are only supported in ELEX library collection" class="libextlnk extlnk" rel="search" data-title="DU and Baseband Configurations and Capacity">DU and Baseband Configurations and Capacity</a>.</p>
+
+        </div>
+</div>
+    </div>
+
+
+
+<div class="topic concept nested1" aria-labelledby="ariaid-title4" xml:lang="en-US" lang="en-US" id="mhh1503405836541">
+    
+<h2 class="title topictitle2"><span class="CHAPNUMBER">3.1  </span><span class="CHAPTITLE"><a name="CHAPTER3.1" href="#TOP" class="CHAPLINK">License Handling</a></span></h2>
+
+    
+    
+    <div class="body conbody"><p class="shortdesc">The <samp class="ph systemoutput">Feature Resource Missing</samp> or the
+            <samp class="ph systemoutput">Inconsistent Configuration </samp> alarm is raised after an
+        attempt to unlock a cell that is out of the licensed capacity.</p>
+
+        
+<div><div class="tablenoborder"><span class="tablecap"><span class="table--title-label">Table 2&#160;&#160; </span>Cell Support-Related Alarms</span><div class="tbl-exp" id="mhh1503405836541__tblblock_table_gk1_kgg_34b"><table cellpadding="4" cellspacing="0" summary="" id="mhh1503405836541__table_gk1_kgg_34b" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:50%" /><col style="width:50%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder fixhdr" id="d727e90">
+                            <p class="p">License Status</p>
+
+                        </th>
+
+                        <th class="entry cellrowborder fixhdr" id="d727e96">
+                            <p class="p">Description</p>
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry" headers="d727e90 ">
+                            <p class="p">The 6 Cell Support feature is not activated.</p>
+
+                        </td>
+
+                        <td class="entry" headers="d727e96 ">
+                            <p class="p">An attempt to unlock of the 4<sup class="ph sup">th</sup> cell results in the alarm
+                                    <samp class="ph systemoutput">Feature Resource Missing</samp> being
+                                raised with additional text stating the need to have the 6 Cell
+                                Support feature activated.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry" headers="d727e90 ">
+                            <p class="p">The 6 Cell Support feature is activated.</p>
+
+                        </td>
+
+                        <td class="entry" headers="d727e96 ">
+                            <p class="p">An attempt to unlock of the 7<sup class="ph sup">th</sup> cell results in the alarm
+                                    <samp class="ph systemoutput">Feature Resource Missing</samp> being
+                                raised with additional text stating the need to have the 7-12 Cell
+                                Support feature activated.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry" headers="d727e90 ">
+                            <p class="p">The 6 Cell Support and 7-12 Cell Support features are activated.</p>
+
+                        </td>
+
+                        <td class="entry" headers="d727e96 ">
+                            <p class="p">An attempt to unlock of the 13<sup class="ph sup">th</sup> cell results in the alarm
+                                    <samp class="ph systemoutput">Feature Resource Missing</samp> being
+                                raised with additional text stating the need to have the 13-18 Cell
+                                Support feature activated.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry" headers="d727e90 ">
+                            <p class="p">The 6 Cell Support, 7-12 Cell Support, and 13-18 Cell Support
+                                features are activated.</p>
+
+                        </td>
+
+                        <td class="entry" headers="d727e96 ">
+                            <p class="p">An attempt to unlock the 19<sup class="ph sup">th</sup> cell results in the alarm
+                                    <samp class="ph systemoutput">Feature Resource Missing</samp> being
+                                raised with additional text stating the need to have the 19-24 Cell
+                                Support feature activated.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry" headers="d727e90 ">
+                            <p class="p">The 6 Cell Support, 7-12 Cell Support, 13-18 Cell Support, and 19-24
+                                Cell Support features are activated.</p>
+
+                        </td>
+
+                        <td class="entry" headers="d727e96 ">
+                            <p class="p">An attempt to unlock the 25<sup class="ph sup">th</sup> cell results in the alarm
+                                    <samp class="ph systemoutput">Inconsistent Configuration</samp> being
+                                raised. The additional text in the alarm indicates that unlocking
+                                the cell is not possible, as there is no existing license that
+                                allows this action.</p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+</div></div></div>
+        
+        <p class="p">For more information about the alarms, see <a title="Links to other libraries are only supported in ELEX library collection" class="libextlnk extlnk" rel="search" data-title="Inconsistent Configuration">Inconsistent Configuration</a> and <a title="Links to other libraries are only supported in ELEX library collection" class="libextlnk extlnk" rel="search" data-title="Feature Resource Missing">Feature Resource Missing</a>.</p>
+
+        <p class="p">Removing or deactivating the license in a node takes effect when the cells are locked and
+            unlocked, or when the node is restarted. This means that enabled cells are not
+            immediately affected when the license is removed or deactivated.</p>
+
+    </div>
+
+</div>
+
+ </div>
+
+
+<div class="topic reference nested0" aria-labelledby="ariaid-title5" xml:lang="en-US" lang="en-US" id="nxe1501139219155">
+ 
+<h1 class="title topictitle1"><span class="CHAPNUMBER">4  </span><span class="CHAPTITLE"><a name="CHAPTER4" href="#TOP" class="CHAPLINK">Network Impact of 19-24 Cell Support</a></span></h1>
+
+ 
+ 
+<div class="body refbody"><p class="shortdesc">The feature increases the <a title="E-UTRAN Node B" class="glossexpansion">eNodeB</a> capacity and coverage.</p>
+
+        
+        <div id="nxe1501139219155__section_N10036_N10031_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Capacity and Performance</span></p><div class="section">
+            
+            
+            <p class="p">The 19-24 Cell Support feature increases the <a title="E-UTRAN Node B" class="glossexpansion">eNodeB</a> capacity up to 24 cells.</p>
+
+            <p class="p">The feature provides increased coverage by allowing the configuration of up to 24
+                sectors. </p>
+
+        </div>
+</div>
+        <div id="nxe1501139219155__section_N10045_N10031_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Interfaces</span></p><div class="section">
+            
+            
+            <p class="p">No impact. </p>
+
+        </div>
+</div>
+        <div id="nxe1501139219155__section_N10079_N10031_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Other Network Elements</span></p><div class="section">
+            
+            
+            <p class="p">No impact.</p>
+
+        </div>
+</div>
+</div>
+
+</div>
+
+
+<div class="topic reference nested0" aria-labelledby="ariaid-title6" xml:lang="en-US" lang="en-US" id="wrh1501139274534">
+ 
+<h1 class="title topictitle1"><span class="CHAPNUMBER">5  </span><span class="CHAPTITLE"><a name="CHAPTER5" href="#TOP" class="CHAPLINK">Parameters for 19-24 Cell Support</a></span></h1>
+
+ 
+ 
+
+ <div class="body refbody"><p class="shortdesc">The feature affects configuration parameters related to <a title="Physical Downlink Control Channel" class="glossexpansion">PDCCH</a> and <a title="Physical Uplink Control Channel" class="glossexpansion">PUCCH</a>
+        resources.</p>
+
+        
+<div><div class="tablenoborder"><span class="tablecap"><span class="table--title-label">Table 3&#160;&#160; </span>Parameters</span><div class="tbl-exp" id="wrh1501139274534__tblblock_tabAffecParas"><table cellpadding="4" cellspacing="0" summary="" id="wrh1501139274534__tabAffecParas" class="table condensed" frame="border" border="1" rules="all"><colgroup><col style="width:24.333333333333332%" /><col style="width:33.33333333333333%" /><col style="width:42.333333333333336%" /></colgroup><thead class="thead condensed " style="text-align:left;">
+                    <tr class="row condensed ">
+                        <th class="entry cellrowborder fixhdr condensed " style="vertical-align:top;" id="d1986e86">
+                            <p class="p condensed ">Parameter</p>
+
+                        </th>
+
+                        <th class="entry cellrowborder fixhdr condensed " id="d1986e92">
+                            <p class="p condensed ">Type</p>
+
+                        </th>
+
+                        <th class="entry cellrowborder fixhdr condensed " style="vertical-align:top;" id="d1986e98">
+                            <p class="p condensed ">Description</p>
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody condensed ">
+                    <tr class="row condensed ">
+                        <td class="entry condensed " headers="d1986e86 ">
+                            <p class="p condensed ">
+                                <span class="keyword apiname condensed "><a class="xref" rel="Controls CFI used for control region.&lt;br&gt;&lt;br&gt;CfiMode maps to CFI as described under enumerations. For downlink bandwidth of 1400 kHz, values of CFI = 1, 2, and 3 map to 2, 3, and 4 control region symbols respectively. For other bandwidths, CFI maps directly to number of control region symbols.&lt;br&gt;&lt;br&gt;In MBSFN subframes, number of control region symbols can never exceed 2, regardless of pdcchCfiMode setting.&lt;br&gt;&lt;br&gt;Dependencies:pdcchCfiMode cannot equal CFI_STATIC_1 while dlChannelBandwidth = 1400, 3000, or 5000 kHz since there would be insufficient CCEs to transmit a PDCCH for common channel messages such as SIB1 or SI. Certain values of pdcchCfiMode that allow high CFI values may be disallowed when the combination of attributes pdcchCfiMode, dlChannelBandwidth, noOfPucchCqiUsers, and noOfPucchSrUsers require too many corresponding PUCCH HARQ-ARQ resources.&lt;br&gt;&lt;br&gt;In ESS cells, in subframes with NR traffic, CFI_STATIC_3 behaves as CFI_STATIC_2.&lt;br&gt;Takes effect:Object unlocked&lt;br&gt;::pdcchCfiMode::edw:/alex?dt=om&FN=912_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=pdcchCfiMode::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">EUtranCellFDD.pdcchCfiMode</a></span>
+                            </p>
+
+                        </td>
+
+                        <td class="entry condensed " headers="d1986e92 ">
+                            <p class="p condensed ">Affected</p>
+
+                        </td>
+
+                        <td class="entry condensed " headers="d1986e98 ">
+                            <p class="p condensed ">Cell unlocking can be rejected because of shortage of <a title="Physical Uplink Control Channel" class="glossexpansion">PUCCH</a>
+                                resources. This triggers the <samp class="ph systemoutput condensed ">Resource Configuration
+                                    Failure</samp> alarm. Required and available <a title="Physical Uplink Control Channel" class="glossexpansion">PUCCH</a>
+                                resources for a cell in <a title="Frequency Division Duplex" class="glossexpansion">FDD</a> depends on the following:</p>
+
+                            <ul class="unord" id="wrh1501139274534__ul_vl4_d4j_mkb">
+                                <li class="li condensed "><div class="li-block">
+                                    <p class="p condensed ">Number of cells per node</p>
+
+                                </div></li>
+
+                                <li class="li condensed "><div class="li-block">
+                                    <p class="p condensed ">Cell bandwidths</p>
+
+                                </div></li>
+
+                                <li class="li condensed "><div class="li-block">
+                                    <p class="p condensed ">The <span class="keyword apiname condensed ">pdcchCfiMode</span>,
+                                            <span class="keyword apiname condensed ">noOfPucchCqiUsers</span>, and
+                                            <span class="keyword apiname condensed ">noOfPucchSrUsers</span> parameters</p>
+
+                                </div></li>
+
+                            </ul>
+
+                            <p class="p condensed ">For more information about parameter dependencies, see <a onclick="javascript:resolveLink('Control%20Channel%20Dimensioning','DTITLE',event)" class="xref condensed ">Control Channel Dimensioning</a>.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row condensed ">
+                        <td class="entry condensed " headers="d1986e86 ">
+                            <p class="p condensed ">
+                                <span class="keyword apiname condensed "><a class="xref" rel="The number of Channel Quality Indicator (CQI) resources available on the PUCCH channel.&lt;br&gt;For 1.4 MHz system bandwidth the recommended value is 50.&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Disturbances:Changing this attribute can cause loss of traffic. Cell is locked and unlocked automatically.&lt;br&gt;::noOfPucchCqiUsers::edw:/alex?dt=om&FN=912_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=noOfPucchCqiUsers::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">EUtranCellFDD.noOfPucchCqiUsers</a></span>
+                            </p>
+
+                        </td>
+
+                        <td class="entry condensed " headers="d1986e92 ">
+                            <p class="p condensed ">Affected</p>
+
+                        </td>
+
+                        <td class="entry condensed " headers="d1986e98 ">
+                            <p class="p condensed ">Cell unlocking can be rejected because of shortage of <a title="Physical Uplink Control Channel" class="glossexpansion">PUCCH</a>
+                                resources. This triggers the <samp class="ph systemoutput condensed ">Resource Configuration
+                                    Failure</samp> alarm. Required and available <a title="Physical Uplink Control Channel" class="glossexpansion">PUCCH</a>
+                                resources for a cell in <a title="Frequency Division Duplex" class="glossexpansion">FDD</a> depends on the following:</p>
+
+                            <ul class="unord" id="wrh1501139274534__ul_xms_w2s_jyb">
+                                <li class="li condensed "><div class="li-block">
+                                    <p class="p condensed ">Number of cells per node</p>
+
+                                </div></li>
+
+                                <li class="li condensed "><div class="li-block">
+                                    <p class="p condensed ">Cell bandwidths</p>
+
+                                </div></li>
+
+                                <li class="li condensed "><div class="li-block">
+                                    <p class="p condensed ">The <span class="keyword apiname condensed ">pdcchCfiMode</span>,
+                                            <span class="keyword apiname condensed ">noOfPucchCqiUsers</span>, and
+                                            <span class="keyword apiname condensed ">noOfPucchSrUsers</span> parameters</p>
+
+                                </div></li>
+
+                            </ul>
+
+                            <p class="p condensed ">For more information about parameter dependencies, see <a onclick="javascript:resolveLink('Control%20Channel%20Dimensioning','DTITLE',event)" class="xref condensed ">Control Channel Dimensioning</a>.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row condensed ">
+                        <td class="entry condensed " headers="d1986e86 ">
+                            <p class="p condensed ">
+                                <span class="keyword apiname condensed "><a class="xref" rel="The number of Scheduling Request (SR) resources available on the PUCCH channel.&lt;br&gt;&lt;br&gt;For 1.4 MHz system bandwidth, recommended value is 50.&lt;br&gt;&lt;br&gt;If Maximum Cell Range beyond 100km feature is enabled, SR users in zone1 and zone2 are not included.&lt;br&gt;&lt;br&gt;Disturbances:Cell runs new set-up procedure. All cell-connected UEs are released and connected again.&lt;br&gt;::noOfPucchSrUsers::edw:/alex?dt=om&FN=912_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=noOfPucchSrUsers::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">EUtranCellFDD.noOfPucchSrUsers</a></span>
+                            </p>
+
+                        </td>
+
+                        <td class="entry condensed " headers="d1986e92 ">
+                            <p class="p condensed ">Affected</p>
+
+                        </td>
+
+                        <td class="entry condensed " headers="d1986e98 ">
+                            <p class="p condensed ">Cell unlocking can be rejected because of shortage of <a title="Physical Uplink Control Channel" class="glossexpansion">PUCCH</a>
+                                resources. This triggers the <samp class="ph systemoutput condensed ">Resource Configuration
+                                    Failure</samp> alarm. Required and available <a title="Physical Uplink Control Channel" class="glossexpansion">PUCCH</a>
+                                resources for a cell in <a title="Frequency Division Duplex" class="glossexpansion">FDD</a> depends on the following:</p>
+
+                            <ul class="unord" id="wrh1501139274534__ul_syx_w2s_jyb">
+                                <li class="li condensed "><div class="li-block">
+                                    <p class="p condensed ">Number of cells per node</p>
+
+                                </div></li>
+
+                                <li class="li condensed "><div class="li-block">
+                                    <p class="p condensed ">Cell bandwidths</p>
+
+                                </div></li>
+
+                                <li class="li condensed "><div class="li-block">
+                                    <p class="p condensed ">The <span class="keyword apiname condensed ">pdcchCfiMode</span>,
+                                            <span class="keyword apiname condensed ">noOfPucchCqiUsers</span>, and
+                                            <span class="keyword apiname condensed ">noOfPucchSrUsers</span> parameters</p>
+
+                                </div></li>
+
+                            </ul>
+
+                            <p class="p condensed ">For more information about parameter dependencies, see <a onclick="javascript:resolveLink('Control%20Channel%20Dimensioning','DTITLE',event)" class="xref condensed ">Control Channel Dimensioning</a>.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row condensed ">
+                        <td class="entry condensed " headers="d1986e86 ">
+                            <p class="p condensed ">
+                                <span class="keyword apiname condensed "><a class="xref" rel="Controls CFI used for control region.&lt;br&gt;&lt;br&gt;CfiMode maps to CFI as described under enumerations. For downlink bandwidth of 1400 kHz, values of CFI = 1, 2, and 3 map to 2, 3, and 4 control region symbols respectively. For other bandwidths, CFI maps directly to number of control region symbols.&lt;br&gt;&lt;br&gt;In MBSFN subframes, number of control region symbols can never exceed 2, regardless of pdcchCfiMode setting.&lt;br&gt;&lt;br&gt;Dependencies:pdcchCfiMode cannot equal CFI_STATIC_1 while dlChannelBandwidth = 1400, 3000, or 5000 kHz since there would be insufficient CCEs to transmit a PDCCH for common channel messages such as SIB1 or SI. Certain values of pdcchCfiMode that allow high CFI values may be disallowed when the combination of attributes pdcchCfiMode, dlChannelBandwidth, noOfPucchCqiUsers, and noOfPucchSrUsers require too many corresponding PUCCH HARQ-ARQ resources.&lt;br&gt;Takes effect:Object unlocked&lt;br&gt;::pdcchCfiMode::edw:/alex?dt=om&FN=913_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=pdcchCfiMode::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">EUtranCellTDD.pdcchCfiMode</a></span>
+                            </p>
+
+                        </td>
+
+                        <td class="entry condensed " headers="d1986e92 ">
+                            <p class="p condensed ">Affected</p>
+
+                        </td>
+
+                        <td class="entry condensed " headers="d1986e98 ">
+                            <p class="p condensed ">See <a title="Managed Object Model" class="glossexpansion">MOM</a> description.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row condensed ">
+                        <td class="entry condensed " headers="d1986e86 ">
+                            <p class="p condensed ">
+                                <span class="keyword apiname condensed "><a class="xref" rel="The number of Channel Quality Indicator (CQI) resources available on the PUCCH channel.&lt;br&gt;For TDD Subframe Assignment 1 the recommended value is 64.&lt;br&gt;&lt;br&gt;Disturbances:Changing this attribute can cause loss of traffic. Cell is locked and unlocked automatically.&lt;br&gt;::noOfPucchCqiUsers::edw:/alex?dt=om&FN=913_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=noOfPucchCqiUsers::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">EUtranCellTDD.noOfPucchCqiUsers</a></span>
+                            </p>
+
+                        </td>
+
+                        <td class="entry condensed " headers="d1986e92 ">
+                            <p class="p condensed ">Affected</p>
+
+                        </td>
+
+                        <td class="entry condensed " headers="d1986e98 ">
+                            <p class="p condensed ">See <a title="Managed Object Model" class="glossexpansion">MOM</a> description.</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row condensed ">
+                        <td class="entry condensed " headers="d1986e86 ">
+                            <p class="p condensed ">
+                                <span class="keyword apiname condensed "><a class="xref" rel="The number of Scheduling Request (SR) resources available on the PUCCH channel.&lt;br&gt;For TDD Subframe Assignment 1 the recommended value is 64.&lt;br&gt;&lt;br&gt;Disturbances:Cell runs new set-up procedure. All cell-connected UEs are released and connected again.&lt;br&gt;::noOfPucchSrUsers::edw:/alex?dt=om&FN=913_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=noOfPucchSrUsers::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">EUtranCellTDD.noOfPucchSrUsers</a></span>
+                            </p>
+
+                        </td>
+
+                        <td class="entry condensed " headers="d1986e92 ">
+                            <p class="p condensed ">Affected</p>
+
+                        </td>
+
+                        <td class="entry condensed " headers="d1986e98 ">
+                            <p class="p condensed ">See <a title="Managed Object Model" class="glossexpansion">MOM</a> description.</p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+</div></div></div>
+    </div>
+
+</div>
+
+
+<div class="topic reference nested0" aria-labelledby="ariaid-title7" xml:lang="en-US" lang="en-US" id="vwm1501139327964">
+ 
+<h1 class="title topictitle1"><span class="CHAPNUMBER">6  </span><span class="CHAPTITLE"><a name="CHAPTER6" href="#TOP" class="CHAPLINK">Performance of 19-24 Cell Support</a></span></h1>
+
+ 
+ 
+ <div class="body refbody"><p class="shortdesc">This feature has no impact on <a title="Key Performance Indicator" class="glossexpansion">KPIs</a>, counters, or events.</p>
+
+  
+    
+    </div>
+
+</div>
+
+
+<div class="topic task nested0" aria-labelledby="ariaid-title8" xml:lang="en-US" lang="en-US" id="lph1501139398256">
+    
+<h1 class="title topictitle1"><span class="CHAPNUMBER">7  </span><span class="CHAPTITLE"><a name="CHAPTER7" href="#TOP" class="CHAPLINK">Activate 19-24 Cell Support</a></span></h1>
+
+    
+    
+    <div class="body taskbody"><p class="shortdesc">To use the feature, it must be activated following the usual feature activation
+            procedure.</p>
+
+        
+        <div id="lph1501139398256__context_N10036_N10031_N10001"><div class="section"></div>
+</div>
+        <div class="section prereq p" id="lph1501139398256__prereq_fnk_zqm_v1b"><p class="sectiontitle"><span class="autogentext">Prerequisites</span></p>
+            <div class="p">
+                <ul class="unord" id="lph1501139398256__ul_ljy_1rm_v1b">
+                    <li class="li"><div class="li-block">
+                        <p class="p">The license key is installed in the node.</p>
+
+                    </div></li>
+
+                    <li class="li"><div class="li-block">
+                        <p class="p"><a title="Continuous Cell Trace Recording" class="glossexpansion">CCTR</a> is active for at least one week before this procedure to collect enough troubleshooting data.</p>
+
+                    </div></li>
+
+                    <li class="li"><div class="li-block">
+                        <p class="p">The following prerequisite features are activated:</p>
+
+                        <ul class="unord" id="lph1501139398256__ul_zvy_crg_tbb">
+                            <li class="li"><div class="li-block">
+                                <p class="p">6 Cell Support</p>
+
+                            </div></li>
+
+                            <li class="li"><div class="li-block">
+                                <p class="p">7-12 Cell Support</p>
+
+                            </div></li>
+
+                            <li class="li"><div class="li-block">
+                                <p class="p">13-18 Cell Support</p>
+
+                            </div></li>
+
+                        </ul>
+
+                    </div></li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="p" id="lph1501139398256__steps_0"><p class="sectiontitle"><span class="autogentext">Steps
+</span></p><ol class="unord" id="lph1501139398256__steps_i4b_5kg_41b"><li class="li step" id="lph1501139398256__step_N10082_N1007E_N10032_N10001">
+            <span class="ph cmd">Lock the cell.</span>
+        </li><li class="li step" id="lph1501139398256__step_N10079_N10075_N10031_N10001">
+                <span class="ph cmd">Set the attribute <span class="keyword parmname">featureState</span> to
+                        <span class="keyword option">ACTIVATED</span> in the <span class="keyword apiname"><a class="xref" rel="This MO class defines different licensing-related states of a feature.::class FeatureState::edw:/alex?dt=om&FN=4671_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=class FeatureState::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">FeatureState=CXC4011974</a></span>
+                    <a title="Managed Object | Mobile Originating" class="glossexpansion">MO</a> instance.</span>
+            </li><li class="li step" id="lph1501139398256__step_N100A0_N1007E_N10032_N10001">
+            <span class="ph cmd">Unlock the cell.</span>
+        </li></ol></div>
+        <div id="lph1501139398256__postreq_d5y_fg1_npb"><p class="sectiontitle"><span class="autogentext">After This Task</span></p><div class="section">
+            <p class="p">Keep <a title="Continuous Cell Trace Recording" class="glossexpansion">CCTR</a> active for at least one week after this procedure for continued collection of troubleshooting data.</p>
+
+        </div>
+</div> 
+    </div>
+
+</div>
+
+
+<div class="topic task nested0" aria-labelledby="ariaid-title9" xml:lang="en-US" lang="en-US" id="luv1501139550573">
+    
+<h1 class="title topictitle1"><span class="CHAPNUMBER">8  </span><span class="CHAPTITLE"><a name="CHAPTER8" href="#TOP" class="CHAPLINK">Deactivate 19-24 Cell Support</a></span></h1>
+
+    
+    
+    <div class="body taskbody"><p class="shortdesc">If the feature is no longer needed, it can be deactivated following the usual
+            feature deactivation procedure. It must also be deactivated before the activation of any
+            conflicting feature.</p>
+
+        
+        <div id="luv1501139550573__context_N10036_N10031_N10001"><div class="section"></div>
+</div>
+        <div class="section prereq p" id="luv1501139550573__prereq_dw5_hyt_v1b"><p class="sectiontitle"><span class="autogentext">Prerequisites</span></p>
+            <ul class="unord" id="luv1501139550573__ul_r5s_sg1_npb">
+                <li class="li"><div class="li-block">
+                    <p class="p"><a title="Continuous Cell Trace Recording" class="glossexpansion">CCTR</a> is active for at least one week before this procedure to collect enough troubleshooting data.</p>
+
+                </div></li>
+
+            </ul>
+
+        </div>
+
+        <div class="p" id="luv1501139550573__steps_0"><p class="sectiontitle"><span class="autogentext">Steps
+</span></p><ol class="unord" id="luv1501139550573__steps_i4b_5kg_41b"><li class="li step" id="luv1501139550573__step_N10051_N1004D_N10032_N10001">
+            <span class="ph cmd">Lock the cell.</span>
+        </li><li class="li step" id="luv1501139550573__step_N10047_N10043_N10031_N10001">
+                <span class="ph cmd">Set the attribute <span class="keyword parmname">featureState</span> to
+                        <span class="keyword option">DEACTIVATED</span> in the
+                        <span class="keyword apiname"><a class="xref" rel="This MO class defines different licensing-related states of a feature.::class FeatureState::edw:/alex?dt=om&FN=4671_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=class FeatureState::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">FeatureState=CXC4011974</a></span> <a title="Managed Object | Mobile Originating" class="glossexpansion">MO</a> instance.</span>
+            </li><li class="li step" id="luv1501139550573__step_N1006F_N1004D_N10032_N10001">
+            <span class="ph cmd">Unlock the cell.</span>
+        </li></ol></div>
+        <div id="luv1501139550573__postreq_tsm_5g1_npb"><p class="sectiontitle"><span class="autogentext">After This Task</span></p><div class="section">
+            <p class="p">Keep <a title="Continuous Cell Trace Recording" class="glossexpansion">CCTR</a> active for at least one week after this procedure for continued collection of troubleshooting data.</p>
+
+        </div>
+</div> 
+    </div>
+
+</div>
+
+
+<div class="topic concept nested0" aria-labelledby="ariaid-title10" xml:lang="en-US" lang="en-US" id="nsq1485505972991">
+    
+<h1 class="title topictitle1"><span class="CHAPNUMBER">9  </span><span class="CHAPTITLE"><a name="CHAPTER9" href="#TOP" class="CHAPLINK">Feature Change History</a></span></h1>
+
+    
+    
+
+
+    <div class="body conbody"><p class="shortdesc">This section lists changes that affected this feature and the impact it had on the
+        network.</p>
+</div>
+
+
+
+<div class="topic concept nested1" aria-labelledby="ariaid-title11" xml:lang="en-US" lang="en-US" id="fmw1533305239539">
+    
+<h2 class="title topictitle2"><span class="CHAPNUMBER">9.1  </span><span class="CHAPTITLE"><a name="CHAPTER9.1" href="#TOP" class="CHAPLINK">18.Q4: 24 Cells Supported on Baseband 5216, Baseband 6318, and Baseband 6630 also for TDD</a></span></h2>
+
+    
+    
+    
+    <div class="body conbody"><p class="shortdesc">This
+        feature enhancement supports connecting 24 cells to a single Baseband 5216, Baseband 6318,
+        or Baseband 6630 . It increases the channel bandwidth, the number of carrier branches, and
+        the frequency numbers. </p>
+
+        
+<div><div class="tablenoborder"><div class="tbl-exp" id="fmw1533305239539__tblblock_table_pdc_kgn_xdb"><table cellpadding="4" cellspacing="0" summary="" id="fmw1533305239539__table_pdc_kgn_xdb" class="table" frame="void" border="1" rules="all"><colgroup><col style="width:33.33333333333333%" /><col style="width:66.66666666666666%" /></colgroup><tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry">
+                            <p class="p">Feature Name:</p>
+
+                        </td>
+
+                        <td class="entry">
+                            
+                            <p class="p">19-24 Cell Support</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry">
+                            <p class="p">Feature Identity:</p>
+
+                        </td>
+
+                        <td class="entry">
+                            
+                            <p class="p">FAJ 121 4426</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry">
+                            <p class="p">Value Package Name:</p>
+
+                        </td>
+
+                        <td class="entry">
+                            
+                            <p class="p">Large <a title="E-UTRAN Node B" class="glossexpansion">eNodeB</a></p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry">
+                            <p class="p">Value Package Identity:</p>
+
+                        </td>
+
+                        <td class="entry">
+                            
+                            <p class="p">FAJ 801 0403</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry">
+                            <p class="p">Node Type:</p>
+
+                        </td>
+
+                        <td class="entry">
+                            
+                            <p class="p">Baseband Radio Node</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry">
+                            <p class="p">Access Type:</p>
+
+                        </td>
+
+                        <td class="entry">
+                            
+                            <p class="p"><a title="Long Term Evolution" class="glossexpansion">LTE</a></p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+</div></div></div>
+        
+        <p class="p">With this feature enhancement the operator is able to configure up to 24 cells with a
+            single Baseband 5216, Baseband 6318 or Baseband 6630 also for <a title="Time Division Duplex" class="glossexpansion">TDD</a>. The cells can contain
+            the combination of two antennas, four antennas, or eight antennas per cell, up to 24
+            cells. Eight frequency bands and the combination of 1.4 <a title="Megahertz" class="glossexpansion">MHz</a>, 3 <a title="Megahertz" class="glossexpansion">MHz</a>, 5 <a title="Megahertz" class="glossexpansion">MHz</a>, 10 <a title="Megahertz" class="glossexpansion">MHz</a>, 15
+            <a title="Megahertz" class="glossexpansion">MHz</a>, or 20 <a title="Megahertz" class="glossexpansion">MHz</a> carrier bandwidth are supported.</p>
+
+        <div id="fmw1533305239539__section_N100DF_N10035_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Capacity and Performance</span></p><div class="section">
+            
+            
+            <p class="p">Up to 1440 <a title="Megahertz" class="glossexpansion">MHz</a> antenna bandwidth is available for <a title="Time Division Duplex" class="glossexpansion">TDD</a>. </p>
+
+        </div>
+</div>
+        <div id="fmw1533305239539__section_N100EF_N10035_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Operation</span></p><div class="section">
+            
+            
+            <p class="p">No impact.</p>
+
+        </div>
+</div>
+        <div id="fmw1533305239539__section_N10107_N10035_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Interfaces</span></p><div class="section">
+            
+            
+            
+            <p class="p">No impact.</p>
+
+        </div>
+</div>
+        <div id="fmw1533305239539__section_N10145_N10035_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Hardware</span></p><div class="section">
+            
+            
+            <p class="p">The enhancement operates only on Baseband 5216, Baseband 6318 and Baseband 6630
+                units. </p>
+
+        </div>
+</div>
+        <div id="fmw1533305239539__section_N10155_N10035_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Other Network Elements</span></p><div class="section">
+            
+            
+            
+            <p class="p">No impact.</p>
+
+        </div>
+</div>
+    </div>
+
+</div>
+
+
+<div class="topic concept nested1" aria-labelledby="ariaid-title12" xml:lang="en-US" lang="en-US" id="vwb1533627838587">
+    
+<h2 class="title topictitle2"><span class="CHAPNUMBER">9.2  </span><span class="CHAPTITLE"><a name="CHAPTER9.2" href="#TOP" class="CHAPLINK">18.Q4: 1560 MHz Antenna Bandwidth Support on Baseband 5216, Baseband 6318 and Baseband 6630</a></span></h2>
+
+    
+    
+    <div class="body conbody"><p class="shortdesc">This feature enhancement supports 1560 <a title="Megahertz" class="glossexpansion">MHz</a> <a title="Antenna Bandwidth" class="glossexpansion">ABW</a> on Baseband 5216, Baseband 6318 and
+        Baseband 6630 for <a title="Time Division Duplex" class="glossexpansion">TDD</a> and <a title="Frequency Division Duplex" class="glossexpansion">FDD</a>.</p>
+
+        
+<div><div class="tablenoborder"><div class="tbl-exp" id="vwb1533627838587__tblblock_table_pdc_kgn_xdb"><table cellpadding="4" cellspacing="0" summary="" id="vwb1533627838587__table_pdc_kgn_xdb" class="table" frame="border" border="1" rules="all"><colgroup><col style="width:33.33333333333333%" /><col style="width:66.66666666666666%" /></colgroup><tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry">
+                            <p class="p">Feature Name:</p>
+
+                        </td>
+
+                        <td class="entry">
+                            <p class="p">19-24 Cell Support</p>
+
+                            <p class="p">13-18 Cell Support</p>
+
+                            <p class="p">7-12 Cell Support</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry">
+                            <p class="p">Feature Identity:</p>
+
+                        </td>
+
+                        <td class="entry">
+                            <p class="p">FAJ 121 4426</p>
+
+                            <p class="p">FAJ 121 4242</p>
+
+                            <p class="p">FAJ 121 3020</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry">
+                            <p class="p">Value Package Name:</p>
+
+                        </td>
+
+                        <td class="entry">
+                            <p class="p">Large <a title="E-UTRAN Node B" class="glossexpansion">eNodeB</a></p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry">
+                            <p class="p">Value Package Identity:</p>
+
+                        </td>
+
+                        <td class="entry">
+                            <p class="p">FAJ 801 0403</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry">
+                            <p class="p">Node Type:</p>
+
+                        </td>
+
+                        <td class="entry">
+                            <p class="p">Baseband Radio Node</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry">
+                            <p class="p">Access Type:</p>
+
+                        </td>
+
+                        <td class="entry">
+                            <p class="p"><a title="Long Term Evolution" class="glossexpansion">LTE</a></p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+</div></div></div>
+        
+        <p class="p">With this enhancement, increased <a title="Antenna Bandwidth" class="glossexpansion">ABW</a> of 1560 <a title="Megahertz" class="glossexpansion">MHz</a> is available on a single Baseband 5216,
+            Baseband 6318, and Baseband 6630 for <a title="Time Division Duplex" class="glossexpansion">TDD</a> and <a title="Frequency Division Duplex" class="glossexpansion">FDD</a> mode.</p>
+
+        
+        <p class="p">The enhancement is valid for <a title="Frequency Division Duplex" class="glossexpansion">FDD</a> and <a title="Time Division Duplex" class="glossexpansion">TDD</a> mode, when using 19-24 Cell Support, and for <a title="Time Division Duplex" class="glossexpansion">TDD</a>
+            mode only when using the 7-12 Cell Support, or 13-18 Cell Support features.</p>
+
+        
+        <div id="vwb1533627838587__section_N100DF_N10035_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Capacity and Performance</span></p><div class="section">
+            
+            
+            <p class="p">1560 <a title="Megahertz" class="glossexpansion">MHz</a> <a title="Antenna Bandwidth" class="glossexpansion">ABW</a> is available for <a title="Time Division Duplex" class="glossexpansion">TDD</a> and <a title="Frequency Division Duplex" class="glossexpansion">FDD</a>.</p>
+
+        </div>
+</div>
+        <div id="vwb1533627838587__section_N100EF_N10035_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Operation</span></p><div class="section">
+            
+            
+            <p class="p">No impact.</p>
+
+        </div>
+</div>
+        <div id="vwb1533627838587__section_N100FF_N10035_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Interfaces</span></p><div class="section">
+            
+            
+            
+            <p class="p">No impact.</p>
+
+        </div>
+</div>
+        <div id="vwb1533627838587__section_N10111_N10035_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Hardware</span></p><div class="section">
+            
+            
+            <p class="p">The enhancement operates only on Baseband 5216, Baseband 6318 and Baseband 6630
+                units.</p>
+
+        </div>
+</div>
+        <div id="vwb1533627838587__section_N10121_N10035_N10001"><p class="title sectiontitle"><span class="subhead"><span class="causeremedy"></span>Other Network Elements</span></p><div class="section">
+            
+            
+            
+            <p class="p">No impact.</p>
+
+        </div>
+</div>
+    </div>
+
+</div>
+
+ </div>
+
+
+
+<!--@/BODY-->
+</div>
+<div class="footer-info">
+<div class="footer-line">
+<a class="legal-elem" style="color: #FAFAFA;" onclick="showcopyright();" href="#copyright_table" title="Legal information details for this document including Copyright, Disclaimer, and Trademarks">Legal
+<span class="footer-icons">
+<span id="uparrow" style="display:none" class="legal-up"></span>
+<span id="downarrow" class="legal-down"></span>
+</span>
+</a>
+<span class="pipe-sep">|</span><span class="legal-elem2">&#169; Ericsson AB 2017&#8211;2021, 2023</span>
+</div>
+</div>
+<table width="100%" id="copyright_table" style="display:none" class="copytbl">
+<tr>
+<td class="copyhead">Copyright</td>
+<td class="copyinfo">
+<p>&#169; Ericsson AB 2017&#8211;2021, 2023. All rights reserved. No part of this document may be reproduced in any form without the written permission of the copyright owner.</p>
+</td>
+</tr>
+<tr>
+<td class="copyhead">Disclaimer</td>
+<td class="copyinfo">
+<p>The contents of this document are subject to revision without notice due to continued progress in methodology, design and manufacturing. Ericsson shall have no liability for any error or damage of any kind resulting from the use of this document.</p>
+</td>
+</tr>
+<tr>
+<td class="copyhead">Trademarks</td>
+<td class="copyinfo">
+    <div class="body conbody">
+        <p class="p">All trademarks mentioned herein are the property of their respective owners. These are
+            shown in the document <a href="edw:/alex?fn=232_00651-LZA7016014Uen.K.html" class="xref">Trademark Information</a>.</p>
+
+     </div>
+
+</td>
+</tr>
+</table>
+</body>
+<script type = "text/javascript">var terms = []</script>
+</html>

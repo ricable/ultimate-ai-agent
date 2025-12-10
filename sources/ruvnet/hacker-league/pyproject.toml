@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "hello_world"
+version = "0.1.0"
+description = "A CrewAI project demonstrating multi-model usage with OpenRouter"
+authors = ["Your Name <your.email@example.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+crewai = {version = "0.1.6", extras = ["tools"]}
+python-dotenv = "^1.0.1"
+httpx = "^0.26.0"
+langchain = ">=0.0.335,<0.0.336"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+
+[tool.setuptools.packages.find]
+where = ["src"]

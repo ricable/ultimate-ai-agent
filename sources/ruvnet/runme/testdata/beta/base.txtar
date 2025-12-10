@@ -1,0 +1,56 @@
+exec runme beta run hello
+stdout '^hello[\s]+$'
+! stderr .
+
+exec runme beta run 'hello*'
+stdout '^hello[\s]+hello-world[\s]+$'
+! stderr .
+
+exec runme beta run echo-env
+stdout '^ENV_IN_ENV=env_in_env[\s]+$'
+! stderr .
+
+exec runme beta run unknown
+! stdout .
+stderr 'no tasks to run'
+
+# Test exporting env and using it in another task.
+# It works because multiple tasks in a single run
+# share the session.
+exec runme beta run export echo-exported
+stdout exported-value
+! stderr .
+
+-- experimental/runme.yaml --
+version: v1alpha1
+project:
+  root: "."
+  env:
+    sources:
+      - .env
+# log:
+#   enable: true
+
+-- .env --
+ENV_IN_ENV="env_in_env"
+
+-- README.md --
+```sh {"name": "hello"}
+echo hello
+```
+
+```sh {"name": "hello-world"}
+echo hello-world
+```
+
+```bash {"name": "echo-env"}
+echo "ENV_IN_ENV=${ENV_IN_ENV}"
+```
+
+```sh {"name": "export"}
+export ENV_EXPORTED=exported-value
+```
+
+```sh {"name": "echo-exported"}
+echo "$ENV_EXPORTED"
+```

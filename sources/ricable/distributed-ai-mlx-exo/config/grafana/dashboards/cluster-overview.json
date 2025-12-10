@@ -1,0 +1,316 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "MLX Cluster Overview",
+    "tags": ["mlx", "cluster", "overview"],
+    "style": "dark",
+    "timezone": "browser",
+    "refresh": "10s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Cluster Health Status",
+        "type": "stat",
+        "gridPos": {"h": 4, "w": 6, "x": 0, "y": 0},
+        "targets": [
+          {
+            "expr": "mlx_cluster_nodes_healthy",
+            "refId": "A",
+            "legendFormat": "Healthy Nodes"
+          },
+          {
+            "expr": "mlx_cluster_nodes_total",
+            "refId": "B", 
+            "legendFormat": "Total Nodes"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "thresholds": {
+              "steps": [
+                {"color": "red", "value": 0},
+                {"color": "yellow", "value": 2},
+                {"color": "green", "value": 3}
+              ]
+            }
+          }
+        },
+        "options": {
+          "colorMode": "background",
+          "orientation": "auto",
+          "reduceOptions": {
+            "values": false,
+            "calcs": ["lastNotNull"]
+          }
+        }
+      },
+      {
+        "id": 2,
+        "title": "API Requests Rate",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 6, "y": 0},
+        "targets": [
+          {
+            "expr": "rate(mlx_cluster_api_requests_total[5m])",
+            "refId": "A",
+            "legendFormat": "{{method}} {{endpoint}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Requests/sec",
+            "min": 0
+          }
+        ],
+        "xAxis": {
+          "mode": "time"
+        },
+        "legend": {
+          "show": true,
+          "values": true,
+          "current": true
+        }
+      },
+      {
+        "id": 3,
+        "title": "Node Status Overview",
+        "type": "table",
+        "gridPos": {"h": 8, "w": 6, "x": 18, "y": 0},
+        "targets": [
+          {
+            "expr": "mlx_cluster_node_status",
+            "refId": "A",
+            "format": "table",
+            "instant": true
+          }
+        ],
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {},
+              "renameByName": {
+                "node_id": "Node ID",
+                "Value": "Status"
+              }
+            }
+          }
+        ],
+        "fieldConfig": {
+          "overrides": [
+            {
+              "matcher": {"id": "byName", "options": "Status"},
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "color-background"
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {"options": {"0": {"text": "Healthy", "color": "green"}}, "type": "value"},
+                    {"options": {"1": {"text": "Degraded", "color": "yellow"}}, "type": "value"},
+                    {"options": {"2": {"text": "Critical", "color": "orange"}}, "type": "value"},
+                    {"options": {"3": {"text": "Failed", "color": "red"}}, "type": "value"}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": 4,
+        "title": "CPU Usage by Node",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
+        "targets": [
+          {
+            "expr": "mlx_cluster_node_cpu_usage_percent",
+            "refId": "A",
+            "legendFormat": "{{node_id}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "CPU Usage %",
+            "min": 0,
+            "max": 100
+          }
+        ],
+        "alert": {
+          "conditions": [
+            {
+              "query": {"params": ["A", "5m", "now"]},
+              "reducer": {"params": [], "type": "avg"},
+              "evaluator": {"params": [90], "type": "gt"}
+            }
+          ],
+          "executionErrorState": "alerting",
+          "for": "5m",
+          "frequency": "10s",
+          "handler": 1,
+          "name": "High CPU Usage",
+          "noDataState": "no_data"
+        },
+        "thresholds": [
+          {"value": 80, "colorMode": "critical", "op": "gt"}
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Memory Usage by Node",
+        "type": "graph", 
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8},
+        "targets": [
+          {
+            "expr": "mlx_cluster_node_memory_usage_percent",
+            "refId": "A",
+            "legendFormat": "{{node_id}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Memory Usage %",
+            "min": 0,
+            "max": 100
+          }
+        ],
+        "thresholds": [
+          {"value": 85, "colorMode": "critical", "op": "gt"}
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Network Latency",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 8, "x": 0, "y": 16},
+        "targets": [
+          {
+            "expr": "mlx_cluster_node_network_latency_milliseconds",
+            "refId": "A",
+            "legendFormat": "{{node_id}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Latency (ms)",
+            "min": 0
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "API Response Time (95th percentile)",
+        "type": "singlestat",
+        "gridPos": {"h": 4, "w": 8, "x": 8, "y": 16},
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(mlx_cluster_api_request_duration_seconds_bucket[5m]))",
+            "refId": "A"
+          }
+        ],
+        "valueName": "current",
+        "format": "s",
+        "thresholds": "1,5",
+        "colorBackground": true,
+        "colors": ["green", "yellow", "red"]
+      },
+      {
+        "id": 8,
+        "title": "Error Rate",
+        "type": "singlestat",
+        "gridPos": {"h": 4, "w": 8, "x": 16, "y": 16},
+        "targets": [
+          {
+            "expr": "rate(mlx_cluster_errors_total[5m])",
+            "refId": "A"
+          }
+        ],
+        "valueName": "current",
+        "format": "ops",
+        "thresholds": "0.1,1",
+        "colorBackground": true,
+        "colors": ["green", "yellow", "red"]
+      },
+      {
+        "id": 9,
+        "title": "Active Models",
+        "type": "table",
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 20},
+        "targets": [
+          {
+            "expr": "mlx_cluster_models_loaded",
+            "refId": "A",
+            "format": "table",
+            "instant": true
+          }
+        ],
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "renameByName": {
+                "node_id": "Node",
+                "Value": "Models Loaded"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Cluster Throughput",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 20},
+        "targets": [
+          {
+            "expr": "mlx_cluster_throughput_requests_per_second",
+            "refId": "A",
+            "legendFormat": "Requests/sec"
+          },
+          {
+            "expr": "sum(rate(mlx_cluster_tokens_generated_total[5m]))",
+            "refId": "B",
+            "legendFormat": "Tokens/sec"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Rate",
+            "min": 0
+          }
+        ]
+      }
+    ],
+    "templating": {
+      "list": [
+        {
+          "name": "node",
+          "type": "query",
+          "query": "label_values(mlx_cluster_node_status, node_id)",
+          "refresh": 1,
+          "includeAll": true,
+          "allValue": ".*"
+        }
+      ]
+    },
+    "annotations": {
+      "list": [
+        {
+          "name": "Deployments",
+          "datasource": "Prometheus",
+          "expr": "changes(mlx_cluster_nodes_total[1m]) > 0",
+          "titleFormat": "Deployment",
+          "textFormat": "Cluster topology changed"
+        }
+      ]
+    }
+  }
+}

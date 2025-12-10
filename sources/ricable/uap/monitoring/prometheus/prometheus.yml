@@ -1,0 +1,92 @@
+# Prometheus configuration for UAP platform
+# Comprehensive monitoring setup with service discovery and alerting
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'uap-production'
+    environment: 'production'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+
+# Load alerting rules
+rule_files:
+  - "alert_rules/*.yml"
+
+# Scrape configurations
+scrape_configs:
+  # UAP Backend application metrics
+  - job_name: 'uap-backend'
+    static_configs:
+      - targets: ['localhost:8000']
+    metrics_path: '/api/monitoring/prometheus'
+    scrape_interval: 10s
+    honor_labels: true
+    scrape_timeout: 5s
+
+  # System metrics (node_exporter)
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['localhost:9100']
+    scrape_interval: 15s
+
+  # PostgreSQL metrics
+  - job_name: 'postgres-exporter'
+    static_configs:
+      - targets: ['localhost:9187']
+    scrape_interval: 30s
+
+  # Redis metrics
+  - job_name: 'redis-exporter'
+    static_configs:
+      - targets: ['localhost:9121']
+    scrape_interval: 15s
+
+  # Ray cluster metrics
+  - job_name: 'ray-cluster'
+    static_configs:
+      - targets: ['localhost:8265']
+    metrics_path: '/api/v0/metrics'
+    scrape_interval: 30s
+
+  # MLX inference metrics
+  - job_name: 'mlx-inference'
+    static_configs:
+      - targets: ['localhost:8001']
+    metrics_path: '/metrics'
+    scrape_interval: 15s
+
+  # Jaeger tracing metrics
+  - job_name: 'jaeger'
+    static_configs:
+      - targets: ['localhost:14269']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+
+  # Frontend application metrics (via backend proxy)
+  - job_name: 'uap-frontend'
+    static_configs:
+      - targets: ['localhost:3000']
+    metrics_path: '/api/metrics'
+    scrape_interval: 30s
+
+# Remote write for long-term storage (optional)
+# remote_write:
+#   - url: "https://prometheus-remote-write-endpoint/api/v1/write"
+#     queue_config:
+#       max_samples_per_send: 1000
+#       max_shards: 200
+#       capacity: 2500
+
+# Storage configuration
+storage:
+  tsdb:
+    retention.time: 30d
+    retention.size: 50GB
+    wal-compression: true

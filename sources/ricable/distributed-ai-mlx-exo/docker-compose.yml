@@ -1,0 +1,348 @@
+version: '3.8'
+
+services:
+  # API Gateway - Main entry point
+  api-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.api-gateway
+    ports:
+      - "8000:8000"
+      - "9090:9090"  # Prometheus metrics
+    volumes:
+      - ./config:/app/config:ro
+      - ./logs:/app/logs
+      - ./models:/app/models
+      - ./data:/app/data
+    environment:
+      - NODE_ID=api-gateway-main
+      - HOST=0.0.0.0
+      - PORT=8000
+      - CONFIG_FILE=/app/config/api_gateway.yaml
+      - LOG_LEVEL=info
+    networks:
+      - cluster-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    depends_on:
+      - prometheus
+      - grafana
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2.0'
+        reservations:
+          memory: 2G
+          cpus: '1.0'
+
+  # Worker Node 1 - M1 Max Mac Studio
+  worker-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./config:/app/config:ro
+      - ./logs:/app/logs
+      - ./models:/app/models
+      - ./data:/app/data
+    environment:
+      - NODE_ID=mac-studio-m1-1
+      - HOST=0.0.0.0
+      - PORT=8001
+      - WORKER_TYPE=inference
+      - CHIP_TYPE=M1_MAX
+      - MEMORY_GB=64
+      - GPU_CORES=32
+    networks:
+      cluster-network:
+        ipv4_address: 172.20.0.10
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: '4.0'
+
+  # Worker Node 2 - M1 Max Mac Studio
+  worker-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    ports:
+      - "8002:8001"
+    volumes:
+      - ./config:/app/config:ro
+      - ./logs:/app/logs
+      - ./models:/app/models
+      - ./data:/app/data
+    environment:
+      - NODE_ID=mac-studio-m1-2
+      - HOST=0.0.0.0
+      - PORT=8001
+      - WORKER_TYPE=inference
+      - CHIP_TYPE=M1_MAX
+      - MEMORY_GB=64
+      - GPU_CORES=32
+    networks:
+      cluster-network:
+        ipv4_address: 172.20.0.11
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: '4.0'
+
+  # Worker Node 3 - M2 Max Mac Studio  
+  worker-3:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    ports:
+      - "8003:8001"
+    volumes:
+      - ./config:/app/config:ro
+      - ./logs:/app/logs
+      - ./models:/app/models
+      - ./data:/app/data
+    environment:
+      - NODE_ID=mac-studio-m2
+      - HOST=0.0.0.0
+      - PORT=8001
+      - WORKER_TYPE=inference
+      - CHIP_TYPE=M2_MAX
+      - MEMORY_GB=32
+      - GPU_CORES=30
+    networks:
+      cluster-network:
+        ipv4_address: 172.20.0.12
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 6G
+          cpus: '3.0'
+
+
+  # Prometheus for metrics collection
+  prometheus:
+    image: prom/prometheus:v2.47.0
+    ports:
+      - "9091:9090"
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./config/prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=30d'
+      - '--web.enable-lifecycle'
+      - '--web.enable-admin-api'
+      - '--alertmanager.url=http://alertmanager:9093'
+    networks:
+      - cluster-network
+    restart: unless-stopped
+    depends_on:
+      - alertmanager
+
+  # AlertManager for handling alerts
+  alertmanager:
+    image: prom/alertmanager:v0.26.0
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./config/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - alertmanager-data:/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--storage.path=/alertmanager'
+      - '--web.external-url=http://localhost:9093'
+    networks:
+      - cluster-network
+    restart: unless-stopped
+
+  # Grafana for monitoring dashboards
+  grafana:
+    image: grafana/grafana:10.1.0
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./config/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./config/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./config/grafana/dashboards:/etc/grafana/provisioning/dashboards/mlx-cluster:ro
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=mlx-cluster-admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-worldmap-panel
+      - GF_ALERTING_ENABLED=true
+      - GF_ALERTING_EXECUTE_ALERTS=true
+    networks:
+      - cluster-network
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+
+  # Loki for log aggregation
+  loki:
+    image: grafana/loki:2.9.0
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./config/loki.yml:/etc/loki/local-config.yaml:ro
+      - loki-data:/loki
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - cluster-network
+    restart: unless-stopped
+
+  # Promtail for log collection
+  promtail:
+    image: grafana/promtail:2.9.0
+    volumes:
+      - ./config/promtail.yml:/etc/promtail/config.yml:ro
+      - ./logs:/var/log/mlx-cluster:ro
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - cluster-network
+    restart: unless-stopped
+
+  # Node Exporter for system metrics
+  node-exporter:
+    image: prom/node-exporter:v1.6.1
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    networks:
+      - cluster-network
+    restart: unless-stopped
+
+  # Redis for caching and coordination
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 1gb --maxmemory-policy allkeys-lru
+    networks:
+      - cluster-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+  # nginx for load balancing and SSL termination
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./logs/nginx:/var/log/nginx
+    networks:
+      - cluster-network
+    restart: unless-stopped
+    depends_on:
+      - api-gateway
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # Model repository and file server
+  model-server:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./models:/usr/share/nginx/html/models:ro
+      - ./monitoring/nginx-models.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - cluster-network
+    restart: unless-stopped
+
+networks:
+  cluster-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
+
+volumes:
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  alertmanager-data:
+    driver: local
+  loki-data:
+    driver: local
+  redis-data:
+    driver: local
+  model-cache:
+    driver: local
+
+# Docker Compose Extensions for development
+x-common-logging: &common-logging
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "100m"
+      max-file: "3"
+
+x-development-overrides:
+  # Development environment overrides
+  api-gateway:
+    <<: *common-logging
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=debug
+      - AUTO_RELOAD=true
+    volumes:
+      - ./src:/app/src  # Mount source for hot reload
+
+  worker-1:
+    <<: *common-logging
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=debug
+
+# Production optimizations
+x-production-overrides:
+  api-gateway:
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3

@@ -1,0 +1,57 @@
+# SAFLA Package Manifest
+# Specifies additional files to include in the distribution
+
+# Include documentation
+include README.md
+include LICENSE
+include CHANGELOG.md
+recursive-include docs *.md *.rst *.txt
+
+# Include configuration files
+include requirements.txt
+include pyproject.toml
+include setup.cfg
+include setup.py
+
+# Include package data
+recursive-include safla *.py
+recursive-include safla *.json
+recursive-include safla *.yaml
+recursive-include safla *.yml
+include safla/py.typed
+
+# Include examples
+recursive-include examples *.py *.md *.json *.yaml
+
+# Include test files
+recursive-include tests *.py
+
+# Include configuration templates
+recursive-include .roo *.json *.yaml *.md
+
+# Exclude development and build files
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.pyd
+global-exclude __pycache__
+global-exclude .git*
+global-exclude .DS_Store
+global-exclude *.so
+global-exclude .pytest_cache
+global-exclude .mypy_cache
+global-exclude .coverage
+global-exclude htmlcov
+global-exclude build
+global-exclude dist
+global-exclude *.egg-info
+
+# Exclude IDE files
+global-exclude .vscode
+global-exclude .idea
+global-exclude *.swp
+global-exclude *.swo
+
+# Exclude temporary files
+global-exclude *~
+global-exclude *.tmp
+global-exclude *.bak

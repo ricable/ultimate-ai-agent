@@ -1,0 +1,161 @@
+{
+  "name": "Agentic TypeScript Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20",
+      "nodeGypDependencies": true
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "dockerDashComposeVersion": "v2"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.vscode-json",
+        "unifiedjs.vscode-mdx",
+        "ms-vscode.vscode-react-native",
+        "formulahendry.auto-rename-tag",
+        "christian-kohler.path-intellisense",
+        "ms-playwright.playwright",
+        "ms-vscode.vscode-typescript-next"
+      ],
+      "settings": {
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "typescript.preferences.includePackageJsonAutoImports": "auto",
+        "[typescript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        },
+        "[javascript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescriptreact]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "eslint.workingDirectories": ["./"],
+        "typescript.suggest.autoImports": true,
+        "typescript.updateImportsOnFileMove.enabled": "always"
+      }
+    },
+    "devpod": {
+      "prebuildRepository": "ghcr.io/ricable/polyglot-devenv-agentic-typescript"
+    }
+  },
+  "containerEnv": {
+    "NODE_ENV": "development",
+    "NPM_CONFIG_UPDATE_NOTIFIER": "false",
+    "NEXT_TELEMETRY_DISABLED": "1",
+    "AGUI_LOG_LEVEL": "debug",
+    "MCP_SERVER_URL": "http://host.docker.internal:3001",
+    "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}",
+    "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
+    "COPILOTKIT_API_BASE_URL": "http://localhost:3000/api/copilotkit",
+    "AGUI_RUNTIME_MODE": "development"
+  },
+  "mounts": [
+    "type=volume,source=npm-cache,target=/home/vscode/.npm",
+    "type=volume,source=node-modules,target=/workspace/node_modules",
+    "type=volume,source=next-cache,target=/workspace/.next"
+  ],
+  "forwardPorts": [
+    3000,
+    3001,
+    3002,
+    8000,
+    8080,
+    5173,
+    4111,
+    2024,
+    9000,
+    5000
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Next.js Development Server",
+      "onAutoForward": "openBrowser"
+    },
+    "3001": {
+      "label": "MCP Server",
+      "onAutoForward": "silent"
+    },
+    "3002": {
+      "label": "Agent UI Development",
+      "onAutoForward": "notify"
+    },
+    "8000": {
+      "label": "Backend API Server",
+      "onAutoForward": "notify"
+    },
+    "8080": {
+      "label": "Alternative API Server",
+      "onAutoForward": "silent"
+    },
+    "5173": {
+      "label": "Vite Development Server",
+      "onAutoForward": "notify"
+    },
+    "4111": {
+      "label": "Mastra Client",
+      "onAutoForward": "silent"
+    },
+    "2024": {
+      "label": "LangGraph Server",
+      "onAutoForward": "silent"
+    },
+    "9000": {
+      "label": "LlamaIndex Server",
+      "onAutoForward": "silent"
+    },
+    "5000": {
+      "label": "Additional Development Server",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": [
+    "echo 'Setting up Agentic TypeScript environment...'",
+    "echo 'Installing base dependencies...'",
+    "npm install -g pnpm@latest",
+    "echo 'Creating Next.js project structure...'",
+    "mkdir -p src/app src/components src/lib src/types src/agents src/agui tests",
+    "echo 'Creating package.json with AG-UI dependencies...'",
+    "cat > package.json << 'EOF'\n{\n  \"name\": \"agentic-typescript\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"scripts\": {\n    \"dev\": \"next dev\",\n    \"build\": \"next build\",\n    \"start\": \"next start\",\n    \"lint\": \"next lint\",\n    \"type-check\": \"tsc --noEmit\",\n    \"test\": \"jest\",\n    \"test:watch\": \"jest --watch\"\n  },\n  \"dependencies\": {\n    \"@copilotkit/react-core\": \"1.8.14-next.4\",\n    \"@copilotkit/react-ui\": \"1.8.14-next.4\",\n    \"@copilotkit/runtime\": \"1.8.14-next.4\",\n    \"@copilotkit/runtime-client-gql\": \"1.8.14-next.4\",\n    \"@copilotkit/shared\": \"1.8.14-next.4\",\n    \"@ai-sdk/openai\": \"^1.3.22\",\n    \"@radix-ui/react-dropdown-menu\": \"^2.1.6\",\n    \"@radix-ui/react-slot\": \"^1.1.2\",\n    \"@radix-ui/react-tabs\": \"^1.1.3\",\n    \"class-variance-authority\": \"^0.7.1\",\n    \"clsx\": \"^2.1.1\",\n    \"lucide-react\": \"^0.477.0\",\n    \"next\": \"15.2.1\",\n    \"next-themes\": \"^0.4.6\",\n    \"openai\": \"^4.98.0\",\n    \"react\": \"^19.0.0\",\n    \"react-dom\": \"^19.0.0\",\n    \"tailwind-merge\": \"^3.0.2\",\n    \"tailwindcss-animate\": \"^1.0.7\",\n    \"uuid\": \"^11.1.0\",\n    \"zod\": \"^3.23.8\"\n  },\n  \"devDependencies\": {\n    \"@types/node\": \"^20\",\n    \"@types/react\": \"^19\",\n    \"@types/react-dom\": \"^19\",\n    \"@types/uuid\": \"^9.0.0\",\n    \"eslint\": \"^9\",\n    \"eslint-config-next\": \"15.2.1\",\n    \"jest\": \"^29.7.0\",\n    \"@testing-library/react\": \"^14.1.2\",\n    \"@testing-library/jest-dom\": \"^6.1.5\",\n    \"postcss\": \"^8\",\n    \"tailwindcss\": \"^4\",\n    \"typescript\": \"^5\"\n  }\n}\nEOF",
+    "echo 'Installing dependencies...'",
+    "npm install",
+    "echo 'Creating Next.js configuration...'",
+    "cat > next.config.ts << 'EOF'\nimport type { NextConfig } from 'next'\n\nconst nextConfig: NextConfig = {\n  eslint: {\n    ignoreDuringBuilds: true,\n  },\n  typescript: {\n    ignoreBuildErrors: false,\n  },\n  experimental: {\n    serverComponentsExternalPackages: ['@copilotkit/runtime'],\n  },\n}\n\nexport default nextConfig\nEOF",
+    "echo 'Creating TypeScript configuration...'",
+    "cat > tsconfig.json << 'EOF'\n{\n  \"compilerOptions\": {\n    \"lib\": [\"dom\", \"dom.iterable\", \"es6\"],\n    \"allowJs\": true,\n    \"skipLibCheck\": true,\n    \"strict\": true,\n    \"noEmit\": true,\n    \"esModuleInterop\": true,\n    \"module\": \"esnext\",\n    \"moduleResolution\": \"bundler\",\n    \"resolveJsonModule\": true,\n    \"isolatedModules\": true,\n    \"jsx\": \"preserve\",\n    \"incremental\": true,\n    \"plugins\": [\n      {\n        \"name\": \"next\"\n      }\n    ],\n    \"baseUrl\": \".\",\n    \"paths\": {\n      \"@/*\": [\"./src/*\"]\n    }\n  },\n  \"include\": [\"next-env.d.ts\", \"**/*.ts\", \"**/*.tsx\", \".next/types/**/*.ts\"],\n  \"exclude\": [\"node_modules\"]\n}\nEOF",
+    "echo 'Creating Tailwind configuration...'",
+    "cat > tailwind.config.ts << 'EOF'\nimport type { Config } from 'tailwindcss'\n\nconst config: Config = {\n  content: [\n    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',\n    './src/components/**/*.{js,ts,jsx,tsx,mdx}',\n    './src/app/**/*.{js,ts,jsx,tsx,mdx}',\n  ],\n  theme: {\n    extend: {\n      colors: {\n        background: 'hsl(var(--background))',\n        foreground: 'hsl(var(--foreground))',\n      },\n    },\n  },\n  plugins: [require('tailwindcss-animate')],\n}\nexport default config\nEOF",
+    "echo 'Creating basic app structure...'",
+    "mkdir -p src/app/api/copilotkit/[integrationId]",
+    "cat > src/app/layout.tsx << 'EOF'\nimport type { Metadata } from 'next'\nimport './globals.css'\n\nexport const metadata: Metadata = {\n  title: 'Agentic TypeScript App',\n  description: 'AG-UI powered development environment',\n}\n\nexport default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  return (\n    <html lang=\"en\">\n      <body>{children}</body>\n    </html>\n  )\n}\nEOF",
+    "cat > src/app/page.tsx << 'EOF'\nexport default function Home() {\n  return (\n    <main className=\"flex min-h-screen flex-col items-center justify-between p-24\">\n      <div className=\"z-10 max-w-5xl w-full items-center justify-between font-mono text-sm\">\n        <h1 className=\"text-4xl font-bold text-center\">\n          Agentic TypeScript Environment\n        </h1>\n        <p className=\"text-center mt-4 text-lg\">\n          AG-UI powered development environment is ready! 🤖📘\n        </p>\n        <div className=\"mt-8 grid grid-cols-1 md:grid-cols-2 gap-4\">\n          <div className=\"p-4 border rounded\">\n            <h2 className=\"text-xl font-semibold\">Features</h2>\n            <ul className=\"mt-2 space-y-1\">\n              <li>• CopilotKit Integration</li>\n              <li>• AG-UI Protocol Support</li>\n              <li>• MCP Server Connection</li>\n              <li>• Agent Development</li>\n            </ul>\n          </div>\n          <div className=\"p-4 border rounded\">\n            <h2 className=\"text-xl font-semibold\">Quick Start</h2>\n            <ul className=\"mt-2 space-y-1\">\n              <li>• npm run dev - Start development</li>\n              <li>• npm run type-check - Type checking</li>\n              <li>• npm test - Run tests</li>\n              <li>• npm run lint - Code linting</li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </main>\n  )\n}\nEOF",
+    "cat > src/app/globals.css << 'EOF'\n@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n:root {\n  --background: 0 0% 100%;\n  --foreground: 222.2 84% 4.9%;\n}\n\n@media (prefers-color-scheme: dark) {\n  :root {\n    --background: 222.2 84% 4.9%;\n    --foreground: 210 40% 98%;\n  }\n}\n\nbody {\n  color: rgb(var(--foreground));\n  background: linear-gradient(\n      to bottom,\n      transparent,\n      rgb(var(--background))\n    )\n    rgb(var(--background));\n}\nEOF",
+    "echo 'Creating basic MCP client integration...'",
+    "cat > src/lib/mcp-client.ts << 'EOF'\n// MCP Client for connecting to the polyglot MCP server\nexport class MCPClient {\n  private baseUrl: string;\n\n  constructor(baseUrl = process.env.MCP_SERVER_URL || 'http://localhost:3001') {\n    this.baseUrl = baseUrl;\n  }\n\n  async callTool(name: string, params: any) {\n    const response = await fetch(`${this.baseUrl}/tools/${name}`, {\n      method: 'POST',\n      headers: { 'Content-Type': 'application/json' },\n      body: JSON.stringify(params),\n    });\n    return response.json();\n  }\n\n  async listEnvironments() {\n    return this.callTool('environment_detect', {});\n  }\n\n  async provisionDevPod(environment: string, count = 1) {\n    return this.callTool('devpod_provision', { environment, count });\n  }\n}\n\nexport const mcpClient = new MCPClient();\nEOF",
+    "echo 'Creating agent types...'",
+    "cat > src/types/agent.ts << 'EOF'\nexport interface AgentConfig {\n  id: string;\n  name: string;\n  description: string;\n  capabilities: string[];\n  endpoint?: string;\n}\n\nexport interface AgentMessage {\n  id: string;\n  role: 'user' | 'assistant' | 'system';\n  content: string;\n  timestamp: Date;\n}\n\nexport interface AgentResponse {\n  success: boolean;\n  data?: any;\n  error?: string;\n  agentId: string;\n}\nEOF",
+    "echo 'Agentic TypeScript environment ready! 🤖📘'"
+  ],
+  "postStartCommand": [
+    "echo 'Agentic TypeScript DevPod ready!'",
+    "echo '🚀 Start development server: npm run dev'",
+    "echo '🔍 Type check: npm run type-check'",
+    "echo '🧪 Run tests: npm test'",
+    "echo '🎨 Lint code: npm run lint'"
+  ],
+  "postAttachCommand": "echo 'Welcome to Agentic TypeScript DevPod! 🤖📘 Ready for AG-UI development.'"
+}

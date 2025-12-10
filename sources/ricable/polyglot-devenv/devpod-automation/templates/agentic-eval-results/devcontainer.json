@@ -1,0 +1,128 @@
+{
+  "name": "Agentic Evaluation Results Analysis Environment",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20",
+      "nodeGypDependencies": true
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "username": "vscode",
+      "userUid": "1000",
+      "userGid": "1000"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.pylint",
+        "ms-python.mypy-type-checker",
+        "charliermarsh.ruff",
+        "ms-python.debugpy",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        "ms-toolsai.vscode-jupyter-slideshow",
+        "ms-vscode.vscode-typescript-next",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "eamodio.gitlens",
+        "ms-vscode.test-adapter-converter",
+        "mechatroner.rainbow-csv",
+        "randomfractalsinc.vscode-data-preview"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.formatting.provider": "none",
+        "editor.formatOnSave": true,
+        "editor.rulers": [88, 100, 120],
+        "files.trimTrailingWhitespace": true,
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff",
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        },
+        "jupyter.notebookFileRoot": "${workspaceFolder}",
+        "csv-preview.resizeColumns": "all"
+      }
+    },
+    "devpod": {
+      "prebuildRepository": "ghcr.io/ricable/polyglot-devenv-agentic-results"
+    }
+  },
+  "containerEnv": {
+    "AGENTIC_EVAL_ENV": "results-analysis",
+    "PYTHONPATH": "/workspace/src",
+    "NODE_ENV": "development",
+    "EVALUATION_MODE": "analysis",
+    "RESULTS_DATABASE_URL": "sqlite:///workspace/agentic-eval/database/results.db",
+    "ANALYSIS_OUTPUT_DIR": "/workspace/agentic-eval/reports",
+    "DATA_VISUALIZATION": "enabled",
+    "EXPORT_FORMATS": "json,csv,html,pdf"
+  },
+  "mounts": [
+    "type=volume,source=python-cache,target=/home/vscode/.cache/pip",
+    "type=volume,source=npm-cache,target=/home/vscode/.npm",
+    "type=volume,source=agentic-results-db,target=/workspace/agentic-eval/database",
+    "type=volume,source=shared-eval-results,target=/workspace/agentic-eval/shared"
+  ],
+  "forwardPorts": [
+    8080,
+    8888,
+    5000,
+    3000
+  ],
+  "portsAttributes": {
+    "8080": {
+      "label": "Results Dashboard",
+      "onAutoForward": "notify"
+    },
+    "8888": {
+      "label": "Jupyter Notebook Server",
+      "onAutoForward": "notify"
+    },
+    "5000": {
+      "label": "Analysis API Server",
+      "onAutoForward": "notify"
+    },
+    "3000": {
+      "label": "Results Visualization Frontend",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": [
+    "echo 'Setting up Agentic Evaluation Results Analysis Environment...'",
+    "pip install uv",
+    "echo 'Installing Python data analysis packages...'",
+    "uv pip install pandas numpy matplotlib seaborn plotly dash streamlit jupyter jupyterlab",
+    "uv pip install fastapi uvicorn pydantic sqlalchemy sqlite3",
+    "uv pip install requests httpx aiohttp",
+    "uv pip install scikit-learn scipy statsmodels",
+    "echo 'Installing Node.js packages for visualization...'",
+    "npm install -g http-server live-server",
+    "npm install d3 chart.js plotly.js vue@latest vite@latest",
+    "echo 'Installing additional tools...'",
+    "npm install -g ruv-swarm@latest",
+    "npx claude-flow@alpha init",
+    "npm install ruv-swarm-wasm@latest",
+    "echo 'Setting up comprehensive analysis framework...'",
+    "bash /workspace/devpod-automation/scripts/setup-agentic-framework.sh results 2>/dev/null || echo 'Framework setup script not found, creating basic structure'",
+    "mkdir -p /workspace/agentic-eval/{database,shared/{claude-results,gemini-results,comparative-results},reports/{daily,weekly,monthly,comparative},notebooks/{exploratory,comparative,performance,quality},scripts/{data-processing,visualization,reporting,export},configs/{analysis-settings,visualization-themes,export-templates},dashboards/{real-time,historical,comparative}}",
+    "echo 'Setting up Jupyter Lab...'",
+    "jupyter lab --generate-config",
+    "echo 'Creating analysis database schema...'",
+    "python -c \"import sqlite3; conn = sqlite3.connect('/workspace/agentic-eval/database/results.db'); conn.execute('CREATE TABLE IF NOT EXISTS evaluations (id INTEGER PRIMARY KEY, tool TEXT, prompt TEXT, response TEXT, score REAL, timestamp DATETIME)'); conn.close()\"",
+    "echo 'Installing additional visualization tools...'",
+    "pip install bokeh altair wordcloud networkx",
+    "echo 'Setting up data import/export utilities...'",
+    "pip install openpyxl xlsxwriter reportlab weasyprint",
+    "echo 'Adapting prompts for results analysis environment...'",
+    "python3 /workspace/devpod-automation/scripts/adapt-prompts-for-environment.py results 2>/dev/null || echo 'Prompt adaptation will be done manually'",
+    "echo 'Results Analysis Environment ready'"
+  ],
+  "postStartCommand": "echo 'Agentic Evaluation Results Analysis DevPod ready! 📊📈\\nAnalysis Tools: Pandas, NumPy, Matplotlib, Plotly\\nDashboard: Streamlit, Dash\\nDatabase: SQLite\\nJupyter Lab available on port 8888'",
+  "postAttachCommand": "echo 'Welcome to Agentic Evaluation Results Analysis DevPod! 📊🔬\\n\\n🧮 Data Analysis Stack:\\n  - Pandas, NumPy (data processing)\\n  - Matplotlib, Seaborn, Plotly (visualization)\\n  - Scikit-learn (machine learning)\\n  - Jupyter Lab (interactive analysis)\\n\\n📈 Visualization Tools:\\n  - Streamlit/Dash (dashboards)\\n  - D3.js, Chart.js (web viz)\\n  - Bokeh, Altair (advanced plots)\\n\\n🗄️ Data Management:\\n  - SQLite database (results.db)\\n  - CSV/JSON import/export\\n  - Shared results volumes\\n\\n📁 Analysis Framework:\\n  - Notebooks: /workspace/agentic-eval/notebooks/\\n  - Reports: /workspace/agentic-eval/reports/\\n  - Database: /workspace/agentic-eval/database/\\n  - Dashboards: /workspace/agentic-eval/dashboards/\\n\\n🚀 Ready for comprehensive evaluation analysis!'"
+}

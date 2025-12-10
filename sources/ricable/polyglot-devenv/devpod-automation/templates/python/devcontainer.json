@@ -1,0 +1,72 @@
+{
+  "name": "Python Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
+  "features": {},
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.pylint",
+        "ms-python.mypy-type-checker",
+        "charliermarsh.ruff",
+        "ms-python.debugpy"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.formatting.provider": "none",
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff",
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        }
+      }
+    },
+    "devpod": {
+      "prebuildRepository": "ghcr.io/ricable/polyglot-devenv-python"
+    }
+  },
+  "containerEnv": {
+    "PYTHONPATH": "/workspace/src",
+    "UV_CACHE_DIR": "/workspace/.uv-cache",
+    "DEVBOX_ENV": "python",
+    "CLAUDE_PROJECT_ROOT": "/workspace"
+  },
+  "mounts": [
+    "type=volume,source=uv-cache,target=/workspace/.uv-cache"
+  ],
+  "forwardPorts": [
+    8000,
+    5000
+  ],
+  "portsAttributes": {},
+  "postCreateCommand": [
+    "echo 'Setting up Python environment...'",
+    "pip install uv",
+    "uv sync --dev",
+    "echo 'Setting up Claude Code hooks...'",
+    "if [ -d '/workspace/devpod-automation/templates/.claude-core' ]; then cp -r /workspace/devpod-automation/templates/.claude-core /workspace/.claude && chmod +x /workspace/.claude/hooks/*.py /workspace/.claude/mcp/*.sh /workspace/.claude/test-hooks.sh; fi",
+    "echo 'Installing MCP dependencies...'",
+    "if [ -f '/workspace/.claude/mcp/requirements-mcp.txt' ]; then pip install -r /workspace/.claude/mcp/requirements-mcp.txt; fi",
+    "echo 'Installing claude-flow...'",
+    "npm install -g claude-flow@alpha",
+    "echo 'Python environment with Claude Code hooks and claude-flow ready'"
+  ],
+  "postStartCommand": [
+    "echo 'Python DevPod ready. Claude Code hooks: /workspace/.claude/'",
+    "echo 'Initializing claude-flow...'",
+    "npx --yes claude-flow@alpha init --force",
+    "echo 'Starting claude-flow hive-mind wizard...'",
+    "npx --yes claude-flow@alpha hive-mind wizard",
+    "echo 'Spawning snake game task...'",
+    "npx --yes claude-flow@alpha hive-mind spawn \"create a snake game in the language of your devpod dev env\" --claude"
+  ],
+  "postAttachCommand": [
+    "echo 'Welcome to Python DevPod with AI automation! 🐍🤖'",
+    "echo 'Claude-flow commands available:'",
+    "echo '  npx claude-flow@alpha --help'",
+    "echo '  npx claude-flow@alpha status'",
+    "echo '  npx claude-flow@alpha hive-mind wizard'",
+    "echo '  npx claude-flow@alpha hive-mind spawn \"<task>\" --claude'"
+  ]
+}

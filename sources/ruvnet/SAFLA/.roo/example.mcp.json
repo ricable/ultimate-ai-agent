@@ -1,0 +1,65 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "alwaysAllow": [
+        "resolve-library-id",
+        "get-library-docs"
+      ],
+      "timeout": 300
+    },
+    "safla": {
+      "command": "python",
+      "args": [
+        "safla/mcp_stdio_server.py"
+      ],
+      "alwaysAllow": [
+        "validate_installation",
+        "get_system_info",
+        "check_gpu_status",
+        "get_config_summary",
+        "deploy_safla_instance",
+        "check_deployment_status",
+        "scale_deployment",
+        "optimize_memory_usage",
+        "optimize_vector_operations",
+        "analyze_performance_bottlenecks",
+        "manage_user_sessions",
+        "backup_safla_data",
+        "restore_safla_data",
+        "monitor_system_health",
+        "run_integration_tests",
+        "validate_memory_operations",
+        "test_mcp_connectivity",
+        "benchmark_vector_operations",
+        "benchmark_memory_performance",
+        "benchmark_mcp_throughput",
+        "create_agent_session",
+        "interact_with_agent",
+        "list_agent_sessions",
+        "terminate_agent_session",
+        "get_system_awareness",
+        "update_awareness_state",
+        "analyze_system_introspection",
+        "create_goal",
+        "list_goals",
+        "update_goal",
+        "delete_goal",
+        "evaluate_goal_progress",
+        "list_strategies",
+        "select_optimal_strategy",
+        "create_custom_strategy",
+        "evaluate_strategy_performance",
+        "trigger_learning_cycle",
+        "get_learning_metrics",
+        "update_learning_parameters",
+        "analyze_adaptation_patterns"
+      ],
+      "timeout": 60
+    }
+  }
+}

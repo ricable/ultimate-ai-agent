@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:xalan="http://xml.apache.org/xalan" xmlns:lxslt="http://xml.apache.org/xslt" lang="en" xml:lang="en">
+<head>
+<meta name="HTMLPACKLINKS" content="8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="PREP" content="" />
+<meta name="DATE" content="2025-05-26" />
+<meta name="DOCNO" content="1444/155 54-LZA 701 6014/33-V1 Uen" />
+<meta name="REV" content="FK" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-type" />
+<meta name="THEMES" content="MOM" />
+<meta name="DOCNAME" content="MANAGED OBJECT MODEL" />
+<meta name="TITLE" content="class SctpProfile" />
+<meta name="SUBTITLE" content="G3G4_MOMCPI CXP2020502_2 R32C08" />
+<link title="Style" href="edw:/alex?fn=hilda.css" type="text/css" rel="stylesheet" />
+<link title="Style" href="edw:/alex?fn=3_15554-LZA7016014_33-V1Uen.FK.css" type="text/css" rel="stylesheet" />
+<script src="edw:/alex?fn=dwcommon.js" language="javascript" type="text/javascript"> </script>
+<title>class SctpProfile</title>
+</head>
+<body>
+
+<script language="JavaScript" src="edw:/alex?fn=switch_theme.js" type="text/javascript"></script>
+<div id="header">
+<table class="docinfo">
+<tr>
+<td>&nbsp; &nbsp; <span class="fcaption"><span class="caption">Managed Object Model</span>&nbsp; &nbsp; &nbsp; &nbsp; 1444/155 54-LZA 701 6014/33-V1 Uen FK</span>&nbsp; &nbsp; </td>
+</tr>
+</table>
+</div>
+<h1 class="TITLE">
+<a name="TITLE">class&#160;SctpProfile</a>
+</h1>
+<dl>
+<dd>
+<a href="edw:/alex?fn=210_15554-LZA7016014_33-V1Uen.FK.html">ManagedElement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=219_15554-LZA7016014_33-V1Uen.FK.html">Transport</a>
+<dl class="child_tree">
+<dd>
+<b><a href="edw:/alex?fn=1444_15554-LZA7016014_33-V1Uen.FK.html">SctpProfile</a></b>
+<dl class="child_tree"></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<p>
+<span class="desc">SctpProfile defines configuration that controls behaviour of SctpEndpoint.<br />
+<br />SctpProfile MO can be shared by one or more SctpEndpoint MOs.</span>
+<br />
+<br />
+</p>
+</td>
+</tr>
+</table>
+<dl>
+<dt>
+<b>References to:</b>
+</dt>
+<dd>
+<a href="edw:/alex?fn=261_15554-LZA7016014_33-V1Uen.FK.html">ManagedObject</a>;
+			</dd>
+</dl>
+<table width="100%" cellspacing="0" cellpadding="3" border="1" class="tblcnt">
+<tr class="TableSubHeadingColor">
+<td colspan="2"><b>Attributes</b></td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=2014_15554-LZA7016014_33-V1Uen.FK.html">AlphaIndex</a></code></td><td>
+<dl>
+<dt>
+<code><b><a name="alphaIndex">alphaIndex</a></b>
+          =
+          ALPHA_1_8TH</code>
+</dt>
+<dd>
+<span class="desc">RTO alpha index.</span>
+<br />
+<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 6.3.1<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint8</code></td><td>
+<dl>
+<dt>
+<code><b><a name="assocMaxRtx">assocMaxRtx</a></b>
+          =
+          20
+			 {
+			  1..20 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Association maximum number of retransmissions packets.</span>
+<br />
+<br />
+<span class="pmhd">Dependencies: </span>primaryPathMaxRtx &lt;= pathMaxRtx &lt;= assocMaxRtx<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 6.3.1<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=2015_15554-LZA7016014_33-V1Uen.FK.html">BetaIndex</a></code></td><td>
+<dl>
+<dt>
+<code><b><a name="betaIndex">betaIndex</a></b>
+          =
+          BETA_1_4TH</code>
+</dt>
+<dd>
+<span class="desc">RTO beta index.</span>
+<br />
+<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 6.3.1<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>boolean</code></td><td>
+<dl>
+<dt>
+<code><b><a name="bundlingActivated">bundlingActivated</a></b>
+          =
+          true</code>
+</dt>
+<dd>
+<span class="desc">States whether bundling is allowed for endpoint.<br />
+<br />True: Endpoint bundles chunks by including multiple chunks in one outbound SCTP packet.<br />False: Bundling is not used.</span>
+<br />
+<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 6.10<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>boolean</code></td><td>
+<dl>
+<dt>
+<code><b><a name="bundlingAdaptiveActivated">bundlingAdaptiveActivated</a></b>
+          =
+          true</code>
+</dt>
+<dd>
+<span class="desc">States whether adaptive bundling is applied.<br />It is only applicable if bundlingActivated is set to true.<br />According to traffic condition, SCTP bundles chunks by including multiple chunks in one outbound SCTP packet.<br />
+<br />True :  Adaptive bundling is enabled.<br />False : Adaptive bundling is disabled.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16</code></td><td>
+<dl>
+<dt>
+<code><b><a name="bundlingTimer">bundlingTimer</a></b>
+          =
+          3
+			 {
+			  0..1000 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Maximum allowed bundling delay.</span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 ms<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint8</code></td><td>
+<dl>
+<dt>
+<code><b><a name="cookieLife">cookieLife</a></b>
+          =
+          60
+			 {
+			  1..180 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Valid cookie life.<br />New value of attribute does not apply to associations that are already established. </span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 s<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 5.1.3<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint8</code></td><td>
+<dl>
+<dt>
+<code><b><a name="dscp">dscp</a></b>
+          =
+          40
+			 {
+			  0..63 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">DSCP value. </span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>boolean</code></td><td>
+<dl>
+<dt>
+<code><b><a name="endpointDependency">endpointDependency</a></b>
+          =
+          false</code>
+</dt>
+<dd>
+<span class="desc">Whether dependency of SCTP association on operational state for SCTP endpoint is activated.<br />
+<br />If true, SCTP associations are closed when SctpEndpoint::operationalState is DISABLED.</span>
+<br />
+<br />
+<span class="pmhd">Dependencies: </span>Must be false in at least one SctpProfile MO instance.<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint32</code></td><td>
+<dl>
+<dt>
+<code><b><a name="hbMaxBurst">hbMaxBurst</a></b>
+          =
+          1
+			 {
+			  0..4 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">HB.MaxBurst value.<br />New value of attribute does not apply to associations that are already established.</span>
+<br />
+<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 5.4<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>boolean</code></td><td>
+<dl>
+<dt>
+<code><b><a name="heartbeatActivated">heartbeatActivated</a></b>
+          =
+          true</code>
+</dt>
+<dd>
+<span class="desc">States whether heartbeat is activated.<br />
+<br />True: Activates heartbeats for SCTP endpoint.<br />False: Disables heartbeats for SCTP endpoint.</span>
+<br />
+<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 8.3<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint32</code></td><td>
+<dl>
+<dt>
+<code><b><a name="heartbeatInterval">heartbeatInterval</a></b>
+          =
+          2000
+			 {
+			  10..1800000 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">SCTP heartbeat interval.</span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 ms<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 8.3<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint8</code></td><td>
+<dl>
+<dt>
+<code><b><a name="incCookieLife">incCookieLife</a></b>
+          =
+          30
+			 {
+			  0..180 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Allowed increment of parameter valid.Cookie.Life in local node.<br />
+<br />Applied when increase of parameter is requested from remote node.<br />New value of attribute does not apply to associations that are already established.</span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 s<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 3.3.2.1<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint32</code></td><td>
+<dl>
+<dt>
+<code><b><a name="initARWnd">initARWnd</a></b>
+          =
+          16384
+			 {
+			  1500..1048576 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Value of maximum advertised window credit on all SCTP associations connected to this SCTP Profile, a_rwnd sent in INIT message.<br />
+<br />Use of existing value depends on implementation.<br />Can be used for limiting peer maximum congestion window value.<br />
+<br />If value is increased, it applies to both existing and new associations.<br />If value is decreased, it does not apply to associations that are already established.</span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 bytes<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint32</code></td><td>
+<dl>
+<dt>
+<code><b><a name="initialHeartbeatInterval">initialHeartbeatInterval</a></b>
+          =
+          500
+			 {
+			  10..1800000 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Period for acceptance of heartbeat acknowledge message during path probing.<br />
+<br />It limits intensity of heartbeats for path probing after association start-up.</span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 ms<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint32</code></td><td>
+<dl>
+<dt>
+<code><b><a name="initRto">initRto</a></b>
+          =
+          200
+			 {
+			  10..120000 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">RTO initial value.<br />
+<br />New value of attribute does not apply to associations that are already established.</span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 ms<br />
+<span class="pmhd">Dependencies: </span>minRto &lt;= initRto &lt;= maxRto<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 6.3.1.<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16</code></td><td>
+<dl>
+<dt>
+<code><b><a name="maxActivateThr">maxActivateThr</a></b>
+          =
+          65535
+			 {
+			  1..65535 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Maximum number of consecutive successful heartbeats.<br />
+<br />Must be sent over Data Transfer Path (DTP) before switchback can be performed.</span>
+<br />
+<br />
+<span class="pmhd">Dependencies: </span>minActivateThr&lt;=maxActivateThr<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16</code></td><td>
+<dl>
+<dt>
+<code><b><a name="maxBurst">maxBurst</a></b>
+          =
+          4
+			 {
+			  1..16384 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Maximum number of burst packets.</span>
+<br />
+<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 6.1<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint8</code></td><td>
+<dl>
+<dt>
+<code><b><a name="maxInitRt">maxInitRt</a></b>
+          =
+          8
+			 {
+			  1..16 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Maximum number of retransmissions allowed for both INIT and COOKIE_ECHO chunks.<br />
+<br />New value of attribute does not apply to associations that are already established.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16</code></td><td>
+<dl>
+<dt>
+<code><b><a name="maxInStreams">maxInStreams</a></b>
+          =
+          2
+			 {
+			  1..16384 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Maximum number of inbound streams to negotiate for association.<br />
+<br />Change to this attribute does not affect existing associations.<br />To apply new value, endpoint must be re-created.</span>
+<br />
+<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 3.3.2<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16</code></td><td>
+<dl>
+<dt>
+<code><b><a name="maxOutStreams">maxOutStreams</a></b>
+          =
+          2
+			 {
+			  1..16384 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Maximum number of outbound streams to negotiate for association.<br />
+<br />Change to this attribute does not affect existing associations.<br />To apply new value, endpoint must be re-created.</span>
+<br />
+<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 3.3.2<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint32</code></td><td>
+<dl>
+<dt>
+<code><b><a name="maxRto">maxRto</a></b>
+          =
+          400
+			 {
+			  11..120000 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Maximum RTO.</span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 ms<br />
+<span class="pmhd">Dependencies: </span>minRto &lt;= initRto &lt;= maxRto<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 6.3.1<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16</code></td><td>
+<dl>
+<dt>
+<code><b><a name="maxSctpPduSize">maxSctpPduSize</a></b>
+          =
+          0
+			 {
+			  0..1480 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Maximum size of SCTP PDU.<br />
+<br />This is equal to the size of IP MTU minus size of IP overhead.<br />
+<br />Default value means Path MTU discovery, according to RFC 4821.<br />
+<br />If default value is set in any of SctpProfile MO used by initialized SctpEndpoint MO, Path MTU Discovery is enabled in all SctpEndpoint MOs that belong to same virtual routing domain.</span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 bytes<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint8</code></td><td>
+<dl>
+<dt>
+<code><b><a name="maxShutdownRt">maxShutdownRt</a></b>
+          =
+          5
+			 {
+			  1..20 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Maximum number of retransmissions during shutdown phase of association.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16</code></td><td>
+<dl>
+<dt>
+<code><b><a name="minActivateThr">minActivateThr</a></b>
+          =
+          1
+			 {
+			  1..65535 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Minimum and initial number of consecutive successful heartbeats before switchback can be performed.<br />
+<br />Minimum and initial value for number of consecutive successful heartbeats that must be sent over preferred primary path before switchback can be performed.</span>
+<br />
+<br />
+<span class="pmhd">Dependencies: </span>minActivateThr&lt;=maxActivateThr<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16</code></td><td>
+<dl>
+<dt>
+<code><b><a name="minRto">minRto</a></b>
+          =
+          100
+			 {
+			  10..5000 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Minimum RTO.</span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 ms<br />
+<span class="pmhd">Dependencies: </span>minRto &lt;= initRto &lt;= maxRto<br />
+<span class="pmhd">Specification: </span>RFC 4960, section 6.3.1<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>boolean</code></td><td>
+<dl>
+<dt>
+<code><b><a name="noSwitchback">noSwitchback</a></b>
+          =
+          true</code>
+</dt>
+<dd>
+<span class="desc">Recovery of failed Primary Path does not invoke change of current data transfer path.<br />
+<br />True: No switchback.<br />False: Switchback.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint8</code></td><td>
+<dl>
+<dt>
+<code><b><a name="pathMaxRtx">pathMaxRtx</a></b>
+          =
+          10
+			 {
+			  1..20 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Maximum number of consecutive retransmissions on IP path.<br />
+<br />IP path is defined by pair of local and remote IP addresses.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>boolean</code></td><td>
+<dl>
+<dt>
+<code><b><a name="primaryPathAvoidance">primaryPathAvoidance</a></b>
+          =
+          true</code>
+</dt>
+<dd>
+<span class="desc">Whether SCTP can avoid primary path usage when it did not work for latest transmission.<br />
+<br />True: Enable functionality.<br />False: Disable functionality.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint8</code></td><td>
+<dl>
+<dt>
+<code><b><a name="primaryPathMaxRtx">primaryPathMaxRtx</a></b>
+          =
+          0
+			 {
+			  0..20 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Maximum value of error counter of current primary path before switchover.<br />
+<br />In case of enabled Primary Path Avoidance (PPA), if error counter of primary path exceeds this value, SCTP chooses another current primary path.</span>
+<br />
+<br />
+<span class="pmhd">Dependencies: </span>primaryPathMaxRtx &lt;= pathMaxRtx &lt;= assocMaxRtx<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=261_15554-LZA7016014_33-V1Uen.FK.html">ManagedObject</a>[0..]<br />readOnly</code></td><td>
+<dl>
+<dt>
+<code><b><a name="reservedBy">reservedBy</a></b></code>
+</dt>
+<dd>
+<span class="desc">Contains a list of MO instances that reserve this MO instance.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16</code></td><td>
+<dl>
+<dt>
+<code><b><a name="sackTimer">sackTimer</a></b>
+          =
+          10
+			 {
+			  0..500 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Time delay for sending Selective Acknowledgement (SACK).<br />
+<br />Time is measured from receiving DATA chunk to sending SACK chunk.</span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 ms<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string<br />key<br />mandatory<br />noNotification<br />restricted</code></td><td>
+<dl>
+<dt>
+<code><b><a name="sctpProfileId">sctpProfileId</a></b></code>
+</dt>
+<dd>
+<span class="desc">The value component of the RDN.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16</code></td><td>
+<dl>
+<dt>
+<code><b><a name="thrTransmitBuffer">thrTransmitBuffer</a></b>
+          =
+          48
+			 {
+			  1..2048 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Threshold of transmit buffer size.<br />
+<br />Upon exceeding this threshold user of SCTP will be asked to stop sending data. This condition will persist until occupancy of transmit buffer drops below thrTransmitBufferCongCeased * thrTransmitBuffer.</span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 KB<br />
+<span class="pmhd">Dependencies: </span>thrTransmitBuffer&lt;=transmitBufferSize<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint8</code></td><td>
+<dl>
+<dt>
+<code><b><a name="thrTransmitBufferCongCeased">thrTransmitBufferCongCeased</a></b>
+          =
+          85
+			 {
+			  1..100 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Size of threshold of transmit buffer in percentage when congestion cease indication is sent.<br />
+<br />See also description of attribute thrTransmitBuffer.</span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 %<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16</code></td><td>
+<dl>
+<dt>
+<code><b><a name="transmitBufferSize">transmitBufferSize</a></b>
+          =
+          64
+			 {
+			  1..2048 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Size of buffer used for storing data pending to be sent or retransmitted in association.</span>
+<br />
+<br />
+<span class="pmhd">Unit: </span>1 KB<br />
+<span class="pmhd">Dependencies: </span>thrTransmitBuffer&lt;=transmitBufferSize<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="userLabel">userLabel</a></b>
+			 [
+			 
+			 1..128
+			 ]
+		      </code>
+</dt>
+<dd>
+<span class="desc">Label for free use.</span>
+</dd>
+</dl>
+</td>
+</tr>
+</table>
+<p></p>
+<div align="center" class="footer-info">
+<div class="footer-line">
+<span class="legal-lid">&#160;&#160;class&#160;SctpProfile</span>
+</div>
+</div>
+</body>
+</html>

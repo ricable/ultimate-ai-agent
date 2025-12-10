@@ -1,0 +1,162 @@
+# DevPod Workspace Configuration for TITAN
+# Optimized for Mac Silicon with Docker Provider
+
+version: v1beta1
+
+# Workspace settings
+workspace:
+  name: titan-ran-devpod
+  description: TITAN Neuro-Symbolic RAN Platform
+
+# Provider configuration
+provider:
+  name: docker
+  options:
+    # Mac Silicon optimizations
+    platform: linux/arm64
+
+    # Resource limits
+    cpus: "4"
+    memory: 8G
+
+    # Storage
+    disk_size: 50G
+
+    # Network
+    network_mode: bridge
+
+    # Enable privileged mode for E2B sandboxes
+    privileged: false
+    security_opt:
+      - seccomp:unconfined
+
+# Development container configuration
+dev:
+  # Base image optimized for ARM64
+  image: node:20-alpine
+
+  # Additional packages
+  system_packages:
+    - git
+    - curl
+    - jq
+    - python3
+    - py3-pip
+    - docker-cli
+
+  # Environment variables
+  env:
+    NODE_ENV: development
+    RUNTIME_MODE: devpod
+    PLATFORM_ARCH: arm64
+
+  # Port forwarding
+  ports:
+    - 3000:3000  # UI Dashboard
+    - 3001:3001  # AG-UI Server
+    - 4433:4433  # QUIC Transport
+    - 5432:5432  # PostgreSQL (AgentDB)
+    - 6379:6379  # Redis (optional)
+
+  # Volume mounts
+  mounts:
+    - type: bind
+      source: ./
+      target: /workspace
+    - type: volume
+      source: node_modules
+      target: /workspace/node_modules
+    - type: volume
+      source: agentdb-data
+      target: /var/lib/agentdb
+
+  # Startup commands
+  command: |
+    set -e
+
+    echo "🚀 Starting TITAN DevPod Environment..."
+
+    # Install dependencies
+    npm install
+
+    # Build project
+    npm run build
+
+    # Start services in background
+    echo "📦 Starting AgentDB..."
+    npm run db:start &
+
+    echo "🎯 Starting AG-UI Server..."
+    npm run agui:start &
+
+    # Keep container running
+    exec tail -f /dev/null
+
+  # Lifecycle hooks
+  lifecycle:
+    postCreate:
+      - npm install
+      - npm run build
+      - echo "✅ DevPod workspace ready!"
+
+    postStart:
+      - echo "🔧 Checking API keys..."
+      - |
+        if [ -z "$ANTHROPIC_API_KEY" ]; then
+          echo "⚠️  Warning: ANTHROPIC_API_KEY not set"
+        fi
+        if [ -z "$GOOGLE_AI_API_KEY" ]; then
+          echo "⚠️  Warning: GOOGLE_AI_API_KEY not set"
+        fi
+        if [ -z "$E2B_API_KEY" ]; then
+          echo "⚠️  Warning: E2B_API_KEY not set"
+        fi
+
+# IDE configuration
+ide:
+  # Use VS Code
+  name: vscode
+
+  # VS Code extensions
+  extensions:
+    - dbaeumer.vscode-eslint
+    - esbenp.prettier-vscode
+    - ms-vscode.vscode-typescript-next
+    - vitest.explorer
+    - bradlc.vscode-tailwindcss
+
+# Docker Compose integration
+services:
+  # PostgreSQL for AgentDB
+  postgres:
+    image: postgres:16-alpine
+    platform: linux/arm64
+    environment:
+      POSTGRES_DB: agentdb
+      POSTGRES_USER: titan
+      POSTGRES_PASSWORD: titan_secure_password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U titan"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis (optional caching)
+  redis:
+    image: redis:7-alpine
+    platform: linux/arm64
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+# Volumes
+volumes:
+  - name: node_modules
+  - name: agentdb-data
+  - name: postgres-data
+  - name: redis-data

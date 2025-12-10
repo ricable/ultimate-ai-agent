@@ -1,0 +1,49 @@
+sites:
+  rotten_tomatoes:
+    name: Rotten Tomatoes Movies
+    description: Extract movie reviews from Rotten Tomatoes
+    url_pattern: https://www.rottentomatoes.com/browse/movies_in_theaters/
+    selectors:
+      movie_items:
+        css: .media-list__item
+        description: Movie entries
+        multiple: true
+      movie_title:
+        css: .media-list__title
+        description: Movie title
+      movie_score:
+        css: .tomatometer-score
+        description: Tomatometer score
+  finance:
+    name: finance
+    description: Extract stock information
+    url_pattern: https://www.google.com/finance
+    selectors:
+      stock_price:
+        css: .YMlKec.fxKbKc
+        description: Current stock price
+        multiple: false
+      price_change:
+        css: .P2Luy.Ez2Ioe
+        description: Price change
+        multiple: false
+      company_name:
+        css: .zzDege
+        description: Company name
+        multiple: false
+      market_cap:
+        css: '[data-metric="MARKET_CAP"] .P6K39c'
+        description: Market capitalization
+        multiple: false
+      volume:
+        css: '[data-metric="VOLUME"] .P6K39c'
+        description: Trading volume
+        multiple: false
+      news_items:
+        css: .yY3Lee
+        description: News articles
+        multiple: true
+      search_input:
+        css: .Ax4B8.ZAGvjd
+        description: Search input field
+        multiple: false

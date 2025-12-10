@@ -1,0 +1,55 @@
+{
+  "safla_config": {
+    "environment": "production",
+    "gpu_enabled": true,
+    "performance_mode": "gpu_optimized",
+    "data_directory": "/data"
+  },
+  "embedding_engine": {
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "device": "cuda",
+    "batch_size": 64,
+    "use_flash_attention_2": true,
+    "mixed_precision": "fp16",
+    "torch_dtype": "float16",
+    "use_sdpa": true,
+    "gradient_checkpointing": true,
+    "dataloader_num_workers": 8,
+    "pin_memory": true,
+    "cache_embeddings": true,
+    "normalize_embeddings": true
+  },
+  "rl_optimizer": {
+    "device": "cuda",
+    "mixed_precision": true,
+    "batch_size": 128,
+    "memory_buffer_size": 100000,
+    "target_update_frequency": 1000,
+    "gradient_clipping": 1.0
+  },
+  "memory_system": {
+    "vector_index_type": "faiss_gpu",
+    "cache_size": "8GB",
+    "persistence_enabled": true,
+    "backup_frequency": 3600
+  },
+  "auto_scaling": {
+    "enabled": true,
+    "target_gpu_utilization": 0.8,
+    "scale_up_threshold": 0.9,
+    "scale_down_threshold": 0.3,
+    "monitoring_interval": 30
+  },
+  "safety_validation": {
+    "gpu_memory_monitoring": true,
+    "temperature_monitoring": true,
+    "performance_degradation_detection": true,
+    "automatic_fallback": true
+  },
+  "logging": {
+    "level": "INFO",
+    "gpu_metrics": true,
+    "performance_profiling": true,
+    "export_traces": true
+  }
+}

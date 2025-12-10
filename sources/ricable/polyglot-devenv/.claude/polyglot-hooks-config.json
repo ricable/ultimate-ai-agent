@@ -1,0 +1,64 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'file_path=$(echo \"$0\" | jq -r \".tool_input.file_path // \\\"\\\"\" 2>/dev/null || echo \"\"); if [[ \"$file_path\" =~ \\.py$ ]] || [[ \"$PWD\" =~ python-env ]]; then echo \"🐍 Auto-formatting Python files...\" && cd python-env && devbox run format --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ \\.(ts|js|tsx|jsx)$ ]] || [[ \"$PWD\" =~ typescript-env ]]; then echo \"📘 Auto-formatting TypeScript/JavaScript files...\" && cd typescript-env && devbox run format --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ \\.rs$ ]] || [[ \"$PWD\" =~ rust-env ]]; then echo \"🦀 Auto-formatting Rust files...\" && cd rust-env && devbox run format --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ \\.go$ ]] || [[ \"$PWD\" =~ go-env ]]; then echo \"🐹 Auto-formatting Go files...\" && cd go-env && devbox run format --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ \\.nu$ ]] || [[ \"$PWD\" =~ nushell-env ]]; then echo \"🐚 Auto-formatting Nushell files...\" && cd nushell-env && devbox run format --quiet 2>/dev/null || true; fi'"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'file_path=$(echo \"$0\" | jq -r \".tool_input.file_path // \\\"\\\"\" 2>/dev/null || echo \"\"); if [[ \"$file_path\" =~ test.*\\.py$|.*_test\\.py$|.*\\.test\\.py$ ]]; then echo \"🧪 Running Python tests...\" && cd python-env && devbox run test --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ .*\\.(test|spec)\\.(ts|js)$|.*\\.test\\.(tsx|jsx)$ ]]; then echo \"🧪 Running TypeScript/JavaScript tests...\" && cd typescript-env && devbox run test --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ .*_test\\.rs$|tests/.*\\.rs$ ]]; then echo \"🧪 Running Rust tests...\" && cd rust-env && devbox run test --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ .*_test\\.go$|.*\\.test\\.go$ ]]; then echo \"🧪 Running Go tests...\" && cd go-env && devbox run test --quiet 2>/dev/null || true; elif [[ \"$file_path\" =~ test.*\\.nu$|.*_test\\.nu$ ]]; then echo \"🧪 Running Nushell tests...\" && cd nushell-env && devbox run test --quiet 2>/dev/null || true; fi'"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'command=$(echo \"$0\" | jq -r \".tool_input.command // \\\"\\\"\" 2>/dev/null || echo \"\"); if [[ \"$command\" =~ git.*commit ]]; then echo \"🔍 Running pre-commit validation...\" && if [[ \"$PWD\" =~ python-env ]]; then cd python-env && devbox run lint --quiet 2>/dev/null || true; elif [[ \"$PWD\" =~ typescript-env ]]; then cd typescript-env && devbox run lint --quiet 2>/dev/null || true; elif [[ \"$PWD\" =~ rust-env ]]; then cd rust-env && devbox run lint --quiet 2>/dev/null || true; elif [[ \"$PWD\" =~ go-env ]]; then cd go-env && devbox run lint --quiet 2>/dev/null || true; elif [[ \"$PWD\" =~ nushell-env ]]; then cd nushell-env && devbox run check --quiet 2>/dev/null || true; else echo \"Running cross-language validation...\" && nu nushell-env/scripts/validate.nu 2>/dev/null || true; fi; fi'"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'file_path=$(echo \"$0\" | jq -r \".tool_input.file_path // \\\"\\\"\" 2>/dev/null || echo \"\"); if [[ \"$file_path\" =~ \\.(env|config|json|yaml|yml)$ ]]; then echo \"🔐 Scanning for secrets in configuration files...\" && (command -v git-secrets >/dev/null && git secrets --scan \"$file_path\" 2>/dev/null || echo \"git-secrets not installed, skipping scan\") || true; fi'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'echo \"🎯 Task completed! Running status check...\"; git status 2>/dev/null || echo \"Not in a git repository\"; echo \"📊 Running cross-language validation summary...\"; nu nushell-env/scripts/validate.nu --parallel 2>/dev/null || echo \"Cross-language validation completed with some issues\"'"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'echo \"🔔 Claude Code notification: $(echo \"$0\" | jq -r \".message // \\\"Unknown notification\\\"\" 2>/dev/null || echo \"Unknown notification\")\" >> ~/.claude/notifications.log'"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,888 @@
+name: Phase 4 Monitoring Pipeline
+description: Automated monitoring setup, alert configuration, and health checks for RAN optimization system
+
+on:
+  push:
+    branches: [main, develop]
+    paths: ['monitoring/**', '.github/workflows/phase4-monitoring-pipeline.yml']
+  workflow_call:
+    inputs:
+      environment:
+        description: 'Target environment for monitoring setup'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+        - staging
+        - production
+      monitoring_components:
+        description: 'Monitoring components to setup'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+        - prometheus
+        - grafana
+        - alertmanager
+        - loki
+        - tempo
+        - all
+      alert_severity:
+        description: 'Minimum alert severity level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - critical
+  schedule:
+    # Run monitoring health checks every 30 minutes
+    - cron: '*/30 * * * *'
+    # Daily monitoring configuration validation at 4 AM UTC
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Monitoring action to perform'
+        required: true
+        default: 'setup'
+        type: choice
+        options:
+        - setup
+        - validate
+        - health-check
+        - update-dashboards
+        - backup-configs
+        - test-alerts
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+        - staging
+        - production
+      component:
+        description: 'Specific monitoring component'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+        - prometheus
+        - grafana
+        - alertmanager
+        - loki
+        - tempo
+        - all
+
+env:
+  PROMETHEUS_VERSION: 'v2.45.0'
+  GRAFANA_VERSION: '10.0.0'
+  ALERTMANAGER_VERSION: 'v0.25.0'
+  LOKI_VERSION: 'v2.8.0'
+  TEMPO_VERSION: 'v2.2.0'
+  MONITORING_NAMESPACE: 'monitoring'
+  CONFIG_RETENTION_DAYS: 90
+  HEALTH_CHECK_TIMEOUT: 300
+
+jobs:
+  # Monitoring Configuration
+  monitoring-config:
+    name: Monitoring Configuration
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.config.outputs.environment }}
+      namespace: ${{ steps.config.outputs.namespace }}
+      components: ${{ steps.config.outputs.components }}
+      alert-severity: ${{ steps.config.outputs.severity }}
+      cluster-config: ${{ steps.config.outputs.cluster-config }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure monitoring parameters
+        id: config
+        run: |
+          ENVIRONMENT="${{ github.event.inputs.environment || 'staging' }}"
+          COMPONENTS="${{ github.event.inputs.monitoring_components || 'all' }}"
+          ALERT_SEVERITY="${{ github.event.inputs.alert_severity || 'warning' }}"
+          NAMESPACE="${{ env.MONITORING_NAMESPACE }}"
+
+          if [[ "$ENVIRONMENT" == "production" ]]; then
+            NAMESPACE="monitoring-prod"
+          fi
+
+          echo "environment=$ENVIRONMENT" >> $GITHUB_OUTPUT
+          echo "namespace=$NAMESPACE" >> $GITHUB_OUTPUT
+          echo "components=$COMPONENTS" >> $GITHUB_OUTPUT
+          echo "severity=$ALERT_SEVERITY" >> $GITHUB_OUTPUT
+
+          echo "📊 Monitoring Configuration:"
+          echo "  Environment: $ENVIRONMENT"
+          echo "  Namespace: $NAMESPACE"
+          echo "  Components: $COMPONENTS"
+          echo "  Alert Severity: $ALERT_SEVERITY"
+
+      - name: Load cluster configuration
+        id: cluster-config
+        run: |
+          CLUSTER_CONFIG="{
+            \"${{ steps.config.outputs.environment }}\": {
+              \"cluster\": \"${{ secrets[format('{0}_CLUSTER', steps.config.outputs.environment)] || 'k8s-cluster' }}\",
+              \"region\": \"${{ secrets[format('{0}_REGION', steps.config.outputs.environment)] || 'us-west-2' }}\",
+              \"monitoring-domain\": \"${{ secrets[format('{0}_MONITORING_DOMAIN', steps.config.outputs.environment)] || 'monitoring.ran-optimization.com' }}\",
+              \"grafana-url\": \"https://grafana-${{ steps.config.outputs.environment }}.ran-optimization.com\",
+              \"prometheus-url\": \"https://prometheus-${{ steps.config.outputs.environment }}.ran-optimization.com\"
+            }
+          }"
+          echo "cluster-config=$CLUSTER_CONFIG" >> $GITHUB_OUTPUT
+
+  # Prometheus Setup and Configuration
+  prometheus-setup:
+    name: Prometheus Setup
+    runs-on: ubuntu-latest
+    needs: monitoring-config
+    if: needs.monitoring-config.outputs.components == 'all' || needs.monitoring-config.outputs.components == 'prometheus'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.28.0'
+
+      - name: Configure kubectl
+        run: |
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+          if [[ "$ENVIRONMENT" == "production" ]]; then
+            echo "${{ secrets.PRODUCTION_KUBECONFIG }}" | base64 -d > kubeconfig
+          else
+            echo "${{ secrets.STAGING_KUBECONFIG }}" | base64 -d > kubeconfig
+          fi
+          export KUBECONFIG=$(pwd)/kubeconfig
+
+          kubectl cluster-info
+          kubectl create namespace ${{ needs.monitoring-config.outputs.namespace }} --dry-run=client -o yaml | kubectl apply -f -
+
+      - name: Deploy Prometheus
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+
+          echo "🚀 Deploying Prometheus..."
+
+          # Apply Prometheus CRDs
+          kubectl apply -f https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.68.0/bundle.yaml || true
+
+          # Deploy Prometheus Operator
+          envsubst < monitoring/prometheus/operator.yaml | kubectl apply -f - -n $NAMESPACE
+
+          # Deploy Prometheus instance
+          envsubst < monitoring/prometheus/prometheus.yaml | kubectl apply -f - -n $NAMESPACE
+
+          # Deploy ServiceMonitor for RAN optimization service
+          envsubst < monitoring/prometheus/servicemonitor.yaml | kubectl apply -f - -n $NAMESPACE
+
+          # Wait for Prometheus to be ready
+          kubectl wait --for=condition=ready pod -l app=prometheus \
+            --namespace $NAMESPACE \
+            --timeout=600s
+
+      - name: Configure Prometheus Rules
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+
+          echo "📋 Configuring Prometheus rules..."
+
+          # Apply alerting rules
+          envsubst < monitoring/prometheus/rules/*.yaml | kubectl apply -f - -n $NAMESPACE
+
+          # Apply recording rules
+          kubectl apply -f monitoring/prometheus/recording-rules/ -n $NAMESPACE
+
+      - name: Verify Prometheus Configuration
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+
+          echo "🔍 Verifying Prometheus configuration..."
+
+          # Check Prometheus health
+          kubectl port-forward -n $NAMESPACE svc/prometheus 9090:9090 &
+          PF_PID=$!
+          sleep 10
+
+          # Health check
+          if curl -f http://localhost:9090/-/healthy; then
+            echo "✅ Prometheus is healthy"
+          else
+            echo "❌ Prometheus health check failed"
+            exit 1
+          fi
+
+          # Check targets
+          curl -s http://localhost:9090/api/v1/targets | jq '.data.activeTargets | length'
+
+          # Cleanup port forward
+          kill $PF_PID
+
+  # Grafana Setup and Dashboard Configuration
+  grafana-setup:
+    name: Grafana Setup
+    runs-on: ubuntu-latest
+    needs: [monitoring-config, prometheus-setup]
+    if: needs.monitoring-config.outputs.components == 'all' || needs.monitoring-config.outputs.components == 'grafana'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.28.0'
+
+      - name: Configure kubectl
+        run: |
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+          if [[ "$ENVIRONMENT" == "production" ]]; then
+            echo "${{ secrets.PRODUCTION_KUBECONFIG }}" | base64 -d > kubeconfig
+          else
+            echo "${{ secrets.STAGING_KUBECONFIG }}" | base64 -d > kubeconfig
+          fi
+          export KUBECONFIG=$(pwd)/kubeconfig
+
+      - name: Deploy Grafana
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+
+          echo "🎨 Deploying Grafana..."
+
+          # Deploy Grafana
+          envsubst < monitoring/grafana/deployment.yaml | kubectl apply -f - -n $NAMESPACE
+
+          # Deploy Grafana services
+          kubectl apply -f monitoring/grafana/service.yaml -n $NAMESPACE
+
+          # Deploy Grafana ingress
+          envsubst < monitoring/grafana/ingress.yaml | kubectl apply -f - -n $NAMESPACE
+
+          # Wait for Grafana to be ready
+          kubectl wait --for=condition=ready pod -l app=grafana \
+            --namespace $NAMESPACE \
+            --timeout=600s
+
+      - name: Configure Grafana Datasources
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+
+          echo "📊 Configuring Grafana datasources..."
+
+          # Port forward to Grafana
+          kubectl port-forward -n $NAMESPACE svc/grafana 3000:3000 &
+          PF_PID=$!
+          sleep 10
+
+          # Configure Prometheus datasource
+          GRAFANA_URL="http://admin:admin@localhost:3000"
+
+          curl -X POST "$GRAFANA_URL/api/datasources" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "name": "Prometheus",
+              "type": "prometheus",
+              "url": "http://prometheus:9090",
+              "access": "proxy",
+              "isDefault": true
+            }' || echo "Prometheus datasource may already exist"
+
+          # Cleanup port forward
+          kill $PF_PID
+
+      - name: Import Grafana Dashboards
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+
+          echo "📈 Importing Grafana dashboards..."
+
+          # Create ConfigMaps for dashboards
+          for dashboard in monitoring/grafana/dashboards/*.json; do
+            DASHBOARD_NAME=$(basename "$dashboard" .json)
+            kubectl create configmap "dashboard-$DASHBOARD_NAME" \
+              --from-file="$dashboard" \
+              --namespace $NAMESPACE \
+              --dry-run=client -o yaml | kubectl apply -f -
+          done
+
+          # Apply dashboard configuration
+          kubectl apply -f monitoring/grafana/dashboards/ -n $NAMESPACE
+
+      - name: Setup Grafana Alerts
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+
+          echo "🚨 Setting up Grafana alerts..."
+
+          # Apply alert notification channels
+          envsubst < monitoring/grafana/alerting/notifiers.yaml | kubectl apply -f - -n $NAMESPACE
+
+          # Apply alert rules
+          kubectl apply -f monitoring/grafana/alerting/rules/ -n $NAMESPACE
+
+      - name: Verify Grafana Setup
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+
+          echo "🔍 Verifying Grafana setup..."
+
+          # Port forward to Grafana
+          kubectl port-forward -n $NAMESPACE svc/grafana 3000:3000 &
+          PF_PID=$!
+          sleep 10
+
+          # Health check
+          if curl -f http://localhost:3000/api/health; then
+            echo "✅ Grafana is healthy"
+          else
+            echo "❌ Grafana health check failed"
+            exit 1
+          fi
+
+          # Check datasources
+          curl -s http://localhost:3000/api/datasources | jq '.[0].name'
+
+          # Cleanup port forward
+          kill $PF_PID
+
+  # AlertManager Setup
+  alertmanager-setup:
+    name: AlertManager Setup
+    runs-on: ubuntu-latest
+    needs: [monitoring-config, prometheus-setup]
+    if: needs.monitoring-config.outputs.components == 'all' || needs.monitoring-config.outputs.components == 'alertmanager'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.28.0'
+
+      - name: Configure kubectl
+        run: |
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+          if [[ "$ENVIRONMENT" == "production" ]]; then
+            echo "${{ secrets.PRODUCTION_KUBECONFIG }}" | base64 -d > kubeconfig
+          else
+            echo "${{ secrets.STAGING_KUBECONFIG }}" | base64 -d > kubeconfig
+          fi
+          export KUBECONFIG=$(pwd)/kubeconfig
+
+      - name: Deploy AlertManager
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+
+          echo "🚨 Deploying AlertManager..."
+
+          # Deploy AlertManager
+          envsubst < monitoring/alertmanager/deployment.yaml | kubectl apply -f - -n $NAMESPACE
+
+          # Deploy AlertManager config
+          envsubst < monitoring/alertmanager/config.yaml | kubectl apply -f - -n $NAMESPACE
+
+          # Deploy AlertManager service
+          kubectl apply -f monitoring/alertmanager/service.yaml -n $NAMESPACE
+
+          # Wait for AlertManager to be ready
+          kubectl wait --for=condition=ready pod -l app=alertmanager \
+            --namespace $NAMESPACE \
+            --timeout=600s
+
+      - name: Configure Alert Routes and Receivers
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+
+          echo "📬 Configuring alert routes and receivers..."
+
+          # Apply alertmanager configuration with environment-specific routes
+          envsubst < monitoring/alertmanager/routes.yaml | kubectl apply -f - -n $NAMESPACE
+
+          # Configure notification channels (Slack, email, PagerDuty)
+          envsubst < monitoring/alertmanager/receivers.yaml | kubectl apply -f - -n $NAMESPACE
+
+      - name: Test AlertManager Configuration
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+
+          echo "🧪 Testing AlertManager configuration..."
+
+          # Port forward to AlertManager
+          kubectl port-forward -n $NAMESPACE svc/alertmanager 9093:9093 &
+          PF_PID=$!
+          sleep 10
+
+          # Health check
+          if curl -f http://localhost:9093/-/healthy; then
+            echo "✅ AlertManager is healthy"
+          else
+            echo "❌ AlertManager health check failed"
+            exit 1
+          fi
+
+          # Validate configuration
+          curl -s http://localhost:9093/api/v1/status | jq '.data.configYAML'
+
+          # Cleanup port forward
+          kill $PF_PID
+
+  # Loki (Log Aggregation) Setup
+  loki-setup:
+    name: Loki Setup
+    runs-on: ubuntu-latest
+    needs: monitoring-config
+    if: needs.monitoring-config.outputs.components == 'all' || needs.monitoring-config.outputs.components == 'loki'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.28.0'
+
+      - name: Configure kubectl
+        run: |
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+          if [[ "$ENVIRONMENT" == "production" ]]; then
+            echo "${{ secrets.PRODUCTION_KUBECONFIG }}" | base64 -d > kubeconfig
+          else
+            echo "${{ secrets.STAGING_KUBECONFIG }}" | base64 -d > kubeconfig
+          fi
+          export KUBECONFIG=$(pwd)/kubeconfig
+
+      - name: Deploy Loki
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+
+          echo "📝 Deploying Loki..."
+
+          # Deploy Loki
+          envsubst < monitoring/loki/deployment.yaml | kubectl apply -f - -n $NAMESPACE
+
+          # Deploy Loki services
+          kubectl apply -f monitoring/loki/service.yaml -n $NAMESPACE
+
+          # Deploy Promtail (log collection agent)
+          kubectl apply -f monitoring/loki/promtail/ -n $NAMESPACE
+
+          # Wait for Loki to be ready
+          kubectl wait --for=condition=ready pod -l app=loki \
+            --namespace $NAMESPACE \
+            --timeout=600s
+
+      - name: Configure Log Rules
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+
+          echo "📋 Configuring log aggregation rules..."
+
+          # Apply log parsing rules
+          kubectl apply -f monitoring/loki/rules/ -n $NAMESPACE
+
+      - name: Verify Loki Setup
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+
+          echo "🔍 Verifying Loki setup..."
+
+          # Port forward to Loki
+          kubectl port-forward -n $NAMESPACE svc/loki 3100:3100 &
+          PF_PID=$!
+          sleep 10
+
+          # Health check
+          if curl -f http://localhost:3100/ready; then
+            echo "✅ Loki is ready"
+          else
+            echo "❌ Loki health check failed"
+            exit 1
+          fi
+
+          # Check log ingestion
+          curl -s http://localhost:3100/loki/api/v1/labels | jq '.data[]' | head -5
+
+          # Cleanup port forward
+          kill $PF_PID
+
+  # Tempo (Distributed Tracing) Setup
+  tempo-setup:
+    name: Tempo Setup
+    runs-on: ubuntu-latest
+    needs: monitoring-config
+    if: needs.monitoring-config.outputs.components == 'all' || needs.monitoring-config.outputs.components == 'tempo'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.28.0'
+
+      - name: Configure kubectl
+        run: |
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+          if [[ "$ENVIRONMENT" == "production" ]]; then
+            echo "${{ secrets.PRODUCTION_KUBECONFIG }}" | base64 -d > kubeconfig
+          else
+            echo "${{ secrets.STAGING_KUBECONFIG }}" | base64 -d > kubeconfig
+          fi
+          export KUBECONFIG=$(pwd)/kubeconfig
+
+      - name: Deploy Tempo
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+
+          echo "🔍 Deploying Tempo (distributed tracing)..."
+
+          # Deploy Tempo
+          envsubst < monitoring/tempo/deployment.yaml | kubectl apply -f - -n $NAMESPACE
+
+          # Deploy Tempo services
+          kubectl apply -f monitoring/tempo/service.yaml -n $NAMESPACE
+
+          # Wait for Tempo to be ready
+          kubectl wait --for=condition=ready pod -l app=tempo \
+            --namespace $NAMESPACE \
+            --timeout=600s
+
+      - name: Configure OpenTelemetry Collector
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+
+          echo "📡 Configuring OpenTelemetry collector..."
+
+          # Deploy OpenTelemetry collector
+          envsubst < monitoring/tempo/otel-collector.yaml | kubectl apply -f - -n $NAMESPACE
+
+      - name: Verify Tempo Setup
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+
+          echo "🔍 Verifying Tempo setup..."
+
+          # Port forward to Tempo
+          kubectl port-forward -n $NAMESPACE svc/tempo 3200:3200 &
+          PF_PID=$!
+          sleep 10
+
+          # Health check
+          if curl -f http://localhost:3200/ready; then
+            echo "✅ Tempo is ready"
+          else
+            echo "❌ Tempo health check failed"
+            exit 1
+          fi
+
+          # Cleanup port forward
+          kill $PF_PID
+
+  # Monitoring Health Checks
+  monitoring-health-checks:
+    name: Monitoring Health Checks
+    runs-on: ubuntu-latest
+    needs: [monitoring-config, prometheus-setup, grafana-setup, alertmanager-setup, loki-setup, tempo-setup]
+    if: always()
+    steps:
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.28.0'
+
+      - name: Configure kubectl
+        run: |
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+          if [[ "$ENVIRONMENT" == "production" ]]; then
+            echo "${{ secrets.PRODUCTION_KUBECONFIG }}" | base64 -d > kubeconfig
+          else
+            echo "${{ secrets.STAGING_KUBECONFIG }}" | base64 -d > kubeconfig
+          fi
+          export KUBECONFIG=$(pwd)/kubeconfig
+
+      - name: Comprehensive Health Check
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+
+          echo "🏥 Running comprehensive monitoring health checks..."
+
+          # Check all monitoring pods
+          echo "📊 Checking monitoring pods..."
+          kubectl get pods -n $NAMESPACE
+
+          # Prometheus health
+          echo "🔍 Prometheus health check..."
+          kubectl port-forward -n $NAMESPACE svc/prometheus 9090:9090 &
+          PF_PID=$!
+          sleep 5
+          if curl -f http://localhost:9090/-/healthy; then
+            echo "✅ Prometheus healthy"
+          else
+            echo "❌ Prometheus unhealthy"
+          fi
+          kill $PF_PID
+
+          # Grafana health
+          echo "🎨 Grafana health check..."
+          kubectl port-forward -n $NAMESPACE svc/grafana 3000:3000 &
+          PF_PID=$!
+          sleep 5
+          if curl -f http://localhost:3000/api/health; then
+            echo "✅ Grafana healthy"
+          else
+            echo "❌ Grafana unhealthy"
+          fi
+          kill $PF_PID
+
+          # AlertManager health
+          echo "🚨 AlertManager health check..."
+          kubectl port-forward -n $NAMESPACE svc/alertmanager 9093:9093 &
+          PF_PID=$!
+          sleep 5
+          if curl -f http://localhost:9093/-/healthy; then
+            echo "✅ AlertManager healthy"
+          else
+            echo "❌ AlertManager unhealthy"
+          fi
+          kill $PF_PID
+
+          # Loki health
+          echo "📝 Loki health check..."
+          kubectl port-forward -n $NAMESPACE svc/loki 3100:3100 &
+          PF_PID=$!
+          sleep 5
+          if curl -f http://localhost:3100/ready; then
+            echo "✅ Loki healthy"
+          else
+            echo "❌ Loki unhealthy"
+          fi
+          kill $PF_PID
+
+          # Tempo health
+          echo "🔍 Tempo health check..."
+          kubectl port-forward -n $NAMESPACE svc/tempo 3200:3200 &
+          PF_PID=$!
+          sleep 5
+          if curl -f http://localhost:3200/ready; then
+            echo "✅ Tempo healthy"
+          else
+            echo "❌ Tempo unhealthy"
+          fi
+          kill $PF_PID
+
+      - name: Check Data Flow
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+
+          echo "🔄 Checking monitoring data flow..."
+
+          # Check Prometheus targets
+          kubectl port-forward -n $NAMESPACE svc/prometheus 9090:9090 &
+          PF_PID=$!
+          sleep 5
+
+          TARGETS_COUNT=$(curl -s http://localhost:9090/api/v1/targets | jq '.data.activeTargets | length')
+          echo "Prometheus active targets: $TARGETS_COUNT"
+
+          # Check metrics collection
+          METRICS_COUNT=$(curl -s "http://localhost:9090/api/v1/query?query=up" | jq '.data.result | length')
+          echo "Metrics collected: $METRICS_COUNT"
+
+          kill $PF_PID
+
+      - name: Test Alerting
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+
+          echo "🚨 Testing alerting system..."
+
+          # Create test alert rule
+          cat <<EOF | kubectl apply -f -
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: test-alert
+  namespace: $NAMESPACE
+spec:
+  groups:
+  - name: test
+    rules:
+    - alert: TestAlert
+      expr: vector(1)
+      for: 1m
+      labels:
+        severity: info
+      annotations:
+        summary: "Test alert from monitoring pipeline"
+EOF
+
+          echo "Test alert rule created. Check AlertManager UI for test alert."
+
+          # Clean up test alert after 2 minutes
+          sleep 120
+          kubectl delete prometheusrule test-alert -n $NAMESPACE || true
+
+  # Backup Monitoring Configuration
+  backup-configs:
+    name: Backup Monitoring Configuration
+    runs-on: ubuntu-latest
+    needs: monitoring-config
+    if: github.event.inputs.action == 'backup-configs' || github.event.schedule != ''
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.28.0'
+
+      - name: Configure kubectl
+        run: |
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+          if [[ "$ENVIRONMENT" == "production" ]]; then
+            echo "${{ secrets.PRODUCTION_KUBECONFIG }}" | base64 -d > kubeconfig
+          else
+            echo "${{ secrets.STAGING_KUBECONFIG }}" | base64 -d > kubeconfig
+          fi
+          export KUBECONFIG=$(pwd)/kubeconfig
+
+      - name: Backup Configuration
+        run: |
+          export KUBECONFIG=$(pwd)/kubeconfig
+          NAMESPACE="${{ needs.monitoring-config.outputs.namespace }}"
+          ENVIRONMENT="${{ needs.monitoring-config.outputs.environment }}"
+          TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+
+          echo "💾 Creating monitoring configuration backup..."
+
+          mkdir -p backup-$TIMESTAMP
+
+          # Backup all monitoring resources
+          kubectl get all -n $NAMESPACE -o yaml > backup-$TIMESTAMP/all-resources.yaml
+
+          # Backup specific configurations
+          kubectl get configmaps -n $NAMESPACE -o yaml > backup-$TIMESTAMP/configmaps.yaml
+          kubectl get secrets -n $NAMESPACE -o yaml > backup-$TIMESTAMP/secrets.yaml
+
+          # Backup Prometheus rules
+          kubectl get prometheusrules -n $NAMESPACE -o yaml > backup-$TIMESTAMP/prometheus-rules.yaml
+
+          # Backup Grafana dashboards
+          kubectl get configmaps -l grafana_dashboard=1 -n $NAMESPACE -o yaml > backup-$TIMESTAMP/grafana-dashboards.yaml
+
+          # Create backup archive
+          tar -czf monitoring-backup-$ENVIRONMENT-$TIMESTAMP.tar.gz backup-$TIMESTAMP/
+
+      - name: Upload Backup to Artifact Storage
+        uses: actions/upload-artifact@v3
+        with:
+          name: monitoring-config-backup-${{ needs.monitoring-config.outputs.environment }}-${{ github.run_number }}
+          path: monitoring-backup-*.tar.gz
+          retention-days: ${{ env.CONFIG_RETENTION_DAYS }}
+
+  # Monitoring Pipeline Summary
+  monitoring-summary:
+    name: Monitoring Pipeline Summary
+    runs-on: ubuntu-latest
+    needs: [monitoring-config, prometheus-setup, grafana-setup, alertmanager-setup, loki-setup, tempo-setup, monitoring-health-checks]
+    if: always()
+    steps:
+      - name: Monitoring Pipeline Summary
+        run: |
+          echo "## 📊 Phase 4 Monitoring Pipeline Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Environment:** ${{ needs.monitoring-config.outputs.environment }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Namespace:** ${{ needs.monitoring-config.outputs.namespace }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Components:** ${{ needs.monitoring-config.outputs.components }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Alert Severity:** ${{ needs.monitoring-config.outputs.severity }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "### 🛠️ Monitoring Components Status" >> $GITHUB_STEP_SUMMARY
+          echo "| Component | Status | Access URL |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|-----------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Prometheus | ${{ needs.prometheus-setup.result }} | https://prometheus-${{ needs.monitoring-config.outputs.environment }}.ran-optimization.com |" >> $GITHUB_STEP_SUMMARY
+          echo "| Grafana | ${{ needs.grafana-setup.result }} | https://grafana-${{ needs.monitoring-config.outputs.environment }}.ran-optimization.com |" >> $GITHUB_STEP_SUMMARY
+          echo "| AlertManager | ${{ needs.alertmanager-setup.result }} | https://alertmanager-${{ needs.monitoring-config.outputs.environment }}.ran-optimization.com |" >> $GITHUB_STEP_SUMMARY
+          echo "| Loki | ${{ needs.loki-setup.result }} | Internal service |" >> $GITHUB_STEP_SUMMARY
+          echo "| Tempo | ${{ needs.tempo-setup.result }} | Internal service |" >> $GITHUB_STEP_SUMMARY
+          echo "| Health Checks | ${{ needs.monitoring-health-checks.result }} | - |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [[ "${{ needs.monitoring-health-checks.result }}" == "success" ]]; then
+            echo "✅ **Monitoring pipeline completed successfully! All components are healthy.**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 🔗 Access Information" >> $GITHUB_STEP_SUMMARY
+            echo "- **Grafana:** https://grafana-${{ needs.monitoring-config.outputs.environment }}.ran-optimization.com (admin/admin)" >> $GITHUB_STEP_SUMMARY
+            echo "- **Prometheus:** https://prometheus-${{ needs.monitoring-config.outputs.environment }}.ran-optimization.com" >> $GITHUB_STEP_SUMMARY
+            echo "- **AlertManager:** https://alertmanager-${{ needs.monitoring-config.outputs.environment }}.ran-optimization.com" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **Monitoring pipeline completed with issues. Please review the component status.**" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📈 Features Configured" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Metrics collection and storage" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Visualization dashboards" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Alerting and notification" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Log aggregation" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Distributed tracing" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Configuration backup" >> $GITHUB_STEP_SUMMARY
+
+      - name: Notify monitoring setup completion
+        if: needs.monitoring-health-checks.result == 'success'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: success
+          channel: '#monitoring'
+          text: |
+            📊 *Monitoring Pipeline Completed*
+
+            🌍 Environment: ${{ needs.monitoring-config.outputs.environment }}
+            🛠️ Components: ${{ needs.monitoring-config.outputs.components }}
+
+            🎯 Grafana: https://grafana-${{ needs.monitoring-config.outputs.environment }}.ran-optimization.com
+            📈 Prometheus: https://prometheus-${{ needs.monitoring-config.outputs.environment }}.ran-optimization.com
+
+            Monitoring system is ready for use!
+
+            View details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.MONITORING_SLACK_WEBHOOK_URL }}

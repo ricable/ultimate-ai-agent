@@ -1,0 +1,32 @@
+{
+  "neural_embedding": {
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "batch_size": 256,
+    "use_flash_attention_2": true,
+    "mixed_precision": "fp32",
+    "use_sdpa": true,
+    "cache_embeddings": true,
+    "normalize_embeddings": true,
+    "dataloader_num_workers": 16,
+    "pin_memory": true,
+    "gradient_checkpointing": true,
+    "device": "auto"
+  },
+  "optimization_strategy": {
+    "primary": "cache_optimization",
+    "secondary": "precision_optimization",
+    "tertiary": "memory_cpu_optimization"
+  },
+  "performance_targets": {
+    "minimum_ops_per_second": 1000,
+    "optimal_ops_per_second": 1755595,
+    "cache_hit_ratio": 0.95,
+    "memory_efficiency": 0.8
+  },
+  "deployment": {
+    "recommended_instance": "performance-8x",
+    "gpu_ready": true,
+    "scaling": "auto",
+    "health_checks": true
+  }
+}

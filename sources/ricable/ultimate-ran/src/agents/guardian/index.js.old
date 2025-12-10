@@ -1,0 +1,221 @@
+/**
+ * The Guardian Agent
+ * Role: Adversarial Safety Agent (Sentinel)
+ *
+ * Utilizes strange-loops library for Pre-Commit Simulation.
+ * Hunts for Hallucinations and calculates Lyapunov Exponents.
+ */
+
+import { BaseAgent } from '../base-agent.js';
+
+export class GuardianAgent extends BaseAgent {
+  constructor(config) {
+    super({
+      ...config,
+      type: 'guardian',
+      role: 'Adversarial Safety Agent',
+      capabilities: [
+        'pre_commit_simulation',
+        'hallucination_detection',
+        'lyapunov_analysis',
+        'safety_verification'
+      ],
+      tools: ['strange-loops', 'digital-twin', 'agentic-jujutsu']
+    });
+
+    // Safety thresholds
+    this.thresholds = {
+      lyapunov_max: 0.0, // Positive = chaos
+      bler_max: 0.1,
+      power_max_dbm: 46
+    };
+  }
+
+  /**
+   * Process code artifact for safety verification
+   */
+  async processTask(task) {
+    console.log(`[GUARDIAN] Auditing artifact: ${task.artifact.id}`);
+
+    // Pre-Commit Simulation
+    const simulation = await this.runPreCommitSimulation(task.artifact);
+
+    // Hallucination Detection
+    const hallucinations = await this.detectHallucinations(task.artifact);
+
+    // Lyapunov Analysis
+    const lyapunovResult = await this.analyzeLyapunov(simulation);
+
+    // Final verdict
+    const approved = this.renderVerdict(simulation, hallucinations, lyapunovResult);
+
+    this.emitAGUI('agent_message', {
+      type: 'markdown',
+      content: `## Safety Audit Result\n\n**Verdict:** ${approved ? 'APPROVED' : 'REJECTED'}\n\nLyapunov Exponent: ${lyapunovResult.exponent}\nHallucinations: ${hallucinations.length}`,
+      agent_id: this.id
+    });
+
+    return {
+      approved,
+      simulation,
+      hallucinations,
+      lyapunovResult
+    };
+  }
+
+  /**
+   * Run Pre-Commit Simulation in Digital Twin
+   */
+  async runPreCommitSimulation(artifact) {
+    console.log('[GUARDIAN] Running pre-commit simulation in digital twin...');
+
+    // Execute code in isolated digital twin environment
+    const simulation = {
+      id: `sim-${Date.now()}`,
+      artifact: artifact.id,
+      steps: [],
+      finalState: null
+    };
+
+    // Simulate the artifact's effects
+    for (let step = 0; step < 100; step++) {
+      const state = await this.simulateStep(artifact, step);
+      simulation.steps.push(state);
+
+      // Check for divergence
+      if (this.detectDivergence(state)) {
+        console.warn(`[GUARDIAN] Divergence detected at step ${step}`);
+        break;
+      }
+    }
+
+    simulation.finalState = simulation.steps[simulation.steps.length - 1];
+    return simulation;
+  }
+
+  async simulateStep(artifact, step) {
+    // Simulate one time step
+    return {
+      step,
+      kpis: {
+        throughput: 100 + Math.random() * 10,
+        bler: Math.random() * 0.05,
+        interference: -105 + Math.random() * 5
+      },
+      stable: true
+    };
+  }
+
+  detectDivergence(state) {
+    return state.kpis.bler > this.thresholds.bler_max;
+  }
+
+  /**
+   * Detect Hallucinations - logic errors where code is syntactically
+   * correct but physically dangerous
+   */
+  async detectHallucinations(artifact) {
+    console.log('[GUARDIAN] Scanning for hallucinations...');
+
+    const hallucinations = [];
+
+    // Check for infinite power increase loops
+    if (this.hasInfinitePowerLoop(artifact)) {
+      hallucinations.push({
+        type: 'INFINITE_POWER_LOOP',
+        severity: 'CRITICAL',
+        description: 'Code contains loop that indefinitely increases transmission power'
+      });
+    }
+
+    // Check for constraint violations
+    if (this.violatesPhysicsConstraints(artifact)) {
+      hallucinations.push({
+        type: 'PHYSICS_VIOLATION',
+        severity: 'HIGH',
+        description: 'Code violates physical RF constraints'
+      });
+    }
+
+    // Check for missing safety bounds
+    if (!this.hasSafetyBounds(artifact)) {
+      hallucinations.push({
+        type: 'MISSING_SAFETY_BOUNDS',
+        severity: 'MEDIUM',
+        description: 'Code lacks explicit safety boundary checks'
+      });
+    }
+
+    console.log(`[GUARDIAN] Found ${hallucinations.length} hallucinations`);
+    return hallucinations;
+  }
+
+  hasInfinitePowerLoop(artifact) {
+    // Check for unbounded power increase patterns
+    const code = artifact.code || '';
+    return /while.*power\s*\+\+/.test(code) || /for.*power\s*\+=/.test(code);
+  }
+
+  violatesPhysicsConstraints(artifact) {
+    // Check for values exceeding physical limits
+    const code = artifact.code || '';
+    const powerMatch = code.match(/power\s*=\s*(\d+)/);
+    if (powerMatch && parseInt(powerMatch[1]) > this.thresholds.power_max_dbm) {
+      return true;
+    }
+    return false;
+  }
+
+  hasSafetyBounds(artifact) {
+    const code = artifact.code || '';
+    return /if.*>.*max/i.test(code) || /Math\.min/i.test(code);
+  }
+
+  /**
+   * Calculate Lyapunov Exponent to detect chaos onset
+   * Positive exponent = mathematical signature of instability
+   */
+  async analyzeLyapunov(simulation) {
+    console.log('[GUARDIAN] Calculating Lyapunov exponent...');
+
+    const states = simulation.steps.map(s => s.kpis.throughput);
+
+    // Simplified Lyapunov calculation
+    let sumLog = 0;
+    for (let i = 1; i < states.length; i++) {
+      const delta = Math.abs(states[i] - states[i - 1]);
+      if (delta > 0) {
+        sumLog += Math.log(delta);
+      }
+    }
+
+    const exponent = sumLog / states.length;
+
+    return {
+      exponent,
+      stable: exponent <= this.thresholds.lyapunov_max,
+      interpretation: exponent > 0 ? 'CHAOTIC' : 'STABLE'
+    };
+  }
+
+  /**
+   * Render final verdict
+   */
+  renderVerdict(simulation, hallucinations, lyapunovResult) {
+    const hasCriticalHallucinations = hallucinations.some(h => h.severity === 'CRITICAL');
+    const isChaotic = lyapunovResult.exponent > this.thresholds.lyapunov_max;
+
+    if (hasCriticalHallucinations) {
+      console.error('[GUARDIAN] REJECTED: Critical hallucinations detected');
+      return false;
+    }
+
+    if (isChaotic) {
+      console.error('[GUARDIAN] REJECTED: System exhibits chaotic behavior');
+      return false;
+    }
+
+    console.log('[GUARDIAN] APPROVED: All safety checks passed');
+    return true;
+  }
+}

@@ -1,0 +1,50 @@
+environment: "typescript-env"
+devbox_config: "typescript-env/devbox.json"
+language: "typescript"
+
+dependencies:
+  - "typescript"
+  - "ts-node"
+  - "@types/node"
+  - "jest"
+
+install_command: "npm install {package} && npm install"
+format_command: "npm run format"
+lint_command: "npm run lint"
+type_check_command: "npx tsc --noEmit"
+test_command: "npm test"
+integration_test_command: "npm run test:integration"
+
+current_structure: |
+  typescript-env/
+  ├── devbox.json         # Node.js 20, TypeScript, ESLint, Prettier
+  ├── src/
+  │   ├── index.ts
+  │   └── main.ts
+  ├── tests/
+  │   └── index.test.ts
+  ├── package.json        # npm dependencies and scripts
+  ├── tsconfig.json       # TypeScript configuration
+  └── README.md
+
+environment_gotchas: |
+  # CRITICAL: TypeScript environment-specific gotchas
+  # Node.js: Use Node.js 20+ for modern features
+  # TypeScript: Strict mode enabled - no 'any' types allowed
+  # ESLint: All code must pass linting rules
+  # Jest: Use Jest for testing with TypeScript support
+  # Modules: Use ES modules syntax (import/export)
+
+anti_patterns:
+  - "❌ Don't use 'any' type - use specific types or 'unknown'"
+  - "❌ Don't ignore TypeScript errors - fix them"
+  - "❌ Don't use CommonJS syntax - use ES modules"
+  - "❌ Don't skip ESLint rules - follow them"
+  - "❌ Don't use outdated Node.js patterns"
+
+environment_guidelines:
+  - "✅ Use strict TypeScript configuration"
+  - "✅ Leverage modern ES features"
+  - "✅ Use proper type definitions for all functions"
+  - "✅ Follow async/await patterns consistently"
+  - "✅ Use Jest for comprehensive testing"

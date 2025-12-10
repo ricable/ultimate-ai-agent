@@ -1,0 +1,115 @@
+{
+  "productName": "SPARC IDE",
+  "companyName": "SPARC IDE Team",
+  "copyright": "Copyright © 2025 SPARC IDE Team",
+  "applicationName": "sparc-ide",
+  "dataFolderName": ".sparc-ide",
+  "fileAssociations": [
+    {
+      "ext": ".sparc",
+      "name": "SPARC IDE Project File",
+      "description": "SPARC IDE Project File",
+      "icon": "sparc-ide.ico",
+      "progId": "SPARC.IDE.Project"
+    },
+    {
+      "ext": ".md",
+      "name": "Markdown Document",
+      "description": "Markdown Document",
+      "icon": "markdown.ico",
+      "progId": "SPARC.IDE.Markdown"
+    },
+    {
+      "ext": ".json",
+      "name": "JSON File",
+      "description": "JSON File",
+      "icon": "json.ico",
+      "progId": "SPARC.IDE.JSON"
+    }
+  ],
+  "icons": {
+    "application": "sparc-ide.ico",
+    "installer": "sparc-ide-installer.ico",
+    "uninstaller": "sparc-ide-uninstaller.ico",
+    "fileAssociations": {
+      "markdown": "markdown.ico",
+      "json": "json.ico"
+    }
+  },
+  "installerImages": {
+    "banner": "sparc-ide-installer-banner.bmp",
+    "dialog": "sparc-ide-installer-dialog.bmp",
+    "welcomeFinish": "sparc-ide-installer-dialog.bmp"
+  },
+  "registryKeys": {
+    "installLocation": "Software\\SPARC\\IDE\\InstallLocation",
+    "version": "Software\\SPARC\\IDE\\Version",
+    "dataDirectory": "Software\\SPARC\\IDE\\DataDirectory",
+    "uninstallKey": "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\SPARC IDE"
+  },
+  "startMenu": {
+    "folderName": "SPARC IDE",
+    "shortcuts": [
+      {
+        "name": "SPARC IDE",
+        "description": "Launch SPARC IDE",
+        "target": "sparc-ide.exe",
+        "arguments": "",
+        "icon": "sparc-ide.ico"
+      },
+      {
+        "name": "Documentation",
+        "description": "SPARC IDE Documentation",
+        "target": "resources\\app\\docs\\index.html",
+        "arguments": "",
+        "icon": "docs.ico"
+      },
+      {
+        "name": "Uninstall SPARC IDE",
+        "description": "Uninstall SPARC IDE",
+        "target": "uninstall.exe",
+        "arguments": "",
+        "icon": "sparc-ide-uninstaller.ico"
+      }
+    ]
+  },
+  "desktopShortcut": {
+    "create": true,
+    "name": "SPARC IDE",
+    "description": "Launch SPARC IDE",
+    "target": "sparc-ide.exe",
+    "arguments": "",
+    "icon": "sparc-ide.ico"
+  },
+  "installerOptions": {
+    "silent": "/VERYSILENT /SUPPRESSMSGBOXES",
+    "silentWithProgress": "/SILENT /SUPPRESSMSGBOXES",
+    "log": "/LOG=\"%TEMP%\\sparc-ide-installer.log\"",
+    "noRestart": "/NORESTART",
+    "customLocation": "/DIR=\"%ProgramFiles%\\SPARC IDE\"",
+    "noDesktopShortcut": "/NODESKTOPSHORTCUT",
+    "noStartMenuShortcut": "/NOSTARTMENUSHORTCUT",
+    "noQuickLaunch": "/NOQUICKLAUNCH"
+  },
+  "uninstallerOptions": {
+    "silent": "/VERYSILENT /SUPPRESSMSGBOXES",
+    "silentWithProgress": "/SILENT /SUPPRESSMSGBOXES",
+    "log": "/LOG=\"%TEMP%\\sparc-ide-uninstaller.log\"",
+    "noRestart": "/NORESTART"
+  },
+  "windowsFeatures": {
+    "addToPath": true,
+    "registerFileAssociations": true,
+    "createStartMenuShortcuts": true,
+    "createDesktopShortcut": true,
+    "createQuickLaunchShortcut": false,
+    "addContextMenuItems": true
+  },
+  "contextMenuItems": [
+    {
+      "name": "Open with SPARC IDE",
+      "command": "sparc-ide.exe \"%1\"",
+      "fileTypes": [".md", ".json", ".js", ".ts", ".html", ".css", ".sparc"]
+    }
+  ]
+}

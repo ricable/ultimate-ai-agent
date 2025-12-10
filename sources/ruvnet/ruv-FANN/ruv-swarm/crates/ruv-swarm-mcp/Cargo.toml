@@ -1,0 +1,68 @@
+[package]
+name = "ruv-swarm-mcp"
+version = "1.0.5"
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+description = "Model Context Protocol (MCP) integration for RUV Swarm"
+
+[[bin]]
+name = "ruv-swarm-mcp"
+path = "src/main.rs"
+
+[[bin]]
+name = "ruv-swarm-mcp-stdio"
+path = "src/bin/stdio.rs"
+
+[dependencies]
+# Core workspace dependencies
+tokio = { workspace = true, features = ["rt-multi-thread", "sync", "macros", "time", "net"] }
+async-trait = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+dashmap = { workspace = true }
+futures = { workspace = true }
+
+# MCP SDK for stdio transport
+rmcp = { version = "0.2.1", features = ["server", "transport-io"] }
+
+# MCP specific dependencies (WebSocket)
+axum = { version = "0.7", features = ["ws", "json"] }
+axum-extra = { version = "0.9", features = ["typed-header"] }
+tower = { version = "0.5", features = ["full"] }
+tower-http = { version = "0.6", features = ["cors", "trace"] }
+
+# WebSocket support
+tokio-tungstenite = "0.26"
+tungstenite = "0.26"
+
+# JSON Schema
+schemars = { version = "0.8", features = ["derive"] }
+jsonschema = "0.26"
+
+# Security utilities
+rand = "0.8"
+
+# UUID for session management
+uuid = { version = "1.11", features = ["v4", "serde"] }
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Error handling and logging for stdio binary
+color-eyre = "0.6"
+
+# Internal dependencies
+ruv-swarm-core = { path = "../ruv-swarm-core", version = "1.0.6" }
+ruv-swarm-persistence = { path = "../ruv-swarm-persistence" }
+
+[dev-dependencies]
+criterion = { workspace = true }
+proptest = { workspace = true }
+tokio-test = "0.4"

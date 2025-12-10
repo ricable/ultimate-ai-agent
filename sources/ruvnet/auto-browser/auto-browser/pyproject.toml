@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "auto-browser"
+version = "0.1.0"
+description = "Browser automation CLI tool for configurable site scraping"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+requires-python = ">=3.11"
+dependencies = [
+    "click>=8.1.0,<9.0.0",
+    "pydantic>=2.0.0,<3.0.0",
+    "pyyaml>=6.0.1,<7.0.0",
+    "rich>=13.0.0,<14.0.0",
+    "browser-use>=0.1.23",
+    "langchain-openai>=0.2.14",
+    "python-dotenv>=1.0.0"
+]
+
+[project.scripts]
+auto-browser = "browser_automation.cli:main"
+
+[tool.setuptools]
+packages = ["browser_automation"]

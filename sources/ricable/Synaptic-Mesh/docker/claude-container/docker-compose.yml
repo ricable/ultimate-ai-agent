@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  claude-container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: synaptic-neural-mesh/claude-container:latest
+    container_name: claude-secure-container
+    
+    # Security configurations
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    user: "1000:1000"
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+        reservations:
+          memory: 256M
+          cpus: '0.25'
+    
+    # Temporary filesystem for workspace
+    tmpfs:
+      - /tmp/claude-work:rw,size=100m,uid=1000,gid=1000
+    
+    # Environment variables (API key provided by user)
+    environment:
+      - NODE_ENV=production
+      - CLAUDE_SANDBOX_MODE=true
+      - CLAUDE_NETWORK_RESTRICTED=true
+      - CLAUDE_FILESYSTEM_READONLY=true
+      # User must provide: CLAUDE_API_KEY or ANTHROPIC_API_KEY
+    
+    # Network isolation (API access only)
+    networks:
+      - claude-api-only
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "node", "-e", "console.log('healthy')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    # Restart policy
+    restart: unless-stopped
+
+networks:
+  claude-api-only:
+    driver: bridge
+    # Restrict network access to external APIs only
+    internal: false
+    attachable: false

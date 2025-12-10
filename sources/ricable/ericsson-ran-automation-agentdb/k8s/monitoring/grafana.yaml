@@ -1,0 +1,644 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: ran-monitoring
+  labels:
+    app: grafana
+    component: monitoring
+    version: v9.3.0
+  annotations:
+    grafana.io/monitoring: "true"
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: grafana
+      component: monitoring
+  template:
+    metadata:
+      labels:
+        app: grafana
+        component: monitoring
+        version: v9.3.0
+      annotations:
+        grafana.io/monitoring: "true"
+    spec:
+      serviceAccountName: grafana-sa
+      securityContext:
+        runAsUser: 472
+        runAsGroup: 472
+        fsGroup: 472
+      containers:
+      - name: grafana
+        image: grafana/grafana:9.3.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: web
+          containerPort: 3000
+          protocol: TCP
+        env:
+        - name: GF_SECURITY_ADMIN_USER
+          valueFrom:
+            secretKeyRef:
+              name: grafana-admin-credentials
+              key: admin-user
+        - name: GF_SECURITY_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: grafana-admin-credentials
+              key: admin-password
+        - name: GF_SECURITY_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: grafana-secrets
+              key: secret-key
+        - name: GF_INSTALL_PLUGINS
+          value: "grafana-piechart-panel,grafana-worldmap-panel,grafana-clock-panel,grafana-simple-json-datasource"
+        - name: GF_SERVER_DOMAIN
+          value: "grafana.ran-automation.example.com"
+        - name: GF_SERVER_ROOT_URL
+          value: "https://grafana.ran-automation.example.com"
+        - name: GF_SERVER_SERVE_FROM_SUB_PATH
+          value: "false"
+        - name: GF_DATABASE_TYPE
+          value: "postgres"
+        - name: GF_DATABASE_HOST
+          value: "postgres-service.ran-monitoring.svc.cluster.local:5432"
+        - name: GF_DATABASE_NAME
+          value: "grafana"
+        - name: GF_DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: grafana-db-credentials
+              key: db-user
+        - name: GF_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: grafana-db-credentials
+              key: db-password
+        - name: GF_DATABASE_SSL_MODE
+          value: "require"
+        - name: GF_AUTH_ANONYMOUS_ENABLED
+          value: "false"
+        - name: GF_AUTH_BASIC_ENABLED
+          value: "true"
+        - name: GF_AUTH_LDAP_ENABLED
+          value: "false"
+        - name: GF_AUTH_OAUTH_AUTO_LOGIN
+          value: "false"
+        - name: GF_USERS_ALLOW_SIGN_UP
+          value: "false"
+        - name: GF_USERS_ALLOW_ORG_CREATE
+          value: "false"
+        - name: GF_LOG_MODE
+          value: "console"
+        - name: GF_LOG_LEVEL
+          value: "info"
+        - name: GF_SMTP_ENABLED
+          value: "true"
+        - name: GF_SMTP_HOST
+          value: "smtp.gmail.com:587"
+        - name: GF_SMTP_USER
+          valueFrom:
+            secretKeyRef:
+              name: grafana-smtp-credentials
+              key: smtp-user
+        - name: GF_SMTP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: grafana-smtp-credentials
+              key: smtp-password
+        - name: GF_SMTP_FROM_ADDRESS
+          value: "grafana@ran-automation.example.com"
+        - name: GF_SMTP_FROM_NAME
+          value: "RAN Automation Grafana"
+        - name: GF_ALERTING_ENABLED
+          value: "true"
+        - name: GF_UNIFIED_ALERTING_ENABLED
+          value: "true"
+        - name: GF_EXPLORE_ENABLED
+          value: "true"
+        - name: GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH
+          value: "/etc/grafana/provisioning/dashboards/ran-automation-overview.json"
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1Gi
+          limits:
+            cpu: 2000m
+            memory: 4Gi
+        volumeMounts:
+        - name: grafana-storage
+          mountPath: /var/lib/grafana
+        - name: grafana-config
+          mountPath: /etc/grafana/grafana.ini
+          subPath: grafana.ini
+          readOnly: true
+        - name: grafana-provisioning
+          mountPath: /etc/grafana/provisioning
+          readOnly: true
+        - name: grafana-dashboards
+          mountPath: /var/lib/grafana/dashboards
+          readOnly: true
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: web
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: web
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop:
+            - ALL
+      volumes:
+      - name: grafana-storage
+        persistentVolumeClaim:
+          claimName: grafana-pvc
+      - name: grafana-config
+        configMap:
+          name: grafana-config
+      - name: grafana-provisioning
+        configMap:
+          name: grafana-provisioning
+      - name: grafana-dashboards
+        configMap:
+          name: grafana-dashboards
+      nodeSelector:
+        node-type: worker
+        workload-type: monitoring
+      tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "monitoring"
+        effect: "NoSchedule"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-config
+  namespace: ran-monitoring
+  labels:
+    app: grafana
+    component: config
+data:
+  grafana.ini: |
+    [server]
+    protocol = http
+    http_port = 3000
+    domain = grafana.ran-automation.example.com
+    enforce_domain = true
+    root_url = https://grafana.ran-automation.example.com/
+    serve_from_sub_path = false
+
+    [database]
+    type = postgres
+    host = postgres-service.ran-monitoring.svc.cluster.local:5432
+    name = grafana
+    user = grafana
+    password = grafana_password
+    ssl_mode = require
+
+    [security]
+    admin_user = admin
+    admin_password = admin_password
+    secret_key = secret_key
+    disable_gravatar = false
+    data_source_proxy_whitelist =
+
+    [users]
+    allow_sign_up = false
+    allow_org_create = false
+    auto_assign_org = true
+    auto_assign_org_role = Viewer
+    viewers_can_edit = false
+
+    [auth]
+    disable_login_form = false
+    disable_signout_menu = false
+
+    [auth.anonymous]
+    enabled = false
+    org_role = Viewer
+
+    [smtp]
+    enabled = true
+    host = smtp.gmail.com:587
+    user = grafana@ran-automation.example.com
+    password = smtp_password
+    from_address = grafana@ran-automation.example.com
+    from_name = RAN Automation Grafana
+
+    [log]
+    mode = console
+    level = info
+
+    [log.console]
+    format = text
+
+    [alerting]
+    enabled = true
+    execute_alerts = true
+
+    [unified_alerting]
+    enabled = true
+
+    [explore]
+    enabled = true
+
+    [metrics]
+    enabled = true
+    interval_seconds = 10
+
+    [grafana_net]
+    url = https://grafana.net
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-provisioning
+  namespace: ran-monitoring
+  labels:
+    app: grafana
+    component: provisioning
+data:
+  datasources.yaml: |
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      access: proxy
+      url: http://prometheus-service.ran-monitoring.svc.cluster.local:9090
+      isDefault: true
+      editable: true
+      jsonData:
+        timeInterval: "15s"
+        queryTimeout: "60s"
+        httpMethod: "POST"
+      secureJsonData: {}
+
+    - name: AgentDB
+      type: postgres
+      access: proxy
+      url: postgres-service.ran-monitoring.svc.cluster.local:5432
+      database: grafana
+      user: grafana
+      secureJsonData:
+        password: grafana_password
+      jsonData:
+        sslmode: "require"
+
+    - name: Loki
+      type: loki
+      access: proxy
+      url: http://loki-service.ran-logging.svc.cluster.local:3100
+      editable: true
+      jsonData:
+        maxLines: 1000
+
+  dashboards.yaml: |
+    apiVersion: 1
+    providers:
+    - name: 'default'
+      orgId: 1
+      folder: ''
+      type: file
+      disableDeletion: false
+      updateIntervalSeconds: 30
+      allowUiUpdates: true
+      options:
+        path: /var/lib/grafana/dashboards
+
+    - name: 'ran-automation'
+      orgId: 1
+      folder: 'RAN Automation'
+      type: file
+      disableDeletion: false
+      updateIntervalSeconds: 30
+      allowUiUpdates: true
+      options:
+        path: /var/lib/grafana/dashboards/ran-automation
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboards
+  namespace: ran-monitoring
+  labels:
+    app: grafana
+    component: dashboards
+data:
+  ran-automation-overview.json: |
+    {
+      "dashboard": {
+        "id": null,
+        "title": "RAN Automation System Overview",
+        "tags": ["ran-automation", "overview", "production"],
+        "timezone": "browser",
+        "panels": [
+          {
+            "id": 1,
+            "title": "System Health",
+            "type": "stat",
+            "gridPos": {"h": 8, "w": 6, "x": 0, "y": 0},
+            "targets": [
+              {
+                "expr": "up{job=\"ran-automation-services\"}",
+                "refId": "A",
+                "legendFormat": "{{instance}}"
+              }
+            ],
+            "fieldConfig": {
+              "defaults": {
+                "color": {"mode": "thresholds"},
+                "thresholds": {
+                  "steps": [
+                    {"color": "red", "value": 0},
+                    {"color": "green", "value": 1}
+                  ]
+                },
+                "unit": "short",
+                "displayName": "Service Status"
+              }
+            },
+            "options": {
+              "reduceOptions": {
+                "values": false,
+                "calcs": ["lastNotNull"],
+                "fields": ""
+              },
+              "orientation": "auto",
+              "textMode": "auto",
+              "colorMode": "background"
+            }
+          },
+          {
+            "id": 2,
+            "title": "Cognitive Consciousness Level",
+            "type": "gauge",
+            "gridPos": {"h": 8, "w": 6, "x": 6, "y": 0},
+            "targets": [
+              {
+                "expr": "cognitive_consciousness_level",
+                "refId": "A"
+              }
+            ],
+            "fieldConfig": {
+              "defaults": {
+                "min": 0,
+                "max": 100,
+                "unit": "percent",
+                "thresholds": {
+                  "steps": [
+                    {"color": "red", "value": 0},
+                    {"color": "yellow", "value": 70},
+                    {"color": "green", "value": 90}
+                  ]
+                }
+              }
+            },
+            "options": {
+              "reduceOptions": {
+                "values": false,
+                "calcs": ["lastNotNull"],
+                "fields": ""
+              },
+              "orientation": "auto",
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true
+            }
+          },
+          {
+            "id": 3,
+            "title": "Active Agents",
+            "type": "stat",
+            "gridPos": {"h": 8, "w": 6, "x": 12, "y": 0},
+            "targets": [
+              {
+                "expr": "swarm_active_agents",
+                "refId": "A"
+              }
+            ],
+            "fieldConfig": {
+              "defaults": {
+                "color": {"mode": "thresholds"},
+                "thresholds": {
+                  "steps": [
+                    {"color": "red", "value": 0},
+                    {"color": "yellow", "value": 5},
+                    {"color": "green", "value": 10}
+                  ]
+                },
+                "unit": "short"
+              }
+            }
+          },
+          {
+            "id": 4,
+            "title": "Task Queue Length",
+            "type": "stat",
+            "gridPos": {"h": 8, "w": 6, "x": 18, "y": 0},
+            "targets": [
+              {
+                "expr": "swarm_task_queue_length",
+                "refId": "A"
+              }
+            ],
+            "fieldConfig": {
+              "defaults": {
+                "color": {"mode": "thresholds"},
+                "thresholds": {
+                  "steps": [
+                    {"color": "green", "value": 0},
+                    {"color": "yellow", "value": 50},
+                    {"color": "red", "value": 100}
+                  ]
+                },
+                "unit": "short"
+              }
+            }
+          },
+          {
+            "id": 5,
+            "title": "Request Rate",
+            "type": "graph",
+            "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
+            "targets": [
+              {
+                "expr": "rate(http_requests_total{job=\"ran-automation-services\"}[5m])",
+                "refId": "A",
+                "legendFormat": "{{instance}}"
+              }
+            ],
+            "yAxes": [
+              {
+                "label": "Requests/sec",
+                "min": 0
+              }
+            ]
+          },
+          {
+            "id": 6,
+            "title": "Response Time (95th percentile)",
+            "type": "graph",
+            "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8},
+            "targets": [
+              {
+                "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job=\"ran-automation-services\"}[5m]))",
+                "refId": "A",
+                "legendFormat": "{{instance}}"
+              }
+            ],
+            "yAxes": [
+              {
+                "label": "Seconds",
+                "min": 0
+              }
+            ]
+          },
+          {
+            "id": 7,
+            "title": "Error Rate",
+            "type": "graph",
+            "gridPos": {"h": 8, "w": 12, "x": 0, "y": 16},
+            "targets": [
+              {
+                "expr": "rate(http_requests_total{job=\"ran-automation-services\",status=~\"5..\"}[5m]) / rate(http_requests_total{job=\"ran-automation-services\"}[5m])",
+                "refId": "A",
+                "legendFormat": "{{instance}}"
+              }
+            ],
+            "yAxes": [
+              {
+                "label": "Error Rate",
+                "min": 0,
+                "max": 1,
+                "format": "percentunit"
+              }
+            ]
+          },
+          {
+            "id": 8,
+            "title": "Temporal Analysis Depth",
+            "type": "graph",
+            "gridPos": {"h": 8, "w": 12, "x": 12, "y": 16},
+            "targets": [
+              {
+                "expr": "temporal_analysis_depth_factor",
+                "refId": "A"
+              }
+            ],
+            "yAxes": [
+              {
+                "label": "Expansion Factor",
+                "min": 0
+              }
+            ]
+          }
+        ],
+        "time": {
+          "from": "now-1h",
+          "to": "now"
+        },
+        "refresh": "5s",
+        "schemaVersion": 27,
+        "version": 1,
+        "templating": {
+          "list": []
+        }
+      }
+    }
+
+  cognitive-performance.json: |
+    {
+      "dashboard": {
+        "id": null,
+        "title": "Cognitive Performance Metrics",
+        "tags": ["cognitive", "performance", "consciousness"],
+        "timezone": "browser",
+        "panels": [
+          {
+            "id": 1,
+            "title": "Consciousness Level",
+            "type": "graph",
+            "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+            "targets": [
+              {
+                "expr": "cognitive_consciousness_level",
+                "refId": "A"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Temporal Expansion Factor",
+            "type": "graph",
+            "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+            "targets": [
+              {
+                "expr": "temporal_analysis_depth_factor",
+                "refId": "A"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "title": "Cognitive Processing Time",
+            "type": "graph",
+            "gridPos": {"h": 8, "w": 24, "x": 0, "y": 8},
+            "targets": [
+              {
+                "expr": "histogram_quantile(0.95, rate(cognitive_processing_duration_seconds_bucket[5m]))",
+                "refId": "A"
+              }
+            ]
+          }
+        ],
+        "time": {
+          "from": "now-1h",
+          "to": "now"
+        },
+        "refresh": "5s",
+        "schemaVersion": 27,
+        "version": 1
+      }
+    }
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-pvc
+  namespace: ran-monitoring
+  labels:
+    app: grafana
+    component: storage
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: fast-ssd
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: grafana-sa
+  namespace: ran-monitoring
+  labels:
+    app: grafana
+    component: service-account

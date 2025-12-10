@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:xalan="http://xml.apache.org/xalan" xmlns:lxslt="http://xml.apache.org/xslt" lang="en" xml:lang="en">
+<head>
+<meta name="HTMLPACKLINKS" content="8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="PREP" content="" />
+<meta name="DATE" content="2025-05-26" />
+<meta name="DOCNO" content="692/155 54-LZA 701 6014/33-V1 Uen" />
+<meta name="REV" content="FK" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-type" />
+<meta name="THEMES" content="MOM" />
+<meta name="DOCNAME" content="MANAGED OBJECT MODEL" />
+<meta name="TITLE" content="class MaintenanceUserSecurity" />
+<meta name="SUBTITLE" content="G3G4_MOMCPI CXP2020502_2 R32C08" />
+<link title="Style" href="edw:/alex?fn=hilda.css" type="text/css" rel="stylesheet" />
+<link title="Style" href="edw:/alex?fn=3_15554-LZA7016014_33-V1Uen.FK.css" type="text/css" rel="stylesheet" />
+<script src="edw:/alex?fn=dwcommon.js" language="javascript" type="text/javascript"> </script>
+<title>class MaintenanceUserSecurity</title>
+</head>
+<body>
+
+<script language="JavaScript" src="edw:/alex?fn=switch_theme.js" type="text/javascript"></script>
+<div id="header">
+<table class="docinfo">
+<tr>
+<td>&nbsp; &nbsp; <span class="fcaption"><span class="caption">Managed Object Model</span>&nbsp; &nbsp; &nbsp; &nbsp; 692/155 54-LZA 701 6014/33-V1 Uen FK</span>&nbsp; &nbsp; </td>
+</tr>
+</table>
+</div>
+<h1 class="TITLE">
+<a name="TITLE">class&#160;MaintenanceUserSecurity</a>
+</h1>
+<dl>
+<dd>
+<a href="edw:/alex?fn=210_15554-LZA7016014_33-V1Uen.FK.html">ManagedElement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=218_15554-LZA7016014_33-V1Uen.FK.html">SystemFunctions</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=581_15554-LZA7016014_33-V1Uen.FK.html">SecM</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=601_15554-LZA7016014_33-V1Uen.FK.html">UserManagement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=647_15554-LZA7016014_33-V1Uen.FK.html">UserIdentity</a>
+<dl class="child_tree">
+<dd>
+<b><a href="edw:/alex?fn=692_15554-LZA7016014_33-V1Uen.FK.html">MaintenanceUserSecurity</a></b>
+<dl class="child_tree"></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<p>
+<span class="desc">This MO provides an action for shutting down all other sessions than maintenance user sessions.<br />This is necessary in order to configure attributes in this MO as well as adding or removing MaintenanceUser MOs.<br />This MO also provides attributes for configuring login parameters of maintenance users.<br />Note:If the user has no login failures in the last FailedLoginAttemptPeriod or the user is not locked then the changes to the attributes FailedLoginAttemptPeriod,loginDelay,noOfFailedLoginAttempts and userLockoutPeriod take effect immediately, otherwise old values are used.</span>
+<br />
+<br />
+<b>This MO is created by the system.</b>
+<br />
+<br />
+<br />
+<br />
+</p>
+</td>
+</tr>
+</table>
+<dl></dl>
+<table width="100%" cellspacing="0" cellpadding="3" border="1" class="tblcnt">
+<tr class="TableSubHeadingColor">
+<td colspan="2"><b>Actions</b></td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td class="type" width="1%" align="right"><code>void</code></td><td>
+<dl>
+<dt>
+<code><b><a name="closeSessions">closeSessions</a></b>
+							(
+							
+							);
+							</code>
+</dt>
+<dd>
+<span class="desc">This action will close all sessions except for maintenance user sessions.</span>
+</dd>
+<dd></dd>
+</dl>
+</td>
+</tr>
+<tr valign="top" class="TableRowColor">
+<td class="type" width="1%" align="right"><code>string</code></td><td>
+<dl>
+<dt>
+<code><b><a name="unlockUser">unlockUser</a></b>
+							(
+							string maintenanceUserName
+							);
+							</code>
+</dt>
+<dd>
+<span class="desc"> This action will unlock a locked maintenance user.</span>
+</dd>
+<dd>
+<br />
+<span class="STITLE"><b>Parameters</b></span>
+<br />
+<br />Name: maintenanceUserName<br />
+<p class="param_desc">Description: <span class="desc">Maintenance user's username for SSH-based login.See MO MaintenanceUser.username.</span>
+</p>
+<br />
+</dd>
+</dl>
+</td>
+</tr>
+</table>
+<p></p>
+<table width="100%" cellspacing="0" cellpadding="3" border="1" class="tblcnt">
+<tr class="TableSubHeadingColor">
+<td colspan="2"><b>Attributes</b></td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16</code></td><td>
+<dl>
+<dt>
+<code><b><a name="failedLoginAttemptPeriod">failedLoginAttemptPeriod</a></b>
+          =
+          5
+			 {
+			  1..20 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">The period of time over which the number of failed login attempts is measured.<br />The user becomes locked when the last consecutive failed login attempts reaches noOfFailedLoginAttempts within this period.<br />
+<br />Unit: 1 minute</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint8[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="loginDelay">loginDelay</a></b>
+          =
+          5
+			 {
+			  1..60 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">Delay between each login attempt.<br />Applicable when loginDelayPolicy is set to FIXED.<br />
+<br />Unit: 1 s<br />Dependencies: If loginDelayPolicy is set to FIXED, this attribute must be set.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=705_15554-LZA7016014_33-V1Uen.FK.html">LoginDelayPolicy</a></code></td><td>
+<dl>
+<dt>
+<code><b><a name="loginDelayPolicy">loginDelayPolicy</a></b>
+          =
+          RANDOM</code>
+</dt>
+<dd>
+<span class="desc">Type of delay used when login attempt is unsuccessful.<br />
+<br />Dependencies: If FIXED, loginDelay must be set.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string<br />key<br />mandatory<br />noNotification<br />restricted</code></td><td>
+<dl>
+<dt>
+<code><b><a name="maintenanceUserSecurityId">maintenanceUserSecurityId</a></b></code>
+</dt>
+<dd>
+<span class="desc">Holds the name used when identifying the MO.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint8[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="noOfFailedLoginAttempts">noOfFailedLoginAttempts</a></b>
+          =
+          5
+			 {
+			  3..10 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">The maximum number of failed login attempts allowed, within failedLoginAttemptPeriod.<br />If the number is exceeded, the user will be locked out.<br />If not defined, incremental delay with no lockout applies.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>boolean</code></td><td>
+<dl>
+<dt>
+<code><b><a name="remoteManagement">remoteManagement</a></b>
+          =
+          false</code>
+</dt>
+<dd>
+<span class="desc">Whether management of MaintenanceUser MO's is allowed by authorized LDAP users.<br />
+<br />When set to false authorized LDAP users can read MaintenanceUser MOs. Maintenance users can create, delete and modify MaintenanceUser MOs.<br />
+<br />When set to true authorized LDAP users can create, delete and modify MaintenanceUser MOs. Maintenance Users can read MaintenanceUser MOs.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>boolean</code></td><td>
+<dl>
+<dt>
+<code><b><a name="restrictMaintenanceUser">restrictMaintenanceUser</a></b>
+          =
+          false</code>
+</dt>
+<dd>
+<span class="desc">Whether logging in as a maintenance user is only possible when connection with LDAP fails. <br />
+<br />When set to false user authentication is first performed towards maintenance user accounts and then with LDAP accounts.<br />
+<br />When set to true user authentication is performed towards accounts defined in the LDAP server. If connection with the LDAP server fails user authentication is performed towards the maintenance user accounts. </span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16</code></td><td>
+<dl>
+<dt>
+<code><b><a name="userLockoutPeriod">userLockoutPeriod</a></b>
+          =
+          5
+			 {
+			  1..60 
+			 }
+		      </code>
+</dt>
+<dd>
+<span class="desc">The period of time a user is locked out after which the lock will be removed automatically.<br />
+<br />Unit: 1 minute</span>
+</dd>
+</dl>
+</td>
+</tr>
+</table>
+<p></p>
+<div align="center" class="footer-info">
+<div class="footer-line">
+<span class="legal-lid">&#160;&#160;class&#160;MaintenanceUserSecurity</span>
+</div>
+</div>
+</body>
+</html>

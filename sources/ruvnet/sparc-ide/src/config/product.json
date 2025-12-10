@@ -1,0 +1,176 @@
+{
+  "nameShort": "SPARC IDE",
+  "nameLong": "SPARC IDE: AI-Powered Development Environment",
+  "applicationName": "sparc-ide",
+  "dataFolderName": ".sparc-ide",
+  "win32MutexName": "sparcide",
+  "win32DirName": "SPARC IDE",
+  "win32NameVersion": "SPARC IDE",
+  "win32RegValueName": "SPARC IDE",
+  "win32AppUserModelId": "SPARC.IDE",
+  "win32ShellNameShort": "SPARC IDE",
+  "darwinBundleIdentifier": "com.sparc.ide",
+  "linuxIconName": "com.sparc.ide",
+  "licenseUrl": "https://github.com/sparc-ide/sparc-ide/blob/main/LICENSE",
+  "extensionsGallery": {
+    "serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery",
+    "cacheUrl": "https://vscode.blob.core.windows.net/gallery/index",
+    "itemUrl": "https://marketplace.visualstudio.com/items"
+  },
+  "extensionAllowedProposedApi": [
+    "ms-vscode.vscode-js-profile-flame",
+    "ms-vscode.vscode-js-profile-table",
+    "ms-vscode.remotehub",
+    "ms-vscode.remote-repositories",
+    "GitHub.remotehub",
+    "GitHub.codespaces"
+  ],
+  "extensionEnabledApiProposals": {
+    "ms-vscode.remotehub": [
+      "contribRemoteHelp",
+      "contribViewsRemote",
+      "telemetry"
+    ],
+    "ms-vscode.remote-repositories": [
+      "contribRemoteHelp",
+      "contribViewsRemote",
+      "telemetry"
+    ],
+    "GitHub.remotehub": [
+      "contribRemoteHelp",
+      "contribViewsRemote",
+      "telemetry"
+    ],
+    "GitHub.codespaces": [
+      "contribRemoteHelp",
+      "contribViewsRemote",
+      "telemetry"
+    ]
+  },
+  "builtInExtensions": [
+    {
+      "name": "ms-vscode.js-debug-companion",
+      "version": "1.0.18",
+      "repo": "https://github.com/microsoft/vscode-js-debug-companion",
+      "metadata": {
+        "id": "99cb0b7f-7354-4278-b8da-6cc79972169d",
+        "publisherId": {
+          "publisherId": "5f5636e7-69ed-4afe-b5d6-8d231fb3d3ee",
+          "publisherName": "ms-vscode",
+          "displayName": "Microsoft",
+          "flags": "verified"
+        },
+        "publisherDisplayName": "Microsoft"
+      }
+    },
+    {
+      "name": "ms-vscode.js-debug",
+      "version": "1.74.1",
+      "repo": "https://github.com/microsoft/vscode-js-debug",
+      "metadata": {
+        "id": "25629058-ddac-4e17-abba-74678e126c5d",
+        "publisherId": {
+          "publisherId": "5f5636e7-69ed-4afe-b5d6-8d231fb3d3ee",
+          "publisherName": "ms-vscode",
+          "displayName": "Microsoft",
+          "flags": "verified"
+        },
+        "publisherDisplayName": "Microsoft"
+      }
+    },
+    {
+      "name": "ms-vscode.vscode-js-profile-table",
+      "version": "1.0.3",
+      "repo": "https://github.com/microsoft/vscode-js-profile-visualizer",
+      "metadata": {
+        "id": "7e52b41b-71ad-457b-ab7e-0620f1fc4feb",
+        "publisherId": {
+          "publisherId": "5f5636e7-69ed-4afe-b5d6-8d231fb3d3ee",
+          "publisherName": "ms-vscode",
+          "displayName": "Microsoft",
+          "flags": "verified"
+        },
+        "publisherDisplayName": "Microsoft"
+      }
+    }
+  ],
+  "enableTelemetry": false,
+  "sendASmile": {
+    "reportIssueUrl": "https://github.com/sparc-ide/sparc-ide/issues/new",
+    "requestFeatureUrl": "https://github.com/sparc-ide/sparc-ide/issues/new"
+  },
+  "documentationUrl": "https://github.com/sparc-ide/sparc-ide/tree/main/docs",
+  "releaseNotesUrl": "https://github.com/sparc-ide/sparc-ide/releases",
+  "keyboardShortcutsUrlMac": "https://github.com/sparc-ide/sparc-ide/blob/main/docs/keybindings-mac.md",
+  "keyboardShortcutsUrlLinux": "https://github.com/sparc-ide/sparc-ide/blob/main/docs/keybindings-linux.md",
+  "keyboardShortcutsUrlWin": "https://github.com/sparc-ide/sparc-ide/blob/main/docs/keybindings-windows.md",
+  "introductoryVideosUrl": "https://github.com/sparc-ide/sparc-ide/blob/main/docs/videos.md",
+  "tipsAndTricksUrl": "https://github.com/sparc-ide/sparc-ide/blob/main/docs/tips-and-tricks.md",
+  "newsletterSignupUrl": "https://github.com/sparc-ide/sparc-ide",
+  "quality": "stable",
+  "extensionKeywords": {
+    "markdown": [
+      "Markdown"
+    ]
+  },
+  "aiConfig": {
+    "defaultProvider": "openrouter",
+    "providers": {
+      "openrouter": {
+        "apiEndpoint": "https://openrouter.ai/api/v1/chat/completions",
+        "defaultModel": "anthropic/claude-3-sonnet-20240229"
+      },
+      "claude": {
+        "apiEndpoint": "https://api.anthropic.com/v1/messages",
+        "defaultModel": "claude-3-sonnet-20240229"
+      },
+      "gpt4": {
+        "apiEndpoint": "https://api.openai.com/v1/chat/completions",
+        "defaultModel": "gpt-4-turbo"
+      },
+      "gemini": {
+        "apiEndpoint": "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent",
+        "defaultModel": "gemini-pro"
+      }
+    }
+  },
+  "sparcConfig": {
+    "phases": [
+      {
+        "id": "specification",
+        "name": "Specification",
+        "description": "Define detailed requirements and acceptance criteria",
+        "templates": ["requirements.md", "user-stories.md", "acceptance-criteria.md"],
+        "aiPrompts": ["Generate requirements", "Create user stories", "Define acceptance criteria"]
+      },
+      {
+        "id": "pseudocode",
+        "name": "Pseudocode",
+        "description": "Create implementation pseudocode and logic flow",
+        "templates": ["pseudocode.md", "flow-diagram.md", "data-structures.md"],
+        "aiPrompts": ["Generate pseudocode", "Create flow diagram", "Define data structures"]
+      },
+      {
+        "id": "architecture",
+        "name": "Architecture",
+        "description": "Design system architecture and component interactions",
+        "templates": ["architecture.md", "components.md", "interfaces.md"],
+        "aiPrompts": ["Design architecture", "Define components", "Specify interfaces"]
+      },
+      {
+        "id": "refinement",
+        "name": "Refinement",
+        "description": "Implement iterative improvements and testing",
+        "templates": ["implementation.md", "tests.md", "refactoring.md"],
+        "aiPrompts": ["Implement feature", "Write tests", "Refactor code"]
+      },
+      {
+        "id": "completion",
+        "name": "Completion",
+        "description": "Finalize documentation, deployment, and maintenance",
+        "templates": ["documentation.md", "deployment.md", "maintenance.md"],
+        "aiPrompts": ["Generate documentation", "Create deployment plan", "Define maintenance procedures"]
+      }
+    ]
+  }
+}

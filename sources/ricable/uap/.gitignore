@@ -1,0 +1,365 @@
+# UAP (Unified Agentic Platform) - Git Ignore File
+
+# ===============================================
+# Python
+# ===============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+backend/venv/
+
+# ===============================================
+# Node.js
+# ===============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variable files
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# Vite
+dist/
+dist-ssr/
+*.local
+
+# ===============================================
+# IDEs and Editors
+# ===============================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Emacs
+\#*\#
+.\#*
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# ===============================================
+# Operating System
+# ===============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ===============================================
+# Logs and Temporary Files
+# ===============================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+backend.log
+frontend.log
+backend_*.log
+simple_backend.log
+backend_main.log
+backend_test.log
+
+# Runtime logs
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# ===============================================
+# UAP Specific
+# ===============================================
+# DevBox
+.devbox/
+devbox.lock
+
+# Uploads and documents
+uploads/
+documents/temp/
+documents/processed/
+
+# Memory and state files
+memory/data/entries.json
+memory/backups/
+memory/index/
+memory/archive/
+
+# Test outputs and reports
+*_report_*.md
+*_report_*.json
+*_results_*.json
+*_analysis_*.json
+*_plan_*.md
+integration_test_results_*.json
+comprehensive_api_integration_test.py
+frontend_integration_analyzer.py
+simple_api_connectivity_test.py
+websocket_integration_test.py
+mock_backend_server.py
+
+# Agent reports and temporary files
+AGENT*.md
+*_implementation*.md
+COMPREHENSIVE_*.md
+INTEGRATION_*.md
+DASHBOARD_*.md
+AUTH_IMPLEMENTATION.md
+
+# ===============================================
+# Database
+# ===============================================
+*.db
+*.sqlite
+*.sqlite3
+database.db
+*.db-journal
+
+# ===============================================
+# API Keys and Secrets
+# ===============================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.secrets
+secrets.json
+config/secrets.yml
+.teller/
+
+# API keys
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+
+# ===============================================
+# Build outputs
+# ===============================================
+build/
+dist/
+out/
+.next/
+.nuxt/
+.cache/
+.parcel-cache/
+
+# ===============================================
+# Docker
+# ===============================================
+.dockerignore
+docker-compose.override.yml
+
+# ===============================================
+# Cloud and deployment
+# ===============================================
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+.terraform.lock.hcl
+
+# AWS
+.aws/
+*.pem
+
+# GCP
+service-account.json
+gcp-key.json
+
+# ===============================================
+# Monitoring and metrics
+# ===============================================
+prometheus_data/
+grafana_data/
+
+# ===============================================
+# Jupyter Notebooks
+# ===============================================
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# ===============================================
+# AI/ML
+# ===============================================
+models/
+*.model
+*.pkl
+*.pickle
+checkpoints/
+experiments/
+runs/
+wandb/
+
+# ===============================================
+# Temporary and backup files
+# ===============================================
+*.tmp
+*.temp
+*.bak
+*.backup
+*.orig
+*.swp
+*.swo
+*~
+
+# ===============================================
+# Package managers
+# ===============================================
+# Composer
+/vendor/
+
+# Pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ===============================================
+# Testing
+# ===============================================
+test-results/
+test-reports/
+screenshots/
+videos/
+
+# ===============================================
+# Miscellaneous
+# ===============================================
+.DS_Store?
+.Spotlight-V100
+.Trashes
+Thumbs.db

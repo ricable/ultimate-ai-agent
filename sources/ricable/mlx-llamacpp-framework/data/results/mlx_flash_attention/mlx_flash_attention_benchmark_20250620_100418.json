@@ -1,0 +1,32 @@
+{
+  "system_info": {
+    "platform": "arm64",
+    "cpu_count": 16,
+    "memory_gb": 128.0,
+    "metal_available": true,
+    "timestamp": "2025-06-20T10:04:17.743612"
+  },
+  "benchmarks": {
+    "core_performance": {
+      "chat": {
+        "config": {
+          "batch_sizes": [
+            1
+          ],
+          "seq_lengths": [
+            64,
+            128
+          ],
+          "head_dims": [
+            64
+          ],
+          "num_heads": 8,
+          "scenario": "chat"
+        },
+        "results": [
+          {
+            "batch_size": 1,
+            "seq_length": 64,
+            "head_dim": 64,
+            "num_heads": 8,
+            "result": {

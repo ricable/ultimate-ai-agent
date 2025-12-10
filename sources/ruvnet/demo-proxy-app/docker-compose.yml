@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: always
+    environment:
+      # These environment variables are loaded from the .env file
+      API_URL: ${API_URL}
+      DOMAIN: ${DOMAIN}
+      API_KEY: ${API_KEY}
+    volumes:
+      - ./app:/app  # Local 'app' directory mounted to container's /app directory
+    ports:
+      - "8000:8000"
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload

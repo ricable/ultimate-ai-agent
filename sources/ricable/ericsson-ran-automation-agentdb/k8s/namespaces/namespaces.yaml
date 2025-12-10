@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ran-automation
+  labels:
+    name: ran-automation
+    environment: production
+    project: ran-intelligent-automation
+  annotations:
+    description: "RAN Intelligent Automation System - Production Namespace"
+    contact: "devops@ran-automation.com"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ran-monitoring
+  labels:
+    name: ran-monitoring
+    environment: production
+    project: ran-intelligent-automation
+  annotations:
+    description: "RAN Monitoring and Observability Stack"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ran-logging
+  labels:
+    name: ran-logging
+    environment: production
+    project: ran-intelligent-automation
+  annotations:
+    description: "RAN Centralized Logging System"

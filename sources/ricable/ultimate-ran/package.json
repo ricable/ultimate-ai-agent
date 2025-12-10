@@ -1,0 +1,97 @@
+{
+  "name": "ericsson-gen7-titan",
+  "version": "7.0.0-alpha.1",
+  "description": "Ericsson Gen 7.0 Neuro-Symbolic Titan: Distributed Autonomous RAN via Remote Agentic Coding",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "benchmark": "node tests/benchmark.test.js",
+    "test:watch": "vitest",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test:safety": "node --loader ts-node/esm src/hooks/safety.test.ts",
+    "orchestrate": "npx claude-flow@alpha run",
+    "agents:list": "npx agentic-flow@alpha --list",
+    "db:status": "npx agentdb@alpha status --db ./titan-ran.db --verbose",
+    "db:train": "npx agentdb@alpha train --db ./titan-ran.db",
+    "ruvector:stats": "npx ruvector stats ./ruvector-spatial.db",
+    "sparc:validate": "node src/sparc/validator.js",
+    "agui:start": "node src/agui/server.js",
+    "agui:frontend": "open src/agui/frontend.html",
+    "ui:demo": "node --loader ts-node/esm src/ui/demo.ts",
+    "ui:dashboard": "node --loader ts-node/esm src/ui/titan-dashboard.ts",
+    "ui:frontend": "open src/ui/frontend.html",
+    "ui:integration": "node --loader ts-node/esm src/ui/integrations/example.ts",
+    "council:live": "node --loader ts-node/esm src/ui/integrations/run-council-live.ts",
+    "council:demo": "node --loader ts-node/esm src/ui/integrations/council-demo.ts",
+    "sentinel:monitor": "node src/agents/sentinel/monitor.js",
+    "swarm:spawn": "npx claude-flow@alpha swarm spawn",
+    "hive:status": "npx claude-flow@alpha hive-mind status",
+    "hooks:safety": "node dist/hooks/safety.js",
+    "auth:setup": "./scripts/setup-oauth.sh",
+    "auth:validate": "./scripts/validate-auth.sh",
+    "auth:preflight": "./scripts/validate-auth.sh && npm run build",
+    "start:local": "./scripts/start-local.sh",
+    "start:devpod": "./scripts/start-devpod.sh",
+    "test:integration": "./scripts/test-integration.sh",
+    "docker:up": "docker-compose -f config/docker-compose.devpod.yml up -d",
+    "docker:down": "docker-compose -f config/docker-compose.devpod.yml down",
+    "docker:logs": "docker-compose -f config/docker-compose.devpod.yml logs -f",
+    "env:validate": "bash -c 'source config/.env && ./scripts/test-integration.sh'"
+  },
+  "keywords": [
+    "ericsson",
+    "ran",
+    "5g",
+    "6g",
+    "autonomous",
+    "ai-agents",
+    "neuro-symbolic",
+    "cognitive-mesh",
+    "sparc",
+    "agui"
+  ],
+  "author": "Ericsson Autonomous Networks Division",
+  "license": "PROPRIETARY",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.25.0",
+    "@google/generative-ai": "^0.12.0",
+    "@ruvector/core": "^0.1.17",
+    "dotenv": "^17.2.3",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "@vitest/coverage-v8": "^4.0.15",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0",
+    "vitest": "^4.0.15"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "titan": {
+    "codename": "Neuro-Symbolic Titan",
+    "generation": "7.0",
+    "architecture": {
+      "cognitive_mesh": true,
+      "racs_enabled": true,
+      "agui_protocol": "v1.0",
+      "sparc_methodology": true
+    },
+    "components": {
+      "agentdb": "./titan-ran.db",
+      "ruvector": "./ruvector-spatial.db",
+      "midstream": "./lib/midstream",
+      "strange_loops": "./lib/strange-loops"
+    }
+  }
+}

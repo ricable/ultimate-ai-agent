@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<meta name="HTMLPACKLINKS" content="1" />
+
+<title>Sync PTP Time Availability Fault</title>
+<meta name="TITLE" content="Sync PTP Time Availability Fault" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="GENERATOR" content="ELIB CRAH 301 1060 R89" /> 
+<meta name="FILTERTIME" content="2024-05-04 06:58:42" />
+<meta name="SRCDOCTYPE" content="DITA" />
+<meta name="SRCDTD" content="-//OASIS//DTD DITA BookMap//EN" />
+<meta name="APPR" content="XSN/DNEW (Longyan Wang) zwnlnao" />
+<meta name="CONFIDENTIALITY" content="ericsson_internal" />
+<meta name="AUDIENCE" content="all" />
+<meta name="DATE" content="2024-01-26" />
+<meta name="DOCNO" content="117/1543-LZA 701 6014/1 Uen" />
+<meta name="LANG" content="en-US" />
+<meta name="PREP" content="edursan Sandra Durefors" />
+<meta name="REV" content="AC" />
+<meta name="DOCNAME" content="Operating Instructions" />
+<link rel="stylesheet" type="text/css" href="edw:/alex?fn=hilda.css" />
+
+<link rel="stylesheet" type="text/css" href="edw:/alex?fn=dita_cpi.css" />
+
+<script type="text/javascript" src="edw:/alex?fn=dwcommon.js" language="JavaScript"></script>
+</head>
+<body>
+
+<script type="text/javascript" src="edw:/alex?fn=switch_theme.js" language="JavaScript"></script><div id="overlay"><div id="overlayBox"></div></div>
+<!--@@noprnt-->
+<a name="TOP"></a>
+<div id="header-container">
+<span class="header-cap">Operating Instructions</span>
+<span class="header-docid">117/1543-LZA 701 6014/1 Uen</span>
+<span class="header-rev">AC</span>
+</div>
+
+<!--@@/noprnt-->
+<div id="content" class="body-content">
+
+<a name="KW:"></a>
+<a name="KW:GSM" data-term="radio_access_technology/gsm"></a><a name="KW:LTE" data-term="radio_access_technology/lte"></a><a name="KW:NR" data-term="radio_access_technology/nr"></a><a name="KW:WCDMA" data-term="radio_access_technology/wcdma"></a><a name="KW:ALARM_HANDLING" data-term="user_activity/operation_and_maintenance/alarm_handling"></a><a name="KW:TROUBLESHOOTING" data-term="user_activity/operation_and_maintenance/troubleshooting"></a>
+<h1 class="TITLE"><a name="TITLE"></a></h1><div class="DOCTITLE">Sync PTP Time Availability Fault</div>
+
+<!--@contents-->
+<p class="HDR"><a name="CONTENTS" onclick="showDTOC('toc0');" title="Expand/collapse table of contents"><img id="ce_i1_0" class="ce" src="edw:/alex?ac=image&amp;fn=CP.png" style="display:none" /><img id="ce_i2_0" class="ce" src="edw:/alex?ac=image&amp;fn=EP.png" />Contents</a></p><div id="toc0" style="display: none;">
+<ul class="DWAXEtocTop">
+<li class="DWAXEtoc"><a href="#gkt1454602421323">Select Remedy Action for Sync PTP Time Availability Fault</a></li>
+<li class="DWAXEtoc"><a href="#dip1502978615069">Remedy Action for RadioEquipmentClockReference: Sync and/or delay response messages arriving irregularly</a></li>
+<li class="DWAXEtoc"><a href="#sgi1502980337347">Remedy Action for RadioEquipmentClockReference: Low announce rate detected</a></li>
+<li class="DWAXEtoc"><a href="#frt1502980340342">Remedy Action for RadioEquipmentClockReference: Low delay request rate detected</a></li>
+<li class="DWAXEtoc"><a href="#seb1502980340748">Remedy Action for RadioEquipmentClockReference: Low delay response rate detected</a></li>
+<li class="DWAXEtoc"><a href="#azh1502981620978">Remedy Action for RadioEquipmentClockReference: Low sync rate detected</a></li>
+<li class="DWAXEtoc"><a href="#taj1502980341153">Remedy Action for RadioEquipmentClockReference: No announce messages</a></li>
+<li class="DWAXEtoc"><a href="#zng1502980341590">Remedy Action for RadioEquipmentClockReference: No delay response messages</a></li>
+<li class="DWAXEtoc"><a href="#vsw1502980341996">Remedy Action for RadioEquipmentClockReference: No sync messages</a></li>
+</ul>
+</div>
+<!--@/contents-->
+
+<br />
+<div class="hd0"></div>
+<div class="hd1"></div>
+
+<!--@BODY--><a name="KW:SYNC_PTP_TIME_AVAILABILITY_FAULT"></a>
+<div class="topic concept nested0" aria-labelledby="ariaid-title1" xml:lang="en-US" lang="en-US" id="gkt1454602421323">
+    
+
+<h1 class="title topictitle1"><span class="CHAPNUMBER">1  </span><span class="CHAPTITLE"><a name="CHAPTER1" href="#TOP" class="CHAPLINK">Select Remedy Action for Sync PTP Time Availability Fault</a></span></h1>
+
+    
+    <div class="body conbody">
+        
+<div><div class="tablenoborder"><span class="tablecap"><span class="table--title-label">Table 1&#160;&#160; </span>Alarm Summary</span><div class="tbl-exp" id="gkt1454602421323__tblblock_AlarmDes"><table cellpadding="4" cellspacing="0" summary="" id="gkt1454602421323__AlarmDes" class="table" width="100%" frame="border" border="1" rules="all"><colgroup><col style="width:17.365269461077844%" /><col style="width:27.14570858283433%" /><col style="width:27.744510978043913%" /><col style="width:27.744510978043913%" /></colgroup><thead class="thead" style="text-align:left;">
+                    <tr class="row">
+                        <th class="entry cellrowborder fixhdr" style="vertical-align:top;" id="d2177e104">
+                            <p class="p">Managed Object</p>
+
+                        </th>
+
+                        <th class="entry cellrowborder fixhdr" style="vertical-align:top;" id="d2177e110">
+                            <p class="p">Additional Text</p>
+
+                        </th>
+
+                        <th class="entry cellrowborder fixhdr" style="vertical-align:top;" id="d2177e116">
+                            <p class="p">On-site Activities</p>
+
+                        </th>
+                        
+                        <th class="entry cellrowborder fixhdr" style="vertical-align:top;" id="d2177e122">
+                            <p class="p">Link to Remedy  Actions</p>
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+<tbody class="tbody">
+                    <tr class="row">
+                        <td class="entry" headers="d2177e104 ">
+                            <p class="p"><span class="keyword apiname"><a class="xref" rel="Represents generic synchronization reference for radio equipment clock.&lt;br&gt;&lt;br&gt;Specific interface or protocol reference can be used, is configured by encapsulation attribute.&lt;br&gt;&lt;br&gt;Dependencies:&lt;br&gt;Two or more RadioEquipmentClockReference MOs cannot have same priority.&lt;br&gt;RadioEquipmentClockReference MO and AssistingReference MO cannot refer to same BoundaryOrdinaryClock MO.::class RadioEquipmentClockReference::edw:/alex?dt=om&FN=4350_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=class RadioEquipmentClockReference::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">RadioEquipmentClockReference</a></span>
+                            </p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e110 ">
+                            <p class="p"><samp class="ph systemoutput">Sync and/or delay response messages arriving
+                                    irregularly.</samp></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e116 ">
+                            <p class="p">No</p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e122 "><a onclick="display_target(this);" href="#dip1502978615069" class="xref">Remedy
+                            actions</a></td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry" headers="d2177e104 ">
+                            <p class="p">
+                                <span class="keyword apiname"><a class="xref" rel="Represents generic synchronization reference for radio equipment clock.&lt;br&gt;&lt;br&gt;Specific interface or protocol reference can be used, is configured by encapsulation attribute.&lt;br&gt;&lt;br&gt;Dependencies:&lt;br&gt;Two or more RadioEquipmentClockReference MOs cannot have same priority.&lt;br&gt;RadioEquipmentClockReference MO and AssistingReference MO cannot refer to same BoundaryOrdinaryClock MO.::class RadioEquipmentClockReference::edw:/alex?dt=om&FN=4350_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=class RadioEquipmentClockReference::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">RadioEquipmentClockReference</a></span></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e110 ">
+                            <p class="p"><samp class="ph systemoutput">Low announce rate detected.</samp></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e116 ">
+                            <p class="p">No</p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e122 ">
+                            <p class="p"><a onclick="display_target(this);" href="#sgi1502980337347" class="xref">Remedy actions</a></p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry" headers="d2177e104 ">
+                            <p class="p">
+                                <span class="keyword apiname"><a class="xref" rel="Represents generic synchronization reference for radio equipment clock.&lt;br&gt;&lt;br&gt;Specific interface or protocol reference can be used, is configured by encapsulation attribute.&lt;br&gt;&lt;br&gt;Dependencies:&lt;br&gt;Two or more RadioEquipmentClockReference MOs cannot have same priority.&lt;br&gt;RadioEquipmentClockReference MO and AssistingReference MO cannot refer to same BoundaryOrdinaryClock MO.::class RadioEquipmentClockReference::edw:/alex?dt=om&FN=4350_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=class RadioEquipmentClockReference::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">RadioEquipmentClockReference</a></span></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e110 ">
+                            <p class="p"><samp class="ph systemoutput">Low delay request rate detected.</samp></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e116 ">
+                            <p class="p">No</p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e122 ">
+                            <p class="p"><a onclick="display_target(this);" href="#frt1502980340342" class="xref">Remedy actions</a></p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry" headers="d2177e104 ">
+                            <p class="p">
+                                <a href="edw:/alex?fn=4350_15554-LZA7016014_33-V1Uen.EZ.html" class="xref">
+                                    RadioEquipmentClockReference
+                                <!--TOOLTIPFLAG--></a>
+                            </p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e110 ">
+                            <p class="p"><samp class="ph systemoutput">Low delay response rate detected.</samp></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e116 ">
+                            <p class="p">No</p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e122 ">
+                            <p class="p"><a onclick="display_target(this);" href="#seb1502980340748" class="xref">Remedy actions</a></p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry" headers="d2177e104 ">
+                            <p class="p">
+                                <span class="keyword apiname"><a class="xref" rel="Represents generic synchronization reference for radio equipment clock.&lt;br&gt;&lt;br&gt;Specific interface or protocol reference can be used, is configured by encapsulation attribute.&lt;br&gt;&lt;br&gt;Dependencies:&lt;br&gt;Two or more RadioEquipmentClockReference MOs cannot have same priority.&lt;br&gt;RadioEquipmentClockReference MO and AssistingReference MO cannot refer to same BoundaryOrdinaryClock MO.::class RadioEquipmentClockReference::edw:/alex?dt=om&FN=4350_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=class RadioEquipmentClockReference::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">RadioEquipmentClockReference</a></span></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e110 ">
+                            <p class="p"><samp class="ph systemoutput">Low sync rate detected.</samp></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e116 ">
+                            <p class="p">No</p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e122 ">
+                            <p class="p"><a onclick="display_target(this);" href="#azh1502981620978" class="xref">Remedy actions</a></p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry" headers="d2177e104 ">
+                            <p class="p">
+                                <span class="keyword apiname"><a class="xref" rel="Represents generic synchronization reference for radio equipment clock.&lt;br&gt;&lt;br&gt;Specific interface or protocol reference can be used, is configured by encapsulation attribute.&lt;br&gt;&lt;br&gt;Dependencies:&lt;br&gt;Two or more RadioEquipmentClockReference MOs cannot have same priority.&lt;br&gt;RadioEquipmentClockReference MO and AssistingReference MO cannot refer to same BoundaryOrdinaryClock MO.::class RadioEquipmentClockReference::edw:/alex?dt=om&FN=4350_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=class RadioEquipmentClockReference::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">RadioEquipmentClockReference</a></span></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e110 ">
+                            <p class="p"><samp class="ph systemoutput">No announce messages.</samp></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e116 ">
+                            <p class="p">No</p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e122 ">
+                            <p class="p"><a onclick="display_target(this);" href="#taj1502980341153" class="xref">Remedy actions</a></p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry" headers="d2177e104 ">
+                            <p class="p">
+                                <span class="keyword apiname"><a class="xref" rel="Represents generic synchronization reference for radio equipment clock.&lt;br&gt;&lt;br&gt;Specific interface or protocol reference can be used, is configured by encapsulation attribute.&lt;br&gt;&lt;br&gt;Dependencies:&lt;br&gt;Two or more RadioEquipmentClockReference MOs cannot have same priority.&lt;br&gt;RadioEquipmentClockReference MO and AssistingReference MO cannot refer to same BoundaryOrdinaryClock MO.::class RadioEquipmentClockReference::edw:/alex?dt=om&FN=4350_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=class RadioEquipmentClockReference::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">RadioEquipmentClockReference</a></span></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e110 ">
+                            <p class="p"><samp class="ph systemoutput">No delay response messages.</samp></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e116 ">
+                            <p class="p">No</p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e122 ">
+                            <p class="p"><a onclick="display_target(this);" href="#zng1502980341590" class="xref">Remedy actions</a></p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="row">
+                        <td class="entry" headers="d2177e104 ">
+                            <p class="p">
+                                <span class="keyword apiname"><a class="xref" rel="Represents generic synchronization reference for radio equipment clock.&lt;br&gt;&lt;br&gt;Specific interface or protocol reference can be used, is configured by encapsulation attribute.&lt;br&gt;&lt;br&gt;Dependencies:&lt;br&gt;Two or more RadioEquipmentClockReference MOs cannot have same priority.&lt;br&gt;RadioEquipmentClockReference MO and AssistingReference MO cannot refer to same BoundaryOrdinaryClock MO.::class RadioEquipmentClockReference::edw:/alex?dt=om&FN=4350_15554-LZA7016014_33-V1Uen.EZ.html&amp;ch=class RadioEquipmentClockReference::" onmouseover="mo(this,event)" onmouseout="mt()" onclick="mc(this)">RadioEquipmentClockReference</a></span></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e110 ">
+                            <p class="p"><samp class="ph systemoutput">No sync messages.</samp></p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e116 ">
+                            <p class="p">No</p>
+
+                        </td>
+
+                        <td class="entry" headers="d2177e122 ">
+                            <p class="p"><a onclick="display_target(this);" href="#vsw1502980341996" class="xref">Remedy actions</a></p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+</table>
+</div></div></div>
+    </div>
+
+</div>
+<a name="KW:RADIOEQUIPMENTCLOCKREFERENCE"></a><a name="KW:SYNC_PTP_TIME_AVAILABILITY_FAULT"></a><a name="KW:SYNC_ANDOR_DELAY_RESPONSE_MESSAGES_ARRIVING_IRREGULARLY"></a>
+
+<div class="topic task nested0" aria-labelledby="ariaid-title2" xml:lang="en-US" lang="en-US" id="dip1502978615069">
+    
+<h1 class="title topictitle1"><span class="CHAPNUMBER">2  </span><span class="CHAPTITLE"><a name="CHAPTER2" href="#TOP" class="CHAPLINK">Remedy Action for RadioEquipmentClockReference: Sync and/or delay response messages arriving irregularly</a></span></h1>
+
+    
+    
+    <div class="body taskbody"><p class="shortdesc"></p>
+
+        <div id="dip1502978615069__context_N10031_N1002E_N10001"><div class="section">
+            <p class="p">The alarm is raised if there is an availability problem of the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> Grandmaster for
+                more than 1 minute.</p>
+
+            <p class="p">If no standby synchronization reference is available, the fault can stop or disturb
+                the traffic or the network synchronization.</p>
+
+        </div>
+</div>
+        <div class="p" id="dip1502978615069__steps_0"><p class="sectiontitle"><span class="autogentext">Steps
+</span></p><ol><li class="li step stepexpand" id="dip1502978615069__step_N1004E_N1004A_N1003A_N10001">
+            <span class="ph cmd">Check for correlated alarms and resolve alarms with higher severity first. For
+                detailed instructions on identifying correlated alarms and determining the order of
+                their resolution, see <a href="edw:/alex?fn=28_1553-LZA7016014_1Uen.EX31B.html#umc1685620862746" class="xref">Check for Correlated Alarms</a>. </span>
+        </li><li class="li step stepexpand" id="dip1502978615069__step_N10041_N1003C_N10030_N10001x">
+                <span class="ph cmd">Choose one of the following alternates:</span>
+                <div><div class="itemgroup info">
+                    <ul class="unord" id="dip1502978615069__ul_lfx_gcn_x1b">
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is not an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, consult the
+                                next level of maintenance support.</p>
+
+                        </div></li>
+
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, continue with the
+                                next step.</p>
+
+                        </div></li>
+
+                    </ul>
+
+                </div></div>
+            </li><li class="li step stepexpand" id="dip1502978615069__step_N10041_N1003C_N10030_N10001">
+                <span class="ph cmd">Verify that the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> Grandmaster is configured in the node according to the
+                    Network Synchronization Plan.</span>
+            </li><li class="li step stepexpand" id="dip1502978615069__step_N1004A_N1003A_N1002E_N10001">
+                <span class="ph cmd">If the alarm remains but there is connection toward the nearest <a title="Precision Time Protocol" class="glossexpansion">PTP</a> master
+                    port, contact the maintenance center for the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> Grandmaster or the network.
+                    Request them to act on the fault. There can be a configuration fault in the
+                    network or the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> Grandmaster might be disabled.</span>
+            </li><li class="li step stepexpand" id="dip1502978615069__step_N1005C_N1003A_N1002E_N10001">
+                <span class="ph cmd">Wait for the confirmation from the maintenance center. After the confirmation,
+                    wait at least 2 minutes.</span>
+            </li></ol><p class="li stepsection">
+            </p><p class="p">If the alarm remains, do the following:</p>
+
+        <ol start="6"><li class="li step stepexpand" id="dip1502978615069__step_N10080_N10048_N1003A_N10001">
+            <span class="ph cmd">Consult the next level of maintenance support.</span>
+        </li></ol></div>
+    </div>
+
+</div>
+<a name="KW:RADIOEQUIPMENTCLOCKREFERENCE"></a><a name="KW:SYNC_PTP_TIME_AVAILABILITY_FAULT"></a><a name="KW:LOW_ANNOUNCE_RATE_DETECTED"></a>
+
+<div class="topic task nested0" aria-labelledby="ariaid-title3" xml:lang="en-US" lang="en-US" id="sgi1502980337347">
+    
+<h1 class="title topictitle1"><span class="CHAPNUMBER">3  </span><span class="CHAPTITLE"><a name="CHAPTER3" href="#TOP" class="CHAPLINK">Remedy Action for RadioEquipmentClockReference: Low announce rate detected</a></span></h1>
+
+    
+    
+    <div class="body taskbody"><p class="shortdesc"></p>
+
+        <div id="sgi1502980337347__context_N10031_N1002E_N10001"><div class="section">
+            <p class="p">The alarm is raised if there is an availability problem of the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> Grandmaster for
+                more than 1 minute.</p>
+
+            <p class="p">If no standby synchronization reference is available, the fault can stop or disturb
+                the traffic or the network synchronization.</p>
+
+        </div>
+</div>
+        <div id="sgi1502980337347__context_N10039_N1002E_N10001"><div class="section"></div>
+</div>
+        <div class="p" id="sgi1502980337347__steps_0"><p class="sectiontitle"><span class="autogentext">Steps
+</span></p><ol><li class="li step stepexpand" id="sgi1502980337347__step_N10052_N1004E_N1003A_N10001">
+            <span class="ph cmd">Check for correlated alarms and resolve alarms with higher severity first. For
+                detailed instructions on identifying correlated alarms and determining the order of
+                their resolution, see <a href="edw:/alex?fn=28_1553-LZA7016014_1Uen.EX31B.html#umc1685620862746" class="xref">Check for Correlated Alarms</a>. </span>
+        </li><li class="li step stepexpand" id="sgi1502980337347__step_N10042_N1003D_N1002E_N10001">
+                <span class="ph cmd">Choose one of the following alternates:</span>
+                <div><div class="itemgroup info">
+                    <ul class="unord" id="sgi1502980337347__ul_lfx_gcn_x1b">
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is not an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, consult the
+                                next level of maintenance support.</p>
+
+                        </div></li>
+
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, continue with the
+                                next step.</p>
+
+                        </div></li>
+
+                    </ul>
+
+                </div></div>
+            </li><li class="li step stepexpand" id="sgi1502980337347__step_N10040_N1003D_N1002E_N10001">
+                <span class="ph cmd">Verify that the announce rate of the parent <a title="Precision Time Protocol" class="glossexpansion">PTP</a> clock is configured according
+                    to the Network Synchronization Plan.</span>
+            </li><li class="li step stepexpand" id="sgi1502980337347__step_N1004B_N1003D_N1002E_N10001">
+                <span class="ph cmd">After making any change in configuration, wait at least 2 minutes.</span>
+            </li></ol><p class="li stepsection">
+            </p><p class="p">If the alarm remains, do the following:</p>
+
+        <ol start="5"><li class="li step stepexpand" id="sgi1502980337347__step_N10080_N10048_N1003A_N10001">
+            <span class="ph cmd">Consult the next level of maintenance support.</span>
+        </li></ol></div>
+    </div>
+
+</div>
+<a name="KW:RADIOEQUIPMENTCLOCKREFERENCE"></a><a name="KW:SYNC_PTP_TIME_AVAILABILITY_FAULT"></a><a name="KW:LOW_DELAY_REQUEST_RATE_DETECTED"></a>
+
+<div class="topic task nested0" aria-labelledby="ariaid-title4" xml:lang="en-US" lang="en-US" id="frt1502980340342">
+    
+<h1 class="title topictitle1"><span class="CHAPNUMBER">4  </span><span class="CHAPTITLE"><a name="CHAPTER4" href="#TOP" class="CHAPLINK">Remedy Action for RadioEquipmentClockReference: Low delay request rate detected</a></span></h1>
+
+    
+    
+    <div class="body taskbody"><p class="shortdesc"></p>
+
+        <div id="frt1502980340342__context_N10031_N1002E_N10001"><div class="section">
+            <p class="p">The alarm is raised if there is an availability problem of the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> Grandmaster for
+                more than 1 minute.</p>
+
+            <p class="p">If no standby synchronization reference is available, the fault can stop or disturb
+                the traffic or the network synchronization.</p>
+
+        </div>
+</div>
+        <div class="p" id="frt1502980340342__steps_0"><p class="sectiontitle"><span class="autogentext">Steps
+</span></p><ol><li class="li step stepexpand" id="frt1502980340342__step_N1004E_N1004A_N1003A_N10001">
+            <span class="ph cmd">Check for correlated alarms and resolve alarms with higher severity first. For
+                detailed instructions on identifying correlated alarms and determining the order of
+                their resolution, see <a href="edw:/alex?fn=28_1553-LZA7016014_1Uen.EX31B.html#umc1685620862746" class="xref">Check for Correlated Alarms</a>. </span>
+        </li><li class="li step stepexpand" id="frt1502980340342__step_N1003F_N1003A_N1002E_N10001">
+                <span class="ph cmd">Choose one of the following alternates:</span>
+                <div><div class="itemgroup info">
+                    <ul class="unord" id="frt1502980340342__ul_lfx_gcn_x1b">
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is not an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, consult the
+                                next level of maintenance support.</p>
+
+                        </div></li>
+
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, continue with the
+                                next step.</p>
+
+                        </div></li>
+
+                    </ul>
+
+                </div></div>
+            </li><li class="li step stepexpand" id="frt1502980340342__step_N1003D_N1003A_N1002E_N10001">
+                <span class="ph cmd">Verify that the delay response rate of the parent <a title="Precision Time Protocol" class="glossexpansion">PTP</a> clock is configured
+                    according to the Network Synchronization Plan.</span>
+            </li><li class="li step stepexpand" id="frt1502980340342__step_N1004E_N1003A_N1002E_N10001">
+                <span class="ph cmd">After making any change in configuration, wait at least 2 minutes.</span>
+            </li></ol><p class="li stepsection">
+            </p><p class="p">If the alarm remains, do the following:</p>
+
+        <ol start="5"><li class="li step stepexpand" id="frt1502980340342__step_N10080_N10048_N1003A_N10001">
+            <span class="ph cmd">Consult the next level of maintenance support.</span>
+        </li></ol></div>
+    </div>
+
+</div>
+<a name="KW:REMEDY_ACTIONS_FOR_RADIOEQUIPMENTCLOCKREFERENCE_LOW_DELAY_RESPONSE_RATE_DETECTED"></a><a name="KW:SYNC_PTP_TIME_AVAILABILITY_FAULT"></a><a name="KW:RADIOEQUIPMENTCLOCKREFERENCE"></a>
+
+<div class="topic task nested0" aria-labelledby="ariaid-title5" xml:lang="en-US" lang="en-US" id="seb1502980340748">
+    
+<h1 class="title topictitle1"><span class="CHAPNUMBER">5  </span><span class="CHAPTITLE"><a name="CHAPTER5" href="#TOP" class="CHAPLINK">Remedy Action for RadioEquipmentClockReference: Low delay response rate detected</a></span></h1>
+
+    
+    
+    <div class="body taskbody"><p class="shortdesc"></p>
+
+        <div id="seb1502980340748__context_N10031_N1002E_N10001"><div class="section">
+            <p class="p">The alarm is raised if there is an availability problem of the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> Grandmaster for
+                more than 1 minute.</p>
+
+            <p class="p">If no standby synchronization reference is available, the fault can stop or disturb
+                the traffic or the network synchronization.</p>
+
+        </div>
+</div>
+        <div id="seb1502980340748__context_N10039_N1002E_N10001"><div class="section"></div>
+</div>
+        <div class="p" id="seb1502980340748__steps_0"><p class="sectiontitle"><span class="autogentext">Steps
+</span></p><ol><li class="li step stepexpand" id="seb1502980340748__step_N10052_N1004E_N1003A_N10001">
+            <span class="ph cmd">Check for correlated alarms and resolve alarms with higher severity first. For
+                detailed instructions on identifying correlated alarms and determining the order of
+                their resolution, see <a href="edw:/alex?fn=28_1553-LZA7016014_1Uen.EX31B.html#umc1685620862746" class="xref">Check for Correlated Alarms</a>. </span>
+        </li><li class="li step stepexpand" id="seb1502980340748__step_N1003F_N1003A_N1002E_N10001">
+                <span class="ph cmd">Choose one of the following alternates:</span>
+                <div><div class="itemgroup info">
+                    <ul class="unord" id="seb1502980340748__ul_lfx_gcn_x1b">
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is not an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, consult the
+                                next level of maintenance support.</p>
+
+                        </div></li>
+
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, continue with the
+                                next step.</p>
+
+                        </div></li>
+
+                    </ul>
+
+                </div></div>
+            </li><li class="li step stepexpand" id="seb1502980340748__step_N1003D_N1003A_N1002E_N10001">
+                <span class="ph cmd">Verify that the delay response rate of the parent <a title="Precision Time Protocol" class="glossexpansion">PTP</a> clock is configured
+                    according to the Network Synchronization Plan.</span>
+            </li><li class="li step stepexpand" id="seb1502980340748__step_N1004E_N1003A_N1002E_N10001">
+                <span class="ph cmd">After making any change in configuration, wait at least 2 minutes.</span>
+            </li></ol><p class="li stepsection">
+            </p><p class="p">If the alarm remains, do the following:</p>
+
+        <ol start="5"><li class="li step stepexpand" id="seb1502980340748__step_N10080_N10048_N1003A_N10001">
+            <span class="ph cmd">Consult the next level of maintenance support.</span>
+        </li></ol></div>
+    </div>
+
+</div>
+<a name="KW:RADIOEQUIPMENTCLOCKREFERENCE"></a><a name="KW:SYNC_PTP_TIME_AVAILABILITY_FAULT"></a><a name="KW:LOW_SYNC_RATE_DETECTED"></a>
+
+<div class="topic task nested0" aria-labelledby="ariaid-title6" xml:lang="en-US" lang="en-US" id="azh1502981620978">
+    
+<h1 class="title topictitle1"><span class="CHAPNUMBER">6  </span><span class="CHAPTITLE"><a name="CHAPTER6" href="#TOP" class="CHAPLINK">Remedy Action for RadioEquipmentClockReference: Low sync rate detected</a></span></h1>
+
+    
+    
+    <div class="body taskbody"><p class="shortdesc"></p>
+
+        <div id="azh1502981620978__context_N10031_N1002E_N10001"><div class="section">
+            <p class="p">The alarm is raised if there is an availability problem of the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> Grandmaster for
+                more than 1 minute.</p>
+
+            <p class="p">If no standby synchronization reference is available, the fault can stop or disturb
+                the traffic or the network synchronization.</p>
+
+        </div>
+</div>
+        <div class="p" id="azh1502981620978__steps_0"><p class="sectiontitle"><span class="autogentext">Steps
+</span></p><ol><li class="li step stepexpand" id="azh1502981620978__step_N1004E_N1004A_N1003A_N10001">
+            <span class="ph cmd">Check for correlated alarms and resolve alarms with higher severity first. For
+                detailed instructions on identifying correlated alarms and determining the order of
+                their resolution, see <a href="edw:/alex?fn=28_1553-LZA7016014_1Uen.EX31B.html#umc1685620862746" class="xref">Check for Correlated Alarms</a>. </span>
+        </li><li class="li step stepexpand" id="azh1502981620978__step_N1003F_N1003A_N1002E_N10001">
+                <span class="ph cmd">Choose one of the following alternates:</span>
+                <div><div class="itemgroup info">
+                    <ul class="unord" id="azh1502981620978__ul_lfx_gcn_x1b">
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is not an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, consult the
+                                next level of maintenance support.</p>
+
+                        </div></li>
+
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, continue with the
+                                next step.</p>
+
+                        </div></li>
+
+                    </ul>
+
+                </div></div>
+            </li><li class="li step stepexpand" id="azh1502981620978__step_N1003D_N1003A_N1002E_N10001">
+                <span class="ph cmd">Verify that the sync rate of the parent <a title="Precision Time Protocol" class="glossexpansion">PTP</a> clock is configured according to
+                    the Network Synchronization Plan.</span>
+            </li><li class="li step stepexpand" id="azh1502981620978__step_N1004E_N1003A_N1002E_N10001">
+                <span class="ph cmd">After making any change in configuration, wait at least 2 minutes.</span>
+            </li></ol><p class="li stepsection">
+            </p><p class="p">If the alarm remains, do the following:</p>
+
+        <ol start="5"><li class="li step stepexpand" id="azh1502981620978__step_N10080_N10048_N1003A_N10001">
+            <span class="ph cmd">Consult the next level of maintenance support.</span>
+        </li></ol></div>
+    </div>
+
+</div>
+<a name="KW:RADIOEQUIPMENTCLOCKREFERENCE"></a><a name="KW:SYNC_PTP_TIME_AVAILABILITY_FAULT"></a><a name="KW:NO_ANNOUNCE_MESSAGES"></a>
+
+<div class="topic task nested0" aria-labelledby="ariaid-title7" xml:lang="en-US" lang="en-US" id="taj1502980341153">
+    
+<h1 class="title topictitle1"><span class="CHAPNUMBER">7  </span><span class="CHAPTITLE"><a name="CHAPTER7" href="#TOP" class="CHAPLINK">Remedy Action for RadioEquipmentClockReference: No announce messages</a></span></h1>
+
+    
+    
+    <div class="body taskbody"><p class="shortdesc"></p>
+
+        <div id="taj1502980341153__context_N10031_N1002E_N10001"><div class="section">
+            <p class="p">The alarm is raised if there is an availability problem of the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> Grandmaster for
+                more than 1 minute.</p>
+
+            <p class="p">If no standby synchronization reference is available, the fault can stop or disturb
+                the traffic or the network synchronization.</p>
+
+        </div>
+</div>
+        <div class="p" id="taj1502980341153__steps_0"><p class="sectiontitle"><span class="autogentext">Steps
+</span></p><ol><li class="li step stepexpand" id="taj1502980341153__step_N1004E_N1004A_N1003A_N10001">
+            <span class="ph cmd">Check for correlated alarms and resolve alarms with higher severity first. For
+                detailed instructions on identifying correlated alarms and determining the order of
+                their resolution, see <a href="edw:/alex?fn=28_1553-LZA7016014_1Uen.EX31B.html#umc1685620862746" class="xref">Check for Correlated Alarms</a>. </span>
+        </li><li class="li step stepexpand" id="taj1502980341153__step_N1003F_N1003A_N1002E_N10001">
+                <span class="ph cmd">Choose one of the following alternates:</span>
+                <div><div class="itemgroup info">
+                    <ul class="unord" id="taj1502980341153__ul_lfx_gcn_x1b">
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is not an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, consult the
+                                next level of maintenance support.</p>
+
+                        </div></li>
+
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, continue with the
+                                next step.</p>
+
+                        </div></li>
+
+                    </ul>
+
+                </div></div>
+            </li><li class="li step stepexpand" id="taj1502980341153__step_N1003D_N1003A_N1002E_N10001">
+                <span class="ph cmd">Verify that the nearest parent <a title="Precision Time Protocol" class="glossexpansion">PTP</a> clock is configured in the node according to
+                    the Network Synchronization Plan.</span>
+            </li><li class="li step stepexpand" id="taj1502980341153__step_N10046_N1003A_N1002E_N10001">
+                <span class="ph cmd">After making any change in configuration, wait at least 2 minutes.</span>
+            </li></ol><p class="li stepsection">
+            </p><p class="p">If the alarm remains, do the following:</p>
+
+        <ol start="5"><li class="li step stepexpand" id="taj1502980341153__step_N10080_N10048_N1003A_N10001">
+            <span class="ph cmd">Consult the next level of maintenance support.</span>
+        </li></ol></div>
+    </div>
+
+</div>
+<a name="KW:RADIOEQUIPMENTCLOCKREFERENCE"></a><a name="KW:SYNC_PTP_TIME_AVAILABILITY_FAULT"></a><a name="KW:NO_DELAY_RESPONSE_MESSAGES"></a>
+
+<div class="topic task nested0" aria-labelledby="ariaid-title8" xml:lang="en-US" lang="en-US" id="zng1502980341590">
+    
+<h1 class="title topictitle1"><span class="CHAPNUMBER">8  </span><span class="CHAPTITLE"><a name="CHAPTER8" href="#TOP" class="CHAPLINK">Remedy Action for RadioEquipmentClockReference: No delay response messages</a></span></h1>
+
+    
+    
+    <div class="body taskbody"><p class="shortdesc"></p>
+
+        <div id="zng1502980341590__context_N10031_N1002E_N10001"><div class="section">
+            <p class="p">The alarm is raised if there is an availability problem of the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> Grandmaster for
+                more than 1 minute.</p>
+
+            <p class="p">If no standby synchronization reference is available, the fault can stop or disturb
+                the traffic or the network synchronization.</p>
+
+        </div>
+</div>
+        <div class="p" id="zng1502980341590__steps_0"><p class="sectiontitle"><span class="autogentext">Steps
+</span></p><ol><li class="li step stepexpand" id="zng1502980341590__step_N1004E_N1004A_N1003A_N10001">
+            <span class="ph cmd">Check for correlated alarms and resolve alarms with higher severity first. For
+                detailed instructions on identifying correlated alarms and determining the order of
+                their resolution, see <a href="edw:/alex?fn=28_1553-LZA7016014_1Uen.EX31B.html#umc1685620862746" class="xref">Check for Correlated Alarms</a>. </span>
+        </li><li class="li step stepexpand" id="zng1502980341590__step_N1003F_N1003A_N1002E_N10001">
+                <span class="ph cmd">Choose one of the following alternates:</span>
+                <div><div class="itemgroup info">
+                    <ul class="unord" id="zng1502980341590__ul_lfx_gcn_x1b">
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is not an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, consult the
+                                next level of maintenance support.</p>
+
+                        </div></li>
+
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, continue with the
+                                next step.</p>
+
+                        </div></li>
+
+                    </ul>
+
+                </div></div>
+            </li><li class="li step stepexpand" id="zng1502980341590__step_N1003D_N1003A_N1002E_N10001">
+                <span class="ph cmd">Verify that the nearest parent <a title="Precision Time Protocol" class="glossexpansion">PTP</a> clock is configured in the node according to
+                    the Network Synchronization Plan.</span>
+            </li><li class="li step stepexpand" id="zng1502980341590__step_N10046_N1003A_N1002E_N10001">
+                <span class="ph cmd">After making any change in configuration, wait at least 2 minutes.</span>
+            </li></ol><p class="li stepsection">
+            </p><p class="p">If the alarm remains, do the following:</p>
+
+        <ol start="5"><li class="li step stepexpand" id="zng1502980341590__step_N10080_N10048_N1003A_N10001">
+            <span class="ph cmd">Consult the next level of maintenance support.</span>
+        </li></ol></div>
+    </div>
+
+</div>
+<a name="KW:RADIOEQUIPMENTCLOCKREFERENCE"></a><a name="KW:SYNC_PTP_TIME_AVAILABILITY_FAULT"></a><a name="KW:NO_SYNC_MESSAGES"></a>
+
+<div class="topic task nested0" aria-labelledby="ariaid-title9" xml:lang="en-US" lang="en-US" id="vsw1502980341996">
+    
+<h1 class="title topictitle1"><span class="CHAPNUMBER">9  </span><span class="CHAPTITLE"><a name="CHAPTER9" href="#TOP" class="CHAPLINK">Remedy Action for RadioEquipmentClockReference: No sync messages</a></span></h1>
+
+    
+    
+    <div class="body taskbody"><p class="shortdesc"></p>
+
+        <div id="vsw1502980341996__context_N10031_N1002E_N10001"><div class="section">
+            <p class="p">The alarm is raised if there is an availability problem of the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> Grandmaster for
+                more than 1 minute.</p>
+
+            <p class="p">If no standby synchronization reference is available, the fault can stop or disturb
+                the traffic or the network synchronization.</p>
+
+        </div>
+</div>
+        <div class="p" id="vsw1502980341996__steps_0"><p class="sectiontitle"><span class="autogentext">Steps
+</span></p><ol><li class="li step stepexpand" id="vsw1502980341996__step_N10051_N1004D_N1003D_N10001">
+            <span class="ph cmd">Check for correlated alarms and resolve alarms with higher severity first. For
+                detailed instructions on identifying correlated alarms and determining the order of
+                their resolution, see <a href="edw:/alex?fn=28_1553-LZA7016014_1Uen.EX31B.html#umc1685620862746" class="xref">Check for Correlated Alarms</a>. </span>
+        </li><li class="li step stepexpand" id="vsw1502980341996__step_N1003F_N1003A_N1002E_N10001">
+                <span class="ph cmd">Choose one of the following alternates:</span>
+                <div><div class="itemgroup info">
+                    <ul class="unord" id="vsw1502980341996__ul_lfx_gcn_x1b">
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is not an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, consult the
+                                next level of maintenance support.</p>
+
+                        </div></li>
+
+                        <li class="li"><div class="li-block">
+                            <p class="p">If the <a title="Precision Time Protocol" class="glossexpansion">PTP</a> source is an Ericsson <a title="Radio Access Network" class="glossexpansion">RAN</a> Grandmaster, continue with the
+                                next step.</p>
+
+                        </div></li>
+
+                    </ul>
+
+                </div></div>
+            </li><li class="li step stepexpand" id="vsw1502980341996__step_N1003D_N1003A_N1002E_N10001">
+                <span class="ph cmd">Verify that the nearest parent <a title="Precision Time Protocol" class="glossexpansion">PTP</a> clock is configured in the node according to
+                    the Network Synchronization Plan.</span>
+            </li><li class="li step stepexpand" id="vsw1502980341996__step_N10046_N1003A_N1002E_N10001">
+                <span class="ph cmd">After making any change in configuration, wait at least 2 minutes.</span>
+            </li></ol><p class="li stepsection">
+            </p><p class="p">If the alarm remains, do the following:</p>
+
+        <ol start="5"><li class="li step stepexpand" id="vsw1502980341996__step_N10080_N10048_N1003A_N10001">
+            <span class="ph cmd">Consult the next level of maintenance support.</span>
+        </li></ol></div>
+    </div>
+
+</div>
+
+
+
+<!--@/BODY-->
+</div>
+<div class="footer-info">
+<div class="footer-line">
+<a class="legal-elem" style="color: #FAFAFA;" onclick="showcopyright();" href="#copyright_table" title="Legal information details for this document including Copyright, Disclaimer, and Trademarks">Legal
+<span class="footer-icons">
+<span id="uparrow" style="display:none" class="legal-up"></span>
+<span id="downarrow" class="legal-down"></span>
+</span>
+</a>
+<span class="pipe-sep">|</span><span class="legal-elem2">&#169; Ericsson AB 2016&#8211;2023</span>
+</div>
+</div>
+<table width="100%" id="copyright_table" style="display:none" class="copytbl">
+<tr>
+<td class="copyhead">Copyright</td>
+<td class="copyinfo">
+<p>&#169; Ericsson AB 2016&#8211;2023. All rights reserved. No part of this document may be reproduced in any form without the written permission of the copyright owner.</p>
+</td>
+</tr>
+<tr>
+<td class="copyhead">Disclaimer</td>
+<td class="copyinfo">
+<p>The contents of this document are subject to revision without notice due to continued progress in methodology, design and manufacturing. Ericsson shall have no liability for any error or damage of any kind resulting from the use of this document.</p>
+</td>
+</tr>
+<tr>
+<td class="copyhead">Trademarks</td>
+<td class="copyinfo">
+    <div class="body conbody">
+        <p class="p">All trademarks mentioned herein are the property of their respective owners. These are
+            shown in the document <a href="edw:/alex?fn=232_00651-LZA7016014Uen.K.html" class="xref">Trademark Information</a>.</p>
+
+     </div>
+
+</td>
+</tr>
+</table>
+</body>
+<script type = "text/javascript">var terms = []</script>
+</html>

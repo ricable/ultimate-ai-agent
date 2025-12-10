@@ -1,0 +1,119 @@
+# MCP Researcher Mode Configuration
+
+mode:
+  name: "MCP Researcher"
+  slug: "mcp-researcher"
+  description: "Comprehensive research using MCP-powered tools"
+  version: "1.0.0"
+
+# MCP Server Dependencies
+mcp_servers:
+  required:
+    - name: "perplexity"
+      description: "Real-time web search and AI analysis"
+      tools: ["PERPLEXITYAI_PERPLEXITY_AI_SEARCH"]
+    - name: "context7"
+      description: "Technical documentation and library research"
+      tools: ["resolve-library-id", "get-library-docs"]
+    - name: "safla"
+      description: "Internal system integration and workflow management"
+      tools: ["create_research_session", "manage_user_sessions"]
+  
+  optional:
+    - name: "browser"
+      description: "Web browsing capabilities for direct source access"
+    - name: "file-system"
+      description: "Local file system access for document analysis"
+
+# Research Workflow Configuration
+workflows:
+  technical_research:
+    phases: ["scope_definition", "documentation_gathering", "practice_analysis", "synthesis"]
+    max_depth: 3
+    parallel_processing: true
+    cache_duration: "24h"
+  
+  market_research:
+    phases: ["landscape_mapping", "competitive_analysis", "trend_analysis", "strategic_insights"]
+    max_depth: 2
+    parallel_processing: true
+    cache_duration: "12h"
+  
+  academic_research:
+    phases: ["literature_discovery", "methodological_analysis", "knowledge_synthesis", "research_agenda"]
+    max_depth: 4
+    parallel_processing: false
+    cache_duration: "48h"
+
+# Quality Assurance Settings
+quality_assurance:
+  source_credibility:
+    min_authority_score: 6
+    min_accuracy_score: 7
+    bias_detection: true
+    triangulation_required: true
+  
+  validation:
+    multi_source_confirmation: true
+    expert_review: false
+    peer_validation: true
+    automated_fact_checking: true
+
+# Performance Optimization
+performance:
+  caching:
+    enabled: true
+    strategy: "intelligent"
+    compression: true
+    ttl_default: "6h"
+  
+  parallel_processing:
+    max_concurrent_requests: 5
+    batch_size: 10
+    timeout: "30s"
+  
+  resource_limits:
+    max_session_duration: "4h"
+    max_memory_usage: "2GB"
+    max_api_calls_per_hour: 1000
+
+# Output Configuration
+output:
+  formats: ["markdown", "json", "pdf", "html"]
+  templates:
+    executive_summary: true
+    technical_analysis: true
+    market_intelligence: true
+    academic_synthesis: true
+  
+  structure:
+    include_citations: true
+    include_confidence_scores: true
+    include_methodology: true
+    include_limitations: true
+
+# Integration Settings
+integration:
+  aiGI_workflow:
+    input_modes: ["architect", "orchestrator", "memory-manager"]
+    output_modes: ["code", "critic", "final-assembly"]
+    collaboration: true
+  
+  external_apis:
+    rate_limiting: true
+    error_handling: "graceful_degradation"
+    fallback_strategies: true
+
+# Logging and Monitoring
+logging:
+  level: "INFO"
+  include_performance_metrics: true
+  include_quality_metrics: true
+  session_tracking: true
+  
+monitoring:
+  real_time_alerts: true
+  performance_thresholds:
+    response_time: "10s"
+    accuracy_score: 0.8
+    completion_rate: 0.95

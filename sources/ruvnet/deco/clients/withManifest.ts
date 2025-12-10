@@ -1,0 +1,400 @@
+// deno-lint-ignore-file no-explicit-any
+import type { App, AppManifest, ManifestOf } from "../blocks/app.ts";
+import type { StreamProps } from "../mod.ts";
+import type {
+  AvailableActions,
+  AvailableFunctions,
+  AvailableLoaders,
+  InvocationProxy,
+  Invoke,
+  InvokeAsPayload,
+  InvokeResult,
+  ManifestAction,
+  ManifestFunction,
+  ManifestInvocable,
+  ManifestLoader,
+} from "../utils/invoke.types.ts";
+import type { DotNestedKeys } from "../utils/object.ts";
+import { propsToFormData } from "./formdata.ts";
+import {
+  type InvocationProxyHandler,
+  type InvokeAwaiter,
+  newHandler,
+} from "./proxy.ts";
+export interface InvokerRequestInit extends Omit<RequestInit, "fetcher"> {
+  fetcher?: typeof fetch;
+  multipart?: true | undefined;
+}
+
+export interface ReadFromStreamOptions {
+  shouldDecodeChunk?: boolean;
+}
+
+export type GenericFunction = (...args: any[]) => Promise<any>;
+
+export const isStreamProps = <TProps>(
+  props: TProps | (TProps & StreamProps),
+): props is TProps & StreamProps => {
+  return Boolean((props as StreamProps)?.stream) === true;
+};
+
+export const isEventStreamResponse = (
+  invokeResponse: unknown | AsyncIterableIterator<unknown>,
+): invokeResponse is AsyncIterableIterator<unknown> => {
+  return (
+    typeof (invokeResponse as AsyncIterableIterator<unknown>)?.next ===
+      "function"
+  );
+};
+
+export async function* readFromStream<T>(
+  response: Response,
+  options: ReadFromStreamOptions = {},
+): AsyncIterableIterator<T> {
+  if (!response.body) {
+    return;
+  }
+
+  const { shouldDecodeChunk = true } = options;
+
+  const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
+
+  let buffer = "";
+
+  while (true) {
+    const { value, done } = await reader.read();
+
+    if (done) {
+      break;
+    }
+
+    buffer += value;
+    const lines = buffer.split("\n");
+    buffer = lines.pop() ?? "";
+
+    for (const data of lines) {
+      if (!data.startsWith("data:")) {
+        continue;
+      }
+
+      try {
+        const chunk = data.replace("data:", "");
+        yield JSON.parse(shouldDecodeChunk ? decodeURIComponent(chunk) : chunk);
+      } catch (_err) {
+        console.log("error parsing data", _err, data);
+        continue;
+      }
+    }
+  }
+
+  // Process any remaining buffer after the stream ends
+  if (buffer.length > 0 && buffer.startsWith("data:")) {
+    try {
+      yield JSON.parse(decodeURIComponent(buffer.replace("data:", "")));
+    } catch (_err) {
+      console.log("error parsing data", _err, buffer);
+    }
+  }
+}
+
+class InvokeError extends Error {
+  public correlationId: string | null = null;
+  constructor(
+    message: string,
+    options?: ErrorOptions & { correlationId: string | null },
+  ) {
+    super(message, options);
+    this.correlationId = options?.correlationId ?? null;
+  }
+}
+const fetchWithProps = async (
+  url: string,
+  props: unknown,
+  init?: InvokerRequestInit | undefined,
+) => {
+  if (typeof document === "undefined") {
+    console.warn(
+      "👋 Oops! Runtime.invoke should be called only on the client-side, but it seems to be called on the server-side instead. No worries, mistakes happen! 😉",
+    );
+  }
+  const headers = new Headers(init?.headers);
+  const fetcher = init?.fetcher ?? fetch;
+  const multipart = init?.multipart ?? false;
+
+  headers.set("accept", `application/json, text/event-stream`);
+
+  if (multipart && headers.has("content-type")) {
+    console.warn(
+      `invoke ${url}: Setting the content-type header is not allowed when using multipart, it will be ignored`,
+    );
+    headers.delete("content-type");
+  }
+
+  if (!multipart && !headers.has("content-type")) {
+    headers.set("content-type", "application/json");
+  }
+
+  const body = headers.get("content-type") === "application/json"
+    ? JSON.stringify(props)
+    : multipart
+    ? propsToFormData(props)
+    : (props as string);
+
+  const response = await fetcher(url, {
+    method: "POST",
+    body,
+    ...init,
+    headers,
+  } as RequestInit);
+
+  if (response.status === 204) {
+    return;
+  }
+
+  if (response.ok) {
+    if (response.headers.get("content-type") === "text/event-stream") {
+      return readFromStream(response);
+    }
+    return response.json();
+  }
+
+  console.error(init?.body, response);
+  const error = await response.text();
+  if (response.headers.get("content-type") === "application/json") {
+    const errorObj = JSON.parse(error);
+    throw new InvokeError(`${response.status}: ${response.statusText}`, {
+      cause: errorObj,
+      correlationId: response.headers.get("x-correlation-id"),
+    });
+  }
+  throw new InvokeError(`${response.status}: ${response.statusText}`, {
+    cause: error,
+    correlationId: response.headers.get("x-correlation-id"),
+  });
+};
+
+export const invokeKey = (
+  key: string,
+  props?: unknown,
+  init?: InvokerRequestInit | undefined,
+) => fetchWithProps(`/live/invoke/${key}`, props ?? {}, init);
+
+const batchInvoke = (payload: unknown, init?: InvokerRequestInit | undefined) =>
+  fetchWithProps(`/live/invoke`, payload, init);
+
+export type InvocationFunc<TManifest extends AppManifest> = <
+  TInvocableKey extends
+    | AvailableFunctions<TManifest>
+    | AvailableLoaders<TManifest>
+    | AvailableActions<TManifest>,
+  TFuncSelector extends TInvocableKey extends AvailableFunctions<TManifest>
+    ? DotNestedKeys<ManifestFunction<TManifest, TInvocableKey>["return"]>
+    : TInvocableKey extends AvailableActions<TManifest>
+      ? DotNestedKeys<ManifestAction<TManifest, TInvocableKey>["return"]>
+    : TInvocableKey extends AvailableLoaders<TManifest>
+      ? DotNestedKeys<ManifestLoader<TManifest, TInvocableKey>["return"]>
+    : never,
+  TPayload extends Invoke<TManifest, TInvocableKey, TFuncSelector>,
+>(
+  key: TInvocableKey,
+  props?: Invoke<TManifest, TInvocableKey, TFuncSelector>["props"],
+) => Promise<InvokeResult<TPayload, TManifest>>;
+
+export type AvailableInvocations<TManifest extends AppManifest> =
+  | AvailableFunctions<TManifest>
+  | AvailableActions<TManifest>
+  | AvailableLoaders<TManifest>;
+
+export type InvocationFuncFor<
+  TManifest extends AppManifest,
+  TInvocableKey extends string,
+  TFuncSelector extends TInvocableKey extends AvailableFunctions<TManifest>
+    ? DotNestedKeys<ManifestFunction<TManifest, TInvocableKey>["return"]>
+    : TInvocableKey extends AvailableActions<TManifest>
+      ? DotNestedKeys<ManifestAction<TManifest, TInvocableKey>["return"]>
+    : TInvocableKey extends AvailableLoaders<TManifest>
+      ? DotNestedKeys<ManifestLoader<TManifest, TInvocableKey>["return"]>
+    : never = TInvocableKey extends AvailableFunctions<TManifest>
+      ? DotNestedKeys<ManifestFunction<TManifest, TInvocableKey>["return"]>
+      : TInvocableKey extends AvailableActions<TManifest>
+        ? DotNestedKeys<ManifestAction<TManifest, TInvocableKey>["return"]>
+      : TInvocableKey extends AvailableLoaders<TManifest>
+        ? DotNestedKeys<ManifestLoader<TManifest, TInvocableKey>["return"]>
+      : never,
+> = (
+  props?: Invoke<TManifest, TInvocableKey, TFuncSelector>["props"],
+  /**
+   * Used client-side only
+   */
+  init?: InvokerRequestInit | undefined,
+) => InvokeAwaiter<TManifest, TInvocableKey, TFuncSelector>;
+
+const isInvokeAwaiter = <
+  TManifest extends AppManifest,
+  TInvocableKey extends string,
+  TFuncSelector extends DotNestedKeys<
+    ManifestInvocable<TManifest, TInvocableKey>["return"]
+  >,
+>(
+  invoke: unknown | InvokeAwaiter<TManifest, TInvocableKey, TFuncSelector>,
+): invoke is InvokeAwaiter<TManifest, TInvocableKey, TFuncSelector> => {
+  return (
+    (invoke as InvokeAwaiter<TManifest, TInvocableKey, TFuncSelector>)?.then !==
+      undefined &&
+    (invoke as InvokeAwaiter<TManifest, TInvocableKey, TFuncSelector>)
+        ?.payload !== undefined
+  );
+};
+
+/**
+ * Receives the function id as a parameter (e.g `#FUNC_ID`, the `#` will be ignored)
+ * or the function name as a parameter (e.g `deco-sites/std/functions/vtexProductList.ts`) and invoke the target function passing the provided `props` as the partial input for the function.
+ * @returns the function return.
+ */
+export const invoke =
+  <TManifest extends AppManifest>(fetcher?: typeof fetch) =>
+  <
+    TInvocableKey extends
+      | AvailableFunctions<TManifest>
+      | AvailableLoaders<TManifest>
+      | AvailableActions<TManifest>,
+    TFuncSelector extends TInvocableKey extends AvailableFunctions<TManifest>
+      ? DotNestedKeys<ManifestFunction<TManifest, TInvocableKey>["return"]>
+      : TInvocableKey extends AvailableActions<TManifest>
+        ? DotNestedKeys<ManifestAction<TManifest, TInvocableKey>["return"]>
+      : TInvocableKey extends AvailableLoaders<TManifest>
+        ? DotNestedKeys<ManifestLoader<TManifest, TInvocableKey>["return"]>
+      : never,
+    TPayload extends
+      | Invoke<TManifest, TInvocableKey, TFuncSelector>
+      | InvokeAsPayload<TManifest, TInvocableKey, TFuncSelector>
+      | Record<
+        string,
+        | Invoke<TManifest, TInvocableKey, TFuncSelector>
+        | InvokeAsPayload<TManifest, TInvocableKey, TFuncSelector>
+      >,
+  >(
+    payload: TPayload,
+    init?: InvokerRequestInit | undefined,
+  ): Promise<InvokeResult<TPayload, TManifest>> => {
+    if (typeof payload === "object") {
+      if ("key" in payload && "props" in payload) {
+        return invokeKey((payload as any).key, (payload as any).props, {
+          ...(init ?? {}),
+          fetcher,
+        }) as Promise<InvokeResult<TPayload, TManifest>>;
+      }
+      const reqs: Record<
+        string,
+        Invoke<TManifest, TInvocableKey, TFuncSelector>
+      > = {};
+      for (const [key, val] of Object.entries(payload)) {
+        if (isInvokeAwaiter(val)) {
+          reqs[key] = val.payload;
+        } else {
+          reqs[key] = val;
+        }
+      }
+      return batchInvoke(reqs, { ...(init ?? {}), fetcher }) as Promise<
+        InvokeResult<TPayload, TManifest>
+      >;
+    }
+    return batchInvoke(payload, { ...(init ?? {}), fetcher }) as Promise<
+      InvokeResult<TPayload, TManifest>
+    >;
+  };
+
+export const create = <TManifest extends AppManifest>() =>
+<
+  TInvocableKey extends
+    | AvailableFunctions<TManifest>
+    | AvailableLoaders<TManifest>
+    | AvailableActions<TManifest>,
+  TFuncSelector extends TInvocableKey extends AvailableFunctions<TManifest>
+    ? DotNestedKeys<ManifestFunction<TManifest, TInvocableKey>["return"]>
+    : TInvocableKey extends AvailableActions<TManifest>
+      ? DotNestedKeys<ManifestAction<TManifest, TInvocableKey>["return"]>
+    : TInvocableKey extends AvailableLoaders<TManifest>
+      ? DotNestedKeys<ManifestLoader<TManifest, TInvocableKey>["return"]>
+    : never,
+  TPayload extends Invoke<TManifest, TInvocableKey, TFuncSelector>,
+>(
+  key: TInvocableKey,
+) =>
+(
+  props?: Invoke<TManifest, TInvocableKey, TFuncSelector>["props"],
+  init?: InvokerRequestInit | undefined,
+): Promise<InvokeResult<TPayload, TManifest>> =>
+  invokeKey(key, props, init) as Promise<InvokeResult<TPayload, TManifest>>;
+
+export interface ManifestInvoke<TManifest extends AppManifest> {
+  invoke: ReturnType<typeof invoke<TManifest>>;
+  create: ReturnType<typeof create<TManifest>>;
+}
+
+/**
+ * Creates a set of strongly-typed utilities to be used across the repositories where pointing to an existing function is supported.
+ */
+export const withManifest = <
+  TManifest extends AppManifest,
+>(): ManifestInvoke<TManifest> => {
+  return {
+    /**
+     * Invokes the target function using the invoke api.
+     */
+    invoke: invoke<TManifest>(),
+
+    /**
+     * Creates an invoker function. Usage:
+     *
+     * const myAction = create('path/to/action');
+     * ...
+     * const result = await myAction(props);
+     */
+    create: create<TManifest>(),
+  };
+};
+
+type InvocationProxyWithBatcher<TManifest extends AppManifest> =
+  & InvocationProxy<TManifest>
+  & ReturnType<typeof invoke<TManifest>>;
+/**
+ * Creates a proxy that lets you invoke functions based on the declared actions and loaders.
+ * @returns the created proxy.
+ */
+export const proxyFor = <TManifest extends AppManifest>(
+  invoker: typeof batchInvoke,
+): InvocationProxyWithBatcher<TManifest> => {
+  return new Proxy<InvocationProxyHandler>(
+    invoker as InvocationProxyHandler,
+    newHandler<TManifest>((key, props, init) => invoker({ key, props }, init)),
+  ) as unknown as InvocationProxyWithBatcher<TManifest>;
+};
+/**
+ * Creates a proxy that lets you invoke functions based on the declared actions and loaders.
+ * @returns the created proxy.
+ */
+export const proxy = <TManifest extends AppManifest>(
+  fetcher?: typeof fetch,
+): InvocationProxyWithBatcher<TManifest> => {
+  return proxyFor(invoke<TManifest>(fetcher) as typeof batchInvoke);
+};
+
+export type ExtendedForAppInvoke<TApp extends App> =
+  & ManifestInvoke<
+    ManifestOf<TApp>
+  >
+  & { invoke: InvocationProxyWithBatcher<ManifestOf<TApp>> };
+
+/**
+ * Creates a proxy that lets you invoke functions based on the declared actions and loaders. (compatibility with old invoke)
+ */
+export const forApp = <TApp extends App>(): ExtendedForAppInvoke<
+  TApp
+> => {
+  const { create } = withManifest<ManifestOf<TApp>>();
+  return {
+    create: create,
+    invoke: proxy<ManifestOf<TApp>>(),
+  };
+};

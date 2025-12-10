@@ -1,0 +1,318 @@
+# Kubernetes Services for RAN Automation System
+# Phase 5: Pydantic Schema Generation & Production Integration
+
+---
+# Main Application Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ran-automation-sdk-service
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: service
+    phase: "5"
+    tier: backend
+  annotations:
+    description: "Main service for Ericsson RAN Intelligent Multi-Agent System"
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8080"
+    prometheus.io/path: "/metrics"
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+    protocol: TCP
+  - name: https
+    port: 443
+    targetPort: http
+    protocol: TCP
+  selector:
+    app: ran-automation-sdk
+  sessionAffinity: None
+
+---
+# Metrics Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ran-automation-sdk-metrics
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: metrics
+    phase: "5"
+    tier: backend
+  annotations:
+    description: "Metrics service for RAN Automation System monitoring"
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9090"
+    prometheus.io/path: "/metrics"
+spec:
+  type: ClusterIP
+  ports:
+  - name: metrics
+    port: 9090
+    targetPort: metrics
+    protocol: TCP
+  selector:
+    app: ran-automation-sdk
+
+---
+# Headless Service for StatefulSet communication
+apiVersion: v1
+kind: Service
+metadata:
+  name: ran-automation-sdk-headless
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: headless
+    phase: "5"
+    tier: backend
+  annotations:
+    description: "Headless service for pod-to-pod communication in swarm coordination"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+    protocol: TCP
+  - name: metrics
+    port: 9090
+    targetPort: metrics
+    protocol: TCP
+  - name: swarm-coordination
+    port: 8081
+    targetPort: 8081
+    protocol: TCP
+  selector:
+    app: ran-automation-sdk
+  publishNotReadyAddresses: true
+
+---
+# External LoadBalancer Service (if needed)
+apiVersion: v1
+kind: Service
+metadata:
+  name: ran-automation-sdk-external
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: external
+    phase: "5"
+    tier: backend
+  annotations:
+    description: "External load balancer for RAN Automation System"
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+    # Health check annotations
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: "/health"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "30"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: "10"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: "3"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "3"
+spec:
+  type: LoadBalancer
+  loadBalancerSourceRanges: []
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+    protocol: TCP
+  - name: https
+    port: 443
+    targetPort: http
+    protocol: TCP
+  selector:
+    app: ran-automation-sdk
+  sessionAffinity: None
+
+---
+# Ingress Configuration
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ran-automation-sdk-ingress
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: ingress
+    phase: "5"
+    tier: backend
+  annotations:
+    description: "Ingress configuration for RAN Automation System"
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    # Rate limiting
+    nginx.ingress.kubernetes.io/rate-limit: "100"
+    nginx.ingress.kubernetes.io/rate-limit-window: "1m"
+    # CORS configuration
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization"
+    # Large request support
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    # Custom error pages
+    nginx.ingress.kubernetes.io/custom-http-errors: "404,502,503"
+    # Authentication (if needed)
+    # nginx.ingress.kubernetes.io/auth-type: basic
+    # nginx.ingress.kubernetes.io/auth-secret: ran-automation-auth
+spec:
+  tls:
+  - hosts:
+    - ran-automation.ericsson.com
+    - api.ran-automation.ericsson.com
+    secretName: ran-automation-tls
+  rules:
+  - host: ran-automation.ericsson.com
+    http:
+      paths:
+      - path: /api(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: ran-automation-sdk-service
+            port:
+              number: 80
+      - path: /health
+        pathType: Exact
+        backend:
+          service:
+            name: ran-automation-sdk-service
+            port:
+              number: 80
+      - path: /ready
+        pathType: Exact
+        backend:
+          service:
+            name: ran-automation-sdk-service
+            port:
+              number: 80
+  - host: api.ran-automation.ericsson.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ran-automation-sdk-service
+            port:
+              number: 80
+
+---
+# Network Policy for RAN Automation System
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ran-automation-sdk-netpol
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: network-policy
+    phase: "5"
+  annotations:
+    description: "Network policy for RAN Automation System security"
+spec:
+  podSelector:
+    matchLabels:
+      app: ran-automation-sdk
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  # Allow traffic from ingress controller
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ingress-nginx
+    ports:
+    - protocol: TCP
+      port: 8080
+    - protocol: TCP
+      port: 9090
+  # Allow traffic from monitoring systems
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: monitoring
+    ports:
+    - protocol: TCP
+      port: 9090
+  # Allow traffic from same namespace
+  - from:
+    - podSelector: {}
+    ports:
+    - protocol: TCP
+      port: 8080
+    - protocol: TCP
+      port: 9090
+    - protocol: TCP
+      port: 8081
+  # Allow traffic from trusted namespaces
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ran-automation
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: kube-system
+    ports:
+    - protocol: TCP
+      port: 8080
+    - protocol: TCP
+      port: 9090
+  egress:
+  # Allow DNS resolution
+  - to: []
+    ports:
+    - protocol: UDP
+      port: 53
+    - protocol: TCP
+      port: 53
+  # Allow traffic to Kubernetes API
+  - to: []
+    ports:
+    - protocol: TCP
+      port: 443
+    - protocol: TCP
+      port: 6443
+  # Allow traffic to external services (AgentDB, ENM, etc.)
+  - to: []
+    ports:
+    - protocol: TCP
+      port: 5432  # PostgreSQL
+    - protocol: TCP
+      port: 6379  # Redis
+    - protocol: TCP
+      port: 22    # SSH for ENM CLI
+    - protocol: TCP
+      port: 443   # HTTPS
+    - protocol: TCP
+      port: 80    # HTTP
+  # Allow traffic to same namespace
+  - to:
+    - podSelector: {}
+  # Allow traffic to monitoring systems
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: monitoring
+    ports:
+    - protocol: TCP
+      port: 9090  # Prometheus
+    - protocol: TCP
+      port: 4317  # OpenTelemetry
+    - protocol: TCP
+      port: 4318  # OpenTelemetry HTTP

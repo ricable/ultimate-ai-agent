@@ -1,0 +1,27 @@
+name = "federated-mcp"
+main = "worker/index.ts"
+compatibility_date = "2024-01-01"
+
+[vars]
+ENVIRONMENT = "production"
+
+[[kv_namespaces]]
+binding = "MCP_STORE"
+id = "YOUR_KV_NAMESPACE_ID"
+preview_id = "YOUR_PREVIEW_KV_NAMESPACE_ID"
+
+[durable_objects]
+bindings = [
+  { name = "CONNECTIONS", class_name = "ConnectionsStore" }
+]
+
+[[migrations]]
+tag = "v1"
+new_classes = ["ConnectionsStore"]
+
+[build]
+command = "deno bundle worker/index.ts dist/worker.js"
+
+[miniflare]
+kv_persist = true
+durable_objects_persist = true

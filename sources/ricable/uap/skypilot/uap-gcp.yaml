@@ -1,0 +1,170 @@
+# skypilot/uap-gcp.yaml
+# UAP Google Cloud Platform deployment configuration
+
+resources:
+  # GCP-optimized GPU configuration
+  accelerators: {A100:1, V100:2, T4:4, L4:2}
+  cloud: gcp
+  region: [us-central1, us-west1, europe-west1, asia-southeast1]
+  zone: null  # Auto-select optimal zone
+  cpus: 8+
+  memory: 32+
+  use_spot: true
+  spot_recovery: auto
+  disk_size: 200
+  disk_tier: ssd  # Use SSD persistent disk
+  
+workdir: /app
+
+# GCP-specific file mounts
+file_mounts:
+  /app: .
+  /app/gcp-configs: ./gcp-configs
+
+# GCP-specific environment variables
+envs:
+  UAP_ENV: production
+  CLOUD_PROVIDER: gcp
+  GCP_PROJECT: ${SKYPILOT_NODE_PROJECT}
+  GCP_ZONE: ${SKYPILOT_NODE_ZONE}
+  PYTHONPATH: /app/backend
+  # GCP-specific settings
+  GOOGLE_CLOUD_PROJECT: ${SKYPILOT_NODE_PROJECT}
+  
+setup: |
+  set -e
+  echo "=== UAP GCP Deployment Setup ==="
+  
+  # Update system
+  sudo apt-get update
+  sudo apt-get install -y curl git build-essential python3-dev
+  
+  # Install Google Cloud SDK
+  curl https://sdk.cloud.google.com | bash
+  source ~/.bashrc
+  
+  # Configure gcloud
+  gcloud config set project ${SKYPILOT_NODE_PROJECT}
+  gcloud config set compute/zone ${SKYPILOT_NODE_ZONE}
+  
+  # Install NVIDIA drivers if GPU available
+  if nvidia-smi &> /dev/null; then
+    echo "Configuring GPU for GCP..."
+    sudo apt-get install -y nvidia-cuda-toolkit
+    
+    # GCP GPU optimizations
+    sudo nvidia-smi -pm 1
+    
+    # Install GCP GPU monitoring
+    curl -sSO https://dl.google.com/cloudagents/add-google-cloud-ops-agent-repo.sh
+    sudo bash add-google-cloud-ops-agent-repo.sh --also-install
+  fi
+  
+  # Install devbox and teller
+  curl -fsSL https://get.jetify.com/devbox | bash
+  source ~/.bashrc
+  
+  curl -L https://github.com/tellerops/teller/releases/latest/download/teller_linux_x86_64.tar.gz | tar -xz
+  sudo mv teller /usr/local/bin/
+  
+  cd /app
+  
+  # Install dependencies
+  devbox install
+  
+  # Setup Python environment
+  cd backend
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install --upgrade pip
+  pip install -r requirements.txt
+  
+  # Install GCP-specific libraries
+  pip install google-cloud-secret-manager google-cloud-logging google-cloud-monitoring
+  cd ..
+  
+  # Build frontend
+  cd frontend
+  npm ci --production
+  npm run build
+  cd ..
+  
+  # GCP-specific setup
+  mkdir -p /app/logs /app/temp /app/uploads
+  
+  # Configure logging to Cloud Logging
+  sudo tee /etc/google-cloud-ops-agent/config.yaml > /dev/null <<EOF
+logging:
+  receivers:
+    uap_logs:
+      type: files
+      include_paths:
+        - /app/logs/*.log
+      exclude_paths:
+        - /app/logs/*.tmp
+  processors:
+    uap_processor:
+      type: parse_json
+  service:
+    pipelines:
+      default_pipeline:
+        receivers: [uap_logs]
+        processors: [uap_processor]
+        exporters: [google_cloud_logging]
+
+metrics:
+  receivers:
+    uap_metrics:
+      type: prometheus
+      config:
+        scrape_configs:
+          - job_name: 'uap'
+            static_configs:
+              - targets: ['localhost:8000']
+  service:
+    pipelines:
+      default_pipeline:
+        receivers: [uap_metrics]
+        exporters: [google_cloud_monitoring]
+EOF
+  
+  sudo systemctl restart google-cloud-ops-agent
+  
+  # Get instance metadata
+  curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/id > /app/instance-id
+  curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone > /app/zone
+  
+  echo "=== GCP Setup Complete ==="
+
+run: |
+  set -e
+  echo "=== Starting UAP on GCP ==="
+  
+  cd /app
+  
+  # Get instance metadata
+  export GCP_INSTANCE_ID=$(cat /app/instance-id)
+  export GCP_ZONE=$(cat /app/zone | cut -d/ -f4)
+  
+  echo "Running on GCP instance: $GCP_INSTANCE_ID in zone: $GCP_ZONE"
+  
+  # Start with secrets from Google Secret Manager
+  teller run --silent -- /app/scripts/start-production.sh
+  
+  # GCP-specific monitoring
+  while true; do
+    sleep 30
+    
+    # Health check
+    if ! curl -f http://localhost:8000/health > /dev/null 2>&1; then
+      echo "Health check failed, restarting..."
+      sudo systemctl restart uap
+    fi
+    
+    # Check preemptible instance status
+    if curl -H "Metadata-Flavor: Google" -s http://metadata.google.internal/computeMetadata/v1/instance/preempted 2>/dev/null | grep -q "TRUE"; then
+      echo "Preemptible instance terminating, graceful shutdown..."
+      sudo systemctl stop uap
+      exit 0
+    fi
+  done

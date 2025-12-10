@@ -1,0 +1,42 @@
+{
+  "name": "synaptic-mesh",
+  "version": "0.1.0",
+  "description": "Distributed neural mesh with decentralized Claude-Max marketplace",
+  "main": "index.js",
+  "bin": {
+    "synaptic-mesh": "./bin/synaptic-mesh"
+  },
+  "scripts": {
+    "postinstall": "node scripts/install.js",
+    "test": "node test/basic.js"
+  },
+  "keywords": [
+    "neural-network",
+    "p2p",
+    "distributed-ai",
+    "quantum-resistant",
+    "marketplace",
+    "claude",
+    "mesh-network"
+  ],
+  "author": "ruvnet",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/Synaptic-Neural-Mesh.git"
+  },
+  "homepage": "https://github.com/ruvnet/Synaptic-Neural-Mesh",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "os": ["linux", "darwin", "win32"],
+  "cpu": ["x64", "arm64"],
+  "dependencies": {
+    "commander": "^11.0.0",
+    "chalk": "^5.3.0",
+    "ora": "^7.0.1",
+    "boxen": "^7.1.1",
+    "inquirer": "^9.2.0"
+  },
+  "preferGlobal": true
+}

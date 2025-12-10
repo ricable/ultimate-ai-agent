@@ -1,0 +1,223 @@
+[
+  {
+    "$meta": {
+      "version": "1.2.0",
+      "description": "désactivation PMR VPN",
+      "author": [
+        "Valentin LEBOURG Ext DTSI/DTR <valentin.lebourg.ext@orange.com>"
+      ]
+    }
+  },
+  {
+    "$vars": {
+      "already_fetch": false,
+      "noria_result": [],
+      "cells_to_process": [],
+      "excluded_spid": [
+        "60",
+        "61",
+        "62"
+      ]
+    }
+  },
+  {
+    "$custom": [
+      {
+        "name": "is_pmr",
+        "args": [
+          "cell"
+        ],
+        "body": [
+          "query = 'SELECT ECI, NCI FROM champs_ihm_noria WHERE EVENEMENTIEL = \"JO Venue\";'",
+          "if vars.already_fetch:",
+          "    return str(cell.cell_id) in vars.noria_result",
+          "try:",
+          "    with db.noria as my_db:",
+          "        noria_export_result = my_db.query(query)",
+          "        query_result = noria_export_result[0]",
+          "    for row in query_result:",
+          "        cell_id = row[0] or row[1]",
+          "        vars.noria_result.append(str(cell_id))",
+          "    return str(cell.cell_id) in vars.noria_result",
+          "except Exception as e:",
+          "    LOGGER.error(e)",
+          "    return False",
+          "finally:",
+          "    vars.already_fetch = True"
+        ]
+      },
+      {
+        "name": "remove_cell_parameters",
+        "args": [
+          "cell"
+        ],
+        "body": [
+          "if cell.technology != 'LTE':",
+          "    return '__ignore__'",
+          "if cell.resourcePartitionGroupRef:",
+          "    vars.cells_to_process.append(cell)",
+          "    return {'resourcePartitionGroupRef':''}",
+          "return '__ignore__'"
+        ]
+      },
+      {
+        "name": "process_change_status",
+        "args": [
+          "cell",
+          "status",
+          "plan_name"
+        ],
+        "body": [
+          "if cell in set(vars.cells_to_process):",
+          "    enet.set_mo_params(cell.dn, {'administrativeState': status}, **{'plan': plan_name})"
+        ]
+      },
+      {
+        "name": "remove_flex_counter",
+        "args": [
+          "enodeb"
+        ],
+        "body": [
+          "result = {}",
+          "mos = enodeb.get_children('PmFlexCounterFilter')",
+          "for flex_counter in mos:",
+          "    mo_dn = flex_counter.dn.split('/')[-1]",
+          "    mo_id = '-'.join(mo_dn.split('-')[1:])",
+          "    if 'spid' not in mo_id:",
+          "        continue",
+          "    spid_number = mo_id.split('_')[-1]",
+          "    if spid_number in vars.excluded_spid:",
+          "        continue",
+          "    result.update({mo_dn: '__delete__'})",
+          "return result"
+        ]
+      }
+    ]
+  },
+  {
+    "$cond": {
+      "if": "all([not custom.is_pmr(c) for c in cell.cosites(['LTE', 'NR']) + [cell]])",
+      "then": [
+        {
+          "$plans": {
+            "Remove_PMR_configuration": [
+              {
+                "ENodeBFunction": {
+                  "$eval": "custom.remove_flex_counter(mo)",
+                  "ResourcePartitions-1": {
+                    "ResourcePartition-LEGACY": "__delete__",
+                    "ResourcePartition-PMR": "__delete__",
+                    "gbrPartitioning": "false"
+                  },
+                  "QciTable-default": {
+                    "QciProfilePredefined-default,qci{1,5,7,8,65,69,70}": {
+                      "paPartitionOverride": "false"
+                    }
+                  }
+                }
+              },
+              {
+                "ENodeBFunction": {
+                  "ResourcePartitionGroup-PMR_L700_L800": {
+                    "ResourcePartitionGroupMember-LEGACY": "__delete__",
+                    "ResourcePartitionGroupMember-PMR": "__delete__"
+                  },
+                  "ResourcePartitionGroup-PMR_L2100": {
+                    "ResourcePartitionGroupMember-LEGACY": "__delete__",
+                    "ResourcePartitionGroupMember-PMR": "__delete__"
+                  },
+                  "ResourcePartitionGroup-PMR_L1800_L2600": {
+                    "ResourcePartitionGroupMember-LEGACY": "__delete__",
+                    "ResourcePartitionGroupMember-PMR": "__delete__"
+                  }
+                }
+              },
+              {
+                "ENodeBFunction": {
+                  "ResourcePartitionGroup-PMR_L700_L800": "__delete__",
+                  "ResourcePartitionGroup-PMR_L2100": "__delete__",
+                  "ResourcePartitionGroup-PMR_L1800_L2600": "__delete__"
+                }
+              },
+              {
+                "GNBDUFunction": {
+                  "ResourceAllocationPolicies-1": {
+                    "ResourceAllocationPolicy-PMR": "__delete__"
+                  },
+                  "ResourcePartitions-PMR": {
+                    "ResourcePartition-PMR": {
+                      "ResourcePartitionMember-PMR": "__delete__"
+                    }
+                  }
+                }
+              },
+              {
+                "GNBDUFunction": {
+                  "ResourceAllocationPolicies-1": "__delete__",
+                  "ResourcePartitions-PMR": {
+                    "ResourcePartition-PMR": "__delete__"
+                  }
+                }
+              },
+              {
+                "GNBDUFunction": {
+                  "ResourcePartitions-PMR": "__delete__"
+                }
+              },
+              {
+                "GNBDUFunction": {
+                  "ResourceAllocationPolicies-1": {
+                    "CellResourceMapping-PMR": {
+                      "PartitionMapping-PMR": "__delete__"
+                    }
+                  }
+                }
+              },
+              {
+                "GNBDUFunction": {
+                  "ResourceAllocationPolicies-1": {
+                    "CellResourceMapping-PMR": "__delete__"
+                  }
+                }
+              },
+              {
+                "EUtranCellFDD": {
+                  "$eval": "custom.remove_cell_parameters(cell)"
+                }
+              },
+              {
+                "NRCellDU": {
+                  "cellResourceMappingRef": "",
+                  "nrRrpEnabled": "false"
+                }
+              },
+              {
+                "ManagedElement": {
+                  "SystemFunctions-1": {
+                    "Lm-1": {
+                      "FeatureState-CXC4012599": {
+                        "featureState": "DEACTIVATED"
+                      },
+                      "FeatureState-CXC4012559": {
+                        "featureState": "DEACTIVATED"
+                      },
+                      "FeatureState-CXC4012019": {
+                        "featureState": "DEACTIVATED"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$eval": "custom.process_change_status(cell, 'LOCKED', 'Lock_Cells')"
+        },
+        {
+          "$eval": "custom.process_change_status(cell, 'UNLOCKED', 'Unlock_Cells')"
+        }
+      ]
+    }
+  }
+]

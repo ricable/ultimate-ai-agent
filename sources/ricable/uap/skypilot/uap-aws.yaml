@@ -1,0 +1,128 @@
+# skypilot/uap-aws.yaml
+# UAP AWS-specific deployment configuration with cost optimization
+
+resources:
+  # AWS-optimized GPU configuration
+  accelerators: {A100:1, V100:2, T4:4, RTX4090:2}
+  cloud: aws
+  region: [us-west-2, us-east-1, eu-west-1, ap-southeast-1]
+  zone: null  # Let SkyPilot choose optimal zone
+  cpus: 8+
+  memory: 32+
+  use_spot: true
+  spot_recovery: auto
+  disk_size: 200
+  disk_tier: high  # Use SSD for better performance
+  
+  # AWS-specific instance types for cost optimization
+  instance_type: null  # Auto-select based on requirements
+  
+workdir: /app
+
+# AWS-specific file mounts
+file_mounts:
+  /app: .
+  /app/aws-configs: ./aws-configs
+
+# AWS-specific environment variables
+envs:
+  UAP_ENV: production
+  CLOUD_PROVIDER: aws
+  AWS_REGION: ${SKYPILOT_NODE_REGION}
+  PYTHONPATH: /app/backend
+  # AWS-specific optimizations
+  AWS_EC2_METADATA_DISABLED: false
+  AWS_DEFAULT_REGION: ${SKYPILOT_NODE_REGION}
+
+setup: |
+  set -e
+  echo "=== UAP AWS Deployment Setup ==="
+  
+  # Update system
+  sudo apt-get update
+  sudo apt-get install -y curl git build-essential python3-dev awscli
+  
+  # Configure AWS CLI
+  aws configure set region ${SKYPILOT_NODE_REGION}
+  aws configure set output json
+  
+  # Install NVIDIA drivers if GPU available
+  if nvidia-smi &> /dev/null; then
+    echo "Configuring GPU for AWS..."
+    sudo apt-get install -y nvidia-cuda-toolkit
+    
+    # AWS GPU optimizations
+    sudo nvidia-smi -pm 1  # Enable persistence mode
+    sudo nvidia-smi --auto-boost-default=DISABLED
+  fi
+  
+  # Install devbox and teller
+  curl -fsSL https://get.jetify.com/devbox | bash
+  source ~/.bashrc
+  
+  curl -L https://github.com/tellerops/teller/releases/latest/download/teller_linux_x86_64.tar.gz | tar -xz
+  sudo mv teller /usr/local/bin/
+  
+  cd /app
+  
+  # Install dependencies
+  devbox install
+  
+  # Setup Python environment
+  cd backend
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install --upgrade pip
+  pip install -r requirements.txt
+  cd ..
+  
+  # Build frontend
+  cd frontend
+  npm ci --production
+  npm run build
+  cd ..
+  
+  # AWS-specific setup
+  mkdir -p /app/logs /app/temp /app/uploads
+  
+  # Configure log shipping to CloudWatch
+  sudo curl -o /opt/aws-logs-agent.tar.gz https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
+  
+  # Setup instance metadata monitoring
+  curl -s http://169.254.169.254/latest/meta-data/instance-id > /app/instance-id
+  curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone > /app/availability-zone
+  
+  echo "=== AWS Setup Complete ==="
+
+run: |
+  set -e
+  echo "=== Starting UAP on AWS ==="
+  
+  cd /app
+  
+  # Get instance metadata
+  export AWS_INSTANCE_ID=$(cat /app/instance-id)
+  export AWS_AZ=$(cat /app/availability-zone)
+  
+  echo "Running on AWS instance: $AWS_INSTANCE_ID in AZ: $AWS_AZ"
+  
+  # Start with secrets from AWS Secrets Manager
+  teller run --silent -- /app/scripts/start-production.sh
+  
+  # AWS-specific monitoring
+  while true; do
+    sleep 30
+    
+    # Health check
+    if ! curl -f http://localhost:8000/health > /dev/null 2>&1; then
+      echo "Health check failed, restarting..."
+      sudo systemctl restart uap
+    fi
+    
+    # Check spot instance interruption notice
+    if curl -s http://169.254.169.254/latest/meta-data/spot/instance-action 2>/dev/null; then
+      echo "Spot instance interruption detected, graceful shutdown..."
+      sudo systemctl stop uap
+      exit 0
+    fi
+  done

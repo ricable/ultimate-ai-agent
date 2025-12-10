@@ -1,0 +1,58 @@
+{
+  "name": "SAFLA HuggingFace Space Production",
+  "version": "1.0.0",
+  "environment": "production",
+  
+  "memory": {
+    "vector": {
+      "dimensions": 768,
+      "max_size": 1000,
+      "similarity_metric": "cosine"
+    },
+    "episodic": {
+      "max_episodes": 500,
+      "retention_days": 30
+    },
+    "semantic": {
+      "max_nodes": 1000,
+      "max_edges": 5000
+    },
+    "working": {
+      "capacity": 10,
+      "attention_threshold": 0.3
+    }
+  },
+  
+  "safety": {
+    "enabled": true,
+    "levels": {
+      "content": {
+        "enabled": true,
+        "threshold": 0.8
+      },
+      "behavior": {
+        "enabled": true,
+        "threshold": 0.7
+      },
+      "context": {
+        "enabled": true,
+        "threshold": 0.6
+      }
+    },
+    "risk_tolerance": "moderate"
+  },
+  
+  "performance": {
+    "max_concurrent_operations": 10,
+    "cache_timeout_seconds": 300,
+    "batch_size": 5,
+    "optimization_level": "balanced"
+  },
+  
+  "monitoring": {
+    "enabled": true,
+    "metrics_collection": true,
+    "error_reporting": true,
+    "performance_tracking": true
+  }
+}

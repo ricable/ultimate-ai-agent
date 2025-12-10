@@ -1,0 +1,42 @@
+sites:
+  clinical_trials:
+    name: EU Clinical Trials
+    description: Extract data from EU Clinical Trials website
+    url_pattern: https://euclinicaltrials.eu/ctis-public/view/{trial_id}
+    selectors:
+      title:
+        css: h1.trial-title
+        required: true
+        description: Trial title
+      summary:
+        css: div.trial-summary
+        multiple: false
+        description: Trial summary
+      details:
+        css: div.trial-details div
+        multiple: true
+        description: Trial detail sections
+    wait_for: div.trial-content
+    output_format: markdown
+    delay: 2.0
+  wiki:
+    name: Wikipedia
+    description: Extract content from Wikipedia articles
+    url_pattern: https://en.wikipedia.org/wiki/{title}
+    selectors:
+      title: h1#firstHeading
+      content:
+        css: div#mw-content-text p
+        multiple: true
+        description: Article paragraphs
+    output_format: markdown
+    delay: 1.0
+  ai-news:
+    name: ai-news
+    description: Extracts AI news articles from Google News including headlines, sources,
+      and timestamps
+    url_pattern: https://news.google.com/search?q={query}&hl={language}
+    selectors: {}
+    output_format: markdown
+output_dir: output
+default_site: clinical_trials

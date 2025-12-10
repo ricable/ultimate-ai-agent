@@ -1,0 +1,88 @@
+# Jaeger Tracing Configuration for UAP Platform
+# Distributed tracing setup with sampling and storage configuration
+
+services:
+  jaeger-collector:
+    image: jaegertracing/jaeger-collector:latest
+    ports:
+      - "14267:14267"  # Jaeger collector HTTP
+      - "14268:14268"  # Jaeger collector gRPC
+      - "14269:14269"  # Jaeger collector admin
+      - "9411:9411"    # Zipkin compatible endpoint
+    environment:
+      SPAN_STORAGE_TYPE: elasticsearch
+      ES_SERVER_URLS: http://elasticsearch:9200
+      ES_TAGS_AS_FIELDS_ALL: true
+      COLLECTOR_OTLP_ENABLED: true
+    depends_on:
+      - elasticsearch
+
+  jaeger-agent:
+    image: jaegertracing/jaeger-agent:latest
+    ports:
+      - "6831:6831/udp"  # Jaeger agent UDP
+      - "6832:6832/udp"  # Jaeger agent UDP
+      - "5778:5778"      # Jaeger agent HTTP
+    environment:
+      REPORTER_GRPC_HOST_PORT: jaeger-collector:14250
+    depends_on:
+      - jaeger-collector
+
+  jaeger-query:
+    image: jaegertracing/jaeger-query:latest
+    ports:
+      - "16686:16686"  # Jaeger UI
+      - "16687:16687"  # Jaeger query admin
+    environment:
+      SPAN_STORAGE_TYPE: elasticsearch
+      ES_SERVER_URLS: http://elasticsearch:9200
+      ES_TAGS_AS_FIELDS_ALL: true
+    depends_on:
+      - elasticsearch
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+
+volumes:
+  elasticsearch_data:
+    driver: local
+
+# Sampling configuration
+sampling:
+  default_strategy:
+    type: probabilistic
+    param: 0.1  # Sample 10% of traces
+  per_service_strategies:
+    - service: uap-backend
+      type: probabilistic
+      param: 0.5  # Sample 50% of backend traces
+    - service: uap-agent-copilot
+      type: probabilistic
+      param: 1.0  # Sample 100% of agent traces
+    - service: uap-agent-agno
+      type: probabilistic
+      param: 1.0
+    - service: uap-agent-mastra
+      type: probabilistic
+      param: 1.0
+    - service: uap-ray-cluster
+      type: probabilistic
+      param: 0.2  # Sample 20% of Ray traces
+    - service: uap-mlx-inference
+      type: probabilistic
+      param: 0.3  # Sample 30% of MLX traces
+
+# Performance tuning
+performance:
+  max_traces_per_second: 1000
+  max_spans_per_trace: 500
+  trace_retention_days: 7
+  span_storage_size_gb: 10

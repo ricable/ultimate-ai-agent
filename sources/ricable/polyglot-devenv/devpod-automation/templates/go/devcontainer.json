@@ -1,0 +1,66 @@
+{
+    "name": "Go Development Environment",
+    "image": "mcr.microsoft.com/devcontainers/go:1.22-bullseye",
+    "features": {},
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "golang.go",
+                "golang.go-nightly"
+            ],
+            "settings": {
+                "go.useLanguageServer": true,
+                "go.lintOnSave": "package",
+                "go.formatTool": "goimports"
+            }
+        },
+        "devpod": {
+            "prebuildRepository": "ghcr.io/ricable/polyglot-devenv-go"
+        }
+    },
+    "containerEnv": {
+        "GO111MODULE": "on",
+        "GOPROXY": "https://proxy.golang.org,direct",
+        "DEVBOX_ENV": "go",
+        "CLAUDE_PROJECT_ROOT": "/workspace"
+    },
+    "mounts": [
+        "type=volume,source=go-cache,target=/home/vscode/go/pkg"
+    ],
+    "forwardPorts": [
+        8080,
+        3000
+    ],
+    "portsAttributes": {},
+    "postCreateCommand": [
+        "echo 'Setting up Go environment...'",
+        "go mod download",
+        "echo 'Installing Node.js for claude-flow...'",
+        "curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -",
+        "sudo apt-get install -y nodejs",
+        "echo 'Setting up Claude Code hooks...'",
+        "if [ -d '/workspace/devpod-automation/templates/.claude-core' ]; then cp -r /workspace/devpod-automation/templates/.claude-core /workspace/.claude && chmod +x /workspace/.claude/hooks/*.py /workspace/.claude/mcp/*.sh /workspace/.claude/test-hooks.sh; fi",
+        "echo 'Installing MCP dependencies...'",
+        "if [ -f '/workspace/.claude/mcp/requirements-mcp.txt' ]; then if command -v python3 > /dev/null; then python3 -m pip install -r /workspace/.claude/mcp/requirements-mcp.txt; else echo 'Python3 not available, skipping MCP dependencies'; fi; fi",
+        "echo 'Installing claude-flow...'",
+        "npm install -g claude-flow@alpha",
+        "echo 'Go environment with Claude Code hooks and claude-flow ready'"
+    ],
+    "postStartCommand": [
+        "echo 'Go DevPod ready. Claude Code hooks: /workspace/.claude/ Run: go run ./cmd'",
+        "echo 'Initializing claude-flow...'",
+        "npx --yes claude-flow@alpha init --force",
+        "echo 'Starting claude-flow hive-mind wizard...'",
+        "npx --yes claude-flow@alpha hive-mind wizard",
+        "echo 'Spawning snake game task...'",
+        "npx --yes claude-flow@alpha hive-mind spawn \"create a snake game in the language of your devpod dev env\" --claude"
+    ],
+    "postAttachCommand": [
+        "echo 'Welcome to Go DevPod with AI automation! \ud83e\udd16 \ud83d\udc39'",
+        "echo 'Claude-flow commands available:'",
+        "echo '  npx claude-flow@alpha --help'",
+        "echo '  npx claude-flow@alpha status'",
+        "echo '  npx claude-flow@alpha hive-mind wizard'",
+        "echo '  npx claude-flow@alpha hive-mind spawn \"<task>\" --claude'"
+    ]
+}

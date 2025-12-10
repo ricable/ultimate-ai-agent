@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:xalan="http://xml.apache.org/xalan" xmlns:lxslt="http://xml.apache.org/xslt" lang="en" xml:lang="en">
+<head>
+<meta name="HTMLPACKLINKS" content="19" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="PREP" content="" />
+<meta name="DATE" content="2025-05-26" />
+<meta name="DOCNO" content="653/155 54-LZA 701 6014/33-V1 Uen" />
+<meta name="REV" content="FK" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-type" />
+<meta name="THEMES" content="MOM" />
+<meta name="DOCNAME" content="MANAGED OBJECT MODEL" />
+<meta name="TITLE" content="class Ldap" />
+<meta name="SUBTITLE" content="G3G4_MOMCPI CXP2020502_2 R32C08" />
+<link title="Style" href="edw:/alex?fn=hilda.css" type="text/css" rel="stylesheet" />
+<link title="Style" href="edw:/alex?fn=3_15554-LZA7016014_33-V1Uen.FK.css" type="text/css" rel="stylesheet" />
+<script src="edw:/alex?fn=dwcommon.js" language="javascript" type="text/javascript"> </script>
+<title>class Ldap</title>
+</head>
+<body>
+
+<script language="JavaScript" src="edw:/alex?fn=switch_theme.js" type="text/javascript"></script>
+<div id="header">
+<table class="docinfo">
+<tr>
+<td>&nbsp; &nbsp; <span class="fcaption"><span class="caption">Managed Object Model</span>&nbsp; &nbsp; &nbsp; &nbsp; 653/155 54-LZA 701 6014/33-V1 Uen FK</span>&nbsp; &nbsp; </td>
+</tr>
+</table>
+</div>
+<h1 class="TITLE">
+<a name="TITLE">class&#160;Ldap</a>
+</h1>
+<dl>
+<dd>
+<a href="edw:/alex?fn=210_15554-LZA7016014_33-V1Uen.FK.html">ManagedElement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=218_15554-LZA7016014_33-V1Uen.FK.html">SystemFunctions</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=581_15554-LZA7016014_33-V1Uen.FK.html">SecM</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=601_15554-LZA7016014_33-V1Uen.FK.html">UserManagement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=645_15554-LZA7016014_33-V1Uen.FK.html">LdapAuthenticationMethod</a>
+<dl class="child_tree">
+<dd>
+<b><a href="edw:/alex?fn=653_15554-LZA7016014_33-V1Uen.FK.html">Ldap</a></b>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=656_15554-LZA7016014_33-V1Uen.FK.html">EricssonFilter</a>
+			[0..1]
+				</dd>
+<dd>
+<a href="edw:/alex?fn=657_15554-LZA7016014_33-V1Uen.FK.html">Filter</a>
+			[0..1]
+				</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<p>
+<span class="desc">Contains the configurable information on primary and secondary LDAP directories.  </span>
+<br />
+<br />
+<b>This MO is created by the system.</b>
+<br />
+<br />
+<br />
+<br />
+</p>
+</td>
+</tr>
+</table>
+<dl>
+<dt>
+<b>References to:</b>
+</dt>
+<dd>
+<a href="edw:/alex?fn=261_15554-LZA7016014_33-V1Uen.FK.html">ManagedObject</a>;
+			</dd>
+</dl>
+<table width="100%" cellspacing="0" cellpadding="3" border="1" class="tblcnt">
+<tr class="TableSubHeadingColor">
+<td colspan="2"><b>Attributes</b></td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=658_15554-LZA7016014_33-V1Uen.FK.html">LdapDistinguishedName</a>
+<br />mandatory</code></td><td>
+<dl>
+<dt>
+<code><b><a name="baseDn">baseDn</a></b></code>
+</dt>
+<dd>
+<span class="desc">Default base DN to use in LDAP operations. <br />
+<br />The base DN must be specified in an LDAP DN format, for example, 'ou=people,dc=mycompany,dc=com'. All LDAP objects used for authentication and authorization must be accessible from the base DN.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=658_15554-LZA7016014_33-V1Uen.FK.html">LdapDistinguishedName</a>[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="bindDn">bindDn</a></b></code>
+</dt>
+<dd>
+<span class="desc">Default bind DN used to access the LDAP servers. <br />
+<br />When configured, the ME uses the specified DN as the bind name for LDAP searches. The bind DN must be specified in an LDAP DN format, for example 'cn=bindaccount,dc=mycompany,dc=com'.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=659_15554-LZA7016014_33-V1Uen.FK.html">EcimPassword</a>[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="bindPassword">bindPassword</a></b></code>
+</dt>
+<dd>
+<span class="desc">Password used with bindDn to access the LDAP servers. <br />
+<br />When configured, the ME establishes a password-based LDAP simple bind.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=660_15554-LZA7016014_33-V1Uen.FK.html">IpDNSAddress</a>[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="fallbackLdapIpAddress">fallbackLdapIpAddress</a></b></code>
+</dt>
+<dd>
+<span class="desc">The IP or DNS address of the fallback LDAP server.<br />
+<br />The fallback server is used when the primary server is inaccessible.<br />
+<br />Default port number used is 389. The selected tlsMode overrides the default port number.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string<br />key<br />mandatory<br />noNotification<br />restricted</code></td><td>
+<dl>
+<dt>
+<code><b><a name="ldapId">ldapId</a></b></code>
+</dt>
+<dd>
+<span class="desc">The value component of the RDN.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=660_15554-LZA7016014_33-V1Uen.FK.html">IpDNSAddress</a>
+<br />mandatory</code></td><td>
+<dl>
+<dt>
+<code><b><a name="ldapIpAddress">ldapIpAddress</a></b></code>
+</dt>
+<dd>
+<span class="desc">The IP or DNS address of the primary LDAP server.<br />
+<br />Default port number used is 389. The selected tlsMode overrides the default port number.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=261_15554-LZA7016014_33-V1Uen.FK.html">ManagedObject</a>[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="nodeCredential">nodeCredential</a></b></code>
+</dt>
+<dd>
+<span class="desc">The credential used for LDAP.<br />
+<br />Specifies the DN of a NodeCredential MO in Certificate Management.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=661_15554-LZA7016014_33-V1Uen.FK.html">ProfileFilter</a>[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="profileFilter">profileFilter</a></b></code>
+</dt>
+<dd>
+<span class="desc">Selects an LDAP filter to determine the user's authorization profile. <br />
+<br />Authorization profiles are used by authorization methods. <br />
+<br />For ERICSSON_FILTER, the contained EricssonFilter MO must exist. <br />For FLEXIBLE, the contained Filter MO must exist.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>uint16[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="serverPort">serverPort</a></b></code>
+</dt>
+<dd>
+<span class="desc">Specifies the server port number to access the primary and secondary LDAP servers.<br />
+<br />Must only be specified when the default port number is not in use. <br />
+<br />Default ports are:<br /> 389, when useTls is false.<br /> 389, when useTls is true and tlsMode is STARTTLS.<br /> 636, when useTls is true and tlsMode is LDAPS.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=662_15554-LZA7016014_33-V1Uen.FK.html">TlsMode</a></code></td><td>
+<dl>
+<dt>
+<code><b><a name="tlsMode">tlsMode</a></b>
+          =
+          STARTTLS</code>
+</dt>
+<dd>
+<span class="desc">Toggles the TLS establishment mode to access the primary and secondary LDAP servers.<br />
+<br />Takes effect when useTls is true.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=261_15554-LZA7016014_33-V1Uen.FK.html">ManagedObject</a>[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="trustCategory">trustCategory</a></b></code>
+</dt>
+<dd>
+<span class="desc">The set of certificates trusted by LDAP.<br />
+<br />Specifies the DN of a TrustCategory MO in Certificate Management.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>boolean</code></td><td>
+<dl>
+<dt>
+<code><b><a name="useReferrals">useReferrals</a></b>
+          =
+          false</code>
+</dt>
+<dd>
+<span class="desc">Toggle to enable the use of referrals.<br />
+<br />When set to false, the ME ignores referrals returned by the LDAP server.<br />
+<br />When set to true, the ME follows referrals. Referrals can be used for authentication and authorization only if the referral URI refers back to a directory tree within the same LDAP server instance; otherwise, access is denied for referred user accounts.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="userLabel">userLabel</a></b></code>
+</dt>
+<dd>
+<span class="desc">An additional descriptive text.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>boolean<br />mandatory</code></td><td>
+<dl>
+<dt>
+<code><b><a name="useTls">useTls</a></b></code>
+</dt>
+<dd>
+<span class="desc">Toggle to enable TLS access to primary and secondary LDAP targets.</span>
+</dd>
+</dl>
+</td>
+</tr>
+</table>
+<p></p>
+<div align="center" class="footer-info">
+<div class="footer-line">
+<span class="legal-lid">&#160;&#160;class&#160;Ldap</span>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,329 @@
+{
+  "mode": {
+    "slug": "mcp-intelligent-coder",
+    "name": "🧠 MCP Intelligent Coder",
+    "description": "Advanced coding with external tool integration, real-time validation, and intelligent context awareness",
+    "version": "1.0.0",
+    "category": "development",
+    "priority": "high"
+  },
+  "capabilities": {
+    "enhanced_code_generation": {
+      "description": "Context-aware development leveraging external documentation",
+      "features": [
+        "real_time_documentation_access",
+        "intelligent_code_completion",
+        "pattern_recognition",
+        "multi_language_support"
+      ]
+    },
+    "real_time_validation": {
+      "description": "Live validation against current best practices and documentation",
+      "features": [
+        "documentation_checking",
+        "external_code_review",
+        "dependency_verification",
+        "performance_analysis"
+      ]
+    },
+    "documentation_integration": {
+      "description": "Seamless integration with external documentation sources",
+      "features": [
+        "contextual_help",
+        "api_reference_access",
+        "best_practices_suggestions",
+        "code_examples_retrieval"
+      ]
+    }
+  },
+  "mcp_server_requirements": {
+    "required": {
+      "safla": {
+        "description": "Core system management and orchestration",
+        "tools": [
+          "validate_installation",
+          "get_system_info",
+          "optimize_memory_usage",
+          "analyze_performance_bottlenecks",
+          "benchmark_memory_performance",
+          "benchmark_vector_operations",
+          "run_integration_tests",
+          "validate_memory_operations",
+          "monitor_system_health"
+        ],
+        "resources": [
+          "safla://config",
+          "safla://status",
+          "safla://performance-metrics"
+        ]
+      },
+      "context7": {
+        "description": "Documentation and library knowledge access",
+        "tools": [
+          "resolve-library-id",
+          "get-library-docs"
+        ],
+        "workflow_pattern": "always_resolve_before_docs",
+        "best_practices": [
+          "Use specific topics for focused documentation",
+          "Set appropriate token limits based on complexity",
+          "Combine multiple focused queries for comprehensive coverage"
+        ]
+      }
+    },
+    "optional": {
+      "perplexity": {
+        "description": "Real-time research and problem-solving assistance",
+        "tools": [
+          "PERPLEXITYAI_PERPLEXITY_AI_SEARCH"
+        ],
+        "use_cases": [
+          "complex_problem_research",
+          "emerging_technology_guidance",
+          "debugging_assistance",
+          "best_practices_research"
+        ],
+        "recommended_models": [
+          "llama-3.1-sonar-large-128k-online"
+        ]
+      }
+    }
+  },
+  "workflow_patterns": {
+    "context_driven_development": {
+      "description": "Development workflow with external context integration",
+      "steps": [
+        {
+          "name": "requirement_analysis",
+          "mcp_tools": ["safla/get_system_info"],
+          "purpose": "Validate system capabilities and requirements"
+        },
+        {
+          "name": "library_resolution",
+          "mcp_tools": ["context7/resolve-library-id"],
+          "purpose": "Resolve correct library identifiers"
+        },
+        {
+          "name": "documentation_retrieval",
+          "mcp_tools": ["context7/get-library-docs"],
+          "purpose": "Fetch current documentation and best practices"
+        },
+        {
+          "name": "code_generation",
+          "mcp_tools": [],
+          "purpose": "Generate code using retrieved context"
+        },
+        {
+          "name": "validation",
+          "mcp_tools": ["safla/validate_memory_operations"],
+          "purpose": "Validate implementation quality and performance"
+        },
+        {
+          "name": "optimization",
+          "mcp_tools": ["safla/analyze_performance_bottlenecks"],
+          "purpose": "Optimize performance based on analysis"
+        }
+      ]
+    },
+    "research_enhanced_problem_solving": {
+      "description": "Problem solving with external research integration",
+      "steps": [
+        {
+          "name": "problem_research",
+          "mcp_tools": ["perplexity/PERPLEXITYAI_PERPLEXITY_AI_SEARCH"],
+          "purpose": "Research current solutions and best practices"
+        },
+        {
+          "name": "documentation_validation",
+          "mcp_tools": ["context7/resolve-library-id", "context7/get-library-docs"],
+          "purpose": "Validate research with official documentation"
+        },
+        {
+          "name": "implementation",
+          "mcp_tools": [],
+          "purpose": "Implement solution based on research and documentation"
+        },
+        {
+          "name": "integration_testing",
+          "mcp_tools": ["safla/run_integration_tests"],
+          "purpose": "Test implementation with integration tests"
+        }
+      ]
+    },
+    "performance_optimized_development": {
+      "description": "Development workflow optimized for performance",
+      "steps": [
+        {
+          "name": "baseline_measurement",
+          "mcp_tools": ["safla/benchmark_memory_performance"],
+          "purpose": "Establish performance baseline"
+        },
+        {
+          "name": "bottleneck_analysis",
+          "mcp_tools": ["safla/analyze_performance_bottlenecks"],
+          "purpose": "Identify performance bottlenecks"
+        },
+        {
+          "name": "optimization_research",
+          "mcp_tools": ["perplexity/PERPLEXITYAI_PERPLEXITY_AI_SEARCH"],
+          "purpose": "Research optimization techniques"
+        },
+        {
+          "name": "implementation",
+          "mcp_tools": [],
+          "purpose": "Implement optimized solution"
+        },
+        {
+          "name": "benchmark_validation",
+          "mcp_tools": ["safla/benchmark_vector_operations"],
+          "purpose": "Validate performance improvements"
+        }
+      ]
+    }
+  },
+  "best_practices": {
+    "mcp_tool_usage": {
+      "sequential_execution": "Use MCP tools one at a time, waiting for results",
+      "error_handling": "Implement fallback strategies for MCP tool failures",
+      "performance_monitoring": "Monitor MCP tool performance and optimize usage",
+      "caching": "Cache frequently accessed documentation locally"
+    },
+    "documentation_integration": {
+      "library_resolution": "Always resolve library ID before getting documentation",
+      "focused_queries": "Use specific topics for targeted documentation retrieval",
+      "token_management": "Set appropriate token limits based on complexity",
+      "validation": "Cross-reference multiple sources for critical information"
+    },
+    "performance_optimization": {
+      "continuous_monitoring": "Monitor system resources during development",
+      "baseline_establishment": "Establish performance baselines before optimization",
+      "iterative_improvement": "Apply optimizations incrementally with validation",
+      "memory_management": "Optimize memory usage for large codebases"
+    },
+    "security_considerations": {
+      "input_validation": "Validate all external API responses",
+      "secure_communication": "Use secure channels for sensitive data",
+      "dependency_scanning": "Scan dependencies for security vulnerabilities",
+      "compliance_checking": "Ensure compliance with organizational policies"
+    }
+  },
+  "error_handling": {
+    "mcp_server_unavailable": {
+      "strategy": "graceful_degradation",
+      "fallback_actions": [
+        "use_local_documentation_cache",
+        "switch_to_alternative_research_methods",
+        "provide_manual_implementation_guidance"
+      ]
+    },
+    "documentation_retrieval_failure": {
+      "strategy": "alternative_sources",
+      "fallback_actions": [
+        "use_perplexity_for_documentation",
+        "search_official_repositories",
+        "manual_verification_process"
+      ]
+    },
+    "performance_tool_failure": {
+      "strategy": "local_monitoring",
+      "fallback_actions": [
+        "use_system_monitoring_tools",
+        "implement_custom_benchmarks",
+        "manual_performance_analysis"
+      ]
+    }
+  },
+  "integration": {
+    "core_aigi_workflow": {
+      "compatible_modes": [
+        "architect",
+        "tdd",
+        "critic",
+        "reflection",
+        "final-assembly"
+      ],
+      "transition_patterns": {
+        "from_architect": "Implement designs with external context validation",
+        "to_tdd": "Create comprehensive tests for MCP-enhanced implementations",
+        "to_critic": "Review code with external best practices validation",
+        "from_reflection": "Apply refined prompts with external documentation"
+      }
+    },
+    "file_operations": {
+      "new_files": "use insert_content for new implementations",
+      "existing_files": "use apply_diff for targeted updates",
+      "module_size_limit": 500,
+      "documentation_requirements": "Include external source references"
+    }
+  },
+  "quality_standards": {
+    "code_quality": {
+      "external_validation": "Validate against current library best practices",
+      "documentation_compliance": "Ensure API usage matches current documentation",
+      "performance_requirements": "Meet or exceed established performance baselines",
+      "security_standards": "Follow security best practices from authoritative sources"
+    },
+    "testing_requirements": {
+      "unit_tests": "Include tests for all public functions",
+      "integration_tests": "Test external service dependencies",
+      "performance_tests": "Validate performance against requirements",
+      "security_tests": "Test for common security vulnerabilities"
+    },
+    "documentation_standards": {
+      "external_references": "Include references to external documentation sources",
+      "implementation_notes": "Document MCP integration patterns used",
+      "performance_considerations": "Include performance analysis and optimization notes",
+      "security_considerations": "Document security practices and considerations"
+    }
+  },
+  "metrics_and_monitoring": {
+    "performance_metrics": {
+      "mcp_tool_latency": "Monitor MCP tool response times",
+      "documentation_cache_hit_rate": "Track documentation cache effectiveness",
+      "code_quality_scores": "Monitor automated code quality assessments",
+      "implementation_success_rate": "Track successful implementation completion"
+    },
+    "quality_metrics": {
+      "external_validation_coverage": "Percentage of code validated against external sources",
+      "documentation_accuracy": "Accuracy of implementation against documentation",
+      "performance_improvement": "Performance gains from optimization workflows",
+      "security_compliance": "Compliance with security best practices"
+    }
+  },
+  "examples": {
+    "fastapi_authentication": {
+      "description": "Building secure FastAPI authentication with JWT",
+      "workflow": "research_enhanced_problem_solving",
+      "mcp_tools_used": ["perplexity/search", "context7/resolve-library-id", "context7/get-library-docs"],
+      "file": "examples.md#example-1"
+    },
+    "ml_pipeline_optimization": {
+      "description": "Optimizing machine learning vector operations",
+      "workflow": "performance_optimized_development",
+      "mcp_tools_used": ["safla/benchmark_vector_operations", "perplexity/search", "context7/get-library-docs"],
+      "file": "examples.md#example-2"
+    },
+    "realtime_websocket": {
+      "description": "Implementing scalable WebSocket communication",
+      "workflow": "context_driven_development",
+      "mcp_tools_used": ["perplexity/search", "context7/get-library-docs", "safla/monitor_system_health"],
+      "file": "examples.md#example-3"
+    }
+  },
+  "testing": {
+    "test_suite": "test_mcp_intelligent_coder.py",
+    "coverage_requirements": {
+      "workflow_patterns": "100%",
+      "mcp_integration": "95%",
+      "error_handling": "90%",
+      "performance_monitoring": "85%"
+    },
+    "test_categories": [
+      "workflow_execution",
+      "mcp_integration_patterns",
+      "error_handling_and_recovery",
+      "performance_optimization",
+      "documentation_integration"
+    ]
+  }
+}

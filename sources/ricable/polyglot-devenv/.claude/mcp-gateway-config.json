@@ -1,0 +1,42 @@
+{
+  "mcp": {
+    "servers": {
+      "MCP_DOCKER_GATEWAY": {
+        "command": "docker",
+        "args": ["mcp", "gateway", "run", "--verbose", "--log-calls"],
+        "type": "stdio",
+        "description": "Docker MCP Gateway with HTTP transport support for Claude and Gemini clients",
+        "enabled": true,
+        "transport": {
+          "type": "stdio",
+          "stdio_options": {
+            "keep_alive": true,
+            "timeout": 30000
+          }
+        },
+        "features": {
+          "http_transport": true,
+          "sse_transport": true,
+          "security": {
+            "block_secrets": true,
+            "verify_signatures": true,
+            "resource_limits": {
+              "cpu": "1",
+              "memory": "2Gb"
+            }
+          }
+        },
+        "tools": [
+          "filesystem",
+          "fetch", 
+          "memory",
+          "context7",
+          "docker",
+          "puppeteer",
+          "brave",
+          "youtube_transcript"
+        ]
+      }
+    }
+  }
+}

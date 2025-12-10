@@ -1,0 +1,177 @@
+# skypilot/uap-cost-optimized.yaml
+# UAP Cost-Optimized Multi-Cloud Deployment
+# Automatically selects cheapest available resources across all clouds
+
+resources:
+  # Multi-cloud GPU configuration with cost priority
+  accelerators: {T4:4, V100:2, A100:1, RTX4090:2, L4:2}  # Ordered by cost-effectiveness
+  cloud: [gcp, aws, azure]  # Priority order for cost optimization
+  region: 
+    # Cost-optimized regions per cloud
+    - us-central1  # GCP - typically cheapest
+    - us-west-2    # AWS - competitive pricing
+    - eastus       # Azure - good value
+    - us-east-1    # AWS - lowest egress costs
+    - europe-west1 # GCP - EU region
+    - northeurope  # Azure - EU region
+  cpus: 4+  # Minimum requirement, allowing smaller instances
+  memory: 16+  # Reduced from 32GB to allow cheaper instances
+  use_spot: true  # Always use spot/preemptible instances
+  spot_recovery: auto
+  disk_size: 100  # Reduced disk size for cost savings
+  disk_tier: standard  # Use standard disks for cost optimization
+  
+workdir: /app
+
+# Minimal file mounts for cost efficiency
+file_mounts:
+  /app: .
+
+# Cost-optimized environment variables
+envs:
+  UAP_ENV: production-cost-optimized
+  COST_OPTIMIZATION: true
+  PYTHONPATH: /app/backend
+  # Performance tuning for smaller instances
+  UVICORN_WORKERS: 2  # Reduced workers for smaller instances
+  AGNO_GPU_MEMORY: "4GB"  # Reduced GPU memory allocation
+  MASTRA_WORKER_COUNT: 2  # Reduced worker count
+  COPILOT_CACHE_SIZE: "512MB"  # Smaller cache
+
+setup: |
+  set -e
+  echo "=== UAP Cost-Optimized Deployment Setup ==="
+  
+  # Detect cloud provider
+  if curl -s -m 5 http://169.254.169.254/latest/meta-data/ &>/dev/null; then
+    CLOUD_PROVIDER="aws"
+    INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+    REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/region)
+  elif curl -s -m 5 -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/ &>/dev/null; then
+    CLOUD_PROVIDER="gcp"
+    INSTANCE_ID=$(curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/id)
+    REGION=$(curl -s -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/zone | cut -d/ -f4 | rev | cut -c3- | rev)
+  elif curl -s -m 5 -H "Metadata: true" http://169.254.169.254/metadata/instance &>/dev/null; then
+    CLOUD_PROVIDER="azure"
+    INSTANCE_ID=$(curl -s -H "Metadata: true" "http://169.254.169.254/metadata/instance/compute/vmId?api-version=2021-02-01&format=text")
+    REGION=$(curl -s -H "Metadata: true" "http://169.254.169.254/metadata/instance/compute/location?api-version=2021-02-01&format=text")
+  else
+    CLOUD_PROVIDER="unknown"
+    INSTANCE_ID="unknown"
+    REGION="unknown"
+  fi
+  
+  echo "Detected cloud: $CLOUD_PROVIDER, Instance: $INSTANCE_ID, Region: $REGION"
+  echo "$CLOUD_PROVIDER" > /app/cloud-provider
+  echo "$INSTANCE_ID" > /app/instance-id
+  echo "$REGION" > /app/region
+  
+  # Minimal system update for cost efficiency
+  sudo apt-get update
+  sudo apt-get install -y curl git python3-dev --no-install-recommends
+  
+  # Install only essential tools
+  curl -fsSL https://get.jetify.com/devbox | bash
+  source ~/.bashrc
+  
+  curl -L https://github.com/tellerops/teller/releases/latest/download/teller_linux_x86_64.tar.gz | tar -xz
+  sudo mv teller /usr/local/bin/
+  
+  cd /app
+  
+  # Lightweight dependency installation
+  devbox install
+  
+  # Minimal Python setup
+  cd backend
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install --upgrade pip --no-cache-dir
+  
+  # Install only production requirements (no dev dependencies)
+  pip install --no-cache-dir -r requirements-minimal.txt || pip install --no-cache-dir -r requirements.txt
+  cd ..
+  
+  # Build frontend with optimizations
+  cd frontend
+  npm ci --production --no-optional
+  npm run build
+  npm cache clean --force
+  cd ..
+  
+  # Minimal directory setup
+  mkdir -p /app/logs /app/uploads
+  
+  # Cost monitoring setup
+  cat > /app/cost-monitor.sh << 'EOF'
+#!/bin/bash
+# Simple cost monitoring script
+while true; do
+  echo "$(date): Cost monitoring - Cloud: $(cat /app/cloud-provider), Instance: $(cat /app/instance-id)" >> /app/logs/cost.log
+  sleep 3600  # Log every hour
+done
+EOF
+  chmod +x /app/cost-monitor.sh
+  
+  echo "=== Cost-Optimized Setup Complete ==="
+
+run: |
+  set -e
+  echo "=== Starting UAP Cost-Optimized Deployment ==="
+  
+  cd /app
+  
+  # Read detected cloud info
+  CLOUD_PROVIDER=$(cat /app/cloud-provider)
+  INSTANCE_ID=$(cat /app/instance-id)
+  REGION=$(cat /app/region)
+  
+  echo "Starting on $CLOUD_PROVIDER (Instance: $INSTANCE_ID, Region: $REGION)"
+  
+  # Start cost monitoring in background
+  /app/cost-monitor.sh &
+  
+  # Start application with minimal resource usage
+  teller run --silent -- /app/scripts/start-production.sh &
+  
+  APP_PID=$!
+  
+  # Lightweight monitoring loop
+  while true; do
+    sleep 60  # Check every minute instead of 30 seconds
+    
+    # Basic health check
+    if ! curl -f -m 5 http://localhost:8000/health > /dev/null 2>&1; then
+      echo "Health check failed, restarting..."
+      kill $APP_PID 2>/dev/null || true
+      sleep 5
+      teller run --silent -- /app/scripts/start-production.sh &
+      APP_PID=$!
+    fi
+    
+    # Cloud-specific spot instance monitoring
+    case $CLOUD_PROVIDER in
+      "aws")
+        if curl -s -m 2 http://169.254.169.254/latest/meta-data/spot/instance-action 2>/dev/null; then
+          echo "AWS spot interruption detected"
+          kill $APP_PID 2>/dev/null || true
+          exit 0
+        fi
+        ;;
+      "gcp")
+        if curl -H "Metadata-Flavor: Google" -s -m 2 http://metadata.google.internal/computeMetadata/v1/instance/preempted 2>/dev/null | grep -q "TRUE"; then
+          echo "GCP preemptible instance terminating"
+          kill $APP_PID 2>/dev/null || true
+          exit 0
+        fi
+        ;;
+      "azure")
+        eviction=$(curl -H "Metadata: true" -s -m 2 "http://169.254.169.254/metadata/scheduledevents?api-version=2019-08-01" 2>/dev/null || echo "")
+        if echo "$eviction" | grep -q "Preempt\|Terminate"; then
+          echo "Azure spot eviction detected"
+          kill $APP_PID 2>/dev/null || true
+          exit 0
+        fi
+        ;;
+    esac
+  done

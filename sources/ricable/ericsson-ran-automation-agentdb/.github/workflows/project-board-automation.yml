@@ -1,0 +1,353 @@
+name: 'Project Board Automation'
+
+on:
+  issues:
+    types: [opened, closed, labeled, assigned]
+  pull_request:
+    types: [opened, closed, ready_for_review, merged]
+  schedule:
+    # Sync project boards every hour
+    - cron: '0 * * * *'
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Action to perform'
+        required: true
+        default: 'sync'
+        type: choice
+        options:
+          - create
+          - update
+          - sync
+          - archive
+      sprint-number:
+        description: 'Sprint number'
+        required: false
+        default: '1'
+
+env:
+  PROJECT_BOARD_NAME: 'Phase 1 RAN Development'
+
+jobs:
+  # Create and manage project boards
+  project-board-management:
+    name: 'Project Board Management'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      projects: write
+      repository-projects: write
+    outputs:
+      project-id: ${{ steps.setup.outputs.project-id }}
+      board-url: ${{ steps.setup.outputs.board-url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup project board
+        id: setup
+        uses: ./.github/actions/project-board-automation
+        with:
+          action: ${{ github.event.inputs.action || 'create' }}
+          project-name: ${{ env.PROJECT_BOARD_NAME }}
+          sprint-number: ${{ github.event.inputs.sprint-number || '1' }}
+
+      - name: Create project columns
+        run: |
+          echo "Setting up project columns..."
+          # Add column creation logic here
+
+  # Automated issue triage and assignment
+  issue-triage:
+    name: 'Automated Issue Triage'
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' && github.event.action == 'opened'
+    permissions:
+      issues: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Load triage rules
+        run: |
+          echo "Loading triage configuration..."
+
+      - name: Analyze issue content
+        id: analyze
+        run: |
+          echo "Analyzing issue: ${{ github.event.issue.title }}"
+          echo "Analyzing issue body: ${{ github.event.issue.body }}"
+
+      - name: Assign labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = [];
+            const title = context.payload.issue.title.toLowerCase();
+            const body = context.payload.issue.body.toLowerCase();
+
+            // Priority analysis
+            if (title.includes('critical') || title.includes('urgent') || body.includes('critical')) {
+              labels.push('priority:critical');
+            } else if (title.includes('high') || body.includes('high priority')) {
+              labels.push('priority:high');
+            } else if (title.includes('medium')) {
+              labels.push('priority:medium');
+            } else {
+              labels.push('priority:low');
+            }
+
+            // Component analysis
+            if (title.includes('energy') || body.includes('energy')) {
+              labels.push('component:energy-optimizer');
+            } else if (title.includes('mobility') || body.includes('mobility')) {
+              labels.push('component:mobility-manager');
+            } else if (title.includes('coverage') || body.includes('coverage')) {
+              labels.push('component:coverage-analyzer');
+            } else if (title.includes('performance') || body.includes('performance')) {
+              labels.push('component:performance-analyst');
+            } else if (title.includes('agentdb') || body.includes('agentdb')) {
+              labels.push('component:agentdb');
+            } else if (title.includes('ci') || title.includes('cd') || body.includes('workflow')) {
+              labels.push('component:ci-cd');
+            }
+
+            // Type analysis
+            if (title.includes('bug') || body.includes('issue') || title.includes('problem')) {
+              labels.push('type:bug');
+            } else if (title.includes('feature') || body.includes('enhancement') || title.includes('add')) {
+              labels.push('type:feature');
+            } else if (title.includes('documentation') || body.includes('docs')) {
+              labels.push('type:documentation');
+            } else if (title.includes('test') || body.includes('testing')) {
+              labels.push('type:test');
+            }
+
+            // Size analysis
+            if (title.includes('small') || body.includes('quick')) {
+              labels.push('size:small');
+            } else if (title.includes('large') || body.includes('complex') || title.includes('major')) {
+              labels.push('size:large');
+            } else {
+              labels.push('size:medium');
+            }
+
+            if (labels.length > 0) {
+              github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.issue.number,
+                labels: labels
+              });
+            }
+
+      - name: Assign to project board
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Find the project and add the issue
+            const projects = await github.rest.projects.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+
+            if (projects.data.length > 0) {
+              const project = projects.data.find(p => p.name === '${{ env.PROJECT_BOARD_NAME }}');
+              if (project) {
+                // Get columns and add to appropriate one based on priority
+                const columns = await github.rest.projects.listColumns({
+                  project_id: project.id
+                });
+
+                const backlogColumn = columns.data.find(c => c.name === 'Backlog' || c.name === 'To Do');
+                if (backlogColumn) {
+                  await github.rest.projects.createCard({
+                    column_id: backlogColumn.id,
+                    content_id: context.payload.issue.id,
+                    content_type: 'Issue'
+                  });
+                }
+              }
+            }
+
+      - name: Store issue pattern in AgentDB
+        run: |
+          curl -X POST "${{ secrets.AGENTDB_ENDPOINT }}/issues/patterns" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "issue_id": "${{ github.event.issue.number }}",
+              "title": "${{ github.event.issue.title }}",
+              "labels": ["${{ join(steps.analyze.outputs.labels, '","') }}"],
+              "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'",
+              "learning_pattern": {
+                "priority_analysis": true,
+                "component_classification": true,
+                "size_estimation": true
+              }
+            }'
+
+  # Pull request automation
+  pr-automation:
+    name: 'Pull Request Automation'
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Analyze PR changes
+        id: analyze-pr
+        run: |
+          echo "Analyzing PR #${{ github.event.pull_request.number }}"
+          echo "Changed files: ${{ github.event.pull_request.changed_files }}"
+          echo "Additions: ${{ github.event.pull_request.additions }}"
+          echo "Deletions: ${{ github.event.pull_request.deletions }}"
+
+      - name: Auto-assign reviewers
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const PR_FILES = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number
+            });
+
+            let reviewers = [];
+            const changedFiles = PR_FILES.data.map(file => file.filename);
+
+            // Assign reviewers based on changed files
+            if (changedFiles.some(f => f.includes('energy') || f.includes('power'))) {
+              reviewers.push('energy-optimizer-team');
+            }
+            if (changedFiles.some(f => f.includes('mobility') || f.includes('handover'))) {
+              reviewers.push('mobility-manager-team');
+            }
+            if (changedFiles.some(f => f.includes('agentdb') || f.includes('memory'))) {
+              reviewers.push('agentdb-team');
+            }
+            if (changedFiles.some(f => f.includes('workflow') || f.includes('github'))) {
+              reviewers.push('devops-team');
+            }
+            if (changedFiles.some(f => f.includes('test') || f.includes('spec'))) {
+              reviewers.push('qa-team');
+            }
+
+            // Remove duplicates and limit to reasonable number
+            reviewers = [...new Set(reviewers)].slice(0, 3);
+
+            if (reviewers.length > 0 && !context.payload.pull_request.assignees?.length) {
+              await github.rest.pulls.requestReviewers({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.payload.pull_request.number,
+                reviewers: reviewers
+              });
+            }
+
+      - name: Add PR to project board
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const projects = await github.rest.projects.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+
+            if (projects.data.length > 0) {
+              const project = projects.data.find(p => p.name === '${{ env.PROJECT_BOARD_NAME }}');
+              if (project) {
+                const columns = await github.rest.projects.listColumns({
+                  project_id: project.id
+                });
+
+                const inProgressColumn = columns.data.find(c => c.name === 'In Progress' || c.name === 'PR Review');
+                if (inProgressColumn) {
+                  await github.rest.projects.createCard({
+                    column_id: inProgressColumn.id,
+                    content_id: context.payload.pull_request.id,
+                    content_type: 'PullRequest'
+                  });
+                }
+              }
+            }
+
+  # Sprint progress monitoring
+  sprint-monitoring:
+    name: 'Sprint Progress Monitoring'
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    steps:
+      - name: Generate sprint report
+        run: |
+          echo "Generating sprint progress report..."
+
+      - name: Update project metrics
+        run: |
+          echo "Updating project metrics in AgentDB..."
+          curl -X POST "${{ secrets.AGENTDB_ENDPOINT }}/sprint/metrics" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "sprint_number": "${{ github.event.inputs.sprint-number || '1' }}",
+              "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'",
+              "metrics": {
+                "issues_open": 0,
+                "issues_closed": 0,
+                "prs_merged": 0,
+                "completion_rate": 0
+              }
+            }'
+
+  # Bottleneck detection
+  bottleneck-detection:
+    name: 'Bottleneck Detection'
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    steps:
+      - name: Analyze workflow bottlenecks
+        run: |
+          echo "Analyzing workflow for bottlenecks..."
+
+      - name: Identify stuck issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Find issues stuck in certain columns for too long
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['stale', 'blocked']
+            });
+
+            if (issues.data.length > 0) {
+              // Create bottleneck report issue
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: 'Workflow Bottleneck Report',
+                body: `Found ${issues.data.length} potentially stuck issues that need attention.`,
+                labels: ['automation', 'bottleneck']
+              });
+            }
+
+  # Dependency management
+  dependency-management:
+    name: 'Dependency Management'
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    steps:
+      - name: Check for dependency updates
+        run: |
+          echo "Checking for dependency updates..."
+
+      - name: Create dependency update PRs
+        run: |
+          echo "Creating automated dependency update PRs..."

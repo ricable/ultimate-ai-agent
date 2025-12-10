@@ -1,0 +1,1398 @@
+"""
+Deployment Readiness Integration Tests for SAFLA
+==============================================
+
+This module tests deployment readiness across different configurations and
+validates that the system is ready for production deployment.
+
+Deployment readiness areas:
+1. Configuration validation across different environments
+2. Stress testing under production-like conditions
+3. Error injection and resilience testing
+4. Performance benchmarking for deployment
+5. Security validation for production deployment
+6. Monitoring and observability readiness
+
+Following TDD principles: Red-Green-Refactor cycle.
+"""
+
+import pytest
+import asyncio
+import time
+import json
+import os
+import tempfile
+import statistics
+import psutil
+from typing import Dict, List, Any, Optional, Tuple
+from unittest.mock import Mock, patch, AsyncMock
+from dataclasses import dataclass, field
+from enum import Enum
+import logging
+import threading
+import random
+
+# Import SAFLA components
+from safla.core.delta_evaluation import DeltaEvaluator, DeltaMetrics
+from safla.core.meta_cognitive_engine import MetaCognitiveEngine
+from safla.core.hybrid_memory import HybridMemorySystem, MemoryNode
+from safla.core.mcp_orchestration import MCPOrchestrator, AgentTask
+from safla.core.safety_validation import SafetyValidator, SafetyConstraint
+from safla.core.memory_optimizations import MemoryOptimizer
+
+
+class DeploymentEnvironment(Enum):
+    """Deployment environment types."""
+    DEVELOPMENT = "development"
+    STAGING = "staging"
+    PRODUCTION = "production"
+    HIGH_AVAILABILITY = "high_availability"
+
+
+@dataclass
+class DeploymentConfiguration:
+    """Deployment configuration for testing."""
+    environment: DeploymentEnvironment
+    resource_limits: Dict[str, Any]
+    safety_constraints: List[Dict[str, Any]]
+    performance_requirements: Dict[str, float]
+    monitoring_config: Dict[str, Any]
+    security_settings: Dict[str, Any]
+    scaling_parameters: Dict[str, Any]
+
+
+    @dataclass
+class DeploymentReadinessReport:
+    """Deployment readiness assessment report."""
+    environment: DeploymentEnvironment
+    overall_readiness_score: float
+    configuration_valid: bool
+    performance_meets_requirements: bool
+    security_validated: bool
+    resilience_tested: bool
+    monitoring_functional: bool
+    issues_identified: List[str]
+    recommendations: List[str]
+    deployment_approved: bool
+
+
+class TestConfigurationValidation:
+    """Test configuration validation across different deployment environments."""
+    
+    @pytest.mark.asyncio
+    async def test_development_environment_configuration(self, integrated_system):
+        """Test configuration validation for development environment."""
+        context = integrated_system
+        components = context.components
+        
+        # Define development configuration
+        dev_config = DeploymentConfiguration(
+            environment=DeploymentEnvironment.DEVELOPMENT,
+            resource_limits={
+                'max_memory_mb': 2048,
+                'max_cpu_percent': 80,
+                'max_concurrent_tasks': 20,
+                'max_memory_nodes': 1000
+            },
+            safety_constraints=[
+                {
+                    'id': 'dev_memory_limit',
+                    'type': 'resource_limit',
+                    'threshold': 0.8,
+                    'action': 'alert_and_optimize'
+                },
+                {
+                    'id': 'dev_performance_monitor',
+                    'type': 'performance_monitoring',
+                    'threshold': 0.5,
+                    'action': 'log_and_continue'
+                }
+            ],
+            performance_requirements={
+                'min_throughput_ops_per_sec': 10,
+                'max_average_latency_ms': 1000,
+                'min_success_rate': 0.9
+            },
+            monitoring_config={
+                'log_level': 'DEBUG',
+                'metrics_collection': True,
+                'performance_tracking': True,
+                'error_reporting': True
+            },
+            security_settings={
+                'authentication_required': False,
+                'encryption_enabled': False,
+                'audit_logging': False,
+                'input_validation': 'basic'
+            },
+            scaling_parameters={
+                'auto_scaling_enabled': False,
+                'min_instances': 1,
+                'max_instances': 1
+            }
+        )
+        
+        # Apply development configuration
+        config_result = await self._apply_configuration(components, dev_config)
+        assert config_result.success is True, f"Development configuration failed: {config_result.error}"
+        
+        # Validate configuration is applied correctly
+        validation_results = await self._validate_configuration(components, dev_config)
+        
+        # Development environment should be permissive
+        assert validation_results['resource_limits_applied'] is True
+        assert validation_results['safety_constraints_active'] is True
+        assert validation_results['monitoring_configured'] is True
+        
+        # Test basic functionality with development configuration
+        functionality_test = await self._test_basic_functionality(components)
+        assert functionality_test.success is True, "Basic functionality should work in development"
+        
+        # Log development configuration test results
+        context.log_event('development_config_test', {
+            'configuration_applied': config_result.success,
+            'validation_results': validation_results,
+            'functionality_test': functionality_test.success
+        })
+    
+    @pytest.mark.asyncio
+    async def test_production_environment_configuration(self, integrated_system):
+        """Test configuration validation for production environment."""
+        context = integrated_system
+        components = context.components
+        
+        # Define production configuration
+        prod_config = DeploymentConfiguration(
+            environment=DeploymentEnvironment.PRODUCTION,
+            resource_limits={
+                'max_memory_mb': 8192,
+                'max_cpu_percent': 70,
+                'max_concurrent_tasks': 100,
+                'max_memory_nodes': 10000
+            },
+            safety_constraints=[
+                {
+                    'id': 'prod_memory_limit',
+                    'type': 'resource_limit',
+                    'threshold': 0.7,
+                    'action': 'throttle_and_optimize'
+                },
+                {
+                    'id': 'prod_security_monitor',
+                    'type': 'security_monitoring',
+                    'threshold': 0.0,
+                    'action': 'emergency_stop'
+                },
+                {
+                    'id': 'prod_performance_critical',
+                    'type': 'performance_monitoring',
+                    'threshold': 0.8,
+                    'action': 'alert_and_investigate'
+                }
+            ],
+            performance_requirements={
+                'min_throughput_ops_per_sec': 100,
+                'max_average_latency_ms': 200,
+                'min_success_rate': 0.99
+            },
+            monitoring_config={
+                'log_level': 'INFO',
+                'metrics_collection': True,
+                'performance_tracking': True,
+                'error_reporting': True,
+                'alerting_enabled': True,
+                'health_checks': True
+            },
+            security_settings={
+                'authentication_required': True,
+                'encryption_enabled': True,
+                'audit_logging': True,
+                'input_validation': 'strict',
+                'rate_limiting': True,
+                'intrusion_detection': True
+            },
+            scaling_parameters={
+                'auto_scaling_enabled': True,
+                'min_instances': 2,
+                'max_instances': 10,
+                'scale_up_threshold': 0.7,
+                'scale_down_threshold': 0.3
+            }
+        )
+        
+        # Apply production configuration
+        config_result = await self._apply_configuration(components, prod_config)
+        assert config_result.success is True, f"Production configuration failed: {config_result.error}"
+        
+        # Validate production configuration
+        validation_results = await self._validate_configuration(components, prod_config)
+        
+        # Production environment should be strict
+        assert validation_results['resource_limits_applied'] is True
+        assert validation_results['safety_constraints_active'] is True
+        assert validation_results['security_enabled'] is True
+        assert validation_results['monitoring_configured'] is True
+        
+        # Test functionality with production configuration
+        functionality_test = await self._test_basic_functionality(components)
+        assert functionality_test.success is True, "Basic functionality should work in production"
+        
+        # Test production-specific features
+        security_test = await self._test_security_features(components, prod_config)
+        assert security_test.success is True, "Security features should be functional"
+        
+        monitoring_test = await self._test_monitoring_features(components, prod_config)
+        assert monitoring_test.success is True, "Monitoring features should be functional"
+        
+        # Log production configuration test results
+        context.log_event('production_config_test', {
+            'configuration_applied': config_result.success,
+            'validation_results': validation_results,
+            'functionality_test': functionality_test.success,
+            'security_test': security_test.success,
+            'monitoring_test': monitoring_test.success
+        })
+    
+    @pytest.mark.asyncio
+    async def test_staging_environment_configuration(self, integrated_system):
+        """Test configuration validation for staging environment."""
+        context = integrated_system
+        components = context.components
+        
+        # Define staging configuration
+        staging_config = DeploymentConfiguration(
+            environment=DeploymentEnvironment.STAGING,
+            resource_limits={
+                'max_memory_mb': 4096,
+                'max_cpu_percent': 75,
+                'max_concurrent_tasks': 50,
+                'max_memory_nodes': 5000
+            },
+            safety_constraints=[
+                {
+                    'id': 'staging_memory_limit',
+                    'type': 'resource_limit',
+                    'threshold': 0.8,
+                    'action': 'throttle_and_alert'
+                },
+                {
+                    'id': 'staging_performance_monitor',
+                    'type': 'performance_monitoring',
+                    'threshold': 0.7,
+                    'action': 'alert_and_log'
+                }
+            ],
+            performance_requirements={
+                'min_throughput_ops_per_sec': 50,
+                'max_average_latency_ms': 300,
+                'min_success_rate': 0.95
+            },
+            monitoring_config={
+                'log_level': 'DEBUG',
+                'metrics_collection': True,
+                'performance_tracking': True,
+                'error_reporting': True,
+                'alerting_enabled': True,
+                'health_checks': True,
+                'debug_features': True
+            },
+            security_settings={
+                'authentication_required': True,
+                'encryption_enabled': True,
+                'audit_logging': True,
+                'input_validation': 'moderate',
+                'rate_limiting': False,
+                'intrusion_detection': False
+            },
+            scaling_parameters={
+                'auto_scaling_enabled': True,
+                'min_instances': 1,
+                'max_instances': 5,
+                'scale_up_threshold': 0.8,
+                'scale_down_threshold': 0.4
+            }
+        )
+        
+        # Apply staging configuration
+        config_result = await self._apply_configuration(components, staging_config)
+        assert config_result.success is True, f"Staging configuration failed: {config_result.error}"
+        
+        # Validate staging configuration
+        validation_results = await self._validate_configuration(components, staging_config)
+        
+        # Staging environment should balance production-like features with debugging
+        assert validation_results['resource_limits_applied'] is True
+        assert validation_results['safety_constraints_active'] is True
+        assert validation_results['security_enabled'] is True
+        assert validation_results['monitoring_configured'] is True
+        
+        # Test functionality with staging configuration
+        functionality_test = await self._test_basic_functionality(components)
+        assert functionality_test.success is True, "Basic functionality should work in staging"
+        
+        # Log staging configuration test results
+        context.log_event('staging_config_test', {
+            'configuration_applied': config_result.success,
+            'validation_results': validation_results,
+            'functionality_test': functionality_test.success
+        })
+    
+    async def test_high_availability_environment_configuration(self, integrated_system):
+        """Test configuration validation for high availability environment."""
+        context = integrated_system
+        components = context.components
+        
+        # Define high availability configuration
+        ha_config = DeploymentConfiguration(
+            environment=DeploymentEnvironment.HIGH_AVAILABILITY,
+            resource_limits={
+                'max_memory_mb': 16384,
+                'max_cpu_percent': 60,
+                'max_concurrent_tasks': 200,
+                'max_memory_nodes': 50000
+            },
+            safety_constraints=[
+                {
+                    'id': 'ha_redundancy_check',
+                    'type': 'availability_monitoring',
+                    'threshold': 0.99,
+                    'action': 'failover_and_alert'
+                },
+                {
+                    'id': 'ha_performance_critical',
+                    'type': 'performance_monitoring',
+                    'threshold': 0.9,
+                    'action': 'scale_and_optimize'
+                },
+                {
+                    'id': 'ha_data_consistency',
+                    'type': 'data_integrity',
+                    'threshold': 0.0,
+                    'action': 'emergency_stop_and_recover'
+                }
+            ],
+            performance_requirements={
+                'min_throughput_ops_per_sec': 500,
+                'max_average_latency_ms': 100,
+                'min_success_rate': 0.999,
+                'max_downtime_seconds': 5
+            },
+            monitoring_config={
+                'log_level': 'WARN',
+                'metrics_collection': True,
+                'performance_tracking': True,
+                'error_reporting': True,
+                'alerting_enabled': True,
+                'health_checks': True,
+                'distributed_tracing': True,
+                'real_time_monitoring': True
+            },
+            security_settings={
+                'authentication_required': True,
+                'encryption_enabled': True,
+                'audit_logging': True,
+                'input_validation': 'strict',
+                'rate_limiting': True,
+                'intrusion_detection': True,
+                'security_scanning': True,
+                'compliance_monitoring': True
+            },
+            scaling_parameters={
+                'auto_scaling_enabled': True,
+                'min_instances': 3,
+                'max_instances': 20,
+                'scale_up_threshold': 0.5,
+                'scale_down_threshold': 0.2,
+                'failover_enabled': True,
+                'load_balancing': True
+            }
+        )
+        
+        # Apply high availability configuration
+        config_result = await self._apply_configuration(components, ha_config)
+        assert config_result.success is True, f"HA configuration failed: {config_result.error}"
+        
+        # Validate HA configuration
+        validation_results = await self._validate_configuration(components, ha_config)
+        
+        # HA environment should have all features enabled
+        assert validation_results['resource_limits_applied'] is True
+        assert validation_results['safety_constraints_active'] is True
+        assert validation_results['security_enabled'] is True
+        assert validation_results['monitoring_configured'] is True
+        assert validation_results['scaling_configured'] is True
+        
+        # Test HA-specific features
+        redundancy_test = await self._test_redundancy_features(components, ha_config)
+        assert redundancy_test.success is True, "Redundancy features should be functional"
+        
+        failover_test = await self._test_failover_capabilities(components, ha_config)
+        assert failover_test.success is True, "Failover capabilities should be functional"
+        
+        # Log HA configuration test results
+        context.log_event('ha_config_test', {
+            'configuration_applied': config_result.success,
+            'validation_results': validation_results,
+            'redundancy_test': redundancy_test.success,
+            'failover_test': failover_test.success
+        })
+    
+    async def _apply_configuration(self, components: Dict, config: DeploymentConfiguration):
+        """Apply deployment configuration to components."""
+        try:
+            # Apply resource limits
+            for component_name, component in components.items():
+                if hasattr(component, 'set_resource_limits'):
+                    await component.set_resource_limits(config.resource_limits)
+            
+            # Apply safety constraints
+            for constraint_config in config.safety_constraints:
+                constraint = SafetyConstraint(**constraint_config)
+                await components['safety_validator'].register_constraint(constraint)
+            
+            # Apply monitoring configuration
+            for component_name, component in components.items():
+                if hasattr(component, 'configure_monitoring'):
+                    await component.configure_monitoring(config.monitoring_config)
+            
+            # Apply security settings
+            for component_name, component in components.items():
+                if hasattr(component, 'configure_security'):
+                    await component.configure_security(config.security_settings)
+            
+            return type('Result', (), {'success': True, 'error': None})()
+        
+        except Exception as e:
+            return type('Result', (), {'success': False, 'error': str(e)})()
+    
+    async def _validate_configuration(self, components: Dict, config: DeploymentConfiguration):
+        """Validate that configuration is applied correctly."""
+        results = {}
+        
+        # Validate resource limits
+        try:
+            for component_name, component in components.items():
+                if hasattr(component, 'get_resource_limits'):
+                    limits = await component.get_resource_limits()
+                    if limits:
+                        results['resource_limits_applied'] = True
+                        break
+            else:
+                results['resource_limits_applied'] = False
+        except:
+            results['resource_limits_applied'] = False
+        
+        # Validate safety constraints
+        try:
+            constraints = await components['safety_validator'].get_active_constraints()
+            expected_constraint_ids = {c['id'] for c in config.safety_constraints}
+            active_constraint_ids = {c.id for c in constraints}
+            results['safety_constraints_active'] = expected_constraint_ids.issubset(active_constraint_ids)
+        except:
+            results['safety_constraints_active'] = False
+        
+        # Validate monitoring
+        try:
+            for component_name, component in components.items():
+                if hasattr(component, 'get_monitoring_status'):
+                    status = await component.get_monitoring_status()
+                    if status and status.get('enabled'):
+                        results['monitoring_configured'] = True
+                        break
+            else:
+                results['monitoring_configured'] = False
+        except:
+            results['monitoring_configured'] = False
+        
+        # Validate security (if applicable)
+        if config.security_settings.get('authentication_required'):
+            try:
+                for component_name, component in components.items():
+                    if hasattr(component, 'get_security_status'):
+                        status = await component.get_security_status()
+                        if status and status.get('authentication_enabled'):
+                            results['security_enabled'] = True
+                            break
+                else:
+                    results['security_enabled'] = False
+            except:
+                results['security_enabled'] = False
+        else:
+            results['security_enabled'] = True  # Not required
+        
+        # Validate scaling (if applicable)
+        if config.scaling_parameters.get('auto_scaling_enabled'):
+            try:
+                scaling_status = await components['meta_engine'].get_scaling_status()
+                results['scaling_configured'] = scaling_status.get('auto_scaling_enabled', False)
+            except:
+                results['scaling_configured'] = False
+        else:
+            results['scaling_configured'] = True  # Not required
+        
+        return results
+    
+    async def _test_basic_functionality(self, components: Dict):
+        """Test basic system functionality."""
+        try:
+            # Test memory operations
+            node = MemoryNode(
+                id="config_test_node",
+                content="Configuration test content",
+                embedding=[0.1] * 128
+            )
+            memory_result = await components['memory_system'].store_node(node)
+            
+            # Test delta evaluation
+            metrics = DeltaMetrics(
+                performance=0.1, efficiency=0.05, stability=0.8, capability=0.08
+            )
+            delta_result = await components['delta_evaluator'].evaluate(metrics)
+            
+            # Test MCP task
+            task = AgentTask(
+                id="config_test_task",
+                type="configuration_test",
+                payload={'test': True}
+            )
+            mcp_result = await components['mcp_orchestrator'].submit_task(task)
+            
+            success = (
+                memory_result.success and
+                delta_result.success and
+                mcp_result.success
+            )
+            
+            return type('Result', (), {'success': success})()
+        
+        except Exception as e:
+            return type('Result', (), {'success': False, 'error': str(e)})()
+    
+    async def _test_security_features(self, components: Dict, config: DeploymentConfiguration):
+        """Test security features."""
+        try:
+            # Test authentication (if enabled)
+            if config.security_settings.get('authentication_required'):
+                auth_test = await components['safety_validator'].test_authentication()
+                if not auth_test.success:
+                    return type('Result', (), {'success': False, 'error': 'Authentication test failed'})()
+            
+            # Test input validation
+            if config.security_settings.get('input_validation') == 'strict':
+                validation_test = await components['safety_validator'].test_input_validation()
+                if not validation_test.success:
+                    return type('Result', (), {'success': False, 'error': 'Input validation test failed'})()
+            
+            # Test audit logging
+            if config.security_settings.get('audit_logging'):
+                audit_test = await components['safety_validator'].test_audit_logging()
+                if not audit_test.success:
+                    return type('Result', (), {'success': False, 'error': 'Audit logging test failed'})()
+            
+            return type('Result', (), {'success': True})()
+        
+        except Exception as e:
+            return type('Result', (), {'success': False, 'error': str(e)})()
+    
+    async def _test_monitoring_features(self, components: Dict, config: DeploymentConfiguration):
+        """Test monitoring features."""
+        try:
+            # Test metrics collection
+            if config.monitoring_config.get('metrics_collection'):
+                metrics_test = await components['meta_engine'].test_metrics_collection()
+                if not metrics_test.success:
+                    return type('Result', (), {'success': False, 'error': 'Metrics collection test failed'})()
+            
+            # Test health checks
+            if config.monitoring_config.get('health_checks'):
+                health_test = await components['meta_engine'].test_health_checks()
+                if not health_test.success:
+                    return type('Result', (), {'success': False, 'error': 'Health checks test failed'})()
+            
+            # Test alerting
+            if config.monitoring_config.get('alerting_enabled'):
+                alert_test = await components['meta_engine'].test_alerting()
+                if not alert_test.success:
+                    return type('Result', (), {'success': False, 'error': 'Alerting test failed'})()
+            
+            return type('Result', (), {'success': True})()
+        
+        except Exception as e:
+            return type('Result', (), {'success': False, 'error': str(e)})()
+    
+    async def _test_redundancy_features(self, components: Dict, config: DeploymentConfiguration):
+        """Test redundancy features for HA."""
+        try:
+            # Test component redundancy
+            redundancy_test = await components['meta_engine'].test_component_redundancy()
+            if not redundancy_test.success:
+                return type('Result', (), {'success': False, 'error': 'Component redundancy test failed'})()
+            
+            # Test data replication
+            replication_test = await components['memory_system'].test_data_replication()
+            if not replication_test.success:
+                return type('Result', (), {'success': False, 'error': 'Data replication test failed'})()
+            
+            return type('Result', (), {'success': True})()
+        
+        except Exception as e:
+            return type('Result', (), {'success': False, 'error': str(e)})()
+    
+    async def _test_failover_capabilities(self, components: Dict, config: DeploymentConfiguration):
+        """Test failover capabilities for HA."""
+        try:
+            # Test automatic failover
+            failover_test = await components['meta_engine'].test_automatic_failover()
+            if not failover_test.success:
+                return type('Result', (), {'success': False, 'error': 'Automatic failover test failed'})()
+            
+            # Test recovery procedures
+            recovery_test = await components['meta_engine'].test_recovery_procedures()
+            if not recovery_test.success:
+                return type('Result', (), {'success': False, 'error': 'Recovery procedures test failed'})()
+            
+            return type('Result', (), {'success': True})()
+        
+        except Exception as e:
+            return type('Result', (), {'success': False, 'error': str(e)})()
+
+
+class TestStressTesting:
+    """Test system under stress conditions similar to production."""
+    
+    @pytest.mark.asyncio
+    async def test_production_load_stress_test(self, integrated_system, performance_monitor):
+        """Test system under production-like load conditions."""
+        context = integrated_system
+        components = context.components
+        
+        # Define production load parameters
+        load_config = {
+            'duration_minutes': 5,
+            'concurrent_users': 100,
+            'operations_per_user_per_minute': 60,
+            'operation_mix': {
+                'memory_operations': 0.4,
+                'delta_evaluations': 0.3,
+                'mcp_tasks': 0.2,
+                'meta_cognitive_events': 0.1
+            }
+        }
+        
+        # Calculate total operations
+        total_duration_seconds = load_config['duration_minutes'] * 60
+        operations_per_second = (
+            load_config['concurrent_users'] * 
+            load_config['operations_per_user_per_minute'] / 60
+        )
+        total_operations = int(total_duration_seconds * operations_per_second)
+        
+        # Start performance monitoring
+        performance_monitor.start_monitoring()
+        
+        # Execute stress test
+        start_time = time.time()
+        stress_results = await self._execute_stress_test(components, load_config, total_operations)
+        end_time = time.time()
+        
+        # Stop performance monitoring and get results
+        performance_data = performance_monitor.stop_monitoring()
+        
+        # Analyze stress test results
+        actual_duration = end_time - start_time
+        actual_ops_per_second = stress_results['successful_operations'] / actual_duration
+        error_rate = stress_results['failed_operations'] / stress_results['total_operations']
+        
+        # Performance assertions for production readiness
+        assert actual_ops_per_second >= operations_per_second * 0.8, \
+            f"Throughput {actual_ops_per_second:.1f} ops/s below 80% of target {operations_per_second:.1f} ops/s"
+        
+        assert error_rate <= 0.05, \
+            f"Error rate {error_rate:.2%} exceeds 5% threshold"
+        
+        assert performance_data['max_memory_usage'] <= 0.9, \
+            f"Memory usage {performance_data['max_memory_usage']:.1%} exceeds 90% threshold"
+        
+        assert performance_data['max_cpu_usage'] <= 0.8, \
+            f"CPU usage {performance_data['max_cpu_usage']:.1%} exceeds 80% threshold"
+        
+        # System should remain stable throughout the test
+        system_state = await components['meta_engine'].get_system_state()
+        assert system_state['status'] in ['operational', 'degraded'], \
+            f"System not stable after stress test: {system_state['status']}"
+        
+        # Log stress test results
+        context.log_event('production_stress_test', {
+            'load_config': load_config,
+            'actual_duration': actual_duration,
+            'target_ops_per_second': operations_per_second,
+            'actual_ops_per_second': actual_ops_per_second,
+            'error_rate': error_rate,
+            'performance_data': performance_data,
+            'system_state': system_state
+        })
+    
+    @pytest.mark.asyncio
+    async def test_burst_load_handling(self, integrated_system):
+        """Test system's ability to handle sudden burst loads."""
+        context = integrated_system
+        components = context.components
+        
+        # Phase 1: Establish baseline performance
+        baseline_operations = 50
+        baseline_times = []
+        
+        for i in range(baseline_operations):
+            start_time = time.time()
+            node = MemoryNode(
+                id=f"baseline_burst_{i}",
+                content=f"Baseline content {i}",
+                embedding=[0.1] * 128
+            )
+            await components['memory_system'].store_node(node)
+            baseline_times.append(time.time() - start_time)
+        
+        baseline_avg_time = statistics.mean(baseline_times)
+        
+        # Phase 2: Execute burst load
+        burst_operations = 500  # 10x baseline
+        burst_tasks = []
+        
+        burst_start_time = time.time()
+        
+        # Create all burst operations simultaneously
+        for i in range(burst_operations):
+            if i % 4 == 0:
+                node = MemoryNode(
+                    id=f"burst_memory_{i}",
+                    content=f"Burst memory content {i}",
+                    embedding=[0.1 * (i % 10)] * 128
+                )
+                burst_tasks.append(components['memory_system'].store_node(node))
+            elif i % 4 == 1:
+                metrics = DeltaMetrics(
+                    performance=0.1 + (i * 0.0001),
+                    efficiency=0.05,
+                    stability=0.8,
+                    capability=0.08
+                )
+                burst_tasks.append(components['delta_evaluator'].evaluate(metrics))
+            elif i % 4 == 2:
+                task = AgentTask(
+                    id=f"burst_task_{i}",
+                    type="burst_test",
+                    payload={'burst_id': i}
+                )
+                burst_tasks.append(components['mcp_orchestrator'].submit_task(task))
+            else:
+                event = {
+                    'type': 'burst_test_event',
+                    'burst_id': i,
+                    'timestamp': time.time()
+                }
+                burst_tasks.append(components['meta_engine'].process_system_event(event))
+        
+        # Execute all burst operations
+        burst_results = await asyncio.gather(*burst_tasks, return_exceptions=True)
+        burst_end_time = time.time()
+        
+        # Analyze burst results
+        successful_burst_ops = sum(1 for r in burst_results if not isinstance(r, Exception))
+        failed_burst_ops = len(burst_results) - successful_burst_ops
+        burst_duration = burst_end_time - burst_start_time
+        burst_ops_per_second = successful_burst_ops / burst_duration
+        
+        # Phase 3: Test recovery after burst
+        await asyncio.sleep(2.0)  # Allow system to recover
+        
+        recovery_operations = 50
+        recovery_times = []
+        
+        for i in range(recovery_operations):
+            start_time = time.time()
+            node = MemoryNode(
+                id=f"recovery_burst_{i}",
+                content=f"Recovery content {i}",
+                embedding=[0.1] * 128
+            )
+            await components['memory_system'].store_node(node)
+            recovery_times.append(time.time() - start_time)
+        
+        recovery_avg_time = statistics.mean(recovery_times)
+        
+        # Burst handling assertions
+        burst_success_rate = successful_burst_ops / burst_operations
+        assert burst_success_rate >= 0.8, \
+            f"Burst success rate {burst_success_rate:.2%} below 80% threshold"
+        
+        assert burst_ops_per_second >= 20, \
+            f"Burst throughput {burst_ops_per_second:.1f} ops/s too low"
+        
+        # Recovery assertions
+        recovery_degradation = recovery_avg_time / baseline_avg_time
+        assert recovery_degradation <= 2.0, \
+            f"Recovery performance degraded by {recovery_degradation:.1f}x, should be ≤2x"
+        
+        # System should be stable after recovery
+        system_state = await components['meta_engine'].get_system_state()
+        assert system_state['status'] in ['operational', 'recovering'], \
+            f"System not stable after burst recovery: {system_state['status']}"
+        
+        # Log burst load test results
+        context.log_event('burst_load_test', {
+            'baseline_avg_time': baseline_avg_time,
+            'burst_operations': burst_operations,
+            'successful_burst_ops': successful_burst_ops,
+            'burst_success_rate': burst_success_rate,
+            'burst_duration': burst_duration,
+            'burst_ops_per_second': burst_ops_per_second,
+            'recovery_avg_time': recovery_avg_time,
+            'recovery_degradation': recovery_degradation,
+            'final_system_state': system_state
+        })
+    
+    async def _execute_stress_test(self, components: Dict, load_config: Dict, total_operations: int):
+        """Execute stress test with specified load configuration."""
+        operation_mix = load_config['operation_mix']
+        concurrent_workers = load_config['concurrent_users']
+        operations_per_worker = total_operations // concurrent_workers
+        
+        results = {
+            'total_operations': 0,
+            'successful_operations': 0,
+            'failed_operations': 0,
+            'operation_times': []
+        }
+        
+    async def stress_worker(worker_id: int):
+            worker_results = {
+                'successful': 0,
+                'failed': 0,
+                'times': []
+            }
+            
+            for i in range(operations_per_worker):
+                # Select operation type based on mix
+                rand_val = random.random()
+                cumulative = 0.0
+                selected_op = None
+                
+                for op_type, weight in operation_mix.items():
+                    cumulative += weight
+                    if rand_val <= cumulative:
+                        selected_op = op_type
+                        break
+                
+                if selected_op is None:
+                    selected_op = list(operation_mix.keys())[0]
+                
+                # Execute operation
+                start_time = time.time()
+                try:
+                    if selected_op == 'memory_operations':
+                        node = MemoryNode(
+                            id=f"stress_{worker_id}_{i}",
+                            content=f"Stress test content {worker_id}-{i}",
+                            embedding=[0.1 * ((worker_id + i) % 10)] * 128
+                        )
+                        await components['memory_system'].store_node(node)
+                    
+                    elif selected_op == 'delta_evaluations':
+                        metrics = DeltaMetrics(
+                            performance=0.1 + (i * 0.0001),
+                            efficiency=0.05 + (worker_id * 0.001),
+                            stability=0.8,
+                            capability=0.08
+                        )
+                        await components['delta_evaluator'].evaluate(metrics)
+                    
+                    elif selected_op == 'mcp_tasks':
+                        task = AgentTask(
+                            id=f"stress_task_{worker_id}_{i}",
+                            type="stress_test",
+                            payload={'worker': worker_id, 'iteration': i}
+                        )
+                        await components['mcp_orchestrator'].submit_task(task)
+                    
+                    elif selected_op == 'meta_cognitive_events':
+                        event = {
+                            'type': 'stress_test_event',
+                            'worker_id': worker_id,
+                            'iteration': i,
+                            'timestamp': time.time()
+                        }
+                        await components['meta_engine'].process_system_event(event)
+                    
+                    worker_results['successful'] += 1
+                    worker_results['times'].append(time.time() - start_time)
+                
+                except Exception as e:
+                    worker_results['failed'] += 1
+                    logging.warning(f"Stress worker {worker_id} operation failed: {e}")
+                
+                # Small delay to simulate realistic load
+                await asyncio.sleep(0.001)
+            
+            return worker_results
+        
+        # Execute stress workers
+        workers = [stress_worker(i) for i in range(concurrent_workers)]
+        worker_results = await asyncio.gather(*workers, return_exceptions=True)
+        
+        # Aggregate results
+        for result in worker_results:
+            if isinstance(result, dict):
+                results['successful_operations'] += result['successful']
+                results['failed_operations'] += result['failed']
+                results['operation_times'].extend(result['times'])
+        
+        results['total_operations'] = results['successful_operations'] + results['failed_operations']
+        
+        return results
+
+
+class TestErrorInjectionAndResilience:
+    """Test system resilience through controlled error injection."""
+    
+    @pytest.mark.asyncio
+    async def test_component_failure_resilience(self, integrated_system, error_injector):
+        """Test system resilience to individual component failures."""
+        context = integrated_system
+        components = context.components
+        
+        # Test scenarios for each component failure
+        failure_scenarios = [
+            {
+                'component': 'memory_system',
+                'failure_type': 'temporary_unavailability',
+                'duration': 5.0,
+                'expected_behavior': 'graceful_degradation'
+            },
+            {
+                'component': 'delta_evaluator',
+                'failure_type': 'processing_error',
+                'duration': 3.0,
+                'expected_behavior': 'fallback_mechanism'
+            },
+            {
+                'component': 'mcp_orchestrator',
+                'failure_type': 'task_queue_failure',
+                'duration': 4.0,
+                'expected_behavior': 'task_rerouting'
+            }
+        ]
+        
+        resilience_results = []
+        
+        for scenario in failure_scenarios:
+            # Establish baseline functionality
+            baseline_test = await self._test_system_functionality(components)
+            assert baseline_test.success is True, f"Baseline test failed before {scenario['component']} failure"
+            
+            # Inject failure
+            failure_result = await error_injector.inject_component_failure(
+                component=scenario['component'],
+                failure_type=scenario['failure_type'],
+                duration=scenario['duration']
+            )
+            assert failure_result.success is True, f"Failed to inject {scenario['component']} failure"
+            
+            # Test system behavior during failure
+            await asyncio.sleep(1.0)  # Allow failure to propagate
+            
+            during_failure_test = await self._test_system_functionality(components)
+            
+            # System should handle failure gracefully
+            if scenario['expected_behavior'] == 'graceful_degradation':
+                # Some functionality should still work
+                assert during_failure_test.partial_success is True, \
+                    f"System should gracefully degrade during {scenario['component']} failure"
+            
+            elif scenario['expected_behavior'] == 'fallback_mechanism':
+                # Fallback should be activated
+                fallback_status = await components['meta_engine'].get_fallback_status()
+                assert fallback_status.active is True, \
+                    f"Fallback mechanism should be active during {scenario['component']} failure"
+            
+            elif scenario['expected_behavior'] == 'task_rerouting':
+                # Tasks should be rerouted
+                routing_status = await components['mcp_orchestrator'].get_routing_status()
+                assert routing_status.rerouting_active is True, \
+                    f"Task rerouting should be active during {scenario['component']} failure"
+            
+            # Wait for failure duration
+            await asyncio.sleep(scenario['duration'])
+            
+            # Test recovery
+            recovery_test = await self._test_system_functionality(components)
+            
+            # System should recover after failure ends
+            recovery_timeout = 10.0  # Maximum time to wait for recovery
+            recovery_start = time.time()
+            
+            while time.time() - recovery_start < recovery_timeout:
+                recovery_test = await self._test_system_functionality(components)
+                if recovery_test.success:
+                    break
+                await asyncio.sleep(0.5)
+            
+            assert recovery_test.success is True, \
+                f"System should recover after {scenario['component']} failure"
+            
+            # Record resilience results
+            resilience_results.append({
+                'scenario': scenario,
+                'baseline_success': baseline_test.success,
+                'during_failure_handled': True,  # If we got here, it was handled
+                'recovery_success': recovery_test.success,
+                'recovery_time': time.time() - (recovery_start - scenario['duration'])
+            })
+        
+        # Verify overall resilience
+        all_scenarios_passed = all(r['recovery_success'] for r in resilience_results)
+        assert all_scenarios_passed, "All component failure scenarios should be handled successfully"
+        
+        # Log resilience test results
+        context.log_event('component_failure_resilience_test', {
+            'scenarios_tested': len(failure_scenarios),
+            'all_scenarios_passed': all_scenarios_passed,
+            'resilience_results': resilience_results
+        })
+    
+    @pytest.mark.asyncio
+    async def test_network_failure_resilience(self, integrated_system, error_injector):
+        """Test system resilience to network failures."""
+        context = integrated_system
+        components = context.components
+        
+        # Test different types of network failures
+        network_scenarios = [
+            {
+                'failure_type': 'intermittent_connectivity',
+                'pattern': 'random_drops',
+                'drop_rate': 0.3,
+                'duration': 10.0
+            },
+            {
+                'failure_type': 'high_latency',
+                'latency_ms': 2000,
+                'duration': 8.0
+            },
+            {
+                'failure_type': 'complete_outage',
+                'duration': 5.0
+            }
+        ]
+        
+        for scenario in network_scenarios:
+            # Inject network failure
+            network_failure = await error_injector.inject_network_failure(scenario)
+            assert network_failure.success is True, f"Failed to inject network failure: {scenario['failure_type']}"
+            
+            # Test system behavior during network issues
+            network_test_start = time.time()
+            network_operations = []
+            
+            # Try various operations during network issues
+            for i in range(20):
+                try:
+                    # MCP operations (most likely to be affected by network issues)
+                    task = AgentTask(
+                        id=f"network_test_{i}",
+                        type="network_resilience_test",
+                        payload={'test_id': i}
+                    )
+                    network_operations.append(
+                        components['mcp_orchestrator'].submit_task(task)
+                    )
+                    
+                    # Local operations (should be less affected)
+                    node = MemoryNode(
+                        id=f"network_local_{i}",
+                        content=f"Local operation during network issues {i}",
+                        embedding=[0.1] * 128
+                    )
+                    network_operations.append(
+                        components['memory_system'].store_node(node)
+                    )
+                    
+                except Exception as e:
+                    logging.info(f"Expected exception during network failure: {e}")
+            
+            # Execute operations during network issues
+            network_results = await asyncio.gather(*network_operations, return_exceptions=True)
+            
+            # Analyze results
+            successful_ops = sum(1 for r in network_results if not isinstance(r, Exception))
+            failed_ops = len(network_results) - successful_ops
+            
+            # Some operations should succeed (local ones), some may fail (network-dependent)
+            local_success_rate = successful_ops / len(network_results)
+            
+            if scenario['failure_type'] == 'complete_outage':
+                # During complete outage, local operations should still work
+                assert local_success_rate >= 0.4, \
+                    f"Local operations success rate {local_success_rate:.2%} too low during network outage"
+            else:
+                # During partial failures, most operations should eventually succeed
+                assert local_success_rate >= 0.6, \
+                    f"Operations success rate {local_success_rate:.2%} too low during {scenario['failure_type']}"
+            
+            # Wait for network recovery
+            await asyncio.sleep(scenario['duration'])
+            
+            # Test recovery after network issues
+            recovery_operations = []
+            for i in range(10):
+                task = AgentTask(
+                    id=f"recovery_test_{i}",
+                    type="network_recovery_test",
+                    payload={'test_id': i}
+                )
+                recovery_operations.append(
+                    components['mcp_orchestrator'].submit_task(task)
+                )
+            
+            recovery_results = await asyncio.gather(*recovery_operations, return_exceptions=True)
+            recovery_success_rate = sum(1 for r in recovery_results if not isinstance(r, Exception)) / len(recovery_results)
+            
+            # Recovery should be successful
+            assert recovery_success_rate >= 0.9, \
+                f"Recovery success rate {recovery_success_rate:.2%} too low after {scenario['failure_type']}"
+        
+        # Log network resilience test results
+        context.log_event('network_failure_resilience_test', {
+            'scenarios_tested': len(network_scenarios),
+            'all_scenarios_handled': True
+        })
+    
+    async def _test_system_functionality(self, components: Dict):
+        """Test basic system functionality."""
+        try:
+            # Test memory system
+            memory_node = MemoryNode(
+                id="functionality_test_memory",
+                content="Functionality test content",
+                embedding=[0.1] * 128
+            )
+            memory_result = await components['memory_system'].store_node(memory_node)
+            
+            # Test delta evaluator
+            delta_metrics = DeltaMetrics(
+                performance=0.1, efficiency=0.05, stability=0.8, capability=0.08
+            )
+            delta_result = await components['delta_evaluator'].evaluate(delta_metrics)
+            
+            # Test MCP orchestrator
+            mcp_task = AgentTask(
+                id="functionality_test_mcp",
+                type="functionality_test",
+                payload={'test': True}
+            )
+            mcp_result = await components['mcp_orchestrator'].submit_task(mcp_task)
+            
+            # Determine success levels
+            results = [memory_result.success, delta_result.success, mcp_result.success]
+            success_count = sum(results)
+            
+            if success_count == 3:
+                return type('Result', (), {'success': True, 'partial_success': True})()
+            elif success_count >= 1:
+                return type('Result', (), {'success': False, 'partial_success': True})()
+            else:
+                return type('Result', (), {'success': False, 'partial_success': False})()
+        
+        except Exception as e:
+            return type('Result', (), {'success': False, 'partial_success': False, 'error': str(e)})()
+
+
+class TestDeploymentReadinessAssessment:
+    """Comprehensive deployment readiness assessment."""
+    
+    @pytest.mark.asyncio
+    async def test_comprehensive_deployment_readiness(self, integrated_system):
+        """Perform comprehensive deployment readiness assessment."""
+        context = integrated_system
+        components = context.components
+        
+        # Test all deployment environments
+        environments = [
+            DeploymentEnvironment.DEVELOPMENT,
+            DeploymentEnvironment.STAGING,
+            DeploymentEnvironment.PRODUCTION,
+            DeploymentEnvironment.HIGH_AVAILABILITY
+        ]
+        
+        readiness_reports = []
+        
+        for environment in environments:
+            report = await self._assess_environment_readiness(components, environment)
+            readiness_reports.append(report)
+        
+        # Verify all environments are deployment ready
+        for report in readiness_reports:
+            assert report.deployment_approved is True, \
+                f"{report.environment.value} environment not ready for deployment: {report.issues_identified}"
+        
+        # Generate overall deployment readiness summary
+        overall_readiness = await self._generate_overall_readiness_summary(readiness_reports)
+        
+        # Log comprehensive deployment readiness results
+        context.log_event('comprehensive_deployment_readiness', {
+            'environments_tested': [env.value for env in environments],
+            'all_environments_ready': all(r.deployment_approved for r in readiness_reports),
+            'overall_readiness': overall_readiness,
+            'readiness_reports': [r.__dict__ for r in readiness_reports]
+        })
+        
+        # Final assertion
+        assert overall_readiness['deployment_approved'] is True, \
+            f"System not ready for deployment: {overall_readiness['critical_issues']}"
+    
+    async def _assess_environment_readiness(self, components: Dict, environment: DeploymentEnvironment) -> DeploymentReadinessReport:
+        """Assess deployment readiness for a specific environment."""
+        issues = []
+        recommendations = []
+        
+        # Configuration validation
+        config_valid = await self._validate_environment_configuration(components, environment)
+        if not config_valid:
+            issues.append(f"Configuration validation failed for {environment.value}")
+        
+        # Performance requirements
+        performance_meets_requirements = await self._validate_performance_requirements(components, environment)
+        if not performance_meets_requirements:
+            issues.append(f"Performance requirements not met for {environment.value}")
+            recommendations.append("Optimize performance or adjust requirements")
+        
+        # Security validation
+        security_validated = await self._validate_security_requirements(components, environment)
+        if not security_validated:
+            issues.append(f"Security validation failed for {environment.value}")
+            recommendations.append("Address security vulnerabilities")
+        
+        # Resilience testing
+        resilience_tested = await self._validate_resilience_requirements(components, environment)
+        if not resilience_tested:
+            issues.append(f"Resilience testing failed for {environment.value}")
+            recommendations.append("Improve error handling and recovery mechanisms")
+        
+        # Monitoring functionality
+        monitoring_functional = await self._validate_monitoring_requirements(components, environment)
+        if not monitoring_functional:
+            issues.append(f"Monitoring validation failed for {environment.value}")
+            recommendations.append("Fix monitoring and alerting systems")
+        
+        # Calculate overall readiness score
+        checks = [config_valid, performance_meets_requirements, security_validated, resilience_tested, monitoring_functional]
+        readiness_score = sum(checks) / len(checks)
+        
+        # Determine deployment approval
+        deployment_approved = readiness_score >= 0.8 and len(issues) == 0
+        
+        return DeploymentReadinessReport(
+            environment=environment,
+            overall_readiness_score=readiness_score,
+            configuration_valid=config_valid,
+            performance_meets_requirements=performance_meets_requirements,
+            security_validated=security_validated,
+            resilience_tested=resilience_tested,
+            monitoring_functional=monitoring_functional,
+            issues_identified=issues,
+            recommendations=recommendations,
+            deployment_approved=deployment_approved
+        )
+    
+    async def _validate_environment_configuration(self, components: Dict, environment: DeploymentEnvironment) -> bool:
+        """Validate configuration for specific environment."""
+        try:
+            # This would typically validate against environment-specific requirements
+            # For now, we'll simulate validation
+            return True
+        except:
+            return False
+    
+    async def _validate_performance_requirements(self, components: Dict, environment: DeploymentEnvironment) -> bool:
+        """Validate performance requirements for specific environment."""
+        try:
+            # Run performance test
+            start_time = time.time()
+            test_operations = 100
+            
+            for i in range(test_operations):
+                node = MemoryNode(
+                    id=f"perf_req_test_{i}",
+                    content=f"Performance requirement test {i}",
+                    embedding=[0.1] * 128
+                )
+                await components['memory_system'].store_node(node)
+            
+            duration = time.time() - start_time
+            ops_per_second = test_operations / duration
+            
+            # Environment-specific performance requirements
+            if environment == DeploymentEnvironment.PRODUCTION:
+                return ops_per_second >= 50
+            elif environment == DeploymentEnvironment.HIGH_AVAILABILITY:
+                return ops_per_second >= 100
+            else:
+                return ops_per_second >= 20
+        except:
+            return False
+    
+    async def _validate_security_requirements(self, components: Dict, environment: DeploymentEnvironment) -> bool:
+        """Validate security requirements for specific environment."""
+        try:
+            # Check security features based on environment
+            if environment in [DeploymentEnvironment.PRODUCTION, DeploymentEnvironment.HIGH_AVAILABILITY]:
+                # Production environments require strict security
+                security_status = await components['safety_validator'].get_security_status()
+                return security_status.get('authentication_enabled', False) and \
+                       security_status.get('encryption_enabled', False)
+            else:
+                # Development/staging can have relaxed security
+                return True
+        except:
+            return False
+    
+    async def _validate_resilience_requirements(self, components: Dict, environment: DeploymentEnvironment) -> bool:
+        """Validate resilience requirements for specific environment."""
+        try:
+            # Test basic resilience
+            resilience_test = await components['meta_engine'].test_basic_resilience()
+            return resilience_test.success
+        except:
+            return False
+    
+    async def _validate_monitoring_requirements(self, components: Dict, environment: DeploymentEnvironment) -> bool:
+        """Validate monitoring requirements for specific environment."""
+        try:
+            # Test monitoring functionality
+            monitoring_test = await components['meta_engine'].test_monitoring_functionality()
+            return monitoring_test.success
+        except:
+            return False
+    
+    async def _generate_overall_readiness_summary(self, reports: List[DeploymentReadinessReport]) -> Dict[str, Any]:
+        """Generate overall deployment readiness summary."""
+        all_approved = all(r.deployment_approved for r in reports)
+        avg_readiness_score = statistics.mean([r.overall_readiness_score for r in reports])
+        
+        all_issues = []
+        for report in reports:
+            all_issues.extend(report.issues_identified)
+        
+        critical_issues = [issue for issue in all_issues if 'critical' in issue.lower() or 'security' in issue.lower()]
+        
+        return {
+            'deployment_approved': all_approved,
+            'average_readiness_score': avg_readiness_score,
+            'environments_ready': sum(1 for r in reports if r.deployment_approved),
+            'total_environments': len(reports),
+            'critical_issues': critical_issues,
+            'total_issues': len(all_issues)
+        }
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v", "--tb=short", "-m", "not slow"])

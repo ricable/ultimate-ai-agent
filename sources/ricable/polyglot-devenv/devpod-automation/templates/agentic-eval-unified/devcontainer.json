@@ -1,0 +1,138 @@
+{
+  "name": "Agentic Evaluation Unified Environment",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20",
+      "nodeGypDependencies": true
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12",
+      "installTools": true
+    },
+    "ghcr.io/devcontainers/features/rust:1": {
+      "version": "latest",
+      "profile": "default"
+    },
+    "ghcr.io/devcontainers/features/go:1": {
+      "version": "1.22"
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "username": "vscode",
+      "userUid": "1000",
+      "userGid": "1000"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.pylint",
+        "ms-python.mypy-type-checker",
+        "charliermarsh.ruff",
+        "ms-vscode.vscode-typescript-next",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "rust-lang.rust-analyzer",
+        "golang.go",
+        "thenuprojectcontributors.vscode-nushell-lang",
+        "github.copilot",
+        "github.copilot-chat",
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.test-adapter-converter",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "rust-analyzer.cargo.autoreload": true,
+        "go.useLanguageServer": true,
+        "editor.formatOnSave": true,
+        "editor.rulers": [88, 100, 120],
+        "files.trimTrailingWhitespace": true
+      }
+    },
+    "devpod": {
+      "prebuildRepository": "ghcr.io/ricable/polyglot-devenv-agentic-unified"
+    }
+  },
+  "containerEnv": {
+    "CLAUDE_API_KEY": "${localEnv:CLAUDE_API_KEY}",
+    "GEMINI_API_KEY": "${localEnv:GEMINI_API_KEY}",
+    "AGENTIC_EVAL_ENV": "unified",
+    "NODE_ENV": "development",
+    "PYTHONPATH": "/workspace/src",
+    "RUST_BACKTRACE": "1",
+    "GO111MODULE": "on",
+    "TERM": "xterm-256color",
+    "AGENTIC_EVAL_MODE": "comparative",
+    "EVALUATION_FRAMEWORK_VERSION": "1.0.0"
+  },
+  "mounts": [
+    "type=volume,source=npm-cache,target=/home/vscode/.npm",
+    "type=volume,source=python-cache,target=/home/vscode/.cache/pip",
+    "type=volume,source=cargo-cache,target=/home/vscode/.cargo",
+    "type=volume,source=go-cache,target=/home/vscode/go/pkg",
+    "type=volume,source=agentic-eval-results,target=/workspace/agentic-eval/results"
+  ],
+  "forwardPorts": [
+    3000,
+    5000,
+    5173,
+    8000,
+    8080
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Frontend Development Server",
+      "onAutoForward": "notify"
+    },
+    "5000": {
+      "label": "Python API Server",
+      "onAutoForward": "notify"
+    },
+    "5173": {
+      "label": "Vite Development Server", 
+      "onAutoForward": "notify"
+    },
+    "8000": {
+      "label": "HTTP Server",
+      "onAutoForward": "notify"
+    },
+    "8080": {
+      "label": "Go API Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": [
+    "echo 'Setting up Unified Agentic Evaluation Environment...'",
+    "echo 'Installing package managers...'",
+    "pip install uv",
+    "npm install -g bun yarn pnpm",
+    "echo 'Installing AI CLI tools...'",
+    "npm install -g @anthropic-ai/claude-code @google/gemini-cli",
+    "echo 'Installing additional tools...'",
+    "npm install -g ruv-swarm@latest",
+    "npx claude-flow@alpha init",
+    "npm install ruv-swarm-wasm@latest",
+    "echo 'Setting up comprehensive evaluation framework...'",
+    "bash /workspace/devpod-automation/scripts/setup-agentic-framework.sh unified 2>/dev/null || echo 'Framework setup script not found, creating basic structure'",
+    "mkdir -p /workspace/agentic-eval/{prompts/{python,typescript,rust,go,nushell},templates/{claude,gemini,unified},results/{claude,gemini,comparative},scripts/{automation,analysis,reporting},configs/{environments,tools,scoring},reports/{daily,weekly,comparative},benchmarks/{performance,quality,accuracy}}",
+    "echo 'Installing evaluation dependencies...'",
+    "npm install vue@latest vite@latest vitest@latest @types/node@latest typescript@latest",
+    "pip install fastapi uvicorn pytest requests httpx pydantic pandas matplotlib seaborn plotly jupyter",
+    "echo 'Setting up Nushell...'",
+    "curl -s https://api.github.com/repos/nushell/nushell/releases/latest | grep browser_download_url | grep x86_64-unknown-linux-gnu.tar.gz | cut -d '\"' -f 4 | xargs -I {} curl -L {} | tar -xz -C /tmp",
+    "sudo mv /tmp/nu* /usr/local/bin/ || true",
+    "echo 'Copying evaluation framework from source...'",
+    "cp -r /workspace/agentic-coding-tool-eval/* /workspace/agentic-eval/ 2>/dev/null || echo 'Source eval framework not found, using generated structure'",
+    "echo 'Adapting prompts for unified environment...'",
+    "python3 /workspace/devpod-automation/scripts/adapt-prompts-for-environment.py unified 2>/dev/null || echo 'Prompt adaptation will be done manually'",
+    "echo 'Unified Agentic Evaluation Environment ready'"
+  ],
+  "postStartCommand": "echo 'Unified Agentic Evaluation DevPod ready! 🤖✨\\nAI Tools: claude-code, gemini\\nLanguages: Python, TypeScript, Rust, Go, Nushell\\nEvaluation Framework: /workspace/agentic-eval/'",
+  "postAttachCommand": "echo 'Welcome to Unified Agentic Evaluation DevPod! 🚀🤖\\n\\n🔧 AI Tools Available:\\n  - claude-code (Claude Code CLI)\\n  - gemini (Gemini CLI)\\n\\n🔬 Evaluation Framework:\\n  - Prompts: /workspace/agentic-eval/prompts/\\n  - Results: /workspace/agentic-eval/results/\\n  - Scripts: /workspace/agentic-eval/scripts/\\n\\n🌐 Multi-Language Support:\\n  - Python (FastAPI, pytest)\\n  - TypeScript (Vue, Vite, Vitest)\\n  - Rust (cargo, clippy)\\n  - Go (go mod, testing)\\n  - Nushell (scripting)\\n\\n📊 Ready for comparative AI tool evaluation!'"
+}

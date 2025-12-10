@@ -1,0 +1,210 @@
+# Flow4 + Augmentoolkit Configuration for FULL Processing (no subset limitations)
+# This config is optimized for processing ALL chunks from Flow4's document processing pipeline
+
+pipeline: factual-datagen-pipeline
+
+# Disable flattening for complex nested structures
+no_flatten:
+  - factual_sft
+  - template_kwargs
+  - generic_dataset_paths
+  - generic_dataset_percentages
+  - other_pretrain_kwargs
+  - other_finetune_kwargs
+  - input_dirs
+
+# Disable automatic training since we're focused on dataset generation
+model_auto_train:
+  do_train: False
+
+# Enable automatic model running for testing (optional)
+model_auto_run:
+  do_run: False
+  cache_dir: ./cache
+  server_type: normal
+
+# Path configuration for Flow4 integration - FULL PROCESSING
+path:
+  input_dirs:
+    - path: ./pipeline_output/chunks/  # Flow4 chunking output directory
+      variation_generation_counts: 3  # More variations for better coverage
+      final_system_prompt_additional_context: "You are an expert assistant focused on technical telecommunications documentation and analysis."
+      factual_gen_subset_size_per_way: 5000  # Large enough to include all chunks
+      factual_gen_use_subset: False  # PROCESS ALL CHUNKS
+      rag_subset_size: 5000
+      rag_use_subset: False  # PROCESS ALL CHUNKS
+      correction_subset_size: 5000
+      correction_use_subset: False  # PROCESS ALL CHUNKS
+  output_dir: ./pipeline_output/augmentoolkit_datasets_full/
+  models_dir: ./models/
+  huggingface_cache_dir: ./cache/huggingface
+
+# System configuration optimized for FULL processing
+system:
+  number_of_factual_sft_generations_to_do: 2  # Multiple generation passes
+  completion_mode: False
+  remove_system_prompt_ratio: 0.1
+  remove_thought_process_ratio: 0.1
+  remove_thought_process_prompt: "Answer directly without showing your reasoning process."
+  final_answer_str: "Answer:"
+  generic_thought_process_on_domain_data: False
+  cite_sources_at_end: True
+  concurrency_limit: 8  # Higher concurrency for faster processing
+  use_stop: True
+  subset_size: 5000  # LARGE SUBSET TO INCLUDE ALL CHUNKS
+  use_subset: False  # DISABLE SUBSET FILTERING
+  chunk_size: 3000
+  num_tokens_pretraining_in_sft: 500000
+  shared_instruction: |
+    You are an AI assistant specialized in telecommunications and technical documentation analysis. 
+    You provide clear, accurate answers based on the provided NR (5G New Radio) technical context.
+    Always think carefully before responding and cite relevant sources when available.
+    
+    Your responses should be:
+    - Accurate and factual about telecommunications technology
+    - Clear and well-structured for technical users
+    - Appropriately detailed for the question complexity
+    - Professional and helpful in tone
+    - Focused on NR/5G technical specifications
+
+# MLX Model Configuration (optimized for Apple Silicon)
+factual_sft_settings:
+  factual_use_stop: True
+  factual_chunk_size: 3000
+  factual_completion_mode: False
+  factual_small_model: mlx-community/Llama-3.2-3B-Instruct-4bit
+  factual_small_api_key: notused
+  factual_small_base_url: http://localhost:8000
+  factual_small_mode: mlx
+  factual_large_model: mlx-community/Llama-3.2-3B-Instruct-4bit
+  factual_large_api_key: notused
+  factual_large_base_url: http://localhost:8000
+  factual_large_mode: mlx
+  factual_cost_per_million_small_input: 0.0  # No cost for local models
+  factual_cost_per_million_small_output: 0.0
+  factual_cost_per_million_large_input: 0.0
+  factual_cost_per_million_large_output: 0.0
+  final_assistant_prompts_no_rag: [
+    'You are a helpful AI assistant specializing in NR telecommunications documentation.',
+    'As an expert in 5G NR technical analysis, provide clear and accurate information.',
+    'You are an AI assistant focused on providing accurate telecommunications technical insights.',
+  ]
+  items_per_conversation: 3  # More items per conversation for richer training data
+  combine_sharegpt_target_pairs: 5
+
+# Dataset context for Flow4 document processing
+dataset_context: NR Telecommunications Technical Documentation and 5G Network Analysis
+
+# RAG data configuration for MLX
+rag_data:
+  rag_failure_percentage: 0.20  # Lower failure rate for better quality
+  rag_max_chunks: 3  # More chunks for comprehensive answers
+  user_format: "Human: {user}"
+  system_format: "System: {system}"
+  assistant_format: "Assistant: {assistant}"
+  bos: "<s>"
+  final_assistant_prompts: [
+    'You are a helpful AI assistant specializing in NR telecommunications documentation. Use the provided context: {data}',
+    'Based on the following NR technical information, provide accurate answers: {data}',
+    'Use this telecommunications technical context to answer questions accurately: {data}',
+  ]
+  num_items_per_group: 3
+  rag_skip_filter_chunks: False
+  rag_small_model: mlx-community/Llama-3.2-3B-Instruct-4bit
+  rag_small_api_key: notused
+  rag_small_base_url: http://localhost:8000
+  rag_small_mode: mlx
+  rag_large_model: mlx-community/Llama-3.2-3B-Instruct-4bit
+  rag_large_api_key: notused
+  rag_large_base_url: http://localhost:8000
+  rag_large_mode: mlx
+  rag_cost_per_million_small_input: 0.0
+  rag_cost_per_million_small_output: 0.0
+  rag_cost_per_million_large_input: 0.0
+  rag_cost_per_million_large_output: 0.0
+  rag_use_stop: True
+  rag_prompts: prompts_local
+  rag_default_prompts: prompts_local
+
+# Factual SFT configuration with multiple question types - FULL PROCESSING
+factual_sft:
+  openended:
+    prompts: prompt_overrides_local/openended
+    default_prompts: prompts_local
+    single_turn: True
+    skip_question_check: False  # Enable quality checks
+    skip_answer_relevancy_check: False
+    skip_answer_accuracy_check: False
+    skip_repair_qa_tuples: False
+    multi_source: False
+  followup:
+    prompts: prompt_overrides_local/followup
+    default_prompts: prompts_local
+    single_turn: False
+    skip_question_check: False
+    skip_answer_relevancy_check: False
+    skip_answer_accuracy_check: False
+    skip_repair_qa_tuples: False
+    multi_source: False
+
+# PDF cleaning configuration (for MLX)
+pdf_cleaning:
+  pdf_cleaning_chunk_size: 3000
+  pdf_cleaning_small_model: mlx-community/Llama-3.2-3B-Instruct-4bit
+  pdf_cleaning_large_model: mlx-community/Llama-3.2-3B-Instruct-4bit
+  pdf_cleaning_small_mode: mlx
+  pdf_cleaning_large_mode: mlx
+  pdf_cleaning_small_base_url: http://localhost:8000
+  pdf_cleaning_large_base_url: http://localhost:8000
+  pdf_cleaning_small_api_key: notused
+  pdf_cleaning_large_api_key: notused
+  pdf_cleaning_use_stop: True
+  pdf_cleaning_cost_small_input: 0.0
+  pdf_cleaning_cost_small_output: 0.0
+  pdf_cleaning_cost_large_input: 0.0
+  pdf_cleaning_cost_large_output: 0.0
+  pdf_cleaning_prompts: prompts_local
+  pdf_cleaning_default_prompts: prompts_local
+
+# Correction pipeline configuration - FULL PROCESSING
+correction_pipeline:
+  correction_use_subset: False  # PROCESS ALL CHUNKS
+  correction_subset_size: 5000
+  correction_chunk_size: 3000
+  correction_small_model: mlx-community/Llama-3.2-3B-Instruct-4bit
+  correction_small_api_key: notused
+  correction_small_base_url: http://localhost:8000
+  correction_small_mode: mlx
+  correction_large_model: mlx-community/Llama-3.2-3B-Instruct-4bit
+  correction_large_api_key: notused
+  correction_large_base_url: http://localhost:8000
+  correction_large_mode: mlx
+  correction_cost_per_million_small_input: 0.0
+  correction_cost_per_million_small_output: 0.0
+  correction_cost_per_million_large_input: 0.0
+  correction_cost_per_million_large_output: 0.0
+  correction_prompt_template: "{% for message in messages %}{% if (message['role'] == 'system') %}{{message['content'] + '\\n'}}{% elif (message['role'] == 'user') %}{{'Human: ' + message['content'] + '\\n'}}{% elif message['role'] == 'assistant' %}{{'Assistant: ' + message['content'] + '\\n'}}{% endif %}{% endfor %}"
+  correction_use_stop: True
+  correction_completion_mode: False
+  correction_prompts: prompts_local
+  correction_default_prompts: prompts_local
+
+# Final dataset configuration
+final_datasaving_settings:
+  template: "chatml"  # Use ChatML format for instruction tuning
+  template_kwargs: {}
+  generic_dataset_paths: []  # No generic datasets for Flow4 focus
+  generic_dataset_percentages: []
+  max_samples_per_dataset: 50000  # Higher limit for full processing
+  minimum_generic_sft: 0
+
+# Model training disabled for dataset generation focus
+model_training:
+  base_model: mlx-community/Llama-3.2-3B-Instruct-4bit
+  context_length: 8192
+  is_mistral_derived_model: False
+  other_pretrain_kwargs: {}
+  other_finetune_kwargs: {}
+
+# Disable LLM-based PDF processing for simplicity
+do_not_use_llm_for_pdf_processing: True

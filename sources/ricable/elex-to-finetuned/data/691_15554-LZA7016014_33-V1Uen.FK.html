@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:xalan="http://xml.apache.org/xalan" xmlns:lxslt="http://xml.apache.org/xslt" lang="en" xml:lang="en">
+<head>
+<meta name="HTMLPACKLINKS" content="14" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="PREP" content="" />
+<meta name="DATE" content="2025-05-26" />
+<meta name="DOCNO" content="691/155 54-LZA 701 6014/33-V1 Uen" />
+<meta name="REV" content="FK" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-type" />
+<meta name="THEMES" content="MOM" />
+<meta name="DOCNAME" content="MANAGED OBJECT MODEL" />
+<meta name="TITLE" content="class MaintenanceUser" />
+<meta name="SUBTITLE" content="G3G4_MOMCPI CXP2020502_2 R32C08" />
+<link title="Style" href="edw:/alex?fn=hilda.css" type="text/css" rel="stylesheet" />
+<link title="Style" href="edw:/alex?fn=3_15554-LZA7016014_33-V1Uen.FK.css" type="text/css" rel="stylesheet" />
+<script src="edw:/alex?fn=dwcommon.js" language="javascript" type="text/javascript"> </script>
+<title>class MaintenanceUser</title>
+</head>
+<body>
+
+<script language="JavaScript" src="edw:/alex?fn=switch_theme.js" type="text/javascript"></script>
+<div id="header">
+<table class="docinfo">
+<tr>
+<td>&nbsp; &nbsp; <span class="fcaption"><span class="caption">Managed Object Model</span>&nbsp; &nbsp; &nbsp; &nbsp; 691/155 54-LZA 701 6014/33-V1 Uen FK</span>&nbsp; &nbsp; </td>
+</tr>
+</table>
+</div>
+<h1 class="TITLE">
+<a name="TITLE">class&#160;MaintenanceUser</a>
+</h1>
+<dl>
+<dd>
+<a href="edw:/alex?fn=210_15554-LZA7016014_33-V1Uen.FK.html">ManagedElement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=218_15554-LZA7016014_33-V1Uen.FK.html">SystemFunctions</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=581_15554-LZA7016014_33-V1Uen.FK.html">SecM</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=601_15554-LZA7016014_33-V1Uen.FK.html">UserManagement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=647_15554-LZA7016014_33-V1Uen.FK.html">UserIdentity</a>
+<dl class="child_tree">
+<dd>
+<b><a href="edw:/alex?fn=691_15554-LZA7016014_33-V1Uen.FK.html">MaintenanceUser</a></b>
+<dl class="child_tree"></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<p>
+<span class="desc">This class provides means for offline authentication.<br />
+<br />A maintenance user can login without LDAP authentication and is assigned a role through which the entire model can be accessed.<br />Only maintenance users can add MaintenanceUser MOs. In order to do so there may not be any normal users logged in.<br />The closeSession action of the MaintenanceUserSecurity MOC can be used to close any other open sessions.</span>
+<br />
+<br />
+</p>
+</td>
+</tr>
+</table>
+<dl>
+<dt>
+<b>References to:</b>
+</dt>
+<dd>
+<a href="edw:/alex?fn=678_15554-LZA7016014_33-V1Uen.FK.html">Role</a>;
+			</dd>
+</dl>
+<table width="100%" cellspacing="0" cellpadding="3" border="1" class="tblcnt">
+<tr class="TableSubHeadingColor">
+<td colspan="2"><b>Attributes</b></td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=694_15554-LZA7016014_33-V1Uen.FK.html">DateTime</a>[0..1]<br />noNotification<br />readOnly</code></td><td>
+<dl>
+<dt>
+<code><b><a name="lastLogin">lastLogin</a></b></code>
+</dt>
+<dd>
+<span class="desc">Time of last login using password or certificate.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=695_15554-LZA7016014_33-V1Uen.FK.html">IpAddress</a>[0..1]<br />noNotification<br />readOnly</code></td><td>
+<dl>
+<dt>
+<code><b><a name="lastLoginTerminal">lastLoginTerminal</a></b></code>
+</dt>
+<dd>
+<span class="desc">Origin of last login.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=694_15554-LZA7016014_33-V1Uen.FK.html">DateTime</a>[0..1]<br />noNotification<br />readOnly</code></td><td>
+<dl>
+<dt>
+<code><b><a name="lastPasswordChange">lastPasswordChange</a></b></code>
+</dt>
+<dd>
+<span class="desc">The time of last password change. The time will not be updated if the configured password is the same as the one already configured.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string<br />key<br />mandatory<br />noNotification<br />restricted</code></td><td>
+<dl>
+<dt>
+<code><b><a name="maintenanceUserId">maintenanceUserId</a></b></code>
+</dt>
+<dd>
+<span class="desc">Holds the name used when identifying the MO.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=696_15554-LZA7016014_33-V1Uen.FK.html">EcimPassword</a>[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="password">password</a></b></code>
+</dt>
+<dd>
+<span class="desc">Password used for SSH based login.<br />If no password is given, SSH based login will not be available for this user.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=678_15554-LZA7016014_33-V1Uen.FK.html">Role</a>[0..]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="roles">roles</a></b></code>
+</dt>
+<dd>
+<span class="desc">The Roles that define the access control to objects for the given userType.<br />
+<br />Empty when userType = MAINTENANCE_USER, not possible to change.<br />
+<br />When userType = CUSTOMIZED_USER, at least one or more roles must be configured from the predefined roles, the predefined role "Users_Application_Security_Administrator" cannot be configured.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="subjectName">subjectName</a></b></code>
+</dt>
+<dd>
+<span class="desc">This value shall be the subject name of the certificate used for logging in.<br />If no subject name is configured, certificate based login will not be available for this user.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="userName">userName</a></b></code>
+</dt>
+<dd>
+<span class="desc">Optional user name for SSH-based login.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=697_15554-LZA7016014_33-V1Uen.FK.html">UserType</a>
+<br />restricted</code></td><td>
+<dl>
+<dt>
+<code><b><a name="userType">userType</a></b>
+          =
+          MAINTENANCE_USER</code>
+</dt>
+<dd>
+<span class="desc">The user type of this Maintenance User instance.<br />
+<br />When set to MAINTENANCE_USER, this user behaves the same as the legacy maintenance user with full privileges.<br />
+<br />When set to CUSTOMIZED_USER, the access rights are determined by configured role(s) and privilege level is followed based on which role(s) are assigned.</span>
+</dd>
+</dl>
+</td>
+</tr>
+</table>
+<p></p>
+<div align="center" class="footer-info">
+<div class="footer-line">
+<span class="legal-lid">&#160;&#160;class&#160;MaintenanceUser</span>
+</div>
+</div>
+</body>
+</html>

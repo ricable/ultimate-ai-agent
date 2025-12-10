@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:xalan="http://xml.apache.org/xalan" xmlns:lxslt="http://xml.apache.org/xslt" lang="en" xml:lang="en">
+<head>
+<meta name="HTMLPACKLINKS" content="13" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="PREP" content="" />
+<meta name="DATE" content="2025-05-26" />
+<meta name="DOCNO" content="1446/155 54-LZA 701 6014/33-V1 Uen" />
+<meta name="REV" content="FK" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-type" />
+<meta name="THEMES" content="MOM" />
+<meta name="DOCNAME" content="MANAGED OBJECT MODEL" />
+<meta name="TITLE" content="class TransportAutomationAgent" />
+<meta name="SUBTITLE" content="G3G4_MOMCPI CXP2020502_2 R32C08" />
+<link title="Style" href="edw:/alex?fn=hilda.css" type="text/css" rel="stylesheet" />
+<link title="Style" href="edw:/alex?fn=3_15554-LZA7016014_33-V1Uen.FK.css" type="text/css" rel="stylesheet" />
+<script src="edw:/alex?fn=dwcommon.js" language="javascript" type="text/javascript"> </script>
+<title>class TransportAutomationAgent</title>
+</head>
+<body>
+
+<script language="JavaScript" src="edw:/alex?fn=switch_theme.js" type="text/javascript"></script>
+<div id="header">
+<table class="docinfo">
+<tr>
+<td>&nbsp; &nbsp; <span class="fcaption"><span class="caption">Managed Object Model</span>&nbsp; &nbsp; &nbsp; &nbsp; 1446/155 54-LZA 701 6014/33-V1 Uen FK</span>&nbsp; &nbsp; </td>
+</tr>
+</table>
+</div>
+<h1 class="TITLE">
+<a name="TITLE">class&#160;TransportAutomationAgent</a>
+</h1>
+<dl>
+<dd>
+<a href="edw:/alex?fn=210_15554-LZA7016014_33-V1Uen.FK.html">ManagedElement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=219_15554-LZA7016014_33-V1Uen.FK.html">Transport</a>
+<dl class="child_tree">
+<dd>
+<b><a href="edw:/alex?fn=1446_15554-LZA7016014_33-V1Uen.FK.html">TransportAutomationAgent</a></b>
+<dl class="child_tree"></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<p>
+<span class="desc">For future release.</span>
+<br />
+<br />
+</p>
+</td>
+</tr>
+</table>
+<dl>
+<dt>
+<b>References to:</b>
+</dt>
+<dd>
+<a href="edw:/alex?fn=261_15554-LZA7016014_33-V1Uen.FK.html">ManagedObject</a>;
+				<a href="edw:/alex?fn=573_15554-LZA7016014_33-V1Uen.FK.html">NodeCredential</a>;
+				<a href="edw:/alex?fn=574_15554-LZA7016014_33-V1Uen.FK.html">TrustCategory</a>;
+			</dd>
+</dl>
+<table width="100%" cellspacing="0" cellpadding="3" border="1" class="tblcnt">
+<tr class="TableSubHeadingColor">
+<td colspan="2"><b>Attributes</b></td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=2088_15554-LZA7016014_33-V1Uen.FK.html">AvailStatus</a>[0..]<br />noNotification<br />readOnly</code></td><td>
+<dl>
+<dt>
+<code><b><a name="availabilityStatus">availabilityStatus</a></b></code>
+</dt>
+<dd>
+<span class="desc">The availability status.<br />
+<br />It contains details about operationalState.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=261_15554-LZA7016014_33-V1Uen.FK.html">ManagedObject</a>
+<br />mandatory<br />restricted</code></td><td>
+<dl>
+<dt>
+<code><b><a name="localIpAddress">localIpAddress</a></b></code>
+</dt>
+<dd>
+<span class="desc">Local IP address for automation agent.</span>
+<br />
+<br />
+<span class="pmhd">Dependencies: </span>Refers to AddressIPv4 MO or AddressIPv6 MO.<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=573_15554-LZA7016014_33-V1Uen.FK.html">NodeCredential</a>[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="nodeCredential">nodeCredential</a></b></code>
+</dt>
+<dd>
+<span class="desc">Credential used for TLS over Ericsson internal interface Ni1 between TIF and TIF agent.<br />DN of NodeCredential MO in certificate management.<br />If set, communication over Ni1 is secured using TLS.<br />If not set, communication over Ni1 is not secured.</span>
+<br />
+<br />
+<span class="pmhd">Dependencies: </span>Both nodeCredential and trustCategory must be set or neither of them.<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=2089_15554-LZA7016014_33-V1Uen.FK.html">OperState</a>
+<br />noNotification<br />readOnly</code></td><td>
+<dl>
+<dt>
+<code><b><a name="operationalState">operationalState</a></b></code>
+</dt>
+<dd>
+<span class="desc">The operational state.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=2090_15554-LZA7016014_33-V1Uen.FK.html">IpDNSAddress</a>
+<br />mandatory<br />restricted</code></td><td>
+<dl>
+<dt>
+<code><b><a name="serverAddress">serverAddress</a></b></code>
+</dt>
+<dd>
+<span class="desc">IP address or Fully Qualified Domain Name (FQDN) to automation service server.</span>
+<br />
+<br />
+<span class="pmhd">Dependencies: </span>Must be FQDN or have same IP address family as localIpAddress attribute.<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string<br />key<br />mandatory<br />noNotification<br />restricted</code></td><td>
+<dl>
+<dt>
+<code><b><a name="transportAutomationAgentId">transportAutomationAgentId</a></b></code>
+</dt>
+<dd>
+<span class="desc">The value component of the RDN.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=574_15554-LZA7016014_33-V1Uen.FK.html">TrustCategory</a>[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="trustCategory">trustCategory</a></b></code>
+</dt>
+<dd>
+<span class="desc">Set of certificates trusted for TLS over Ericsson internal interface Ni1 between TIF and TIF agent. DN of TrustCategory MO in certificate management.<br />If set, communication over Ni1 is secured using TLS.<br />If not set, communication over Ni1 is not secured.</span>
+<br />
+<br />
+<span class="pmhd">Dependencies: </span>Both nodeCredential and trustCategory must be set or neither of them.<br />
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="userLabel">userLabel</a></b>
+			 [
+			 
+			 1..128
+			 ]
+		      </code>
+</dt>
+<dd>
+<span class="desc">Label for free use.</span>
+</dd>
+</dl>
+</td>
+</tr>
+</table>
+<p></p>
+<div align="center" class="footer-info">
+<div class="footer-line">
+<span class="legal-lid">&#160;&#160;class&#160;TransportAutomationAgent</span>
+</div>
+</div>
+</body>
+</html>

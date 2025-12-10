@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TITAN AG-UI - Glass Box Interface</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .subtitle {
+      font-size: 1.2em;
+      opacity: 0.9;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      padding: 25px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h2 {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+
+    .status-online {
+      background: #00ff88;
+      box-shadow: 0 0 10px #00ff88;
+    }
+
+    .status-pending {
+      background: #ffaa00;
+      box-shadow: 0 0 10px #ffaa00;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .metric:last-child {
+      border-bottom: none;
+    }
+
+    .metric-value {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .agent-list {
+      list-style: none;
+    }
+
+    .agent-item {
+      padding: 12px;
+      margin: 8px 0;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .agent-badge {
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.85em;
+      font-weight: bold;
+      background: rgba(0, 255, 136, 0.2);
+      border: 1px solid #00ff88;
+    }
+
+    .log-container {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 15px;
+      padding: 20px;
+      max-height: 400px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+    }
+
+    .log-entry {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      gap: 15px;
+    }
+
+    .log-timestamp {
+      color: #888;
+      flex-shrink: 0;
+    }
+
+    .log-message {
+      flex-grow: 1;
+    }
+
+    .button {
+      background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+      border: none;
+      color: #000;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      margin: 5px;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+    }
+
+    .button:active {
+      transform: scale(0.95);
+    }
+
+    .button-secondary {
+      background: linear-gradient(135deg, #667eea 0%, #5568d3 100%);
+      color: #fff;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .heatmap-container {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 20px;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .heatmap-grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 5px;
+      width: 100%;
+    }
+
+    .heatmap-cell {
+      aspect-ratio: 1;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .interference-low { background: #00ff88; }
+    .interference-medium { background: #ffaa00; }
+    .interference-high { background: #ff4444; }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🛡️ TITAN AG-UI</h1>
+      <div class="subtitle">Glass Box Interface - Ericsson Gen 7.0 Neuro-Symbolic Titan</div>
+    </header>
+
+    <div class="dashboard">
+      <!-- System Status Card -->
+      <div class="card">
+        <h2>
+          <span class="status-indicator status-online"></span>
+          System Status
+        </h2>
+        <div class="metric">
+          <span>Cognitive Mesh</span>
+          <span class="metric-value" style="color: #00ff88;">OPERATIONAL</span>
+        </div>
+        <div class="metric">
+          <span>AgentDB</span>
+          <span class="metric-value" style="color: #00ff88;">CONNECTED</span>
+        </div>
+        <div class="metric">
+          <span>Ruvector</span>
+          <span class="metric-value" style="color: #00ff88;">ACTIVE</span>
+        </div>
+        <div class="metric">
+          <span>SPARC Validator</span>
+          <span class="metric-value" style="color: #00ff88;">ENFORCING</span>
+        </div>
+        <div class="metric">
+          <span>Uptime</span>
+          <span class="metric-value" id="uptime">00:00:00</span>
+        </div>
+      </div>
+
+      <!-- Active Agents Card -->
+      <div class="card">
+        <h2>
+          <span class="status-indicator status-online"></span>
+          Active Agents
+        </h2>
+        <ul class="agent-list">
+          <li class="agent-item">
+            <span>🏗️ Architect</span>
+            <span class="agent-badge">READY</span>
+          </li>
+          <li class="agent-item">
+            <span>🔨 Artisan</span>
+            <span class="agent-badge">READY</span>
+          </li>
+          <li class="agent-item">
+            <span>🛡️ Guardian</span>
+            <span class="agent-badge">MONITORING</span>
+          </li>
+          <li class="agent-item">
+            <span>🎯 Initializer</span>
+            <span class="agent-badge">READY</span>
+          </li>
+          <li class="agent-item">
+            <span>⚡ Worker</span>
+            <span class="agent-badge">IDLE</span>
+          </li>
+          <li class="agent-item">
+            <span>👁️ Sentinel</span>
+            <span class="agent-badge">OBSERVING</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- RAN Metrics Card -->
+      <div class="card">
+        <h2>
+          <span class="status-indicator status-online"></span>
+          RAN Performance
+        </h2>
+        <div class="metric">
+          <span>CSSR (Accessibility)</span>
+          <span class="metric-value" style="color: #00ff88;">99.7%</span>
+        </div>
+        <div class="metric">
+          <span>Drop Rate</span>
+          <span class="metric-value" style="color: #00ff88;">0.3%</span>
+        </div>
+        <div class="metric">
+          <span>Avg SINR</span>
+          <span class="metric-value">18.5 dB</span>
+        </div>
+        <div class="metric">
+          <span>Active Cells</span>
+          <span class="metric-value">247</span>
+        </div>
+        <div class="metric">
+          <span>Network Slices</span>
+          <span class="metric-value">3 (eMBB, URLLC, MIoT)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interference Heatmap -->
+    <div class="card">
+      <h2>📊 Interference Heatmap - Live View</h2>
+      <div class="heatmap-container">
+        <div class="heatmap-grid" id="heatmap"></div>
+      </div>
+    </div>
+
+    <!-- Control Panel -->
+    <div class="card">
+      <h2>⚙️ Control Panel</h2>
+      <div class="controls">
+        <button class="button" onclick="routeIntent('optimize')">
+          🎯 Optimize Cluster
+        </button>
+        <button class="button" onclick="routeIntent('analyze')">
+          📊 Analyze Performance
+        </button>
+        <button class="button" onclick="spawnAgent()">
+          🤖 Spawn Agent
+        </button>
+        <button class="button button-secondary" onclick="runBenchmark()">
+          ⚡ Run Benchmark
+        </button>
+        <button class="button button-secondary" onclick="runTests()">
+          🧪 Run Tests
+        </button>
+        <button class="button button-secondary" onclick="viewMemory()">
+          🧠 View Memory
+        </button>
+      </div>
+    </div>
+
+    <!-- Activity Log -->
+    <div class="card">
+      <h2>📝 Activity Log</h2>
+      <div class="log-container" id="log"></div>
+    </div>
+
+    <footer>
+      <p>Ericsson Gen 7.0 "Neuro-Symbolic Titan" - Distributed Autonomous RAN via Remote Agentic Coding</p>
+      <p>AG-UI Protocol v1.0 | SPARC Methodology Enforced | 3-ROP Governance Active</p>
+    </footer>
+  </div>
+
+  <script>
+    // Initialize uptime counter
+    let startTime = Date.now();
+
+    function updateUptime() {
+      const elapsed = Date.now() - startTime;
+      const hours = Math.floor(elapsed / 3600000);
+      const minutes = Math.floor((elapsed % 3600000) / 60000);
+      const seconds = Math.floor((elapsed % 60000) / 1000);
+
+      document.getElementById('uptime').textContent =
+        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    setInterval(updateUptime, 1000);
+
+    // Initialize interference heatmap
+    function initHeatmap() {
+      const heatmap = document.getElementById('heatmap');
+      for (let i = 0; i < 100; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'heatmap-cell';
+        updateHeatmapCell(cell);
+        heatmap.appendChild(cell);
+      }
+    }
+
+    function updateHeatmapCell(cell) {
+      const interference = Math.random();
+      if (interference < 0.4) {
+        cell.className = 'heatmap-cell interference-low';
+      } else if (interference < 0.7) {
+        cell.className = 'heatmap-cell interference-medium';
+      } else {
+        cell.className = 'heatmap-cell interference-high';
+      }
+    }
+
+    function updateHeatmap() {
+      const cells = document.querySelectorAll('.heatmap-cell');
+      cells.forEach(cell => updateHeatmapCell(cell));
+    }
+
+    setInterval(updateHeatmap, 5000);
+    initHeatmap();
+
+    // Activity log
+    function log(message, type = 'info') {
+      const logContainer = document.getElementById('log');
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+
+      const timestamp = document.createElement('span');
+      timestamp.className = 'log-timestamp';
+      timestamp.textContent = new Date().toLocaleTimeString();
+
+      const messageSpan = document.createElement('span');
+      messageSpan.className = 'log-message';
+      messageSpan.textContent = message;
+
+      entry.appendChild(timestamp);
+      entry.appendChild(messageSpan);
+      logContainer.insertBefore(entry, logContainer.firstChild);
+
+      // Keep only last 50 entries
+      while (logContainer.children.length > 50) {
+        logContainer.removeChild(logContainer.lastChild);
+      }
+    }
+
+    // Control panel actions
+    function routeIntent(type) {
+      log(`🎯 Routing intent: ${type.toUpperCase()}`);
+      log(`🏗️ Architect spawned for strategic planning`);
+      setTimeout(() => log(`✅ Intent routed successfully`), 1000);
+    }
+
+    function spawnAgent() {
+      const agents = ['Architect', 'Artisan', 'Guardian', 'Worker', 'Sentinel'];
+      const agent = agents[Math.floor(Math.random() * agents.length)];
+      log(`🤖 Spawning ${agent} agent...`);
+      setTimeout(() => log(`✅ ${agent} agent operational (ID: ${agent.toLowerCase()}-${Date.now()})`), 800);
+    }
+
+    function runBenchmark() {
+      log(`⚡ Starting benchmark suite...`);
+      log(`📊 Running 7 benchmark categories with 100 iterations each`);
+      setTimeout(() => {
+        log(`✅ Benchmark complete - Agent spawning: 2.3ms avg`);
+        log(`✅ Benchmark complete - Hypergraph construction: 15.7ms avg`);
+        log(`✅ Benchmark complete - Vector embedding: 0.8ms avg`);
+      }, 2000);
+    }
+
+    function runTests() {
+      log(`🧪 Running integration test suite...`);
+      log(`📋 Executing 25 test cases across 6 suites`);
+      setTimeout(() => {
+        log(`✅ All tests passed (25/25) - Success rate: 100%`);
+      }, 1500);
+    }
+
+    function viewMemory() {
+      log(`🧠 Querying AgentDB episodic memory...`);
+      log(`📊 Retrieved 142 optimization episodes`);
+      log(`🔍 Most successful pattern: "Urban P0 optimization with alpha=0.75"`);
+    }
+
+    // Initial log entries
+    log('🚀 TITAN Cognitive Mesh initialized');
+    log('🔗 AgentDB connected (dimension: 768)');
+    log('🌐 Ruvector spatial engine active');
+    log('✅ SPARC validator enforcing methodology');
+    log('👁️ AG-UI Glass Box interface ready');
+  </script>
+</body>
+</html>

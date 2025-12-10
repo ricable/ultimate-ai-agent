@@ -1,0 +1,47 @@
+{
+  "name": "kimi-k2-wasm-testing-suite",
+  "version": "1.0.0",
+  "description": "Comprehensive testing and optimization framework for Kimi-K2 Rust-WASM deployment",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test:browser && npm run test:node && npm run test:compatibility",
+    "test:browser": "playwright test",
+    "test:node": "vitest run",
+    "test:compatibility": "node tools/cross-platform-tester.js",
+    "benchmark": "node benchmarks/run-all-benchmarks.js",
+    "memory:profile": "node memory/memory-profiler.js",
+    "performance:analyze": "node performance/performance-analyzer.js",
+    "ci:test": "npm run test && npm run benchmark && npm run memory:profile",
+    "build:test-wasm": "wasm-pack build --target web --out-dir tests/wasm-builds",
+    "serve:test": "http-server tests/browser -p 8080",
+    "report:generate": "node tools/report-generator.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@wasm-tool/wasm-pack-plugin": "^1.7.0",
+    "benchmark": "^2.1.4",
+    "chart.js": "^4.4.0",
+    "http-server": "^14.1.1",
+    "puppeteer": "^21.5.0",
+    "vitest": "^1.0.0",
+    "wasm-feature-detect": "^1.5.0",
+    "webassembly": "^0.11.0"
+  },
+  "dependencies": {
+    "memwatch-next": "^0.3.0",
+    "perf-hooks": "^0.0.1",
+    "systeminformation": "^5.21.0"
+  },
+  "keywords": [
+    "wasm",
+    "webassembly", 
+    "testing",
+    "benchmarking",
+    "performance",
+    "memory-optimization",
+    "kimi-k2",
+    "rust"
+  ],
+  "author": "WasmTester Agent",
+  "license": "MIT"
+}

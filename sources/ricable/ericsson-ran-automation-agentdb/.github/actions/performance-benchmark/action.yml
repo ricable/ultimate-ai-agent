@@ -1,0 +1,22 @@
+name: 'Performance Benchmark'
+description: 'Performance benchmarking and regression detection'
+author: 'Ericsson RAN Team'
+inputs:
+  benchmark-suite:
+    description: 'Benchmark suite to run'
+    required: false
+    default: 'ran-performance'
+  regression-threshold:
+    description: 'Regression detection threshold percentage'
+    required: false
+    default: '5'
+  baseline-branch:
+    description: 'Baseline branch for comparison'
+    required: false
+    default: 'main'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+branding:
+  icon: 'zap'
+  color: 'yellow'

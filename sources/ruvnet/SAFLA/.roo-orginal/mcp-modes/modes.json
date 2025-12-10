@@ -1,0 +1,161 @@
+{
+  "mcpOptimizedModes": {
+    "mcp-intelligent-coder": {
+      "name": "🤖 MCP Intelligent Coder",
+      "slug": "mcp-intelligent-coder",
+      "description": "Advanced code generation and optimization using MCP servers for enhanced intelligence",
+      "model": "claude-3-5-sonnet-20241022",
+      "rulesPath": ".roo/mcp-modes/rules-mcp-intelligent-coder/rules.md",
+      "mcpServers": ["context7", "safla", "perplexity"],
+      "capabilities": [
+        "intelligent_code_generation",
+        "context_aware_implementation",
+        "performance_optimization",
+        "documentation_integration",
+        "test_driven_development"
+      ],
+      "workflow": {
+        "phases": ["analysis", "design", "implementation", "optimization", "validation"],
+        "mcpIntegration": {
+          "context7": ["resolve-library-id", "get-library-docs"],
+          "safla": ["optimize_vector_operations", "analyze_performance_bottlenecks"],
+          "perplexity": ["PERPLEXITYAI_PERPLEXITY_AI_SEARCH"]
+        }
+      }
+    },
+    "mcp-orchestrator": {
+      "name": "🎯 MCP Orchestrator",
+      "slug": "mcp-orchestrator",
+      "description": "Coordinate complex workflows using MCP servers for distributed task management",
+      "model": "claude-3-5-sonnet-20241022",
+      "rulesPath": ".roo/mcp-modes/rules-mcp-orchestrator/rules.md",
+      "mcpServers": ["safla", "perplexity"],
+      "capabilities": [
+        "workflow_coordination",
+        "task_distribution",
+        "resource_management",
+        "performance_monitoring",
+        "adaptive_scheduling"
+      ],
+      "workflow": {
+        "phases": ["planning", "coordination", "execution", "monitoring", "optimization"],
+        "mcpIntegration": {
+          "safla": ["create_agent_session", "interact_with_agent", "monitor_system_health"],
+          "perplexity": ["PERPLEXITYAI_PERPLEXITY_AI_SEARCH"]
+        }
+      }
+    },
+    "mcp-researcher": {
+      "name": "🔬 MCP Researcher",
+      "slug": "mcp-researcher",
+      "description": "Deep research and analysis using MCP servers for comprehensive information gathering",
+      "model": "claude-3-5-sonnet-20241022",
+      "rulesPath": ".roo/mcp-modes/rules-mcp-researcher/rules.md",
+      "mcpServers": ["perplexity", "context7"],
+      "capabilities": [
+        "deep_research",
+        "information_synthesis",
+        "trend_analysis",
+        "knowledge_extraction",
+        "report_generation"
+      ],
+      "workflow": {
+        "phases": ["query_formulation", "research", "analysis", "synthesis", "reporting"],
+        "mcpIntegration": {
+          "perplexity": ["PERPLEXITYAI_PERPLEXITY_AI_SEARCH"],
+          "context7": ["resolve-library-id", "get-library-docs"]
+        }
+      }
+    },
+    "mcp-optimizer": {
+      "name": "⚡ MCP Optimizer",
+      "slug": "mcp-optimizer",
+      "description": "System and code optimization using MCP servers for performance enhancement",
+      "model": "claude-3-5-sonnet-20241022",
+      "rulesPath": ".roo/mcp-modes/rules-mcp-optimizer/rules.md",
+      "mcpServers": ["safla"],
+      "capabilities": [
+        "performance_optimization",
+        "memory_management",
+        "resource_allocation",
+        "bottleneck_analysis",
+        "scalability_enhancement"
+      ],
+      "workflow": {
+        "phases": ["profiling", "analysis", "optimization", "validation", "monitoring"],
+        "mcpIntegration": {
+          "safla": [
+            "optimize_memory_usage",
+            "optimize_vector_operations",
+            "analyze_performance_bottlenecks",
+            "benchmark_vector_operations",
+            "benchmark_memory_performance"
+          ]
+        }
+      }
+    },
+    "mcp-management": {
+      "name": "🏗️ MCP Management",
+      "slug": "mcp-management",
+      "description": "Comprehensive system management using MCP servers for deployment and operations",
+      "model": "claude-3-5-sonnet-20241022",
+      "rulesPath": ".roo/mcp-modes/rules-mcp-management/rules.md",
+      "mcpServers": ["safla"],
+      "capabilities": [
+        "deployment_management",
+        "system_monitoring",
+        "backup_operations",
+        "user_management",
+        "health_monitoring"
+      ],
+      "workflow": {
+        "phases": ["planning", "deployment", "monitoring", "maintenance", "optimization"],
+        "mcpIntegration": {
+          "safla": [
+            "deploy_safla_instance",
+            "check_deployment_status",
+            "scale_deployment",
+            "manage_user_sessions",
+            "backup_safla_data",
+            "restore_safla_data",
+            "monitor_system_health"
+          ]
+        }
+      }
+    },
+    "mcp-tutorial": {
+      "name": "📚 MCP Tutorial",
+      "slug": "mcp-tutorial",
+      "description": "Interactive learning and guidance using MCP servers for educational content",
+      "model": "claude-3-5-sonnet-20241022",
+      "rulesPath": ".roo/mcp-modes/rules-mcp-tutorial/rules.md",
+      "mcpServers": ["context7", "perplexity"],
+      "capabilities": [
+        "interactive_learning",
+        "guided_tutorials",
+        "knowledge_assessment",
+        "adaptive_content",
+        "progress_tracking"
+      ],
+      "workflow": {
+        "phases": ["assessment", "content_delivery", "practice", "evaluation", "advancement"],
+        "mcpIntegration": {
+          "context7": ["resolve-library-id", "get-library-docs"],
+          "perplexity": ["PERPLEXITYAI_PERPLEXITY_AI_SEARCH"]
+        }
+      }
+    }
+  },
+  "configuration": {
+    "defaultTimeout": 60,
+    "retryAttempts": 3,
+    "mcpServerHealthCheck": true,
+    "loggingLevel": "info",
+    "fallbackMode": "standard"
+  },
+  "compatibility": {
+    "minimumMcpVersion": "1.0.0",
+    "requiredServers": ["safla"],
+    "optionalServers": ["context7", "perplexity"]
+  }
+}

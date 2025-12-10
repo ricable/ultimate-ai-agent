@@ -1,0 +1,343 @@
+{
+  "timestamp": "2025-06-20T10:32:27.751206",
+  "system_info": {
+    "platform": "arm64",
+    "cpu_count": 16,
+    "memory_gb": 128.0,
+    "metal_available": true,
+    "mlx_version": "0.26.1",
+    "flash_attention": true
+  },
+  "models": {
+    "TinyLlama 1.1B": {
+      "info": {
+        "name": "TinyLlama 1.1B",
+        "path": "models/mlx/tinyllama-1.1b-chat",
+        "size": "1.1B",
+        "type": "chat"
+      },
+      "loading": {
+        "name": "TinyLlama 1.1B",
+        "size": "1.1B",
+        "load_time": 0.21085810661315918,
+        "memory_usage_mb": 2165.109375,
+        "parameter_count_m": 0,
+        "status": "success"
+      },
+      "inference": {
+        "name": "TinyLlama 1.1B",
+        "avg_inference_time": 0.3909035325050354,
+        "avg_tokens_per_second": 86.33843696351158,
+        "total_tokens": 135,
+        "successful_prompts": 4,
+        "inference_results": [
+          {
+            "prompt": "Hello",
+            "inference_time": 0.3652970790863037,
+            "token_count": 29,
+            "tokens_per_second": 79.38744014196885
+          },
+          {
+            "prompt": "The weather today is",
+            "inference_time": 0.3871631622314453,
+            "token_count": 34,
+            "tokens_per_second": 87.81827228612951
+          },
+          {
+            "prompt": "Artificial intelligence is",
+            "inference_time": 0.45219993591308594,
+            "token_count": 41,
+            "tokens_per_second": 90.66785893547829
+          },
+          {
+            "prompt": "The benefits of machine learning include",
+            "inference_time": 0.35895395278930664,
+            "token_count": 31,
+            "tokens_per_second": 86.36205217719363
+          }
+        ],
+        "status": "success"
+      },
+      "memory_scaling": {
+        "name": "TinyLlama 1.1B",
+        "memory_scaling": [
+          {
+            "sequence_length": 32,
+            "memory_delta_mb": -0.265625,
+            "prompt_length": 16
+          },
+          {
+            "sequence_length": 64,
+            "memory_delta_mb": 0.046875,
+            "prompt_length": 32
+          },
+          {
+            "sequence_length": 128,
+            "memory_delta_mb": 0.03125,
+            "prompt_length": 64
+          },
+          {
+            "sequence_length": 256,
+            "memory_delta_mb": 0.03125,
+            "prompt_length": 128
+          }
+        ],
+        "status": "success"
+      },
+      "training_simulation": {
+        "name": "TinyLlama 1.1B",
+        "training_time": 0.5784876346588135,
+        "memory_delta_mb": 0.609375,
+        "total_examples": 12,
+        "examples_per_second": 20.743745036274607,
+        "status": "success"
+      },
+      "flash_attention": {
+        "name": "TinyLlama 1.1B",
+        "flash_attention_results": {
+          "(1, 128, 64)": {
+            "standard_time": 0.0024247169494628906,
+            "standard_std": 0.0025735814164530415,
+            "flash_time": 0.0007520516713460287,
+            "flash_std": 0.00035157616467989183,
+            "speedup": 3.2241361090563245,
+            "efficiency": 1.0,
+            "standard_throughput": 52789.6668633235,
+            "flash_throughput": 170201.0711190954
+          },
+          "(1, 256, 64)": {
+            "standard_time": 0.0007135868072509766,
+            "standard_std": 0.00021312016165100995,
+            "flash_time": 0.0006236235300699869,
+            "flash_std": 0.00012275822550035823,
+            "speedup": 1.1442589524659106,
+            "efficiency": 1.0,
+            "standard_throughput": 358751.02706314734,
+            "flash_throughput": 410504.07442334655
+          }
+        },
+        "status": "success"
+      }
+    },
+    "Qwen2.5 1.5B": {
+      "info": {
+        "name": "Qwen2.5 1.5B",
+        "path": "models/mlx/qwen2.5-1.5b-instruct",
+        "size": "1.5B",
+        "type": "instruct"
+      },
+      "loading": {
+        "name": "Qwen2.5 1.5B",
+        "size": "1.5B",
+        "load_time": 0.5281329154968262,
+        "memory_usage_mb": 3060.859375,
+        "parameter_count_m": 0,
+        "status": "success"
+      },
+      "inference": {
+        "name": "Qwen2.5 1.5B",
+        "avg_inference_time": 0.6368008255958557,
+        "avg_tokens_per_second": 64.77692606852747,
+        "total_tokens": 165,
+        "successful_prompts": 4,
+        "inference_results": [
+          {
+            "prompt": "Hello",
+            "inference_time": 0.5281972885131836,
+            "token_count": 39,
+            "tokens_per_second": 73.83604734091053
+          },
+          {
+            "prompt": "The weather today is",
+            "inference_time": 0.6518559455871582,
+            "token_count": 42,
+            "tokens_per_second": 64.43141354209567
+          },
+          {
+            "prompt": "Artificial intelligence is",
+            "inference_time": 0.6816251277923584,
+            "token_count": 42,
+            "tokens_per_second": 61.61744672768922
+          },
+          {
+            "prompt": "The benefits of machine learning include",
+            "inference_time": 0.6855249404907227,
+            "token_count": 42,
+            "tokens_per_second": 61.266917539039405
+          }
+        ],
+        "status": "success"
+      },
+      "memory_scaling": {
+        "name": "Qwen2.5 1.5B",
+        "memory_scaling": [
+          {
+            "sequence_length": 32,
+            "memory_delta_mb": 0.3125,
+            "prompt_length": 16
+          },
+          {
+            "sequence_length": 64,
+            "memory_delta_mb": 0.046875,
+            "prompt_length": 32
+          },
+          {
+            "sequence_length": 128,
+            "memory_delta_mb": 0.03125,
+            "prompt_length": 64
+          },
+          {
+            "sequence_length": 256,
+            "memory_delta_mb": -0.015625,
+            "prompt_length": 128
+          }
+        ],
+        "status": "success"
+      },
+      "training_simulation": {
+        "name": "Qwen2.5 1.5B",
+        "training_time": 0.9974229335784912,
+        "memory_delta_mb": 0.296875,
+        "total_examples": 12,
+        "examples_per_second": 12.031004698224809,
+        "status": "success"
+      },
+      "flash_attention": {
+        "name": "Qwen2.5 1.5B",
+        "flash_attention_results": {
+          "(1, 128, 64)": {
+            "standard_time": 0.002626657485961914,
+            "standard_std": 0.0025076136995836984,
+            "flash_time": 0.0009589195251464844,
+            "flash_std": 0.0003644349970495245,
+            "speedup": 2.7391844853306813,
+            "efficiency": 1.0,
+            "standard_throughput": 48731.134791685574,
+            "flash_throughput": 133483.5683739433
+          },
+          "(1, 256, 64)": {
+            "standard_time": 0.0011300245920817058,
+            "standard_std": 0.00030564396016591127,
+            "flash_time": 0.0008017222086588541,
+            "flash_std": 0.00015505670209463171,
+            "speedup": 1.409496431403648,
+            "efficiency": 1.0,
+            "standard_throughput": 226543.7423166186,
+            "flash_throughput": 319312.59635210154
+          }
+        },
+        "status": "success"
+      }
+    },
+    "Llama 3.1 8B": {
+      "info": {
+        "name": "Llama 3.1 8B",
+        "path": "models/mlx/llama-3.1-8b-bf16",
+        "size": "8B",
+        "type": "base"
+      },
+      "loading": {
+        "name": "Llama 3.1 8B",
+        "size": "8B",
+        "load_time": 0.9663569927215576,
+        "memory_usage_mb": 13347.953125,
+        "parameter_count_m": 0,
+        "status": "success"
+      },
+      "inference": {
+        "name": "Llama 3.1 8B",
+        "avg_inference_time": 3.2932082414627075,
+        "avg_tokens_per_second": 13.057176117384296,
+        "total_tokens": 172,
+        "successful_prompts": 4,
+        "inference_results": [
+          {
+            "prompt": "Hello",
+            "inference_time": 3.1179251670837402,
+            "token_count": 42,
+            "tokens_per_second": 13.470496483815058
+          },
+          {
+            "prompt": "The weather today is",
+            "inference_time": 3.2813587188720703,
+            "token_count": 40,
+            "tokens_per_second": 12.190072292294072
+          },
+          {
+            "prompt": "Artificial intelligence is",
+            "inference_time": 3.315943956375122,
+            "token_count": 45,
+            "tokens_per_second": 13.570796307785756
+          },
+          {
+            "prompt": "The benefits of machine learning include",
+            "inference_time": 3.4576051235198975,
+            "token_count": 45,
+            "tokens_per_second": 13.014788673782759
+          }
+        ],
+        "status": "success"
+      },
+      "memory_scaling": {
+        "name": "Llama 3.1 8B",
+        "memory_scaling": [
+          {
+            "sequence_length": 32,
+            "memory_delta_mb": 0.046875,
+            "prompt_length": 16
+          },
+          {
+            "sequence_length": 64,
+            "memory_delta_mb": 0.0,
+            "prompt_length": 32
+          },
+          {
+            "sequence_length": 128,
+            "memory_delta_mb": -0.046875,
+            "prompt_length": 64
+          },
+          {
+            "sequence_length": 256,
+            "memory_delta_mb": 0.0,
+            "prompt_length": 128
+          }
+        ],
+        "status": "success"
+      },
+      "training_simulation": {
+        "name": "Llama 3.1 8B",
+        "training_time": 4.912819862365723,
+        "memory_delta_mb": 0.03125,
+        "total_examples": 12,
+        "examples_per_second": 2.4425890499110445,
+        "status": "success"
+      },
+      "flash_attention": {
+        "name": "Llama 3.1 8B",
+        "flash_attention_results": {
+          "(1, 128, 64)": {
+            "standard_time": 0.0050792694091796875,
+            "standard_std": 0.00620891744049476,
+            "flash_time": 0.0011204083760579426,
+            "flash_std": 0.00043362732968118867,
+            "speedup": 4.5334089941835725,
+            "efficiency": 1.0,
+            "standard_throughput": 25200.47465264739,
+            "flash_throughput": 114244.05844800682
+          },
+          "(1, 256, 64)": {
+            "standard_time": 0.0010013580322265625,
+            "standard_std": 0.0005634353475982214,
+            "flash_time": 0.0006415843963623047,
+            "flash_std": 0.00010847512605881257,
+            "speedup": 1.560758082497213,
+            "efficiency": 1.0,
+            "standard_throughput": 255652.81523809524,
+            "flash_throughput": 399012.1976960238
+          }
+        },
+        "status": "success"
+      }
+    }
+  }
+}

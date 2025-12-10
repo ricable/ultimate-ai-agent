@@ -1,0 +1,42 @@
+{
+  "name": "@musistudio/claude-code-router",
+  "version": "1.0.9",
+  "description": "Use Claude Code without an Anthropics account and route it to another LLM provider",
+  "bin": {
+    "ccr": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "esbuild src/cli.ts --bundle --platform=node --outfile=dist/cli.js && cp node_modules/tiktoken/tiktoken_bg.wasm dist/tiktoken_bg.wasm"
+  },
+  "keywords": [
+    "claude",
+    "code",
+    "router",
+    "llm",
+    "anthropic"
+  ],
+  "author": "musistudio",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "https-proxy-agent": "^7.0.6",
+    "lru-cache": "^11.1.0",
+    "openai": "^4.85.4",
+    "tiktoken": "^1.0.21",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "esbuild": "^0.25.1",
+    "typescript": "^5.8.2"
+  },
+  "publishConfig": {
+    "ignore": [
+      "!build/",
+      "src/",
+      "screenshots/"
+    ]
+  }
+}

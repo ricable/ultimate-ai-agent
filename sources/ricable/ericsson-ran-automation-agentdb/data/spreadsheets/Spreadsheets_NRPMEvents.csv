@@ -1,0 +1,771 @@
+PmEvent Name,Event Id,Event Type,Event Description and Trigger,STANDARDIZED or PROPRIETARY,Event Groups,Message Trace Depth (UE Trace),Interface Classification (UE Trace),DeprecatedSince,ReasonForDeprecation,Periodicity (seconds),SupportedBands,SupportedDeployments,License,LimitationReason,EventStatus
+CuCpA1PolicyCreate,3306,CUCP,Generated for Create Policy in A1 policy procedure.,PROPRIETARY,,,,23.Q2,Planned to be removed. Replaced by CuCpOranA1PolicyCreate.,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Deprecated and Obsolete,DEPRECATED
+CuCpA1PolicyDelete,3307,CUCP,Generated for Delete Policy in A1 policy procedure.,PROPRIETARY,,,,23.Q2,Planned to be removed. Replaced by CuCpOranA1PolicyDelete.,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Deprecated and Obsolete,DEPRECATED
+CuCpA1PolicyQuery,3309,CUCP,Generated for Quary Policy in A1 policy procedure.,PROPRIETARY,,,,23.Q2,Planned to be removed. Replaced by CuCpOranA1PolicyQuery.,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Deprecated and Obsolete,DEPRECATED
+CuCpA1PolicyQueryAll,3308,CUCP,Generated for Query All Policy Identifiers in  A1 policy procedure.,PROPRIETARY,,,,23.Q2,Planned to be removed. Replaced by CuCpOranA1PolicyQueryAll.,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Deprecated and Obsolete,DEPRECATED
+CuCpA1PolicyStatusQuery,3310,CUCP,Create Policy for A1 policy procedure.,PROPRIETARY,,,,23.Q2,Planned to be removed. Replaced by CuCpOranA1PolicyStatusQuery.,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Deprecated and Obsolete,DEPRECATED
+CuCpAmfAutoCreate,3311,CUCP,Monitors automatic AMF term-point creation based on DNS Lookup on 5GS TAI.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpAmfAutoDelete,3312,CUCP,Monitors automatic AMF term-point deletion based on DNS Lookup on 5GS TAI.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpAnrEval,3268,UE,This event for NR is used to monitor the ANR activity.,PROPRIETARY,,"0,1,2",UU,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuCpAnrNeighbRelAdd,3170,NRCELL,Automatic addition or promotion of neighbor cell relation.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpAnrNeighbRelRem,3207,NRCELL,Automatic removal or demotion of neighbor cell relation.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpDataAwareMobilityBufMonConfig,3343,UE,"Generated when downlink buffer monitoring is configured for a UE.
+Contains information about configuration of downlink buffer monitoring for NR Data-Aware Mobility feature.
+",PROPRIETARY,,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,"LicenseKeyId: CXC4012736, LicenseMoId: NrDataAwareMobility, LicenseName: NR Data-Aware Mobility",,USED
+CuCpDataAwareMobilityBufMonReport,3344,UE,"Generated when downlink buffer monitoring is reported for a UE.
+Contains information about downlink buffer monitoring for NR Data-Aware Mobility feature.
+",PROPRIETARY,,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,"LicenseKeyId: CXC4012736, LicenseMoId: NrDataAwareMobility, LicenseName: NR Data-Aware Mobility",,USED
+CuCpDataAwareMobilityThpMonConfig,3345,UE,"Generated when throughput monitoring is configured for a UE.
+Contains information about configuration of throughput monitoring for NR Data-Aware Mobility feature.
+",PROPRIETARY,,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,"LicenseKeyId: CXC4012736, LicenseMoId: NrDataAwareMobility, LicenseName: NR Data-Aware Mobility",,USED
+CuCpDataAwareMobilityThpMonReport,3346,UE,"Generated when throughput monitoring is reported for a UE.
+Contains information about low throughput monitoring for NR Data-Aware Mobility feature.
+",PROPRIETARY,,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,"LicenseKeyId: CXC4012736, LicenseMoId: NrDataAwareMobility, LicenseName: NR Data-Aware Mobility",,USED
+CuCpDrbSuspend,3224,UE,DRB is suspended at state change from RRCRelease to RRCInactive.,PROPRIETARY,CCTR,"0,1,2",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA","LicenseKeyId: CXC4012550, LicenseMoId: RrcInactiveState, LicenseName: RRC Inactive State",,USED
+CuCpE1Reset,3272,CUCP,E1AP RESET message. See 3GPP TS 38.463.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpE1ResetAcknowledge,3273,CUCP,E1AP RESET ACKNOWLEDGE message. See 3GPP TS 38.463.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpEcgiMeasurement,3232,UE,Event for IRAT-mobility-triggered ANR for NR SA.,PROPRIETARY,,"0,1,2",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpEcidMeasurementInitiationRequest,3317,UE,E-CID MEASUREMENT INITIATION REQUEST received.,PROPRIETARY,,"0,1,2",NG,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpEcidMeasurementInitiationResponse,3318,UE,E-CID MEASUREMENT INITIATION RESPONSE sent.,PROPRIETARY,,"0,1,2",NG,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpEndcInitAccessFail,3115,UE,"Event for failure in initial stages of Secondary Node Addition procedure. Failure can have the following causes:
+- Reject because of load control.
+- Other reasons, such as failure of selecting suitable UeHandler.
+",PROPRIETARY,CCTR,"1,2",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpEndcMobilityEvaluation,3063,UE,Whether best neighbor physical cell ID in measurement report is invalid in source cell.,PROPRIETARY,,"1,2",UU,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpEndcSgnbModificationFail,3212,UE,"Event for failure before SgNB initiated SgNB Modification procedure in EN-DC.
+Modification can be triggered by one of following processes:
+- Intra-gNodeB intra-DU PSCell change.
+- Intra-gNodeB inter-DU PSCell change.
+- Other processes.
+Failure can have one of following causes:
+- Reject because of load control.
+- Other reasons.
+",PROPRIETARY,,"1,2",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpF1ConnRelease,3204,CUCP,Release of F1-C connection towards DU from Variable Reference Channel (VRC) Node (CUCP).,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpF1DeactivateTrace,3110,UE,DEACTIVATE TRACE sent. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuCpF1EabMeasurementFailureIndication,3284,UE,EAB MEASUREMENT FAILURE INDICATION message received.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpF1EabMeasurementInitiationFailure,3281,UE,EAB MEASUREMENT INITIATION FAILURE message received.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpF1EabMeasurementInitiationRequest,3279,UE,EAB MEASUREMENT INITIATION REQUEST message sent.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpF1EabMeasurementInitiationResponse,3280,UE,EAB MEASUREMENT INITIATION RESPONSE message received.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpF1EabMeasurementReport,3285,UE,EAB MEASUREMENT REPORT message received.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpF1EabMeasurementTerminationRequest,3282,UE,EAB MEASUREMENT TERMINATION REQUEST message sent.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpF1EabMeasurementTerminationResponse,3283,UE,EAB MEASUREMENT TERMINATION RESPONSE message received.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpF1EabPimDetectionReport,3330,CUCP,EAB PIM DETECTION REPORT message sent.,PROPRIETARY,EXTERNAL,,,,,,Low-band,"EN-DC, NR SA",,,USED
+CuCpF1EabUacBarringInformationControl,3333,CUCP,Monitors UAC Barring Information Control procedure and if EAB UAC BARRING INFORMATION CONTROL message is sent from CU.,PROPRIETARY,EXTERNAL,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpF1EabUacBarringInformationFeedback,3334,CUCP,Monitors UAC Barring Information Feedback procedure and reception of EAB UAC BARRING INFORMATION FEEDBACK message in CU.,PROPRIETARY,EXTERNAL,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpF1EabUeOffloadIndication,3325,UE,EAB UE OFFLOAD INDICATION message received,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,Mid-band,NR SA,"LicenseKeyId: CXC4012635, LicenseMoId: NrRemoteInterferenceManagement, LicenseName: NR Remote Interference Management",,USED
+CuCpF1EabUeOffloadRequest,3319,UE,EAB UE OFFLOAD REQUEST message received,PROPRIETARY,EXTERNAL,"0,1,2",F1,23.Q3,Planned to be removed. Replaced by CuCpF1EabUeOffloadIndication.,,"Low-band, Mid-band",NR SA,"LicenseKeyId: CXC4012635, LicenseMoId: NrRemoteInterferenceManagement, LicenseName: NR Remote Interference Management",Deprecated and Obsolete,DEPRECATED
+CuCpF1EabUeUlQualityMeasurementEvent,3364,UE,EAB UE UL QUALITY MEASUREMENT EVENT message received.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpF1GnbCuConfigurationUpdate,3129,CUCP,GNB-CU CONFIGURATION UPDATE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA Low-Band/Mid-Band,USED
+CuCpF1GnbCuConfigurationUpdateAcknowledge,3130,CUCP,GNB-CU CONFIGURATION UPDATE ACKNOWLEDGE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA Low-Band/Mid-Band,USED
+CuCpF1GnbDuConfigurationUpdate,3132,CUCP,GNB-DU CONFIGURATION UPDATE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA Low-Band/Mid-Band,USED
+CuCpF1GnbCuConfigurationUpdateFailure,3131,CUCP,GNB-CU CONFIGURATION UPDATE FAILURE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA Low-Band/Mid-Band,USED
+CuCpF1GnbDuConfigurationUpdateAcknowledge,3133,CUCP,GNB-DU CONFIGURATION UPDATE ACKNOWLEDGE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA Low-Band/Mid-Band,USED
+CuCpF1GnbDuConfigurationUpdateFailure,3134,CUCP,GNB-DU CONFIGURATION UPDATE FAILURE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for all deployments,USED
+CuCpF1Paging,3213,CUCP,F1 PAGING sent. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpF1PwsCancelRequest,3288,CUCP,"To observe the PWS F1 procedure, F1AP PWS CANCEL REQUEST in CU.",STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpF1PwsCancelResponse,3289,CUCP,"To observe the PWS F1 procedure, F1AP PWS CANCEL RESPONSE in CU.",STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpF1PwsFailureIndication,3316,CUCP,"To observe the PWS F1 procedure, F1AP PWS FAILURE INDICATION in CU.",STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpF1PwsRestartIndication,3315,CUCP,"To observe the PWS F1 procedure, F1AP PWS RESTART INDICATION in CU.",STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpF1Reset,3135,CUCP,RESET message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not used in current deployments,USED
+CuCpF1ResetAcknowledge,3136,CUCP,RESET ACKNOWLEDGE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not used in current deployments,USED
+CuCpF1ResourceStatusFailure,3299,CUCP,RESOURCE STATUS FAILURE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpF1ResourceStatusRequest,3297,CUCP,RESOURCE STATUS REQUEST message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpF1ResourceStatusResponse,3298,CUCP,RESOURCE STATUS RESPONSE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpF1ResourceStatusUpdate,3300,CUCP,RESOURCE STATUS UPDATE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpF1SetupFailure,3126,CUCP,SETUP FAILURE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpF1SetupRequest,3127,CUCP,SETUP REQUEST message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpF1SetupResponse,3128,CUCP,SETUP RESPONSE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpF1TraceStart,3109,UE,TRACE START sent. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuCpF1UeContextModificationConfirm,3156,UE,UE CONTEXT MODIFICATION CONFIRM message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpF1UeContextModificationFailure,3137,UE,UE CONTEXT MODIFICATION FAILURE message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+CuCpF1UeContextModificationRefuse,3157,UE,UE CONTEXT MODIFICATION REFUSE message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpF1UeContextModificationRequest,3138,UE,UE CONTEXT MODIFICATION REQUEST message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+CuCpF1UeContextModificationRequired,3158,UE,UE CONTEXT MODIFICATION REQUIRED message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpF1UeContextModificationResponse,3139,UE,UE CONTEXT MODIFICATION RESPONSE message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+CuCpF1UeContextReleaseCommand,3140,UE,UE CONTEXT RELEASE COMMAND message from gNodeB Central Unit. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+CuCpF1UeContextReleaseComplete,3141,UE,UE CONTEXT RELEASE COMPLETE message from gNodeB Distributed Unit. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+CuCpF1UeContextReleaseRequest,3142,UE,UE CONTEXT RELEASE REQUEST message from gNodeB Distributed Unit. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+CuCpF1UeContextSetupFailure,3123,UE,UE CONTEXT SETUP FAILURE message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+CuCpF1UeContextSetupRequest,3124,UE,UE CONTEXT SETUP REQUEST message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+CuCpF1UeContextSetupResponse,3125,UE,UE CONTEXT SETUP RESPONSE message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+CuCpF1WriteReplaceWarningRequest,3290,CUCP,"To observe the PWS F1 procedure, F1AP WRITE-REPLACE WARNING REQUEST in CUCP",STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpF1WriteReplaceWarningResponse,3291,CUCP,"To observe the PWS F1 procedure, F1AP WRITE-REPLACE WARNING RESPONSE in CU.",STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpIncomingHandoverFailure,3145,UE,"Event for failure can be in initial stages for one of the following procedures in NR SA:
+- Incoming NG handover
+- Intra-gNodeB handover
+- Inter-system IRAT handover from EPS
+- Xn handover
+Failure can have one of following causes:
+- Reject because of load control.
+- Other reasons, such as failure of selecting suitable UeHandler.
+",PROPRIETARY,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpMeasurementConfigurationSa,3328,UE,Configuration of measurement report.,PROPRIETARY,,"0,1,2",UU,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpMeasurementReportEndcEval,3211,UE,"Event related to reception of EN-DC event measurement report.
+",PROPRIETARY,,"0,1,2",UU,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpMeasurementReportNrdcEval,3266,UE,"Event related to reception of NR-DC event measurement report.
+",PROPRIETARY,,"0,1,2",UU,,,,High-band,"NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpMeasurementReportSaEval,3173,UE,"Event related to reception of NR SA event measurement report.
+",PROPRIETARY,,"0,1,2",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpMnNrdcSetupBufMonConfig,3269,UE,"Generated when downlink buffer monitoring is configured for a UE.
+Contains information about configuration of downlink buffer monitoring for NR-DC setup.
+",PROPRIETARY,,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,"LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpMnNrdcSetupBufMonReport,3270,UE,"Generated when downlink buffer monitoring measurement is reported for a UE.
+Contains information related to buffer based NR-DC setup.
+",PROPRIETARY,,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,"LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpNcgiMeasurement,3208,UE,Event for intra-frequency handover-triggered ANR for NR SA.,PROPRIETARY,,"0,1,2",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgDeactivateTrace,3249,UE,DEACTIVATE TRACE message received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpNgAmfConfigurationUpdate,3163,CUCP,AMF CONFIGURATION UPDATE received. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpNgAmfConfigurationUpdateAcknowledge,3164,CUCP,AMF CONFIGURATION UPDATE ACKNOWLEDGE sent. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpNgAmfConfigurationUpdateFailure,3165,CUCP,AMF CONFIGURATION UPDATE FAILURE sent. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpNgDownlinkNasTransport,3025,UE,DOWNLINK NAS TRANSPORT received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgDownlinkRanConfigurationTransfer,3201,CUCP,DOWNLINK RAN CONFIGURATION TRANSFER message received. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgDownlinkRanStatusTransfer,3092,UE,DOWNLINK RAN STATUS TRANSFER received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgDownlinkUeAssociatedNrppaTransport,3215,UE,DOWNLINK UE ASSOCIATED NRPPA TRANSPORT message received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpNgErrorIndicationCommon,3026,CUCP,Common NGAP ERROR INDICATION sent or received. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgErrorIndicationDedicated,3027,UE,Dedicated ERROR INDICATION sent or received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgHandoverCancel,3094,UE,HANDOVER CANCEL sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgHandoverCancelAcknowledge,3093,UE,HANDOVER CANCEL ACKNOWLEDGE received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgHandoverCommand,3095,UE,HANDOVER COMMAND received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgHandoverFailure,3096,UE,HANDOVER FAILURE sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgHandoverNotify,3097,UE,HANDOVER NOTIFY sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgHandoverPreparationFailure,3098,UE,HANDOVER PREPARATION FAILURE received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgHandoverRequest,3100,UE,HANDOVER REQUEST received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgHandoverRequestAcknowledge,3099,UE,HANDOVER REQUEST ACKNOWLEDGE sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgHandoverRequired,3101,UE,HANDOVER REQUIRED sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgInitialContextSetupFailure,3028,UE,INITIAL CONTEXT SETUP FAILURE sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgInitialContextSetupRequest,3029,UE,INITIAL CONTEXT SETUP REQUEST received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgInitialContextSetupResponse,3030,UE,INITIAL CONTEXT SETUP RESPONSE sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgInitialUeMessage,3031,UE,INITIAL UE MESSAGE sent. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgLocationReport,3252,UE,LOCATION REPORT message sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpNgLocationReportingControl,3251,UE,LOCATION REPORTING CONTROL message received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpNgLocationReportingFailureIndication,3253,UE,LOCATION REPORTING FAILURE INDICATION message sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpNgNasNonDeliveryIndication,3023,UE,NAS NON DELIVERY INDICATION sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgPaging,3003,CUCP,PAGING received. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgPathSwitchRequest,3176,UE,NGAP PATH SWITCH REQUEST message sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgPathSwitchRequestAcknowledge,3177,UE,NGAP PATH SWITCH REQUEST ACKNOWLEDGE message received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgPathSwitchRequestFailure,3178,UE,NGAP PATH SWITCH REQUEST FAILURE message received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgPduSessionResourceModifyConfirm,3174,UE,NGAP PDU SESSION RESOURCE MODIFY CONFIRM message received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",Not supported in High-Band SA,USED
+CuCpNgPduSessionResourceModifyIndication,3175,UE,NGAP PDU SESSION RESOURCE MODIFY INDICATION message sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",Not supported in High-Band SA,USED
+CuCpNgPduSessionResourceModifyRequest,3078,UE,PDU SESSION RESOURCE MODIFY REQUEST received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgPduSessionResourceModifyResponse,3079,UE,PDU SESSION RESOURCE MODIFY RESPONSE sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgPduSessionResourceNotify,3155,UE,PDU SESSION RESOURCE NOTIFY sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,Status Preliminary,PRELIMINARY
+CuCpNgPduSessionResourceReleaseCommand,3080,UE,PDU SESSION RESOURCE RELEASE COMMAND received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgPduSessionResourceReleaseResponse,3081,UE,PDU SESSION RESOURCE RELEASE RESPONSE sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgPduSessionResourceSetupRequest,3014,UE,PDU SESSION RESOURCE SETUP REQUEST received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgPduSessionResourceSetupResponse,3015,UE,PDU SESSION RESOURCE SETUP RESPONSE sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgPwsCancelRequest,3118,CUCP,PWS CANCEL REQUEST message.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgPwsCancelResponse,3119,CUCP,PWS CANCEL RESPONSE message. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgPwsFailureIndication,3147,CUCP,PWS FAILURE INDICATION message. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgPwsRestartIndication,3120,CUCP,PWS RESTART INDICATION message. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgRanConfigurationUpdate,3152,CUCP,RAN CONFIGURATION UPDATE sent. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpNgRanConfigurationUpdateAcknowledge,3153,CUCP,RAN CONFIGURATION UPDATE ACKNOWLEDGE received. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpNgRanConfigurationUpdateFailure,3154,CUCP,RAN CONFIGURATION UPDATE FAILURE received. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpNgRerouteNasRequest,3090,UE,REROUTE NAS REQUEST received. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,Status Preliminary,PRELIMINARY
+CuCpNgReset,3032,CUCP,NG RESET received. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgResetAcknowledge,3033,CUCP,NG RESET ACKNOWLEDGE sent. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgSetupFailure,3168,CUCP,NG SETUP FAILURE received. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpNgSetupRequest,3166,CUCP,NG SETUP REQUEST sent. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpNgSetupResponse,3167,CUCP,NG SETUP RESPONSE received. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpNgTraceFailureIndication,3250,UE,TRACE FAILURE INDICATION message sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band",NR SA,,Not verified in High-Band,USED
+CuCpNgTraceStart,3248,UE,TRACE START message received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpNgUeContextModificationFailure,3111,UE,UE CONTEXT MODIFICATION FAILURE sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgUeContextModificationRequest,3112,UE,UE CONTEXT MODIFICATION REQUEST received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgUeContextModificationResponse,3113,UE,UE CONTEXT MODIFICATION RESPONSE sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgUeContextReleaseCommand,3034,UE,UE CONTEXT RELEASE COMMAND received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgUeContextReleaseComplete,3035,UE,UE CONTEXT RELEASE COMPLETE sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgUeContextReleaseRequest,3036,UE,UE CONTEXT RELEASE REQUEST sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgUeRadioCapabilityCheckRequest,3006,UE,UE RADIO CAPABILITY CHECK REQUEST received. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgUeRadioCapabilityCheckResponse,3007,UE,UE RADIO CAPABILITY CHECK RESPONSE sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgUeRadioCapabilityInfoIndication,3037,UE,UE RADIO CAPABILITY INFO INDICATION sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgUplinkNasTransport,3038,UE,UPLINK NAS TRANSPORT sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpNgUplinkRanConfigurationTransfer,3200,CUCP,UPLINK RAN CONFIGURATION TRANSFER message sent. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgUplinkRanStatusTransfer,3102,UE,UPLINK RAN STATUS TRANSFER sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgUplinkUeAssociatedNrppaTransport,3216,UE,UPLINK UE ASSOCIATED NRPPA TRANSPORT message sent. See 3GPP TS 38.413.,STANDARDIZED,,"0,2,3,5",NG,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpNgWriteReplaceWarningRequest,3116,CUCP,WRITE-REPLACE WARNING REQUEST message. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNgWriteReplaceWarningResponse,3117,CUCP,WRITE-REPLACE WARNING RESPONSE message. See 3GPP TS 38.413.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpNrdcInitAccessFail,3274,UE,"Event for failure in initial stages of Secondary Node Addition procedure. Failure can occur due to rejection because of admission control.
+",PROPRIETARY,CCTR,"1,2",X2_XN,,,,High-band,"NR SA, CR NR SA",,,USED
+CuCpOranA1PolicyCreate,3320,CUCP,Generated for create policy in A1 policy procedure.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuCpOranA1PolicyDelete,3321,CUCP,Generated for delete policy in A1 policy procedure.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuCpOranA1PolicyQuery,3323,CUCP,Generated for policy query in A1 policy procedure.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuCpOranA1PolicyQueryAll,3322,CUCP,Generated for all policy identifiers query in A1 policy procedure.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuCpOranA1PolicyStatusQuery,3324,CUCP,Generated for policy status query in A1 policy procedure.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuCpPciConflictDetectedEutra,3335,NRCELL,"New PCI conflict of E-UTRAN cells detected on NRCellCU MO level. In case PCI conflict is resolved and there are other PCI conflicts for this PCI and frequency on NRCellCU MO level, event is also raised.",PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuCpPciConflictDetectedNr,3336,NRCELL,"New PCI conflict of NR cells detected on NRCellCU MO level. In case PCI conflict is resolved and there are other PCI conflicts for this PCI and frequency on NRCellCU MO level, event is also raised.",PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuCpPciConflictResolvedEutra,3337,NRCELL,PCI conflict of E-UTRAN cells resolved event is raised when PCI conflict is resolved and there are no more PCI conflicts for this PCI and frequency on NRCellCU MO level.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuCpPciConflictResolvedNr,3338,NRCELL,PCI conflict of NR cells resolved event is raised when PCI conflict is resolved and there are no more PCI conflicts for this PCI and frequency on NRCellCU MO level.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuCpPerCellDrbSetup,3209,NRCELL,Number of DRBs set up in NR cell.,PROPRIETARY,CCTR,,,,,5,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpPerCellPduSession,3210,NRCELL,Periodic event for monitoring number of PDU session in NR cell.,PROPRIETARY,CCTR,,,,,5,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpPerCellRrcConnectedUe,3172,NRCELL,Periodic event for monitoring number of RRC connected users in NR cell.,PROPRIETARY,CCTR,,,,,5,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpPerCellRrcInactiveUe,3220,NRCELL,Monitors number of RRC inactive users in an NR cell.,PROPRIETARY,,,,,,5,"Low-band, Mid-band","NR SA, CR NR SA","LicenseKeyId: CXC4012550, LicenseMoId: RrcInactiveState, LicenseName: RRC Inactive State",,USED
+CuCpPerCuCpRrcConnectedUe,3171,CUCP,Periodic event used for monitoring number of RRC connected users in gNodeB-CU-CP.,PROPRIETARY,CCTR,,,,,5,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpPerCuCpRrcInactiveUe,3219,CUCP,Monitors number of RRC inactive users in gNodeB-CU-CP.,PROPRIETARY,,,,,,5,"Low-band, Mid-band","NR SA, CR NR SA","LicenseKeyId: CXC4012550, LicenseMoId: RrcInactiveState, LicenseName: RRC Inactive State",,USED
+CuCpPerNgPagingRep,3205,CUCP,Received and discarded NGAP PAGING message in gNodeB-CU.,PROPRIETARY,,,,,,1,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpPerNrCellCuCaConfiguredDl,3202,NRCELL,Number of UE instances using this cell as SPCell with configured downlink SCells in gNodeB-CU-CP.,PROPRIETARY,,,,,,5,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpPerRanPagRep,3214,CUCP,Periodic event for monitoring number of RAN PAGING messages.,PROPRIETARY,,,,,,5,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpPerTsPeriodEnd,3287,UE,Periodic event for monitoring when a periodic multi-layer coordination timeout occurs.,PROPRIETARY,,"0,1,2",UU,,,TrStSaCellProfileUeCfg::mlcPeriodicInterval,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpPerUeMdtM6UlReport,3231,UE,M6 UPLINK measurement received.,PROPRIETARY,MDT,"0,1,2",UU,,,MdtCellProfileUeCfg::m6ReportInterval,"Low-band, Mid-band, High-band","EN-DC, NR SA","LicenseKeyId: CXC4012564, LicenseMoId: NrMinimizationOfDriveTests, LicenseName: NR Minimization of Drive Tests",,USED
+CuCpPerUeMdtReport,3230,UE,M1 measurement received.,STANDARDIZED,MDT,"0,2,3,5",UU,,,MdtCellProfileUeCfg::m1ReportInterval,"Low-band, Mid-band, High-band","EN-DC, NR SA","LicenseKeyId: CXC4012564, LicenseMoId: NrMinimizationOfDriveTests, LicenseName: NR Minimization of Drive Tests",,USED
+CuCpPerUeUcmReport,3331,UE,This event represents UE coverage measurement reports received from UE for a single frequency.,STANDARDIZED,,,,,,UcmNrFreqRelProfile::reportConfigPeriodical{reportAmount},"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpPimDetectionReport,3329,NRCELL,Generated for PIM detection result report. Contains PIM aggressor information for each cell.,PROPRIETARY,,,,,,,Low-band,"EN-DC, NR SA",,,USED
+CuCpProcA1QosModification,3292,UE,Signals that an A1-induced F1 UE Context QoS Modification procedure was performed.,PROPRIETARY,,"0,1,2",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuCpProcDuInitiatedUeCtxtMod,3169,UE,Request and result information for UE Context Modification Required procedure triggered by gNodeB-DU.,PROPRIETARY,,"0,1,2",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpProcEndcMnHoKeepSn,3162,UE,Generated for Master Node handover for keeping Secondary Node with the Intra- or Inter-MN Handover without MN-Initiated SN Change procedure. See 3GPP TS 37.340.,PROPRIETARY,CCTR,"0,1,2",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpProcEndcModification,3146,UE,Generated for Secondary gNodeB Modification procedures. Contains information about modification type and result.,PROPRIETARY,,"0,1,2",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpProcEndcPscellChangeIntraSgnbIn,3276,UE,Generated for intra-gNodeB PSCell Change (A3 mobility) procedure in target NRCellCU.  Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpProcEndcRelease,3073,UE,Generated for EN-DC Release procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpProcEndcSetup,3074,UE,Generated for EN-DC Setup procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpProcFqdnDnsLookup,3313,CUCP,Monitors DNS lookup procedure of NAPTR DNS query type to resolve FQDN.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpProcInitialCtxtEstab,3022,UE,Generated for Initial Context Setup procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpProcIpAddressADnsLookup,3314,CUCP,Monitors DNS lookup procedure of type A or AAAA DNS query types that resolve IPv4 and IPv6 addresses.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpProcLocationReporting,3254,UE,"Generated for Location Reporting procedure. Contains information about request and first response.
+Following event types are excluded:
+          - Stop change of serving cell
+          - Stop UE presence in the area of interest
+          - Cancel location reporting
+Start trigger can be one of the following:
+          - Reception of NGAP LOCATION REPORTING CONTROL message
+          - Reception of NGAP INITIAL CONTEXT SETUP REQUEST message, including Location Reporting Request Type IE
+          - Reception of NGAP HANDOVER REQUEST message, including Location Reporting Request Type IE
+Stop trigger can be one of the following:
+          Success:
+            - Transmission of NGAP LOCATION REPORT message
+          Failure:
+          - Transmission of NGAP LOCATION REPORTING FAILURE INDICATION message
+          - Initial Context Setup procedure failure
+          - NG Handover procedure failure
+",PROPRIETARY,,"0,1,2",NG,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpProcMnNrdcModification,3245,UE,"Generated for Master Node side of NR-DC to monitor Secondary Node Modification procedures. Modification can be initiated by one of the following nodes:
+  - By Master Node, with XnAP S-NODE MODIFICATION REQUEST message.
+  - By Secondary Node, with XnAP S-NODE MODIFICATION REQUIRED message.
+Contains information about modification type and result.
+
+When initiated for Master Node initiated Secondary Node Modification procedure, the following start and stop triggers apply:
+   Start trigger is transmission of XnAP S-NODE MODIFICATION REQUEST.
+   If procedure is successful, stop trigger is reception of F1AP UE CONTEXT MODIFICATION RESPONSE (for RCI) after XnAP S-NODE RECONFIGURATION COMPLETE transmission.
+   If procedure fails, stop trigger is one of the following options:
+         - Reception of XnAP S-NODE MODIFICATION REQUEST REJECT
+         - Expiration of TXnDCprep (XnAP S-NODE MODIFICATION REQUEST ACKNOWLEDGE not received)
+         - Transmission of XnAP UE CONTEXT RELEASE
+         - Transmission of NGAP UE CONTEXT RELEASE REQUEST
+         - RRC Reconfiguration failure
+
+When initiated for Secondary Node initiated Secondary Node Modification procedure, the following start and stop triggers apply:
+   Start trigger is reception of XnAP S-NODE MODIFICATION REQUIRED.
+   If procedure is successful, stop trigger is transmission of XnAP S-NODE MODIFICATION CONFIRM.
+   If procedure fails, stop trigger is transmission of XnAP S-NODE MODIFICATION REFUSE.
+",PROPRIETARY,,"0,1,2",X2_XN,,,,"Low-band, Mid-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpProcMnNrdcRelease,3195,UE,"Generated for Master Node side of NR-DC to monitor Secondary Node Release procedure. Release can be initiated by one of the following nodes:
+  - By Master Node, with XnAP UE CONTEXT RELEASE or XnAP S-NODE RELEASE REQUEST message.
+  - By Secondary Node, with XnAP S-NODE RELEASE REQUIRED message.
+Contains information about request and result.
+
+When initiated by transmission of XnAP UE CONTEXT RELEASE message with no previous XnAP S-NODE RELEASE REQUEST message, trigger is XnAP UE CONTEXT RELEASE message.
+No start or stop, event is triggered immediately.
+
+When initiated by transmission of XnAP S-NODE RELEASE REQUEST message, following start and stop triggers apply:
+   Start trigger is one of the following messages:
+         - E1AP BEARER CONTEXT SETUP REQUEST, sent before transmission of XnAP S-NODE RELEASE REQUEST.
+         - E1AP BEARER CONTEXT MODIFICATION REQUEST, sent before transmission of XnAP S-NODE RELEASE REQUEST.
+   Stop trigger is reception of one of the following messages in case of success:
+         - NGAP PDU SESSION RESOURCE MODIFY CONFIRM.
+         - F1AP UE CONTEXT MODIFICATION RESPONSE for reconfiguration confirm indicator.
+         - E1AP BEARER CONTEXT MODIFICATION RESPONSE after reception of XnAP SN STATUS TRANSFER.
+   Stop trigger is one of the following messages in case of failure:
+         - Transmission of NGAP UE CONTEXT RELEASE REQUEST.
+         - Reception of XnAP S-NODE RELEASE REJECT.
+         - XnAP S-NODE RELEASE REQUEST ACKNOWLEDGE not received.
+         - NGAP PDU SESSION RESOURCE MODIFY CONFIRM not received.
+         - XnAP SN STATUS TRANSFER not received for RLC AM.
+When initiated by reception of XnAP S-NODE RELEASE REQUIRED message, following start and stop triggers apply:
+   Start trigger is reception of XnAP S-NODE RELEASE REQUIRED message.
+   Stop trigger is reception of the following messages in case of success:
+         - NGAP PDU SESSION RESOURCE MODIFY CONFIRM.
+         - F1AP UE CONTEXT MODIFICATION RESPONSE for RCI.
+         - E1AP BEARER CONTEXT MODIFICATION RESPONSE after reception of XnAP SN STATUS TRANSFER.
+   Stop trigger is one of the following procedures in case of failure:
+         - Transmission of NGAP UE CONTEXT RELEASE REQUEST.
+         - NGAP PDU SESSION RESOURCE MODIFY CONFIRM not received.
+         - F1AP UE CONTEXT MODIFICATION RESPONSE for RCI not received.
+         - E1AP BEARER CONTEXT MODIFICATION RESPONSE not received after XnAP UE CONTEXT RELEASE.
+",PROPRIETARY,CCTR,"0,1,2",X2_XN,,,,"Low-band, Mid-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpProcMnNrdcSNodeChange,3261,UE,"Generated for Master Node side of NR-DC to monitor Secondary Node initiated Secondary Node Change procedure.
+Contains information about request and result.
+Start trigger is receiving of XnAP S-NODE CHANGE REQUIRED message.
+Stop trigger in case of success is reception of one of the following messages:
+      - Transmission of XnAP UE CONTEXT RELEASE message
+      - Reception of NGAP PDU SESSION RESOURCE MODIFY CONFIRM
+      - Reception of F1AP UE CONTEXT MODIFICATION RESPONSE message with RCI
+      - Transmission of XnAP SN STATUS TRANSFER message if expected
+      - Reception of E1AP BEARER CONTEXT MODIFICATION RESPONSE message in case of intra-cell handover
+Stop trigger in case of failure is one of the following options:
+      - Transmission of XnAP S-NODE CHANGE REFUSE message to source SgNodeB.
+      - Expiry of GNBCUCPFunction.tXnDCprep for XnAP S-NODE ADDITION REQUEST ACKNOWLEDGE message not received in SN Change procedure.
+      - Transmission of XnAP S-NODE RELEASE REQUEST message to target SgNodeB.
+      - Transmission of XnAP UE CONTEXT RELEASE message to target SgNodeB when XnAP S-NODE CHANGE CONFIRM message is sent to source SgNodeB.
+",PROPRIETARY,,"0,1,2",X2_XN,,,,"Low-band, Mid-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpProcMnNrdcSetup,3196,UE,"Generated for Master Node side of NR-DC to monitor Secondary Node Addition procedure.
+Contains information about request and result.
+Start trigger is transmission of XnAP S-NODE ADDITION REQUEST message for all procedures.
+Stop trigger in case of success:
+  - For initial NR-DC UE  setup is one of following options:
+      - Reception of E1AP BEARER CONTEXT RELEASE COMPLETE message if only SN-terminated bearers exist
+      - Reception of last E1AP BEARER CONTEXT MODIFICATION RESPONSE message if one or more MN-terminated bearers exist
+  - For NR-DC UE setup during S-Node Change is:
+      - Transmission of XnAP UE CONTEXT RELEASE message
+  - For NR-DC UE setup during Master Node inter-gNodeB handover is:
+      - Transmission of NGAP HANDOVER NOTIFY message
+  - For NR-DC UE setup during Master Node intra-gNodeB and intra-cell handovers is one of following options:
+      - Reception of E1AP BEARER CONTEXT RELEASE COMPLETE message if one or more MN-terminated bearers exist in source cell but only SN-terminated bearers exist in target cell
+      - Reception of last E1AP BEARER CONTEXT MODIFICATION RESPONSE message if one or more MN-terminated bearers exist in target cell
+      - Reception or transmission of one of following messages (whichever occurs last) if only SN-terminated bearers exist in both source and target cells:
+          - Reception of F1AP UE CONTEXT MODIFICATION RESPONSE (for RCI) message
+          - Reception of NGAP PDU SESSION RESOURCE MODIFY CONFIRM message
+          - Transmission of XnAP UE CONTEXT RELEASE message
+Stop trigger in case of failure:
+  - For initial NR-DC UE setup is one of following options:
+      - Reception of XnAP S-NODE ADDITION REQUEST REJECT message
+      - XnAP S-NODE ADDITION REQUEST ACKNOWLEDGE message is not received
+      - Transmission of XnAP UE CONTEXT RELEASE message
+      - Transmission of NGAP UE CONTEXT RELEASE REQUEST message
+  - For NR-DC UE setup during S-Node Change is one of following options:
+      - Transmission of XnAP S-NODE CHANGE REFUSE
+      - Reception of XnAP S-NODE ADDITION REQUEST REJECT message
+      - XnAP S-NODE ADDITION REQUEST ACKNOWLEDGE message is not received
+      - Transmission of XnAP UE CONTEXT RELEASE message
+      - Transmission of NGAP UE CONTEXT RELEASE REQUEST message
+  - For NR-DC UE setup during Master Node inter-gNodeB handover is one of following options:
+      - Reception of XnAP S-NODE ADDITION REQUEST REJECT message
+      - XnAP S-NODE ADDITION REQUEST ACKNOWLEDGE message is not received
+      - Transmission of XnAP UE CONTEXT RELEASE message
+      - Transmission of NGAP UE CONTEXT RELEASE REQUEST message
+      - Transmission of NGAP HANDOVER FAILURE message
+   - For NR-DC UE setup during Master Node intra-gNodeB and intra-cell handovers is one of following options:
+      - Reception of XnAP S-NODE ADDITION REQUEST REJECT message
+      - XnAP S-NODE ADDITION REQUEST ACKNOWLEDGE message is not received
+      - Transmission of XnAP UE CONTEXT RELEASE message
+      - Transmission of NGAP UE CONTEXT RELEASE REQUEST message
+",PROPRIETARY,,"0,1,2",X2_XN,,,,"Low-band, Mid-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpProcNgSigConnEstab,3024,UE,Generated for NG Signaling Establishment procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpProcNrHoExeIn,3159,UE,Generated for incoming NR Handover Execution procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2","NG, X2_XN, F1",,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpProcNrHoExeOut,3103,UE,Generated for NR Handover Execution procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2","NG, X2_XN, F1",,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpProcNrHoIcExe,3256,UE,"Generated for NR Intra-Cell Handover Execution procedure.
+Generated only for intra-cell handovers that are not triggered because of Secondary Node addition or release.
+Contains information about request and result.
+Intra-cell handover is triggered in following cases:
+- DRB ID Exhaustion, after successful execution of PDU Session Resource Modify or PDU Session Resource Setup procedures.
+- Security update in NGAP Path Switch Request Acknowledge with NSCI, UE Security Capabilities, or Security Indication IEs.
+- Security update in NGAP UE Context Modification Request with UE Security Capabilities, or Security Key IEs.
+- Start trigger is transmission of RRC RRCReconfiguration message over F1 interface to UE, indicating attempted intra-cell handover execution.
+- Stop trigger for success when NR-DC is not configured is reception of RRC RRCReconfigurationComplete message over F1 interface from UE in target cell.
+- All of following options together are the stop trigger for success with NR-DC configured:
+  - Reception of RRC RRCReconfigurationComplete message over F1 interface from UE in target cell.
+  - Reception of NGAP PDU SESSION RESOURCE MODIFY CONFIRM message from AMF.
+  - Sending of XnAP UE CONTEXT RELEASE message to Secondary Node.
+- Stop trigger for failure is when timeout or execution fails.
+",PROPRIETARY,,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpProcNrHoIcPrep,3255,UE,"Generated for NR Intra-Cell Handover Preparation procedure.
+Generated only for intra-cell handovers that are not triggered because of Secondary Node addition or release.
+Contains information about request and result.
+Intra-cell handover is triggered in following cases:
+- DRB ID Exhaustion, after successful execution of PDU Session Resource Modify or PDU Session Resource Setup procedures
+- Security update in NGAP Path Switch Request Acknowledge with NSCI, UE Security Capabilities, or Security Indication IEs.
+- Security update in NGAP UE Context Modification Request with UE Security Capabilities, or Security Key IEs.
+- Start trigger is the decision to start intra-cell handover after successful execution of PDU Session Resource Modify
+  or PDU Session Resource Setup procedures.
+- Stop trigger for success is transmission of RRC RRCReconfiguration message over F1 interface to UE,
+  indicating successful Handover Preparation procedure and attempted intra-cell handover.
+- Stop trigger for failure is when timeout or preparation fails.
+",PROPRIETARY,,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpProcNrHoPrepIn,3275,UE,Generated for incoming NR Handover Preparation procedure.,PROPRIETARY,,"0,1,2","NG, X2_XN, F1",,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpProcNrHoPrepOut,3104,UE,Generated for NR Handover Preparation procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2","NG, X2_XN, F1",,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpProcNrScellUpdate,3160,UE,Generated for SCell updates after initial setup procedures. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,Not verified in High-Band,USED
+CuCpProcPduSessionResourceModify,3089,UE,Generated for PDU Session Modification procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpProcPduSessionResourceRelease,3091,UE,Generated for PDU Session Release procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpProcPduSessionResourceSetup,3021,UE,Generated for PDU Session Setup procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpProcPwsWriteReplaceWarningCmas,3122,NRCELL,Number of requested CMAS broadcasts.,PROPRIETARY,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpProcPwsWriteReplaceWarningEtws,3121,NRCELL,Requested ETWS Notification broadcasts.,PROPRIETARY,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpProcRrcEstab,3048,UE,Generated for RRC Setup procedure. Contains information about request and result.,PROPRIETARY,CCTR,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpProcRrcReestab,3229,UE,Generated for RRC Reestablishment procedure. Contains information about request and result. See 3GPP TS 38.331.,PROPRIETARY,CCTR,"0,1,2",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpProcRrcReestabDrb,3236,UE,Used for NR Standalone to monitor RRC Reestablishment procedure and the first RRC Reconfiguration procedure after successful UE context retrieval.,PROPRIETARY,CCTR,"0,1,2",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpProcRrcResume,3221,UE,Generated for RRC Resume procedure. See TS 38.331.,PROPRIETARY,CCTR,"0,1,2",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpProcSnNrdcRelease,3197,UE,"Generated for Secondary Node side of NR-DC to monitor Secondary Node Release procedure. Release can be initiated
+by Master Node (XnAP UE CONTEXT RELEASE or XnAP S-NODE RELEASE REQUEST) or by Secondary Node (XnAP S-NODE RELEASE REQUIRED).
+Contains information about request and result.
+
+When initiated by reception of XnAP UE CONTEXT RELEASE with no previous S-NODE RELEASE REQUEST, the trigger is
+XnAP UE CONTEXT RELEASE message. No start or stop event is triggered immediately.
+
+When initiated by reception of XnAP S-NODE RELEASE REQUEST or XnAP S-NODE RELEASE REQUIRED, start trigger is reception of XnAP S-NODE RELEASE REQUEST.
+   Stop trigger in case of success:
+         - Reception of E1AP BEARER CONTEXT RELEASE COMPLETE
+   Stop trigger in case of failure:
+         - E1AP BEARER CONTEXT RELEASE COMPLETE not received
+",PROPRIETARY,,"0,1,2",X2_XN,,,,High-band,"NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpProcSnNrdcModification,3246,UE,"Generated for Secondary Node side of NR-DC to monitor Secondary Node Modification procedures. Modification can be initiated by one of the following nodes:
+  - Master Node, with XnAP S-NODE MODIFICATION REQUEST message.
+  - Secondary Node, with XnAP S-NODE MODIFICATION REQUIRED message.
+  - Secondary Node, with E1AP EAB GNB CUUP HIGH RATE DRB NOTIFICATION message.
+Contains information about modification type and result.
+
+When Secondary Node Modification procedure is initiated by Master Node, following start and stop triggers exist:
+   - Start trigger is reception of XnAP S-NODE MODIFICATION REQUEST
+   - If procedure is successful, stop trigger is reception of XnAP S-NODE RECONFIGURATION COMPLETE message followed by one of following messages:
+         - E1AP BEARER CONTEXT MODIFICATION RESPONSE message (not present in case of QoS modification)
+         - F1AP UE CONTEXT MODIFICATION RESPONSE message
+   If procedure is aborted, stop trigger is reception of XnAP UE CONTEXT RELEASE message.
+   If procedure fails, stop trigger is one of following options:
+         - Transmission of XnAP S-NODE MODIFICATION REQUEST REJECT message
+         - Transmission of XnAP S-NODE RELEASE REQUIRED message
+         - XnAP S-NODE RECONFIGURATION COMPLETE message not received
+
+When Secondary Node Modification procedure is initiated by CU-UP on Secondary Node, following start and stop triggers exist::
+   - Start trigger is reception of E1AP BEARER CONTEXT MODIFICATION REQUIRED message.
+   - If procedure is successful, stop trigger is transmission of E1AP BEARER CONTEXT MODIFICATION CONFIRM message (Cell Group Information IE is not present).
+   If procedure is aborted, stop trigger is one of following options:
+         - Reception of XnAP S-NODE MODIFICATION REQUEST message
+         - Reception of XnAP UE CONTEXT RELEASE message
+         - Reception of XnAP S-NODE RELEASE REQUEST message, followed by transmission of E1AP BEARER CONTEXT MODIFICATION CONFIRM message (Cell Group Information IE is present)
+   If procedure fails, stop trigger is one of following options:
+         - Consistency check failure of E1AP BEARER CONTEXT MODIFICATION REQUIRED message
+         - Reception of XnAP S-NODE MODIFICATION REFUSE message
+         - Consistency check failure of XnAP S-NODE MODIFICATION CONFIRM message
+         - Expiration of the GNBCUCPFunction.tXnDcOverall timer, followed by transmission of E1AP BEARER CONTEXT MODIFICATION CONFIRM message (Cell Group Information IE is present)
+
+When Secondary Node Modification procedure is initiated by CU-UP on Secondary Node because high rate is detected, following start and stop triggers exist:
+   - Start trigger is reception of E1AP EAB GNB CUUP HIGH RATE DRB NOTIFICATION message
+   - If procedure is successful, stop trigger is reception of XnAP S-NODE MODIFICATION CONFIRM message
+   If procedure is aborted, stop trigger is one of following options:
+         - Reception of XnAP S-NODE MODIFICATION REQUEST message, followed by transmission of F1AP UE CONTEXT MODIFICATION REQUEST message (the RRCReconfigurationCompleteIndicator IE indicates failure)
+           if CellGroupConfig was received in F1AP UE CONTEXT MODIFICATION RESPONSE message
+         - Reception of XnAP UE CONTEXT RELEASE message
+         - Reception of XnAP S-NODE RELEASE REQUEST message
+   If procedure fails, stop trigger is one of following options:
+         - Consistency check failure of E1AP EAB GNB CUUP HIGH RATE DRB NOTIFICATION message
+         - Reception of XnAP S-NODE MODIFICATION REFUSE message
+         - Expiration of GNBCUCPFunction.tXnDcOverall timer
+         - Expiration of tF1 timer
+
+When Secondary Node Modification procedure is initiated by DU on Secondary Node, following start and stop triggers exist:
+   - Start trigger is reception of F1AP UE CONTEXT MODIFICATION REQUIRED message
+   - If procedure is successful, stop trigger is reception of F1AP UE CONTEXT MODIFICATION RESPONSE message with RCI after XnAP S-NODE MODIFICATION CONFIRM message is received.
+   If procedure is aborted, stop trigger is one of following options:
+         - Reception of XnAP S-NODE MODIFICATION REQUEST message followed by transmission of F1AP UE CONTEXT MODIFICATION REQUEST message (the RRCReconfigurationCompleteIndicator IE indicates failure)
+         - Reception of XnAP UE CONTEXT RELEASE message
+         - Reception of XnAP S-NODE RELEASE REQUEST message
+   If procedure fails, stop trigger is one of following options:
+         - Consistency check failure of F1AP UE CONTEXT MODIFICATION REQUIRED message
+         - Reception of XnAP S-NODE MODIFICATION REFUSE followed by transmission of F1AP UE CONTEXT MODIFICATION REQUEST (the RRCReconfigurationCompleteIndicator IE indicates failure)
+         - Consistency check failure of XnAP S-NODE MODIFICATION CONFIRM message
+         - Expiration of GNBCUCPFunction.tXnDcOverall timer
+
+When Secondary Node Modification procedure is initiated by an Intra-gNodeB Inter-DU PSCell Change on Secondary Node, following start and stop triggers exist:
+   - Start trigger is reception of XnAP RRC TRANSFER message which after evaluation of received A3 Measurement Report triggers Intra-gNB Inter-DU PSCell Change procedure.
+   - If procedure is successful, stop trigger is reception of F1AP UE CONTEXT MODIFICATION RESPONSE message with RCI after reception of E1AP BEARER CONTEXT MODIFICATION RESPONSE
+     message and reception of XnAP S-NODE MODIFICATION CONFIRM message from MgNB indicating RRCReconfigurationComplete message from UE.
+   If procedure is aborted, stop trigger is one of following options:
+        - Reception of XnAP S-NODE MODIFICATION REQUEST message
+        - Reception of XnAP UE CONTEXT RELEASE message
+        - Reception of XnAP S-NODE RELEASE REQUEST message
+   If procedure fails, stop trigger is one of following options:
+        - Expiration of tE1 timer
+        - Reception of E1AP BEARER CONTEXT MODIFICATION FAILURE message
+        - Consistency check failure of E1AP BEARER CONTEXT MODIFICATION RESPONSE message
+        - Expiration of tF1 timer
+        - Reception of F1AP UE CONTEXT SETUP FAILURE message
+        - Consistency check failure of F1AP UE CONTEXT SETUP RESPONSE message
+        - Expiration of GNBCUCPFunction.tXnDcOverall timer
+        - Reception of XnAP S-NODE MODIFICATION REFUSE message
+        - Consistency check failure of XnAP S-NODE MODIFICATION CONFIRM message
+        - Reception of F1AP UE CONTEXT MODIFICATION FAILURE message
+        - Consistency check failure of F1AP UE CONTEXT MODIFICATION RESPONSE message
+",PROPRIETARY,,"0,1,2",X2_XN,,,,High-band,"NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpProcSnNrdcSNodeChange,3260,UE,"Generated for Secondary Node side of NR-DC to monitor Secondary Node initiated Secondary Node Change procedure.
+Contains information about request and result.
+Start trigger is transmission of XnAP S-NODE CHANGE REQUIRED message.
+Stop trigger in case of success is receiving XnAP: S-NODE CHANGE CONFIRM message.
+Following stop triggers are received if procedure is aborted:
+      - XnAP S-NODE RELEASE REQUEST message
+      - XnAP S-NODE MODIFICATION REQUEST message
+      - XnAP UE CONTEXT RELEASE message
+Following stop triggers occur at failure:
+      - Receiving XnAP S-NODE CHANGE REFUSE message
+      - Not receiving XnAP S-NODE CHANGE CONFIRM message
+",PROPRIETARY,,"0,1,2",X2_XN,,,,High-band,"NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpProcSnNrdcSetup,3198,UE,"Generated for Secondary Node side of NR-DC to monitor Secondary Node Addition procedure.
+Contains information about request and result.
+Start trigger is reception of XnAP S-NODE ADDITION REQUEST.
+Stop triggers is reception of the following messages in case of success:
+      - E1AP BEARER CONTEXT MODIFICATION RESPONSE
+      - F1AP UE CONTEXT MODIFICATION RESPONSE
+      - XnAP S-NODE RECONFIGURATION COMPLETE
+Stop triggers are the following if procedure is aborted:
+      - Reception of XnAP S-NODE RELEASE REQUEST
+      - Reception of XnAP UE CONTEXT RELEASE
+Stop triggers are the following in case of failure:
+      - Transmission of XnAP S-NODE ADDITION REQUEST REJECT
+      - Transmission of XnAP S-NODE RELEASE REQUIRED
+      - XnAP S-NODE RECONFIGURATION COMPLETE not received
+",PROPRIETARY,,"0,1,2",X2_XN,,,,High-band,"NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpProcUeCapabilityEnquiry,3257,UE,Generated for RRC UE Capability Enquiry procedure.,PROPRIETARY,,"0,1,2",UU,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpProcUeCtxtMod,3114,UE,Generated for UE Context Modification procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpProcUeCtxtRel,3055,UE,Generated for UE Context Release procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",NG,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpProcX2MnInitiatedSgnbModification,3105,UE,Generated for Master Node Initiated Secondary gNodeB Modification procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpProcX2SgnbAdditionPreparation,3065,UE,Generated for Secondary gNodeB Addition Preparation procedure. Contains information about request and result.,PROPRIETARY,,"0,1,2",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpProcX2SgnbChange,3066,UE,Generated for Secondary gNodeB Change procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpProcX2SnInitiatedSgnbModification,3053,UE,Generated for Secondary Node Initiated Secondary gNodeB Modification procedure. Contains information about request and result.,PROPRIETARY,CCTR,"0,1,2",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpProcXnRetrieveUeCtxt,3237,UE,Used for NR Standalone to monitor 3GPP Retrieve UE Context procedure. See 3GPP TS 38.423 XnAP Retrieve UE Context procedure.,PROPRIETARY,,"0,1,2",X2_XN,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpPwsCancelRequest,3148,NRCELL,PWS CANCEL REQUEST message. Monitors PWS Cancel Request procedure for each cell. See 3GPP TS 38.413.,PROPRIETARY,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpPwsCancelResponse,3149,NRCELL,PWS CANCEL RESPONSE message. Monitors PWS Cancel Response procedure for each cell. See 3GPP TS 38.413.,PROPRIETARY,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpPwsFailureReport,3150,CUCP,"PWS FAILURE INDICATION message. Includes impacted broadcast area, targeted AMFs, and failure type. See 3GPP TS 38.413.",PROPRIETARY,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpPwsRestartReport,3151,CUCP,"PWS RESTART INDICATION message. Includes impacted broadcast area, targeted AMFs, and restart type. See 3GPP TS 38.413.",PROPRIETARY,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpRohcSetup,3247,UE,Generated when Robust Header Compression is configured for a DRB. Contains information about ROHC configuration result.,PROPRIETARY,,"0,1,2",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA","LicenseKeyId: CXC4012592, LicenseMoId: NrRobustHeaderComprForVoice, LicenseName: NR Robust Header Compression for Voice",,USED
+CuCpRrcDlInformationTransfer,3041,UE,DLInformationTransfer sent. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcInitAccessFail,3233,UE,"Event for failure in initial stages of RRCSetupRequest, RRCResumeRequest, and RRCReestablishmentRequest messages. Failure can have the following causes:
+- Message not permitted because of load control.
+- Message not permitted because of admission control.
+",PROPRIETARY,CCTR,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,Not verified,PRELIMINARY
+CuCpRrcMeasurementReport,3005,UE,MeasurementReport received. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpRrcMobilityFromNrCommand,3161,UE,MobilityFromNRCommand sent. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpRrcReconfiguration,3019,UE,RRCReconfiguration sent. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcReconfigurationComplete,3020,UE,RRCReconfigurationComplete received. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcReestablishment,3226,UE,RRCReestablishment message sent. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpRrcReestablishmentComplete,3227,UE,RRCReestablishmentComplete message received. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpRrcReestablishmentRequest,3228,UE,RRCReestablishmentRequest message received. See 3GPP TS 38.331.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpRrcReject,3043,UE,RRCReject sent. See 3GPP TS 38.331.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcRelease,3044,UE,RRCRelease sent. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcResume,3223,UE,RRCResume message sent. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA","LicenseKeyId: CXC4012550, LicenseMoId: RrcInactiveState, LicenseName: RRC Inactive State",,USED
+CuCpRrcResumeComplete,3222,UE,RRCResumeComplete message. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA","LicenseKeyId: CXC4012550, LicenseMoId: RrcInactiveState, LicenseName: RRC Inactive State",,USED
+CuCpRrcResumeRequest,3225,UE,RRCResumeRequest message. See 3GPP TS 38.331.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpRrcScgFailureInformation,3199,UE,RRC SCGFailureInformation message received. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpRrcSecurityModeCommand,3016,UE,SecurityModeCommand sent. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcSecurityModeComplete,3017,UE,SecurityModeComplete received. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcSecurityModeFailure,3018,UE,SecurityModeFailure received. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcSetup,3045,UE,RRCSetup sent. See 3GPP TS 38.331.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcSetupComplete,3046,UE,RRCSetupComplete received. See 3GPP TS 38.331.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcSetupRequest,3047,UE,RRCSetupRequest received. See 3GPP TS 38.331.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcUeAssistanceInformation,3286,UE,RRC UEAssistanceInformation received. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpRrcUeCapabilityEnquiry,3039,UE,UECapabilityEnquiry sent. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcUeCapabilityInformation,3040,UE,UECapabilityInformation received. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcUlDedicatedMessageSegment,3258,UE,ULDedicatedMessageSegment message received. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band",NR SA,,Status Preliminary,PRELIMINARY
+CuCpRrcUlInformationTransfer,3042,UE,ULInformationTransfer received. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpRrcUlInformationTransferMrdc,3263,UE,ULInformationTransferMRDC message received. See 3GPP TS 38.331.,STANDARDIZED,,"0,2,3,5",UU,,,,"Low-band, Mid-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpRwrMobilityDecision,3004,UE,Generated when a UE is Released with Redirection to another carrier.,PROPRIETARY,,"1,2",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpTnlaNgConnState,3301,CUCP,Signals that the state of one or more NG-C TNL Associations was changed.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpUeAssistanceInformation,3347,UE,RRC UEAssistanceInformation received. See 3GPP TS 38.331.,PROPRIETARY,,"0,1,2",UU,,,,"Low-band, Mid-band",NR SA,"LicenseKeyId: CXC4012741, LicenseMoId: NrUeAssistedRrcStatePreference, LicenseName: UE Assistance Information Based RRC State Preference",Status Preliminary,PRELIMINARY
+CuCpUeCapabilityRefreshDecision,3352,UE,Generated at UE capabilities refresh.,PROPRIETARY,,"1,2",UU,24.Q4,Planned to be removed.,,"Low-band, Mid-band, High-band",NR SA,,Deprecated and Obsolete,DEPRECATED
+CuCpUlAwareMlcActivation,3382,CUCP,Indicates Uplink-Aware Advanced Multi-Layer Coordination feature is activated in node.,PROPRIETARY,,,,,,,"Low-band, Mid-band",NR SA,,Status Preliminary,PRELIMINARY
+CuCpUlAwareMlcDeactivation,3383,CUCP,Indicates Uplink-Aware Advanced Multi-Layer Coordination feature is deactivated in node.,PROPRIETARY,,,,,,,"Low-band, Mid-band",NR SA,,Status Preliminary,PRELIMINARY
+CuCpUlMeasurementReportSaEval,3358,UE,Reception of uplink quality measurement report in NR standalone.,PROPRIETARY,,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpUlQualityBasedOnSourceDlRsrp,3365,UE,Evaluation of uplink quality based on RSRP value received for source cell in NR standalone deployments. Event is generated at reception of A5 and B2 measurement reports that belong to uplink Search Zone.,PROPRIETARY,,"0,1,2",UU,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpUlRrcSegmentationEval,3259,UE,Used to monitor UL Dedicated Message assembling,PROPRIETARY,,"0,1,2",UU,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpUnifiedAccessControl,3332,NRCELL,Monitors UAC algorithm. Trigerred every UAC cycle (2 seconds) if calculated barring probability for corresponding barring group is greater than or equal to 1%.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuCpX2ConnRelease,3203,CUCP,Release of X2 connection to an eNodeB.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2DeactivateTrace,3108,UE,DEACTIVATE TRACE received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,NR SA not supported.,USED
+CuCpX2EndcConfigurationTransfer,3106,CUCP,EN-DC CONFIGURATION TRANSFER sent or received. See 3GPP TS 36.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2EndcConfigurationUpdate,3057,CUCP,EN-DC CONFIGURATION UPDATE sent or received. See 3GPP TS 36.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2EndcConfigurationUpdateAcknowledge,3058,CUCP,EN-DC CONFIGURATION UPDATE ACKNOWLEDGE sent. See 3GPP TS 36.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2EndcConfigurationUpdateFailure,3059,CUCP,EN-DC CONFIGURATION UPDATE FAILURE sent. See 3GPP TS 36.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2EndcResourceStatusFailure,3341,CUCP,Standardized PM event to observe X2 EN-DC Resource Status Failure message sent or received by gNodeB.,STANDARDIZED,,,,,,,"Low-band, Mid-band",EN-DC,,,USED
+CuCpX2EndcResourceStatusRequest,3339,CUCP,Standardized PM event to observe X2 EN-DC Resource Status Request message sent or received by gNodeB.,STANDARDIZED,,,,,,,"Low-band, Mid-band",EN-DC,,,USED
+CuCpX2EndcResourceStatusResponse,3340,CUCP,Standardized PM event to observe X2 EN-DC Resource Status Response message sent or received by gNodeB.,STANDARDIZED,,,,,,,"Low-band, Mid-band",EN-DC,,,USED
+CuCpX2EndcResourceStatusUpdate,3342,CUCP,Standardized PM event to observe X2 EN-DC Resource Status Update message sent or received by gNodeB.,STANDARDIZED,,,,,,,"Low-band, Mid-band",EN-DC,,,USED
+CuCpX2EndcX2SetupFailure,3060,CUCP,EN-DC X2 SETUP FAILURE sent or received. See 3GPP TS 36.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2EndcX2SetupRequest,3061,CUCP,EN-DC X2 SETUP REQUEST sent or received. See 3GPP TS 36.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2EndcX2SetupResponse,3062,CUCP,EN-DC X2 SETUP RESPONSE sent or received. See 3GPP TS 36.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2ErrorIndicationCommon,3348,CUCP,Common X2AP ERROR INDICATION message sent or received. See 3GPP TS 36.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",EN-DC,,,USED
+CuCpX2PartialResetConfirm,3302,CUCP,X2AP PARTIAL RESET CONFIRM message. See 3GPP TS 36.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2PartialResetRequired,3303,CUCP,X2AP PARTIAL RESET REQUIRED message. See  3GPP TS 36.423,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2RrcTransfer,3054,UE,RRCTransfer sent or received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SecondaryRatDataUsageReport,3056,UE,SECONDARY RAT DATA USAGE REPORT sent. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbActivityNotification,3002,UE,SGNB ACTIVITY NOTIFICATION sent. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbAdditionRequest,3067,UE,SGNB ADDITION REQUEST received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbAdditionRequestAcknowledge,3068,UE,SGNB ADDITION REQUEST ACKNOWLEDGE sent. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbAdditionRequestReject,3069,UE,SGNB ADDITION REQUEST REJECT sent. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbChangeConfirm,3070,UE,SGNB CHANGE CONFIRM received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbChangeRefuse,3071,UE,SGNB CHANGE REFUSE received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbChangeRequired,3072,UE,SGNB CHANGE REQUIRED sent. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbModificationConfirm,3075,UE,SGNB MODIFICATION CONFIRM received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbModificationRefuse,3076,UE,SGNB MODIFICATION REFUSE message is received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbModificationRequest,3051,UE,SGNB MODIFICATION REQUEST received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbModificationRequestAcknowledge,3049,UE,SGNB MODIFICATION REQUEST ACKNOWLEDGE sent. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbModificationRequestReject,3050,UE,SGNB MODIFICATION REQUEST REJECT sent. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbModificationRequired,3077,UE,SGNB MODIFICATION REQUIRED sent. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbReconfigurationComplete,3082,UE,SGNB RECONFIGURATION COMPLETE received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbReleaseConfirm,3083,UE,SGNB RELEASE CONFIRM received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbReleaseRequest,3084,UE,SGNB RELEASE REQUEST received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbReleaseRequestAcknowledge,3085,UE,SGNB RELEASE REQUEST ACKNOWLEDGE sent. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SgnbReleaseRequired,3086,UE,SGNB RELEASE REQUIRED sent. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2SnStatusTransfer,3087,UE,SN STATUS TRANSFER sent or received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpX2TraceStart,3107,UE,TRACE START received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,NR SA not supported.,USED
+CuCpX2UeContextRelease,3088,UE,UE CONTEXT RELEASE received. See 3GPP TS 36.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","EN-DC, CR EN-DC",,,USED
+CuCpXnActivityNotification,3206,UE,XnAP ACTIVITY NOTIFICATION message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,Status Preliminary,PRELIMINARY
+CuCpXnConfigurationTransfer,3271,CUCP,EAB XN CONFIGURATION TRANSFER sent or received,PROPRIETARY,EXTERNAL,,,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpXnErrorIndicationCommon,3143,CUCP,Common XnAP ERROR INDICATION message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpXnErrorIndicationDedicated,3144,UE,Dedicated XnAP ERROR INDICATION message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpXnHandoverCancel,3179,UE,XnAP HANDOVER CANCEL message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpXnHandoverPreparationFailure,3182,UE,XnAP HANDOVER PREPARATION FAILURE message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpXnHandoverRequest,3180,UE,XnAP HANDOVER REQUEST message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpXnHandoverRequestAcknowledge,3181,UE,XnAP HANDOVER REQUEST ACKNOWLEDGE message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpXnNgRanNodeConfigurationUpdate,3010,CUCP,NG-RAN NODE CONFIGURATION UPDATE sent or received. See 3GPP TS 38.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpXnNgRanNodeConfigurationUpdateAcknowledge,3008,CUCP,NG-RAN NODE CONFIGURATION UPDATE ACKNOWLEDGE sent or received. See 3GPP TS 38.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpXnNgRanNodeConfigurationUpdateFailure,3009,CUCP,NG-RAN NODE CONFIGURATION UPDATE FAILURE sent or received. See 3GPP TS 38.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+CuCpXnResetRequest,3304,CUCP,XnAP RESET REQUEST message. See 3GPP TS 38.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpXnResetResponse,3305,CUCP,XnAP RESET RESPONSE message. See 3GPP TS 38.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpXnResourceStatusFailure,3296,CUCP,Standardized PM event to observe Xn Resource Status Failure message sent or received by gNodeB.,STANDARDIZED,,,,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpXnResourceStatusRequest,3294,CUCP,Standardized PM event to observe Xn Resource Status Request message sent or received by gNodeB.,STANDARDIZED,,,,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpXnResourceStatusResponse,3293,CUCP,Standardized PM event to observe Xn Resource Status Response message sent or received by gNodeB.,STANDARDIZED,,,,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpXnResourceStatusUpdate,3295,CUCP,Standardized PM event to observe Xn Resource Status Update message sent or received by gNodeB.,STANDARDIZED,,,,,,,"Low-band, Mid-band",NR SA,,,USED
+CuCpXnResourceStatusUpdateFail,3381,CUCP,Abnormal XnAP RESOURCE STATUS UPDATE message is received by gNodeB.,PROPRIETARY,,,,,,,"Low-band, Mid-band",NR SA,,Status Preliminary,PRELIMINARY
+CuCpXnRetrieveUeContextFailure,3238,UE,Used for NR Standalone to monitor XnAP RETRIEVE UE CONTEXT FAILURE message. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpXnRetrieveUeContextRequest,3234,UE,Used for NR Standalone to monitor XnAP RETRIEVE UE CONTEXT REQUEST message. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpXnRetrieveUeContextResponse,3235,UE,Used for NR Standalone to monitor XnAP RETRIEVE UE CONTEXT RESPONSE message. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+CuCpXnRrcTransfer,3267,UE,XnAP RRC TRANSFER message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeAdditionRequest,3183,UE,XnAP S-NODE ADDITION REQUEST message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeAdditionRequestAcknowledge,3184,UE,XnAP S-NODE ADDITION REQUEST ACKNOWLEDGE message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeAdditionRequestReject,3185,UE,XnAP S-NODE ADDITION REQUEST REJECT message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeChangeConfirm,3264,UE,XnAP S-NODE CHANGE CONFIRM message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeChangeRefuse,3265,UE,XnAP S-NODE CHANGE REFUSE message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeChangeRequired,3262,UE,XnAP S-NODE CHANGE REQUIRED message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeModificationConfirm,3243,UE,XnAP S-NODE MODIFICATION CONFIRM message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeModificationRefuse,3244,UE,XnAP S-NODE MODIFICATION REFUSE message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeModificationRequest,3239,UE,XnAP S-NODE MODIFICATION REQUEST message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeModificationRequestAcknowledge,3240,UE,XnAP S-NODE MODIFICATION REQUEST ACKNOWLEDGE message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeModificationRequestReject,3241,UE,XnAP S-NODE MODIFICATION REQUEST REJECT message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeModificationRequired,3242,UE,XnAP S-NODE MODIFICATION REQUIRED message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeReconfigurationComplete,3186,UE,XnAP S-NODE RECONFIGURATION COMPLETE message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeReleaseConfirm,3187,UE,XnAP S-NODE RELEASE CONFIRM message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeReleaseReject,3188,UE,XnAP S-NODE RELEASE REJECT message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeReleaseRequest,3189,UE,XnAP S-NODE RELEASE REQUEST message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeReleaseRequestAcknowledge,3190,UE,XnAP S-NODE RELEASE REQUEST ACKNOWLEDGE message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSNodeReleaseRequired,3191,UE,XnAP S-NODE RELEASE REQUIRED message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA","LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",,USED
+CuCpXnSetupFailure,3011,CUCP,XN SETUP FAILURE sent. See 3GPP TS 36.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band","EN-DC, NR SA, CR NR SA",,,USED
+CuCpXnSetupRequest,3012,CUCP,XN SETUP REQUEST sent. See 3GPP TS 36.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band","EN-DC, NR SA, CR NR SA",,,USED
+CuCpXnSetupResponse,3013,CUCP,XN SETUP RESPONSE sent. See 3GPP TS 36.423.,STANDARDIZED,,,,,,,"Low-band, Mid-band","EN-DC, NR SA, CR NR SA",,,USED
+CuCpXnSnStatusTransfer,3192,UE,XnAP SN STATUS TRANSFER message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpXnUeContextRelease,3193,UE,XnAP UE CONTEXT RELEASE message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuCpXnXnuAddressIndication,3194,UE,XnAP Xn-U ADDRESS INDICATION message sent or received. See 3GPP TS 38.423.,STANDARDIZED,,"0,2,3,5",X2_XN,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+CuUpBbDataCollectionLost,4002,CUUP,Missed or incomplete measurements sampled at Baseband application during ROP for a specific level.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuUpDrbRelease,4016,UE,Triggered at DRB release when Robust Header Compression is configured.,PROPRIETARY,,2,E1,,,,"Low-band, Mid-band",NR SA,,,USED
+CuUpE1Reset,4014,CUUP,RESET message. See 3GPP TS 38.463,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",NR SA,,Not supported in HB SA,USED
+CuUpE1ResetAcknowledge,4015,CUUP,RESET ACKNOWLEDGE message. See 3GPP TS 38.463,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",NR SA,,Not supported in HB SA,USED
+CuUpGtpuEchoPathStatus,4017,CUUP,"Signals GTP-U path unreachability or recovery on X2 or Xn interface.
+Generated when GTP-U path failure or GTP-U path recovery is detected by GTP-U Supervision feature.
+",PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not supported in HB SA,USED
+CuUpPerDrbSetup,4009,CUUP,Number of DRBs set up in PpControlLink.,PROPRIETARY,CCTR,,,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuUpPerNfTrafficRep,4003,CUUP,CUUP specific traffic measurements.,PROPRIETARY,CCTR,,,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not supported in HB SA,USED
+CuUpPerPduSession,4010,CUUP,Periodic event for monitoring number of PDU session in PpControlLink.,PROPRIETARY,CCTR,,,,,1,"Low-band, Mid-band, High-band",NR SA,,,USED
+CuUpPerUeRbCgTrafficRep,4008,UE,"Periodic measurement of traffic on following interfaces:
+- X2U (EN-DC traffic to or from MCG, measured in Secondary Node).
+- XnU (NR-DC traffic to or from MCG, measured in Secondary Node).
+- F1U (EN-DC and NR-DC traffic to or from SCG, measured in Secondary Node. NR standalone traffic, without dual connectivity configured, is measured in Master Node).
+",PROPRIETARY,CCTR,2,E1,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuUpPerUeRbCgTrafficRepAggr10,4012,UE,"Time-aggregated periodic measurements of traffic on following interfaces:
+- X2U (EN-DC traffic to or from MCG, measured in Secondary Node).
+- XnU (NR-DC traffic to or from MCG, measured in Secondary Node).
+- F1U (EN-DC and NR-DC traffic to or from SCG, measured in Secondary Node. NR standalone traffic, without dual connectivity configured, is measured in Master Node).
+Time interval is 10 seconds.
+",PROPRIETARY,,,,,,10,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+CuUpPerUeRbS1NgTrafficRep,4004,UE,S1 and NG user plane traffic measurements.,PROPRIETARY,CCTR,"0,1,2",NG,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for EN-DC,USED
+CuUpPerUeRbS1NgTrafficRepAggr10,4013,UE,Time-aggregated periodic measurements of S1 and NG user plane traffic. Time interval is 10 s.,PROPRIETARY,,,,,,10,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for EN-DC,USED
+CuUpPerUeRbX2XnTermTrafficRep,4006,UE,Packet forwarding over X2-U or XN-U.,PROPRIETARY,,"0,1,2",X2_XN,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for NR SA,USED
+CuUpPerUeRbX2XnTrafficRep,4005,UE,Packets forwarded on X2-U or XN-U.,PROPRIETARY,,"0,1,2",X2_XN,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for NR SA,USED
+CuUpProcEndcNrUlPrimaryCgSwitch,4007,UE,Switching of UL primary Cell Group (CG) radio resources.,PROPRIETARY,,"0,1,2",E1,,,,"Low-band, Mid-band, High-band",EN-DC,,,USED
+CuUpProcSnNrdcUlPrimaryCgSwitch,4011,UE,Used for NR-DC switching of Uplink MCG and SCG Radio Resources of Secondary Node Terminated Split DRB procedure.,PROPRIETARY,,"0,1,2",E1,,,,High-band,NR SA,"LicenseKeyId: CXC4012582, LicenseMoId: NrNrDualConnectivity, LicenseName: NR-NR Dual Connectivity",Not supported in HB SA,USED
+DuBbDataCollectionLost,2007,DU,Missed or incomplete measurements sampled at Baseband application during ROP for a specific level.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+DuCellLockUnlock,2049,NRCELL,Information on gNodeB-DU being down.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+DuF1ConnRelease,2050,DU,Release of F1 connection to CUCP.,PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not supported in HB SA,USED
+DuF1DeactivateTrace,2015,UE,Monitors DEACTIVATE TRACE message.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not supported in HB SA,USED
+DuF1EabMeasurementFailureIndication,2077,UE,EAB MEASUREMENT FAILURE INDICATION message sent.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+DuF1EabMeasurementInitiationFailure,2074,UE,EAB MEASUREMENT INITIATION FAILURE message sent.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+DuF1EabMeasurementInitiationRequest,2072,UE,EAB MEASUREMENT INITIATION REQUEST message received.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+DuF1EabMeasurementInitiationResponse,2073,UE,EAB MEASUREMENT INITIATION RESPONSE message sent.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+DuF1EabMeasurementReport,2078,UE,EAB MEASUREMENT REPORT message sent.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+DuF1EabMeasurementTerminationRequest,2075,UE,EAB MEASUREMENT TERMINATION REQUEST message received.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+DuF1EabMeasurementTerminationResponse,2076,UE,EAB MEASUREMENT TERMINATION RESPONSE message sent.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+DuF1EabPimDetectionReport,2094,DU,EAB PIM DETECTION REPORT message received.,PROPRIETARY,EXTERNAL,,,,,,Low-band,"EN-DC, NR SA",,,USED
+DuF1EabUacBarringInformationControl,2095,DU,Monitors UAC Barring Information Control procedure in DU and reception of EAB UAC BARRING INFORMATION CONTROL message from CU.,PROPRIETARY,EXTERNAL,,,,,,"Low-band, Mid-band, High-band",NR SA,,Not supported in HB SA,USED
+DuF1EabUacBarringInformationFeedback,2096,DU,Monitors UAC Barring Information Feedback procedure in DU and if EAB UAC BARRING INFORMATION FEEDBACK message is sent to CU.,PROPRIETARY,EXTERNAL,,,,,,"Low-band, Mid-band, High-band",NR SA,,Not supported in HB SA,USED
+DuF1EabUeOffloadIndication,2092,UE,EAB UE OFFLOAD INDICATION message sent.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,Mid-band,NR SA,"LicenseKeyId: CXC4012635, LicenseMoId: NrRemoteInterferenceManagement, LicenseName: NR Remote Interference Management",,USED
+DuF1EabUeOffloadRequest,2089,UE,EAB UE OFFLOAD REQUEST message sent.,PROPRIETARY,EXTERNAL,"0,1,2",F1,23.Q3,Planned to be removed. Replaced by DuF1EabUeOffloadIndication.,,"Low-band, Mid-band",NR SA,"LicenseKeyId: CXC4012635, LicenseMoId: NrRemoteInterferenceManagement, LicenseName: NR Remote Interference Management",Deprecated and Obsolete.,DEPRECATED
+DuF1EabUeUlQualityMeasurementEvent,2104,UE,EAB UE UL QUALITY MEASUREMENT EVENT message sent.,PROPRIETARY,EXTERNAL,"0,1,2",F1,,,,"Low-band, Mid-band",NR SA,,,USED
+DuF1GnbCuConfigurationUpdate,2026,DU,GNB CU CONFIGURATION UPDATE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+DuF1GnbCuConfigurationUpdateAcknowledge,2024,DU,GNB CU CONFIGURATION UPDATE ACKNOWLEDGE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+DuF1GnbCuConfigurationUpdateFailure,2025,DU,GNB CU CONFIGURATION UPDATE FAILURE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for NR SA,USED
+DuF1GnbDuConfigurationUpdate,2029,DU,GNB DU CONFIGURATION UPDATE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+DuF1GnbDuConfigurationUpdateAcknowledge,2027,DU,GNB DU CONFIGURATION UPDATE ACKNOWLEDGE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+DuF1GnbDuConfigurationUpdateFailure,2028,DU,GNB DU CONFIGURATION UPDATE FAILURE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for all deployments,USED
+DuF1Paging,2058,DU,PAGING message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","NR SA, CR NR SA",,,USED
+DuF1PwsCancelRequest,2081,DU,Monitors the PWS Cancel Request procedure in DU.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,Not supported in MSRBS,USED
+DuF1PwsCancelResponse,2082,DU,Monitors the PWS Cancel Respons procedure in DU.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,Not supported in MSRBS,USED
+DuF1PwsFailureIndication,2087,DU,Monitors the PWS Failure Indication procedure in DU.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,Not supported in MSRBS,USED
+DuF1PwsRestartIndication,2088,DU,Monitors the PWS Restart Indication procedure in DU.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,Not supported in MSRBS.,USED
+DuF1Reset,2031,DU,RESET message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not used in current deployments,USED
+DuF1ResetAcknowledge,2030,DU,RESET ACKNOWLEDGE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not used in current deployments,USED
+DuF1ResourceStatusFailure,2085,DU,RESOURCE STATUS FAILURE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,CR NR SA deployment not supported,USED
+DuF1ResourceStatusRequest,2083,DU,RESOURCE STATUS REQUEST message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,CR NR SA deployment not supported,USED
+DuF1ResourceStatusResponse,2084,DU,RESOURCE STATUS RESPONSE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,CR NR SA deployment not supported,USED
+DuF1ResourceStatusUpdate,2086,DU,RESOURCE STATUS UPDATE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,CR NR SA deployment not supported,USED
+DuF1SetupFailure,2039,DU,SETUP FAILURE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+DuF1SetupRequest,2019,DU,SETUP REQUEST message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+DuF1SetupResponse,2020,DU,SETUP RESPONSE message. See 3GPP TS 38.473.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified for NR SA,USED
+DuF1TraceStart,2014,UE,Monitors TRACE START message.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not supported in HB SA,USED
+DuF1UeContextModificationConfirm,2043,UE,UE CONTEXT MODIFICATION CONFIRM message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not supported in HB SA,USED
+DuF1UeContextModificationFailure,2032,UE,UE CONTEXT MODIFICATION FAILURE message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for NR SA,USED
+DuF1UeContextModificationRefuse,2044,UE,UE CONTEXT MODIFICATION REFUSE message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not supported in HB SA,USED
+DuF1UeContextModificationRequest,2033,UE,UE CONTEXT MODIFICATION REQUEST message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for NR SA,USED
+DuF1UeContextModificationRequired,2045,UE,UE CONTEXT MODIFICATION REQUIRED message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not supported in HB SA,USED
+DuF1UeContextModificationResponse,2034,UE,UE CONTEXT MODIFICATION RESPONSE message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for NR SA,USED
+DuF1UeContextReleaseCommand,2035,UE,UE CONTEXT RELEASE COMMAND message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for NR SA,USED
+DuF1UeContextReleaseComplete,2036,UE,UE CONTEXT RELEASE COMPLETE message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for NR SA,USED
+DuF1UeContextReleaseRequest,2037,UE,UE CONTEXT RELEASE REQUEST message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for NR SA,USED
+DuF1UeContextSetupFailure,2021,UE,UE CONTEXT SETUP FAILURE message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for NR SA,USED
+DuF1UeContextSetupRequest,2022,UE,UE CONTEXT SETUP REQUEST message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for NR SA,USED
+DuF1UeContextSetupResponse,2023,UE,UE CONTEXT SETUP FAILURE message. See 3GPP TS 38.473.,STANDARDIZED,,"0,2,3,5",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified for NR SA,USED
+DuF1WriteReplaceWarningRequest,2079,DU,Monitors the PWS WRITE-REPLACE WARNING REQUEST in DU.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,Not supported in MSRBS,USED
+DuF1WriteReplaceWarningResponse,2080,DU,Monitors the PWS WRITE-REPLACE WARNING RESPONSE in DU.,STANDARDIZED,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,Not supported in MSRBS,USED
+DuPerCellBeamMgmt,2013,NRCELL,Periodical measurements of cell beam.,PROPRIETARY,,,,,,1,High-band,"EN-DC, NR SA",,,USED
+DuPerCellIpnPerPrb,2047,NRCELL,Periodic measurement of interference plus noise per PRB,PROPRIETARY,,,,,,1,High-band,"EN-DC, NR SA",,,USED
+DuPerCellLinkAdaptationRep,2051,NRCELL,Periodic measurements of cell link adaptation.,PROPRIETARY,,,,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+DuPerCellPagingRep,2052,NRCELL,Paging measurement of cell.,PROPRIETARY,,,,,,1,"Low-band, Mid-band, High-band",NR SA,,,USED
+DuPerCellQosTrafficRep,2009,NRCELL,Periodical measurements of cell traffic for each QoS.,PROPRIETARY,CCTR,,,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+DuPerCellResourceRep,2011,NRCELL,Cell resource report.,PROPRIETARY,CCTR,,,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+DuPerCellRimRep,2070,NRCELL,Periodic measurement of RIM,PROPRIETARY,,,,,,1,Mid-band,"EN-DC, NR SA",,,USED
+DuPerCellTrafficRep,2005,NRCELL,Periodical measurements of cell traffic.,PROPRIETARY,CCTR,,,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+DuPerCellTrafficRepExtended,2053,NRCELL,Extended periodical measurements of cell traffic.,PROPRIETARY,,,,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+DuPerCellTrafficRepLcg,2054,NRCELL,Periodical measurements of cell traffic for each logical channel group.,PROPRIETARY,,,,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+DuPerCellUeContextAllocated,2055,NRCELL,Number of UEs with allocated UE context in NRCellDU.,PROPRIETARY,,,,,,5,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+DuPerCellUlConfGrant,2069,NRCELL,Number of UEs configured with UL Configured Grant.,PROPRIETARY,,,,,,5,"Low-band, Mid-band","EN-DC, NR SA",,,USED
+DuPerCellpartitionResourceRep,2059,NRCELL,Cell partition resource report.,PROPRIETARY,,,,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA","LicenseKeyId: CXC4012559, LicenseMoId: NRRadioResourcePartitioning, LicenseName: NR Radio Resource Partitioning",High-Band not supported,USED
+DuPerCellplmnTrafficRep,2090,NRCELL,Periodical measurements of cell traffic volume and scheduling activity with CELLPLMN granularity.,PROPRIETARY,,,,,,1,"Low-band, Mid-band","EN-DC, NR SA",,,USED
+DuPerF1PagingRep,2056,DU,F1AP paging messages in gNodeB-DU.,PROPRIETARY,,,,,,1,"Low-band, Mid-band, High-band",NR SA,,,USED
+DuPerNRCellDUDowntime,2012,NRCELL,"Triggered every second when cell is non-operational, that is, NRCellDU.operationalState is set to DISABLED by system. Issued only when gNodeB is operational.",PROPRIETARY,CCTR,,,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+DuPerRadioBeamMeasurement,2018,NRCELL,"Measurements like RSRP, SINR, or timing advance values for each beam.",PROPRIETARY,,,,,,1,High-band,"EN-DC, NR SA",,,USED
+DuPerRadioCellMeasurement,2010,NRCELL,Periodic measurements of cell radio environment.,PROPRIETARY,CCTR,,,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+DuPerRadioCellMeasurementExtended,2057,NRCELL,Extended periodic measurements of cell radio environment.,PROPRIETARY,,,,,,1,High-band,"EN-DC, NR SA",,Not verified in NR SA,USED
+DuPerRadioUeMeasurement,2004,UE,Periodic measurements of UE radio environment.,PROPRIETARY,CCTR,"1,2",UU,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,High-band not ready,USED
+DuPerRadioUeMeasurementAggr60,2064,UE,Time aggregated periodic measurements of UE radio environment.,PROPRIETARY,,,,,,60,"Low-band, Mid-band, High-band","EN-DC, NR SA","LicenseKeyId: CXC4012601, LicenseMoId: AggregatedPmEvents, LicenseName: Aggregated Pm Events",High-band not ready,USED
+DuPerRbsLicenseRep,2099,DU,Parameters related to utilized level of capacity license for each gNodeB for uplink and downlink.,PROPRIETARY,,,,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not supported in HB SA,USED
+DuPerRimMeasurementReport,2091,NRCELL,Multiple detected RIM-RS sequence info for each RIM-RS report interval (Minimum 1 second).,PROPRIETARY,,,,,,1,Mid-band,NR SA,"LicenseKeyId: CXC4012635, LicenseMoId: NrRemoteInterferenceManagement, LicenseName: NR Remote Interference Management",Status Preliminary,PRELIMINARY
+DuPerSectorCarrierDirEmfPwrCtrl,2071,NRCELL,Periodical measurements of Directional EMF power backoff control.,PROPRIETARY,,,,,,1,"Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,Not verified in High-Band,USED
+DuPerSectorCarrierEmfPwrCtrl,2006,NRCELL,Periodical measurements of power backoff control.,PROPRIETARY,,,,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not verified in High-Band,USED
+DuPerUeBwpConf,2097,NRCELL,"UE distribution among different BWPs within given PCell or PSCell and its SCells, reported from PCell or PSCell node.",PROPRIETARY,,,,,,1,"Low-band, Mid-band","EN-DC, NR SA",,,USED
+DuPerUeRbTrafficRep,2008,UE,Periodic measurements of Radio Bearer (RB) traffic.,PROPRIETARY,CCTR,"1,2",UU,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+DuPerUeRbTrafficRepAggr10,2067,UE,Time-aggregated periodic measurements of Radio Bearer (RB) traffic. Time interval is 10 s.,PROPRIETARY,,,,,,10,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+DuPerUeRbTrafficRepAggr60,2065,UE,Time aggregated periodic measurements of Radio Bearer (RB) traffic.,PROPRIETARY,,,,,,60,"Low-band, Mid-band, High-band","EN-DC, NR SA","LicenseKeyId: CXC4012601, LicenseMoId: AggregatedPmEvents, LicenseName: Aggregated Pm Events",,USED
+DuPerUeTrafficRep,2001,UE,Periodic measurements of UE traffic.,PROPRIETARY,CCTR,"1,2",UU,,,1,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+DuPerUeTrafficRepAggr10,2068,UE,Time-aggregated periodic measurements of UE traffic. Time interval is 10 s.,PROPRIETARY,,,,,,10,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA",,,USED
+DuPerUeTrafficRepAggr60,2066,UE,Time aggregated periodic measurements of UE traffic.,PROPRIETARY,,,,,,60,"Low-band, Mid-band, High-band","EN-DC, NR SA, CR EN-DC, CR NR SA","LicenseKeyId: CXC4012601, LicenseMoId: AggregatedPmEvents, LicenseName: Aggregated Pm Events",,USED
+DuPimMeasurementsRep,2062,NRCELL,Generated for PIM measurements report. Contains information about PIM aggressors based on PIM detection.,PROPRIETARY,,,,24.Q1,Planned to be removed.,,Low-band,"EN-DC, NR SA",,,DEPRECATED
+DuProcRrcAccess,2042,UE,"RRC Setup, RRC Resume, and RRC Reestablishment procedures in DU.",PROPRIETARY,,,,,,,"Low-band, Mid-band, High-band",NR SA,,RRC Resume and RRC Reestablishment procedure is not ready in High-Band,USED
+DuProcUeContextModification,2046,UE,Event for UE context modification.,PROPRIETARY,CCTR,"0,1,2",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+DuProcUeContextRelease,2063,UE,Event for UE context release.,PROPRIETARY,CCTR,"0,1,2",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,Not supported in HB SA,USED
+DuProcUeContextSetup,2048,UE,UE CONTEXT SETUP message.,PROPRIETARY,CCTR,"0,1,2",F1,,,,"Low-band, Mid-band, High-band","EN-DC, NR SA",,,USED
+DuPwsRepetStoppedCmas,2017,NRCELL,Completed CMAS message broadcasts.,PROPRIETARY,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+DuPwsRepetStoppedEtws,2016,NRCELL,Completed ETWS message broadcasts.,PROPRIETARY,,,,,,,"Low-band, Mid-band","NR SA, CR NR SA",,,USED
+DuRrcReestablishmentRequest,2061,UE,Applied only when RRCReestablishmentRequest message is ignored by DU because of Baseband connection intensity control or Baseband MP load control indicating OVERLOAD state. Never sent to CUCP. See 3GPP TS 38.331.,STANDARDIZED,,,,,,,"Low-band, Mid-band",NR SA,,,USED
+DuRrcReject,2041,UE,Applied only when RRCReject message is sent by DU because of Baseband connection intensity control. See 3GPP TS 38.331.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+DuRrcResumeRequest,2060,UE,Only applicable when RRCResumeRequest message is rejected by gNodeB-DU because of Baseband connection intensity control or Baseband MP load control indicating OVERLOAD or VERY HIGH state. Never sent to gNodeB-CU-CP. See 3GPP TS 38.331.,STANDARDIZED,,,,,,,"Low-band, Mid-band",NR SA,,,USED
+DuRrcSetupRequest,2040,UE,Applied only when RRCSetupRequest is rejected by DU because of Baseband connection intensity control. Never sent to CUCP. See 3GPP TS 38.331.,STANDARDIZED,,,,,,,"Low-band, Mid-band, High-band",NR SA,,,USED
+DuRrpShareUpdate,2098,NRCELL,Contains information about partition share updates.,PROPRIETARY,,,,,,,"Low-band, Mid-band","EN-DC, NR SA",,,USED

@@ -1,0 +1,448 @@
+# Production Docker Compose for Synaptic Neural Mesh
+# Full mesh deployment with monitoring and load balancing
+
+version: '3.8'
+
+services:
+  # ==============================================================================
+  # Neural Mesh Core Nodes
+  # ==============================================================================
+  
+  neural-mesh-node-1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: neural-mesh-node-1
+    hostname: neural-mesh-node-1
+    restart: unless-stopped
+    environment:
+      - NODE_ID=neural-node-1
+      - MESH_ROLE=bootstrap
+      - QUDAG_P2P_PORT=4001
+      - QUDAG_RPC_PORT=8080
+      - NEURAL_API_PORT=8081
+      - METRICS_PORT=9090
+      - RUST_LOG=info,qudag=debug,neural_mesh=debug
+      - BOOTSTRAP_MODE=true
+      - NEURAL_MESH_MODE=coordinator
+    ports:
+      - "4001:4001"   # P2P QuDAG
+      - "8080:8080"   # QuDAG RPC
+      - "8081:8081"   # Neural Mesh API
+      - "9090:9090"   # Metrics
+    volumes:
+      - neural-node-1-data:/app/data
+      - neural-node-1-config:/app/config
+      - neural-node-1-logs:/app/logs
+      - ./config/neural-node-1.toml:/app/config/node.toml:ro
+    networks:
+      neural-mesh:
+        ipv4_address: 172.25.0.10
+    healthcheck:
+      test: ["/app/docker/healthcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 1G
+          cpus: '0.5'
+
+  neural-mesh-node-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: neural-mesh-node-2
+    hostname: neural-mesh-node-2
+    restart: unless-stopped
+    depends_on:
+      neural-mesh-node-1:
+        condition: service_healthy
+    environment:
+      - NODE_ID=neural-node-2
+      - MESH_ROLE=worker
+      - QUDAG_P2P_PORT=4001
+      - QUDAG_RPC_PORT=8080
+      - NEURAL_API_PORT=8081
+      - METRICS_PORT=9090
+      - RUST_LOG=info,qudag=info,neural_mesh=debug
+      - BOOTSTRAP_PEERS=/dns4/neural-mesh-node-1/tcp/4001
+      - NEURAL_MESH_MODE=processor
+    ports:
+      - "4002:4001"
+      - "8082:8080"
+      - "8083:8081"
+      - "9091:9090"
+    volumes:
+      - neural-node-2-data:/app/data
+      - neural-node-2-config:/app/config
+      - neural-node-2-logs:/app/logs
+      - ./config/neural-node-2.toml:/app/config/node.toml:ro
+    networks:
+      neural-mesh:
+        ipv4_address: 172.25.0.11
+    healthcheck:
+      test: ["/app/docker/healthcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 1G
+          cpus: '0.5'
+
+  neural-mesh-node-3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: neural-mesh-node-3
+    hostname: neural-mesh-node-3
+    restart: unless-stopped
+    depends_on:
+      neural-mesh-node-1:
+        condition: service_healthy
+    environment:
+      - NODE_ID=neural-node-3
+      - MESH_ROLE=agent
+      - QUDAG_P2P_PORT=4001
+      - QUDAG_RPC_PORT=8080
+      - NEURAL_API_PORT=8081
+      - METRICS_PORT=9090
+      - RUST_LOG=info,qudag=info,neural_mesh=debug
+      - BOOTSTRAP_PEERS=/dns4/neural-mesh-node-1/tcp/4001
+      - NEURAL_MESH_MODE=agent
+    ports:
+      - "4003:4001"
+      - "8084:8080"
+      - "8085:8081"
+      - "9092:9090"
+    volumes:
+      - neural-node-3-data:/app/data
+      - neural-node-3-config:/app/config
+      - neural-node-3-logs:/app/logs
+      - ./config/neural-node-3.toml:/app/config/node.toml:ro
+    networks:
+      neural-mesh:
+        ipv4_address: 172.25.0.12
+    healthcheck:
+      test: ["/app/docker/healthcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 1G
+          cpus: '0.5'
+
+  # ==============================================================================
+  # MCP Integration Server
+  # ==============================================================================
+  
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: neural-mesh-mcp
+    hostname: neural-mesh-mcp
+    restart: unless-stopped
+    depends_on:
+      neural-mesh-node-1:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=production
+      - MCP_PORT=3000
+      - NEURAL_MESH_NODES=neural-mesh-node-1:8081,neural-mesh-node-2:8083,neural-mesh-node-3:8085
+      - LOG_LEVEL=info
+    ports:
+      - "3000:3000"
+    volumes:
+      - mcp-data:/app/data
+      - mcp-config:/app/config
+      - mcp-logs:/app/logs
+    networks:
+      neural-mesh:
+        ipv4_address: 172.25.0.20
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '0.5'
+
+  # ==============================================================================
+  # Monitoring and Observability
+  # ==============================================================================
+  
+  prometheus:
+    image: prom/prometheus:v2.47.0
+    container_name: neural-mesh-prometheus
+    restart: unless-stopped
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--web.enable-lifecycle'
+      - '--storage.tsdb.retention.time=30d'
+      - '--web.enable-admin-api'
+    ports:
+      - "9093:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    networks:
+      - neural-mesh
+    depends_on:
+      - neural-mesh-node-1
+      - neural-mesh-node-2
+      - neural-mesh-node-3
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '0.5'
+
+  grafana:
+    image: grafana/grafana:10.1.0
+    container_name: neural-mesh-grafana
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=neural_mesh_admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-piechart-panel,grafana-worldmap-panel
+      - GF_FEATURE_TOGGLES_ENABLE=publicDashboards
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    networks:
+      - neural-mesh
+    depends_on:
+      - prometheus
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.25'
+
+  loki:
+    image: grafana/loki:2.9.0
+    container_name: neural-mesh-loki
+    restart: unless-stopped
+    command: -config.file=/etc/loki/local-config.yaml
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./monitoring/loki-config.yml:/etc/loki/local-config.yaml:ro
+      - loki-data:/loki
+    networks:
+      - neural-mesh
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.25'
+
+  promtail:
+    image: grafana/promtail:2.9.0
+    container_name: neural-mesh-promtail
+    restart: unless-stopped
+    command: -config.file=/etc/promtail/config.yml
+    volumes:
+      - ./monitoring/promtail-config.yml:/etc/promtail/config.yml:ro
+      - /var/log:/var/log:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - neural-node-1-logs:/app/logs/node-1:ro
+      - neural-node-2-logs:/app/logs/node-2:ro
+      - neural-node-3-logs:/app/logs/node-3:ro
+    networks:
+      - neural-mesh
+    depends_on:
+      - loki
+
+  # ==============================================================================
+  # Data Storage and Caching
+  # ==============================================================================
+  
+  redis:
+    image: redis:7.2-alpine
+    container_name: neural-mesh-redis
+    restart: unless-stopped
+    command: >
+      redis-server
+      --appendonly yes
+      --requirepass ${REDIS_PASSWORD:-neural_mesh_redis_pass}
+      --maxmemory 512mb
+      --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - neural-mesh
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.25'
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: neural-mesh-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=neural_mesh
+      - POSTGRES_USER=neural_mesh
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-neural_mesh_secure_pass}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - neural-mesh
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U neural_mesh"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '0.5'
+
+  # ==============================================================================
+  # Load Balancer and Reverse Proxy
+  # ==============================================================================
+  
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: neural-mesh-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./nginx/htpasswd:/etc/nginx/htpasswd:ro
+    networks:
+      neural-mesh:
+        ipv4_address: 172.25.0.5
+    depends_on:
+      - neural-mesh-node-1
+      - neural-mesh-node-2
+      - neural-mesh-node-3
+      - mcp-server
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+
+networks:
+  neural-mesh:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.25.0.0/16
+          gateway: 172.25.0.1
+    driver_opts:
+      com.docker.network.bridge.name: neural-mesh-br
+      com.docker.network.driver.mtu: 1500
+
+volumes:
+  # Neural Mesh Node Data
+  neural-node-1-data:
+    driver: local
+  neural-node-1-config:
+    driver: local
+  neural-node-1-logs:
+    driver: local
+  neural-node-2-data:
+    driver: local
+  neural-node-2-config:
+    driver: local
+  neural-node-2-logs:
+    driver: local
+  neural-node-3-data:
+    driver: local
+  neural-node-3-config:
+    driver: local
+  neural-node-3-logs:
+    driver: local
+  
+  # MCP Server Data
+  mcp-data:
+    driver: local
+  mcp-config:
+    driver: local
+  mcp-logs:
+    driver: local
+  
+  # Monitoring Data
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  loki-data:
+    driver: local
+  
+  # Database Data
+  redis-data:
+    driver: local
+  postgres-data:
+    driver: local

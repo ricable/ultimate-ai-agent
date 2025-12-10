@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:xalan="http://xml.apache.org/xalan" xmlns:lxslt="http://xml.apache.org/xslt" lang="en" xml:lang="en">
+<head>
+<meta name="HTMLPACKLINKS" content="2" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="PREP" content="" />
+<meta name="DATE" content="2025-05-26" />
+<meta name="DOCNO" content="694/155 54-LZA 701 6014/33-V1 Uen" />
+<meta name="REV" content="FK" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-type" />
+<meta name="THEMES" content="MOM" />
+<meta name="DOCNAME" content="MANAGED OBJECT MODEL" />
+<meta name="TITLE" content="derivedDataType DateTime" />
+<meta name="SUBTITLE" content="G3G4_MOMCPI CXP2020502_2 R32C08" />
+<link title="Style" href="edw:/alex?fn=hilda.css" type="text/css" rel="stylesheet" />
+<link title="Style" href="edw:/alex?fn=3_15554-LZA7016014_33-V1Uen.FK.css" type="text/css" rel="stylesheet" />
+<script src="edw:/alex?fn=dwcommon.js" language="javascript" type="text/javascript"> </script>
+<title>derivedDataType DateTime</title>
+</head>
+<body>
+
+<script language="JavaScript" src="edw:/alex?fn=switch_theme.js" type="text/javascript"></script>
+<div id="header">
+<table class="docinfo">
+<tr>
+<td>&nbsp; &nbsp; <span class="fcaption"><span class="caption">Managed Object Model</span>&nbsp; &nbsp; &nbsp; &nbsp; 694/155 54-LZA 701 6014/33-V1 Uen FK</span>&nbsp; &nbsp; </td>
+</tr>
+</table>
+</div>
+<h1 class="TITLE">
+<a name="TITLE">derivedDataType&#160;DateTime</a>
+</h1>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<p>
+<span class="desc">Represents the international standard for the representation of date and time ( ISO 8601).<br />The string format is "YYYY-MM-DDThh:mm:ss.SSSZ" (excluding quotes).<br />A DateTime string consists of a date part, a time part, and an optional time zone information part. The time zone part may be a "Z", representing the Coordinated Universal Time (UTC) time zone (equals to +00) or a time zone offset (for example, +02:00).<br />If the time zone part is not present, the DateTime value represents local time.<br />
+<br />The following pattern describes the DateTime format:<br />YYYY-MM-DDThh:mm:ss[.S+][Z|+-hh:mm]<br />Where:<br />YYYY = Four digit year<br />MM = Two digit month (01=January, and so on)<br />DD = Two digit day of month (01 through 31)<br />T = Time designator (shows start of time component)<br />hh = Two digits of hour (00 through 23, AM/PM not allowed)<br />mm = Two digits of minute (00 through 59)<br />ss = Two digits of second (00 through 59, leap second not allowed)<br />S+ = One or more digits of decimal fraction of a second<br />Z = Time is UTC<br />+- = + or - character indicating positive or negative offset to UTC<br />
+<br />DateTime values are compliant with ISO 8601 "Representation of dates and times" but are restricted according to RFC 3339 "Date and Time on the Internet: Timestamps". The DateTime format is further restricted as follows:<br />- T and Z designators are upper case.<br />- . (dot) is used to indicate start of fractions of seconds (ISO 8601 also allows comma)</span>
+<br />
+<br />
+</p>
+</td>
+</tr>
+</table>
+<dl>
+<dt>
+<b>References from:</b>
+</dt>
+<dd>
+<a href="edw:/alex?fn=691_15554-LZA7016014_33-V1Uen.FK.html">MaintenanceUser</a>;
+					</dd>
+</dl>
+<table width="100%" cellspacing="0" cellpadding="3" border="1" class="tblcnt">
+<tr valign="top">
+<td class="type" width="1%"><code>string</code></td><td><code><b>DateTime</b>
+                [ 
+                  19..31 
+                ]<br />
+</code>
+<br />Valid values: ^([0-9]{4})-(1[0-2]|0[1-9])-(0[1-9]|[1|2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])([\.][0-9]+){0,1}(([\+|\-](0[0-9]|1[0-9]|2[0-4])(:[0-5][0-9])?)|(Z)?)$<br />
+</td>
+</tr>
+</table>
+<div align="center" class="footer-info">
+<div class="footer-line">
+<span class="legal-lid">&#160;&#160;derivedDataType&#160;DateTime</span>
+</div>
+</div>
+</body>
+</html>

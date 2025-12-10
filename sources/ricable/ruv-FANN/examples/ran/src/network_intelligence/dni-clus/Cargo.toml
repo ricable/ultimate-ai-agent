@@ -1,0 +1,83 @@
+[package]
+name = "dni-clus-01"
+version = "0.1.0"
+edition = "2021"
+authors = ["RAN Intelligence Platform Team"]
+description = "DNI-CLUS-01: Automated Cell Profiling Agent using unsupervised clustering"
+license = "MIT"
+repository = "https://github.com/ruvnet/ruv-FANN"
+keywords = ["ran", "intelligence", "clustering", "cell-profiling", "prb"]
+categories = ["algorithms", "network-programming"]
+
+[dependencies]
+# Core dependencies
+anyhow = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.0", features = ["full"] }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+log = "0.4"
+env_logger = "0.10"
+
+# Machine learning and statistics
+ndarray = "0.15"
+ndarray-rand = "0.14"
+ndarray-stats = "0.5"
+linfa = "0.7"
+linfa-clustering = "0.7"
+linfa-kernel = "0.7"
+smartcore = "0.3"
+
+# Data processing
+polars = { version = "0.35", features = ["lazy", "temporal", "csv-file", "json"] }
+rayon = "1.7"
+
+# Network and async
+tonic = "0.10"
+tonic-build = "0.10"
+prost = "0.12"
+
+# Database
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "postgres", "chrono", "uuid"] }
+
+# Metrics and monitoring
+prometheus = "0.13"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Configuration
+config = "0.13"
+toml = "0.8"
+
+# Visualization (optional)
+plotters = "0.3"
+plotters-backend = "0.3"
+
+[build-dependencies]
+tonic-build = "0.10"
+
+[dev-dependencies]
+tokio-test = "0.4"
+criterion = "0.5"
+tempfile = "3.0"
+wiremock = "0.5"
+
+[[bin]]
+name = "dni-clus-service"
+path = "src/bin/service.rs"
+
+[[bin]]
+name = "dni-clus-cli"
+path = "src/bin/cli.rs"
+
+[[bench]]
+name = "clustering_benchmark"
+harness = false
+
+[features]
+default = ["full"]
+full = ["gpu", "distributed", "advanced-metrics"]
+gpu = []
+distributed = []
+advanced-metrics = []

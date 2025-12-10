@@ -1,0 +1,1959 @@
+cmedit get
+
+< Back To Cmedit
+Syntax
+
+Syntax to get an Object by Specifying the FDN
+cmedit get <FDN> [get by fdn options]
+cmedit get <FDN> criteria [filter] [options]
+
+Syntax to get an object by query
+cmedit get [scope type] scope [scope filter] criteria [filter] [options]
+
+Syntax to get by node name or view contents of a collection
+cmedit get [scope type] scope [scope filter] [node details options]
+
+Syntax to get an object by name
+cmedit get [scope type] scope [scope filter] criteria_for_MO_by_Id [options]
+Scope type
+
+Use Scope Type option to restrict the scope to:
+
+    collection [ -co | --collection ]
+    nodenames [ -n | --node ] (*)
+    saved search [ -sa | --savedSearch ] (**).
+
+(*) in this case node names are case insensitive.
+
+(**) not supported for get by node name.
+Scope
+
+Use the scope to specify node names or collections to search on.
+
+<FDN>
+One or many FDNs can be defined as scope. Multiple FDNs should be separated with a semi-colon, i.e. - NetworkElement=ERBS01;NetworkElement=ERBS02.
+The maximum supported number of FDNs separated with a semi-colon is 400.
+
+<Node Name>
+One or many node names can be defined as scope. Multiple node names should be separated with a semi-colon, i.e. - ERBS01;ERBS02;ERBS03.
+
+<Partial Node Name>*
+Starts with the specified partial node name, i.e. - ERBS0*.
+
+*<Partial Node Name>
+Ends with the specified partial node name, i.e. - *001.
+
+*<Partial Node Name>*
+Contains the specified partial node name, i.e. *RBS0*.
+
+*
+References all nodes in the network.
+
+<Collection Name>
+One or many Collections can be defined as scope. Multiple Collection names should be separated with a semi-colon, i.e. - Collection01;Collection02
+Partial collection names are not supported and the name should be entered in a case sensitive manner.
+
+ENM CLI supports querying of MOs in a Collection that are stored in a flat structure only, i.e. MOs all of the same type.
+Collections maybe queried that have MOs stored in a parent / child (Topology) type structure. However, duplicate MOs will be returned if the parent MO in the Collection is not the MO being queried.
+
+<SavedSearch Name>
+One or many SavedSearch can be defined as scope. Multiple SavedSearch names should be separated with a semi-colon, i.e. - savedsearch01;savedsearch02
+Partial SavedSearch names are not supported and the name should be entered in a case sensitive manner.
+Saved Search as scope can be issued only with the criteria to specify Managed Object (MO) Classes names and attribute values to search on.
+
+Note:
+<NodeName> and wildcard search with <Partial Node Name> is not supported for MO having the same level as NetworkElement and for PO (i.e. LicenseData, OpenAlarm,...).
+Scope Filter
+
+Use the scope filter to add conditions to reduce the initial set of nodes specified in the scope.
+
+--scopefilter (<MO Class>.<attribute name><operator><value> [AND <MO Class>.<attribute name><operator><value>])
+
+The usage of MO Class with cardinality of 1:1 towards the node is recommended.
+In case of MO Class with a cardinality of 1:x, the node will be included in the command scope if at least one instance of MO Class matches the specified restriction.
+
+See the examples for more details about cardinality behavior.
+Criteria
+
+Use the criteria to specify Managed Object (MO) Classes names and attribute values to search on. Multiple MO Classes can be used to specify parent child relationships.
+
+<MO Class>
+Search for all instances of the specified MO Class and display the Full Distinguished Name (FDN) of those instances.
+
+<MO Class>.*
+Search for all instances of the specified MO Class and display the FDN of those instances including all of their persistent attributes.
+
+<MO Class>.<cm>
+Use the special identifier <cm> to select all Configuration Management (CM) attributes of the specified MO Class.
+
+<MO Class>.<pm>
+Use the special identifier <pm> to select all Performance Management (PM) attributes of the specified MO Class.
+Note: Only supported on CPP platform types where node types support reading of PM counters as MO attributes.
+
+<MO Class>.<p>
+Use the special identifier <p> to select all persistent attributes of the specified MO Class.
+
+<MO Class>.<w>
+Use the special identifier <w> to select all writable persistent attributes of the specified MO Class.
+
+<MO Class>.<m>
+Use the special identifier <m> to select all mandatory persistent attributes of the specified MO Class.
+
+<MO Class1>;<MO Class2>
+Use a semi-colon to separate multiple MO Classes when searching for all instances of *either* MO Class1 or MO Class2.
+
+<MO Class1>,<MO Class2>
+Use a comma to separate multiple MO Classes when searching for all instances of MO Class1 which have a child MO Class instance of MO Class2.
+Note: Currently not supported for YANG locally scoped MOs.
+
+<MO Class>.<attr name>
+Search for all instances of the specified MO Class which contains the specified attribute and display the attribute value for each MO instance found.
+
+<MO Class>.<struct attr name>.{<struct member name>}
+Search for all instances of the specified MO Class which contains the specified struct attribute and member and display the member value for each MO instance found.
+Note:
+Only use this syntax with attributes of type struct whose members are not complex types (list or struct).
+Use round or curly brackets, comma to separate multiple members of the specified struct attribute.
+
+<MO Class>.<list of structs attr name>.[{<struct member name>, ..}]
+Search for all instances of the specified MO Class which contains the specified list of structs attribute containing the specified struct members.
+Use to identify MO class(es) and output only the structs of the list of structs attribute containing the specified members.
+Besides no other members except those specified will be shown in the output.
+Note:
+Only use this syntax with attributes of type list of structs whose members in the structs are not complex types (list or struct).
+Use square brackets, comma to separate multiple members of the struct in the specified list of structs.
+
+<MO Class>.<list attr name>~~[<simple data type elements>]
+Search for all instances of the specified MO Class which contains the specified attribute whose current value satisfies the 'contains' operator and specified value.
+The ~~ (List Contains) operator searches on a list type attribute of simple data types (for example: integer, string, enumerated, moRef) and displays the complete list if the members in the <simple data type elements> are contained in the list attribute.
+When used on a list of simple data types (for example: integer, string, enumerated, moRef) the <list member names> must be in one of the following formats:
+
+    [ "any" ]
+    [ "any" && "any" && ... && "any" ]
+    [ "any" || "any" || ... || "any" ]
+
+Note: The <value> must not contain a combination of && and ||.
+
+<MO Class>.<attr name><operator><value> 
+Search for all instances of the specified MO Class which contains the specified attribute whose current value satisfies the specified operator and specified value.
+Note:
+Search on operator == is supported for simple (integer, string, enumerated), struct and list attribute types.
+Search on operator != is supported on integer, enumerated and full string text only (for example: partial string, struct and list matching using the != operator is not supported).
+Search on operators <, >, !<, !>, <=, >= is supported for integer data attribute types only.
+
+<MO Class>.<struct attr name>.{<struct member name><operator><value>}
+Search for all instances of the specified MO Class which contains the specified struct attribute and member whose current value satisfies the specified operator and specified value.
+Note:
+Only use this syntax with attributes of type struct whose members are not complex types (list or struct).
+Use round or curly brackets, comma to separate multiple members of the specified struct attribute.
+Search on operator == is supported for simple (integer, string, enumerated) data member attribute types only.
+Search on operator != is supported on integer, enumerated and full string text only (for example: partial string matching using the != operator is not supported).
+Search on operators <, >, !<, !>, <=, >= is supported for integer data member attribute types only.
+
+<MO Class>.<list of structs attr name>~~[ { <struct member name><operator><value>, .. } ]
+The ~~ (List Contains) operator searches if at least one of the structs in the list has the member whose current value satisfies the specified criteria.
+If the criteria is satisfied the complete list is displayed.
+Note:
+Only use this syntax with attributes of type list of structs whose members in the structs are not complex types (list or struct).
+Search on operator ==, != is supported on integer, enumerated and full string text only (for example: partial string matching using the != operator is not supported).
+Search on operators <, >, !<, !>, <=, >= is supported for integer data attribute types only.
+
+<MO Class>.<list of structs attr name>~&[{<struct member name><operator><value>}]
+The ~& (List Contains and Filter) operator searches if at least one of the structs in the list has the member whose current value satisfies the specified criteria.
+Only the structs that satisfy the criteria are displayed.
+Note:
+Only use this syntax with attributes of type list of structs whose members in the structs are not complex types (list or struct).
+Use square brackets, comma to separate multiple members of the struct in the specified list of structs .
+Search on operator == is supported for simple (integer, string, enumerated) data member attribute types only.
+Search on operator != is supported on integer, enumerated and full string text only (for example: partial string matching using the != operator is not supported).
+Search on operators <, >, !<, !>, <=, >= is supported for integer data member attribute types only.
+
+<MO Class>.<list of structs attr name>.[{<struct member name><operator><value>}]
+Searches if at least one of the structs in the list has the member whose current value satisfies the specified criteria.
+Only the struct members in the list that satisfy the criteria are displayed.
+Note:
+Only use this syntax with attributes of type list of structs whose members in the structs are not complex types (list or struct).
+Use square brackets, comma to separate multiple members of the struct in the specified list of structs .
+Search on operator == is supported for simple (integer, string, enumerated) data member attribute types only.
+Search on operator != is supported on integer, enumerated and full string text only (for example: partial string matching using the != operator is not supported).
+Search on operators <, >, !<, !>, <=, >= is supported for integer data member attribute types only.
+
+<MO Class>.(<attr name1>,<attr name2><operator><value>)
+Use round brackets to group multiple attributes for the same MO Class.
+Criteria for MO by Id
+
+<MO Class>=<MO_Id>
+Use to identify MO class(es).
+
+<MO Class>=<MO_Id> <special identifier>
+Use to identify MO class(es) and apply special identifier as an output filter. Examples of special identifiers are <cm>, <pm>, <p> etc.
+
+<MO Class>=<Partial MO_Id>*
+Starts with the specified partial MO_Id, i.e. - cell*.
+
+<MO Class>=*<Partial MO_Id>
+Ends with the specified partial MO_Id, i.e. - *001.
+
+<MO Class>=*<Partial MO_Id>*
+Contains the specified partial MO_Id, i.e. *cell00*.
+
+<MO Class>=<MO_Id> <attr name>
+Use to identify MO class(es) and output attribute name(s). Multiple attributes should be comma separated.
+
+<MO Class>=<MO_Id> <struct attr name>.{<struct member name>}
+Use to identify MO class(es) and output only the specified member(s) of the struct attribute.
+Note:
+Only use this syntax with attributes of type struct whose members are not complex types (list or struct).
+Use round or curly brackets, comma to separate multiple members of the specified struct attribute.
+
+<MO Class>=<MO_Id> <list of structs attr name>.[{<struct member name>, ..}]
+Search for all instances of the specified MO Class which contains the specified list of structs attribute containing the specified struct members.
+Use to identify MO class(es) and output only the structs of the list of structs attribute containing the specified members.
+Besides no other members except those specified will be shown in the output.
+Note:
+Only use this syntax with attributes of type list of structs whose members in the structs are not complex types (list or struct).
+Use square brackets, comma to separate multiple members of the struct in the specified list of structs .
+
+<MO Class>=<MO_Id> <list attr name> ~~[<simple data type elements>]
+Search for all instances of the specified MO Class which contains the specified attribute whose current value satisfies the 'contains' operator and specified value.
+The ~~ (List Contains) operator searches on a list type attribute of simple data types (for example: integer, string, enumerated, moRef) and displays the complete list if the members in the <simple data type elements> are contained in the list attribute.
+When used on a list of simple data types (for example: integer, string, enumerated, moRef) the <list member names> must be in one of the following formats:
+
+    [ "any" ]
+    [ "any" && "any" && ... && "any" ]
+    [ "any" || "any" || ... || "any" ]
+
+Note: The <value> must not contain a combination of && and ||.
+
+<MO Class>=<MO_Id> <attr name><operator><value> 
+Search for all instances of the specified MO Class which contains the specified attribute whose current value satisfies the specified operator and specified value.
+Note:
+Search on operator == is supported for simple (integer, string, enumerated), struct and list attribute types.
+Search on operator != is supported on integer, enumerated and full string text only (for example: partial string, struct and list matching using the != operator is not supported).
+Search on operators <, >, !<, !>, <=, >= is supported for integer data attribute types only.
+
+<MO Class>=<MO_Id> <struct attr name>.{<struct member name><operator><value>}
+Use to identify MO class(es) and output only the specified member(s) of the struct attribute whose current value satisfies the specified operator and specified value.
+Note:
+Only use this syntax with attributes of type struct whose members are not complex types (list or struct).
+Use round or curly brackets, comma to separate multiple members of the specified struct attribute.
+Search on operator == is supported for simple (integer, string, enumerated) data member attribute types only.
+Search on operator != is supported on integer, enumerated and full string text only (for example: partial string matching using the != operator is not supported).
+Search on operators <, >, !<, !>, <=, >= is supported for integer data member attribute types only.
+
+<MO Class>=<MO_Id> <list of structs attr name>~~[ { <struct member name><operator><value>, .. } ]
+The ~~ (List Contains) operator searches if at least one of the structs in the list has the member whose current value satisfies the specified criteria.
+If the criteria is satisfied the complete list is displayed.
+Note:
+Only use this syntax with attributes of type list of structs whose members in the structs are not complex types (list or struct).
+Search on operator ==, != is supported on integer, enumerated and full string text only (for example: partial string matching using the != operator is not supported).
+Search on operators <, >, !<, !>, <=, >= is supported for integer data attribute types only.
+
+<MO Class>=<MO_Id> <list of structs attr name>~&[{<struct member name><operator><value>}]
+The ~& (List Contains and Filter) operator searches if at least one of the structs in the list has the member whose current value satisfies the specified criteria.
+Only the structs that satisfy the criteria are displayed.
+Note:
+Only use this syntax with attributes of type list of structs whose members in the structs are not complex types (list or struct).
+Use square brackets, comma to separate multiple members of the struct in the specified list of structs .
+Search on operator == is supported for simple (integer, string, enumerated) data member attribute types only.
+Search on operator != is supported on integer, enumerated and full string text only (for example: partial string matching using the != operator is not supported).
+Search on operators <, >, !<, !>, <=, >= is supported for integer data member attribute types only.
+
+<MO Class>=<MO_Id> <list of structs attr name>.[{<struct member name><operator><value>}]
+Search for all instances of the specified MO Class which contains the specified list of structs attribute and struct member whose current value satisfies the specified operator and specified value.
+Use to identify MO class(es) and output only the specified structs of the list of structs attribute whose current value satisfies the specified operator and specified value.
+Note:
+Only use this syntax with attributes of type list of structs whose members in the structs are not complex types (list or struct).
+Use square brackets, comma to separate multiple members of the struct in the specified list of structs .
+Search on operator == is supported for simple (integer, string, enumerated) data member attribute types only.
+Search on operator != is supported on integer, enumerated and full string text only (for example: partial string matching using the != operator is not supported).
+Search on operators <, >, !<, !>, <=, >= is supported for integer data member attribute types only.
+
+Note:
+The <MO_Id> supports alphanumeric characters (A-Z, a-z and 0-9) and certain supported "special" characters.
+The supported "special" characters are:
+. - _
+
+If the <MO_Id> includes any other special character, then it must be contained in quotes.
+Filters
+
+Use the filter to limit the output of the get command by specifying the MO Classes names and attribute names to show. If not specified, all instances and values for the MO Classes and attributes given in the criteria are shown.
+
+<MO Class>
+Only show instances of the specified MO Class.
+
+<MO Class>.<attr name>
+Only show instances of the specified MO Class and values for the specified attribute.
+
+<MO Class>.<struct attr name>.(<struct member name>)
+Only show instances of the specified MO Class and values for the specified struct attribute and member.
+Only use this syntax with attributes of type struct whose members are not complex types (list or struct).
+Use round or curly brackets, comma to separate multiple members of the specified struct attribute.
+
+<MO Class>.*
+Only show instances of the specified MO Class including persistent attributes
+
+<MO Class>.<cm>
+Use the special identifier <cm> to select all Configuration Management (CM) attributes of the specified MO Class.
+
+<MO Class>.<pm>
+Use the special identifier <pm> to select all Performance Management (PM) attributes of the specified MO Class.
+Note: Only supported on CPP platform types where node types support reading of PM counters as MO attributes.
+
+<MO Class>.<p>
+Use the special identifier <p> to select all persistent attributes of the specified MO Class.
+
+<MO Class>.<w>
+Use the special identifier <w> to select all writable persistent attributes of the specified MO Class.
+
+<MO Class>.<m>
+Use the special identifier <m> to select all mandatory persistent attributes of the specified MO Class.
+
+<MO Class>.(<attr name1>,<attr name2>)
+Use round brackets to group multiple attributes for the same MO Class.
+
+<MO Class1>;<MO Class2>
+Use a semi-colon to separate multiple MO Classes to display all instances of *either* MO Class1 or MO Class2 (regardless of whether MO Class1 is a parent or child of MO Class2).
+Options
+
+Use the options to further restrict the output specification.
+
+-ns or --namespace
+Specify a particular namespace.
+
+-v or --version
+Specify a particular version.
+
+-ne or --netype
+Specify a particular netype.
+
+-cn or --count
+Report the number of instances.
+
+-t or --table
+Response displayed in table format.
+
+Note: When copy and pasting a table of data from the CLI to another application the data in the clipboard needs to be copied as text only to prevent formatting issue.
+
+-l or --list
+Response displayed in list format.
+
+-d or --dynamic
+Output displayed in Ericsson Dynamic File Format.
+
+-s or --syncstatus
+Report the sync status of the node which the returned MOs belong to.
+
+--output <Output Type> <Output Name>
+Create <Output Type> with specified <Output Name> using the MO(s) returned from get command output.
+
+    <Output Type>
+        priColl: Create a private collection.
+        pubColl: Create a public collection.
+    <Output Name>
+        Name of the Output created.
+Options for Get by FDN
+
+Use the options to further restrict the output specification.
+
+-t or --table
+Response displayed in table format.
+
+Note: When copy and pasting a table of data from the CLI to another application the data in the clipboard needs to be copied as text only to prevent formatting issue.
+
+-l or --list
+Response displayed in list format.
+
+-attr or --attribute
+Response displays only the attributes specified. One or many attributes can be defined. Use a comma to separate multiple attributes.
+
+-s or --syncstatus
+Report the sync status of the node which the returned MOs belong to.
+
+--output <Output Type> <Output Name>
+Create <Output Type> with specified <Output Name> using the MO(s) returned from get command output.
+
+    <Output Type>
+        priColl: Create a private collection.
+        pubColl: Create a public collection.
+    <Output Name>
+        Name of the Output created.
+Node Details Option
+
+Use the option to add more information the output specification.
+
+-dn or --detailnode
+Report a netype and synchronization status of particular node.
+
+-ne or --netype
+Specify a particular netype.
+
+-cn or --count
+Report the number of instances.
+
+-t or --table
+Present the response in table format.
+
+Note: When copy and pasting a table of data from the CLI to another application the data in the clipboard needs to be copied as text only to prevent issues with formatting.
+
+-l or --list
+Present the response in list format.
+
+-s or --syncstatus
+Report the sync status of the node which the returned MOs belong to.
+
+--output <Output Type> <Output Name>
+Create <Output Type> with specified <Output Name> using the MO(s) returned from get command output.
+
+    <Output Type>
+        priColl: Create a private collection.
+        pubColl: Create a public collection.
+    <Output Name>
+        Name of the Output created.
+Description
+
+cmedit get is used to query Node data from the Network.
+
+If a node is un-synced, the data returned to the ENM CLI will differ from actual data on the node, if node data has changed since the node was last synced with ENM
+
+The command output provides the additional "syncStatus" attribute for list and table layout. The output is controlled by PIB (Platform Integration Bridge) boolean parameter syncStatusInfoEnabled, default setting is false. If syncStatusInfoEnabled is set to false, one may also get the "syncStatus" attribute using the --syncstatus option.
+
+Details of Case Sensitivity for cmedit commands.
+
+Details of Special Characters for cmedit commands.
+
+Collection and SavedSearch names as scope support alphanumeric characters (A-Z, a-z and 0-9) and certain supported "special" characters.
+
+The supported "special" characters are:
+. - _ <space>
+
+If Collection/SavedSearch name includes <space>, then it must be contained in quotes.
+
+CM Edit commands have an overload protection mechanism to limit GET command searches on certain MO types which have a large number of instances in the network. For more information see the CM Edit Command Set for Overload Protection page.
+
+Command Consequences
+
+    Without --output option there is no consequences in the Get command.
+
+    With --output option, the Get command result is the creation of the <Output Type> specified.
+
+Examples
+
+Get a ManagedElement by FDN
+cmedit get MeContext=ERBS001,ManagedElement=1
+
+Response
+
+This command returns all the attributes values of the specified MO instance for the provided FDN. The attribute names are shown in alphabetic order, while struct attributes (i.e. mimInfo : {mimVersion=1, mimRelease=320, mimName=ERBS_NODE_MODEL_H}) does not have an assured order for its members. The following are the attributes that are shown for MO instance:
+
+FDN : MeContext=ERBS001,ManagedElement=1
+ManagedElementId : 1
+applicationConfiguration : []
+healthCheckResult : {startTime=, message=, healthCheckResultCode=INITIAL_VALUE}
+healthCheckSchedule : []
+logicalName :
+mimInfo : {mimVersion=1, mimRelease=320, mimName=ERBS_NODE_MODEL_H}
+neType : ERBS
+platformType : null
+productName :
+productNumber :
+productRevision :
+productType : Node
+site :
+userLabel : Region5
+ 
+1 instance(s)
+
+Get one attribute of ManagedElement by FDN
+cmedit get MeContext=ERBS001,ManagedElement=1 --attribute userLabel
+
+Response
+
+This command returns the "userLabel" attribute value of the specified MO instance for the provided FDN. The following is the attribute that is shown for MO instance:
+
+FDN : MeContext=ERBS001,ManagedElement=1
+userLabel : Region5
+ 
+1 instance(s)
+
+Get a list of attributes of ManagedElement by a list of FDNs
+cmedit get MeContext=ERBS001,ManagedElement=1;MeContext=ERBS002,ManagedElement=1 -attr neType,userLabel
+
+Response
+
+This command returns the "neType" and "userLabel" attributes values of the specified MO instance for the provided list of FDNs. The following are the attributes that are shown for MO instances:
+
+FDN : MeContext=ERBS001,ManagedElement=1
+neType : ERBS
+userLabel : Region5
+ 
+FDN : MeContext=ERBS002,ManagedElement=1
+neType : ERBS
+userLabel : Region5
+ 
+2 instance(s)
+
+Get a list of struct attributes of ManagedElement by a list of FDNs
+cmedit get MeContext=ERBS001,ManagedElement=1;MeContext=ERBS002,ManagedElement=1 -attr mimInfo.(mimRelease,mimVersion)
+
+Response
+
+This command returns the values of "mimRelease" and "mimVersion" members of "mimInfo" struct attribute of the specified MO instance for the provided list of FDNs. The following are the attributes that are shown for MO instances:
+
+FDN : MeContext=ERBS001,ManagedElement=1
+mimInfo : {mimRelease=160,mimVersion=1}
+ 
+FDN : MeContext=ERBS002,ManagedElement=1
+mimInfo : {mimRelease=160,mimVersion=1}
+ 
+2 instance(s)
+
+Get a list of attributes of ManagedElement by a list of FDNs with additional syncStatus attribute
+cmedit get MeContext=LTE03ERBS00001,ManagedElement=1;MeContext=LTE08ERBS00002,ManagedElement=1 -attr neType,userLabel --syncstatus
+
+Response (Setting PIB parameter syncStatusInfoEnabled to true one may always get the "syncStatus" attribute, without specifying --syncstatus option)
+
+This command returns all the attributes values of the specified MO instance for the provided FDN and the syncStaus attribute too. The following are the attributes that are shown for MO instance:
+
+FDN : MeContext=LTE03ERBS00001,ManagedElement=1
+syncStatus : SYNCHRONIZED
+neType : ERBS
+userLabel : Region5
+ 
+FDN : MeContext=LTE08ERBS00002,ManagedElement=1
+syncStatus : SYNCHRONIZED
+neType : ERBS
+userLabel : Region5
+ 
+2 instance(s)
+
+Get One Attribute of a Single MO Class
+cmedit get LTE32ERBS00001 networkelement.netype
+
+Response
+
+FDN : NetworkElement=LTE32ERBS00001
+neType : ERBS
+ 
+1 instance(s)
+
+Get One Struct Attribute of a Single MO Class
+cmedit get LTE32ERBS00001 ENodeBFunction.eNodeBPlmnId
+
+Response
+
+FDN :  MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mncLength=2, mcc=271, mnc=7}
+ 
+1 instance(s)
+
+Get One Struct Member inside Struct Attribute of a Single MO Class
+cmedit get LTE32ERBS00001 ENodeBFunction.eNodeBPlmnId.(mcc)
+
+Response
+
+FDN :  MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mcc=271}
+ 
+1 instance(s)
+
+Get One Struct Member inside Struct Attribute of a Single MO Class whose current value satisfies the specified operators and specified values
+cmedit get LTE32ERBS0000* ENodeBFunction.eNodeBPlmnId.(mcc>=271)
+
+Response
+
+FDN :  MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mcc=271}
+ 
+FDN :  MeContext=LTE32ERBS00002,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mcc=272}
+ 
+FDN :  MeContext=LTE32ERBS00003,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mcc=271}
+ 
+3 instance(s)
+cmedit get LTE32ERBS0000* ENodeBFunction.eNodeBPlmnId.(mcc==271) ENodeBFunction.eNodeBPlmnId.(mnc)
+
+Response
+
+FDN :  MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mnc=27}
+ 
+FDN :  MeContext=LTE32ERBS00003,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mnc=28}
+ 
+3 instance(s)
+
+Get all Structs inside List of Structs Attribute of a Single MO Class whose current value satisfies the specified operators and specified values
+cmedit get * EUtranCellFDD.activePlmnList.[{mcc==353}]
+
+Response
+
+FDN :  MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE32ERBS00001-1
+activePlmnList : [{mcc=353, mnc=57, mncLength=2}, {mcc=353, mnc=58, mncLength=2}]
+ 
+FDN :  MeContext=LTE32ERBS00002,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE32ERBS00002-1
+activePlmnList : [{mcc=353, mnc=58, mncLength=2}]
+ 
+FDN :  MeContext=LTE32ERBS00003,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE32ERBS00004-4
+activePlmnList : [{mcc=353, mnc=59, mncLength=2}]
+ 
+3 instance(s)
+
+Get One Struct Attribute of a Single MO Class whose current value satisfies the specified operator and specified value
+cmedit get LTE32ERBS0000* ENodeBFunction.eNodeBPlmnId=={mcc=271,mnc=27,mncLength=2}
+
+Response
+
+FDN :  MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mcc=271, mnc=27, mncLength=2}
+ 
+1 instance(s)
+
+Get Two Struct Attributes of a Single MO Class
+cmedit get netsim_LTE08ERBS00010 AuxPlugInUnit.(productData,positionCoordinates)
+
+Response
+
+FDN :  SubNetwork=ERBS-SUBNW-1,MeContext=netsim_LTE08ERBS00010,ManagedElement=1,Equipment=1,AuxPlugInUnit=1
+positionCoordinates : {altitude=0, geoDatum=WGS84, latitude=0, longitude=0}
+productData : {productionDate=, serialNumber=, productNumber=, productRevision=2B, productName=IRU}
+ 
+1 instance(s)
+
+Get Struct Members inside Struct Attributes of a Single MO Class
+cmedit get netsim_LTE08ERBS00010 AuxPlugInUnit.(productData.(productName, productRevision),positionCoordinates.(geoDatum))
+
+Response
+
+FDN :  SubNetwork=ERBS-SUBNW-1,MeContext=netsim_LTE08ERBS00010,ManagedElement=1,Equipment=1,AuxPlugInUnit=1
+positionCoordinates : {geoDatum=WGS84}
+productData : {productRevision=2B, productName=IRU}
+ 
+1 instance(s)
+
+Get All Persistent Attributes of a Single MO Class, displaying the output in Ericsson Dynamic File Format
+cmedit get LTE32ERBS00001 networkelement.* -d
+
+Response
+
+This command returns all persistent attribute values for the specified MO instance. The following is the list of the persistent attribute values for the instance:
+ 
+FDN : "NetworkElement=LTE32ERBS00001"
+neProductVersion : [{revision="F1107", identity="CXPL15BCP1"}]
+networkElementId : "LTE32ERBS00001"
+neType : ERBS
+nodeModelIdentity : "17A-H.1.160"
+ossModelIdentity : "17A-H.1.160"
+ossPrefix : "MeContext=LTE32ERBS00001"
+platformType : CPP
+release : "H.1.160"
+technologyDomain : [EPS]
+utcOffset : <empty>
+ 
+1 instance(s)
+
+Get Managed Object Instances Filtered by One Attribute Value
+cmedit get * networkelement.netype=="ERBS"
+
+Response
+
+This command returns all the MO instances with the specified attribute value. Each instance is repeated on as a new row in the table or a new element in the list. The following is one instance with the specified attribute:
+
+FDN : NetworkElement=LTE32ERBS00001
+neType: ERBS
+ 
+1 instance(s)
+
+Get Managed Object Instances Filtered by More Than One Attribute Value
+cmedit get * networkelement.(netype=="ERBS",platformtype=="CPP")
+
+Response
+
+This command returns all the MO instances with the specified attribute values. Each instance is repeated on as a new row in the table or a new element in the list. The following is one instance with the specified attributes:
+
+FDN : NetworkElement=LTE32ERBS00001
+neType : ERBS
+platformType : CPP
+ 
+1 instance(s)
+
+Get Managed Object Instances Filtered by Attribute of List Type where the 'List Contains' Query has One Value
+cmedit get * networkelement.radioAccessTechnology~~["3G"]
+
+Response
+
+This command returns all NetworkElement MOs where the radioAccessTechnology list contains entry "3G"
+
+FDN : NetworkElement=LTE32ERBS00001
+ 
+FDN : NetworkElement=LTE32ERBS00002
+ 
+2 instance(s)
+
+Get Managed Object Instances Filtered by Attribute of List Type where the 'List Contains' Query has Two Values
+cmedit get * networkelement.radioAccessTechnology~~["4G" && "5G"]
+
+Response
+
+This command returns all NetworkElement MOs where the radioAccessTechnology list contains both entries "4G" and "5G"
+
+FDN : NetworkElement=LTE32ERBS00003
+ 
+FDN : NetworkElement=LTE32ERBS00004
+ 
+2 instance(s)
+
+Get Managed Object Instances Filtered by Attribute of List Type where the 'List Contains' Query has a struct with the specified member values
+cmedit get * NetworkElement.neProductVersion~~[{identity==CXPL17ACP1,revision==H1160}]
+
+Response
+
+This command returns all NetworkElement MOs where the neProductVersion list contains a struct with identity member CXPL17ACP1 and revision member H1160
+
+FDN : NetworkElement=LTE01ERBS00002
+neProductVersion : [{identity=CXPL17ACP1, revision=H1160}]
+ 
+FDN : NetworkElement=LTE01ERBS00001
+neProductVersion : [{identity=CXPL17ACP1, revision=H1160}]
+ 
+2 instance(s)
+
+Get Managed Object Instances Filtered by Attribute of List Type where the value of the list is exactly matching
+cmedit get * networkelement.technologyDomain==[EPS]
+
+Response
+
+This command returns all NetworkElement MOs where the technologyDomain list is equal to [EPS]
+
+FDN : NetworkElement=LTE32ERBS00001
+technologyDomain : [EPS]
+ 
+FDN : NetworkElement=LTE32ERBS00002
+technologyDomain : [EPS]
+ 
+2 instance(s)
+
+Get Managed Object Instances of Specific Parent and Child Types
+cmedit get LTE32ERBS00001 enodebfunction,eutrancellfdd
+
+Response
+
+FDN : MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1
+ 
+FDN : MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE32ERBS00001-1
+ 
+2 instance(s)
+
+Parent-Child query specifying in the filter an MO type with attributes
+cmedit get LTE32ERBS00001 ManagedElement,ENodeBFunction EnodeBFunction.dnsLookupTimer
+
+Response
+
+FDN : MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1
+dnsLookupTimer : 0 
+ 
+1 instance(s)
+
+Get Managed Object Instances of Type GeraNetwork Towards the Specified Namespace and Version, under a Given FDN
+cmedit get MeContext=ERBS001,ManagedElement=1,ENodeBFunction=1; ERBS001 geranetwork -ns=ERBS_NODE_MODEL -v=6.1.100
+
+Response
+
+FDN : MeContext=1,ManagedElement=1,ENodeBFunction=1,GeraNetwork=1
+ 
+1 instance(s)
+
+Get Managed Object instances under a mixed scope type of FDN and node name
+cmedit get MeContext=ERBS001,ManagedElement=1;LTE* enodebfunction -t
+
+Response
+
+MeContext,ManagedElement,ENodeBFunction
+NodeId          ENodeBFunctionId
+ERBS001         1
+ 
+1 instance(s)
+
+Note: -t option needs to aggregate the response in order to structure the table appropriately and therefore does not stream the partial responses back to the user.
+
+Get Managed Object instances under a mixed scope of valid and invalid node name
+cmedit get LTE02ERBS00031;NotExistingNode enodebfunction
+
+Response
+
+FDN : MeContext=LTE02ERBS00031,ManagedElement=1,ENodeBFunction=1 
+ 
+Scope: NotExistingNode
+Error 1049 : The scope is incorrect or not associated with the correct Node Type 
+ 
+1 instance(s)
+
+Get Managed Object instances under a mixed scope of invalid node names
+cmedit get NotExistingNode1;NotExistingNode2 enodebfunction
+
+Response
+
+Error 1050 : All scope is incorrect or not associated with the correct Node Type 
+ 
+Error 5010 : The read command has errors. 
+
+Get two Attributes of a Single node name in table format
+cmedit get 85BJ5 ReportConfigB2Utra.(b2Threshold1Rsrq,timeToTriggerB2) -t
+
+Response
+
+ManagedElement,ENodeBFunction,EUtranCellFDD,UeMeasControl,ReportConfigB2Utra
+Node ID       ENodeBFunctionId       EUtranCellFDDId         UeMeasControlId         ReportConfigB2UtraId       b2Threshold1Rsrq       timeToTriggerB2
+85BJ5         1                      85BJ1M                  1                       1                          -195                   320
+85BJ5         1                      85BJ1O                  1                       1                          -195                   320
+ 
+2 instance(s)
+
+Note: -t option needs to aggregate the response in order to structure the table appropriately and therefore does not stream the partial responses back to the user.
+
+Get Attribute of a Single node name
+cmedit get LTE32ERBS00001
+
+Response
+
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=LTE32ERBS00001
+ 
+1 instance(s)
+
+Get all Managed Object Instances with public collection creation
+cmedit get * networkelement --output pubColl collName
+
+Response
+
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=LTE32ERBS00001
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=LTE32ERBS00002
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=LTE32ERBS00003
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=LTE32ERBS00004
+ 
+4 instance(s)
+ 
+Collection: collName has been created.
+
+Get Attributes with additional details of a Partial node name
+cmedit get LTE07dg2ERBS000* --detailnode
+
+Response
+
+FDN : SubNetwork=NETSimW,ManagedElement=LTE07dg2ERBS00005
+neType : RadioNode
+syncStatus : SYNCHRONIZED
+ 
+FDN : NetworkElement=LTE07dg2ERBS00003
+neType : RadioNode
+syncStatus : UNSYNCHRONIZED
+ 
+2 instance(s)
+
+Get Attributes with additional details of a Partial node name and with scope option
+cmedit get -n LTE03ERBS0000* --detailnode
+
+Response
+
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=LTE03ERBS00009
+neType : ERBS
+syncStatus : SYNCHRONIZED
+ 
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=LTE03ERBS00008
+neType : ERBS
+syncStatus : SYNCHRONIZED
+ 
+2 instance(s)
+
+Get Attribute of a Single collection
+cmedit get Collection2
+
+Response
+
+FDN : SubNetwork=NETSimW,ManagedElement=LTE07dg2ERBS00005
+ 
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=netsim_LTE03ERBS00006
+ 
+2 instance(s)
+
+Get Attribute with additional details of a Single collection
+cmedit get Collection2 --detailnode
+
+Response
+
+FDN : SubNetwork=NETSimW,ManagedElement=LTE07dg2ERBS00005
+neType : RadioNode
+syncStatus : SYNCHRONIZED
+ 
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=netsim_LTE03ERBS00006
+neType: ERBS
+syncStatus : UNSYNCHRONIZED
+ 
+2 instance(s)
+
+Get Attribute with additional details and filtered by netype of a Single collection
+cmedit get Collection2 --detailnode --netype=RadioNode
+
+Response
+
+FDN : SubNetwork=NETSimW,ManagedElement=LTE07dg2ERBS00005
+neType : RadioNode
+syncStatus : SYNCHRONIZED
+ 
+1 instance(s)
+
+Get Attribute with additional details and filtered by netype of a collection and node name
+cmedit get -n netsim_LTE03ERBS00008 -co collectionName1 --detailnode --netype=ERBS
+
+Response
+
+FDN : SubNetwork=NETSimW,ManagedElement=netsim_LTE03ERBS00008
+neType : ERBS
+syncStatus : SYNCHRONIZED
+
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=netsim_LTE03ERBS00004,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE03ERBS00004-4
+neType : ERBS
+syncStatus : SYNCHRONIZED
+ 
+2 instance(s)
+
+Get ManagedElement of a Single SavedSearch
+cmedit get -sa savedsearch01 ManagedElement
+
+Response
+
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=netsim_LTE03ERBS00007,ManagedElement=1
+ 
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=netsim_LTE03ERBS00010,ManagedElement=1
+ 
+2 instance(s)
+
+Get ManagedElement of a multiple SavedSearch
+cmedit get -sa savedsearch01; savedsearch02 ManagedElement
+
+Response
+
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=netsim_LTE03ERBS00007,ManagedElement=1
+ 
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=netsim_LTE03ERBS00010,ManagedElement=1
+ 
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=netsim_LTE03ERBS00012,ManagedElement=1
+ 
+FDN : SubNetwork=ERBS-SUBNW-1,MeContext=netsim_LTE03ERBS00014,ManagedElement=1
+ 
+4 instance(s)
+
+Get a list of attributes of ManagedElement of a partial node name as scope in table format with additional syncStatus attribute
+cmedit get LTE03ERBS0000* ManagedElement.(neType,userLabel) -s -t
+
+Response (Setting PIB parameter syncStatusInfoEnabled to true one may always get the "syncStatus" attribute, without specifying --syncstatus option)
+
+SubNetwork,MeContext,ManagedElement
+Node ID            syncStatus         ParentId           ManagedElementId     neType     userLabel
+LTE03ERBS00002     SYNCHRONIZED       LTE03ERBS00002     1                    ERBS       LTE_ERBS
+LTE03ERBS00001     UNSYNCHRONIZED     LTE03ERBS00001     1                    ERBS       LTE_ERBS
+ 
+2 instance(s)
+
+Get a list of attributes of ManagedElement of a partial node name as scope in table format with private collection creation
+cmedit get LTE03ERBS0000* ManagedElement.userLabel --output priColl collName -t
+
+Response
+
+SubNetwork,MeContext,ManagedElement
+Node ID            ParentId           ManagedElementId     userLabel
+LTE03ERBS00002     LTE03ERBS00002     1                    LTE_ERBS
+LTE03ERBS00001     LTE03ERBS00001     1                    LTE_ERBS
+ 
+2 instance(s)
+ 
+Collection: collName has been created.
+
+Get a non persistent Attribute when one node is unreachable
+cmedit get * managedElement.userLabel
+
+Response
+
+FDN : SubNetwork=NETSimW,ManagedElement=CORE53SGSN001 
+userLabel : TEST 
+ 
+FDN : SubNetwork=NETSimW,ManagedElement=SGSN99SGSN00001 
+Error 9999 : Execution Error (Node ID: svc-3-mscmce. Exception occurred: The node SGSN99SGSN00001 ()192.168.103.132) is currently unavailable
+ 
+ 
+Error 5010 : The read command has errors.
+
+Get One Struct Member inside Struct Attribute of a Single MO Class
+cmedit get LTE32ERBS00001 ENodeBFunction.eNodeBPlmnId.(mcc)
+
+Response
+
+FDN : MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mcc=271}
+ 
+1 instance(s)
+
+Get One Struct Member inside Struct Attribute of a Single MO Class whose current value satisfies the specified operators and specified values
+cmedit get LTE32ERBS0000* ENodeBFunction.eNodeBPlmnId.(mcc>=271)
+
+Response
+
+FDN : MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mcc=271}
+ 
+FDN : MeContext=LTE32ERBS00002,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mcc=272}
+ 
+FDN : MeContext=LTE32ERBS00003,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mcc=271}
+ 
+3 instance(s)
+cmedit get LTE32ERBS0000* ENodeBFunction.eNodeBPlmnId.(mcc==271) ENodeBFunction.eNodeBPlmnId.(mnc)
+
+Response
+
+FDN : MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mnc=27}
+ 
+FDN : MeContext=LTE32ERBS00003,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mnc=28}
+ 
+3 instance(s)
+
+Get One Struct Attribute of a Single MO Class whose current value satisfies the specified operator and specified value
+cmedit get LTE32ERBS0000* ENodeBFunction.eNodeBPlmnId=={mcc=271,mnc=27,mncLength=2}
+
+Response
+
+FDN : MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1
+eNodeBPlmnId : {mcc=271, mnc=27, mncLength=2}
+ 
+1 instance(s)
+
+Get Managed Object Instances Filtered by Attribute of List Type where the 'List Contains' Query has One Value
+cmedit get * networkelement.radioAccessTechnology~~["3G"]
+
+Response
+
+This command returns all NetworkElement MOs where the radioAccessTechnology list contains entry "3G"
+
+FDN : NetworkElement=LTE32ERBS00001
+ 
+FDN : NetworkElement=LTE32ERBS00002
+ 
+2 instance(s)
+
+Get Managed Object Instances Filtered by Attribute of List Type where the 'List Contains' Query has Two Values
+cmedit get * networkelement.radioAccessTechnology~~["4G" && "5G"]
+
+Response
+
+This command returns all NetworkElement MOs where the radioAccessTechnology list contains both entries "4G" and "5G"
+
+FDN : NetworkElement=LTE32ERBS00003
+ 
+FDN : NetworkElement=LTE32ERBS00004
+ 
+2 instance(s)
+
+Get Managed Object Instances Filtered by Attribute of List Type where the value of the list is exactly matching
+cmedit get * networkelement.technologyDomain==[EPS]
+
+Response
+
+This command returns all NetworkElement MOs where the technologyDomain list is equal to [EPS]
+
+FDN : NetworkElement=LTE32ERBS00001
+technologyDomain : [EPS]
+ 
+FDN : NetworkElement=LTE32ERBS00002
+technologyDomain : [EPS]
+ 
+2 instance(s)
+
+Get Managed Object Instances Filtered by Attribute of List Type where the 'List Contains' Query has a struct with the specified member values
+cmedit get * NetworkElement.neProductVersion~~[{identity==CXPL17ACP1,revision==H1160}]
+
+Response
+
+This command returns all NetworkElement MOs where the neProductVersion list contains a struct with identity member CXPL17ACP1 and revision member H1160
+
+FDN : NetworkElement=LTE01ERBS00002
+neProductVersion : [{identity=CXPL17ACP1, revision=H1160}]
+ 
+FDN : NetworkElement=LTE01ERBS00001
+neProductVersion : [{identity=CXPL17ACP1, revision=H1160}]
+ 
+2 instance(s)
+
+Get all Structs inside List of Structs Attribute of a Single MO Class whose current value satisfies the specified operators and specified values
+cmedit get * EUtranCellFDD.activePlmnList~&[{mcc==353}]
+
+Response
+
+FDN : MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE32ERBS00001-1
+activePlmnList : [{mcc=353, mnc=57, mncLength=2}, {mcc=353, mnc=58, mncLength=2}]
+ 
+FDN : MeContext=LTE32ERBS00002,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE32ERBS00002-1
+activePlmnList : [{mcc=353, mnc=58, mncLength=2}]
+ 
+FDN : MeContext=LTE32ERBS00003,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE32ERBS00004-4
+activePlmnList : [{mcc=353, mnc=59, mncLength=2}]
+ 
+3 instance(s)
+
+Get all members of the Structs inside List of Structs Attribute of a Single MO Class whose current value satisfies the specified operators and specified values
+cmedit get * EUtranCellFDD.activePlmnList.[{mcc==353}]
+
+Response
+
+FDN : MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE32ERBS00001-1
+activePlmnList : [{mcc=353}, {mcc=353}]
+ 
+FDN : MeContext=LTE32ERBS00002,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE32ERBS00002-1
+activePlmnList : [{mcc=353}]
+ 
+FDN : MeContext=LTE32ERBS00003,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE32ERBS00004-4
+activePlmnList : [{mcc=353}]
+ 
+3 instance(s)
+
+Get all members of the Structs inside List of Structs Attribute of a Single MO Class whose current value either satisfies the specified operators and specified values or has no match condition
+cmedit get * EUtranCellFDD.activePlmnList.[{mcc==353, mnc}]
+
+Response
+
+FDN : MeContext=LTE32ERBS00001,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE32ERBS00001-1
+activePlmnList : [{mcc=353, mnc=57}, {mcc=353, mnc=57}]
+ 
+FDN : MeContext=LTE32ERBS00002,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE32ERBS00002-1
+activePlmnList : [{mcc=353, mnc=58}]
+ 
+FDN : MeContext=LTE32ERBS00003,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE32ERBS00004-4
+activePlmnList : [{mcc=353, mnc=59}]
+ 
+3 instance(s)
+
+Get Managed Object instances using the "scopefilter" option to add further restrictions on MO with cardinality 1:1 towards the node.
+cmedit get * --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND ManagedElement.siteLocation==Dublin) ENodeBFunction
+
+Response
+
+This command returns the ENodeBFunction MO for all nodes with the CM syncStatus SYNCHRONIZED and located in “Dublin”.
+
+FDN : SubNetwork=Europe,SubNetwork=Ireland,SubNetwork=ERBS-SUBNW-1,MeContext=LTE02ERBS00027,ManagedElement=1,ENodeBFunction=1
+ 
+1 instance(s)
+ 
+
+Get Managed Object instances using the "scopefilter" option to add further restrictions on MO with cardinality 1:x towards the node where only 1 MO instance is expected in the result set.
+cmedit get * --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND EUtranCellFDD.administrativeState==UNLOCKED) ENodeBFunction
+
+Response
+
+This command returns the ENodeBFunction MO for all nodes synchronized and at least one EUtranCellFDD in UNLOCKED state.
+
+FDN : SubNetwork=Europe,SubNetwork=Ireland,SubNetwork=ERBS-SUBNW-1,MeContext=LTE02ERBS00027,ManagedElement=1,ENodeBFunction=1
+ 
+1 instance(s)
+ 
+
+Get Managed Object instances using the "scopefilter" option to add further restrictions on MO with cardinality 1:x towards the node where multiple instances are expected in the result set.
+cmedit get * --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND EUtranCellFDD.administrativeState==UNLOCKED) EUtranCellFDD.administrativeState
+
+Response
+
+The command returns all EUtranCellFDD MOs beneath all nodes synchronized and at least one EUtranCellFDD in UNLOCKED state.
+
+FDN : SubNetwork=Europe,SubNetwork=Ireland,SubNetwork=ERBS-SUBNW-1,MeContext=LTE02ERBS00027,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE02ERBS00027-1
+administrativeState : LOCKED
+ 
+FDN : SubNetwork=Europe,SubNetwork=Ireland,SubNetwork=ERBS-SUBNW-1,MeContext=LTE02ERBS00027,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=LTE02ERBS00027-2
+administrativeState : UNLOCKED
+ 
+2 instance(s)
+ 
+Note: All EUtranCellFDD instances will be returned and not only those matching the scope filter.
+
+
+#check 4G/5G#
+cmedit get ILLKIRCH_COLONN_LTE EUtranCellFDD.(additionalPlmnReservedList,administrativeState,endcAllowedPlmnList,primaryPlmnReserved,primaryUpperLayerInd) -t
+cmedit get ILLKIRCH_COLONN_LTE GUtranFreqRelation.(anrMeasOn,endcB1MeasPriority) -t
+cmedit get LILLE_DELIVRANC_LTE_NSA GUtranCellRelation.(essEnabled,isRemoveAllowed,neighborCellRef) -t
+cmedit get ILLKIRCH_COLONN_LTE ReportConfigB1GUtra.(b1ThresholdRsrp,hysteresisB1,timeToTriggerB1) -t
+cmedit get ILLKIRCH_COLONN_LTE EndcProfile.reservedBy -t
+cmedit get ILLKIRCH_COLONN_LTE EndcProfilePredefined.* -t
+cmedit get ILLKIRCH_COLONN_LTE GUtranSyncSignalFrequency.* -t
+cmedit get LILLE_DELIVRANC_LTE_NSA ExternalGNodeBFunction.* –t
+cmedit get LILLE_DELIVRANC_LTE_NSA termpointtognb.(operationalstate,administrativestate) –t
+cmedit get ILLKIRCH_COLONN_LTE ENodeBFunction.(timeAndPhaseSynchAlignment) –t
+cmedit get ILLKIRCH_COLONN_LTE RadioEquipmentClockReference.(RadioEquipmentClockReferenceId==GPS,administrativeState,operationalState) –t
+cmedit get ILLKIRCH_COLONN_LTE GnssInfo.(gnssReceiverStatus) –t
+cmedit get ILLKIRCH_COLONN_LTE ENodeBFunction.(zzzTemporary74) –t
+cmedit get ILLKIRCH_COLONN_LTE Featurestate.(FeatureStateId==CXC4012218);Featurestate.(FeatureStateId==CXC4012371);Featurestate.(FeatureStateId==CXC4012381) Featurestate.* -t
+cmedit get ILLKIRCH_COLONN_LTE UePolicyOptimization.(coverageAwareImc) –t
+
+#5G rach et palier#
+cmedit get *_NR FeatureState.(featureStateId==CXC4012347,featureState,licenseState );ManagedElement.(swversion==20.Q1) -t
+cmedit get *NR NRCellDU.(rachpreambleformat,cellrange,rachrootsequence,nRPCI) –t
+
+
+
+#OC#
+cmedit get *_NR NRCellDU.(administrativeState,cellReservedForOperator,userLabel) -t
+cmedit get * EUtranCellFDD.(administrativestate,primaryPlmnReserved,additionalPlmnReservedList,endcAllowedPlmnList) -t
+cmedit get *NR NRCellDU.(administrativestate,cellReservedForOperator) -t
+cmedit get *_LTE GUtranCellRelation.(essEnabled==true) -t
+cmedit get *_LTE GUtranCellRelation.(essEnabled==true);EUtranCellFDD.(EUtranCellFDDId==*_F*,administrativeState,operationalState,primaryUpperLayerInd,endcAllowedPlmnList,userLabel) -t
+
+
+#lister tous les sites d'une DR#
+cmedit get * ENodeBFunction.userLabel==L1* -t
+
+#lister jeton emergency unlock de tous les sites DU#
+cmedit get * Licensing.emergencyStateInfo -t
+
+#lister jeton emergency unlock de tous les sites BB#
+cmedit get * EmergencyUnlock.* -t
+
+#lister graceperiod connectedusers de tous les sites#
+cmedit get * CapacityFeatureLicense.(CapacityFeatureLicenseId==CapacityConnectedUsers,gracePeriod) -t
+
+#lister licences bandwith d'un site sans BBU#
+cmedit get DOMBASLE_SUR_ME_LTE CapacityFeatureLicense.(CapacityFeatureLicenseId==CapacityChannelBandwidth*,currentCapacityLimit) -t
+
+#lister licences bandwith 15Mhz d'un site avec BBU#
+cmedit get VANDOEUVRE_DOUM_LTE CapacityKey.(keyId==CXC4010719,name==CapacityChannelBandwidth15MHz,grantedCapacityLevel) -t
+
+#lister tous les voisinages 4G3G vers PLMNs érangers#
+cmedit get * UtranCellRelation.(UtranCellRelationId==228*,isRemoveAllowed==true,isHoAllowed==true);UtranCellRelation.(UtranCellRelationId==262*,isRemoveAllowed==true,isHoAllowed==true); UtranCellRelation.(UtranCellRelationId==206*,isRemoveAllowed==true,isHoAllowed==true); UtranCellRelation.(UtranCellRelationId==270*,isRemoveAllowed==true,isHoAllowed==true) –t
+
+#lister un param ANR sur tous les sites#
+cmedit get * AnrFunction.(problematicCellPolicy) -t
+
+#modifier un param ANR sur tous les sites#
+cmedit set S1_ANR AnrFunction=1 probCellDetectLowHoSuccThres=80 --preview
+
+#lister un param croisé 4G4G sur plusieurs sites#
+cmedit get --savedsearch 'E1' EUtranCellRelation.(mobilityStatus) -t
+cmedit get *_LTE EUtranCellRelation.mobilityStatus.(available==false) –t
+
+#lister un voisinage 4G3G Ransharing#
+cmedit get BRUYERES_TDF_LTE UtranCellRelation.(UtranCellRelationId==2081-978-12715,isHoAllowed,isRemoveAllowed) -t
+
+#lister les scellcandidate d'un site#
+cmedit get STG_HAUTEPIERR1_LTE EUtranCellRelation.(sCellCandidate==ALLOWED) –t
+
+#lister les scellcandidate d'une collection#
+cmedit get collection EUtranCellRelation.(sCellCandidate==ALLOWED) –t
+
+#lister les voisinages 4G4G d'une cellule#
+cmedit get STG_HAUTEPIERR1_LTE EUtranCellFDD.(EUtranCellFDDId==83437_K1),EUtranCellRelation.* -t
+
+#lister les paramètres croisés 4G3G#
+cmedit get DOMBASLE_SUR_ME_LTE UtranCellRelation.(isHoAllowed,lbBnrAllowed) -t
+
+#lister les Utranfreq et supprimer#
+cmedit get DOMBASLE_SUR_ME_LTE UtranFreqRelation.UtranFreqRelationId -t
+cmedit delete COHARTILLE_N2_T_LTE UtranFreqRelation.(UtranFreqRelationId==3011)
+
+#lister les EUtranfreq#
+cmedit get DOMBASLE_SUR_ME_LTE EUtranFreqRelation.EUtranFreqRelationId -t
+
+#lister les geranfreqgroupref des geranfrequency#
+cmedit get * GeranFrequency.(GeranFrequencyId==GSM900__5,geranFreqGroupRef) -t
+
+#lister les drxProfileRef et logicalChannelGroupRef d'un site#
+cmedit get ACHEN_LTE QciProfilePredefined.(drxProfileRef,logicalChannelGroupRef) -t
+
+#modifier un paramètre croisé 4G3G#
+cmedit set HUNINGUE_LTE UtranCellRelation.UtranCellRelationId==2283-4-61134 isHoAllowed=false --preview
+
+#modifier plusieurs paramètres croisés 4G3G#
+cmedit set UXEM_LTE UtranCellRelation.UtranCellRelationId==206* isHoAllowed=false,isRemoveAllowed=false --preview
+
+#lister des paramètres cellules en filtrant sur une plaque#
+cmedit get * ENodeBFunction.userLabel==L1__SKI*,EUtranCellFDD.(tac,noOfPucchSrUsers) –t
+
+#lister des paramètres RET#
+cmedit get EPINAL_VCV_LTE RetSubUnit.(iuantSectorId,userLabel,electricalAntennaTilt) -t
+
+#lister les RET DISABLED#
+cmedit get * AntennaNearUnit.(operationalState==DISABLED) -t
+
+#lister les TMA DISABLED#
+cmedit get * AntennaNearUnit.(operationalState==DISABLED,AntennaNearUnitId==*TMA) -t
+
+#lister les TMA #
+cmedit get NANCY_JUDICIAIR_LTE RfBranch.(RfBranchId==1,tmaRef) -t
+
+#lancer un scan device sur un site#
+cmedit action SubNetwork=ENM_NE1,MeContext=DIJON_CFRT_LTE,ManagedElement=1,NodeManagementFunction=1 AntennaDeviceScan.(dataRate=BITRATE_9600;server=10.163.231.131;path=/home/shared/OFUJ6462/Script/CFRT.xml;username=OFUJ6462;password=toto;portVoltage=DC_12V;portConfiguration=SCAN_ALL_PORTS_WITH_DEFAULT_VOLTAGE)
+
+#restarter un site#
+cmedit action DOMBASLE_SUR_ME_LTE managedelement manualrestart.(restartrank=RESTART_WARM,restartreason=PLANNED_RECONFIGURATION,restartinfo=someInfo) --force
+
+#activation emergency unlock#
+cmedit action ABRESCHVILLER_T_LTE Licensing setEmergencyState
+
+#lister toutes les cellules LOCKED#
+cmedit get * eutrancellfdd.administrativestate==LOCKED –t
+
+#lister PCI et rachroot cellules#
+cmedit get *_LTE eutrancellfdd.(physicalLayerCellId,physicalLayerCellIdGroup,physicalLayerSubCellId,rachRootSequence) –t
+
+#4G pzero et alpha#
+cmedit get *_LTE eutrancellfdd.(alpha,pZeroNominalPusch) -t
+
+#lister état des cellules 1800 d'une collection#
+cmedit get testolive EUtranCellFDD.(EUtranCellFDDId==*_H*,administrativeState,operationalState) -t 
+
+#lister toutes les cellules LOCKED d'une zone#
+cmedit get * ENodeBFunction.userLabel==L2*,eutrancellfdd.administrativestate==LOCKED 
+cmedit get *_LTE EUtranCellFDD.(administrativeState,operationalState,userlabel) -t
+
+#LOCKER cellules d'un site#
+lock_4g_cell EPINAL_VCV_LTE
+
+#DELOCKER cellules d'un site#
+unlock_4g_cell EPINAL_VCV_LTE
+
+#lister états des cellules#
+cmedit get * EUtranCellFDD.(administrativeState,operationalState==DISABLED) -t
+
+#lister états des cellules d'une frequence#
+cmedit get testolive EUtranCellFDD.(earfcndl==547,administrativeState,operationalState) -t
+cmedit get testolive EUtranCellFDD.(EUtranCellFDDId==*_V*,administrativeState,operationalState) -t
+cmedit set LAXOU_VILLAGE_LTE EUtranCellFDD.(EUtranCellFDDId==*_V*) administrativestate=LOCKED --force --preview
+cmedit set Dijon_4G-5G EUtranCellFDD.(EUtranCellFDDId==*_K*) additionalPlmnReservedList=[false,false,false,false,false] -t
+cmedit get olive EUtranCellFDD.(EUtranCellFDDId==*_V*,administrativeState==UNLOCKED,operationalState) -t
+cmedit get --savedsearch L1 EUtranCellFDD.(EUtranCellFDDId==*_V*,administrativeState,operationalState==DISABLED) -t
+cmedit get --savedsearch L1 EUtranCellFDD.(EUtranCellFDDId==*_V*,administrativeState==UNLOCKED,operationalState) -t
+cmedit get *_LTE EUtranCellFDD.(administrativeState==LOCKED,operationalState,userlabel) -t
+
+#lister freq et largeur de bande cellules 2100 d'un site#
+cmedit get LAXOU_VILLAGE_LTE EUtranCellFDD.(EUtranCellFDDId==*_V*,earfcndl,earfcnul,dlChannelBandwidth,ulChannelBandwidth) -t
+
+#lister anr et sleepmode#
+cmedit get Nancy_15Mhz CellSleepFunction.(sleepMode) -t
+cmedit get Nancy_15Mhz AnrFunctionEUtran.(anrIntraFreqState,anrInterFreqState) -t
+
+#lister eutranfreqrelation d'un site#
+cmedit get LONGEVILLE_SYMP_LTE EUtranFreqRelation.(EUtranFreqRelationId) -t
+
+#lister eutranfrequency d'un site#
+cmedit get LONGEVILLE_SYMP_LTE EUtranFrequency.(arfcnValueEUtranDl) -t
+
+#lister états des cellules d'un site#
+get_4g_cellstate EPINAL_VCV_LTE
+
+#délocker cellules d'un site#
+cmedit set DOMBASLE_SUR_ME_LTE EUtranCellFDD.(EUtranCellFDDId==84065_F3) administrativestate=UNLOCKED --force
+
+#délocker secteur equipements d'un site#
+cmedit set DOMBASLE_SUR_ME_LTE SectorEquipmentFunction.(SectorEquipmentFunctionId==*) administrativestate=UNLOCKED --force
+
+#lister les EUtranFreq 1800 de tous les sites#
+cmedit get * EUtranFrequency.(EUtranFrequencyId==547,arfcnValueEUtranDl) -t
+
+##lister les EUtranFreq 547 d'une DR#
+cmedit get * ENodeBFunction.userlabel==S1*,EUtranFrequency.(EUtranFrequencyId==547,arfcnValueEUtranDl) –t
+
+#lister les GeranFreqGroup d'un site#
+cmedit get DOMBASLE_SUR_ME_LTE GeranFreqGroupRelation -t
+
+#lister un paramètre cellule sous condition#
+cmedit get * ENodeBFunction.userLabel==L1__SKI*,EUtranCellFDD.(cellrange>15) –t
+
+#créer une collection( liste de sites par exemple) à partir d'un fichier texte#
+collection create testolive -f file:"tous.txt"
+
+#éditer cette collection#
+collection get testolive
+
+#modifier un parametre cellule de tous les sites de cette collection#
+cmedit set testolive EUtranCellFDD transmissionMode=TRANSMISSION_MODE_4
+
+#modifier un paramètre cellule sur une cellule précise d'un site#
+cmedit set EPINAL_VCV_LTE EUtranCellFDD=83906_E1 qRxLevMin=-130
+
+#modifier plusieurs paramètres cellule sur une cellule précise d'un site#
+cmedit set EPINAL_VCV_LTE EUtranCellFDD=83906_E1 qRxLevMin=-130,qQualMin=-32
+
+#lister DUS d'un site#
+cmedit get EPINAL_VCV_LTE Slot.productData -t
+
+#lister RU et RRU d'un site DUS#
+cmedit get EPINAL_VCV_LTE AuxPlugInUnit.productData -t
+
+#lister RU et RRU de tous les sites BB#
+cmedit get *_LTE FieldReplaceableUnit.(productData) -t
+
+
+#lister type de RBS d'un site#
+cmedit get ASPACH_LE_BAS_LTE Cabinet.productData -t
+
+#lister palier logiciel d'un site#
+cmedit get * ConfigurationVersion.currentUpgradePackage -t
+
+#lister BB#
+cmedit get * FieldReplaceableUnit.(FieldReplaceableUnitId==1,productData) -t
+
+#lister BB et DUS#
+cmedit get *_LTE Slot.(SlotId==1,productData.(productName));FieldReplaceableUnit.(FieldReplaceableUnitId==1,productData.(productName)) -t
+cmedit get *_LTE FieldReplaceableUnit=1 productData.(productName=="Baseband 6630") -t 
+
+
+#lister BB R503#
+cmedit get *_LTE FieldReplaceableUnit.(FieldReplaceableUnitId==XMU*) FieldReplaceableUnit.* -t
+
+#lister une feature sur un site#
+cmedit get * OptionalFeatureLicense.(OptionalFeatureLicenseId==CategoryMAccess,featureState,licenseState) -t
+
+#lister sur un site avec BBU les feature CA et leur état #
+cmedit get STG_HAUTEPIERR1_LTE  Featurestate.(FeatureStateId==CXC4011476);Featurestate.(FeatureStateId==CXC4011559);Featurestate.(FeatureStateId==CXC4011700);Featurestate.(FeatureStateId==CXC4011714);Featurestate.(FeatureStateId==CXC4011980) Featurestate.(description,featureState)
+
+#lister sur un site sans BBU les feature CA et leur état #
+cmedit get NANCY_SDIS_LTE OptionalFeatureLicense.(keyId==CXC4011476);OptionalFeatureLicense.(keyId==CXC4011559);OptionalFeatureLicense.(keyId==CXC4011700);OptionalFeatureLicense.(keyId==CXC4011714);OptionalFeatureLicense.(keyId==CXC4011980) OptionalFeatureLicense.(OptionalFeatureLicenseId,featureState) -t
+
+#lister les feature et leur état sur un site DUS#
+cmedit get ZOUFFTGEN_LTE OptionalFeatureLicense.(OptionalFeatureLicenseId,featureState,licenseState) -t
+cmedit get ALLARMONT_TDF_LTE OptionalFeatureLicense.(OptionalFeatureLicenseId==Anr,featureState) -t
+cmedit set DR_METZ OptionalFeatureLicense.(OptionalFeatureLicenseId==Anr) featureState=ACTIVATED
+cmedit set DR_METZ FeatureState.(featureStateId==CXC4010620) featureState=ACTIVATED --force
+
+#lister les licences users sur tous les sites DUS#
+cmedit get * CapacityFeatureLicense.(CapacityFeatureLicenseId==CapacityConnectedUsers,currentCapacityLimit) -t
+
+#lister les licences users sur tous les sites BB#
+cmedit get * CapacityState.(CapacityStateId==CXC4010608,description,grantedCapacityLevel) -t
+cmedit get olive_NE1_BB FeatureState.(keyId==CXC4012504,featureState,licenseState,serviceState) -t
+
+#liste supprimer utranfreqrelation et utrancellrelation de la frequence 3011 sur un site#
+cmedit delete COHARTILLE_N2_T_LTE UtranFreqRelation=3011 -all --force
+cmedit get *_LTE UtranFreqRelation=10812 -t
+
+#lister eutranfreqrelation=68 sur les sites RS#
+cmedit get RS_NE2 EUtranFreqRelation.(EUtranFreqRelationId==68) -t
+
+#supprimer eutranfreqrelation=68 sur un site RS#
+cmedit delete BUZY1_LTE EUtranFreqRelation=68 --force
+
+#supprimer utranfrequency et externalutrancellFDD de la frequence 10812 sur un site#
+cmedit delete NANCY_PORTE_STA_LTE UtranFrequency=10812 --all --force
+
+#modifier un paramètre suite à une recherche filtrée sur une savedsearch zone#
+cmedit set --savedsearch E1 UtranFreqRelation.(UtranFreqRelationId==10712,anrmeason==true) anrmeason=false
+
+#lister les RRU sur le 2600#
+cmedit get * EUtranCellFDD.(EUtranCellFDDId==*_E*);AuxPlugInUnit.(AuxPlugInUnitId==RRU*,productData) -t
+cmedit get *_LTE FieldReplaceableUnit.productData.(productName=="RRUS 11 B7") -t
+
+#lister les Ret sur un site#
+cmedit get NANCY_ST_GEORGE_LTE RetSubUnit.* -t
+
+#lister tous les Ret sur les cellules 2100 d'une collection#
+cmedit get testolive RetSubUnit.(electricalAntennaTilt,userLabel==*2100*) -t
+
+#lister featurestate de la feature HARQ de la collection HARQ#
+cmedit get HARQ OptionalFeatureLicense.(OptionalFeatureLicenseId==*HARQ*,featureState,licenseState) -t
+
+#activer featurestate de la feature HARQ de la collection HARQ#
+cmedit set HARQ OptionalFeatureLicense.(OptionalFeatureLicenseId==ServiceSpecificHARQ) featureState=ACTIVATED
+
+#lister paramètres enodeb HARQ qci1 de la collection HARQ_global#
+cmedit get HARQ_global QciProfilePredefined.(QciProfilePredefinedId==qci1,dlMaxHARQTxQci,ulMaxHARQTxQci,harqPriority) -t
+
+#lister paramètres cellules HARQ qci1 de la collection HARQ_global#
+cmedit get HARQ_global EUtranCellFDD.(enableServiceSpecificHARQ,tReorderingAutoConfiguration) -t
+
+#supprimer sur une collection les qci operatordefined#
+cmedit delete testolive qciprofileoperatordefined -t --force
+
+#lister CV sur tous les sites DUS#
+cmedit get * ConfigurationVersion.(rollbackList) -t
+
+#lister CV sur tous les sites BB#
+cmedit get * BrmBackup.(BrmBackupId,backupName,creationTime) -t
+
+#lister les alarmes actives sur une collection#
+alarm get olive -cri -maj -min
+
+#lister les alarmes entre 2 dates#
+alarm get *_LTE --begin 2020-07-01 --end 2020-07-10
+
+#lister les alarmes sur un specific probleme#
+alarm get *_LTE --specificProblem "PSU Output Power Failure"
+
+#lister les alarmes sur un site plus de détail#
+alarm get MULHOUSE_ILLBER_LTE --verbose
+
+#lister catm1enabled sur une savedsearch#
+cmedit get --savedsearch S1 EUtranCellFDD.(catm1SupportEnabled==true) -t
+
+#modifier 2 paramètres croisés 4g4G sur unlien unique#
+cmedit set GRAY_LTE EUtranCellFDD.(EUtranCellFDDId==86376_V3),EUtranCellRelation.(EUtranCellRelationId==2081-86376-6) isHoAllowed=true,isRemoveAllowed=false
+
+#modifier 2 paramètres croisés 4G3G sur un lien unique#
+cmedit set VANDOEUVRE_BRAB_LTE EUtranCellFDD.(EUtranCellFDDId==83888_F2),UtranCellRelation.(UtranCellRelationId==2081-551-854) isHoAllowed=true,isRemoveAllowed=false
+cmedit set SubNetwork=ENM_NE1,MeContext=VANDOEUVRE_BRAB_LTE,ManagedElement=VANDOEUVRE_BRAB_LTE,ENodeBFunction=1,EUtranCellFDD=83888_F2,UtranFreqRelation=3011,UtranCellRelation=2081-551-854 isHoAllowed=true,isRemoveAllowed=false
+
+#lister un paramètre utrancell sur un RNC#
+cmedit get NCY_BERT_R_2 UtranCell.(primaryCpichPower,userLabel) -t
+cmedit get DJN_CHAR_R_1 UtranCell.uarfcnDl -t
+
+
+#lister tous les paramètres utrancell sur une seule cellule d'un RNC#
+cmedit get NCY_BERT_R_2 UtranCell.'(userlabel==NANCY_BONUS_W29) UtranCell.*  -t
+
+#etat des cellules 3G sur un RNC#
+cmedit get NCY_BERT_R_2 UtranCell.(administrativeState,operationalState,userlabel) -t
+cmedit get NCY_BERT_R_2 UtranCell.(userlabel==*9,administrativeState==UNLOCKED,operationalState==DISABLED) -t 
+
+#lister emergency 4G#
+#DUS#cmedit get DOMBASLE_SUR_ME_LTE Licensing.(emergencyStateInfo) –t
+#BB#cmedit get NANCY_BONUS_LTE EmergencyUnlock.* –t
+
+#lister emergency 3G#
+cmedit get --savedsearch 'all_rbs' Licensing.(emergencyStateInfo) -t
+cmedit get --savedsearch 'all_rbs' Licensing.(emergencyStateInfo);ManagedElement.(Site) -t
+
+cmedit delete COLMEY_ZB_LTE UtranCellRelation.(UtranCellRelationId==20810-982-44680) --force 
+cmedit delete COLMEY_ZB_LTE ExternalUtranCellFDD.(ExternalUtranCellFDDId==20810-982-44680) --force 
+
+cmedit get --savedsearch 4G_L1;4G_L2 UtranCellRelation.(UtranCellRelationId==2081-982-24282);UtranCellRelation.(UtranCellRelationId==18520W29) -t
+
+cmedit get --savedsearch 4G_L1 UtranCellRelation.(UtranCellRelationId==18520W29) -t
+
+cmedit get --savedsearch 4G_L1;4G_L2 UtranCellRelation.(UtranCellRelationId==2081-982-24282) -t
+
+-> cmedit delete NZB_COINCOURT_O_LTE UtranCellRelation.(UtranCellRelationId==2081-982-24282) --force
+
+cmedit get --savedsearch 4G_L1;4G_L2 ExternalUtranCellFDD.(ExternalUtranCellFDDId==2081-982-24282);ExternalUtranCellFDD.(ExternalUtranCellFDDId==2081-982-22006) -t
+
+-> cmedit delete NZB_COINCOURT_1_LTE ExternalUtranCellFDD.(ExternalUtranCellFDDId==2081-982-24282) --force
+
+batch execute file: <file-name>
+
+#suppression lien de voisinage 4g4G#
+cmedit delete SubNetwork=ENM_NE2,MeContext=LGV_GUINZELING_LTE,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=86687_F1,EUtranFreqRelation=2,EUtranCellRelation=2081-86569-5 --force
+
+#lister X2 offline#
+cmedit get *_LTE TermPointToENB.(availabilityStatus==OFF_LINE,usedIpAddress) -t
+
+#lister MME #
+cmedit get RS_NE2 TermPointToMme.* -t
+
+#modifier adress IP MME #
+cmedit set MAREY_LES_FUSSE_LTE TermPointToMme.(TermPointToMmeId==COR2MME04) ipAddress1=80.125.129.250 --force
+
+#lister eutranfreq d'un RNC#
+cmedit get RS_NANCY1 EutranFreqRelation.* -t
+
+#lister date CV#
+cmedit get All_3G_Est ConfigurationVersion.(lastCreatedCv) -t
+
+#lister nbre CV#
+cmedit get VANDOEUVRE_DOUM ConfigurationVersion.(storedConfigurationVersions) -t
+
+#Lister les features non activées#
+cmedit get TOUL_ST_EVRE_LTE OptionalFeatureLicense.featureState==DEACTIVATED OptionalFeatureLicense.* -t
+
+#Lister une feature en DUS#
+cmedit get LENGELSHEIM_LTE OptionalFeatureLicense.(OptionalFeatureLicenseId==MissionCriticalPushToTalk,featureState,licenseState,serviceState,userLabel) -t
+
+#Lister une feature en BB#
+cmedit get VIGNY_LTE FeatureState.(FeatureStateId==CXC4012287,description,featureKey,featureState,licenseState,serviceState) -t
+
+#2G lister état cellules d'un BSC#
+cmedit get NCYBEB4 GeranCell.(GeranCellId,state,userLabel) -t
+
+#2G modifier param taLim#
+cmedit set SubNetwork=ENM_NE1,MeContext=NCYBEB4,ManagedElement=NCYBEB4,BscFunction=1,BscM=1,GeranCellM=1,GeranCell=00022G1,Mobility=1,LocatingUrgency=1 taLim=62
+
+#2G créer EUTRANFREQ#
+cmedit create SubNetwork=ENM_NE2,MeContext=NCYBEB4,ManagedElement=NCYBEB4,BscFunction=1,BscM=1,GeranCellM=1,GeranCell=03467G1,Mobility=1,InterRanMobility=1,EUtranFrequency=3000 EUtranFrequencyId=3000
+
+#supprimer QciProfileOperatorDefined#
+cmedit delete FAREBERSVILLER0_LTE QciProfileOperatorDefined --force
+
+#4G UE CAPABILITIES TUNING#
+cmedit action multibande BandCombCompression populateRequestedFreqBandsFiltered
+
+#creation UePolicyOptimization pour DUS_CAIMC_et_ENDCTHOSETUP#
+cmedit create SubNetwork=ENM_NE2,MeContext=DOMBASLE_SUR_ME_LTE,ManagedElement=1,ENodeBFunction=1,UePolicyOptimization=1 UePolicyOptimizationid=1,coverageAwareImc=true,t320=180
+
+#palier BB#
+cmedit get *_LTE ManagedElement.(release==20.Q3) -t
+
+#4G-5G endc#
+cmedit delete endc_bb gutrancellrelation -t --force
+cmedit delete endc_bb externalgutrancell -t --force
+cmedit delete endc_bb gutranfreqrelation -t --force
+cmedit delete endc_bb GutranSyncSignalFrequency -t --force
+
+#3G cell#
+cmedit get STG_WODLI_eR_5 UtranCell.(UtranCellId==36701W19) UtranCell.* -t
+cmedit get STG_WODLI_eR_5 UtranCell.(UtranCellId==00230U11),UtranRelation.* -t
+
+#2G voisinage#
+cmedit get NCYBEB4 GeranCell.(GeranCellId==12381G1),GeranCellRelation -t
+
+#licence endc#
+cmedit get DIJON_HOTEL_DE_-_LTE FeatureState.(FeatureStateId==CXC4012504,featureState,licenseState) -t
+
+cmedit set *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND enodebfunction.userlabel==*A1*) EUtranCellFDD ul256qamEnabled=true --preview
+
+cmedit set *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND enodebfunction.userlabel==*A1*) EUtranCellFDD puschPwrOffset256qam=8 --preview
+
+cmedit set *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND enodebfunction.userlabel==*A1*) FeatureState.FeatureStateId==CXC4012344 featurestate.featurestate=ACTIVATED --preview
+
+
+cmedit create SubNetwork=ENM_NE1,MeContext=LILLE_NEGRIER_LTE,ManagedElement=LILLE_NEGRIER_LTE,ENodeBFunction=1,EUtranCellFDD=82777_E1,EUtranFreqRelation=16 eUtranFreqRelationId=16,eutranFrequencyRef="SubNetwork=ENM_NE1,MeContext=LILLE_NEGRIER_LTE,ManagedElement=LILLE_NEGRIER_LTE,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=6"
+cmedit create SubNetwork=ENM_NE1,MeContext=LILLE_NEGRIER_LTE,ManagedElement=LILLE_NEGRIER_LTE,ENodeBFunction=1,EUtranCellFDD=82777_E1,EUtranFreqRelation=15 eUtranFreqRelationId=15,eutranFrequencyRef="SubNetwork=ENM_NE1,MeContext=LILLE_NEGRIER_LTE,ManagedElement=LILLE_NEGRIER_LTE,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=5"
+cmedit create SubNetwork=ENM_NE1,MeContext=LILLE_NEGRIER_LTE,ManagedElement=LILLE_NEGRIER_LTE,ENodeBFunction=1,EUtranCellFDD=82777_E1,EUtranFreqRelation=13 eUtranFreqRelationId=13,eutranFrequencyRef="SubNetwork=ENM_NE1,MeContext=LILLE_NEGRIER_LTE,ManagedElement=LILLE_NEGRIER_LTE,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3"
+cmedit create SubNetwork=ENM_NE1,MeContext=LILLE_NEGRIER_LTE,ManagedElement=LILLE_NEGRIER_LTE,ENodeBFunction=1,EUtranCellFDD=82777_E1,EUtranFreqRelation=18 eUtranFreqRelationId=18,eutranFrequencyRef="SubNetwork=ENM_NE1,MeContext=LILLE_NEGRIER_LTE,ManagedElement=LILLE_NEGRIER_LTE,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=8"
+
+cmedit set A16_ABBEVILLE_N_LTE eutrancellfdd mappingInfo:(mappingInfoSIB10=MAPPED_SI_1,mappingInfoSIB11=NOT_MAPPED,mappingInfoSIB12=MAPPED_SI_6,mappingInfoSIB13=NOT_MAPPED,mappingInfoSIB15=NOT_MAPPED,mappingInfoSIB16=NOT_MAPPED,mappingInfoSIB24=NOT_MAPPED,mappingInfoSIB3=MAPPED_SI_1,mappingInfoSIB4=MAPPED_SI_2,mappingInfoSIB5=MAPPED_SI_3,mappingInfoSIB6=MAPPED_SI_4,mappingInfoSIB7=MAPPED_SI_5,mappingInfoSIB8=NOT_MAPPED)
+cmedit delete --collection noFDD10F3 UtranFreqrelation=10787 --preview --all --force
+cmedit delete EPINOY* UtranFreqrelation=10787 --preview --all
+
+/opt/ORANGE/bin/batchcli.py -c "cmedit set AMIENS_CROIX_RO_LTE;AMIENS_LA_NEUVI_LTE;AMIENS_RACINE_LTE;AMIENS_TOUR_AUV_LTE;AMIENS_GARE_LTE;AMIENS_CATHEDRA_LTE;AMIENS_RIVERY_LTE;AMIENS_PONT_DE_-_LTE;AMIENS_CAMPUS_LTE;LONGUEAU_LTE;AMIENS_DURY_TDF_LTE;AMIENS_NORD_LTE;AMIENS_CAMON_LTE;AMIENS_FERREE_LTE;AMIENS_CENTRE_D_LTE;AUTHEUX_TDF_LTE
+--scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND EUtranCellFDD.earfcndl==9310) EUtranCellFDD.(qrxlevmin==-124,earfcndl==6400) EUtranCellFDD.qrxlevmin=-122" > /home/shared/CIUM7526/logs/qrxlevminRA.log 2>&1
+
+
+cmedit get *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND EUtranCellFDD.earfcndl==9310) EUtranCellFDD.(qrxlevmin==-122,earfcndl==6400) --output priColl tests
+
+
+cmedit set *_LTE Timesettings daylightSavingTimeEndDate = {month=OCTOBER,dayRule="lastSun",time="03:00"} –t
+cmedit set *_LTE Timesettings daylightSavingTimeStartDate = {month=MARCH,dayRule="lastSun",time="02:00"} –t
+cmedit set *_LTE Timesettings daylightSavingTimeOffset = "1:00" –t
+cmedit set *_LTE Timesettings TimeOffset = "+01:00" –t
+
+cmedit set *_LTE FeatureState.(featureStateId==CXC4012302) featureState=ACTIVATED --force
+cmedit set *_LTE FeatureState.(featureStateId==CXC4012319) featureState=ACTIVATED --force
+
+cmedit get *_LTE Slot.(SlotId==1,productData.(productName)) -t --output priColl dus
+
+cmedit set GRAVELINES_LES1_LTE IdleModePrioAtRelease.( IdleModePrioAtReleaseId==L2100) IdleModePrioAtRelease.highLoadThreshold=500 -t --force
+
+cmedit get AMI_BRANLY_R_3 UtranRelation.UtranRelationId==02911W19 UtranRelation.* -t
+cmedit delete AMI_BRANLY_R_3 UtranRelation.UtranRelationId==02911W19 --all --preview
+
+cmedit set *_LTE eutranfreqrelation.(eutranfreqrelationid==26,lbbnrpolicy==NOT_ALLOWED) lbbnrallowed=AUTO --preview
+cmedit set EPINOY_LTE  EUtranCellFDD.(EUtranCellFDDId==*_V*) idleModePrioAtReleaseref:"SubNetwork=ENM_NE3,MeContext=DUNKERQUE_PORT_-_LTE,ManagedElement=DUNKERQUE_PORT_-_LTE,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=L2100"
+
+cmedit get *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND EUtranCellFDD.earfcndl==6400) UtranFreqRelation.(UtranFreqRelationId==3004,voicePrio!=-1) UtranFreqRelation.voicePrio -t
+
+cmedit get LILLE* --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND retsubunit.userlabel==*"LTE700") retsubunit.(userlabel==*"LTE800",electricalantennatilt) -t
+
+cmedit get LILLE_N* --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND enodebfunction.userlabel=="F4__"* AND retsubunit.userlabel==*_LTE800) retsubunit.(userlabel==*_LTE700,electricalantennatilt);enodebfunction.userlabel -t
+
+cmedit set LIL_BOIT* EutranFreqRelation.(EutranFreqRelationId==LTE800,threshHigh==14) threshHigh=10 --preview
+cmedit set LIL_B* EutranFreqRelation.(EutranFreqRelationId==LTE800,qrxlevmin==-122,threshHigh==14) threshHigh=10 --preview
+
+cmedit delete --collection test1 externalEUtranCellFDD.(externalEUtranCellFDDId==2081-82879*) --preview --all
+cmedit delete --collection test EUtranCellRelation.(EUtranCellRelationId==2081-82879*) --preview --all
+
+cmedit get *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND eutrancellfdd.earfcndl==3000 AND eutrancellfdd.earfcndl==524 AND eutrancellfdd.earfcndl==1300 AND enodebfunction.userlabel==A1__*) eutrancellfdd.(earfcndl==6400,crsgain) -t
+
+cmedit set --collection dunkerque eutranfreqrelation.(EUtranFreqRelationId==56) eutranfreqrelation.caTriggeredRedirectionActive=false -t
+
+cmedit set --collection dunkerque FeatureState.(featureStateId==CXC4011666) featureState=ACTIVATED --force
+
+cmedit get --collection dunkerque eutrancellfdd.EUtranCellFDDId==*_F* --output priColl 800dunk
+cmedit set --collection 800dunk ReportConfigEUtraInterFreqLb a5Threshold1Rsrp=-97 --preview
+
+cmedit set --collection dunkerque eutranfreqrelation.(EUtranFreqRelationId==21) EUtranFreqRelation.lbA5Thr1RsrpFreqOffset=50
+cmedit set --collection dunkerque eutranfreqrelation.(EUtranFreqRelationId==23) EUtranFreqRelation.lbA5Thr1RsrpFreqOffset=50
+cmedit set --collection dunkerque eutranfreqrelation.(EUtranFreqRelationId==25) EUtranFreqRelation.lbA5Thr1RsrpFreqOffset=50
+
+cmedit get --collection dunkerque eutranfreqrelation.(eutranfreqrelationid==12);eutranfreqrelation.(eutranfreqrelationid==32) --output priColl 3252
+cmedit set --collection 3252 eutrancellrelation.(loadbalancing==ALLOWED) eutrancellrelation.loadbalancing=NOT_ALLOWED
+
+#### LOADBALANCING CO SECTEUR
+cmedit get *_LTE eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==31);eutranfreqrelation.(eutranfreqrelationid==15);eutranfreqrelation.(eutranfreqrelationid==35);eutranfreqrelation.(eutranfreqrelationid==51);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl iflbfreqrel
+cmedit get --collection iflbfreqrel eutrancellrelation.(coverageindicator!=NONE,loadbalancing==NOT_ALLOWED,lbbnrallowed==false) -t
+
+
+cmedit get *_LTE --scopefilter (enodebfunction.userlabel==A1__*) eutranfreqrelation.(eutranfreqrelationid==32);eutranfreqrelation.(eutranfreqrelationid==12);eutranfreqrelation.(eutranfreqrelationid==52) --output priColl 3252
+cmedit get --collection 3252 eutrancellrelation.(loadbalancing==ALLOWED) --output priColl 3252allowed
+cmedit set --collection 3252allowed eutrancellrelation.(loadbalancing==ALLOWED) eutrancellrelation.loadbalancing=NOT_ALLOWED
+
+
+
+cmedit get *_LTE eutranfreqrelation.(eutranfreqrelationid==12,lbbnrpolicy==AUTO);eutranfreqrelation.(eutranfreqrelationid==32,lbbnrpolicy==AUTO);eutranfreqrelation.(eutranfreqrelationid==52,lbbnrpolicy==AUTO) --output priColl bnrploicyallowedBB
+cmedit set --collection bnrploicyallowedBB eutranfreqrelation lbBnrPolicy=NOT_ALLOWED
+cmedit set *_LTE eutranfreqrelation.(eutranfreqrelationid==52,lbbnrpolicy==AUTO);eutranfreqrelation.(eutranfreqrelationid==32,lbbnrpolicy==AUTO);eutranfreqrelation.(eutranfreqrelationid==12,lbbnrpolicy==AUTO) lbbnrpolicy=NOT_ALLOWED --preview
+cmedit get *_LTE eutranfreqrelation.(eutranfreqrelationid==16,lbbnrpolicy==AUTO);eutranfreqrelation.(eutranfreqrelationid==36,lbbnrpolicy==AUTO);eutranfreqrelation.(eutranfreqrelationid==56,lbbnrpolicy==AUTO) --output priColl bnrploicyallowedBB6
+cmedit set --collection bnrploicyallowedBB6 eutranfreqrelation lbBnrPolicy=NOT_ALLOWED
+
+
+cmedit set --collection dunkerque EUtrancellFDD lbTpNonQualFraction:25 --preview
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_F*) lbTpRankThreshMin:0 --preview
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_K*) lbTpRankThreshMin:0 --preview
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_V*) lbTpRankThreshMin:-5 --preview
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_E*) lbTpRankThreshMin:-5 --preview
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_H*) lbTpRankThreshMin:-5 --preview
+cmedit set --collection dunkerque eutranfreqrelation.(EUtranFreqRelationId==56) eutranfreqrelation.caTriggeredRedirectionActive=false -t
+cmedit set --collection dunkerque FeatureState.(featureStateId==CXC4011666) featureState=DEACTIVATED --force
+cmedit set --collection dunkerque FeatureState.(featureStateId==CXC4011911) featureState=ACTIVATED --force
+
+
+
+cmedit get *_LTE EUtrancellFDD.(EUtranCellFDDId==*_E*) --output priColl cell2600
+cmedit get --collection cell2600 ReportConfigA5.a5Threshold1Rsrp -t
+
+cmedit get *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND enodebfunction.userlabel==*RURAL*) EUtrancellFDD.(EUtranCellFDDId==*_F*) --output priColl cell800RURAL
+
+
+
+cmedit get *_LTE UeMeasControl=1 prioOffsetPerQci~&[{offsetPerQciPrio==5}]
+
+cmedit get * networkelement.radioAccessTechnology~~["4G" && "5G"]
+cmedit get *_LTE AuxPlugInUnit.(productData.(productName)) -t
+cmedit get *_LTE FieldReplaceableUnit.productData.(productName=="RRUS 11 B7") -t
+
+
+
+#lister les alarmes actives sur une collection#
+alarm get olive -cri -maj -min
+
+
+
+#lister les alarmes entre 2 dates#
+alarm get *_LTE --begin 2020-07-01 --end 2020-07-10
+
+
+
+#lister les alarmes sur un specific probleme#
+alarm get *_LTE --specificProblem "PSU Output Power Failure"
+alarm get *_LTE --specificProblem "License"
+alarm get *_LTE --problemText "License key for EN-DC Triggered Handover during Connected Mode Mobility (CXC4012504) required for the configured functioning of the Managed Element is not available in currently installed key file."
+alarm hist *_LTE --begin 2022-06-06T00:01:00 --end 2022-06-07T12:57:41 --specificProblem "PLMN"
+alarm hist *_LTE --begin 2022-06-12T00:23:00 --end 2022-06-14T11:23:41 --objectOfReference "TMA"
+
+
+
+#lister les alarmes sur un site plus de détail#
+alarm get MULHOUSE_ILLBER_LTE --verbose
+
+
+
+cmedit get *_LTE --scopefilter (enodebfunction.userlabel==*RURAL* AND eutrancellfdd.earfcndl==6400) eutranfreqrelation.EUtranFreqRelationId==21 --output priColl cell800_RURAL
+cmedit get --collection cell800_RURAL eutrancellrelation.coverageindicator==NONE -t
+
+
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_F*) lbTpRankThreshMin:-5
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_K*) lbTpRankThreshMin:-5
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_V*) lbTpRankThreshMin:-10
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_E*) lbTpRankThreshMin:0
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_H*) lbTpRankThreshMin:-10
+cmedit set --collection dunkerque eutranfreqrelation.(EUtranFreqRelationId==13) eutranfreqrelation.caTriggeredRedirectionActive=false -t
+cmedit set --collection dunkerque eutranfreqrelation.(EUtranFreqRelationId==15) eutranfreqrelation.caTriggeredRedirectionActive=false -t
+cmedit set --collection dunkerque eutranfreqrelation.(EUtranFreqRelationId==35) eutranfreqrelation.caTriggeredRedirectionActive=true -t
+cmedit set --collection dunkerque FeatureState.(featureStateId==CXC4011666) featureState=ACTIVATED --force
+cmedit set --collection dunkerque FeatureState.(featureStateId==CXC4011911) featureState=ACTIVATED --force
+
+
+
+
+cmedit get A* --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND networkelement.radioAccessTechnology~~["4G"]) FieldReplaceableUnit.(FieldReplaceableUnitId==1,productData) --output priColl BB_A
+cmedit get B* --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND networkelement.radioAccessTechnology~~["4G"]) FieldReplaceableUnit.(FieldReplaceableUnitId==1,productData) --output priColl BB_B
+cmedit get L* --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND networkelement.radioAccessTechnology~~["4G"]) FieldReplaceableUnit.(FieldReplaceableUnitId==1,productData.(productName=="Baseband 6630") --output priColl BB_L_6630
+cmedit get L* --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND networkelement.radioAccessTechnology~~["4G"]) FieldReplaceableUnit.(FieldReplaceableUnitId==1,productData.(productName=="Baseband 5216") --output priColl BB_L_5216
+cmedit get * Slot.(SlotId==1,productData.(productName)) --output priColl DUS
+
+
+cmedit get LIL_BOIT_eR_7 eutranfreqrelation.(EutranFreqRelationId==LTE1800,qrxlevmin==-128,threshHigh==8) -t
+
+cmedit set LIL_BOIT_eR_7 eutranfreqrelation.(EutranFreqRelationId==LTE2100,qrxlevmin==-128,threshHigh==8) eutranfreqrelation.threshHigh:10 --preview
+
+
+cmedit get A* --scopefilter (enodebfunction.userlabel==*RURAL*)  eutranfreqrelation.(eutranfreqrelationid==23) --output priColl A1eutranfreq23rural
+cmedit get --collection A1eutranfreq23rural eutrancellrelation.(lbBnrAllowed==false) --output priColl A1eutranfreq23ruralbnrfalse
+
+cmedit set A* --scopefilter (CmFunction.syncStatus==SYNCHRONIZED) eutrancellrelation.(loadbalancing==NOT_ALLOWED,lbbnrallowed==false) lbbnrallowed:true --preview
+
+
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_F*) cellCapMaxCellSubCap:25000 --preview
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_F*) cellCapMinCellSubCap:5000 --preview
+
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_V*) cellCapMaxCellSubCap:40000 --preview
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_V*) cellCapMinCellSubCap:15000 --preview
+
+
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_E*) cellCapMaxCellSubCap:60000 --preview
+cmedit set --collection dunkerque EUtrancellFDD.(EUtranCellFDDId==*_E*) cellCapMinCellSubCap:20000 --preview
+
+
+cmedit set VICTOR_HUGO_NR  McpcPSCellProfileUeCfg rsrpCandidateA5.(threshold1=-154) --preview
+
+
+
+cmedit set *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND enodebfunction.userlabel==*__DEPT_02*) EUtrancellFDD.(EUtranCellFDDId==*_F*) lbdarCoverageThreshold:1 --preview
+cmedit set *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND enodebfunction.userlabel==*RURAL*) EUtrancellFDD.(EUtranCellFDDId==*_F*) lbdarCoverageThreshold:1 --preview
+medit set *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND enodebfunction.userlabel==*RURAL*) EUtrancellFDD.(EUtranCellFDDId==*_K*) lbdarCoverageThreshold:1 --preview
+cmedit set *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND enodebfunction.userlabel==*RURAL*) ReportConfigEUtraInterFreqLb.(a5Threshold2Rsrp==-115) a5Threshold2Rsrp:-117 --preview
+cmedit set *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND enodebfunction.userlabel==*RURAL*) ReportConfigA5.(a5Threshold2Rsrp==-116) a5Threshold2Rsrp:-118 --preview
+
+
+cmedit get *_LTE FieldReplaceableUnit.(FieldReplaceableUnitid==1,productData.(productName)) -t
+cmedit get EP* FieldReplaceableUnit.(FieldReplaceableUnitid==RRU*,productData.(productName)) -t
+cmedit get EP* FieldReplaceableUnit.(FieldReplaceableUnitid==RU*,productData.(productName)) -t
+cmedit get EP* FieldReplaceableUnit.(FieldReplaceableUnitid==XMU*,productData.(productName)) -t
+
+cmedit get *_LTE SubscriberGroupProfile.(SubscriberGroupProfileId==MBB,profileIndex==0) -t
+
+
+cmedit set -co amiens 	MimoSleepFunction.(sleepMode==ADVANCED_SWITCH) sleepmode:MI_DETECTION --preview
+
+cmedit get -co amiens FeatureState.(FeatureStateid==CXC4012533) featurestate.(featurestate,description) -t
+
+
+SLeep MODE vers 1800
+cmedit get *_LTE eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353
+cmedit get -co 1353 eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowed
+
+cmedit set -co CovCellCandidateautotoallowed --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND ManagedElement.siteLocation==*A1) eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowed --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND enodebfunction.userlabel==*RURAL*) eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowed eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+
+
+
+cmedit get *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND ManagedElement.siteLocation==*A1 AND enodebfunction.userlabel==*RURAL*) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353A1rural
+cmedit get -co 1353A1rural eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedA1rural
+cmedit set -co CovCellCandidateautotoallowedA1rural eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+
+
+
+cmedit get A*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353A
+cmedit get B*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353B
+cmedit get C*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353C
+cmedit get D*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353D
+cmedit get E*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353E
+cmedit get F*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353F
+cmedit get G*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353G
+cmedit get H*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353H
+cmedit get I*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353I
+cmedit get J*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353J
+cmedit get K*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353K
+cmedit get L*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353L
+cmedit get M*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353M
+cmedit get N*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353N
+cmedit get O*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353O
+cmedit get P*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353P
+cmedit get Q*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353Q
+cmedit get R*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353R
+cmedit get S*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353S
+cmedit get T*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353T
+cmedit get U*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353U
+cmedit get V*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353V
+cmedit get W*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353W
+cmedit get Y*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353Y
+cmedit get Z*  --scopefilter (CmFunction.syncStatus==SYNCHRONIZED  AND networkelement.radioAccessTechnology~~["4G"]) eutranfreqrelation.(eutranfreqrelationid==13);eutranfreqrelation.(eutranfreqrelationid==53) --output priColl 1353Z
+
+cmedit get  -co 1353A eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedA
+cmedit get  -co 1353B eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedB
+cmedit get  -co 1353C eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedC
+cmedit get  -co 1353D eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedD
+cmedit get  -co 1353E eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedE
+cmedit get  -co 1353F eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedF
+cmedit get  -co 1353G eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedG
+cmedit get  -co 1353H eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedH
+cmedit get  -co 1353I eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedI
+cmedit get  -co 1353J eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedJ
+cmedit get  -co 1353K eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedK
+cmedit get  -co 1353L eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedL
+cmedit get  -co 1353M eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedM
+cmedit get  -co 1353N eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedN
+cmedit get  -co 1353O eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedO
+cmedit get  -co 1353P eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedP
+cmedit get  -co 1353Q eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedQ
+cmedit get  -co 1353R eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedR
+cmedit get  -co 1353S eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedS
+cmedit get  -co 1353T eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedT
+cmedit get  -co 1353U eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedU
+cmedit get  -co 1353V eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedV
+cmedit get  -co 1353W eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedW
+cmedit get  -co 1353Y eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedY
+cmedit get  -co 1353Z eutrancellrelation.(scellcandidate==ALLOWED,sleepModeCovCellCandidate==AUTO) --output priColl CovCellCandidateautotoallowedZ
+
+
+cmedit set -co CovCellCandidateautotoallowedA eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedB eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedC eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedD eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedE eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedF eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedG eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedH eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedI eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedJ eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedK eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedL eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedM eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedN eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedO eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedP eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedQ eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedR eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedS eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedT eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedU eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedV eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedW eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedY eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+cmedit set -co CovCellCandidateautotoallowedZ eutrancellrelation sleepModeCovCellCandidate:ALLOWED --preview
+
+
+cmedit get *_NR FieldReplaceableUnit.(FieldReplaceableUnitId==AAS-*,productData.(productName)) -t
+cmedit get *_NR FieldReplaceableUnit.(FieldReplaceableUnitId==AAS-*,productData.(productName=="AIR 3227 B43")) -t
+
+cmedit get *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND eutrancellfdd.earfcndl!=3000 AND eutrancellfdd.earfcndl==524) eutrancellfdd.earfcndl -t
+
+cmedit action LILLE_NEGRIER_LTE BrmBackupManager createBackup.(name=mybackup)
+
+
+
+cmedit get * --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND networkelement.radioAccessTechnology~~["5G"] AND FieldReplaceableUnit.(FieldReplaceableUnitid==1,productData.(productName=="Baseband 6648")) AND eutrancellfdd.earfcndl==6400) eutrancellfdd
+
+cmedit
+action LTE01ERBS00002 ManagedElement
+manualRestart restartRank =RESTART_
+restartReason
+=PLANNED_
+restartInfo
+someInfo
+
+cmedit action MeContext=ERBS001,ManagedElement=1 manualrestart.(restartrank=RESTART_WARM,restartreason=PLANNED_RECONFIGURATION,restartinfo=someInfo) --force
+
+cmedit action LTE01ERBS00002 AuxPlugInUnit AuxPlugInUnitId ==RUL1) restartUnit
+
+
+cmedit get * --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND networkelement.radioAccessTechnology~~["5G"]) eutrancellfdd.userlabel -t
+
+
+cmedit set *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND networkelement.radioAccessTechnology~~["4G"] AND enodebfunction.userlabel==*CAMBR*) featurestate.(featurestateid==CXC4011056) featurestate.featurestate:ACTIVATED --preview
+
+cmedit set *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND networkelement.radioAccessTechnology~~["4G"] AND enodebfunction.userlabel==*CAMBR*) featurestate.(featurestateid==CXC4011427) featurestate.featurestate:ACTIVATED --preview
+
+cmedit set *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND networkelement.radioAccessTechnology~~["4G"] AND enodebfunction.userlabel==*CAMBR*) featurestate.(featurestateid==CXC4011667) featurestate.featurestate:ACTIVATED --preview
+
+cmedit set *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND networkelement.radioAccessTechnology~~["4G"] AND enodebfunction.userlabel==*CAMBR*) featurestate.(featurestateid==CXC4012104) featurestate.featurestate:ACTIVATED --preview
+
+cmedit set *_LTE --scopefilter (CmFunction.syncStatus==SYNCHRONIZED AND networkelement.radioAccessTechnology~~["4G"] AND enodebfunction.userlabel==*CAMBR*) featurestate.(featurestateid==CXC4011700) featurestate.featurestate:ACTIVATED --preview
+
+cmedit set -co douai1800 cellsleepfunction covCellRrcConnWakeUpThreshold:25 --preview
+cmedit set -co douai1800 cellsleepfunction covCellWakeUpMonitorDurTimer:1 --preview
+covCellWakeUpMonitorDurTimer
+cmedit set FORT_MA* IdleModePrioAtRelease.(IdleModePrioAtReleaseId==L2600_CSON*) lowLoadThreshold:330 --preview
+cmedit set -co douai IdleModePrioAtRelease.(IdleModePrioAtReleaseId==L2100_CSON*) lowMediumLoadThreshold:100 --preview
+cmedit set -co douai IdleModePrioAtRelease.(IdleModePrioAtReleaseId==L2100_CSON*) lowLoadThreshold:200  --preview
+
+cmedit set -co douai1800 eutranfreqrelation.(eutranfreqrelationid==35) threshxhigh:18 -t --preview
+
+cmedit get *_NR SubscriberGroupProfile.(SubscriberGroupProfileId==MBB,profileIndex==0) -t
+
+alarm get 4rxdiv2024 --begin 2024-03-07
+

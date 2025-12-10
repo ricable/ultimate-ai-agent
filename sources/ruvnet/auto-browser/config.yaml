@@ -1,0 +1,71 @@
+sites:
+  example:
+    name: Example Site
+    url_pattern: https://example.com
+    selectors:
+      title: h1
+      content: main
+    extract:
+    - type: text
+      selector: h1
+      name: title
+    - type: text
+      selector: main
+      name: content
+    wait_for: h1
+  finance:
+    name: finance
+    description: Extract stock information
+    url_pattern: https://www.google.com/finance
+    selectors:
+      stock_price:
+        css: .YMlKec.fxKbKc
+        description: Current stock price
+        multiple: false
+      price_change:
+        css: .P2Luy.Ez2Ioe
+        description: Price change
+        multiple: false
+      company_name:
+        css: .zzDege
+        description: Company name
+        multiple: false
+      market_cap:
+        css: '[data-metric="MARKET_CAP"] .P6K39c'
+        description: Market capitalization
+        multiple: false
+      volume:
+        css: '[data-metric="VOLUME"] .P6K39c'
+        description: Trading volume
+        multiple: false
+      news_items:
+        css: .yY3Lee
+        description: News articles
+        multiple: true
+      search_input:
+        css: .Ax4B8.ZAGvjd
+        description: Search input field
+        multiple: false
+output_dir: output
+browser:
+  headless: true
+  viewport:
+    width: 1280
+    height: 720
+  timeout: 30000
+templates_dir: templates
+default_template:
+  selectors:
+    title: h1
+    content: main
+  wait_for: h1
+  extract:
+  - type: text
+    selector: h1
+    name: title
+  - type: text
+    selector: main
+    name: content
+logging:
+  level: info
+  file: auto-browser.log

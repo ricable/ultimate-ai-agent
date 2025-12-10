@@ -1,0 +1,67 @@
+{
+  "timestamp": "20250620_135945",
+  "total_tests": 6,
+  "successful_tests": 4,
+  "results": [
+    {
+      "framework": "mlx",
+      "model_name": "llama-3.1-8b-bf16",
+      "test_type": "inference",
+      "load_time": 0,
+      "inference_time": 0,
+      "memory_mb": 0,
+      "success": false,
+      "error": "InferenceTimer.__init__() takes 1 positional argument but 2 were given"
+    },
+    {
+      "framework": "mlx",
+      "model_name": "Meta-Llama-3.1-8B-Instruct-4bit",
+      "test_type": "inference",
+      "load_time": 0,
+      "inference_time": 0,
+      "memory_mb": 0,
+      "success": false,
+      "error": "InferenceTimer.__init__() takes 1 positional argument but 2 were given"
+    },
+    {
+      "framework": "huggingface",
+      "model_name": "DialoGPT-medium",
+      "test_type": "inference",
+      "load_time": 2.2655138969421387,
+      "inference_time": 2.0725598335266113,
+      "memory_mb": 391.375,
+      "success": true,
+      "error": ""
+    },
+    {
+      "framework": "huggingface",
+      "model_name": "DialoGPT-medium",
+      "test_type": "inference_mps",
+      "load_time": 1.4910459518432617,
+      "inference_time": 0.06592798233032227,
+      "memory_mb": -30.984375,
+      "success": true,
+      "error": ""
+    },
+    {
+      "framework": "huggingface",
+      "model_name": "DialoGPT-small",
+      "test_type": "inference",
+      "load_time": 10.903228998184204,
+      "inference_time": 1.095423936843872,
+      "memory_mb": 220.1875,
+      "success": true,
+      "error": ""
+    },
+    {
+      "framework": "huggingface",
+      "model_name": "DialoGPT-small",
+      "test_type": "inference_mps",
+      "load_time": 1.0898311138153076,
+      "inference_time": 0.43655896186828613,
+      "memory_mb": 21.25,
+      "success": true,
+      "error": ""
+    }
+  ]
+}

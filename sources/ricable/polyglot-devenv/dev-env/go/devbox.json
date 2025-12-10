@@ -1,0 +1,52 @@
+{
+  "packages": [
+    "go@1.22",
+    "golangci-lint@latest",
+    "nodejs@20",
+    "nushell"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Go Development Environment'",
+      "go version",
+      "echo 'Initializing claude-flow...'",
+      "npx --yes claude-flow@alpha init --force",
+      "echo 'Starting claude-flow hive-mind...'",
+      "npx --yes claude-flow@alpha hive-mind wizard"
+    ],
+    "scripts": {
+      "build": "go build ./...",
+      "run": "go run ./cmd/main.go",
+      "test": "go test ./...",
+      "test-watch": "find . -name '*.go' | entr -r go test ./...",
+      "format": "gofmt -w .",
+      "lint": "golangci-lint run",
+      "clean": "go clean -cache -modcache -testcache",
+      "mod-tidy": "go mod tidy",
+      "mod-download": "go mod download",
+      "vet": "go vet ./...",
+      "watch": "find . -name '*.go' | entr -r go run ./cmd/main.go",
+      "devpod:provision": "nu ../../host-tooling/devpod-management/manage-devpod.nu provision go",
+      "devpod:connect": "nu ../../host-tooling/devpod-management/manage-devpod.nu connect go",
+      "devpod:start": "nu ../../host-tooling/devpod-management/manage-devpod.nu start go",
+      "devpod:stop": "nu ../../host-tooling/devpod-management/manage-devpod.nu stop go",
+      "devpod:delete": "nu ../../host-tooling/devpod-management/manage-devpod.nu delete go",
+      "devpod:sync": "nu ../../host-tooling/devpod-management/manage-devpod.nu sync go",
+      "devpod:status": "nu ../../host-tooling/devpod-management/manage-devpod.nu status go",
+      "devpod:help": "nu ../../host-tooling/devpod-management/manage-devpod.nu help go",
+      "claude-flow:init": "npx --yes claude-flow@alpha init --force",
+      "claude-flow:help": "npx --yes claude-flow@alpha --help",
+      "claude-flow:wizard": "npx --yes claude-flow@alpha hive-mind wizard",
+      "claude-flow:start": "npx --yes claude-flow@alpha start --daemon",
+      "claude-flow:status": "npx --yes claude-flow@alpha status",
+      "claude-flow:stop": "npx --yes claude-flow@alpha stop",
+      "claude-flow:monitor": "npx --yes claude-flow@alpha monitor",
+      "claude-flow:logs": "tail -f ./claude-flow.log",
+      "claude-flow:spawn": "npx --yes claude-flow@alpha hive-mind spawn \"create a snake game in the language of your devpod dev env\" --claude"
+    }
+  },
+  "env": {
+    "CGO_ENABLED": "0",
+    "GOPATH": "$HOME/go"
+  }
+}

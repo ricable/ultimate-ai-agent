@@ -1,0 +1,40 @@
+{
+  "memory": {
+    "vector_dimensions": [
+      512,
+      768,
+      1024,
+      1536
+    ],
+    "max_memories": 10000,
+    "similarity_threshold": 0.8,
+    "consolidation_interval": 3600,
+    "cleanup_threshold": 0.1
+  },
+  "safety": {
+    "memory_limit": 2147483648,
+    "cpu_limit": 0.9,
+    "monitoring_interval": 2.0,
+    "emergency_stop_threshold": 0.95,
+    "rollback_enabled": true
+  },
+  "mcp": {
+    "timeout": 30,
+    "max_retries": 3,
+    "health_check_interval": 60,
+    "connection_pool_size": 10,
+    "circuit_breaker_threshold": 5
+  },
+  "metacognitive": {
+    "adaptation_rate": 0.1,
+    "goal_priority_threshold": 0.5,
+    "strategy_selection_timeout": 10,
+    "performance_window_size": 100,
+    "self_awareness_interval": 5.0
+  },
+  "debug": false,
+  "log_level": "WARNING",
+  "enable_monitoring": true,
+  "data_dir": "./data",
+  "config_dir": "./.roo"
+}

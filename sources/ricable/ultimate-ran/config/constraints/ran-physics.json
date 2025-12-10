@@ -1,0 +1,91 @@
+{
+  "$schema": "https://titan.ericsson.com/schemas/ran-constraints.v1.json",
+  "version": "7.0.0",
+  "description": "RAN Physics Constraints and 3GPP Safety Limits for Psycho-Symbolic Integration",
+  "use_cases": {
+    "fast_mobility": {
+      "description": "High-Speed Train optimization (350 km/h UE)",
+      "physics": {
+        "doppler_shift": "severe",
+        "time_of_stay": "minimal",
+        "rlf_risk": "high"
+      },
+      "profile": {
+        "highSpeedMeasFlag": true,
+        "timeToTrigger_a3_ms": 40,
+        "hysteresis_db": 0
+      },
+      "detection": {
+        "signature": "rapid_sequential_handovers",
+        "velocity_threshold_kmh": 200
+      }
+    },
+    "deep_indoor": {
+      "description": "Deep indoor coverage with 20-30dB penetration loss",
+      "physics": {
+        "penetration_loss_db": [20, 30],
+        "uplink_limitation": true,
+        "mobility": "low"
+      },
+      "profile": {
+        "qRxLevMin_dbm": -130,
+        "p0NominalPUSCH_dbm": -85
+      },
+      "safety": {
+        "sentinel_monitor": "ulInterference",
+        "iot_threshold_dbm": -105,
+        "rollback_on_exceed": true
+      }
+    },
+    "inter_frequency_load_balancing": {
+      "description": "IFLB across frequency layers (800/1800/2600 MHz)",
+      "mechanism": {
+        "parameter": "cellIndividualOffset",
+        "step_db": 1,
+        "direction": "incremental"
+      },
+      "stability": {
+        "lb_threshold_percent": 10,
+        "thundering_herd_prevention": true
+      }
+    },
+    "sleeper_cell_detection": {
+      "description": "Silent failure detection (hardware green, no traffic)",
+      "symptoms": {
+        "high_signaling": true,
+        "zero_user_plane": true,
+        "ping_pong_handovers": true
+      },
+      "diagnosis": {
+        "flow_entropy_analysis": true,
+        "topology_scan": "ruvector-gnn"
+      },
+      "action": "reboot_bbu"
+    }
+  },
+  "hardware_limits": {
+    "radio_6630": {
+      "tx_power_max_dbm": 46,
+      "rx_sensitivity_dbm": -110
+    },
+    "baseband_6648": {
+      "max_cells": 6,
+      "max_users_per_cell": 1200
+    }
+  },
+  "3gpp_constraints": {
+    "bler_max": 0.1,
+    "rsrp_min_dbm": -140,
+    "rsrq_min_db": -20,
+    "sinr_min_db": -23,
+    "cqi_range": [0, 15],
+    "mcs_range": [0, 28],
+    "tti_ms": 1
+  },
+  "symbolic_guard": {
+    "enabled": true,
+    "intercept_all_commands": true,
+    "violation_response": "BLOCK",
+    "audit_log": true
+  }
+}

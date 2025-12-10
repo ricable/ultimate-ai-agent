@@ -1,0 +1,513 @@
+# cspell:ignore codequality Micheh micheh webide updatedb stylelintrc unshallow
+
+################
+# Drupal GitLabCI template.
+#
+# Based off GitlabCI templates project: https://git.drupalcode.org/project/gitlab_templates
+# Guide: https://www.drupal.org/docs/develop/git/using-gitlab-to-contribute-to-drupal/gitlab-ci
+#
+# With thanks to:
+# - The GitLab Acceleration Initiative participants
+# - DrupalSpoons
+################
+
+################
+# Workflow
+#
+# Define conditions for when the pipeline will run.
+#   For example:
+#     * On commit
+#     * On merge request
+#     * On manual trigger
+#     * etc.
+# https://docs.gitlab.com/ee/ci/jobs/job_control.html#specify-when-jobs-run-with-rules
+#
+# Pipelines can also be configured to run on a schedule,though they still must meet the conditions defined in Workflow and Rules. This can be used, for example, to do nightly regression testing:
+# https://gitlab.com/help/ci/pipelines/schedules
+################
+
+workflow:
+  rules:
+  # These 3 rules from https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Workflows/MergeRequest-Pipelines.gitlab-ci.yml
+    # Run on merge requests
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    # Run when called from an upstream pipeline https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html?tab=Multi-project+pipeline#use-rules-to-control-downstream-pipeline-jobs
+    - if: $CI_PIPELINE_SOURCE == 'pipeline'
+    # Run when called from a parent pipeline (e.g. updated dependencies job)
+    - if: $CI_PIPELINE_SOURCE == 'parent_pipeline'
+    # Run on commits.
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_ROOT_NAMESPACE == "project"
+    # The last rule above blocks manual and scheduled pipelines on non-default branch. The rule below allows them:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $CI_PROJECT_ROOT_NAMESPACE == "project"
+    # Run if triggered from Web using 'Run Pipelines'
+    - if: $CI_PIPELINE_SOURCE == "web"
+     # Run if triggered from WebIDE
+    - if: $CI_PIPELINE_SOURCE == "webide"
+
+################
+# Variables
+#
+# Overriding variables
+# - To override one or more of these variables, simply declare your own variables keyword.
+# - Keywords declared directly in .gitlab-ci.yml take precedence over include files.
+# - Documentation:  https://docs.gitlab.com/ee/ci/variables/
+# - Predefined variables: https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
+#
+################
+
+variables:
+  _CONFIG_DOCKERHUB_ROOT: "drupalci"
+  CACHE_TARGET: "${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}${CI_COMMIT_BRANCH}"
+  # Let composer know what self.version means.
+  COMPOSER_ROOT_VERSION: "${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}${CI_COMMIT_BRANCH}-dev"
+  COMPOSER_ALLOW_SUPERUSER: 1
+  CONCURRENCY: 24
+  GIT_DEPTH: "50"
+  PARENT_PIPELINE_ID: $CI_PIPELINE_ID
+  _TARGET_PHP: "8.3-ubuntu"
+
+#############
+# Stages    #
+#############
+stages:
+  - 🪄 Lint
+  - 🗜️ Test
+
+#############
+# Defaults  #
+#############
+
+default:
+  interruptible: true
+  retry:
+    max: 2
+    when:
+      - unknown_failure
+      - api_failure
+      - stuck_or_timeout_failure
+      - runner_system_failure
+      - scheduler_failure
+  image:
+    name: $_CONFIG_DOCKERHUB_ROOT/php-$_TARGET_PHP-apache:production
+
+#############
+# Templates #
+#############
+
+.with-composer: &with-composer
+  needs:
+    - '🧹 PHP Coding standards (PHPCS)'
+
+.default-job-settings-lint: &default-job-settings-lint
+  rules:
+    - if: $PERFORMANCE_TEST != "1"
+
+.phpstan-cache: &phpstan-cache
+  # Get the phpstan cache file from the artifacts of the latest successful
+  # job from the target branch. Allow the job to proceed and pass if the file
+  # doesn't exist.
+  - mkdir core/phpstan-tmp
+  - 'curl --location --output core/phpstan-tmp/resultCache.php "https://git.drupalcode.org/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/{$CACHE_TARGET}/raw/core/phpstan-tmp/resultCache.php?job=Lint%20cache%20warming" || true'
+
+.cspell-cache: &cspell-cache
+  # Fetch the cspell cache from the artifacts of the latest successful job from
+  # the target branch. Allow the job to proceed and pass if the file doesn't
+  # exist.
+  - 'curl --location --output core/.cspellcache "https://git.drupalcode.org/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/{$CACHE_TARGET}/raw/core/.cspellcache?job=Lint%20cache%20warming" || true'
+
+.eslint-cache: &eslint-cache
+  # Fetch the eslint cache from the artifacts of the latest successful job from
+  # the target branch. Allow the job to proceed and pass if the file doesn't
+  # exist.
+  - 'curl --location --output core/.eslintcache "https://git.drupalcode.org/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/{$CACHE_TARGET}/raw/core/.eslintcache?job=Lint%20cache%20warming" || true'
+
+.stylelint-cache: &stylelint-cache
+  # Fetch the stylelint cache from the artifacts of the latest successful job from
+  # the target branch. Allow the job to proceed and pass if the file doesn't
+  # exist.
+  - 'curl --location --output core/.stylelintcache "https://git.drupalcode.org/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/{$CACHE_TARGET}/raw/core/.stylelintcache?job=Lint%20cache%20warming" || true'
+
+.core-spellcheck: &core-spellcheck
+  - cd core
+  - corepack enable
+  - yarn install
+  - yarn run spellcheck:core --no-must-find-files --cache --cache-strategy content
+################
+# Stages
+#
+# Each job is assigned to a stage, defining the order in which the jobs are executed.
+# Jobs in the same stage run in parallel.
+#
+# If all jobs in a stage succeed, the pipeline will proceed to the next stage.
+# If any job in the stage fails, the pipeline will exit early.
+################
+
+.default-stage: &default-stage
+  stage: 🗜️ Test
+  trigger:
+    # Rely on the status of the child pipeline.
+    strategy: depend
+    include:
+      - local: .gitlab-ci/pipeline.yml
+
+.run-on-commit: &run-on-commit
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_ROOT_NAMESPACE == "project"
+      allow_failure: true
+
+.run-daily: &run-daily
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $CI_PROJECT_ROOT_NAMESPACE == "project" && $DAILY_TEST == "1"
+      allow_failure: true
+
+.run-on-mr: &run-on-mr
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+      allow_failure: true
+
+# Default configuration.
+'DEFAULT: PHP 8.3 MySQL 8.0':
+  <<: *default-stage
+  variables:
+    _TARGET_PHP: "8.3-ubuntu"
+    _TARGET_DB: "mysql-8"
+    PERFORMANCE_TEST: $PERFORMANCE_TEST
+    OTEL_COLLECTOR: $OTEL_COLLECTOR
+  # Run on MR, schedule, push, parent pipeline and performance test.
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_ROOT_NAMESPACE == "project"
+      allow_failure: true
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $CI_PROJECT_ROOT_NAMESPACE == "project" && $DAILY_TEST == "1"
+      allow_failure: true
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_PIPELINE_SOURCE == "parent_pipeline"
+    - if: $PERFORMANCE_TEST == "1"
+
+# Re-run the pipeline, but with Composer updates.
+'DEFAULT: Updated dependencies (PHP 8.3 MySQL 8.0)':
+  <<: *default-stage
+  # Run daily and allow manual runs on MRs.
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $CI_PROJECT_ROOT_NAMESPACE == "project" && $DAILY_TEST == "1"
+      allow_failure: true
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+      allow_failure: true
+  variables:
+    COMPOSER_UPDATE: "1"
+  trigger:
+    include: .gitlab-ci.yml
+
+# Special job for MRs for test-only checks.
+'DEFAULT: Test-only (PHP 8.3 MySQL 8.0)':
+  <<: [ *default-stage, *with-composer ]
+  when: manual
+  allow_failure: true
+  variables:
+    _TARGET_PHP: "8.3-ubuntu"
+    _TARGET_DB: "mysql-8"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  trigger:
+    # Rely on the status of the child pipeline.
+    strategy: depend
+    include:
+      - local: .gitlab-ci/pipeline-test-only.yml
+
+# Main listing of jobs.
+# All of these are available on Merge Requests and also work as base jobs for
+# on-commit and daily jobs to extend from.
+'PHP 8.3 MariaDB 10.6':
+  <<: [ *default-stage, *run-on-mr ]
+  variables:
+    _TARGET_PHP: "8.3-ubuntu"
+    _TARGET_DB: "mariadb-10.6"
+
+'PHP 8.3 MySQL 8.4':
+  <<: [ *default-stage, *run-on-mr ]
+  variables:
+    _TARGET_PHP: "8.3-ubuntu"
+    _TARGET_DB: "mysql-8.4"
+
+'PHP 8.3 MySQL 9.0':
+  <<: [ *default-stage, *run-on-mr ]
+  variables:
+    _TARGET_PHP: "8.3-ubuntu"
+    _TARGET_DB: "mysql-9"
+
+'PHP 8.3 PostgreSQL 16':
+  <<: [ *default-stage, *run-on-mr ]
+  variables:
+    _TARGET_PHP: "8.3-ubuntu"
+    _TARGET_DB: "pgsql-16"
+
+'PHP 8.3 SQLite 3.45':
+  <<: [ *default-stage, *run-on-mr ]
+  variables:
+    _TARGET_PHP: "8.3-ubuntu"
+    _TARGET_DB: "sqlite-3"
+
+# Jobs running on commits.
+# The value set in the "needs" property will determine the order in the sequence.
+'[Commit] PHP 8.3 PostgreSQL 16':
+  extends: 'PHP 8.3 PostgreSQL 16'
+  needs: [ 'DEFAULT: PHP 8.3 MySQL 8.0' ]
+  <<: [ *run-on-commit ]
+
+'[Commit] PHP 8.3 SQLite 3.45':
+  extends: 'PHP 8.3 SQLite 3.45'
+  needs: [ '[Commit] PHP 8.3 PostgreSQL 16' ]
+  <<: [ *run-on-commit ]
+
+# Jobs running daily.
+# The value set in the "needs" property will determine the order in the sequence.
+'[Daily] PHP 8.3 PostgreSQL 16':
+  extends: 'PHP 8.3 PostgreSQL 16'
+  needs: [ 'DEFAULT: PHP 8.3 MySQL 8.0' ]
+  <<: [ *run-daily ]
+
+'[Daily] PHP 8.3 SQLite 3.45':
+  extends: 'PHP 8.3 SQLite 3.45'
+  needs: [ '[Daily] PHP 8.3 PostgreSQL 16' ]
+  <<: [ *run-daily ]
+
+'[Daily] PHP 8.3 MariaDB 10.6':
+  extends: 'PHP 8.3 MariaDB 10.6'
+  needs: [ '[Daily] PHP 8.3 SQLite 3.45' ]
+  <<: [ *run-daily ]
+
+'[Daily] PHP 8.3 MySQL 8.4':
+  extends: 'PHP 8.3 MySQL 8.4'
+  needs: [ '[Daily] PHP 8.3 MariaDB 10.6' ]
+  <<: [ *run-daily ]
+
+################
+# Lint Jobs
+################
+
+
+'Lint cache warming':
+  <<: [ *default-job-settings-lint ]
+  stage: 🪄 Lint
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_ROOT_NAMESPACE == "project"
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $CI_PROJECT_ROOT_NAMESPACE == "project" && $DAILY_TEST == "1"
+    - when: manual
+      allow_failure: true
+  variables:
+    KUBERNETES_CPU_REQUEST: "4"
+  script:
+    - *phpstan-cache
+    - *cspell-cache
+    - *eslint-cache
+    - *stylelint-cache
+    - composer install
+    - vendor/bin/phpstan --version
+    - php vendor/bin/phpstan -vvv analyze --configuration=./core/phpstan.neon.dist
+    - *core-spellcheck
+    - yarn run lint:core-js-passing --cache --cache-strategy content
+    - yarn run build:css --check
+    - yarn run lint:css --cache --cache-location .stylelintcache --cache-strategy content
+  artifacts:
+    paths:
+      - core/phpstan-tmp/resultCache.php
+      - core/.cspellcache
+      - core/.eslintcache
+      - core/.stylelintcache
+
+'🧹 PHP Static Analysis (phpstan)':
+  <<: [ *default-job-settings-lint ]
+  stage: 🪄 Lint
+  variables:
+    KUBERNETES_CPU_REQUEST: "4"
+  script:
+    - *phpstan-cache
+    - composer validate
+    - composer install --optimize-autoloader
+    - if [ -n "$COMPOSER_UPDATE" ]; then
+        composer update --optimize-autoloader;
+        composer outdated;
+      fi
+    - vendor/bin/phpstan --version
+    # Rely on PHPStan caching to execute analysis multiple times without performance drawback.
+    # Output a copy in junit.
+    - php vendor/bin/phpstan -vvv analyze --configuration=./core/phpstan.neon.dist --error-format=gitlab > phpstan-quality-report.json || EXIT_CODE=$?
+    - php vendor/bin/phpstan -vvv analyze --configuration=./core/phpstan.neon.dist --no-progress --error-format=junit > phpstan-junit.xml || true
+    - |
+      if [ -n "$EXIT_CODE" ]; then
+        # Output a copy in plain text for human logs.
+        php vendor/bin/phpstan analyze --configuration=./core/phpstan.neon.dist --no-progress || true
+        # Generate a new baseline.
+        echo "Generating an PHPStan baseline file (available as job artifact)."
+        php vendor/bin/phpstan analyze --configuration=./core/phpstan.neon.dist --no-progress --generate-baseline=./core/.phpstan-baseline.php || true
+        exit $EXIT_CODE
+      fi
+
+  artifacts:
+    # Only store the baseline if the job fails.
+    when: on_failure
+    reports:
+      codequality: phpstan-quality-report.json
+      junit: phpstan-junit.xml
+    paths:
+      - core/.phpstan-baseline.php
+
+'🧹 PHP Coding standards (PHPCS)':
+  <<: [ *default-job-settings-lint ]
+  stage: 🪄 Lint
+  variables:
+    KUBERNETES_CPU_REQUEST: "16"
+  script:
+    - composer validate
+    - composer install --optimize-autoloader
+    - if [ -n "$COMPOSER_UPDATE" ]; then
+        composer update --optimize-autoloader;
+        composer outdated;
+      fi
+    - vendor/bin/phpcs --version
+    - composer phpcs -- -s --report-full --report-summary --report-\\Micheh\\PhpCodeSniffer\\Report\\Gitlab=phpcs-quality-report.json
+  artifacts:
+    expire_in: 1 week
+    expose_as: 'web-vendor'
+    paths:
+      - vendor/
+    reports:
+      codequality: phpcs-quality-report.json
+
+'🧹 JavaScript linting (eslint)':
+  stage: 🪄 Lint
+  variables:
+    KUBERNETES_CPU_REQUEST: "2"
+  # Run on push, or on MRs if CSS files have changed, or manually.
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_ROOT_NAMESPACE == "project"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - core/.eslint*
+        - core/.prettier*
+        - core/package.json
+        - core/yarn.lock
+        - "**/*.js"
+        - "**/*.yml"
+    - when: manual
+      allow_failure: true
+  script:
+    - *eslint-cache
+    - cd core
+    - corepack enable
+    - yarn install
+    - yarn run check:ckeditor5
+    - yarn run lint:core-js-passing --cache --cache-strategy content --format gitlab
+  artifacts:
+    reports:
+      codequality: eslint-quality-report.json
+
+'🧹 CSS linting (stylelint)':
+  stage: 🪄 Lint
+  variables:
+    KUBERNETES_CPU_REQUEST: "2"
+  # Run on push, or on MRs if CSS files have changed, or manually.
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_ROOT_NAMESPACE == "project"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - core/.stylelintrc.json
+        - core/.prettier*
+        - core/package.json
+        - core/yarn.lock
+        - "**/*.css"
+    - when: manual
+      allow_failure: true
+  script:
+    - *stylelint-cache
+    - corepack enable
+    - cd core
+    - yarn install
+    - yarn run build:css --check
+    - yarn run lint:css --cache --cache-location .stylelintcache --cache-strategy content --color --custom-formatter=node_modules/stylelint-formatter-gitlab
+  artifacts:
+    reports:
+      codequality: stylelint-quality-report.json
+
+'📔 Spell-checking':
+  <<: [ *default-job-settings-lint ]
+  stage: 🪄 Lint
+  variables:
+    KUBERNETES_CPU_REQUEST: "2"
+  script:
+    - *cspell-cache
+    - *core-spellcheck
+  cache:
+    key:
+      files:
+        - ./core/package.json
+        - ./core/yarn.lock
+    paths:
+      - ./core/node_modules
+  artifacts:
+    expire_in: 1 week
+    expose_as: 'yarn-vendor'
+    paths:
+      - core/node_modules/
+
+'📔 Validatable config':
+  <<: [ *default-job-settings-lint ]
+  stage: 🪄 Lint
+  variables:
+    KUBERNETES_CPU_REQUEST: "2"
+    _TARGET_PHP: "8.3-ubuntu"
+  # Run on MRs if config schema files have changed, or manually.
+  rules:
+    - if: $PERFORMANCE_TEST != "1"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - "**/config/schema/*.schema.yml"
+        # Modules may alter config schema using hook_config_schema_info_alter().
+        - "**/*.module"
+    - when: manual
+      allow_failure: true
+  artifacts:
+    expire_in: 1 week
+    expose_as: 'validatable-config'
+    paths:
+      - HEAD.json
+      - MR.json
+  # This job must pass, but must also not disrupt Drupal core's CI if dependencies are not core-compatible.
+  allow_failure:
+    exit_codes:
+      # `composer require …` fails (implies no version available compatible with Drupal core)
+      - 100
+      # `drush pm:install config_inspector …` fails (implies failure during module installation)
+      - 101
+      # Temporarily allow this to fail as there's are bugs with adding/removing/modifying config schemas.
+      - 1
+  script:
+    # Revert back to the tip of the branch this MR started from.
+    - git checkout -f $CI_MERGE_REQUEST_DIFF_BASE_SHA
+    # Composer-install Drush & the Config Inspector module.
+    - composer require drush/drush drupal/config_inspector || exit 100
+    # Install Drupal's Standard install profile + all core modules (except obsolete ones) + the config inspector module.
+    - php core/scripts/drupal install standard
+    - ls core/modules | grep -v sdc | xargs vendor/bin/drush pm:install --yes
+    - vendor/bin/drush pm:install config_inspector --yes --quiet || exit 101
+    # Compute statistics for coverage of validatable config for HEAD.
+    - vendor/bin/drush config:inspect --statistics > HEAD.json
+    # Return to the MR commit being tested, conditionally install updates, always rebuild the container.
+    - git checkout -f $CI_COMMIT_SHA
+    - git diff $CI_MERGE_REQUEST_DIFF_BASE_SHA $CI_COMMIT_SHA --name-only | grep -q '.install$\|.post_update\.php$' && echo '🤖 Installing DB updates…' && vendor/bin/drush updatedb --yes --quiet
+    - vendor/bin/drush cr --quiet
+    # Compute statistics for coverage of validatable config for MR.
+    - vendor/bin/drush config:inspect --statistics > MR.json
+    # Output diff, but never fail the job.
+    - diff -u HEAD.json MR.json || true
+    # Determine if this increased or decreased coverage. Fail the job if it is worse. All the
+    # percentages must be equal or higher, with the exception of `typesInUse`.
+    - |
+      php -r '
+         $head = json_decode(file_get_contents("HEAD.json"), TRUE)["assessment"];
+         $mr = json_decode(file_get_contents("MR.json"), TRUE)["assessment"];
+         unset($head["_description"], $head["typesInUse"], $mr["_description"], $mr["typesInUse"]);
+         $impact = array_map(fn (float $h, float $m) => $m-$h, $head, $mr);
+         exit((int) (min($impact) < 0));
+      '

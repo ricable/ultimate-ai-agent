@@ -1,0 +1,116 @@
+{
+  "swarm": {
+    "name": "ericsson-ran-swarm",
+    "version": "1.0.0",
+    "topology": "mesh",
+    "maxAgentsPerCluster": 256,
+    "heartbeatIntervalMs": 1000,
+    "leaderElectionTimeoutMs": 5000,
+    "consensusProtocol": "strange-loops",
+    "communicationProtocol": "QUIC"
+  },
+  "federation": {
+    "enabled": true,
+    "aggregationAlgorithm": "FedAvg",
+    "minClientsPerRound": 3,
+    "roundIntervalMs": 300000,
+    "privacyMode": "differential",
+    "epsilonBudget": 1.0,
+    "modelCompression": {
+      "enabled": true,
+      "method": "topK",
+      "compressionRatio": 0.1
+    }
+  },
+  "agentdb": {
+    "version": "1.6.1",
+    "storage": {
+      "type": "sqlite",
+      "path": "./data/agentdb",
+      "maxSizeMB": 512
+    },
+    "reasoningBank": {
+      "maxTrajectories": 10000,
+      "reflexionEnabled": true,
+      "causalGraphDepth": 10
+    },
+    "vectorSearch": {
+      "algorithm": "HNSW",
+      "dimensions": 768,
+      "efConstruction": 200,
+      "M": 16,
+      "efSearch": 100
+    }
+  },
+  "ruvector": {
+    "version": "0.1.26",
+    "gnn": {
+      "type": "ST-GNN",
+      "layers": 4,
+      "hiddenDimension": 256,
+      "attentionHeads": 8,
+      "attentionType": "flash",
+      "dropout": 0.1
+    },
+    "hypergraph": {
+      "enabled": true,
+      "maxHyperedgeSize": 16
+    }
+  },
+  "midstreamer": {
+    "version": "0.2.3",
+    "streaming": {
+      "bufferSizeMs": 60000,
+      "windowSizeMs": 900000
+    },
+    "dtw": {
+      "windowSize": 100,
+      "distanceMetric": "euclidean"
+    },
+    "chaosAnalysis": {
+      "lyapunovExponentThreshold": 0.05,
+      "embeddingDimension": 5,
+      "delay": 1
+    }
+  },
+  "optimization": {
+    "granularities": ["15min", "1hour", "1day", "1week"],
+    "safetGuardrails": {
+      "maxPowerDbm": 46,
+      "minPowerDbm": -10,
+      "maxP0Dbm": -60,
+      "minP0Dbm": -126,
+      "maxAlpha": 1.0,
+      "minAlpha": 0.4
+    },
+    "rl": {
+      "algorithm": "DecisionTransformer",
+      "contextLength": 20,
+      "hiddenSize": 256,
+      "numHeads": 4,
+      "numLayers": 3,
+      "maxEpLength": 1000,
+      "learningRate": 0.0001,
+      "batchSize": 64,
+      "warmupSteps": 10000
+    }
+  },
+  "security": {
+    "aidefence": {
+      "version": "0.1.6",
+      "adversarialDetection": true,
+      "inputValidation": true,
+      "modelProvenance": true
+    },
+    "cryptography": {
+      "signatureAlgorithm": "Ed25519",
+      "encryptionAlgorithm": "AES-256-GCM"
+    }
+  },
+  "monitoring": {
+    "metricsPort": 9090,
+    "healthCheckPort": 8080,
+    "loggingLevel": "info",
+    "tracingEnabled": true
+  }
+}

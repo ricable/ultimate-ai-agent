@@ -1,0 +1,62 @@
+app = "safla"
+primary_region = "ord"
+
+[build]
+  dockerfile = "Dockerfile.fast"
+
+[experimental]
+  auto_rollback = true
+
+[[mounts]]
+  source = "safla_data"
+  destination = "/data"
+
+[env]
+  PORT = "8080"
+  PYTHONPATH = "/app"
+  SAFLA_ENV = "production"
+  SAFLA_CONFIG = "/app/config/safla_config_extreme.json"
+  SAFLA_OPTIMIZATION_MODE = "extreme"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+  [[http_service.checks]]
+    grace_period = "30s"
+    interval = "15s"
+    method = "GET"
+    timeout = "10s"
+    path = "/health"
+
+[vm]
+  size = "performance-8x"
+
+[deploy]
+  strategy = "immediate"
+  
+[processes]
+  app = "python -m safla.cli serve --host 0.0.0.0 --port 8080"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 8080
+  processes = ["app"]
+  
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+  
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+  
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 100
+    soft_limit = 50

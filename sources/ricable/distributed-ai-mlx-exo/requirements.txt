@@ -1,0 +1,61 @@
+# Core ML frameworks
+mlx>=0.22.1
+mlx-lm>=0.21.1
+
+# Web framework and API
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.4.0
+
+# HTTP client libraries
+aiohttp>=3.8.0
+httpx>=0.25.0
+requests>=2.31.0
+
+# Monitoring and metrics
+prometheus-client>=0.17.0
+psutil>=5.9.0
+
+# Async libraries
+asyncio-mqtt>=0.11.0
+
+# Data processing
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Configuration and serialization
+pyyaml>=6.0
+toml>=0.10.0
+
+# Logging and utilities
+structlog>=23.1.0
+click>=8.1.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+
+# Development tools
+black>=23.7.0
+isort>=5.12.0
+flake8>=6.0.0
+mypy>=1.5.0
+
+# Networking and distributed computing
+mpi4py>=3.1.0; sys_platform != "darwin"
+
+# Optional: GPU acceleration (if available)
+torch>=2.0.0; sys_platform != "darwin"
+
+# Security
+cryptography>=41.0.0
+PyJWT>=2.8.0
+
+# Database (for persistent storage)
+sqlalchemy>=2.0.0
+alembic>=1.12.0
+
+# CLI utilities
+rich>=13.5.0
+typer>=0.9.0

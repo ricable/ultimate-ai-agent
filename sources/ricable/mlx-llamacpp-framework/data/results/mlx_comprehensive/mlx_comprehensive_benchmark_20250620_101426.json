@@ -1,0 +1,35 @@
+{
+  "timestamp": "2025-06-20T10:14:25.982851",
+  "model_path": "models/mlx/tinyllama-1.1b-chat",
+  "system_info": {
+    "mlx_version": "0.26.1",
+    "metal_available": true,
+    "cpu_count": 16,
+    "memory_gb": 128.0,
+    "platform": "arm64"
+  },
+  "tests": {
+    "basic_mlx_operations": {
+      "basic_operations_time": 0.008613824844360352,
+      "metal_acceleration_time": 0.01270604133605957,
+      "metal_available": true,
+      "status": "success"
+    },
+    "model_inference": {
+      "status": "error",
+      "error": "MultiHeadAttention.__call__() missing 2 required positional arguments: 'keys' and 'values'"
+    },
+    "quantization_simulation": {
+      "status": "error",
+      "error": "Invalid type  str received in array initialization."
+    },
+    "flash_attention": {
+      "flash_attention_results": {
+        "config_1": {
+          "config": {
+            "batch_size": 1,
+            "seq_length": 128,
+            "head_dim": 64,
+            "num_heads": 8
+          },
+          "result": {

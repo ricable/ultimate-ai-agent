@@ -1,0 +1,158 @@
+{
+  "summary": {
+    "total_models_tested": 3,
+    "successful_tests": 3,
+    "failed_tests": 0,
+    "frameworks_tested": [
+      "mlx",
+      "huggingface"
+    ]
+  },
+  "performance_comparison": {
+    "fastest_load": {
+      "model": "Meta-Llama-3.1-8B-Instruct-4bit",
+      "time": 0.5639657974243164,
+      "framework": "mlx"
+    },
+    "fastest_inference": {
+      "model": "llama-3.1-8b-bf16",
+      "time": 0,
+      "framework": "mlx"
+    },
+    "most_memory_efficient": {
+      "model": "llama-3.1-8b-bf16",
+      "memory_mb": 0.0,
+      "framework": "mlx"
+    },
+    "highest_throughput": {
+      "model": "DialoGPT-medium (HF)",
+      "tokens_per_second": 82.37068994298099,
+      "framework": "huggingface"
+    }
+  },
+  "model_details": [
+    {
+      "model_name": "llama-3.1-8b-bf16",
+      "model_path": "models/mlx/llama-3.1-8b-bf16",
+      "framework": "mlx",
+      "model_size_gb": 15.0,
+      "parameters": 8053063680,
+      "quantization": "bf16",
+      "load_time": 0.9828860759735107,
+      "load_memory_mb": 0.0,
+      "inference_times": [],
+      "avg_inference_time": 0,
+      "tokens_per_second": 0,
+      "peak_memory_mb": 0.0,
+      "finetuning_possible": true,
+      "sample_outputs": [],
+      "finetuning_time": 0.0,
+      "finetuning_memory_mb": 0.0,
+      "success": true,
+      "error_msg": ""
+    },
+    {
+      "model_name": "Meta-Llama-3.1-8B-Instruct-4bit",
+      "model_path": "models/mlx/Meta-Llama-3.1-8B-Instruct-4bit",
+      "framework": "mlx",
+      "model_size_gb": 4.2,
+      "parameters": 2254857830,
+      "quantization": "4bit",
+      "load_time": 0.5639657974243164,
+      "load_memory_mb": 2898.65625,
+      "inference_times": [],
+      "avg_inference_time": 0,
+      "tokens_per_second": 0,
+      "peak_memory_mb": 2898.65625,
+      "finetuning_possible": true,
+      "sample_outputs": [],
+      "finetuning_time": 0.0,
+      "finetuning_memory_mb": 0.0,
+      "success": true,
+      "error_msg": ""
+    },
+    {
+      "model_name": "DialoGPT-medium (HF)",
+      "model_path": "microsoft/DialoGPT-medium",
+      "framework": "huggingface",
+      "model_size_gb": 0.7,
+      "parameters": 355000000,
+      "quantization": "fp16",
+      "load_time": 1.6471648216247559,
+      "load_memory_mb": 208.484375,
+      "inference_times": [
+        0.6070120334625244
+      ],
+      "avg_inference_time": 0.6070120334625244,
+      "tokens_per_second": 82.37068994298099,
+      "peak_memory_mb": 208.484375,
+      "finetuning_possible": true,
+      "sample_outputs": [
+        {
+          "prompt": "Explain the concept of machine learning in simple ...",
+          "response": "Machine learning is not a machine.",
+          "time": 0.6070120334625244
+        }
+      ],
+      "finetuning_time": null,
+      "finetuning_memory_mb": null,
+      "success": true,
+      "error_msg": ""
+    }
+  ],
+  "recommendations": [
+    "\ud83d\ude80 For fastest inference: Use llama-3.1-8b-bf16 (0.00s avg)",
+    "\ud83d\udcbe For memory efficiency: Use llama-3.1-8b-bf16 (0MB peak)",
+    "\ud83d\udd25 MLX framework shows better performance for Apple Silicon",
+    "\ud83d\udd39 4-bit quantized models provide good balance of performance and memory usage",
+    "\ud83c\udfaf For fine-tuning: llama-3.1-8b-bf16 offers best estimated performance"
+  ],
+  "system_info": {
+    "timestamp": "2025-06-20T14:09:46.550204",
+    "os": "Darwin 25.0.0",
+    "cpu_cores": 16,
+    "memory_total_gb": 128,
+    "memory_available_gb": 93,
+    "frameworks": {
+      "mlx": true,
+      "llamacpp": false,
+      "huggingface": true,
+      "mps": true,
+      "flash_attention": true
+    }
+  },
+  "datasets_info": {
+    "quotes": {
+      "path": "examples/data/quotes_train.jsonl",
+      "size": 20,
+      "format": [
+        "prompt",
+        "response"
+      ],
+      "sample": {
+        "prompt": "Write an inspirational quote about be-yourself",
+        "response": "\"\u201cBe yourself; everyone else is already taken.\u201d\" - Oscar Wilde"
+      }
+    },
+    "chat": {
+      "path": "examples/data/train.jsonl",
+      "size": 80,
+      "format": [
+        "text"
+      ],
+      "sample": {
+        "text": "<|im_start|>user\nWrite an inspirational quote about be-yourself<|im_end|>\n<|im_start|>assistant\n\"\u201cBe yourself; everyone else is already taken.\u201d\" - Oscar Wilde<|im_end|>"
+      }
+    },
+    "validation": {
+      "path": "examples/data/valid.jsonl",
+      "size": 15,
+      "format": [
+        "text"
+      ],
+      "sample": {
+        "text": "<|im_start|>user\nWrite an inspirational quote about art<|im_end|>\n<|im_start|>assistant\n\"\u201cEverything you can imagine is real.\u201d\" - Pablo Picasso<|im_end|>"
+      }
+    }
+  }
+}

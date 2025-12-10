@@ -1,0 +1,161 @@
+[
+  {
+    "key": "ctrl+shift+a",
+    "command": "roo-code.chat",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+i",
+    "command": "roo-code.insertCode",
+    "when": "editorTextFocus && roo-code.hasCodeSuggestion"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "roo-code.explainCode",
+    "when": "editorTextFocus && editorHasSelection"
+  },
+  {
+    "key": "ctrl+shift+r",
+    "command": "roo-code.refactorCode",
+    "when": "editorTextFocus && editorHasSelection"
+  },
+  {
+    "key": "ctrl+shift+d",
+    "command": "roo-code.documentCode",
+    "when": "editorTextFocus && editorHasSelection"
+  },
+  {
+    "key": "ctrl+shift+t",
+    "command": "roo-code.generateTests",
+    "when": "editorTextFocus && editorHasSelection"
+  },
+  {
+    "key": "ctrl+alt+1",
+    "command": "sparc-workflow.switchPhase.specification",
+    "when": "sparc-workflow.enabled"
+  },
+  {
+    "key": "ctrl+alt+2",
+    "command": "sparc-workflow.switchPhase.pseudocode",
+    "when": "sparc-workflow.enabled"
+  },
+  {
+    "key": "ctrl+alt+3",
+    "command": "sparc-workflow.switchPhase.architecture",
+    "when": "sparc-workflow.enabled"
+  },
+  {
+    "key": "ctrl+alt+4",
+    "command": "sparc-workflow.switchPhase.refinement",
+    "when": "sparc-workflow.enabled"
+  },
+  {
+    "key": "ctrl+alt+5",
+    "command": "sparc-workflow.switchPhase.completion",
+    "when": "sparc-workflow.enabled"
+  },
+  {
+    "key": "ctrl+alt+t",
+    "command": "sparc-workflow.createTemplate",
+    "when": "sparc-workflow.enabled"
+  },
+  {
+    "key": "ctrl+alt+a",
+    "command": "sparc-workflow.createArtifact",
+    "when": "sparc-workflow.enabled"
+  },
+  {
+    "key": "ctrl+alt+p",
+    "command": "sparc-workflow.showProgress",
+    "when": "sparc-workflow.enabled"
+  },
+  {
+    "key": "ctrl+shift+1",
+    "command": "ai-integration.switchModel.openrouter",
+    "when": "ai-integration.multiModelSupport"
+  },
+  {
+    "key": "ctrl+shift+2",
+    "command": "ai-integration.switchModel.claude",
+    "when": "ai-integration.multiModelSupport"
+  },
+  {
+    "key": "ctrl+shift+3",
+    "command": "ai-integration.switchModel.gpt4",
+    "when": "ai-integration.multiModelSupport"
+  },
+  {
+    "key": "ctrl+shift+4",
+    "command": "ai-integration.switchModel.gemini",
+    "when": "ai-integration.multiModelSupport"
+  },
+  {
+    "key": "ctrl+shift+q",
+    "command": "ai-integration.switchMode.qa-engineer",
+    "when": "ai-integration.multiModelSupport"
+  },
+  {
+    "key": "ctrl+shift+s",
+    "command": "ai-integration.switchMode.architect",
+    "when": "ai-integration.multiModelSupport"
+  },
+  {
+    "key": "ctrl+shift+c",
+    "command": "ai-integration.switchMode.code-reviewer",
+    "when": "ai-integration.multiModelSupport"
+  },
+  {
+    "key": "ctrl+shift+w",
+    "command": "ai-integration.switchMode.documentation",
+    "when": "ai-integration.multiModelSupport"
+  },
+  {
+    "key": "ctrl+alt+m",
+    "command": "ui-ux.toggleMinimalMode",
+    "when": "editorIsOpen"
+  },
+  {
+    "key": "ctrl+alt+f",
+    "command": "ui-ux.toggleFocusMode",
+    "when": "editorIsOpen"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "ui-ux.switchLayout",
+    "when": "editorIsOpen"
+  },
+  {
+    "key": "ctrl+alt+d",
+    "command": "ui-ux.switchTheme",
+    "when": "editorIsOpen"
+  },
+  {
+    "key": "ctrl+shift+m",
+    "command": "ai-integration.executeMultiAgentWorkflow",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+shift+p",
+    "command": "workbench.action.showCommands"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.togglePanel"
+  },
+  {
+    "key": "ctrl+k ctrl+s",
+    "command": "workbench.action.openGlobalKeybindings"
+  }
+]

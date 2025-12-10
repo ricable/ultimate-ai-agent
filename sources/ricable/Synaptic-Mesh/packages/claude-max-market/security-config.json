@@ -1,0 +1,32 @@
+{
+  "container": {
+    "memory": "512m",
+    "cpuShares": 512,
+    "timeout": 300000,
+    "readOnly": true,
+    "networkMode": "none",
+    "user": "nobody",
+    "tmpfs": {
+      "/tmp": "rw,noexec,nosuid,size=100m"
+    }
+  },
+  "encryption": {
+    "algorithm": "aes-256-gcm",
+    "keyLength": 32,
+    "ivLength": 16,
+    "keyRotationDays": 30
+  },
+  "access": {
+    "requireApproval": true,
+    "maxConcurrentJobs": 1,
+    "apiKeyLocal": true,
+    "auditRequired": true
+  },
+  "compliance": {
+    "anthropicTosCompliant": true,
+    "noSharedCredentials": true,
+    "voluntaryParticipation": true,
+    "userControlRequired": true,
+    "transparencyRequired": true
+  }
+}

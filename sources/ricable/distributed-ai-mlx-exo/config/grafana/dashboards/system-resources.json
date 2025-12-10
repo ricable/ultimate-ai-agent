@@ -1,0 +1,417 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "MLX Cluster System Resources",
+    "tags": ["mlx", "system", "resources", "network"],
+    "style": "dark",
+    "timezone": "browser", 
+    "refresh": "10s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "CPU Usage by Node",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+        "targets": [
+          {
+            "expr": "mlx_cluster_node_cpu_usage_percent",
+            "refId": "A",
+            "legendFormat": "{{node_id}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "CPU Usage %",
+            "min": 0,
+            "max": 100
+          }
+        ],
+        "fill": 2,
+        "lineWidth": 2,
+        "thresholds": [
+          {"value": 80, "colorMode": "critical", "op": "gt", "line": true, "lineColor": "orange"},
+          {"value": 95, "colorMode": "critical", "op": "gt", "line": true, "lineColor": "red"}
+        ],
+        "alert": {
+          "conditions": [
+            {
+              "query": {"params": ["A", "5m", "now"]},
+              "reducer": {"params": [], "type": "avg"},
+              "evaluator": {"params": [90], "type": "gt"}
+            }
+          ],
+          "executionErrorState": "alerting",
+          "for": "5m",
+          "frequency": "10s",
+          "handler": 1,
+          "name": "High CPU Usage Alert",
+          "noDataState": "no_data"
+        }
+      },
+      {
+        "id": 2,
+        "title": "Memory Usage by Node",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+        "targets": [
+          {
+            "expr": "mlx_cluster_node_memory_usage_percent",
+            "refId": "A",
+            "legendFormat": "{{node_id}} - Used %"
+          },
+          {
+            "expr": "mlx_cluster_node_memory_total_bytes / (1024*1024*1024)",
+            "refId": "B",
+            "legendFormat": "{{node_id}} - Total GB"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Memory",
+            "min": 0
+          }
+        ],
+        "seriesOverrides": [
+          {
+            "alias": "/Total GB/",
+            "yAxis": 2,
+            "fill": 0,
+            "lineWidth": 1,
+            "dashes": true
+          }
+        ],
+        "thresholds": [
+          {"value": 85, "colorMode": "critical", "op": "gt", "line": true, "lineColor": "orange"},
+          {"value": 95, "colorMode": "critical", "op": "gt", "line": true, "lineColor": "red"}
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Disk Usage by Node",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 8, "x": 0, "y": 8},
+        "targets": [
+          {
+            "expr": "mlx_cluster_node_disk_usage_percent",
+            "refId": "A",
+            "legendFormat": "{{node_id}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Disk Usage %",
+            "min": 0,
+            "max": 100
+          }
+        ],
+        "thresholds": [
+          {"value": 80, "colorMode": "critical", "op": "gt"},
+          {"value": 90, "colorMode": "critical", "op": "gt"}
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Network Latency Between Nodes",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 8, "x": 8, "y": 8},
+        "targets": [
+          {
+            "expr": "mlx_cluster_node_network_latency_milliseconds",
+            "refId": "A",
+            "legendFormat": "{{node_id}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Latency (ms)",
+            "min": 0
+          }
+        ],
+        "thresholds": [
+          {"value": 50, "colorMode": "critical", "op": "gt"},
+          {"value": 100, "colorMode": "critical", "op": "gt"}
+        ]
+      },
+      {
+        "id": 5,
+        "title": "System Load Overview",
+        "type": "table",
+        "gridPos": {"h": 8, "w": 8, "x": 16, "y": 8},
+        "targets": [
+          {
+            "expr": "mlx_cluster_node_cpu_usage_percent",
+            "refId": "A",
+            "format": "table",
+            "instant": true
+          },
+          {
+            "expr": "mlx_cluster_node_memory_usage_percent", 
+            "refId": "B",
+            "format": "table",
+            "instant": true
+          },
+          {
+            "expr": "mlx_cluster_node_disk_usage_percent",
+            "refId": "C",
+            "format": "table",
+            "instant": true
+          },
+          {
+            "expr": "mlx_cluster_node_network_latency_milliseconds",
+            "refId": "D",
+            "format": "table",
+            "instant": true
+          }
+        ],
+        "transformations": [
+          {
+            "id": "merge",
+            "options": {}
+          },
+          {
+            "id": "organize",
+            "options": {
+              "renameByName": {
+                "node_id": "Node",
+                "Value #A": "CPU %",
+                "Value #B": "Memory %", 
+                "Value #C": "Disk %",
+                "Value #D": "Latency (ms)"
+              },
+              "excludeByName": {
+                "Time": true,
+                "__name__": true,
+                "instance": true,
+                "job": true
+              }
+            }
+          }
+        ],
+        "fieldConfig": {
+          "overrides": [
+            {
+              "matcher": {"id": "byName", "options": "CPU %"},
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "gradient-gauge"
+                },
+                {
+                  "id": "max",
+                  "value": 100
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "steps": [
+                      {"color": "green", "value": 0},
+                      {"color": "yellow", "value": 70},
+                      {"color": "red", "value": 90}
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {"id": "byName", "options": "Memory %"},
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "gradient-gauge"
+                },
+                {
+                  "id": "max",
+                  "value": 100
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "steps": [
+                      {"color": "green", "value": 0},
+                      {"color": "yellow", "value": 80},
+                      {"color": "red", "value": 95}
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": 6,
+        "title": "Resource Utilization Heatmap",
+        "type": "heatmap",
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 16},
+        "targets": [
+          {
+            "expr": "mlx_cluster_node_cpu_usage_percent",
+            "refId": "A",
+            "legendFormat": "{{node_id}}"
+          }
+        ],
+        "xAxis": {
+          "show": true
+        },
+        "yAxis": {
+          "show": true,
+          "label": "CPU Usage %"
+        },
+        "heatmap": {
+          "hideZeroBuckets": true
+        },
+        "color": {
+          "mode": "spectrum",
+          "colorScheme": "interpolateSpectral",
+          "exponent": 0.5,
+          "min": 0,
+          "max": 100
+        }
+      },
+      {
+        "id": 7,
+        "title": "Error Rates by Component",
+        "type": "graph",
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 16},
+        "targets": [
+          {
+            "expr": "rate(mlx_cluster_errors_total[5m])",
+            "refId": "A",
+            "legendFormat": "{{component}} - {{error_type}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Errors/sec",
+            "min": 0
+          }
+        ],
+        "thresholds": [
+          {"value": 0.1, "colorMode": "critical", "op": "gt"}
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Memory Distribution",
+        "type": "piechart",
+        "gridPos": {"h": 8, "w": 8, "x": 0, "y": 24},
+        "targets": [
+          {
+            "expr": "mlx_cluster_node_memory_total_bytes / (1024*1024*1024)",
+            "refId": "A",
+            "legendFormat": "{{node_id}}"
+          }
+        ],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "values": ["value", "percent"]
+        }
+      },
+      {
+        "id": 9,
+        "title": "Failover Events",
+        "type": "logs",
+        "gridPos": {"h": 8, "w": 8, "x": 8, "y": 24},
+        "targets": [
+          {
+            "expr": "increase(mlx_cluster_failovers_total[1h])",
+            "refId": "A",
+            "legendFormat": "{{node_id}} - {{reason}}"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Queue Depth",
+        "type": "singlestat",
+        "gridPos": {"h": 4, "w": 8, "x": 16, "y": 24},
+        "targets": [
+          {
+            "expr": "mlx_cluster_requests_queued",
+            "refId": "A"
+          }
+        ],
+        "valueName": "current",
+        "format": "short",
+        "thresholds": "10,50",
+        "colorBackground": true,
+        "colors": ["green", "yellow", "red"],
+        "sparkline": {
+          "show": true,
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "fillColor": "rgba(31, 118, 189, 0.18)"
+        }
+      },
+      {
+        "id": 11,
+        "title": "System Health Score",
+        "type": "singlestat",
+        "gridPos": {"h": 4, "w": 8, "x": 16, "y": 28},
+        "targets": [
+          {
+            "expr": "(mlx_cluster_nodes_healthy / mlx_cluster_nodes_total) * 100",
+            "refId": "A"
+          }
+        ],
+        "valueName": "current",
+        "format": "percent",
+        "decimals": 1,
+        "thresholds": "50,80",
+        "colorBackground": true,
+        "colors": ["red", "yellow", "green"],
+        "gaugeShow": true,
+        "gaugeMinValue": 0,
+        "gaugeMaxValue": 100,
+        "gaugeThresholdMarkers": true
+      }
+    ],
+    "templating": {
+      "list": [
+        {
+          "name": "node",
+          "type": "query",
+          "query": "label_values(mlx_cluster_node_cpu_usage_percent, node_id)",
+          "refresh": 1,
+          "includeAll": true,
+          "allValue": ".*"
+        },
+        {
+          "name": "interval",
+          "type": "interval",
+          "query": "30s,1m,5m,10m,30m,1h",
+          "current": {
+            "text": "5m",
+            "value": "5m"
+          },
+          "auto": true,
+          "auto_count": 20,
+          "auto_min": "10s"
+        }
+      ]
+    },
+    "annotations": {
+      "list": [
+        {
+          "name": "High Resource Usage",
+          "datasource": "Prometheus",
+          "expr": "mlx_cluster_node_cpu_usage_percent > 90 or mlx_cluster_node_memory_usage_percent > 95",
+          "titleFormat": "Resource Alert",
+          "textFormat": "High resource usage on {{node_id}}"
+        },
+        {
+          "name": "Failovers",
+          "datasource": "Prometheus", 
+          "expr": "increase(mlx_cluster_failovers_total[1m]) > 0",
+          "titleFormat": "Failover Event",
+          "textFormat": "Failover on {{node_id}}: {{reason}}"
+        }
+      ]
+    }
+  }
+}

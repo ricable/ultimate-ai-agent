@@ -1,0 +1,458 @@
+# Enterprise UAP Configuration
+# Multi-tenant enterprise deployment configuration
+
+version: "1.0"
+enterprise:
+  enabled: true
+  license_key: "${ENTERPRISE_LICENSE_KEY}"
+  tier: "enterprise"
+  
+# Multi-tenancy Configuration
+tenancy:
+  enabled: true
+  default_isolation_level: "schema"  # database, schema, row
+  max_organizations: 1000
+  max_tenants_per_org: 50
+  auto_tenant_creation: true
+  tenant_cleanup_retention_days: 90
+  
+  # Organization defaults
+  organization_defaults:
+    trial_period_days: 14
+    default_plan: "basic"
+    features:
+      - "basic_agents"
+      - "document_processing"
+      - "api_access"
+    limits:
+      users: 5
+      storage_gb: 10
+      api_calls_per_month: 10000
+      agents: 3
+  
+  # White-label configuration
+  white_label:
+    enabled: true
+    custom_domains: true
+    css_customization: true
+    logo_upload: true
+    branding_api: true
+
+# Billing Configuration
+billing:
+  enabled: true
+  providers:
+    stripe:
+      enabled: true
+      api_key: "${STRIPE_API_KEY}"
+      webhook_secret: "${STRIPE_WEBHOOK_SECRET}"
+      api_version: "2023-10-16"
+    paypal:
+      enabled: true
+      client_id: "${PAYPAL_CLIENT_ID}"
+      client_secret: "${PAYPAL_CLIENT_SECRET}"
+      sandbox: false
+    mock:
+      enabled: true  # For testing
+      success_rate: 0.95
+  
+  # Billing settings
+  settings:
+    default_currency: "USD"
+    trial_period_days: 14
+    invoice_due_days: 30
+    payment_retry_attempts: 3
+    late_fee_percentage: 5.0
+    tax_rate: 8.25
+    
+  # Usage tracking
+  usage_tracking:
+    enabled: true
+    track_api_calls: true
+    track_storage: true
+    track_bandwidth: true
+    track_users: true
+    track_documents: true
+    track_agents: true
+    aggregation_interval: 3600  # 1 hour
+    
+  # Webhooks
+  webhooks:
+    enabled: true
+    base_url: "${WEBHOOK_BASE_URL}"
+    endpoints:
+      stripe: "/api/webhooks/billing/stripe"
+      paypal: "/api/webhooks/billing/paypal"
+      mock: "/api/webhooks/billing/mock"
+
+# Security Configuration
+security:
+  # JWT settings
+  jwt:
+    secret_key: "${JWT_SECRET_KEY}"
+    algorithm: "HS256"
+    access_token_expire_minutes: 30
+    refresh_token_expire_days: 7
+    
+  # Encryption
+  encryption:
+    enabled: true
+    master_key: "${ENCRYPTION_MASTER_KEY}"
+    algorithm: "AES-256-GCM"
+    key_rotation_days: 90
+    
+  # RBAC
+  rbac:
+    enabled: true
+    roles:
+      - name: "admin"
+        permissions: ["*"]
+      - name: "manager"
+        permissions: ["user:*", "tenant:*", "billing:read"]
+      - name: "user"
+        permissions: ["user:read", "agent:read", "document:*"]
+      - name: "guest"
+        permissions: ["user:read"]
+    
+  # Rate limiting
+  rate_limiting:
+    enabled: true
+    default_limit: 1000  # requests per hour
+    tenant_specific: true
+    burst_limit: 100
+    
+  # IP filtering
+  ip_filtering:
+    enabled: true
+    whitelist_enabled: false
+    blacklist_enabled: true
+    geo_blocking_enabled: false
+    
+  # Audit logging
+  audit:
+    enabled: true
+    log_all_requests: false
+    log_sensitive_data: false
+    retention_days: 365
+    
+# Database Configuration
+database:
+  # Primary database
+  primary:
+    url: "${DATABASE_URL}"
+    pool_size: 20
+    max_overflow: 30
+    pool_timeout: 30
+    pool_recycle: 3600
+    
+  # Read replicas
+  read_replicas:
+    enabled: true
+    urls:
+      - "${DATABASE_READ_REPLICA_1_URL}"
+      - "${DATABASE_READ_REPLICA_2_URL}"
+    
+  # Tenant isolation
+  isolation:
+    level: "schema"  # database, schema, row
+    auto_create_resources: true
+    cleanup_on_delete: true
+    
+  # Backup and retention
+  backup:
+    enabled: true
+    schedule: "0 2 * * *"  # Daily at 2 AM
+    retention_days: 30
+    encryption: true
+    
+# Cache Configuration
+cache:
+  redis:
+    enabled: true
+    url: "${REDIS_URL}"
+    cluster_mode: true
+    max_connections: 100
+    timeout: 5
+    
+  # Cache strategies
+  strategies:
+    tenant_data:
+      ttl: 3600  # 1 hour
+      max_size: 1000
+    subscription_data:
+      ttl: 1800  # 30 minutes
+      max_size: 500
+    usage_data:
+      ttl: 300   # 5 minutes
+      max_size: 2000
+      
+# Performance Configuration
+performance:
+  # Load balancing
+  load_balancer:
+    enabled: true
+    algorithm: "round_robin"  # round_robin, least_connections, ip_hash
+    health_check_interval: 30
+    timeout: 10
+    
+  # Auto-scaling
+  auto_scaling:
+    enabled: true
+    min_instances: 2
+    max_instances: 10
+    cpu_target: 70
+    memory_target: 80
+    scale_up_cooldown: 300
+    scale_down_cooldown: 600
+    
+  # CDN
+  cdn:
+    enabled: true
+    provider: "cloudflare"  # cloudflare, aws_cloudfront, azure_cdn
+    cache_static_assets: true
+    cache_api_responses: true
+    cache_ttl: 3600
+    
+# Monitoring Configuration
+monitoring:
+  # Metrics
+  metrics:
+    enabled: true
+    prometheus:
+      enabled: true
+      port: 9090
+      path: "/metrics"
+    custom_metrics:
+      tenant_specific: true
+      billing_metrics: true
+      usage_metrics: true
+      
+  # Logging
+  logging:
+    level: "INFO"
+    format: "json"
+    structured: true
+    tenant_context: true
+    
+  # Alerting
+  alerting:
+    enabled: true
+    channels:
+      email:
+        enabled: true
+        smtp_server: "${SMTP_SERVER}"
+        smtp_port: 587
+        username: "${SMTP_USERNAME}"
+        password: "${SMTP_PASSWORD}"
+      slack:
+        enabled: true
+        webhook_url: "${SLACK_WEBHOOK_URL}"
+      pagerduty:
+        enabled: true
+        api_key: "${PAGERDUTY_API_KEY}"
+        
+  # Health checks
+  health_checks:
+    enabled: true
+    interval: 30
+    timeout: 10
+    endpoints:
+      - "/health"
+      - "/api/health"
+      - "/api/admin/health"
+      
+# Integration Configuration
+integrations:
+  # External APIs
+  apis:
+    openai:
+      api_key: "${OPENAI_API_KEY}"
+      organization: "${OPENAI_ORG_ID}"
+      rate_limit: 1000
+    anthropic:
+      api_key: "${ANTHROPIC_API_KEY}"
+      rate_limit: 1000
+      
+  # Webhooks
+  webhooks:
+    enabled: true
+    max_retries: 3
+    timeout: 30
+    signature_verification: true
+    
+  # OAuth providers
+  oauth:
+    google:
+      enabled: true
+      client_id: "${GOOGLE_CLIENT_ID}"
+      client_secret: "${GOOGLE_CLIENT_SECRET}"
+    microsoft:
+      enabled: true
+      client_id: "${MICROSOFT_CLIENT_ID}"
+      client_secret: "${MICROSOFT_CLIENT_SECRET}"
+    github:
+      enabled: true
+      client_id: "${GITHUB_CLIENT_ID}"
+      client_secret: "${GITHUB_CLIENT_SECRET}"
+      
+# Deployment Configuration
+deployment:
+  # Environment
+  environment: "production"
+  region: "us-east-1"
+  availability_zones:
+    - "us-east-1a"
+    - "us-east-1b"
+    - "us-east-1c"
+    
+  # Infrastructure
+  infrastructure:
+    provider: "aws"  # aws, gcp, azure
+    vpc_id: "${VPC_ID}"
+    subnet_ids:
+      - "${SUBNET_ID_1}"
+      - "${SUBNET_ID_2}"
+      - "${SUBNET_ID_3}"
+    security_group_ids:
+      - "${SECURITY_GROUP_ID}"
+      
+  # Container orchestration
+  kubernetes:
+    enabled: true
+    cluster_name: "uap-enterprise"
+    namespace: "uap-production"
+    replicas: 3
+    resources:
+      requests:
+        cpu: "1000m"
+        memory: "2Gi"
+      limits:
+        cpu: "2000m"
+        memory: "4Gi"
+        
+  # Service mesh
+  service_mesh:
+    enabled: true
+    provider: "istio"
+    mTLS: true
+    traffic_management: true
+    observability: true
+    
+# Compliance Configuration
+compliance:
+  # SOC2
+  soc2:
+    enabled: true
+    audit_logging: true
+    access_controls: true
+    data_encryption: true
+    
+  # GDPR
+  gdpr:
+    enabled: true
+    data_retention: true
+    right_to_deletion: true
+    data_portability: true
+    consent_management: true
+    
+  # HIPAA
+  hipaa:
+    enabled: false  # Enable for healthcare customers
+    baa_required: true
+    audit_logging: true
+    encryption_at_rest: true
+    encryption_in_transit: true
+    
+  # PCI DSS
+  pci_dss:
+    enabled: true  # For payment processing
+    cardholder_data_encryption: true
+    access_controls: true
+    network_segmentation: true
+    vulnerability_management: true
+    
+# Feature Flags
+feature_flags:
+  # Beta features
+  beta_features:
+    advanced_analytics: true
+    ai_model_fine_tuning: false
+    custom_workflows: true
+    
+  # Experimental features
+  experimental:
+    quantum_encryption: false
+    blockchain_audit: false
+    ai_agent_marketplace: true
+    
+  # Tenant-specific features
+  tenant_features:
+    per_tenant_customization: true
+    tenant_specific_models: false
+    tenant_data_lakes: true
+    
+# Disaster Recovery
+disaster_recovery:
+  enabled: true
+  backup_strategy: "multi_region"
+  rpo_hours: 1  # Recovery Point Objective
+  rto_hours: 4  # Recovery Time Objective
+  
+  # Backup locations
+  backup_regions:
+    - "us-west-2"
+    - "eu-west-1"
+    
+  # Failover
+  failover:
+    automatic: true
+    health_check_interval: 60
+    failure_threshold: 3
+    
+# Cost Optimization
+cost_optimization:
+  enabled: true
+  
+  # Resource scheduling
+  scheduling:
+    non_production_shutdown: true
+    shutdown_schedule: "0 20 * * 1-5"  # Weekdays 8 PM
+    startup_schedule: "0 8 * * 1-5"   # Weekdays 8 AM
+    
+  # Spot instances
+  spot_instances:
+    enabled: true
+    percentage: 50
+    diversification: true
+    
+  # Reserved capacity
+  reserved_capacity:
+    enabled: true
+    commitment_level: "1_year"
+    payment_option: "partial_upfront"
+    
+# Data Governance
+data_governance:
+  enabled: true
+  
+  # Data classification
+  classification:
+    enabled: true
+    levels:
+      - "public"
+      - "internal"
+      - "confidential"
+      - "restricted"
+      
+  # Data lineage
+  lineage:
+    enabled: true
+    tracking: true
+    visualization: true
+    
+  # Data quality
+  quality:
+    enabled: true
+    validation_rules: true
+    quality_metrics: true
+    anomaly_detection: true

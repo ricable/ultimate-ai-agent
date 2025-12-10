@@ -1,0 +1,45 @@
+{
+  "packages": ["nodejs@20", "typescript@latest", "nushell"],
+  "shell": {
+    "init_hook": [
+      "echo 'TypeScript Development Environment'",
+      "node --version",
+      "tsc --version",
+      "echo 'Initializing claude-flow...'",
+      "npx --yes claude-flow@alpha init --force",
+      "echo 'Starting claude-flow hive-mind...'",
+      "npx --yes claude-flow@alpha hive-mind wizard"
+    ],
+    "scripts": {
+      "install":    "npm install",
+      "build":      "npm run build",
+      "dev":        "npm run dev",
+      "format":     "npm run format",
+      "lint":       "npm run lint",
+      "test":       "npm run test",
+      "test-watch": "npm run test -- --watch",
+      "clean":      "rm -rf dist node_modules/.cache",
+      "type-check": "npm run type-check",
+      "devpod:provision": "nu ../../host-tooling/devpod-management/manage-devpod.nu provision typescript",
+      "devpod:connect": "nu ../../host-tooling/devpod-management/manage-devpod.nu connect typescript",
+      "devpod:start": "nu ../../host-tooling/devpod-management/manage-devpod.nu start typescript",
+      "devpod:stop": "nu ../../host-tooling/devpod-management/manage-devpod.nu stop typescript",
+      "devpod:delete": "nu ../../host-tooling/devpod-management/manage-devpod.nu delete typescript",
+      "devpod:sync": "nu ../../host-tooling/devpod-management/manage-devpod.nu sync typescript",
+      "devpod:status": "nu ../../host-tooling/devpod-management/manage-devpod.nu status typescript",
+      "devpod:help": "nu ../../host-tooling/devpod-management/manage-devpod.nu help typescript",
+      "claude-flow:init": "npx --yes claude-flow@alpha init --force",
+      "claude-flow:help": "npx --yes claude-flow@alpha --help",
+      "claude-flow:wizard": "npx --yes claude-flow@alpha hive-mind wizard",
+      "claude-flow:start": "npx --yes claude-flow@alpha start --daemon",
+      "claude-flow:status": "npx --yes claude-flow@alpha status",
+      "claude-flow:stop": "npx --yes claude-flow@alpha stop",
+      "claude-flow:monitor": "npx --yes claude-flow@alpha monitor",
+      "claude-flow:logs": "tail -f ./claude-flow.log",
+      "claude-flow:spawn": "npx --yes claude-flow@alpha hive-mind spawn \"create a snake game in the language of your devpod dev env\" --claude"
+    }
+  },
+  "env": {
+    "NODE_ENV": "development"
+  }
+}

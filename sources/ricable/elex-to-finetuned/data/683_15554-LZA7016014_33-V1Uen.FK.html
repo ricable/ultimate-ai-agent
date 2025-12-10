@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:xalan="http://xml.apache.org/xalan" xmlns:lxslt="http://xml.apache.org/xslt" lang="en" xml:lang="en">
+<head>
+<meta name="HTMLPACKLINKS" content="3" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="PREP" content="" />
+<meta name="DATE" content="2025-05-26" />
+<meta name="DOCNO" content="683/155 54-LZA 701 6014/33-V1 Uen" />
+<meta name="REV" content="FK" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-type" />
+<meta name="THEMES" content="MOM" />
+<meta name="DOCNAME" content="MANAGED OBJECT MODEL" />
+<meta name="TITLE" content="derivedDataType RuleDataType" />
+<meta name="SUBTITLE" content="G3G4_MOMCPI CXP2020502_2 R32C08" />
+<link title="Style" href="edw:/alex?fn=hilda.css" type="text/css" rel="stylesheet" />
+<link title="Style" href="edw:/alex?fn=3_15554-LZA7016014_33-V1Uen.FK.css" type="text/css" rel="stylesheet" />
+<script src="edw:/alex?fn=dwcommon.js" language="javascript" type="text/javascript"> </script>
+<title>derivedDataType RuleDataType</title>
+</head>
+<body>
+
+<script language="JavaScript" src="edw:/alex?fn=switch_theme.js" type="text/javascript"></script>
+<div id="header">
+<table class="docinfo">
+<tr>
+<td>&nbsp; &nbsp; <span class="fcaption"><span class="caption">Managed Object Model</span>&nbsp; &nbsp; &nbsp; &nbsp; 683/155 54-LZA 701 6014/33-V1 Uen FK</span>&nbsp; &nbsp; </td>
+</tr>
+</table>
+</div>
+<h1 class="TITLE">
+<a name="TITLE">derivedDataType&#160;RuleDataType</a>
+</h1>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<p>
+<span class="desc">This type specifies the target Managed Object (MO) or MO Class (MOC) that a rule applies to.<br />
+<br />Entire sub-trees can be addressed as well as attributes and actions defined for a specific MO or MOC. Patterns are used for this purpose according to simplified regular expression syntax. Any regular expression can also be defined but must be identified as such using a specific prefix.<br />
+<br />MOCs are specified in their containment hierarchy separated by commas &ldquo;,&rdquo;. For example:  &ldquo;ManagedElement,ApplFuncX&rdquo;. <br /> 
+<br />MOs are specified using the 3GPP DN notation, with the exception that the same rule may mix MO and MOC, such as &ldquo;ManagedElement, ApplFuncX=1&rdquo;. Omitting the instance Id is the preferred notation for singleton MOCs, which makes the rule applicable for all ManagedElement instances. Thus rule design becomes independent of system implementation for singleton MOC types.<br />
+<br />If the naming attribute is not the same as the MO Class name + &ldquo;Id&rdquo;, the naming attribute is in accordance with the 3GPP part of the DN as well. This means that if ApplFuncX naming attribute is xyz, then the DN is &ldquo;ManagedElement,ApplFuncX.xyz=2&rdquo;. However, it is not required nor forbidden to use this more elaborate form of DN. The naming attribute xyz can be omitted.<br /> 
+<br />Attributes and actions are specified after the MO or MOC separated by a dot &ldquo;.&rdquo;. Since the &lsquo;,&rsquo; character is allowed in the naming attribute of MO of 3GPP DNs, escaping must be used if the character occurs in an attribute value by the reverse solidus (&lsquo;\&rsquo;) character. Several attributes or actions can be specified for the same MO or MOC separated by the the bar &ldquo;|&rdquo; character.<br />
+<br />The rule applies to a single MO or MOC and all its attributes and actions unless the following notation is used:  <br />
+<br />...,MOC.* 	The rule applies to all attributes and actions that belong to the MO Class, but not to the MOC itself. <br />...,MOC,*	The rule applies to the MOC and all its attributes and actions and all contained (child) MOCs and their attribute and actions.<br />
+<br />(DEPRECATED: ...,MOC$ 	The rule applies only to the MOC itself and not to its attributes and actions.)<br />
+<br />The above notations are also valid for MOs and must close an expression.<br />
+<br />In addition, the ruleData attribute can specify any Perl Compatible Regular Expressions. These regular expressions must only be used by CLI command modules for tailored commands or by Netconf modules for Netconf operations. The permitted content is specified by the CLI and Netconf documentation. The only general restriction to these kinds of rule data is that they must start with &ldquo;:cli:regexp:&rdquo; or &ldquo;:netconf:regexp:&rdquo; plus a different expression from the wild card &ldquo;.*&rdquo;. <br />
+<br />Examples:<br />1)	Entire MO tree, that is the rule will match all Managed Objects:<br />ManagedElement,*<br />
+<br />2)	Only MOs and their attributes and actions of ManagedElement MOC:<br />ManagedElement <br />
+<br />3)	(Deprecated) Only MOs of ManagedElement MOC but not their attributes and actions:<br />ManagedElement$<br />
+<br />4)	A specific MO including singleton parents:<br />ManagedElement,Equipment,FRU=19<br />ManagedElement=10\.10\.10\.10<br />
+<br />5)	An entire sub-tree below that includes a specific MO:<br />ManagedElement,Equipment,FRU=17,*<br />
+<br />6)	An entire sub-tree below that includes a specific MO that belongs to an MO class where the naming attribute is not equal to the MOC Name + &ldquo;Id&rdquo;.  Two examples are given, both are valid and accurately describe the same MO tree:<br />ManagedElement,Equipment,Abc.xyz=1,*<br />ManagedElement,Equipment,Abc=1,*<br />
+<br />7)	All port attributes that belong to MOs of the Boo MOC:<br />ManagedElement,ApplFuncX,Boo.port<br />
+<br />8)	All ipAddress and port attributes that belong to MOs of the Boo MO class:<br />ManagedElement,ApplFuncX,Boo.ipAddress|port<br />
+<br />9)	Only the port attribute that belongs to a specific instance of the Boo MOC:<br />ManagedElement,ApplFuncX=1,Boo=17.port<br />
+<br />10)	The restart action on the ManagedElement MOC:<br />ManagedElement.restart<br />
+<br />11)	All CLI commands in the command module group 'System':<br />:cli:regexp:System-[a-zA-Z0-9]+ <br />or<br />regexp:System-[a-zA-Z0-9]+ <br />
+<br />12)	Netconf operation &lt;operationx&gt;:<br />:netconf:regexp:operationx</span>
+<br />
+<br />
+</p>
+</td>
+</tr>
+</table>
+<dl>
+<dt>
+<b>References from:</b>
+</dt>
+<dd>
+<a href="edw:/alex?fn=677_15554-LZA7016014_33-V1Uen.FK.html">CustomRule</a>;
+					<a href="edw:/alex?fn=685_15554-LZA7016014_33-V1Uen.FK.html">Rule</a>;
+					</dd>
+</dl>
+<table width="100%" cellspacing="0" cellpadding="3" border="1" class="tblcnt">
+<tr valign="top">
+<td class="type" width="1%"><code>string</code></td><td><code><b>RuleDataType</b></code>
+<br />
+<br />Valid values: (^[^,=[:space:]+&lt;&gt;#;\\"*$|.]+(\.[^,=[:space:]+&lt;&gt;#;\\"*$|.]+)?(=[^,=[:cntrl:]+&lt;&gt;#;"*$|]+)?(,[^,=[:space:]+&lt;&gt;#;\\"*$|.]+(\.[^,=[:space:]+&lt;&gt;#;\\"*$|.]+)?(=[^,=[:cntrl:]+&lt;&gt;#;"*$|]+)?)*((\.[^,=[:space:]+&lt;&gt;#;\\"*$|.]+(\|[^,=[:space:]+&lt;&gt;#;\\"*$|.]+)*)|(,\*)|(\.\*)|(\$))?$)|(^(:(cli|netconf):)?regexp:.*(\[A-Za-z0-9_\]\+)*.*$)<br />
+</td>
+</tr>
+</table>
+<div align="center" class="footer-info">
+<div class="footer-line">
+<span class="legal-lid">&#160;&#160;derivedDataType&#160;RuleDataType</span>
+</div>
+</div>
+</body>
+</html>

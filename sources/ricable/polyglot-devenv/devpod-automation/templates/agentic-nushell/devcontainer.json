@@ -1,0 +1,155 @@
+{
+  "name": "Agentic Nushell Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20",
+      "nodeGypDependencies": true
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    },
+    "ghcr.io/devcontainers/features/rust:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "dockerDashComposeVersion": "v2"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "thenuprojectcontributors.vscode-nushell-lang",
+        "ms-vscode.vscode-json",
+        "tamasfe.even-better-toml",
+        "formulahendry.code-runner",
+        "ms-vscode.test-adapter-converter",
+        "ms-python.python",
+        "rust-lang.rust-analyzer"
+      ],
+      "settings": {
+        "nushell.executablePath": "/usr/local/bin/nu",
+        "files.associations": {
+          "*.nu": "nushell"
+        },
+        "[nushell]": {
+          "editor.tabSize": 2,
+          "editor.insertSpaces": true,
+          "editor.formatOnSave": true
+        },
+        "terminal.integrated.defaultProfile.linux": "nushell",
+        "terminal.integrated.profiles.linux": {
+          "nushell": {
+            "path": "/usr/local/bin/nu"
+          }
+        }
+      }
+    },
+    "devpod": {
+      "prebuildRepository": "ghcr.io/ricable/polyglot-devenv-agentic-nushell"
+    }
+  },
+  "containerEnv": {
+    "NU_LOG_LEVEL": "debug",
+    "NU_PLUGIN_DIRS": "/workspace/.nu-plugins",
+    "NUSHELL_PERF_MODE": "true",
+    "AGUI_LOG_LEVEL": "debug",
+    "MCP_SERVER_URL": "http://host.docker.internal:3001",
+    "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}",
+    "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
+    "AGUI_RUNTIME_MODE": "development",
+    "PATH": "/usr/local/bin:${PATH}"
+  },
+  "mounts": [
+    "type=volume,source=nu-config,target=/home/vscode/.config/nushell",
+    "type=volume,source=nu-plugins,target=/workspace/.nu-plugins"
+  ],
+  "forwardPorts": [
+    8000,
+    8001,
+    8002,
+    3000,
+    4111,
+    2024,
+    9000,
+    3001,
+    5000
+  ],
+  "portsAttributes": {
+    "8000": {
+      "label": "Nushell Agent Server",
+      "onAutoForward": "notify"
+    },
+    "8001": {
+      "label": "Agent Pipeline Server",
+      "onAutoForward": "notify"
+    },
+    "8002": {
+      "label": "Agent Development Server",
+      "onAutoForward": "notify"
+    },
+    "3000": {
+      "label": "Web Interface",
+      "onAutoForward": "notify"
+    },
+    "4111": {
+      "label": "Mastra Client",
+      "onAutoForward": "silent"
+    },
+    "2024": {
+      "label": "LangGraph Server",
+      "onAutoForward": "silent"
+    },
+    "9000": {
+      "label": "LlamaIndex Server",
+      "onAutoForward": "silent"
+    },
+    "3001": {
+      "label": "MCP Server",
+      "onAutoForward": "silent"
+    },
+    "5000": {
+      "label": "Additional Development Server",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": [
+    "echo 'Setting up Agentic Nushell environment...'",
+    "echo 'Installing Nushell latest version...'",
+    "curl -sSL https://github.com/nushell/nushell/releases/latest/download/nu-0.105.1-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C /tmp",
+    "sudo mv /tmp/nu-0.105.1-x86_64-unknown-linux-gnu/nu /usr/local/bin/",
+    "sudo chmod +x /usr/local/bin/nu",
+    "echo 'Installing additional tools...'",
+    "sudo apt update && sudo apt install -y curl wget jq git ripgrep fd-find bat",
+    "echo 'Creating Nushell project structure...'",
+    "mkdir -p scripts/agents scripts/agui scripts/mcp scripts/api scripts/utils tests config examples",
+    "echo 'Creating Nushell configuration...'",
+    "mkdir -p ~/.config/nushell",
+    "cat > ~/.config/nushell/config.nu << 'EOF'\n# Agentic Nushell Configuration\n\n$env.config = {\n  show_banner: false\n  table: {\n    mode: rounded\n  }\n  completions: {\n    case_sensitive: false\n    quick: true\n    partial: true\n    algorithm: \"fuzzy\"\n  }\n  filesize: {\n    metric: true\n    format: \"auto\"\n  }\n  cursor_shape: {\n    vi_insert: line\n    vi_normal: block\n  }\n  color_config: $dark_theme\n  use_grid_icons: true\n  footer_mode: \"25\"\n  float_precision: 2\n  buffer_editor: \"code\"\n  use_ansi_coloring: true\n  bracketed_paste: true\n  edit_mode: emacs\n  shell_integration: {\n    osc2: true\n    osc7: true\n    osc8: true\n    osc9_9: false\n    osc133: true\n    osc633: true\n    reset_application_mode: true\n  }\n  render_right_prompt_on_last_line: false\n  hooks: {\n    pre_prompt: [{ ||\n      if (which direnv | is-empty) {\n        return\n      }\n      direnv export json | from json | default {} | load-env\n    }]\n  }\n}\n\n# Agent-specific aliases\nalias ll = ls -la\nalias la = ls -a\nalias ..= cd ..\nalias ...= cd ../..\nalias grep = rg\nalias find = fd\nalias cat = bat\n\n# Agent development aliases\nalias agent-start = \"nu scripts/agents/start-agent.nu\"\nalias agent-test = \"nu scripts/agents/test-agent.nu\"\nalias agent-deploy = \"nu scripts/agents/deploy-agent.nu\"\nalias pipeline-run = \"nu scripts/agui/run-pipeline.nu\"\nalias mcp-connect = \"nu scripts/mcp/connect.nu\"\n\n# Environment info\ndef \"agent env\" [] {\n  {\n    environment: \"agentic-nushell\"\n    version: \"0.1.0\"\n    nu_version: (version | get version)\n    mcp_server: ($env.MCP_SERVER_URL? | default \"http://localhost:3001\")\n    status: \"ready\"\n  }\n}\nEOF",
+    "echo 'Creating agent framework...'",
+    "cat > scripts/agents/agent-framework.nu << 'EOF'\n#!/usr/bin/env nu\n\n# Agentic Nushell Agent Framework\n# Pipeline-based agent orchestration and communication\n\n# Agent types\nexport def \"agent types\" [] {\n  [\n    \"data_processor\",\n    \"pipeline_orchestrator\", \n    \"script_generator\",\n    \"automation_agent\",\n    \"monitoring_agent\"\n  ]\n}\n\n# Agent configuration schema\nexport def \"agent config schema\" [] {\n  {\n    id: (random uuid)\n    name: \"string\"\n    type: \"string\"\n    description: \"string\"\n    capabilities: [\"list\", \"of\", \"strings\"]\n    pipeline_config: {\n      input_types: [\"list\"]\n      output_types: [\"list\"]\n      transformations: [\"list\"]\n    }\n    mcp_config: {\n      server_url: \"string\"\n      tools: [\"list\"]\n    }\n    created_at: (date now)\n    status: \"active\"\n  }\n}\n\n# Create a new agent\nexport def \"agent create\" [\n  name: string\n  type: string = \"data_processor\"\n  --description: string = \"Nushell agent\"\n  --capabilities: list = []\n] {\n  let agent_id = (random uuid)\n  let config = {\n    id: $agent_id\n    name: $name\n    type: $type\n    description: $description\n    capabilities: ($capabilities | append [\"nushell_scripting\", \"data_processing\", \"pipeline_orchestration\"])\n    pipeline_config: {\n      input_types: [\"json\", \"csv\", \"toml\", \"yaml\"]\n      output_types: [\"json\", \"table\", \"text\"]\n      transformations: [\"filter\", \"map\", \"reduce\", \"group\"]\n    }\n    mcp_config: {\n      server_url: ($env.MCP_SERVER_URL? | default \"http://localhost:3001\")\n      tools: [\"environment_detect\", \"polyglot_check\", \"devpod_provision\"]\n    }\n    created_at: (date now)\n    status: \"active\"\n  }\n  \n  # Save agent config\n  $config | save $\"config/agents/($agent_id).json\"\n  \n  print $\"✅ Created agent: ($name) with ID: ($agent_id)\"\n  $config\n}\n\n# List all agents\nexport def \"agent list\" [] {\n  if not (\"config/agents\" | path exists) {\n    mkdir config/agents\n    return []\n  }\n  \n  ls config/agents/*.json \n  | get name \n  | each { |file| open $file }\n  | select id name type status created_at\n}\n\n# Get agent by ID\nexport def \"agent get\" [id: string] {\n  let config_file = $\"config/agents/($id).json\"\n  if not ($config_file | path exists) {\n    error make { msg: $\"Agent not found: ($id)\" }\n  }\n  open $config_file\n}\n\n# Process message through agent pipeline\nexport def \"agent process\" [\n  agent_id: string\n  message: record\n  --format: string = \"json\"\n] {\n  let agent = (agent get $agent_id)\n  let timestamp = (date now)\n  \n  # Create processing record\n  let processing = {\n    agent_id: $agent_id\n    agent_name: $agent.name\n    input: $message\n    timestamp: $timestamp\n    format: $format\n  }\n  \n  # Process through pipeline\n  let result = ($message \n    | upsert agent_processed_by $agent.name\n    | upsert processed_at $timestamp\n    | upsert capabilities $agent.capabilities\n  )\n  \n  # Format output\n  match $format {\n    \"json\" => { $result | to json }\n    \"table\" => { $result | table }\n    \"yaml\" => { $result | to yaml }\n    _ => { $result }\n  }\n}\n\n# Agent pipeline operations\nexport def \"pipeline create\" [\n  name: string\n  agents: list\n  --description: string = \"Nushell agent pipeline\"\n] {\n  let pipeline_id = (random uuid)\n  let config = {\n    id: $pipeline_id\n    name: $name\n    description: $description\n    agents: $agents\n    created_at: (date now)\n    status: \"ready\"\n  }\n  \n  $config | save $\"config/pipelines/($pipeline_id).json\"\n  print $\"✅ Created pipeline: ($name) with ID: ($pipeline_id)\"\n  $config\n}\n\n# Run agent pipeline\nexport def \"pipeline run\" [\n  pipeline_id: string\n  data: any\n  --output_format: string = \"table\"\n] {\n  let pipeline = (open $\"config/pipelines/($pipeline_id).json\")\n  \n  print $\"🚀 Running pipeline: ($pipeline.name)\"\n  \n  let result = ($pipeline.agents \n    | reduce --fold $data { |agent_id, acc| \n        print $\"  Processing through agent: ($agent_id)\"\n        agent process $agent_id $acc --format json | from json\n      }\n  )\n  \n  match $output_format {\n    \"json\" => { $result | to json }\n    \"yaml\" => { $result | to yaml }\n    \"table\" => { $result | table }\n    _ => { $result }\n  }\n}\nEOF",
+    "cat > scripts/agents/start-agent.nu << 'EOF'\n#!/usr/bin/env nu\n\n# Start Nushell Agent Server\n# Provides HTTP interface for agent interactions\n\nuse agent-framework.nu *\n\ndef main [\n  --port: int = 8000\n  --host: string = \"0.0.0.0\"\n] {\n  print $\"🚀 Starting Nushell Agent Server on ($host):($port)\"\n  \n  # Create basic HTTP server using Python\n  let server_script = '\nimport http.server\nimport socketserver\nimport json\nimport urllib.parse\nimport subprocess\nimport os\n\nclass AgentHandler(http.server.BaseHTTPRequestHandler):\n    def do_GET(self):\n        if self.path == \"/health\":\n            self.send_response(200)\n            self.send_header(\"Content-type\", \"application/json\")\n            self.end_headers()\n            response = {\"status\": \"healthy\", \"service\": \"agentic-nushell\", \"version\": \"0.1.0\"}\n            self.wfile.write(json.dumps(response).encode())\n        elif self.path == \"/agents\":\n            self.send_response(200)\n            self.send_header(\"Content-type\", \"application/json\")\n            self.end_headers()\n            # Call Nushell to get agents\n            result = subprocess.run([\"nu\", \"-c\", \"use scripts/agents/agent-framework.nu *; agent list | to json\"], \n                                  capture_output=True, text=True, cwd=\"/workspace\")\n            if result.returncode == 0:\n                self.wfile.write(result.stdout.encode())\n            else:\n                self.wfile.write(b\"[]\")\n        else:\n            self.send_response(404)\n            self.end_headers()\n    \n    def do_POST(self):\n        if self.path.startswith(\"/agents/\") and self.path.endswith(\"/process\"):\n            # Extract agent ID\n            agent_id = self.path.split(\"/\")[2]\n            \n            # Read request body\n            content_length = int(self.headers[\"Content-Length\"])\n            post_data = self.rfile.read(content_length)\n            \n            try:\n                message = json.loads(post_data.decode())\n                \n                # Call Nushell agent processing\n                cmd = f\"use scripts/agents/agent-framework.nu *; agent process {agent_id} {{content: \\\"{message.get(\\\"content\\\", \\\"\\\")}\\\", role: \\\"{message.get(\\\"role\\\", \\\"user\\\")}\\\"}}\"\n                result = subprocess.run([\"nu\", \"-c\", cmd], \n                                      capture_output=True, text=True, cwd=\"/workspace\")\n                \n                self.send_response(200)\n                self.send_header(\"Content-type\", \"application/json\")\n                self.end_headers()\n                \n                if result.returncode == 0:\n                    response = {\"success\": True, \"data\": result.stdout, \"agent_id\": agent_id}\n                else:\n                    response = {\"success\": False, \"error\": result.stderr, \"agent_id\": agent_id}\n                \n                self.wfile.write(json.dumps(response).encode())\n            except Exception as e:\n                self.send_response(400)\n                self.send_header(\"Content-type\", \"application/json\")\n                self.end_headers()\n                response = {\"error\": str(e)}\n                self.wfile.write(json.dumps(response).encode())\n\nwith socketserver.TCPServer((\"\", 8000), AgentHandler) as httpd:\n    print(\"Nushell Agent Server running on port 8000\")\n    httpd.serve_forever()\n'\n  \n  # Save and run the server\n  $server_script | save scripts/agents/http_server.py\n  python scripts/agents/http_server.py\n}\nEOF",
+    "cat > scripts/mcp/mcp-client.nu << 'EOF'\n#!/usr/bin/env nu\n\n# MCP Client for Nushell Agents\n# Connects to the polyglot MCP server\n\nexport def \"mcp connect\" [--server: string = \"http://localhost:3001\"] {\n  print $\"🔗 Connecting to MCP server: ($server)\"\n  \n  let response = (http get $\"($server)/health\" | complete)\n  \n  if $response.status == 200 {\n    print \"✅ MCP server is healthy\"\n    $response.stdout | from json\n  } else {\n    print \"❌ Failed to connect to MCP server\"\n    null\n  }\n}\n\nexport def \"mcp call tool\" [\n  tool_name: string\n  params: record = {}\n  --server: string = \"http://localhost:3001\"\n] {\n  print $\"🔧 Calling MCP tool: ($tool_name)\"\n  \n  let payload = {\n    method: \"call_tool\"\n    params: {\n      name: $tool_name\n      arguments: $params\n    }\n  }\n  \n  let response = (http post $\"($server)/tools/($tool_name)\" {\n    content-type: \"application/json\"\n    body: ($payload | to json)\n  } | complete)\n  \n  if $response.status == 200 {\n    $response.stdout | from json\n  } else {\n    error make { msg: $\"MCP tool call failed: ($response.stderr)\" }\n  }\n}\n\nexport def \"mcp list environments\" [--server: string = \"http://localhost:3001\"] {\n  mcp call tool \"environment_detect\" {} --server $server\n}\n\nexport def \"mcp provision devpod\" [\n  environment: string\n  count: int = 1\n  --server: string = \"http://localhost:3001\"\n] {\n  mcp call tool \"devpod_provision\" {\n    environment: $environment\n    count: $count\n  } --server $server\n}\nEOF",
+    "echo 'Creating example agents...'",
+    "mkdir -p config/agents config/pipelines",
+    "cat > examples/data-processing-agent.nu << 'EOF'\n#!/usr/bin/env nu\n\n# Example: Data Processing Agent\n# Demonstrates Nushell pipeline-based data processing\n\nuse ../scripts/agents/agent-framework.nu *\n\ndef main [] {\n  print \"🤖 Creating Data Processing Agent example\"\n  \n  # Create a data processing agent\n  let agent = (agent create \"DataProcessor\" \"data_processor\" \n    --description \"Processes CSV and JSON data through Nushell pipelines\"\n    --capabilities [\"csv_processing\", \"json_transformation\", \"data_validation\"]\n  )\n  \n  print $\"Created agent: ($agent.name) with ID: ($agent.id)\"\n  \n  # Example data to process\n  let sample_data = [\n    {name: \"Alice\", age: 30, department: \"Engineering\"}\n    {name: \"Bob\", age: 25, department: \"Marketing\"}\n    {name: \"Carol\", age: 35, department: \"Engineering\"}\n  ]\n  \n  # Process data through agent\n  let result = (agent process $agent.id {\n    data: $sample_data\n    operation: \"group_by_department\"\n    format: \"summary\"\n  })\n  \n  print \"📊 Processing result:\"\n  $result | from json | table\n}\n\nif ($env.PWD | path join \"examples\" | path exists) {\n  main\n}\nEOF",
+    "echo 'Setting up Nushell plugins directory...'",
+    "mkdir -p .nu-plugins",
+    "echo 'Creating test suite...'",
+    "cat > tests/agent-tests.nu << 'EOF'\n#!/usr/bin/env nu\n\n# Nushell Agent Test Suite\n\nuse ../scripts/agents/agent-framework.nu *\n\n# Test agent creation\nexport def test_agent_creation [] {\n  print \"🧪 Testing agent creation...\"\n  \n  let agent = (agent create \"TestAgent\" \"data_processor\" --description \"Test agent\")\n  \n  assert ($agent.name == \"TestAgent\")\n  assert ($agent.type == \"data_processor\")\n  assert ($agent.status == \"active\")\n  \n  print \"✅ Agent creation test passed\"\n}\n\n# Test agent processing\nexport def test_agent_processing [] {\n  print \"🧪 Testing agent processing...\"\n  \n  let agent = (agent create \"ProcessorTest\" \"data_processor\")\n  let test_message = {content: \"Hello, agent!\", role: \"user\"}\n  \n  let result = (agent process $agent.id $test_message)\n  \n  assert ($result != null)\n  print \"✅ Agent processing test passed\"\n}\n\n# Test pipeline creation\nexport def test_pipeline_creation [] {\n  print \"🧪 Testing pipeline creation...\"\n  \n  let agent1 = (agent create \"PipelineAgent1\" \"data_processor\")\n  let agent2 = (agent create \"PipelineAgent2\" \"data_processor\")\n  \n  let pipeline = (pipeline create \"TestPipeline\" [$agent1.id, $agent2.id])\n  \n  assert ($pipeline.name == \"TestPipeline\")\n  assert (($pipeline.agents | length) == 2)\n  \n  print \"✅ Pipeline creation test passed\"\n}\n\n# Run all tests\nexport def run_all_tests [] {\n  print \"🚀 Running Nushell agent test suite...\"\n  \n  test_agent_creation\n  test_agent_processing\n  test_pipeline_creation\n  \n  print \"🎉 All tests passed!\"\n}\n\nif ($env.PWD | path join \"tests\" | path exists) {\n  run_all_tests\n}\nEOF",
+    "echo 'Making scripts executable...'",
+    "chmod +x scripts/agents/*.nu scripts/mcp/*.nu examples/*.nu tests/*.nu",
+    "echo 'Creating initial agents...'",
+    "nu -c 'use scripts/agents/agent-framework.nu *; agent create \"DefaultAgent\" \"automation_agent\" --description \"Default Nushell automation agent\"' || echo 'Agent creation will be available after first shell'",
+    "echo 'Agentic Nushell environment ready! 🤖🐚'"
+  ],
+  "postStartCommand": [
+    "echo 'Agentic Nushell DevPod ready!'",
+    "echo '🚀 Start agent server: nu scripts/agents/start-agent.nu'",
+    "echo '🧪 Run tests: nu tests/agent-tests.nu'",
+    "echo '🔗 Connect to MCP: nu scripts/mcp/mcp-client.nu'",
+    "echo '📊 Example: nu examples/data-processing-agent.nu'"
+  ],
+  "postAttachCommand": "echo 'Welcome to Agentic Nushell DevPod! 🤖🐚 Ready for pipeline-based agent development.'"
+}

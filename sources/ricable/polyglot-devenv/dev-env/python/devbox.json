@@ -1,0 +1,60 @@
+{
+  "packages": [
+    "python@3.12",
+    "uv",
+    "ruff",
+    "mypy",
+    "nushell"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Python Development Environment'",
+      "uv --version",
+      "python --version",
+      "echo 'Initializing claude-flow...'",
+      "npx --yes claude-flow@alpha init --force",
+      "echo 'Starting claude-flow hive-mind...'",
+      "npx --yes claude-flow@alpha hive-mind wizard"
+    ],
+    "scripts": {
+      "setup": "uv sync --dev",
+      "install": "uv sync --dev",
+      "add": "uv add",
+      "remove": "uv remove",
+      "format": "uv run ruff format .",
+      "lint": "uv run ruff check . --fix",
+      "type-check": "uv run mypy .",
+      "test": "uv run pytest --cov=src",
+      "test-watch": "uv run pytest --cov=src -f",
+      "clean": "find . -type d -name '__pycache__' -exec rm -rf {} + && find . -name '*.pyc' -delete",
+      "build": "uv build",
+      "deps": "uv tree",
+      "lock": "uv lock",
+      "sync": "uv sync --dev",
+      "run": "uv run",
+      "watch": "uv run pytest --cov=src -f",
+      "devpod:provision": "nu ../../host-tooling/devpod-management/manage-devpod.nu provision python",
+      "devpod:connect": "nu ../../host-tooling/devpod-management/manage-devpod.nu connect python",
+      "devpod:start": "nu ../../host-tooling/devpod-management/manage-devpod.nu start python",
+      "devpod:stop": "nu ../../host-tooling/devpod-management/manage-devpod.nu stop python",
+      "devpod:delete": "nu ../../host-tooling/devpod-management/manage-devpod.nu delete python",
+      "devpod:sync": "nu ../../host-tooling/devpod-management/manage-devpod.nu sync python",
+      "devpod:status": "nu ../../host-tooling/devpod-management/manage-devpod.nu status python",
+      "devpod:help": "nu ../../host-tooling/devpod-management/manage-devpod.nu help python",
+      "claude-flow:init": "npx --yes claude-flow@alpha init --force",
+      "claude-flow:help": "npx --yes claude-flow@alpha --help",
+      "claude-flow:wizard": "npx --yes claude-flow@alpha hive-mind wizard",
+      "claude-flow:start": "npx --yes claude-flow@alpha start --daemon",
+      "claude-flow:status": "npx --yes claude-flow@alpha status",
+      "claude-flow:stop": "npx --yes claude-flow@alpha stop",
+      "claude-flow:monitor": "npx --yes claude-flow@alpha monitor",
+      "claude-flow:logs": "tail -f ./claude-flow.log",
+      "claude-flow:spawn": "npx --yes claude-flow@alpha hive-mind spawn \"create a snake game in the language of your devpod dev env\" --claude"
+    }
+  },
+  "env": {
+    "PYTHONPATH": "$PWD/src",
+    "UV_CACHE_DIR": "$PWD/.uv-cache",
+    "UV_PYTHON_PREFERENCE": "only-managed"
+  }
+}

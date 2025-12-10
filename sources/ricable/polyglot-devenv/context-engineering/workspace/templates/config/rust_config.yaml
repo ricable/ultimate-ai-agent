@@ -1,0 +1,49 @@
+environment: "rust-env"
+devbox_config: "rust-env/devbox.json"
+language: "rust"
+
+dependencies:
+  - "serde"
+  - "tokio"
+  - "anyhow"
+  - "thiserror"
+
+install_command: "cargo add {package}"
+format_command: "cargo fmt"
+lint_command: "cargo clippy -- -D warnings"
+type_check_command: "cargo check"
+test_command: "cargo test"
+integration_test_command: "cargo test --test integration"
+
+current_structure: |
+  rust-env/
+  ├── devbox.json         # Rust toolchain, cargo, clippy, rustfmt
+  ├── src/
+  │   ├── lib.rs
+  │   └── main.rs
+  ├── tests/
+  │   └── integration.rs
+  ├── Cargo.toml          # Rust dependencies and metadata
+  └── README.md
+
+environment_gotchas: |
+  # CRITICAL: Rust environment-specific gotchas
+  # Ownership: Understand borrowing and ownership rules
+  # Async: Use tokio for async runtime and async/await
+  # Error handling: Use Result<T, E> and ? operator
+  # Cargo: Use cargo for all package management
+  # Clippy: Address all clippy warnings
+
+anti_patterns:
+  - "❌ Don't ignore ownership and borrowing rules"
+  - "❌ Don't use unwrap() in production code - handle errors properly"
+  - "❌ Don't clone unnecessarily - use references when possible"
+  - "❌ Don't ignore clippy warnings - fix them"
+  - "❌ Don't mix sync and async code inappropriately"
+
+environment_guidelines:
+  - "✅ Embrace the ownership system for memory safety"
+  - "✅ Use Result<T, E> for comprehensive error handling"
+  - "✅ Leverage the type system for correctness"
+  - "✅ Use async/await with tokio for concurrency"
+  - "✅ Write comprehensive tests with cargo test"

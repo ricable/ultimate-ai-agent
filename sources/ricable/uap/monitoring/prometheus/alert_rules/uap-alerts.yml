@@ -1,0 +1,245 @@
+# UAP Platform Alert Rules
+# Comprehensive alerting rules for the UAP platform monitoring
+
+groups:
+  - name: uap-critical-alerts
+    rules:
+      # System-level critical alerts
+      - alert: HighMemoryUsage
+        expr: uap_system_memory_usage_percent > 90
+        for: 5m
+        labels:
+          severity: critical
+          component: system
+        annotations:
+          summary: "System memory usage critically high"
+          description: "Memory usage is {{ $value }}% (threshold: 90%)"
+          runbook_url: "https://docs.uap.ai/runbooks/high-memory-usage"
+
+      - alert: HighCPUUsage
+        expr: uap_system_cpu_usage_percent > 85
+        for: 10m
+        labels:
+          severity: critical
+          component: system
+        annotations:
+          summary: "System CPU usage critically high"
+          description: "CPU usage is {{ $value }}% for more than 10 minutes"
+          runbook_url: "https://docs.uap.ai/runbooks/high-cpu-usage"
+
+      - alert: DiskSpaceCritical
+        expr: uap_system_disk_usage_percent > 95
+        for: 2m
+        labels:
+          severity: critical
+          component: system
+        annotations:
+          summary: "Disk space critically low"
+          description: "Disk usage is {{ $value }}% (threshold: 95%)"
+          runbook_url: "https://docs.uap.ai/runbooks/disk-space-critical"
+
+      # Agent performance critical alerts
+      - alert: AgentResponseTimeCritical
+        expr: histogram_quantile(0.95, rate(uap_agent_response_time_seconds_bucket[5m])) > 5
+        for: 3m
+        labels:
+          severity: critical
+          component: agent
+        annotations:
+          summary: "Agent response time critically high"
+          description: "95th percentile response time is {{ $value }}s (threshold: 5s)"
+          runbook_url: "https://docs.uap.ai/runbooks/agent-performance-critical"
+
+      - alert: HighErrorRate
+        expr: (rate(uap_agent_requests_total{status="error"}[5m]) / rate(uap_agent_requests_total[5m])) * 100 > 15
+        for: 5m
+        labels:
+          severity: critical
+          component: agent
+        annotations:
+          summary: "High agent error rate detected"
+          description: "Error rate is {{ $value }}% (threshold: 15%)"
+          runbook_url: "https://docs.uap.ai/runbooks/high-error-rate"
+
+      # WebSocket connection issues
+      - alert: WebSocketConnectionsDrop
+        expr: decrease(uap_websocket_connections_active[5m]) > 100
+        for: 2m
+        labels:
+          severity: critical
+          component: websocket
+        annotations:
+          summary: "Large drop in WebSocket connections"
+          description: "{{ $value }} connections dropped in 5 minutes"
+          runbook_url: "https://docs.uap.ai/runbooks/websocket-connection-drop"
+
+  - name: uap-warning-alerts
+    rules:
+      # System warnings
+      - alert: HighMemoryUsageWarning
+        expr: uap_system_memory_usage_percent > 80
+        for: 10m
+        labels:
+          severity: warning
+          component: system
+        annotations:
+          summary: "System memory usage high"
+          description: "Memory usage is {{ $value }}% for more than 10 minutes"
+
+      - alert: HighCPUUsageWarning
+        expr: uap_system_cpu_usage_percent > 70
+        for: 15m
+        labels:
+          severity: warning
+          component: system
+        annotations:
+          summary: "System CPU usage high"
+          description: "CPU usage is {{ $value }}% for more than 15 minutes"
+
+      # Agent performance warnings
+      - alert: AgentResponseTimeWarning
+        expr: histogram_quantile(0.95, rate(uap_agent_response_time_seconds_bucket[5m])) > 2
+        for: 5m
+        labels:
+          severity: warning
+          component: agent
+        annotations:
+          summary: "Agent response time high"
+          description: "95th percentile response time is {{ $value }}s (threshold: 2s)"
+
+      - alert: ModerateErrorRate
+        expr: (rate(uap_agent_requests_total{status="error"}[5m]) / rate(uap_agent_requests_total[5m])) * 100 > 5
+        for: 10m
+        labels:
+          severity: warning
+          component: agent
+        annotations:
+          summary: "Moderate agent error rate"
+          description: "Error rate is {{ $value }}% (threshold: 5%)"
+
+      # Distributed processing warnings
+      - alert: RayClusterNodesDown
+        expr: uap_ray_cluster_nodes_total < 3
+        for: 5m
+        labels:
+          severity: warning
+          component: ray
+        annotations:
+          summary: "Ray cluster nodes below threshold"
+          description: "Only {{ $value }} Ray nodes available (minimum: 3)"
+
+      - alert: RayQueueSizeHigh
+        expr: uap_ray_queue_size > 1000
+        for: 10m
+        labels:
+          severity: warning
+          component: ray
+        annotations:
+          summary: "Ray task queue size high"
+          description: "{{ $value }} tasks in Ray queue"
+
+  - name: uap-availability-alerts
+    rules:
+      # Service availability
+      - alert: ServiceDown
+        expr: up{job="uap-backend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: backend
+        annotations:
+          summary: "UAP Backend service is down"
+          description: "Backend service has been down for more than 1 minute"
+          runbook_url: "https://docs.uap.ai/runbooks/service-down"
+
+      - alert: DatabaseDown
+        expr: up{job="postgres-exporter"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: database
+        annotations:
+          summary: "PostgreSQL database is down"
+          description: "Database has been unreachable for more than 2 minutes"
+          runbook_url: "https://docs.uap.ai/runbooks/database-down"
+
+      - alert: RedisDown
+        expr: up{job="redis-exporter"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: redis
+        annotations:
+          summary: "Redis cache is down"
+          description: "Redis has been unreachable for more than 2 minutes"
+          runbook_url: "https://docs.uap.ai/runbooks/redis-down"
+
+  - name: uap-performance-alerts
+    rules:
+      # HTTP request performance
+      - alert: HighHTTPRequestLatency
+        expr: histogram_quantile(0.95, rate(uap_http_request_duration_seconds_bucket[5m])) > 1
+        for: 5m
+        labels:
+          severity: warning
+          component: api
+        annotations:
+          summary: "High HTTP request latency"
+          description: "95th percentile HTTP latency is {{ $value }}s"
+
+      # WebSocket performance
+      - alert: WebSocketMessageLatency
+        expr: avg(rate(uap_websocket_connection_duration_seconds_sum[5m]) / rate(uap_websocket_connection_duration_seconds_count[5m])) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+          component: websocket
+        annotations:
+          summary: "WebSocket message latency high"
+          description: "Average WebSocket message latency is {{ $value }}s"
+
+      # Framework-specific alerts
+      - alert: FrameworkUnhealthy
+        expr: uap_framework_status != 1
+        for: 3m
+        labels:
+          severity: warning
+          component: framework
+        annotations:
+          summary: "Framework {{ $labels.framework }} is unhealthy"
+          description: "Framework status is not healthy for more than 3 minutes"
+
+  - name: uap-business-metrics
+    rules:
+      # Business-critical metrics
+      - alert: LowAgentUtilization
+        expr: avg(uap_framework_agents_active) < 5
+        for: 30m
+        labels:
+          severity: info
+          component: business
+        annotations:
+          summary: "Low agent utilization"
+          description: "Average active agents is {{ $value }} (expected: >5)"
+
+      - alert: UnusualRequestVolume
+        expr: rate(uap_agent_requests_total[5m]) < 0.1
+        for: 15m
+        labels:
+          severity: warning
+          component: business
+        annotations:
+          summary: "Unusually low request volume"
+          description: "Request rate is {{ $value }} requests/second"
+
+      # SLA threshold violations
+      - alert: SLAViolation
+        expr: uap_threshold_violations_total > 0
+        for: 1m
+        labels:
+          severity: critical
+          component: sla
+        annotations:
+          summary: "SLA threshold violation detected"
+          description: "{{ $value }} SLA violations in the last minute"
+          runbook_url: "https://docs.uap.ai/runbooks/sla-violation"

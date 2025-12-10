@@ -1,0 +1,18 @@
+{
+  "model_name": "microsoft/DialoGPT-medium",
+  "dataset_path": "examples/data/quotes_train.jsonl",
+  "success": true,
+  "error": null,
+  "metrics": {
+    "training_time": 14.536375999450684,
+    "adapter_path": "./hf_8b_test_output/adapter",
+    "parameters_trained": "LoRA rank 4",
+    "device": "mps",
+    "inference_test": {
+      "success": false,
+      "sample_outputs": [],
+      "avg_inference_time": 0,
+      "error": "probability tensor contains either `inf`, `nan` or element < 0"
+    }
+  }
+}

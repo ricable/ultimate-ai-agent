@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:xalan="http://xml.apache.org/xalan" xmlns:lxslt="http://xml.apache.org/xslt" lang="en" xml:lang="en">
+<head>
+<meta name="HTMLPACKLINKS" content="11" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="PREP" content="" />
+<meta name="DATE" content="2025-05-26" />
+<meta name="DOCNO" content="656/155 54-LZA 701 6014/33-V1 Uen" />
+<meta name="REV" content="FK" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-type" />
+<meta name="THEMES" content="MOM" />
+<meta name="DOCNAME" content="MANAGED OBJECT MODEL" />
+<meta name="TITLE" content="class EricssonFilter" />
+<meta name="SUBTITLE" content="G3G4_MOMCPI CXP2020502_2 R32C08" />
+<link title="Style" href="edw:/alex?fn=hilda.css" type="text/css" rel="stylesheet" />
+<link title="Style" href="edw:/alex?fn=3_15554-LZA7016014_33-V1Uen.FK.css" type="text/css" rel="stylesheet" />
+<script src="edw:/alex?fn=dwcommon.js" language="javascript" type="text/javascript"> </script>
+<title>class EricssonFilter</title>
+</head>
+<body>
+
+<script language="JavaScript" src="edw:/alex?fn=switch_theme.js" type="text/javascript"></script>
+<div id="header">
+<table class="docinfo">
+<tr>
+<td>&nbsp; &nbsp; <span class="fcaption"><span class="caption">Managed Object Model</span>&nbsp; &nbsp; &nbsp; &nbsp; 656/155 54-LZA 701 6014/33-V1 Uen FK</span>&nbsp; &nbsp; </td>
+</tr>
+</table>
+</div>
+<h1 class="TITLE">
+<a name="TITLE">class&#160;EricssonFilter</a>
+</h1>
+<dl>
+<dd>
+<a href="edw:/alex?fn=210_15554-LZA7016014_33-V1Uen.FK.html">ManagedElement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=218_15554-LZA7016014_33-V1Uen.FK.html">SystemFunctions</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=581_15554-LZA7016014_33-V1Uen.FK.html">SecM</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=601_15554-LZA7016014_33-V1Uen.FK.html">UserManagement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=645_15554-LZA7016014_33-V1Uen.FK.html">LdapAuthenticationMethod</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=653_15554-LZA7016014_33-V1Uen.FK.html">Ldap</a>
+<dl class="child_tree">
+<dd>
+<b><a href="edw:/alex?fn=656_15554-LZA7016014_33-V1Uen.FK.html">EricssonFilter</a></b>
+<dl class="child_tree"></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<p>
+<span class="desc">Provides configuration of features supported by the Ericsson LDAP schema. <br />
+<br />This class must be used when profileFilter in Ldap MO is set to ERICSSON_FILTER.</span>
+<br />
+<br />
+<b>This MO is created by the system.</b>
+<br />
+<br />
+<br />
+<br />
+</p>
+</td>
+</tr>
+</table>
+<dl></dl>
+<table width="100%" cellspacing="0" cellpadding="3" border="1" class="tblcnt">
+<tr class="TableSubHeadingColor">
+<td colspan="2"><b>Attributes</b></td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string<br />key<br />mandatory<br />noNotification<br />restricted</code></td><td>
+<dl>
+<dt>
+<code><b><a name="ericssonFilterId">ericssonFilterId</a></b></code>
+</dt>
+<dd>
+<span class="desc">The value component of the RDN.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=658_15554-LZA7016014_33-V1Uen.FK.html">LdapDistinguishedName</a>[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="roleAliasesBaseDn">roleAliasesBaseDn</a></b></code>
+</dt>
+<dd>
+<span class="desc">LDAP DN to a subtree of objects that is used to convert alias roles to roles the ME understands.<br />
+<br />An option for authorization methods that implements Role Based Access Control.<br />
+<br />The value is an LDAP DN. The format of the DN for such an object is 'role=[role], roleAliasesBaseDn', where [role] must be replaced with the name of a role alias or role group. All these objects must be accessible from the base DN defined in this attribute. For example: if roleAliasesBaseDn = "dc=example,dc=com" and the user has role Admin, and the object "role=Admin,dc=example,dc=com" exists and has attribute ericssonUserAuthorizationScope = Administrator, the user receives the Administrator role.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=654_15554-LZA7016014_33-V1Uen.FK.html">BasicAdmState</a></code></td><td>
+<dl>
+<dt>
+<code><b><a name="targetBasedAccessControl">targetBasedAccessControl</a></b>
+          =
+          LOCKED</code>
+</dt>
+<dd>
+<span class="desc">Toggles Target Based Access Control.<br />
+<br />The User Management MO provides the &lt;Target Type&gt; strings of the ME. The TBAC authorization behavior is defined in the User Management MOC.<br />
+<br />The optional Ericsson LDAP-schema-specified attribute ericssonUserAuthenticationScope stores the targets where the user can be authenticated and authorized. It is a case-insensitive string of &lt;Target Type&gt;. The Ericsson target-type identifier, such as &lsquo;bsc&rsquo;, &lsquo;cscf&rsquo;, classifies the target type the user can access.<br />
+<br />The optional Ericsson LDAP-schema-specified attribute ericssonUserAuthorizationScope stores the authorization profiles of which the user is a member. It is a case-insensitive string of form &lt;Target Type&gt;:&lt;Authorization Profile&gt;, where ':' is a separator; &lt;Target Type&gt; is the Ericsson target-type identifier, such as &lsquo;bsc&rsquo;, &lsquo;cscf&rsquo;, and it classifies the target type for which the user acquires the &lt;Authorization Profile&gt;. &lt;Authorization Profile&gt; is the Ericsson application-defined profile, for example, a role.<br />
+<br />Attribute ericssonUserAuthenticationScope behavior:<br />
+<br />When TBAC is LOCKED in the ME, authentication and authorization are performed without TBAC.<br />When TBAC is UNLOCKED in the ME and the user has a target-restricted authentication scope, authentication and authorization are performed when a match is found. If not, it fails.<br />
+<br />Attribute ericssonUserAuthenticationScope allows the use of wild-carded scope ('*') to permit the user to be authorized on any ME based on its ericssonUserAuthorizationScope attribute.<br />
+<br />Attribute ericssonUserAuthorizationScope behavior:<br />
+<br />When TBAC is LOCKED in the ME, the authorization profiles without target qualifiers and with wildcard target qualifier ('*') are assigned to the user from the user database. When TBAC is UNLOCKED in the ME, the authorization profiles with matching target qualifiers and with wildcard target qualifier are assigned to the user from the user database. In addition, role aliases are accepted also without a target qualifier.<br />
+<br />Not using the Ericsson LDAP schema in the user accounts, or improper use of this schema causes authorization failure.<br />
+<br />For more details, refer to the Ericsson LDAP Interface Description.<br />
+<br />Example with roles:<br />If the ME in User Management MOC is configured with 'cscf.ims.stockholm' and the LDAP user account contains:<br />
+<br />ericssonUserAuthenticationScope: cscf.ims.stockholm<br />ericssonUserAuthenticationScope: cscf.ims.malmo<br />ericssonUserAuthorizationScope: cscf.ims.stockholm:SystemAdministrator<br />ericssonUserAuthorizationScope: cscf.ims.malmo:SystemSecurityAdministrator<br />ericssonUserAuthorizationScope: *:ApplicationOperator<br />
+<br />Then given the LDAP user provided a correct password it is authenticated on the ME and assigned with role 'SystemAdministrator' and 'ApplicationOperator'.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code><a href="edw:/alex?fn=664_15554-LZA7016014_33-V1Uen.FK.html">EricssonFilterVersion</a></code></td><td>
+<dl>
+<dt>
+<code><b><a name="version">version</a></b>
+          =
+          2</code>
+</dt>
+<dd>
+<span class="desc">The selected version of the Ericsson filtering behavior.<br />
+<br />Version 1 is deprecated. Version 1 allows wildcarding of roles without any qualifier and it supports the use of '*' character. Such syntax applies the given role on all targets:<br />
+<br />ericssonUserAuthorizationScope: ApplicationOperator<br />ericssonUserAuthorizationScope: *:ApplicationOperator<br />
+<br />Version 2 differentiates the wildcarding behavior depending on the value of attribute targetBasedAccessControl. When targetBasedAccessControl is LOCKED, both syntaxes are allowed and assigns the role to the user in the ME. When targetBasedAccessControl is UNLOCKED, it only allows the use of '*' character, but unqualified roles are ignored. </span>
+</dd>
+</dl>
+</td>
+</tr>
+</table>
+<p></p>
+<div align="center" class="footer-info">
+<div class="footer-line">
+<span class="legal-lid">&#160;&#160;class&#160;EricssonFilter</span>
+</div>
+</div>
+</body>
+</html>

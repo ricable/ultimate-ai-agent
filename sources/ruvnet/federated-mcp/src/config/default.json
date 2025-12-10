@@ -1,0 +1,23 @@
+{
+  "server": {
+    "name": "federated-mcp",
+    "version": "1.0.0",
+    "port": 3000
+  },
+  "federation": {
+    "enabled": true,
+    "proxy": {
+      "port": 3001,
+      "auth": {
+        "type": "jwt",
+        "secret": "${JWT_SECRET}"
+      }
+    }
+  },
+  "capabilities": {
+    "resources": true,
+    "prompts": true,
+    "tools": true,
+    "sampling": true
+  }
+}

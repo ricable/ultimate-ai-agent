@@ -1,0 +1,128 @@
+# Minimal Alpine Production Dockerfile for Synaptic Neural Mesh
+# Optimized for container size (<500MB target)
+
+# ==============================================================================
+# Stage 1: Rust Build Environment
+# ==============================================================================
+FROM rust:1.75-alpine AS rust-builder
+
+# Install Alpine build dependencies
+RUN apk add --no-cache \
+    musl-dev \
+    pkgconfig \
+    openssl-dev \
+    cmake \
+    g++ \
+    git \
+    curl \
+    ca-certificates
+
+# Install wasm-pack
+RUN curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+WORKDIR /build
+
+# Copy Rust workspace
+COPY src/rs/ ./rs/
+COPY Cargo.toml Cargo.lock ./
+
+# Build with musl target for Alpine compatibility
+ENV RUSTFLAGS="-C target-feature=-crt-static"
+RUN cd rs/QuDAG/QuDAG-main && \
+    cargo build --release --target x86_64-unknown-linux-musl --bin qudag --features "cli full" && \
+    cargo build --release --target x86_64-unknown-linux-musl --bin qudag-exchange --manifest-path ./qudag-exchange/cli/Cargo.toml
+
+# Build optimized WASM with size optimizations
+RUN cd rs/ruv-FANN/ruv-swarm && \
+    RUSTFLAGS="-C opt-level=z -C strip=symbols" \
+    wasm-pack build --target web --release --out-dir ../../../target/wasm/ruv-swarm -- --features minimal
+
+# Optimize WASM binaries
+RUN find /build/target/wasm -name "*.wasm" -exec wasm-opt -Oz {} -o {} \;
+
+# ==============================================================================
+# Stage 2: Node.js Build Environment
+# ==============================================================================
+FROM node:20-alpine AS node-builder
+
+RUN apk add --no-cache python3 make g++ sqlite-dev
+
+WORKDIR /build
+
+# Copy and build Node.js components
+COPY src/js/ ./js/
+COPY src/mcp/ ./mcp/
+COPY package*.json ./
+
+# Build with Alpine-specific optimizations
+RUN cd js/ruv-swarm && npm ci --only=production --no-audit --no-optional
+RUN cd js/claude-flow && npm ci --only=production --no-audit --no-optional
+RUN cd mcp && npm ci --only=production --no-audit --no-optional
+
+# Remove unnecessary files
+RUN find . -name "*.md" -delete && \
+    find . -name "*.ts" -delete && \
+    find . -name "test*" -type d -exec rm -rf {} + || true && \
+    find . -name "*.test.js" -delete
+
+# ==============================================================================
+# Stage 3: Minimal Alpine Runtime
+# ==============================================================================
+FROM node:20-alpine AS production
+
+# Install minimal runtime dependencies
+RUN apk add --no-cache \
+    ca-certificates \
+    sqlite \
+    curl \
+    bash \
+    dumb-init \
+    tini \
+    && addgroup -g 1000 neural \
+    && adduser -D -s /bin/bash -u 1000 -G neural neural
+
+# Create minimal directory structure
+RUN mkdir -p /app/{bin,src,wasm,data,config} \
+    && chown -R neural:neural /app
+
+WORKDIR /app
+
+# Copy optimized binaries
+COPY --from=rust-builder /build/rs/QuDAG/QuDAG-main/target/x86_64-unknown-linux-musl/release/qudag /app/bin/
+COPY --from=rust-builder /build/rs/QuDAG/QuDAG-main/target/x86_64-unknown-linux-musl/release/qudag-exchange /app/bin/
+COPY --from=rust-builder /build/target/wasm/ /app/wasm/
+
+# Copy Node.js application
+COPY --from=node-builder /build/js/ /app/src/js/
+COPY --from=node-builder /build/mcp/ /app/src/mcp/
+
+# Copy minimal configuration
+COPY docker/alpine/ /app/docker/
+
+# Set permissions and optimize
+RUN chmod +x /app/bin/* /app/docker/*.sh \
+    && chown -R neural:neural /app \
+    && find /app -type f -name "*.js" -exec node --check {} \; \
+    && rm -rf /tmp/* /var/cache/apk/*
+
+USER neural
+
+# Minimal environment
+ENV NODE_ENV=production
+ENV RUST_LOG=warn,qudag=info
+ENV QUDAG_DATA_DIR=/app/data
+ENV PATH="/app/bin:${PATH}"
+
+# Optimized health check
+HEALTHCHECK --interval=60s --timeout=5s --start-period=30s --retries=2 \
+    CMD curl -f http://localhost:8080/health || exit 1
+
+# Minimal port exposure
+EXPOSE 4001 8080
+
+# Single volume
+VOLUME ["/app/data"]
+
+# Use tini for proper signal handling in minimal environment
+ENTRYPOINT ["/sbin/tini", "--"]
+CMD ["/app/docker/start-minimal.sh"]

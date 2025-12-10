@@ -1,0 +1,212 @@
+[package]
+name = "ran_intelligence_platform"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+
+[[bin]]
+name = "enhanced_neural_swarm_demo"
+path = "src/bin/enhanced_neural_swarm_demo.rs"
+
+[[bin]]
+name = "enhanced_neural_swarm_demo_standalone"
+path = "src/bin/enhanced_neural_swarm_demo_standalone.rs"
+
+[[bin]]
+name = "enhanced_neural_swarm_demo_fixed"
+path = "src/bin/enhanced_neural_swarm_demo_fixed.rs"
+
+[[bin]]
+name = "enhanced_neural_swarm_demo_minimal"
+path = "src/bin/enhanced_neural_swarm_demo_minimal.rs"
+
+[[bin]]
+name = "epic0_foundation_demo"
+path = "src/bin/epic0_foundation_demo.rs"
+
+[[bin]]
+name = "epic1_optimization_demo"
+path = "src/bin/epic1_optimization_demo.rs"
+
+[[bin]]
+name = "epic2_assurance_demo"
+path = "src/bin/epic2_assurance_demo.rs"
+
+[[bin]]
+name = "epic3_intelligence_demo"
+path = "src/bin/epic3_intelligence_demo.rs"
+
+[[bin]]
+name = "simple_epic_demo"
+path = "src/bin/simple_epic_demo.rs"
+
+[[bin]]
+name = "test_all_epics"
+path = "src/bin/test_all_epics.rs"
+
+# Additional binary targets for moved files
+[[bin]]
+name = "advanced_cell_clustering"
+path = "src/bin/advanced_cell_clustering.rs"
+
+[[bin]]
+name = "asa_5g_01"
+path = "src/bin/asa_5g_01.rs"
+
+[[bin]]
+name = "energy_sleep_optimizer"
+path = "src/bin/energy_sleep_optimizer.rs"
+
+[[bin]]
+name = "integrated_resource_optimization_demo"
+path = "src/bin/integrated_resource_optimization_demo.rs"
+
+[[bin]]
+name = "resource_optimization_agent"
+path = "src/bin/resource_optimization_agent.rs"
+
+[[bin]]
+name = "spectrum_power_controller"
+path = "src/bin/spectrum_power_controller.rs"
+
+[[bin]]
+name = "test_build"
+path = "src/bin/test_build.rs"
+
+[[bin]]
+name = "enhanced_quality_assurance_demo"
+path = "src/bin/enhanced_quality_assurance_demo.rs"
+
+[[bin]]
+name = "ensemble_neural_coordinator"
+path = "src/bin/ensemble_neural_coordinator.rs"
+
+[[bin]]
+name = "meta_learning_framework"
+path = "src/bin/meta_learning_framework.rs"
+
+[[bin]]
+name = "network_architecture_demo"
+path = "src/bin/network_architecture_demo.rs"
+
+[[bin]]
+name = "neural_coordination_demo"
+path = "src/bin/neural_coordination_demo.rs"
+
+[[bin]]
+name = "neural_network_demo"
+path = "src/bin/neural_network_demo.rs"
+
+[[bin]]
+name = "neural_performance_monitor"
+path = "src/bin/neural_performance_monitor.rs"
+
+[[bin]]
+name = "performance_analytics_agent"
+path = "src/bin/performance_analytics_agent.rs"
+
+[[bin]]
+name = "performance_analytics_demo"
+path = "src/bin/performance_analytics_demo.rs"
+
+[[bin]]
+name = "resource_optimization_final"
+path = "src/bin/resource_optimization_final.rs"
+
+[[bin]]
+name = "resource_optimization_simple"
+path = "src/bin/resource_optimization_simple.rs"
+
+[[bin]]
+name = "resource_optimization_standalone"
+path = "src/bin/resource_optimization_standalone.rs"
+
+[[bin]]
+name = "standalone_demo"
+path = "src/bin/standalone_demo.rs"
+
+[[bin]]
+name = "standalone_quality_assurance_demo"
+path = "src/bin/standalone_quality_assurance_demo.rs"
+
+[[bin]]
+name = "test_frontend"
+path = "src/bin/test_frontend.rs"
+
+
+[dependencies]
+# Core ruv-FANN dependency
+ruv-fann = { path = "../../", features = ["std", "serde", "parallel", "io"] }
+
+# Basic utilities
+rand = "0.8"
+rand_distr = "0.4"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+uuid = { version = "1.0", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+async-trait = "0.1"
+
+# Async runtime and gRPC
+tokio = { version = "1.0", features = ["full"] }
+tokio-stream = "0.1"
+tonic = "0.12"
+prost = "0.13"
+futures = "0.3"
+
+# CLI and configuration
+clap = { version = "4.0", features = ["derive"] }
+config = "0.14"
+
+# Logging
+log = "0.4"
+env_logger = "0.10"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Machine learning and data processing
+ndarray = "0.15"
+ndarray-stats = "0.5"
+smartcore = "0.3"
+plotters = "0.3"
+rayon = "1.7"
+num-traits = "0.2"
+statrs = "0.16"
+
+# Enhanced AFM module dependencies
+candle-core = "0.9"
+candle-nn = "0.9"
+nalgebra = "0.32"
+petgraph = "0.6"
+
+# Missing data processing dependencies
+memmap2 = "0.9"
+quick-xml = "0.31"
+arrow = "53.0"
+ndarray-rand = "0.14"
+# packed_simd_2 = "0.3"  # Incompatible with stable Rust, removed
+wide = "0.7"  # Stable SIMD alternative
+crossbeam = "0.8"
+reqwest = { version = "0.11", features = ["json"] }
+zstd = "0.13"
+half = "2.3"
+regex = "1.10"
+fastrand = "2.0"
+mimalloc = "0.1"
+
+# Data formats and serialization
+bincode = "1.3"
+csv = "1.3"
+anyhow = "1.0"
+
+[build-dependencies]
+tonic-build = "0.12"
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+proptest = "1.4"
+approx = "0.5"
+tempfile = "3.0"
+tokio-test = "0.4"

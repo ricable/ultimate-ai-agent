@@ -1,0 +1,138 @@
+{
+  "$schema": "https://titan.ericsson.com/schemas/agui-protocol.v1.json",
+  "version": "1.0.0",
+  "protocol": "AG-UI",
+  "description": "Agentic User Interface Protocol for Glass Box operational experience",
+  "deprecates": ["telegram", "slack", "chatops"],
+  "events": {
+    "agent_message": {
+      "description": "Natural language explanation of reasoning",
+      "context": "Explaining the 'Why' behind an action",
+      "payload_schema": {
+        "type": "object",
+        "properties": {
+          "type": {"type": "string", "enum": ["text", "markdown"]},
+          "content": {"type": "string"},
+          "agent_id": {"type": "string"},
+          "reasoning_chain": {"type": "array", "items": {"type": "string"}}
+        },
+        "required": ["type", "content"]
+      }
+    },
+    "state_sync": {
+      "description": "Real-time synchronization of Managed Object (MO) state",
+      "context": "Streaming live KPI updates as parameters change",
+      "payload_schema": {
+        "type": "object",
+        "properties": {
+          "mo_class": {"type": "string"},
+          "mo_id": {"type": "string"},
+          "param": {"type": "string"},
+          "value": {"type": "number"},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "source": {"type": "string"}
+        },
+        "required": ["mo_class", "mo_id", "param", "value"]
+      }
+    },
+    "tool_call": {
+      "description": "Indication of backend tool execution",
+      "context": "Transparency on what the agent is doing",
+      "payload_schema": {
+        "type": "object",
+        "properties": {
+          "tool": {"type": "string"},
+          "command": {"type": "string"},
+          "args": {"type": "object"},
+          "status": {"type": "string", "enum": ["pending", "executing", "completed", "failed"]},
+          "result": {"type": "object"}
+        },
+        "required": ["tool", "command"]
+      }
+    },
+    "gen_ui_render": {
+      "description": "Instruction to render a visual component (Generative UI)",
+      "context": "Dynamic visualization of topology/data",
+      "payload_schema": {
+        "type": "object",
+        "properties": {
+          "component": {
+            "type": "string",
+            "enum": [
+              "NeighborGraph",
+              "InterferenceHeatmap",
+              "TopologyView",
+              "CausalDiagram",
+              "KPITimeSeries",
+              "CoverageMap",
+              "HandoverFlow",
+              "LoadBalanceChart"
+            ]
+          },
+          "props": {"type": "object"},
+          "interactive": {"type": "boolean", "default": true}
+        },
+        "required": ["component", "props"]
+      },
+      "components": {
+        "NeighborGraph": {
+          "type": "force-directed-graph",
+          "props": ["nodes", "edges", "weights"]
+        },
+        "InterferenceHeatmap": {
+          "type": "heatmap",
+          "props": ["cells", "interference_matrix", "threshold"]
+        },
+        "CausalDiagram": {
+          "type": "dag",
+          "props": ["causes", "effects", "probabilities"]
+        }
+      }
+    },
+    "request_approval": {
+      "description": "HITL Trigger - Requesting human authorization for critical actions",
+      "context": "Safety gate for critical actions",
+      "critical_actions": [
+        "cell_lock",
+        "frequency_retune",
+        "baseband_reboot",
+        "power_override",
+        "configuration_rollback"
+      ],
+      "payload_schema": {
+        "type": "object",
+        "properties": {
+          "risk_level": {"type": "string", "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+          "action": {"type": "string"},
+          "target": {"type": "string"},
+          "predicted_impact": {"type": "object"},
+          "justification": {"type": "string"},
+          "fallback_plan": {"type": "string"},
+          "timeout_seconds": {"type": "integer", "default": 300}
+        },
+        "required": ["risk_level", "action", "justification"]
+      },
+      "authorization": {
+        "methods": ["yubikey", "biometric", "crypto_token"],
+        "signature_required": true
+      }
+    }
+  },
+  "frontend": {
+    "frameworks": ["react", "sst-opentui"],
+    "rendering": "generative",
+    "update_frequency_ms": 100
+  },
+  "hitl_workflow": {
+    "steps": [
+      "proposal",
+      "symbolic_guard_intercept",
+      "request_approval_event",
+      "critical_action_card_display",
+      "human_review",
+      "cryptographic_authorization",
+      "execution"
+    ],
+    "kill_switch": true
+  }
+}

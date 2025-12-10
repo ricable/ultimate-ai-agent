@@ -1,0 +1,97 @@
+{
+  "timestamp": "2025-06-20T10:31:37.504541",
+  "system_info": {
+    "platform": "arm64",
+    "cpu_count": 16,
+    "memory_gb": 128.0,
+    "metal_available": true,
+    "mlx_version": "0.26.1",
+    "flash_attention": true
+  },
+  "models": {
+    "TinyLlama 1.1B": {
+      "info": {
+        "name": "TinyLlama 1.1B",
+        "path": "models/mlx/tinyllama-1.1b-chat",
+        "size": "1.1B",
+        "type": "chat"
+      },
+      "loading": {
+        "name": "TinyLlama 1.1B",
+        "size": "1.1B",
+        "load_time": 0.2218937873840332,
+        "memory_usage_mb": 2161.96875,
+        "parameter_count_m": 0,
+        "status": "success"
+      },
+      "inference": {
+        "name": "TinyLlama 1.1B",
+        "avg_inference_time": 0.3878081440925598,
+        "avg_tokens_per_second": 87.02756895158123,
+        "total_tokens": 135,
+        "successful_prompts": 4,
+        "inference_results": [
+          {
+            "prompt": "Hello",
+            "inference_time": 0.37131381034851074,
+            "token_count": 29,
+            "tokens_per_second": 78.10105412664545
+          },
+          {
+            "prompt": "The weather today is",
+            "inference_time": 0.36857175827026367,
+            "token_count": 34,
+            "tokens_per_second": 92.24797949675983
+          },
+          {
+            "prompt": "Artificial intelligence is",
+            "inference_time": 0.4553720951080322,
+            "token_count": 41,
+            "tokens_per_second": 90.036259227244
+          },
+          {
+            "prompt": "The benefits of machine learning include",
+            "inference_time": 0.3559749126434326,
+            "token_count": 31,
+            "tokens_per_second": 87.08478855938816
+          }
+        ],
+        "status": "success"
+      },
+      "memory_scaling": {
+        "name": "TinyLlama 1.1B",
+        "memory_scaling": [
+          {
+            "sequence_length": 32,
+            "memory_delta_mb": -0.25,
+            "prompt_length": 16
+          },
+          {
+            "sequence_length": 64,
+            "memory_delta_mb": 0.09375,
+            "prompt_length": 32
+          },
+          {
+            "sequence_length": 128,
+            "memory_delta_mb": 0.03125,
+            "prompt_length": 64
+          },
+          {
+            "sequence_length": 256,
+            "memory_delta_mb": 0.046875,
+            "prompt_length": 128
+          }
+        ],
+        "status": "success"
+      },
+      "training_simulation": {
+        "name": "TinyLlama 1.1B",
+        "training_time": 0.5197741985321045,
+        "memory_delta_mb": 0.546875,
+        "total_examples": 12,
+        "examples_per_second": 23.08694820537308,
+        "status": "success"
+      },
+      "flash_attention": {
+        "name": "TinyLlama 1.1B",
+        "flash_attention_results": {

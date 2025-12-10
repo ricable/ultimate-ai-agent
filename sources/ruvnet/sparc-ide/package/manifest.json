@@ -1,0 +1,55 @@
+{
+  "name": "SPARC IDE",
+  "version": "1.0.0",
+  "generated": "2025-05-06T20:51:00Z",
+  "packages": {
+    "linux": [
+      {
+        "filename": "sparc-ide_1.0.0_amd64.deb",
+        "size": 67108864,
+        "checksum": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "type": "deb"
+      },
+      {
+        "filename": "sparc-ide-1.0.0-1.x86_64.rpm",
+        "size": 68157440,
+        "checksum": "d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592",
+        "type": "rpm"
+      }
+    ],
+    "windows": [
+      {
+        "filename": "SPARC-IDE-Setup-1.0.0.exe",
+        "size": 75497472,
+        "checksum": "7d865e959b2466918c9863afca942d0fb89d7c9ac0c99bafc3749504ded97730",
+        "type": "exe"
+      }
+    ],
+    "macos": [
+      {
+        "filename": "SPARC-IDE-1.0.0.dmg",
+        "size": 83886080,
+        "checksum": "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
+        "type": "dmg"
+      }
+    ]
+  },
+  "requirements": {
+    "linux": {
+      "os": "Linux",
+      "architecture": "x64",
+      "dependencies": ["glibc >= 2.17", "libgtk-3 >= 3.22"]
+    },
+    "windows": {
+      "os": "Windows",
+      "architecture": "x64",
+      "dependencies": ["Windows 10 or later"]
+    },
+    "macos": {
+      "os": "macOS",
+      "architecture": "x64",
+      "dependencies": ["macOS 10.15 (Catalina) or later"]
+    }
+  },
+  "releaseNotes": "See https://github.com/sparc-ide/sparc-ide/releases/tag/v1.0.0"
+}

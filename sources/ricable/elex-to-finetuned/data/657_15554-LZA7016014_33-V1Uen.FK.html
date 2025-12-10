@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:xalan="http://xml.apache.org/xalan" xmlns:lxslt="http://xml.apache.org/xslt" lang="en" xml:lang="en">
+<head>
+<meta name="HTMLPACKLINKS" content="8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="PREP" content="" />
+<meta name="DATE" content="2025-05-26" />
+<meta name="DOCNO" content="657/155 54-LZA 701 6014/33-V1 Uen" />
+<meta name="REV" content="FK" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-type" />
+<meta name="THEMES" content="MOM" />
+<meta name="DOCNAME" content="MANAGED OBJECT MODEL" />
+<meta name="TITLE" content="class Filter" />
+<meta name="SUBTITLE" content="G3G4_MOMCPI CXP2020502_2 R32C08" />
+<link title="Style" href="edw:/alex?fn=hilda.css" type="text/css" rel="stylesheet" />
+<link title="Style" href="edw:/alex?fn=3_15554-LZA7016014_33-V1Uen.FK.css" type="text/css" rel="stylesheet" />
+<script src="edw:/alex?fn=dwcommon.js" language="javascript" type="text/javascript"> </script>
+<title>class Filter</title>
+</head>
+<body>
+
+<script language="JavaScript" src="edw:/alex?fn=switch_theme.js" type="text/javascript"></script>
+<div id="header">
+<table class="docinfo">
+<tr>
+<td>&nbsp; &nbsp; <span class="fcaption"><span class="caption">Managed Object Model</span>&nbsp; &nbsp; &nbsp; &nbsp; 657/155 54-LZA 701 6014/33-V1 Uen FK</span>&nbsp; &nbsp; </td>
+</tr>
+</table>
+</div>
+<h1 class="TITLE">
+<a name="TITLE">class&#160;Filter</a>
+</h1>
+<dl>
+<dd>
+<a href="edw:/alex?fn=210_15554-LZA7016014_33-V1Uen.FK.html">ManagedElement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=218_15554-LZA7016014_33-V1Uen.FK.html">SystemFunctions</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=581_15554-LZA7016014_33-V1Uen.FK.html">SecM</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=601_15554-LZA7016014_33-V1Uen.FK.html">UserManagement</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=645_15554-LZA7016014_33-V1Uen.FK.html">LdapAuthenticationMethod</a>
+<dl class="child_tree">
+<dd>
+<a href="edw:/alex?fn=653_15554-LZA7016014_33-V1Uen.FK.html">Ldap</a>
+<dl class="child_tree">
+<dd>
+<b><a href="edw:/alex?fn=657_15554-LZA7016014_33-V1Uen.FK.html">Filter</a></b>
+<dl class="child_tree"></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<p>
+<span class="desc">Indicates the filter used to locate the user's authorization profile in the LDAP directory. <br />
+<br />This class must be used when profileFilter in Ldap MO is set to FLEXIBLE.<br />
+<br />Example of use with POSIX group objects as authorization profile:<br />
+<br />The user authorization profile is mapped to posixGroups in the LDAP schema. Each posixGroup contains a set of users and by this association, users are mapped into one or more groups. To identify the set of groups a user is a member of, the following search filter must be used:<br />
+<br />(&amp;(objectClass=posixGroup)(memberUid=%u)) cn<br /> 
+<br />where %u is the user ID parameter used during authentication and cn is the common name value returned for the posixGroup. This must match an authorization entity, for example role, in an authorization method. (&amp;(objectClass=posixGroup)(memberUid="")) is the search filter contained by the filter attribute.</span>
+<br />
+<br />
+<b>This MO is created by the system.</b>
+<br />
+<br />
+<br />
+<br />
+</p>
+</td>
+</tr>
+</table>
+<dl></dl>
+<table width="100%" cellspacing="0" cellpadding="3" border="1" class="tblcnt">
+<tr class="TableSubHeadingColor">
+<td colspan="2"><b>Attributes</b></td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="filter">filter</a></b></code>
+</dt>
+<dd>
+<span class="desc">The filter used to search in the LDAP tree. <br />
+<br />Example: (&amp;(objectClass=posixGroup)(memberUid="")),<br />
+<br />This specifies a filter, where the authorized users are members of posixGroup objects in the LDAP schema. Double quotes indicate where the ME inserts the user identifier.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string<br />key<br />mandatory<br />noNotification<br />restricted</code></td><td>
+<dl>
+<dt>
+<code><b><a name="filterId">filterId</a></b></code>
+</dt>
+<dd>
+<span class="desc">The value component of the RDN.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="type">type</a></b></code>
+</dt>
+<dd>
+<span class="desc">Determines which attribute to retrieve from an element in the database. <br />
+<br />The value can be the name of any parameter in the LDAP schema, for example, 'cn'.</span>
+</dd>
+</dl>
+</td>
+</tr>
+<tr valign="top">
+<td class="type" width="1%"><code>string[0..1]</code></td><td>
+<dl>
+<dt>
+<code><b><a name="userLabel">userLabel</a></b></code>
+</dt>
+<dd>
+<span class="desc">An additional descriptive text.</span>
+</dd>
+</dl>
+</td>
+</tr>
+</table>
+<p></p>
+<div align="center" class="footer-info">
+<div class="footer-line">
+<span class="legal-lid">&#160;&#160;class&#160;Filter</span>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{
+  "name": "polyglot-devpod-functional-tests",
+  "version": "1.0.0",
+  "description": "Comprehensive functional testing infrastructure for polyglot-dev MCP server",
+  "type": "module",
+  "scripts": {
+    "test": "jest --config jest.config.js",
+    "test:verbose": "jest --config jest.config.js --verbose",
+    "test:coverage": "jest --config jest.config.js --coverage",
+    "test:watch": "jest --config jest.config.js --watch",
+    "test:ci": "jest --config jest.config.js --ci --coverage --reporters=default --reporters=jest-junit",
+    "test:report": "jest --config jest.config.js --coverage --reporters=jest-html-reporters",
+    "test:parallel": "jest --config jest.config.js --maxWorkers=50%",
+    "test:sequential": "jest --config jest.config.js --maxWorkers=1",
+    "test:devpod": "jest --config jest.config.js devpod-swarm-tests.ts",
+    "test:environment": "jest --config jest.config.js environment-specific-tests.ts",
+    "test:mcp-tools": "jest --config jest.config.js mcp-tool-matrix-tests.ts",
+    "test:ai": "jest --config jest.config.js ai-integration-tests.ts",
+    "test:agentic": "jest --config jest.config.js agentic-environment-tests.ts",
+    "test:performance": "jest --config jest.config.js performance-load-tests.ts",
+    "test:runner": "jest --config jest.config.js test-runner.ts",
+    "cleanup": "node scripts/cleanup-test-resources.js",
+    "validate": "node scripts/validate-test-environment.js",
+    "setup": "node scripts/setup-test-environment.js"
+  },
+  "keywords": [
+    "functional-testing",
+    "devpod",
+    "mcp",
+    "polyglot",
+    "automation",
+    "containerization",
+    "development-environments"
+  ],
+  "author": "Polyglot DevEnv Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.0",
+    "jest": "^29.7.0",
+    "jest-html-reporters": "^3.1.6",
+    "jest-junit": "^16.0.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "zod": "^3.22.4"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "jest": {
+    "preset": "ts-jest/presets/default-esm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ricable/polyglot-devenv.git",
+    "directory": "mcp/tests/functional-test-suite"
+  },
+  "bugs": {
+    "url": "https://github.com/ricable/polyglot-devenv/issues"
+  },
+  "homepage": "https://github.com/ricable/polyglot-devenv#readme"
+}

@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "lib": ["deno.window", "deno.unstable", "dom"],
+    "strict": true
+  },
+  "imports": {
+    "@edge/": "./packages/edge/"
+  },
+  "tasks": {
+    "dev": "deno run --allow-net --allow-env --watch packages/edge/server.ts",
+    "test": "deno test --allow-net --allow-env"
+  },
+  "lint": {
+    "files": {
+      "include": ["**/*.ts"]
+    },
+    "rules": {
+      "tags": ["recommended"]
+    }
+  },
+  "fmt": {
+    "files": {
+      "include": ["**/*.ts"]
+    },
+    "options": {
+      "useTabs": false,
+      "lineWidth": 100,
+      "indentWidth": 2,
+      "singleQuote": true
+    }
+  }
+}

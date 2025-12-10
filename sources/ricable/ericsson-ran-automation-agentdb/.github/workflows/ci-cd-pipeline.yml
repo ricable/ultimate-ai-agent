@@ -1,0 +1,317 @@
+name: 'CI/CD Pipeline with Performance Benchmarks'
+
+on:
+  push:
+    branches: [ main, develop, 'feature/*', 'hotfix/*' ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run performance benchmarks daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+env:
+  NODE_VERSION: '20'
+  AGENTDB_ENDPOINT: ${{ secrets.AGENTDB_ENDPOINT }}
+  SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Phase 1: Code Quality and Security
+  code-quality:
+    name: 'Code Quality & Security'
+    runs-on: ubuntu-latest
+    outputs:
+      quality-score: ${{ steps.quality.outputs.score }}
+      security-status: ${{ steps.security.outputs.status }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Security scan
+        id: security
+        uses: ./.github/actions/quality-gate-automation
+        with:
+          sonar-host-url: ${{ env.SONAR_HOST_URL }}
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+          security-scan: 'true'
+
+      - name: Quality gate analysis
+        id: quality
+        uses: ./.github/actions/quality-gate-automation
+        with:
+          sonar-host-url: ${{ env.SONAR_HOST_URL }}
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+          quality-threshold: '90'
+
+  # Phase 2: Testing with Performance Benchmarks
+  comprehensive-testing:
+    name: 'Comprehensive Testing & Performance'
+    runs-on: ubuntu-latest
+    needs: code-quality
+    if: needs.code-quality.outputs.quality-score > 90
+    outputs:
+      test-coverage: ${{ steps.coverage.outputs.percentage }}
+      performance-score: ${{ steps.performance.outputs.score }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+      - name: Run integration tests
+        run: npm run test:integration
+
+      - name: Run performance benchmarks
+        id: performance
+        uses: ./.github/actions/performance-benchmark
+        with:
+          benchmark-suite: 'ran-performance'
+          regression-threshold: '5'
+          baseline-branch: 'main'
+
+      - name: Generate coverage report
+        id: coverage
+        run: |
+          npm run test:coverage
+          echo "percentage=$(npx nyc report --reporter=text-summary | grep 'Lines' | awk '{print $2}' | sed 's/%//')" >> $GITHUB_OUTPUT
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+
+  # Phase 3: Build and Package
+  build-package:
+    name: 'Build & Package'
+    runs-on: ubuntu-latest
+    needs: [code-quality, comprehensive-testing]
+    outputs:
+      image-digest: ${{ steps.build.outputs.digest }}
+      version: ${{ steps.version.outputs.number }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate version
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            VERSION="${VERSION}-pr-${{ github.event.number }}"
+          fi
+          echo "number=${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Build application
+        run: npm run build
+
+      - name: Build Docker image
+        id: build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.number }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          labels: |
+            org.opencontainers.image.version=${{ steps.version.outputs.number }}
+            org.opencontainers.image.revision=${{ github.sha }}
+
+      - name: Run container security scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.number }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  # Phase 4: Deployment to Staging
+  deploy-staging:
+    name: 'Deploy to Staging'
+    runs-on: ubuntu-latest
+    needs: [code-quality, comprehensive-testing, build-package]
+    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/main'
+    environment: staging
+    outputs:
+      deployment-url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Deploy to staging
+        id: deploy
+        run: |
+          echo "Deploying version ${{ needs.build-package.outputs.version }} to staging..."
+          # Add staging deployment logic here
+          echo "url=https://staging.ran-automation.ericsson.com" >> $GITHUB_OUTPUT
+
+      - name: Run smoke tests
+        run: |
+          echo "Running smoke tests on staging deployment..."
+          npm run test:smoke -- --baseUrl="${{ steps.deploy.outputs.url }}"
+
+      - name: Store deployment metadata in AgentDB
+        run: |
+          curl -X POST "${{ env.AGENTDB_ENDPOINT }}/deployments" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "version": "${{ needs.build-package.outputs.version }}",
+              "environment": "staging",
+              "sha": "${{ github.sha }}",
+              "performance": {
+                "quality_score": "${{ needs.code-quality.outputs.quality-score }}",
+                "test_coverage": "${{ needs.comprehensive-testing.outputs.test-coverage }}",
+                "performance_score": "${{ needs.comprehensive-testing.outputs.performance-score }}"
+              }
+            }'
+
+  # Phase 5: Production Deployment (manual approval)
+  deploy-production:
+    name: 'Deploy to Production'
+    runs-on: ubuntu-latest
+    needs: [code-quality, comprehensive-testing, build-package, deploy-staging]
+    if: github.ref == 'refs/heads/main'
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Deploy to production
+        run: |
+          echo "Deploying version ${{ needs.build-package.outputs.version }} to production..."
+          # Add production deployment logic here
+
+      - name: Run production health checks
+        run: |
+          echo "Running production health checks..."
+          npm run test:health -- --env=production
+
+      - name: Update production deployment in AgentDB
+        run: |
+          curl -X POST "${{ env.AGENTDB_ENDPOINT }}/deployments" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "version": "${{ needs.build-package.outputs.version }}",
+              "environment": "production",
+              "sha": "${{ github.sha }}",
+              "deployment_time": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"
+            }'
+
+  # Performance Monitoring Job
+  performance-monitoring:
+    name: 'Performance Monitoring'
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run performance benchmarks
+        uses: ./.github/actions/performance-benchmark
+        with:
+          benchmark-suite: 'ran-performance'
+          regression-threshold: '5'
+
+      - name: Store performance metrics in AgentDB
+        run: |
+          curl -X POST "${{ env.AGENTDB_ENDPOINT }}/performance" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'",
+              "metrics": {
+                "benchmark_suite": "ran-performance",
+                "performance_score": "${{ steps.performance.outputs.score }}",
+                "regression_detected": false
+              }
+            }'
+
+  # Rollback Automation
+  rollback-trigger:
+    name: 'Rollback Trigger'
+    runs-on: ubuntu-latest
+    needs: [deploy-production]
+    if: failure() && needs.deploy-production.result == 'failure'
+    steps:
+      - name: Automated rollback
+        run: |
+          echo "Initiating automated rollback due to deployment failure..."
+          # Add rollback logic here
+
+      - name: Notify team of rollback
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Automated Rollback Triggered',
+              body: 'Production deployment failed. Automated rollback has been initiated.',
+              labels: ['rollback', 'critical']
+            })

@@ -1,0 +1,135 @@
+# skypilot/uap-azure.yaml
+# UAP Microsoft Azure deployment configuration
+
+resources:
+  # Azure-optimized GPU configuration
+  accelerators: {A100:1, V100:2, T4:4}
+  cloud: azure
+  region: [eastus, westus2, northeurope, southeastasia]
+  zone: null  # Azure availability zones auto-selected
+  cpus: 8+
+  memory: 32+
+  use_spot: true
+  spot_recovery: auto
+  disk_size: 200
+  disk_tier: premium  # Use premium SSD
+  
+workdir: /app
+
+# Azure-specific file mounts
+file_mounts:
+  /app: .
+  /app/azure-configs: ./azure-configs
+
+# Azure-specific environment variables
+envs:
+  UAP_ENV: production
+  CLOUD_PROVIDER: azure
+  AZURE_LOCATION: ${SKYPILOT_NODE_REGION}
+  PYTHONPATH: /app/backend
+  # Azure-specific settings
+  AZURE_SUBSCRIPTION_ID: ${AZURE_SUBSCRIPTION_ID}
+  
+setup: |
+  set -e
+  echo "=== UAP Azure Deployment Setup ==="
+  
+  # Update system
+  sudo apt-get update
+  sudo apt-get install -y curl git build-essential python3-dev
+  
+  # Install Azure CLI
+  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+  
+  # Install NVIDIA drivers if GPU available
+  if nvidia-smi &> /dev/null; then
+    echo "Configuring GPU for Azure..."
+    sudo apt-get install -y nvidia-cuda-toolkit
+    
+    # Azure GPU optimizations
+    sudo nvidia-smi -pm 1
+    
+    # Install Azure Monitor agent for GPU metrics
+    wget https://aka.ms/azcmagent-ubuntu-install -O azcmagent-install.sh
+    sudo bash azcmagent-install.sh
+  fi
+  
+  # Install devbox and teller
+  curl -fsSL https://get.jetify.com/devbox | bash
+  source ~/.bashrc
+  
+  curl -L https://github.com/tellerops/teller/releases/latest/download/teller_linux_x86_64.tar.gz | tar -xz
+  sudo mv teller /usr/local/bin/
+  
+  cd /app
+  
+  # Install dependencies
+  devbox install
+  
+  # Setup Python environment
+  cd backend
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install --upgrade pip
+  pip install -r requirements.txt
+  
+  # Install Azure-specific libraries
+  pip install azure-identity azure-keyvault-secrets azure-monitor-opentelemetry
+  cd ..
+  
+  # Build frontend
+  cd frontend
+  npm ci --production
+  npm run build
+  cd ..
+  
+  # Azure-specific setup
+  mkdir -p /app/logs /app/temp /app/uploads
+  
+  # Configure Azure Monitor logging
+  sudo tee /etc/rsyslog.d/95-omsagent.conf > /dev/null <<EOF
+# UAP Application Logs
+*.info;mail.none;authpriv.none;cron.none  @@127.0.0.1:25224
+EOF
+  
+  sudo systemctl restart rsyslog
+  
+  # Get instance metadata
+  curl -H "Metadata: true" "http://169.254.169.254/metadata/instance/compute/vmId?api-version=2021-02-01&format=text" > /app/instance-id
+  curl -H "Metadata: true" "http://169.254.169.254/metadata/instance/compute/location?api-version=2021-02-01&format=text" > /app/location
+  
+  echo "=== Azure Setup Complete ==="
+
+run: |
+  set -e
+  echo "=== Starting UAP on Azure ==="
+  
+  cd /app
+  
+  # Get instance metadata
+  export AZURE_INSTANCE_ID=$(cat /app/instance-id)
+  export AZURE_LOCATION=$(cat /app/location)
+  
+  echo "Running on Azure instance: $AZURE_INSTANCE_ID in location: $AZURE_LOCATION"
+  
+  # Start with secrets from Azure Key Vault
+  teller run --silent -- /app/scripts/start-production.sh
+  
+  # Azure-specific monitoring
+  while true; do
+    sleep 30
+    
+    # Health check
+    if ! curl -f http://localhost:8000/health > /dev/null 2>&1; then
+      echo "Health check failed, restarting..."
+      sudo systemctl restart uap
+    fi
+    
+    # Check spot instance eviction notice
+    eviction_notice=$(curl -H "Metadata: true" -s "http://169.254.169.254/metadata/scheduledevents?api-version=2019-08-01" 2>/dev/null || echo "")
+    if echo "$eviction_notice" | grep -q "Preempt\|Terminate"; then
+      echo "Spot instance eviction detected, graceful shutdown..."
+      sudo systemctl stop uap
+      exit 0
+    fi
+  done

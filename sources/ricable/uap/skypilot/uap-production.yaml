@@ -1,0 +1,153 @@
+# skypilot/uap-production.yaml
+# UAP Production Deployment Configuration
+# Supports multi-framework AI agent orchestration with auto-scaling and failover
+
+# Resource Configuration
+resources:
+  # GPU resources for ML inference and training
+  accelerators: {A100:1, V100:2, T4:4}  # GPU fallback options
+  cloud: [gcp, aws, azure]  # Multi-cloud deployment with failover
+  region: [us-central1, us-west-2, eastus, europe-west1]  # Multi-region support
+  cpus: 8+  # Minimum CPU cores for agent orchestration
+  memory: 32+  # Minimum memory for framework loading
+  use_spot: true  # Cost optimization with spot instances
+  spot_recovery: auto  # Automatic recovery on spot preemption
+  disk_size: 200  # Storage for models and data
+  
+workdir: /app  # Application root directory
+
+# File mounts for application and configuration
+file_mounts:
+  /app: .  # Mount entire project directory
+  /app/secrets: ./secrets  # Mount secrets directory if exists
+  /app/models: ./models  # Mount local models directory if exists
+
+# Environment variables for production
+envs:
+  UAP_ENV: production
+  PYTHONPATH: /app/backend
+  NODE_ENV: production
+  # Framework-specific environment variables
+  AGNO_GPU_MEMORY: "8GB"
+  MASTRA_WORKER_COUNT: "4"
+  COPILOT_CACHE_SIZE: "1GB"
+  # Performance tuning
+  UVICORN_WORKERS: "4"
+  UVICORN_WORKER_CLASS: "uvicorn.workers.UvicornWorker"
+
+# Setup script for production deployment
+setup: |
+  set -e  # Exit on any error
+  
+  echo "=== UAP Production Setup Starting ==="
+  
+  # Update system and install dependencies
+  sudo apt-get update
+  sudo apt-get install -y curl git build-essential python3-dev
+  
+  # Install NVIDIA drivers and CUDA if GPU available
+  if nvidia-smi &> /dev/null; then
+    echo "GPU detected - setting up CUDA environment"
+    sudo apt-get install -y nvidia-cuda-toolkit
+  fi
+  
+  # Install devbox for reproducible environment
+  curl -fsSL https://get.jetify.com/devbox | bash
+  source ~/.bashrc
+  
+  # Install teller for secrets management
+  curl -L https://github.com/tellerops/teller/releases/latest/download/teller_linux_x86_64.tar.gz | tar -xz
+  sudo mv teller /usr/local/bin/
+  
+  # Setup application directory
+  cd /app
+  
+  # Install devbox packages and dependencies
+  devbox install
+  
+  # Install Python dependencies in virtual environment
+  cd backend
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install --upgrade pip
+  pip install -r requirements.txt
+  
+  # Install framework-specific dependencies when available
+  # These will be uncommented when Agents 3,4,5 complete their work
+  # pip install copilotkit-sdk
+  # pip install agno
+  # pip install mastra-ai
+  
+  # Install additional production dependencies
+  pip install gunicorn supervisor prometheus-client
+  
+  cd ..
+  
+  # Install frontend dependencies and build
+  cd frontend
+  npm ci --production
+  npm run build
+  cd ..
+  
+  # Create necessary directories
+  mkdir -p /app/logs /app/temp /app/uploads
+  
+  # Set up log rotation
+  sudo tee /etc/logrotate.d/uap > /dev/null <<EOF
+/app/logs/*.log {
+    daily
+    rotate 30
+    compress
+    delaycompress
+    missingok
+    notifempty
+    copytruncate
+}
+EOF
+  
+  # Create systemd service for production
+  sudo tee /etc/systemd/system/uap.service > /dev/null <<EOF
+[Unit]
+Description=UAP Agent Orchestration Platform
+After=network.target
+
+[Service]
+Type=forking
+User=ubuntu
+WorkingDirectory=/app
+Environment=PATH=/app/backend/venv/bin
+ExecStart=/app/scripts/start-production.sh
+ExecReload=/bin/kill -HUP \$MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+EOF
+  
+  echo "=== UAP Production Setup Complete ==="
+
+# Production run script with health monitoring
+run: |
+  set -e
+  
+  echo "=== Starting UAP Production Deployment ==="
+  
+  cd /app
+  
+  # Start with secrets injection
+  echo "Injecting secrets with Teller..."
+  teller run --silent -- /app/scripts/start-production.sh
+  
+  # Keep container running and monitor health
+  while true; do
+    # Health check every 30 seconds
+    sleep 30
+    if ! curl -f http://localhost:8000/health > /dev/null 2>&1; then
+      echo "Health check failed, restarting services..."
+      sudo systemctl restart uap
+    fi
+  done

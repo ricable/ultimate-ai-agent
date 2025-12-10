@@ -1,0 +1,154 @@
+{
+  "name": "Agentic Go Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/go:1.22-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20",
+      "nodeGypDependencies": true
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "dockerDashComposeVersion": "v2"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go",
+        "ms-vscode.vscode-json",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.cmake-tools",
+        "formulahendry.code-runner",
+        "humao.rest-client",
+        "ms-vscode.test-adapter-converter"
+      ],
+      "settings": {
+        "go.useLanguageServer": true,
+        "go.alternateTools": {
+          "go-langserver": "gopls"
+        },
+        "go.lintOnSave": "package",
+        "go.vetOnSave": "package",
+        "go.formatTool": "goimports",
+        "go.lintTool": "golangci-lint",
+        "go.testFlags": ["-v", "-race"],
+        "go.buildFlags": ["-v"],
+        "go.installDependenciesWhenBuilding": true,
+        "[go]": {
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        },
+        "go.toolsManagement.autoUpdate": true
+      }
+    },
+    "devpod": {
+      "prebuildRepository": "ghcr.io/ricable/polyglot-devenv-agentic-go"
+    }
+  },
+  "containerEnv": {
+    "GO_ENV": "development",
+    "CGO_ENABLED": "1",
+    "GOPROXY": "https://proxy.golang.org,direct",
+    "GOSUMDB": "sum.golang.org",
+    "GOPATH": "/go",
+    "GOMODCACHE": "/go/pkg/mod",
+    "GOCACHE": "/go/cache",
+    "AGUI_LOG_LEVEL": "debug",
+    "MCP_SERVER_URL": "http://host.docker.internal:3001",
+    "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}",
+    "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
+    "AGUI_RUNTIME_MODE": "development"
+  },
+  "mounts": [
+    "type=volume,source=go-mod-cache,target=/go/pkg/mod",
+    "type=volume,source=go-build-cache,target=/go/cache"
+  ],
+  "forwardPorts": [
+    8000,
+    8001,
+    8002,
+    3000,
+    4111,
+    2024,
+    9000,
+    3001,
+    5000
+  ],
+  "portsAttributes": {
+    "8000": {
+      "label": "Go Agent Server",
+      "onAutoForward": "notify"
+    },
+    "8001": {
+      "label": "Go API Server",
+      "onAutoForward": "notify"
+    },
+    "8002": {
+      "label": "Agent Development Server",
+      "onAutoForward": "notify"
+    },
+    "3000": {
+      "label": "Web Interface",
+      "onAutoForward": "notify"
+    },
+    "4111": {
+      "label": "Mastra Client",
+      "onAutoForward": "silent"
+    },
+    "2024": {
+      "label": "LangGraph Server",
+      "onAutoForward": "silent"
+    },
+    "9000": {
+      "label": "LlamaIndex Server",
+      "onAutoForward": "silent"
+    },
+    "3001": {
+      "label": "MCP Server",
+      "onAutoForward": "silent"
+    },
+    "5000": {
+      "label": "Additional Development Server",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": [
+    "echo 'Setting up Agentic Go environment...'",
+    "echo 'Installing Go development tools...'",
+    "go install -v golang.org/x/tools/gopls@latest",
+    "go install -v github.com/go-delve/delve/cmd/dlv@latest",
+    "go install -v honnef.co/go/tools/cmd/staticcheck@latest",
+    "go install -v golang.org/x/tools/cmd/goimports@latest",
+    "go install -v github.com/golangci/golangci-lint/cmd/golangci-lint@latest",
+    "echo 'Creating Go project structure...'",
+    "mkdir -p cmd/agent-server cmd/mcp-client internal/agents internal/agui internal/mcp internal/api pkg/types pkg/utils tests",
+    "echo 'Initializing Go module...'",
+    "go mod init agentic-go",
+    "echo 'Creating go.mod with dependencies...'",
+    "cat > go.mod << 'EOF'\nmodule agentic-go\n\ngo 1.22\n\nrequire (\n\tgithub.com/gin-gonic/gin v1.9.1\n\tgithub.com/gorilla/websocket v1.5.1\n\tgithub.com/sirupsen/logrus v1.9.3\n\tgithub.com/joho/godotenv v1.5.1\n\tgithub.com/google/uuid v1.6.0\n\tgithub.com/stretchr/testify v1.8.4\n\tgithub.com/gin-contrib/cors v1.5.0\n\tgithub.com/sashabaranov/go-openai v1.20.4\n)\nEOF",
+    "echo 'Creating main agent server...'",
+    "cat > cmd/agent-server/main.go << 'EOF'\npackage main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"net/http\"\n\t\"os\"\n\t\"os/signal\"\n\t\"syscall\"\n\t\"time\"\n\n\t\"github.com/gin-contrib/cors\"\n\t\"github.com/gin-gonic/gin\"\n\t\"github.com/joho/godotenv\"\n\t\"github.com/sirupsen/logrus\"\n\n\t\"agentic-go/internal/agents\"\n\t\"agentic-go/internal/api\"\n)\n\nfunc main() {\n\t// Load environment variables\n\tgodotenv.Load()\n\n\t// Initialize logger\n\tlogrus.SetLevel(logrus.DebugLevel)\n\tlogrus.SetFormatter(&logrus.JSONFormatter{})\n\n\t// Initialize Gin\n\tif os.Getenv(\"GO_ENV\") == \"production\" {\n\t\tgin.SetMode(gin.ReleaseMode)\n\t}\n\n\trouter := gin.Default()\n\n\t// Configure CORS\n\tconfig := cors.DefaultConfig()\n\tconfig.AllowAllOrigins = true\n\tconfig.AllowMethods = []string{\"GET\", \"POST\", \"PUT\", \"DELETE\", \"OPTIONS\"}\n\tconfig.AllowHeaders = []string{\"Origin\", \"Content-Type\", \"Accept\", \"Authorization\"}\n\trouter.Use(cors.New(config))\n\n\t// Initialize agent manager\n\tagentManager := agents.NewManager()\n\n\t// Initialize API routes\n\tapi.SetupRoutes(router, agentManager)\n\n\t// Health check\n\trouter.GET(\"/health\", func(c *gin.Context) {\n\t\tc.JSON(http.StatusOK, gin.H{\n\t\t\t\"status\":  \"healthy\",\n\t\t\t\"service\": \"agentic-go\",\n\t\t\t\"version\": \"0.1.0\",\n\t\t})\n\t})\n\n\t// Start server\n\tsrv := &http.Server{\n\t\tAddr:    \":8000\",\n\t\tHandler: router,\n\t}\n\n\tgo func() {\n\t\tlogrus.Info(\"Starting Agentic Go server on :8000\")\n\t\tif err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {\n\t\t\tlogrus.Fatalf(\"Server failed to start: %v\", err)\n\t\t}\n\t}()\n\n\t// Graceful shutdown\n\tquit := make(chan os.Signal, 1)\n\tsignal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)\n\t<-quit\n\tlogrus.Info(\"Shutting down server...\")\n\n\tctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)\n\tdefer cancel()\n\n\tif err := srv.Shutdown(ctx); err != nil {\n\t\tlogrus.Fatal(\"Server forced to shutdown:\", err)\n\t}\n\n\tlogrus.Info(\"Server exited\")\n}\nEOF",
+    "cat > internal/agents/manager.go << 'EOF'\npackage agents\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"sync\"\n\t\"time\"\n\n\t\"github.com/google/uuid\"\n\t\"github.com/sirupsen/logrus\"\n\n\t\"agentic-go/pkg/types\"\n)\n\n// Agent interface defines the contract for all agents\ntype Agent interface {\n\tGetID() string\n\tGetName() string\n\tGetCapabilities() []string\n\tProcessMessage(ctx context.Context, message types.AgentMessage) (*types.AgentResponse, error)\n}\n\n// Manager handles agent lifecycle and routing\ntype Manager struct {\n\tagents map[string]Agent\n\tmu     sync.RWMutex\n}\n\n// NewManager creates a new agent manager\nfunc NewManager() *Manager {\n\tm := &Manager{\n\t\tagents: make(map[string]Agent),\n\t}\n\t\n\t// Register default Go agent\n\tgoAgent := NewGoAgent(\"Default Go Agent\")\n\tm.RegisterAgent(goAgent)\n\t\n\treturn m\n}\n\n// RegisterAgent adds an agent to the manager\nfunc (m *Manager) RegisterAgent(agent Agent) {\n\tm.mu.Lock()\n\tdefer m.mu.Unlock()\n\tm.agents[agent.GetID()] = agent\n\tlogrus.Infof(\"Registered agent: %s (%s)\", agent.GetName(), agent.GetID())\n}\n\n// GetAgent retrieves an agent by ID\nfunc (m *Manager) GetAgent(id string) (Agent, bool) {\n\tm.mu.RLock()\n\tdefer m.mu.RUnlock()\n\tagent, exists := m.agents[id]\n\treturn agent, exists\n}\n\n// ListAgents returns all registered agents\nfunc (m *Manager) ListAgents() []Agent {\n\tm.mu.RLock()\n\tdefer m.mu.RUnlock()\n\t\n\tagents := make([]Agent, 0, len(m.agents))\n\tfor _, agent := range m.agents {\n\t\tagents = append(agents, agent)\n\t}\n\treturn agents\n}\n\n// ProcessMessage routes a message to the appropriate agent\nfunc (m *Manager) ProcessMessage(ctx context.Context, agentID string, message types.AgentMessage) (*types.AgentResponse, error) {\n\tagent, exists := m.GetAgent(agentID)\n\tif !exists {\n\t\treturn nil, fmt.Errorf(\"agent not found: %s\", agentID)\n\t}\n\t\n\treturn agent.ProcessMessage(ctx, message)\n}\n\n// GoAgent is a basic Go implementation of an agent\ntype GoAgent struct {\n\tid           string\n\tname         string\n\tcapabilities []string\n}\n\n// NewGoAgent creates a new Go agent\nfunc NewGoAgent(name string) *GoAgent {\n\treturn &GoAgent{\n\t\tid:   uuid.New().String(),\n\t\tname: name,\n\t\tcapabilities: []string{\n\t\t\t\"go_development\",\n\t\t\t\"microservices\",\n\t\t\t\"concurrent_programming\",\n\t\t\t\"api_development\",\n\t\t},\n\t}\n}\n\nfunc (g *GoAgent) GetID() string {\n\treturn g.id\n}\n\nfunc (g *GoAgent) GetName() string {\n\treturn g.name\n}\n\nfunc (g *GoAgent) GetCapabilities() []string {\n\treturn g.capabilities\n}\n\nfunc (g *GoAgent) ProcessMessage(ctx context.Context, message types.AgentMessage) (*types.AgentResponse, error) {\n\tlogrus.Infof(\"Go agent %s processing message: %s\", g.name, message.Content)\n\t\n\t// Simple echo response for now\n\tresponse := &types.AgentResponse{\n\t\tSuccess:   true,\n\t\tData:      map[string]interface{}{\"response\": fmt.Sprintf(\"Go agent %s processed: %s\", g.name, message.Content)},\n\t\tAgentID:   g.id,\n\t\tTimestamp: time.Now(),\n\t}\n\t\n\treturn response, nil\n}\nEOF",
+    "cat > internal/api/routes.go << 'EOF'\npackage api\n\nimport (\n\t\"net/http\"\n\t\"time\"\n\n\t\"github.com/gin-gonic/gin\"\n\t\"github.com/google/uuid\"\n\n\t\"agentic-go/internal/agents\"\n\t\"agentic-go/pkg/types\"\n)\n\n// SetupRoutes configures all API routes\nfunc SetupRoutes(router *gin.Engine, agentManager *agents.Manager) {\n\tv1 := router.Group(\"/api/v1\")\n\t{\n\t\tv1.GET(\"/agents\", listAgents(agentManager))\n\t\tv1.GET(\"/agents/:id\", getAgent(agentManager))\n\t\tv1.POST(\"/agents/:id/process\", processMessage(agentManager))\n\t\tv1.GET(\"/agents/:id/capabilities\", getCapabilities(agentManager))\n\t}\n}\n\nfunc listAgents(manager *agents.Manager) gin.HandlerFunc {\n\treturn func(c *gin.Context) {\n\t\tagents := manager.ListAgents()\n\t\tagentInfos := make([]map[string]interface{}, len(agents))\n\t\t\n\t\tfor i, agent := range agents {\n\t\t\tagentInfos[i] = map[string]interface{}{\n\t\t\t\t\"id\":           agent.GetID(),\n\t\t\t\t\"name\":         agent.GetName(),\n\t\t\t\t\"capabilities\": agent.GetCapabilities(),\n\t\t\t}\n\t\t}\n\t\t\n\t\tc.JSON(http.StatusOK, gin.H{\"agents\": agentInfos})\n\t}\n}\n\nfunc getAgent(manager *agents.Manager) gin.HandlerFunc {\n\treturn func(c *gin.Context) {\n\t\tid := c.Param(\"id\")\n\t\tagent, exists := manager.GetAgent(id)\n\t\t\n\t\tif !exists {\n\t\t\tc.JSON(http.StatusNotFound, gin.H{\"error\": \"Agent not found\"})\n\t\t\treturn\n\t\t}\n\t\t\n\t\tc.JSON(http.StatusOK, gin.H{\n\t\t\t\"id\":           agent.GetID(),\n\t\t\t\"name\":         agent.GetName(),\n\t\t\t\"capabilities\": agent.GetCapabilities(),\n\t\t})\n\t}\n}\n\nfunc processMessage(manager *agents.Manager) gin.HandlerFunc {\n\treturn func(c *gin.Context) {\n\t\tid := c.Param(\"id\")\n\t\t\n\t\tvar req types.AgentMessage\n\t\tif err := c.ShouldBindJSON(&req); err != nil {\n\t\t\tc.JSON(http.StatusBadRequest, gin.H{\"error\": err.Error()})\n\t\t\treturn\n\t\t}\n\t\t\n\t\t// Set message ID if not provided\n\t\tif req.ID == \"\" {\n\t\t\treq.ID = uuid.New().String()\n\t\t}\n\t\t\n\t\t// Set timestamp if not provided\n\t\tif req.Timestamp.IsZero() {\n\t\t\treq.Timestamp = time.Now()\n\t\t}\n\t\t\n\t\tresponse, err := manager.ProcessMessage(c, id, req)\n\t\tif err != nil {\n\t\t\tc.JSON(http.StatusInternalServerError, gin.H{\"error\": err.Error()})\n\t\t\treturn\n\t\t}\n\t\t\n\t\tc.JSON(http.StatusOK, response)\n\t}\n}\n\nfunc getCapabilities(manager *agents.Manager) gin.HandlerFunc {\n\treturn func(c *gin.Context) {\n\t\tid := c.Param(\"id\")\n\t\tagent, exists := manager.GetAgent(id)\n\t\t\n\t\tif !exists {\n\t\t\tc.JSON(http.StatusNotFound, gin.H{\"error\": \"Agent not found\"})\n\t\t\treturn\n\t\t}\n\t\t\n\t\tc.JSON(http.StatusOK, gin.H{\n\t\t\t\"capabilities\": agent.GetCapabilities(),\n\t\t\t\"agent_id\":     agent.GetID(),\n\t\t\t\"agent_name\":   agent.GetName(),\n\t\t})\n\t}\n}\nEOF",
+    "cat > pkg/types/types.go << 'EOF'\npackage types\n\nimport \"time\"\n\n// AgentMessage represents a message sent to an agent\ntype AgentMessage struct {\n\tID        string    `json:\"id\"`\n\tRole      string    `json:\"role\"`      // \"user\", \"assistant\", \"system\"\n\tContent   string    `json:\"content\"`\n\tTimestamp time.Time `json:\"timestamp\"`\n}\n\n// AgentResponse represents a response from an agent\ntype AgentResponse struct {\n\tSuccess   bool                   `json:\"success\"`\n\tData      map[string]interface{} `json:\"data,omitempty\"`\n\tError     string                 `json:\"error,omitempty\"`\n\tAgentID   string                 `json:\"agent_id\"`\n\tTimestamp time.Time              `json:\"timestamp\"`\n}\n\n// AgentConfig represents agent configuration\ntype AgentConfig struct {\n\tID           string   `json:\"id\"`\n\tName         string   `json:\"name\"`\n\tDescription  string   `json:\"description\"`\n\tCapabilities []string `json:\"capabilities\"`\n\tEndpoint     string   `json:\"endpoint,omitempty\"`\n}\nEOF",
+    "echo 'Creating test files...'",
+    "cat > internal/agents/manager_test.go << 'EOF'\npackage agents\n\nimport (\n\t\"context\"\n\t\"testing\"\n\t\"time\"\n\n\t\"github.com/stretchr/testify/assert\"\n\n\t\"agentic-go/pkg/types\"\n)\n\nfunc TestNewManager(t *testing.T) {\n\tmanager := NewManager()\n\tassert.NotNil(t, manager)\n\tassert.Len(t, manager.ListAgents(), 1) // Default Go agent\n}\n\nfunc TestGoAgent(t *testing.T) {\n\tagent := NewGoAgent(\"Test Agent\")\n\t\n\tassert.NotEmpty(t, agent.GetID())\n\tassert.Equal(t, \"Test Agent\", agent.GetName())\n\tassert.NotEmpty(t, agent.GetCapabilities())\n\t\n\tmessage := types.AgentMessage{\n\t\tID:        \"test-message\",\n\t\tRole:      \"user\",\n\t\tContent:   \"Hello, agent!\",\n\t\tTimestamp: time.Now(),\n\t}\n\t\n\tresponse, err := agent.ProcessMessage(context.Background(), message)\n\tassert.NoError(t, err)\n\tassert.True(t, response.Success)\n\tassert.NotNil(t, response.Data)\n\tassert.Equal(t, agent.GetID(), response.AgentID)\n}\nEOF",
+    "echo 'Installing dependencies...'",
+    "go mod tidy",
+    "echo 'Building project...'",
+    "go build ./cmd/agent-server",
+    "echo 'Running tests...'",
+    "go test ./...",
+    "echo 'Agentic Go environment ready! 🤖🐹'"
+  ],
+  "postStartCommand": [
+    "echo 'Agentic Go DevPod ready!'",
+    "echo '🚀 Start agent server: go run cmd/agent-server/main.go'",
+    "echo '🧪 Run tests: go test ./...'",
+    "echo '🔍 Check code: golangci-lint run'",
+    "echo '🎯 Build binary: go build -o bin/agent-server cmd/agent-server/main.go'"
+  ],
+  "postAttachCommand": "echo 'Welcome to Agentic Go DevPod! 🤖🐹 Ready for efficient agent development.'"
+}

@@ -1,0 +1,54 @@
+services:
+  phoenix:
+    container_name: phoenix
+    image: arizephoenix/phoenix:latest
+    ports:
+      - "6006:6006"
+      - "4317:4317"
+    volumes:
+      - phoenix_data:/data
+    networks:
+      - poker-net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:6006/health > /dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    environment:
+      - PHOENIX_LOG_LEVEL=debug
+      - PHOENIX_TELEMETRY_ENABLED=true
+    restart: always
+
+  poker_bot:
+    container_name: poker_bot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PHOENIX_HOST=phoenix
+      - PHOENIX_PORT=6006
+      - PHOENIX_GRPC_PORT=4317
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PYTHONUNBUFFERED=1
+      - TERM=xterm-256color
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://phoenix:4317
+      - OTEL_EXPORTER_OTLP_INSECURE=true
+      - OTEL_EXPORTER_OTLP_PROTOCOL=grpc
+      - OTEL_PYTHON_LOG_CORRELATION=true
+      - OTEL_SERVICE_NAME=poker-bot
+    networks:
+      - poker-net
+    depends_on:
+      - phoenix
+    stdin_open: true
+    tty: true
+    restart: always
+
+networks:
+  poker-net:
+    name: poker-net
+    driver: bridge
+
+volumes:
+  phoenix_data:

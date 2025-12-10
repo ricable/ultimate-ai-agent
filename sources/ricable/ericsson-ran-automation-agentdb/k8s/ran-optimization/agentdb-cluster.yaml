@@ -1,0 +1,199 @@
+# AgentDB Cluster with QUIC Synchronization and Cognitive Consciousness
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: agentdb-cluster
+  namespace: ran-optimization
+  labels:
+    app: ran-optimization
+    component: agentdb
+    version: v4.0.0
+    cognitive-feature: "memory-management"
+spec:
+  serviceName: agentdb
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ran-optimization
+      component: agentdb
+  template:
+    metadata:
+      labels:
+        app: ran-optimization
+        component: agentdb
+        cognitive-feature: "memory-management"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: "/metrics"
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: agentdb
+        image: ericsson/agentdb:v4.0.0-cognitive
+        ports:
+        - containerPort: 4433
+          name: quic-sync
+          protocol: UDP
+        - containerPort: 8080
+          name: http-api
+          protocol: TCP
+        - containerPort: 9090
+          name: metrics
+          protocol: TCP
+        env:
+        - name: AGENTDB_NODE_ID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: AGENTDB_REPLICAS
+          value: "3"
+        - name: AGENTDB_QUIC_SYNC
+          value: "true"
+        - name: AGENTDB_QUIC_PORT
+          value: "4433"
+        - name: AGENTDB_QUIC_PEERS
+          value: "agentdb-0.agentdb:4433,agentdb-1.agentdb:4433,agentdb-2.agentdb:4433"
+        - name: AGENTDB_PATH
+          value: "/data/agentdb/$(AGENTDB_NODE_ID).db"
+        - name: AGENTDB_QUANTIZATION
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: AGENTDB_QUANTIZATION
+        - name: AGENTDB_CACHE_SIZE
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: AGENTDB_CACHE_SIZE
+        - name: AGENTDB_HNSW_M
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: AGENTDB_HNSW_M
+        - name: AGENTDB_HNSW_EF_CONSTRUCTION
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: AGENTDB_HNSW_EF_CONSTRUCTION
+        - name: COGNITIVE_CONSCIOUSNESS_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: COGNITIVE_CONSCIOUSNESS_LEVEL
+        - name: TEMPORAL_EXPANSION_FACTOR
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: TEMPORAL_EXPANSION_FACTOR
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 4Gi
+          limits:
+            cpu: 2000m
+            memory: 8Gi
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        - name: config
+          mountPath: /config
+          readOnly: true
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /startup
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 30
+      volumes:
+      - name: config
+        configMap:
+          name: ran-optimization-config
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+      labels:
+        app: ran-optimization
+        component: agentdb
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: "gp3-encrypted"
+      resources:
+        requests:
+          storage: 100Gi
+---
+# AgentDB Cluster Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: agentdb
+  namespace: ran-optimization
+  labels:
+    app: ran-optimization
+    component: agentdb
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 4433
+    targetPort: 4433
+    protocol: UDP
+    name: quic-sync
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    name: http-api
+  - port: 9090
+    targetPort: 9090
+    protocol: TCP
+    name: metrics
+  selector:
+    app: ran-optimization
+    component: agentdb
+---
+# AgentDB Headless Service for StatefulSet
+apiVersion: v1
+kind: Service
+metadata:
+  name: agentdb-headless
+  namespace: ran-optimization
+  labels:
+    app: ran-optimization
+    component: agentdb
+spec:
+  clusterIP: None
+  ports:
+  - port: 4433
+    targetPort: 4433
+    protocol: UDP
+    name: quic-sync
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    name: http-api
+  selector:
+    app: ran-optimization
+    component: agentdb

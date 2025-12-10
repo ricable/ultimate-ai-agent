@@ -1,0 +1,200 @@
+# Progressive Delivery Strategy with Canary and Blue-Green Deployments
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ran-optimization-progressive-delivery
+  namespace: argocd
+  labels:
+    app: ran-optimization
+    deployment-strategy: progressive-delivery
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/ericsson/ran-automation.git
+      revision: HEAD
+      directories:
+      - path: k8s/environments/*
+  template:
+    metadata:
+      name: 'ran-optimization-{{path.basename}}'
+      labels:
+        app: ran-optimization
+        environment: '{{path.basename}}'
+        deployment-strategy: progressive-delivery
+    spec:
+      project: ericsson-ran
+      source:
+        repoURL: https://github.com/ericsson/ran-automation.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'ran-optimization-{{path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+---
+# AnalysisTemplate for Canary Deployment Analysis
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: ran-kpi-analysis
+  namespace: argocd
+  labels:
+    app: ran-optimization
+    analysis-type: kpi-validation
+spec:
+  args:
+  - name: service-name
+  - name: namespace
+  - name: success-threshold
+    value: "95"
+  - name: duration
+    value: "10m"
+  metrics:
+  - name: ran-kpi-success-rate
+    interval: 30s
+    count: 20
+    successCondition: result[0] >= {{args.success-threshold}}
+    failureLimit: 3
+    provider:
+      prometheus:
+        address: http://prometheus.monitoring.svc.cluster.local:9090
+        query: |
+          (
+            sum(rate(optimization_requests_total{service="{{args.service-name}}",namespace="{{args.namespace}}",status="success"}[2m]))
+            /
+            sum(rate(optimization_requests_total{service="{{args.service-name}}",namespace="{{args.namespace}}"}[2m]))
+          ) * 100
+  - name: ran-response-time-p95
+    interval: 30s
+    count: 20
+    successCondition: result[0] <= 2000
+    failureLimit: 3
+    provider:
+      prometheus:
+        address: http://prometheus.monitoring.svc.cluster.local:9090
+        query: |
+          histogram_quantile(0.95,
+            sum(rate(optimization_request_duration_seconds_bucket{service="{{args.service-name}}",namespace="{{args.namespace}}"}[2m]))
+            by (le)
+          ) * 1000
+  - name: ran-error-rate
+    interval: 30s
+    count: 20
+    successCondition: result[0] <= 1
+    failureLimit: 3
+    provider:
+      prometheus:
+        address: http://prometheus.monitoring.svc.cluster.local:9090
+        query: |
+          (
+            sum(rate(optimization_requests_total{service="{{args.service-name}}",namespace="{{args.namespace}}",status="error"}[2m]))
+            /
+            sum(rate(optimization_requests_total{service="{{args.service-name}}",namespace="{{args.namespace}}"}[2m]))
+          ) * 100
+  - name: agentdb-sync-latency
+    interval: 30s
+    count: 20
+    successCondition: result[0] <= 1
+    failureLimit: 3
+    provider:
+      prometheus:
+        address: http://prometheus.monitoring.svc.cluster.local:9090
+        query: |
+          histogram_quantile(0.95,
+            sum(rate(agentdb_quic_sync_latency_seconds_bucket{namespace="{{args.namespace}}"}[2m]))
+            by (le)
+          ) * 1000
+---
+# Rollout Strategy for Canary Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: RolloutManager
+metadata:
+  name: ran-optimization-rollout-manager
+  namespace: argocd
+spec:
+  resources:
+  - replicas: 3
+    strategy:
+      type: canary
+      canary:
+        steps:
+        - setWeight: 10
+        - pause: {duration: 5m}
+        - analysis:
+            templates:
+            - templateName: ran-kpi-analysis
+            args:
+            - name: service-name
+              value: swarm-coordinator
+            - name: namespace
+              value: ran-optimization
+        - setWeight: 20
+        - pause: {duration: 5m}
+        - analysis:
+            templates:
+            - templateName: ran-kpi-analysis
+            args:
+            - name: service-name
+              value: swarm-coordinator
+            - name: namespace
+              value: ran-optimization
+        - setWeight: 30
+        - pause: {duration: 5m}
+        - analysis:
+            templates:
+            - templateName: ran-kpi-analysis
+            args:
+            - name: service-name
+              value: swarm-coordinator
+            - name: namespace
+              value: ran-optimization
+        - setWeight: 50
+        - pause: {duration: 10m}
+        - analysis:
+            templates:
+            - templateName: ran-kpi-analysis
+            args:
+            - name: service-name
+              value: swarm-coordinator
+            - name: namespace
+              value: ran-optimization
+        - setWeight: 100
+---
+# BlueGreen Strategy for Critical Services
+apiVersion: argoproj.io/v1alpha1
+kind: RolloutManager
+metadata:
+  name: ran-optimization-bluegreen-manager
+  namespace: argocd
+spec:
+  resources:
+  - replicas: 3
+    strategy:
+      type: bluegreen
+      blueGreen:
+        activeService: swarm-coordinator-active
+        previewService: swarm-coordinator-preview
+        scaleDownDelaySeconds: 30
+        prePromotionAnalysis:
+          templates:
+          - templateName: ran-kpi-analysis
+          args:
+          - name: service-name
+            value: swarm-coordinator-preview
+          - name: namespace
+              value: ran-optimization
+        postPromotionAnalysis:
+          templates:
+          - templateName: ran-kpi-analysis
+          args:
+          - name: service-name
+            value: swarm-coordinator-active
+          - name: namespace
+              value: ran-optimization
+        previewReplicaCount: 1
+        autoPromotionEnabled: false

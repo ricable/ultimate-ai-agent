@@ -1,0 +1,115 @@
+{
+  "name": "Gemini CLI Evaluation Environment",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20",
+      "nodeGypDependencies": true
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12",
+      "installTools": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.pylint",
+        "ms-python.mypy-type-checker", 
+        "charliermarsh.ruff",
+        "ms-vscode.vscode-typescript-next",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "github.copilot",
+        "github.copilot-chat",
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "bradlc.vscode-tailwindcss",
+        "eamodio.gitlens",
+        "ms-vscode.test-adapter-converter"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "editor.formatOnSave": true,
+        "editor.rulers": [88, 100, 120],
+        "files.trimTrailingWhitespace": true,
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        },
+        "[typescript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        }
+      }
+    },
+    "devpod": {
+      "prebuildRepository": "ghcr.io/ricable/polyglot-devenv-agentic-gemini"
+    }
+  },
+  "containerEnv": {
+    "GEMINI_API_KEY": "${localEnv:GEMINI_API_KEY}",
+    "AGENTIC_EVAL_ENV": "gemini-focused",
+    "NODE_ENV": "development",
+    "PYTHONPATH": "/workspace/src",
+    "AGENTIC_EVAL_TOOL": "gemini-cli",
+    "GEMINI_MODEL": "gemini-1.5-pro",
+    "EVALUATION_MODE": "gemini-solo",
+    "DEBUG_GEMINI": "true"
+  },
+  "mounts": [
+    "type=volume,source=npm-cache,target=/home/vscode/.npm",
+    "type=volume,source=python-cache,target=/home/vscode/.cache/pip",
+    "type=volume,source=gemini-eval-results,target=/workspace/agentic-eval/results"
+  ],
+  "forwardPorts": [
+    3000,
+    5000,
+    5173,
+    8000
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Gemini Evaluation Frontend",
+      "onAutoForward": "notify"
+    },
+    "5000": {
+      "label": "Python API for Gemini Testing",
+      "onAutoForward": "notify"
+    },
+    "5173": {
+      "label": "Vite Dev Server (Gemini UI)",
+      "onAutoForward": "notify"
+    },
+    "8000": {
+      "label": "Gemini CLI Output Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": [
+    "echo 'Setting up Gemini CLI Evaluation Environment...'",
+    "pip install uv",
+    "npm install -g yarn",
+    "echo 'Installing Gemini CLI...'",
+    "npm install -g @google/gemini-cli",
+    "echo 'Installing additional tools...'",
+    "npm install -g ruv-swarm@latest",
+    "npx claude-flow@alpha init",
+    "npm install ruv-swarm-wasm@latest",
+    "echo 'Setting up Gemini-focused evaluation framework...'",
+    "bash /workspace/devpod-automation/scripts/setup-agentic-framework.sh gemini 2>/dev/null || echo 'Framework setup script not found, creating basic structure'",
+    "mkdir -p /workspace/agentic-eval/{prompts/{ui-components,apis,cli-tools,web-apps,data-processing},templates/gemini/{beginner,intermediate,advanced,expert},results/gemini/{outputs,logs,metrics,reports},scripts/gemini/{automation,analysis,quality-check},configs/gemini/{model-settings,prompt-templates,evaluation-criteria},benchmarks/gemini/{response-time,code-quality,accuracy-scores}}",
+    "echo 'Installing Gemini evaluation dependencies...'",
+    "npm install vue@latest vite@latest vitest@latest @types/node@latest typescript@latest",
+    "pip install fastapi uvicorn pytest requests httpx pydantic google-generativeai pandas matplotlib",
+    "echo 'Setting up Gemini CLI configuration...'",
+    "mkdir -p /home/vscode/.config/gemini",
+    "echo 'Copying Gemini evaluation framework...'",
+    "cp -r /workspace/agentic-coding-tool-eval/apps/ui_component_eval/* /workspace/agentic-eval/templates/gemini/ 2>/dev/null || echo 'Source framework not found, using basic structure'",
+    "echo 'Adapting prompts for Gemini environment...'",
+    "python3 /workspace/devpod-automation/scripts/adapt-prompts-for-environment.py gemini 2>/dev/null || echo 'Prompt adaptation will be done manually'",
+    "echo 'Gemini CLI Evaluation Environment ready'"
+  ],
+  "postStartCommand": "echo 'Gemini CLI Evaluation DevPod ready! 🤖⚡\\nGemini CLI available\\nEvaluation Framework: /workspace/agentic-eval/\\nFocus: Gemini CLI performance analysis'",
+  "postAttachCommand": "echo 'Welcome to Gemini CLI Evaluation DevPod! 🔮🤖\\n\\n🧠 Gemini CLI Features:\\n  - Multimodal capabilities\\n  - Advanced reasoning\\n  - Code generation\\n\\n🔬 Evaluation Focus:\\n  - Code quality assessment\\n  - Response time analysis\\n  - Accuracy scoring\\n  - UI component generation\\n\\n📁 Framework Structure:\\n  - Prompts: /workspace/agentic-eval/prompts/\\n  - Results: /workspace/agentic-eval/results/gemini/\\n  - Scripts: /workspace/agentic-eval/scripts/gemini/\\n\\n🚀 Ready for Gemini CLI evaluation!'"
+}

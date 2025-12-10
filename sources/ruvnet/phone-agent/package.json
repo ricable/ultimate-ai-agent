@@ -1,0 +1,62 @@
+{
+  "name": "phone-agent",
+  "version": "1.0.0",
+  "description": "A Cloudflare Pages application that provides AI-powered phone agents for meetings and calls",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "wrangler pages dev public --compatibility-date=2023-06-01",
+    "dev:local": "./dev.sh",
+    "dev:minimal": "node scripts/minimal-server.js",
+    "check": "node scripts/check-server.js",
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "deploy": "./scripts/deploy.sh",
+    "deploy:dev": "./scripts/deploy.sh -e dev",
+    "deploy:staging": "./scripts/deploy.sh -e staging",
+    "deploy:prod": "./scripts/deploy.sh -e prod",
+    "setup": "./scripts/setup-local.sh",
+    "setup:env": "./scripts/setup-env.sh",
+    "monitor": "./scripts/monitor.sh",
+    "logs": "./scripts/monitor.sh logs -t",
+    "status": "./scripts/monitor.sh status",
+    "format": "prettier --write '**/*.{js,ts,json,md}'",
+    "lint": "eslint src/**/*.ts"
+  },
+  "keywords": [
+    "cloudflare",
+    "pages",
+    "functions",
+    "webhook",
+    "phone",
+    "agent",
+    "ai",
+    "calendar",
+    "meeting"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "ical.js": "^2.1.0",
+    "itty-router": "^3.0.12",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230518.0",
+    "@types/express": "^5.0.1",
+    "@types/node": "^18.19.84",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
+    "dotenv": "^16.4.7",
+    "eslint": "^8.40.0",
+    "eslint-config-prettier": "^8.8.0",
+    "express": "^5.1.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.4",
+    "vitest": "^3.1.1",
+    "wrangler": "^4.6.0"
+  }
+}

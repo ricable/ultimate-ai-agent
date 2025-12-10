@@ -1,0 +1,35 @@
+{
+  "timestamp": "2025-06-20T10:02:03.553968",
+  "model_path": "models/mlx/tinyllama-1.1b-chat",
+  "system_info": {
+    "mlx_version": "0.26.1",
+    "metal_available": true,
+    "cpu_count": 16,
+    "memory_gb": 128.0,
+    "platform": "arm64"
+  },
+  "tests": {
+    "basic_mlx_operations": {
+      "basic_operations_time": 0.20379900932312012,
+      "metal_acceleration_time": 0.013129949569702148,
+      "metal_available": true,
+      "status": "success"
+    },
+    "model_inference": {
+      "status": "error",
+      "error": "TransformerEncoderLayer.__call__() missing 1 required positional argument: 'mask'"
+    },
+    "quantization_simulation": {
+      "status": "error",
+      "error": "module 'mlx.core' has no attribute 'tree_flatten'"
+    },
+    "flash_attention": {
+      "flash_attention_results": {
+        "config_1": {
+          "config": {
+            "batch_size": 1,
+            "seq_length": 128,
+            "head_dim": 64,
+            "num_heads": 8
+          },
+          "result": {
