@@ -1,0 +1,33 @@
+[package]
+name = "synaptic-qudag-core"
+version = "0.1.0"
+edition = "2021"
+authors = ["rUv <https://github.com/ruvnet>"]
+description = "QuDAG core networking for Synaptic Neural Mesh - DAG-based consensus and P2P networking"
+repository = "https://github.com/ruvnet/Synaptic-Mesh"
+license = "MIT OR Apache-2.0"
+homepage = "https://github.com/ruvnet/Synaptic-Mesh"
+documentation = "https://docs.rs/synaptic-qudag-core"
+readme = "README.md"
+keywords = ["dag", "p2p", "consensus", "mesh", "network"]
+categories = ["network-programming", "algorithms"]
+
+[dependencies]
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+blake3 = "1.5"
+ed25519-dalek = "2.1"
+x25519-dalek = "2.0"
+rand = "0.8"
+thiserror = "1.0"
+anyhow = "1.0"
+async-trait = "0.1"
+futures = "0.3"
+uuid = { version = "1.0", features = ["v4", "serde"] }
+dashmap = "5.5"
+parking_lot = "0.12"
+tracing = "0.1"
+
+[dev-dependencies]
+tokio-test = "0.4"

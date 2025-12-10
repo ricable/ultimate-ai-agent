@@ -1,0 +1,116 @@
+{
+  "file_hash": "9c24336eec03bad2395025cc4302c548",
+  "feature": {
+    "id": "121 4576",
+    "name": "UpPTS Interference Reporting",
+    "cxc_code": "CXC4012023",
+    "value_package": "RAN Data Collection",
+    "value_package_id": "FAJ 801 0431",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature provides interference reporting at UpPTS in the special subframe of a",
+    "parameters": [
+      {
+        "name": "INTERNAL_PER_BRANCH_UPPTS_UL_INTERFERENCE_REPORT(for Cell trace)",
+        "type": "EVENT_PARAM_BRANCH_ID",
+        "description": "Antenna Branch Index",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_BRANCH_UPPTS_UL_INTERFERENCE_REPORT(for Cell trace)",
+        "type": "EVENT_PARAM_NOISEINTERF_SUM_BRANCH_UPPTS_SYM1_PRB[1..100]",
+        "description": "Accumulated noise and interference power on first symbol of UpPTS for                   PRB[1..100].",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_BRANCH_UPPTS_UL_INTERFERENCE_REPORT(for Cell trace)",
+        "type": "EVENT_PARAM_NOISEINTERF_SUM_BRANCH_UPPTS_SYM2_PRB[1..100]",
+        "description": "Accumulated noise and interference power on second symbol of UpPTS for                   PRB[1..100].",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UETR_BRANCH_UPPTS_UL_INTERFERENCE_REPORT(for UE trace)",
+        "type": "EVENT_PARAM_BRANCH_ID",
+        "description": "Antenna Branch Index.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UETR_BRANCH_UPPTS_UL_INTERFERENCE_REPORT(for UE trace)",
+        "type": "EVENT_PARAM_NOISEINTERF_SUM_BRANCH_UPPTS_SYM1_PRB[1..100]",
+        "description": "Accumulated noise and interference power on first symbol of UpPTS for                   PRB[1..100].",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UETR_BRANCH_UPPTS_UL_INTERFERENCE_REPORT(for UE trace)",
+        "type": "EVENT_PARAM_NOISEINTERF_SUM_BRANCH_UPPTS_SYM2_PRB[1..100]",
+        "description": "Accumulated noise and interference power on second symbol of UpPTS for                   PRB[1..100].",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AB",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_BRANCH_UPPTS_UL_INTERFERENCE_REPORT(for Cell trace)",
+        "type": "EVENT_PARAM_BRANCH_ID",
+        "description": "Antenna Branch Index"
+      },
+      {
+        "name": "INTERNAL_PER_BRANCH_UPPTS_UL_INTERFERENCE_REPORT(for Cell trace)",
+        "type": "EVENT_PARAM_NOISEINTERF_SUM_BRANCH_UPPTS_SYM1_PRB[1..100]",
+        "description": "Accumulated noise and interference power on first symbol of UpPTS for                   PRB[1..100]."
+      },
+      {
+        "name": "INTERNAL_PER_BRANCH_UPPTS_UL_INTERFERENCE_REPORT(for Cell trace)",
+        "type": "EVENT_PARAM_NOISEINTERF_SUM_BRANCH_UPPTS_SYM2_PRB[1..100]",
+        "description": "Accumulated noise and interference power on second symbol of UpPTS for                   PRB[1..100]."
+      },
+      {
+        "name": "INTERNAL_PER_UETR_BRANCH_UPPTS_UL_INTERFERENCE_REPORT(for UE trace)",
+        "type": "EVENT_PARAM_BRANCH_ID",
+        "description": "Antenna Branch Index."
+      },
+      {
+        "name": "INTERNAL_PER_UETR_BRANCH_UPPTS_UL_INTERFERENCE_REPORT(for UE trace)",
+        "type": "EVENT_PARAM_NOISEINTERF_SUM_BRANCH_UPPTS_SYM1_PRB[1..100]",
+        "description": "Accumulated noise and interference power on first symbol of UpPTS for                   PRB[1..100]."
+      },
+      {
+        "name": "INTERNAL_PER_UETR_BRANCH_UPPTS_UL_INTERFERENCE_REPORT(for UE trace)",
+        "type": "EVENT_PARAM_NOISEINTERF_SUM_BRANCH_UPPTS_SYM2_PRB[1..100]",
+        "description": "Accumulated noise and interference power on second symbol of UpPTS for                   PRB[1..100]."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012023 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012023 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/197_22104-LZA7016014_1Uen.AB.md",
+    "file_hash": "9c24336eec03bad2395025cc4302c548",
+    "processed_at": "2025-10-19 15:48:55",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "id": "121 5528",
+  "name": "NR Service-Adaptive RLC Poll Retransmission",
+  "cxc_code": "CXC4012638",
+  "value_package": "Performance Boost",
+  "value_package_id": "FAJ 801 4021",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature can automatically adjust the RLC poll interval based on the number of poll",
+  "parameters": [
+    {
+      "name": "UeAdaptiveRlc.ueAdaptiveRlcId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeAdaptiveRlc"
+    },
+    {
+      "name": "UeAdaptiveRlc.ueConfGroupType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeAdaptiveRlc"
+    },
+    {
+      "name": "UeAdaptiveRlcUeCfg.ueAdaptiveRlcUeCfgId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeAdaptiveRlcUeCfg"
+    },
+    {
+      "name": "UeAdaptiveRlcUeCfg.ueConfGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeAdaptiveRlcUeCfg"
+    },
+    {
+      "name": "UeAdaptiveRlcUeCfg.ueGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeAdaptiveRlcUeCfg"
+    },
+    {
+      "name": "UeAdaptiveRlcUeCfg.prefUeGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeAdaptiveRlcUeCfg"
+    },
+    {
+      "name": "UeAdaptiveRlcUeCfg.ueAdaptiveRlcRetxMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeAdaptiveRlcUeCfg"
+    },
+    {
+      "name": "Uen.H",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "DrbRlcUeCfg.tPollRetransmitDl",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "DrbRlcUeCfg"
+    },
+    {
+      "name": "SignalingRadioBearer.tPollRetransmitDl",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "SignalingRadioBearer"
+    },
+    {
+      "name": "DrbRlcUeCfg.dlMaxRetxThreshold",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "DrbRlcUeCfg"
+    },
+    {
+      "name": "SignalingRadioBearer.dlMaxRetxThreshold",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "SignalingRadioBearer"
+    },
+    {
+      "name": "DrbRlcUeCfg.dlMaxRetxThresholdand",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "DrbRlcUeCfg"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmDrbRelAbnormalGnb5qi",
+      "description": "Performance counter pmDrbRelAbnormalGnb5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelAbnormalGnbAct5qi",
+      "description": "Performance counter pmDrbRelAbnormalGnbAct5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcRelUeAbnormalSgnbAct",
+      "description": "Performance counter pmEndcRelUeAbnormalSgnbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktTransDlDiscAqmQos",
+      "description": "Performance counter pmPdcpPktTransDlDiscAqmQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktTransDlDiscQos",
+      "description": "Performance counter pmPdcpPktTransDlDiscQos",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcArqDlAck",
+      "description": "Performance counter pmRlcArqDlAck",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcArqDlNack",
+      "description": "Performance counter pmRlcArqDlNack",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalGnb",
+      "description": "Performance counter pmUeCtxtRelAbnormalGnb",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalGnbAct",
+      "description": "Performance counter pmUeCtxtRelAbnormalGnbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012638 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012638 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/156_22104-LZA7016017_1Uen.H.md",
+  "file_hash": "a0894a34513a34a8889ba37b12a0d647",
+  "processed_at": "2025-10-19 15:48:56",
+  "network_impact": {},
+  "performance_impact": {}
+}

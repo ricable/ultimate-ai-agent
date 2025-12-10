@@ -1,0 +1,304 @@
+{
+  "file_hash": "f6f8e55e9964c323f9b5eb882902d2f4",
+  "feature": {
+    "id": "121 4795",
+    "name": "ASGH Framework",
+    "cxc_code": "CXC4011984",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature controls the sending of the Cell-specific Reference Signals and",
+    "parameters": [
+      {
+        "name": "EricssonLeanCarrierFunction.disableElcOnPtt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EricssonLeanCarrierFunction"
+      },
+      {
+        "name": "EricssonLeanCarrierFunction.disableElcOnVolte",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EricssonLeanCarrierFunction"
+      },
+      {
+        "name": "EricssonLeanCarrierFunction.elcDrxOnDurationPostHeating",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EricssonLeanCarrierFunction"
+      },
+      {
+        "name": "EricssonLeanCarrierFunction.elcDrxOnDurationPreHeating",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EricssonLeanCarrierFunction"
+      },
+      {
+        "name": "EricssonLeanCarrierFunction.elcPdcchCrsMuting",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EricssonLeanCarrierFunction"
+      },
+      {
+        "name": "EUtranCellFDD.dlBlerTargetEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.elcEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.elcLongDrxCycle",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.dlBlerTargetEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.elcEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.elcLongDrxCycle",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "ImeisvProfile.elc320msDrxEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ImeisvProfile"
+      },
+      {
+        "name": "ImeisvProfile.listOfFeaturesToTurnOff",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ImeisvProfile"
+      },
+      {
+        "name": "SubscriberGroupProfile.dlHarqBlerTarget",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "SubscriberGroupProfile.ulHarqBlerTarget",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "ENodeBFunction.timeAndPhaseSynchAlignment",
+        "type": "Affected",
+        "description": "In FDD network, this parameter is recommended to be set to true                   to improve Ericsson Lean Carrier gain.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranCellFDD.commonCqiPeriodicity",
+        "type": "Affected",
+        "description": "When this feature is activated, the value of the                 EUtranCellFDD.commonCqiPeriodicity or the                 EUtranCellTDD.commonCqiPeriodicity attribute must be set to the             default 80 ms.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.noOfPucchCqiUsers",
+        "type": "Affected",
+        "description": "Must be set to a value no less than 320.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmSinrPucchDistr",
+        "type": "Affected",
+        "description": "A minor increase in the low SINR range of pmSinrPucchDistr is                   expected because of the alignment of PUCCH CQI resources. This setting is                   mandatory for all cells neighboring to cells with Ericsson Lean Carrier                   enabled.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.tTimeAlignmentTimer",
+        "type": "Affected",
+        "description": "Must be set to 0 (= infinity).",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.commonCqiPeriodicity",
+        "type": "Affected",
+        "description": "When this feature is activated, the value of the                 EUtranCellFDD.commonCqiPeriodicity or the                 EUtranCellTDD.commonCqiPeriodicity attribute must be set to the             default 80 ms.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.noOfPucchCqiUsers",
+        "type": "Affected",
+        "description": "Must be set to a value larger than 128.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmSinrPucchDistr",
+        "type": "Affected",
+        "description": "A minor increase in the low SINR range of pmSinrPucchDistr is                   expected because of the alignment of PUCCH CQI resources.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.tTimeAlignmentTimer",
+        "type": "Affected",
+        "description": "Must be set to 0 (= infinity).",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranFreqRelation.allowedMeasBandwidth",
+        "type": "Affected",
+        "description": "Value must be = 6 PRBs (as default).  This setting is mandatory for all cells neighboring to cells with Ericsson Lean                   Carrier enabled.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "Paging.nB",
+        "type": "Affected",
+        "description": "Must not be set to 0, or 1 (corresponds to T4 and T2, respectively).  Recommended value is T1_16. T1_8 is also acceptable but provides slightly lower                   feature gain, because of an increase in paging subframes.",
+        "mo_class": "Paging"
+      },
+      {
+        "name": "Rcs.tInactivityTimer",
+        "type": "Affected",
+        "description": "For Ericsson Lean Carrier configured UEs, a value in the Ericsson Lean Carrier                   affects the Rcs.tInactivityTimer attribute. This value is                   controlled by an Ericsson internal parameter. The Ericsson Lean Carrier overrides                   the Rcs.tInactivityTimer if the value in the Ericsson Lean                   Carrier is higher than 0 s and lower than the value of                     Rcs.tInactivityTimer. If the value in the Ericsson Lean                   Carrier is set to 0 s, then the Rcs.tInactivityTimer is                   used.",
+        "mo_class": "Rcs"
+      },
+      {
+        "name": "ReportConfigEUtraBestCell.a3offset",
+        "type": "Affected",
+        "description": "Value is recommended to be \u2265 3 dB.  High A3 measurement values reduce the risk of oscillating handovers.  For more information about A3 measurements, see Manage Mobility and Manage Automated Neighbor Relations.",
+        "mo_class": "ReportConfigEUtraBestCell"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_ELC_PDSCH_BLANKED_TTI",
+        "description": "Number of TTIs for which VRSs in the PDSCH region are fully or                                     partially blanked.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.DV",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "DrxProfile.shortDrxCycle",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "DrxProfile"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCounter",
+        "description": "Performance counter pmCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmCounters",
+        "description": "Performance counter pmCounters",
+        "category": "General"
+      },
+      {
+        "name": "pmElcOffBadCov",
+        "description": "Performance counter pmElcOffBadCov",
+        "category": "General"
+      },
+      {
+        "name": "pmElcPdcchBlankedTti",
+        "description": "Performance counter pmElcPdcchBlankedTti",
+        "category": "General"
+      },
+      {
+        "name": "pmElcPdschBlankedTti",
+        "description": "Performance counter pmElcPdschBlankedTti",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteIntraF",
+        "description": "Performance counter pmHoPrepAttLteIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteIntraFNote",
+        "description": "Performance counter pmHoPrepAttLteIntraFNote",
+        "category": "General"
+      },
+      {
+        "name": "pmInhibitImeisvFeatureNote",
+        "description": "Performance counter pmInhibitImeisvFeatureNote",
+        "category": "General"
+      },
+      {
+        "name": "pmMeasRepBadCovElc",
+        "description": "Performance counter pmMeasRepBadCovElc",
+        "category": "General"
+      },
+      {
+        "name": "pmMeasRepGoodCovElc",
+        "description": "Performance counter pmMeasRepGoodCovElc",
+        "category": "General"
+      },
+      {
+        "name": "pmModImeisvParamSet",
+        "description": "Performance counter pmModImeisvParamSet",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRecInterferencePwrPucchNote",
+        "description": "Performance counter pmRadioRecInterferencePwrPucchNote",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnLevSumNote",
+        "description": "Performance counter pmRrcConnLevSumNote",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnMaxNote",
+        "description": "Performance counter pmRrcConnMaxNote",
+        "category": "General"
+      },
+      {
+        "name": "pmSinrPucchDistr",
+        "description": "Performance counter pmSinrPucchDistr",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_ELC_PDSCH_BLANKED_TTI",
+        "description": "Number of TTIs for which VRSs in the PDSCH region are fully or                                     partially blanked."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011984 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011984 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/200_22104-LZA7016014_1Uen.DV.md",
+    "file_hash": "f6f8e55e9964c323f9b5eb882902d2f4",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

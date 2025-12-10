@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  nova-medicina:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nova-medicina:1.0.0
+    container_name: nova-medicina
+    environment:
+      - NODE_ENV=production
+      - NOVA_MEDICINA_LOG_LEVEL=info
+      # API keys (should be in .env file in production)
+      - NOVA_MEDICINA_OPENAI_KEY=${OPENAI_API_KEY:-}
+      - NOVA_MEDICINA_ANTHROPIC_KEY=${ANTHROPIC_API_KEY:-}
+      - NOVA_MEDICINA_GOOGLE_KEY=${GOOGLE_API_KEY:-}
+      - NOVA_MEDICINA_PERPLEXITY_KEY=${PERPLEXITY_API_KEY:-}
+    volumes:
+      # Mount config directory for persistence
+      - ./config:/root/.nova-medicina
+      # Mount examples for testing
+      - ./examples:/app/examples:ro
+    ports:
+      - "3000:3000"
+    networks:
+      - nova-medicina-network
+    restart: unless-stopped
+    command: ["nova-medicina", "--help"]
+
+  # Test service for running test suite
+  nova-medicina-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    image: nova-medicina:test
+    container_name: nova-medicina-test
+    environment:
+      - NODE_ENV=test
+    volumes:
+      - ./tests:/app/tests:ro
+      - ./src:/app/src:ro
+      - ./coverage:/app/coverage
+    networks:
+      - nova-medicina-network
+    command: ["npm", "test"]
+
+  # Development service with hot reload
+  nova-medicina-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    image: nova-medicina:dev
+    container_name: nova-medicina-dev
+    environment:
+      - NODE_ENV=development
+      - NOVA_MEDICINA_LOG_LEVEL=debug
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./bin:/app/bin
+      - ./dist:/app/dist
+    ports:
+      - "3001:3000"
+      - "9229:9229" # Node debugger
+    networks:
+      - nova-medicina-network
+    command: ["npm", "run", "build:watch"]
+
+networks:
+  nova-medicina-network:
+    driver: bridge
+
+volumes:
+  config:
+    driver: local
+  coverage:
+    driver: local

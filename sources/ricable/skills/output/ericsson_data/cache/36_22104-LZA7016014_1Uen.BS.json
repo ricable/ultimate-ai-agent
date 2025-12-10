@@ -1,0 +1,130 @@
+{
+  "file_hash": "39185631bc69763cfde1e9d492226a38",
+  "feature": {
+    "id": "121 3036",
+    "name": "CS Fallback to CDMA 1X  CS Fallback to GERAN and UTRAN",
+    "cxc_code": "CXC4010956",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The CS Fallback to GERAN and UTRAN feature enables the possibility to offer voice",
+    "parameters": [
+      {
+        "name": "ENodeBFunction.csfbSkipSmcRrcFromIdleMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "GeranFreqGroupRelation.csFallbackPrio",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GeranFreqGroupRelation"
+      },
+      {
+        "name": "UtranFreqRelation.csFallbackPrio",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UtranFreqRelation"
+      },
+      {
+        "name": "UtranTDDFreqRelation.csFallbackPrio",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UtranTDDFreqRelation"
+      },
+      {
+        "name": "PlmnInfo.actualPlmn",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PlmnInfo"
+      },
+      {
+        "name": "PlmnInfo.csfbTargetRat",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PlmnInfo"
+      },
+      {
+        "name": "Uen.BS",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "SubscriberProfileID.RATFreqPrio",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "SubscriberProfileID"
+      },
+      {
+        "name": "EUtranCellFDD.GeranFreqGroupRelation",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.GeranFreqGroupRelation",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.UtranFreqRelation",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.UtranFreqRelation",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "UeMeasControl.allowReleaseQci1",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeMeasControl"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmUeCtxtRelCsfbGsm",
+        "description": "Performance counter pmUeCtxtRelCsfbGsm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbTdScdma",
+        "description": "Performance counter pmUeCtxtRelCsfbTdScdma",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbWcdma",
+        "description": "Performance counter pmUeCtxtRelCsfbWcdma",
+        "category": "General"
+      },
+      {
+        "name": "pmis",
+        "description": "Performance counter pmis",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010956 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010956 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/36_22104-LZA7016014_1Uen.BS.md",
+    "file_hash": "39185631bc69763cfde1e9d492226a38",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

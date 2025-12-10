@@ -1,0 +1,193 @@
+{
+  "file_hash": "7b3afc260932a3f03041068d34e629a7",
+  "feature": {
+    "id": "121 5693",
+    "name": "NR Service Admission Control",
+    "cxc_code": "CXC4012764",
+    "value_package": "Advanced RAN Slicing",
+    "value_package_id": "FAJ 801 4019",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The NR Service Admission Control feature introduces configurable limits for PDU sessions",
+    "parameters": [
+      {
+        "name": "ContentionControl.contentionControlId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ContentionControl"
+      },
+      {
+        "name": "FlowLimit.flowLimit5qiList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FlowLimit"
+      },
+      {
+        "name": "FlowLimit.flowLimitId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FlowLimit"
+      },
+      {
+        "name": "FlowLimit.maxNoOfFlows",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FlowLimit"
+      },
+      {
+        "name": "FlowLimit.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FlowLimit"
+      },
+      {
+        "name": "NRCellDU.trafficDefinitionRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "SessionLimit.maxNoOfSessions",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SessionLimit"
+      },
+      {
+        "name": "SessionLimit.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SessionLimit"
+      },
+      {
+        "name": "SessionLimit.sessionLimitId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SessionLimit"
+      },
+      {
+        "name": "TrafficDefinition.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficDefinition"
+      },
+      {
+        "name": "TrafficDefinition.trafficDefinitionId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficDefinition"
+      },
+      {
+        "name": "TrafficDefinitions.trafficDefinitionsId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficDefinitions"
+      },
+      {
+        "name": "TrafficSet.sessionLimitRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSet"
+      },
+      {
+        "name": "TrafficSet.trafficSetId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSet"
+      },
+      {
+        "name": "TrafficSetMember.pLMNIdList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSetMember"
+      },
+      {
+        "name": "TrafficSetMember.sNSSAIList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSetMember"
+      },
+      {
+        "name": "TrafficSetMember.spidRfspList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSetMember"
+      },
+      {
+        "name": "TrafficSetMember.trafficCategory",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSetMember"
+      },
+      {
+        "name": "TrafficSetMember.trafficSetMemberId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSetMember"
+      },
+      {
+        "name": "GNBDUFunction.trafficDefinitionDepHEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GNBDUFunction"
+      },
+      {
+        "name": "Uen.G33C",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmDrbEstabFailAdmissionRejQos",
+        "description": "Performance counter pmDrbEstabFailAdmissionRejQos",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbModFailAdmissionRejQos",
+        "description": "Performance counter pmDrbModFailAdmissionRejQos",
+        "category": "General"
+      },
+      {
+        "name": "pmPduSessionEstabFailAdmissionRej",
+        "description": "Performance counter pmPduSessionEstabFailAdmissionRej",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmember",
+        "description": "Performance counter pmember",
+        "category": "General"
+      },
+      {
+        "name": "pmemberId",
+        "description": "Performance counter pmemberId",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012764 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012764 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/234_22104-LZA7016017_1Uen.G33C.md",
+    "file_hash": "7b3afc260932a3f03041068d34e629a7",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

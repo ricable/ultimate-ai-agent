@@ -1,0 +1,568 @@
+---
+# Example Application Configuration for Agentic-Jujutsu
+apiVersion: ajj.io/v1
+kind: Application
+metadata:
+  name: web-frontend
+  namespace: default
+  labels:
+    app: web-frontend
+    tier: frontend
+    team: platform
+  annotations:
+    ajj.io/description: "Main web frontend application"
+    ajj.io/owner: "platform-team@company.com"
+
+spec:
+  # Source configuration - points to Jujutsu repository
+  source:
+    repoPath: apps/web-frontend
+    targetRevision: "@main"  # Jujutsu change ID or bookmark
+    path: overlays/production
+
+  # Target clusters for deployment
+  destination:
+    clusters:
+      - name: production-us-east
+        weight: 50  # Traffic distribution
+        priority: 1
+      - name: production-us-west
+        weight: 50
+        priority: 1
+      - name: staging
+        environment: staging
+        autoSync: true
+      - name: development
+        environment: development
+        autoSync: true
+
+  # Synchronization policy
+  syncPolicy:
+    automated:
+      prune: true      # Delete resources not in source
+      selfHeal: true   # Automatically correct drift
+      allowEmpty: false
+
+    retry:
+      limit: 3
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+
+  # Progressive delivery configuration
+  progressiveDelivery:
+    enabled: true
+    strategy: canary
+
+    # Canary steps
+    steps:
+      - setWeight: 10
+        pause:
+          duration: 5m
+
+      - analysis:
+          templates:
+            - templateName: error-rate
+              clusterScope: true
+            - templateName: latency-p95
+            - templateName: saturation
+
+      - setWeight: 25
+        pause:
+          duration: 5m
+
+      - analysis:
+          templates:
+            - templateName: error-rate
+            - templateName: latency-p95
+
+      - setWeight: 50
+        pause:
+          duration: 10m
+
+      - analysis:
+          templates:
+            - templateName: error-rate
+            - templateName: latency-p95
+            - templateName: custom-business-metrics
+
+      - setWeight: 75
+        pause:
+          duration: 10m
+
+      - setWeight: 100
+
+    # Traffic routing configuration
+    trafficRouting:
+      serviceMesh: istio
+      virtualService:
+        name: web-frontend-vsvc
+        routes:
+          - primary
+      destinationRule:
+        name: web-frontend-destrule
+        canarySubsetName: canary
+        stableSubsetName: stable
+
+    # Automatic rollback configuration
+    autoRollback:
+      enabled: true
+      onFailure: true
+      onPolicyViolation: true
+
+    # Analysis configuration
+    analysis:
+      successfulRunHistoryLimit: 5
+      unsuccessfulRunHistoryLimit: 5
+      analysisRunTimeout: 15m
+
+  # Service Level Objectives (SLOs)
+  slos:
+    - name: error-rate
+      description: "Error rate must be below 1%"
+      query: |
+        sum(rate(http_requests_total{app="web-frontend",status=~"5.."}[5m])) /
+        sum(rate(http_requests_total{app="web-frontend"}[5m]))
+      threshold: 0.01
+      thresholdType: less-than
+      severity: critical
+
+    - name: latency-p95
+      description: "95th percentile latency must be below 500ms"
+      query: |
+        histogram_quantile(0.95,
+          sum(rate(http_request_duration_seconds_bucket{app="web-frontend"}[5m])) by (le))
+      threshold: 0.5
+      thresholdType: less-than
+      severity: critical
+
+    - name: latency-p99
+      description: "99th percentile latency must be below 1s"
+      query: |
+        histogram_quantile(0.99,
+          sum(rate(http_request_duration_seconds_bucket{app="web-frontend"}[5m])) by (le))
+      threshold: 1.0
+      thresholdType: less-than
+      severity: warning
+
+    - name: saturation
+      description: "CPU saturation must be below 80%"
+      query: |
+        avg(rate(container_cpu_usage_seconds_total{pod=~"web-frontend.*"}[5m])) * 100
+      threshold: 80
+      thresholdType: less-than
+      severity: warning
+
+    - name: custom-business-metrics
+      description: "Custom business conversion rate"
+      query: |
+        sum(rate(checkout_success_total[5m])) /
+        sum(rate(checkout_attempt_total[5m]))
+      threshold: 0.95
+      thresholdType: greater-than
+      severity: warning
+
+  # Infrastructure dependencies (Crossplane)
+  infrastructure:
+    required:
+      - name: postgres-db
+        type: database
+        composition: postgresql-ha-cluster
+        parameters:
+          provider: aws
+          region: us-east-1
+          instanceClass: db.r6g.xlarge
+          storageGB: 500
+          storageType: gp3
+          storageIOPS: 12000
+          engineVersion: "15.4"
+          highAvailability: true
+          multiAZ: true
+          backupRetentionDays: 30
+          enableEncryption: true
+          enablePerformanceInsights: true
+        connectionSecret:
+          name: web-frontend-postgres-connection
+          namespace: default
+
+      - name: redis-cache
+        type: cache
+        composition: redis-cluster
+        parameters:
+          provider: aws
+          region: us-east-1
+          nodeType: cache.r6g.large
+          numNodes: 3
+          numReplicas: 2
+          engineVersion: "7.0"
+          enableAuth: true
+          enableEncryption: true
+          snapshotRetentionDays: 7
+        connectionSecret:
+          name: web-frontend-redis-connection
+          namespace: default
+
+      - name: s3-assets
+        type: storage
+        composition: s3-bucket
+        parameters:
+          provider: aws
+          region: us-east-1
+          bucketName: web-frontend-assets-prod
+          versioning: true
+          encryption: AES256
+          publicAccess: false
+          lifecycle:
+            - id: delete-old-versions
+              expiration: 90
+        connectionSecret:
+          name: web-frontend-s3-connection
+          namespace: default
+
+      - name: sqs-queue
+        type: queue
+        composition: sqs-queue
+        parameters:
+          provider: aws
+          region: us-east-1
+          queueName: web-frontend-tasks
+          fifoQueue: false
+          messageRetention: 345600  # 4 days
+          visibilityTimeout: 300
+          enableEncryption: true
+        connectionSecret:
+          name: web-frontend-sqs-connection
+          namespace: default
+
+  # Policy enforcement
+  policies:
+    validation:
+      # Kyverno policies
+      - require-resource-limits
+      - require-resource-requests
+      - require-labels
+      - require-probes
+      - require-non-root
+      - require-read-only-root-filesystem
+      - disallow-latest-tag
+      - disallow-privileged-containers
+      - require-network-policy
+      - verify-image-signature
+
+      # OPA policies
+      - allowed-registries
+      - required-annotations
+      - container-image-ratio
+
+    mutation:
+      - add-default-labels
+      - add-default-network-policy
+      - add-pod-security-standards
+
+    generation:
+      - generate-network-policy
+      - generate-resource-quota
+      - generate-limit-range
+
+    enforcementMode: strict  # strict, permissive, audit
+
+    exceptions:
+      - name: allow-debug-pods
+        namespaces: [development]
+        policies: [require-read-only-root-filesystem]
+
+  # Security configuration
+  security:
+    imageVerification:
+      enabled: true
+      provider: sigstore
+      publicKey: |
+        -----BEGIN PUBLIC KEY-----
+        [Your Cosign public key]
+        -----END PUBLIC KEY-----
+      requireSignature: true
+      allowedSigners:
+        - security-team@company.com
+        - ci-cd@company.com
+
+    sbom:
+      required: true
+      format: spdx-json
+      minConfidence: 0.8
+
+    vulnerabilityScanning:
+      enabled: true
+      provider: trivy
+      failOnSeverity: CRITICAL
+      ignoredCVEs:
+        - CVE-2023-12345  # False positive
+      scanInterval: 24h
+
+    secretManagement:
+      provider: external-secrets
+      backend: vault
+      vaultPath: secret/data/web-frontend
+
+  # Observability configuration
+  observability:
+    metrics:
+      enabled: true
+      scrapeInterval: 30s
+      scrapeTimeout: 10s
+      path: /metrics
+      port: 9090
+
+      serviceMonitor:
+        enabled: true
+        labels:
+          prometheus: main
+
+    tracing:
+      enabled: true
+      provider: opentelemetry
+      samplingRate: 0.1  # 10% of requests
+      endpoint: http://otel-collector:4317
+
+      exporters:
+        - jaeger
+        - zipkin
+
+    logging:
+      enabled: true
+      level: info
+      format: json
+      destination: stdout
+
+      aggregation:
+        provider: loki
+        labels:
+          app: web-frontend
+          environment: production
+
+    profiling:
+      enabled: true
+      interval: 60s
+      endpoint: http://pyroscope:4040
+
+  # Health checks
+  health:
+    readiness:
+      httpGet:
+        path: /health/ready
+        port: 8080
+        scheme: HTTP
+      initialDelaySeconds: 10
+      periodSeconds: 5
+      timeoutSeconds: 3
+      successThreshold: 1
+      failureThreshold: 3
+
+    liveness:
+      httpGet:
+        path: /health/live
+        port: 8080
+        scheme: HTTP
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 5
+      successThreshold: 1
+      failureThreshold: 3
+
+    startup:
+      httpGet:
+        path: /health/startup
+        port: 8080
+        scheme: HTTP
+      initialDelaySeconds: 0
+      periodSeconds: 5
+      timeoutSeconds: 3
+      successThreshold: 1
+      failureThreshold: 30
+
+  # Resource requirements
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "512Mi"
+    limits:
+      cpu: "2000m"
+      memory: "2Gi"
+
+  # Autoscaling
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 100
+
+    metrics:
+      - type: Resource
+        resource:
+          name: cpu
+          target:
+            type: Utilization
+            averageUtilization: 70
+
+      - type: Resource
+        resource:
+          name: memory
+          target:
+            type: Utilization
+            averageUtilization: 80
+
+      - type: Pods
+        pods:
+          metric:
+            name: http_requests_per_second
+          target:
+            type: AverageValue
+            averageValue: "1000"
+
+    behavior:
+      scaleDown:
+        stabilizationWindowSeconds: 300
+        policies:
+          - type: Percent
+            value: 50
+            periodSeconds: 60
+
+      scaleUp:
+        stabilizationWindowSeconds: 0
+        policies:
+          - type: Percent
+            value: 100
+            periodSeconds: 15
+          - type: Pods
+            value: 4
+            periodSeconds: 15
+        selectPolicy: Max
+
+  # Network configuration
+  network:
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        nginx.ingress.kubernetes.io/rate-limit: "100"
+      hosts:
+        - host: app.company.com
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: app-company-com-tls
+          hosts:
+            - app.company.com
+
+    service:
+      type: ClusterIP
+      port: 80
+      targetPort: 8080
+      annotations:
+        service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+
+  # Pod disruption budget
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 2
+    # OR maxUnavailable: 1
+
+  # Affinity and topology
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values: [web-frontend]
+          topologyKey: kubernetes.io/hostname
+
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+                - key: app
+                  operator: In
+                  values: [web-frontend]
+            topologyKey: topology.kubernetes.io/zone
+
+  # Tolerations
+  tolerations:
+    - key: "node.kubernetes.io/not-ready"
+      operator: "Exists"
+      effect: "NoExecute"
+      tolerationSeconds: 300
+
+  # Node selector
+  nodeSelector:
+    workload-type: application
+    instance-size: large
+
+  # Notifications
+  notifications:
+    slack:
+      enabled: true
+      webhook: https://hooks.slack.com/services/XXX/YYY/ZZZ
+      channel: "#deployments"
+      events:
+        - deployment-started
+        - deployment-succeeded
+        - deployment-failed
+        - rollback-triggered
+
+    email:
+      enabled: true
+      recipients:
+        - platform-team@company.com
+        - on-call@company.com
+      events:
+        - deployment-failed
+        - rollback-triggered
+        - policy-violation
+
+  # Maintenance windows
+  maintenance:
+    windows:
+      - name: "weekly-maintenance"
+        schedule: "0 2 * * 0"  # Sunday 2 AM
+        duration: 4h
+        allowDeployments: false
+
+      - name: "emergency-only"
+        start: "2024-12-24T00:00:00Z"
+        end: "2024-12-26T23:59:59Z"
+        allowDeployments: false
+        allowRollbacks: true
+
+  # Chaos engineering
+  chaosEngineering:
+    enabled: true
+    provider: litmus
+    experiments:
+      - name: pod-delete
+        schedule: "0 3 * * *"  # Daily at 3 AM
+        targetNamespace: production
+
+      - name: network-latency
+        schedule: "0 4 * * 1"  # Weekly Monday 4 AM
+        duration: 30m
+
+  # Cost optimization
+  cost:
+    budget:
+      monthly: 5000  # USD
+      alertThreshold: 0.8  # 80%
+
+    optimization:
+      enableSpotInstances: true
+      enableAutoscaling: true
+      enableNodeAutoscaling: true

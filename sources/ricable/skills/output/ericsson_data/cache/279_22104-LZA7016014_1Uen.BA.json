@@ -1,0 +1,141 @@
+{
+  "file_hash": "0ad3d48126007b97eb392532f4a245d8",
+  "feature": {
+    "id": "121 4755",
+    "name": "IEEE 1588 Boundary Clock",
+    "cxc_code": "CXC4040018",
+    "value_package": "NR Base Package  Time and Phase Synchronization",
+    "value_package_id": "FAJ 801 4002  FAJ 801 0439",
+    "access_type": "NR  LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "With the IEEE 1588 Boundary Clock feature the node gives accurate PTP timing, GNSS",
+    "parameters": [
+      {
+        "name": "RadioEquipmentClockReference.encapsulation",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RadioEquipmentClockReference"
+      },
+      {
+        "name": "BoundaryOrdinaryClock.clockType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "BoundaryOrdinaryClock"
+      },
+      {
+        "name": "PtpBcOcPort.localPriority",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "PtpBcOcPort.masterOnly",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "PtpBcOcPort.transportInterface",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "PtpBcOcPort.transportVlan",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "BoundaryOrdinaryClock.domainNumber",
+        "type": "Affecting",
+        "description": "Specifies the PTP domain.",
+        "mo_class": "BoundaryOrdinaryClock"
+      },
+      {
+        "name": "BoundaryOrdinaryClock.priority1",
+        "type": "Affecting",
+        "description": "Used in Best Master Clock (BMC) Algorithm.",
+        "mo_class": "BoundaryOrdinaryClock"
+      },
+      {
+        "name": "BoundaryOrdinaryClock.priority2",
+        "type": "Affecting",
+        "description": "Used in Best Master Clock (BMC) Algorithm.",
+        "mo_class": "BoundaryOrdinaryClock"
+      },
+      {
+        "name": "BoundaryOrdinaryClock.ptpProfile",
+        "type": "Affecting",
+        "description": "Selects which PTP profile is used, must be set to                                 IEEE_1588_J3,                                 IEEE_1588_TIME_DEFAULT,                                 IEEE_1588_TIME_SLOW, or                                 G_8275_1 for this feature. The selected profile                             has dependencies to other attributes.",
+        "mo_class": "BoundaryOrdinaryClock"
+      },
+      {
+        "name": "Uen.BA",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "PtpBcOcPort.syncMessageInterval",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PtpBcOcPort"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmeanPathDelayAvg",
+        "description": "Performance counter pmeanPathDelayAvg",
+        "category": "General"
+      },
+      {
+        "name": "pmeanPathDelayMax",
+        "description": "Performance counter pmeanPathDelayMax",
+        "category": "General"
+      },
+      {
+        "name": "pmeanPathDelayMin",
+        "description": "Performance counter pmeanPathDelayMin",
+        "category": "General"
+      },
+      {
+        "name": "pmeanPathDelayStDev",
+        "description": "Performance counter pmeanPathDelayStDev",
+        "category": "General"
+      },
+      {
+        "name": "pmentClock",
+        "description": "Performance counter pmentClock",
+        "category": "General"
+      },
+      {
+        "name": "pmentClockReference",
+        "description": "Performance counter pmentClockReference",
+        "category": "General"
+      },
+      {
+        "name": "pmulticastAddress",
+        "description": "Performance counter pmulticastAddress",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": null,
+    "deactivation_step": null,
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/279_22104-LZA7016014_1Uen.BA.md",
+    "file_hash": "0ad3d48126007b97eb392532f4a245d8",
+    "processed_at": "2025-10-19 17:07:27",
+    "network_impact": {},
+    "performance_impact": {
+      "counters": "New counters introduced"
+    }
+  }
+}

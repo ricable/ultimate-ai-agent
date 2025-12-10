@@ -1,0 +1,73 @@
+{
+  "file_hash": "b8271494d3da021aa419e7cd646b2359",
+  "feature": {
+    "id": "121 5836",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012820",
+    "value_package": "5G Advanced Differentiated Connectivity",
+    "value_package_id": "FAJ 801 4030",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature adds a variable to the UE grouping selection criteria to optimize UE",
+    "parameters": [
+      {
+        "name": "PrefUeGroupSelectionProfile.selectionCriteria",
+        "type": "Affected",
+        "description": "This feature introduces the pCellOnlyUe                                     selection criteria variable.",
+        "mo_class": "PrefUeGroupSelectionProfile"
+      },
+      {
+        "name": "UeAdmissionGroupDefinition.selectionCriteria",
+        "type": "Affected",
+        "description": "This feature introduces the pCellOnlyUe                                     selection criteria variable.",
+        "mo_class": "UeAdmissionGroupDefinition"
+      },
+      {
+        "name": "UeGroupSelectionProfile.selectionCriteria",
+        "type": "Affected",
+        "description": "This feature introduces the pCellOnlyUe                                     selection criteria variable.",
+        "mo_class": "UeGroupSelectionProfile"
+      },
+      {
+        "name": "UeMobilityGroupDefinition.selectionCriteria",
+        "type": "Affected",
+        "description": "This feature introduces the pCellOnlyUe                                     selection criteria variable.",
+        "mo_class": "UeMobilityGroupDefinition"
+      },
+      {
+        "name": "UeServiceGroupDefinition.selectionCriteria",
+        "type": "Affected",
+        "description": "This feature introduces the pCellOnlyUe                                     selection criteria variable.",
+        "mo_class": "UeServiceGroupDefinition"
+      },
+      {
+        "name": "Uen.A",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012820 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012820 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/242_22104-LZA7016017_1Uen.A.md",
+    "file_hash": "b8271494d3da021aa419e7cd646b2359",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

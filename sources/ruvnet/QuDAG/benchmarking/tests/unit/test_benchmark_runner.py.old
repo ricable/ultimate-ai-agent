@@ -1,0 +1,507 @@
+"""Unit tests for benchmark runner components."""
+
+import asyncio
+import json
+from unittest.mock import Mock, AsyncMock, patch, call
+from pathlib import Path
+
+import pytest
+
+from benchmarking.src.runner import (
+    BenchmarkRunner,
+    BenchmarkConfig,
+    BenchmarkTask,
+    BenchmarkExecutor,
+    MetricsCollector
+)
+
+
+class TestBenchmarkConfig:
+    """Test benchmark configuration handling."""
+    
+    def test_config_initialization(self):
+        """Test configuration initialization with defaults."""
+        config = BenchmarkConfig()
+        
+        assert config.warmup_iterations == 10
+        assert config.test_iterations == 100
+        assert config.parallel_workers == 1
+        assert config.timeout_seconds == 300
+        assert config.collect_metrics is True
+        
+    def test_config_from_dict(self):
+        """Test configuration creation from dictionary."""
+        config_dict = {
+            "warmup_iterations": 5,
+            "test_iterations": 50,
+            "parallel_workers": 4,
+            "timeout_seconds": 60,
+            "collect_metrics": False,
+            "transaction_sizes": [100, 1000],
+            "batch_sizes": [10, 100]
+        }
+        
+        config = BenchmarkConfig.from_dict(config_dict)
+        
+        assert config.warmup_iterations == 5
+        assert config.test_iterations == 50
+        assert config.parallel_workers == 4
+        assert config.timeout_seconds == 60
+        assert config.collect_metrics is False
+        assert config.transaction_sizes == [100, 1000]
+        assert config.batch_sizes == [10, 100]
+        
+    def test_config_validation(self):
+        """Test configuration validation."""
+        # Valid config should not raise
+        config = BenchmarkConfig(warmup_iterations=5, test_iterations=10)
+        config.validate()
+        
+        # Invalid configs should raise
+        with pytest.raises(ValueError, match="warmup_iterations must be >= 0"):
+            BenchmarkConfig(warmup_iterations=-1).validate()
+            
+        with pytest.raises(ValueError, match="test_iterations must be > 0"):
+            BenchmarkConfig(test_iterations=0).validate()
+            
+        with pytest.raises(ValueError, match="parallel_workers must be > 0"):
+            BenchmarkConfig(parallel_workers=0).validate()
+            
+        with pytest.raises(ValueError, match="timeout_seconds must be > 0"):
+            BenchmarkConfig(timeout_seconds=-1).validate()
+            
+    def test_config_to_json(self, tmp_path):
+        """Test configuration serialization to JSON."""
+        config = BenchmarkConfig(
+            warmup_iterations=20,
+            test_iterations=200,
+            metadata={"test": "value"}
+        )
+        
+        json_path = tmp_path / "config.json"
+        config.to_json(json_path)
+        
+        assert json_path.exists()
+        
+        with open(json_path) as f:
+            loaded = json.load(f)
+            
+        assert loaded["warmup_iterations"] == 20
+        assert loaded["test_iterations"] == 200
+        assert loaded["metadata"]["test"] == "value"
+
+
+class TestBenchmarkTask:
+    """Test benchmark task representation."""
+    
+    def test_task_creation(self):
+        """Test task creation with required fields."""
+        task = BenchmarkTask(
+            name="test_task",
+            category="unit",
+            function=lambda: None,
+            description="Test task"
+        )
+        
+        assert task.name == "test_task"
+        assert task.category == "unit"
+        assert task.function is not None
+        assert task.description == "Test task"
+        assert task.tags == []
+        assert task.metadata == {}
+        
+    def test_task_with_tags_and_metadata(self):
+        """Test task creation with tags and metadata."""
+        task = BenchmarkTask(
+            name="complex_task",
+            category="integration",
+            function=lambda: None,
+            tags=["slow", "network"],
+            metadata={"priority": "high", "timeout": 60}
+        )
+        
+        assert task.tags == ["slow", "network"]
+        assert task.metadata["priority"] == "high"
+        assert task.metadata["timeout"] == 60
+        
+    def test_task_validation(self):
+        """Test task validation."""
+        # Valid task should not raise
+        task = BenchmarkTask(
+            name="valid_task",
+            category="unit",
+            function=lambda: None
+        )
+        task.validate()
+        
+        # Invalid tasks should raise
+        with pytest.raises(ValueError, match="Task name cannot be empty"):
+            BenchmarkTask(name="", category="unit", function=lambda: None).validate()
+            
+        with pytest.raises(ValueError, match="Task category cannot be empty"):
+            BenchmarkTask(name="task", category="", function=lambda: None).validate()
+            
+        with pytest.raises(ValueError, match="Task function must be callable"):
+            BenchmarkTask(name="task", category="unit", function=None).validate()
+
+
+class TestMetricsCollector:
+    """Test metrics collection functionality."""
+    
+    def test_collector_initialization(self):
+        """Test metrics collector initialization."""
+        collector = MetricsCollector()
+        
+        assert collector.metrics == []
+        assert collector.start_time is None
+        assert collector.is_collecting is False
+        
+    def test_start_collection(self):
+        """Test starting metrics collection."""
+        collector = MetricsCollector()
+        collector.start()
+        
+        assert collector.is_collecting is True
+        assert collector.start_time is not None
+        assert collector.metrics == []
+        
+    def test_record_metric(self):
+        """Test recording metrics."""
+        collector = MetricsCollector()
+        collector.start()
+        
+        collector.record("cpu_usage", 45.5)
+        collector.record("memory_mb", 256)
+        collector.record("latency_ms", 10.5)
+        
+        assert len(collector.metrics) == 3
+        assert collector.metrics[0]["name"] == "cpu_usage"
+        assert collector.metrics[0]["value"] == 45.5
+        assert collector.metrics[1]["name"] == "memory_mb"
+        assert collector.metrics[1]["value"] == 256
+        
+    def test_stop_collection(self):
+        """Test stopping metrics collection."""
+        collector = MetricsCollector()
+        collector.start()
+        collector.record("test_metric", 100)
+        
+        duration = collector.stop()
+        
+        assert collector.is_collecting is False
+        assert duration > 0
+        assert len(collector.metrics) == 1
+        
+    def test_get_summary(self):
+        """Test getting metrics summary."""
+        collector = MetricsCollector()
+        collector.start()
+        
+        # Record multiple values for same metric
+        for i in range(5):
+            collector.record("latency_ms", 10 + i)
+            collector.record("throughput", 1000 - i * 100)
+            
+        collector.stop()
+        summary = collector.get_summary()
+        
+        assert "latency_ms" in summary
+        assert summary["latency_ms"]["count"] == 5
+        assert summary["latency_ms"]["min"] == 10
+        assert summary["latency_ms"]["max"] == 14
+        assert summary["latency_ms"]["mean"] == 12
+        
+        assert "throughput" in summary
+        assert summary["throughput"]["count"] == 5
+        assert summary["throughput"]["min"] == 600
+        assert summary["throughput"]["max"] == 1000
+        
+    def test_reset_collector(self):
+        """Test resetting metrics collector."""
+        collector = MetricsCollector()
+        collector.start()
+        collector.record("test", 100)
+        collector.stop()
+        
+        collector.reset()
+        
+        assert collector.metrics == []
+        assert collector.start_time is None
+        assert collector.is_collecting is False
+
+
+class TestBenchmarkExecutor:
+    """Test benchmark execution logic."""
+    
+    @pytest.mark.asyncio
+    async def test_executor_initialization(self):
+        """Test executor initialization."""
+        config = BenchmarkConfig()
+        executor = BenchmarkExecutor(config)
+        
+        assert executor.config == config
+        assert executor.results == []
+        assert executor.is_running is False
+        
+    @pytest.mark.asyncio
+    async def test_execute_single_task(self):
+        """Test executing a single benchmark task."""
+        config = BenchmarkConfig(warmup_iterations=2, test_iterations=5)
+        executor = BenchmarkExecutor(config)
+        
+        # Create a simple task
+        counter = {"value": 0}
+        
+        async def increment_counter():
+            counter["value"] += 1
+            await asyncio.sleep(0.001)
+            
+        task = BenchmarkTask(
+            name="increment_test",
+            category="unit",
+            function=increment_counter
+        )
+        
+        result = await executor.execute_task(task)
+        
+        assert result.task_name == "increment_test"
+        assert result.iterations == 5
+        assert result.total_duration > 0
+        assert result.mean_duration > 0
+        assert result.min_duration > 0
+        assert result.max_duration > 0
+        assert counter["value"] == 7  # 2 warmup + 5 test
+        
+    @pytest.mark.asyncio
+    async def test_execute_with_metrics(self):
+        """Test executing task with metrics collection."""
+        config = BenchmarkConfig(collect_metrics=True, test_iterations=3)
+        executor = BenchmarkExecutor(config)
+        
+        async def task_with_metrics():
+            # Simulate some work
+            await asyncio.sleep(0.001)
+            return {"custom_metric": 42}
+            
+        task = BenchmarkTask(
+            name="metrics_test",
+            category="unit",
+            function=task_with_metrics
+        )
+        
+        result = await executor.execute_task(task)
+        
+        assert result.metrics is not None
+        assert "duration" in result.metrics
+        assert result.custom_metrics == {"custom_metric": 42}
+        
+    @pytest.mark.asyncio
+    async def test_execute_with_timeout(self):
+        """Test task execution with timeout."""
+        config = BenchmarkConfig(timeout_seconds=0.1, test_iterations=1)
+        executor = BenchmarkExecutor(config)
+        
+        async def slow_task():
+            await asyncio.sleep(1)  # Longer than timeout
+            
+        task = BenchmarkTask(
+            name="timeout_test",
+            category="unit",
+            function=slow_task
+        )
+        
+        with pytest.raises(asyncio.TimeoutError):
+            await executor.execute_task(task)
+            
+    @pytest.mark.asyncio
+    async def test_execute_batch(self):
+        """Test executing multiple tasks in batch."""
+        config = BenchmarkConfig(test_iterations=2)
+        executor = BenchmarkExecutor(config)
+        
+        tasks = [
+            BenchmarkTask(
+                name=f"task_{i}",
+                category="unit",
+                function=lambda: asyncio.sleep(0.001)
+            )
+            for i in range(3)
+        ]
+        
+        results = await executor.execute_batch(tasks)
+        
+        assert len(results) == 3
+        assert all(r.task_name.startswith("task_") for r in results)
+        assert all(r.iterations == 2 for r in results)
+        
+    @pytest.mark.asyncio
+    async def test_parallel_execution(self):
+        """Test parallel task execution."""
+        config = BenchmarkConfig(
+            parallel_workers=3,
+            test_iterations=1
+        )
+        executor = BenchmarkExecutor(config)
+        
+        execution_order = []
+        
+        async def tracked_task(task_id):
+            execution_order.append(f"start_{task_id}")
+            await asyncio.sleep(0.01)
+            execution_order.append(f"end_{task_id}")
+            
+        tasks = [
+            BenchmarkTask(
+                name=f"parallel_task_{i}",
+                category="unit",
+                function=lambda i=i: tracked_task(i)
+            )
+            for i in range(6)
+        ]
+        
+        await executor.execute_parallel(tasks)
+        
+        # Verify parallel execution occurred
+        assert len(execution_order) == 12  # 6 starts + 6 ends
+        # Check that not all tasks completed before others started
+        # (indicating parallel execution)
+        start_indices = [i for i, x in enumerate(execution_order) if x.startswith("start_")]
+        assert len(start_indices) > 3  # More than 3 tasks started before first completed
+
+
+class TestBenchmarkRunner:
+    """Test the main benchmark runner."""
+    
+    def test_runner_initialization(self):
+        """Test runner initialization."""
+        config = BenchmarkConfig()
+        runner = BenchmarkRunner(config)
+        
+        assert runner.config == config
+        assert runner.tasks == []
+        assert runner.results == []
+        assert runner.executor is not None
+        
+    def test_add_task(self):
+        """Test adding tasks to runner."""
+        runner = BenchmarkRunner(BenchmarkConfig())
+        
+        task1 = BenchmarkTask("task1", "unit", lambda: None)
+        task2 = BenchmarkTask("task2", "integration", lambda: None)
+        
+        runner.add_task(task1)
+        runner.add_task(task2)
+        
+        assert len(runner.tasks) == 2
+        assert runner.tasks[0] == task1
+        assert runner.tasks[1] == task2
+        
+    def test_add_multiple_tasks(self):
+        """Test adding multiple tasks at once."""
+        runner = BenchmarkRunner(BenchmarkConfig())
+        
+        tasks = [
+            BenchmarkTask(f"task{i}", "unit", lambda: None)
+            for i in range(5)
+        ]
+        
+        runner.add_tasks(tasks)
+        
+        assert len(runner.tasks) == 5
+        assert all(t.name.startswith("task") for t in runner.tasks)
+        
+    @pytest.mark.asyncio
+    async def test_run_benchmarks(self):
+        """Test running all benchmarks."""
+        config = BenchmarkConfig(test_iterations=2)
+        runner = BenchmarkRunner(config)
+        
+        # Add test tasks
+        execution_count = {"value": 0}
+        
+        async def counting_task():
+            execution_count["value"] += 1
+            
+        runner.add_tasks([
+            BenchmarkTask(f"count_task_{i}", "unit", counting_task)
+            for i in range(3)
+        ])
+        
+        results = await runner.run()
+        
+        assert len(results) == 3
+        assert execution_count["value"] == 6  # 3 tasks * 2 iterations
+        assert all(r.status == "completed" for r in results)
+        
+    @pytest.mark.asyncio
+    async def test_run_with_filters(self):
+        """Test running benchmarks with filters."""
+        runner = BenchmarkRunner(BenchmarkConfig())
+        
+        # Add tasks with different categories and tags
+        runner.add_tasks([
+            BenchmarkTask("unit1", "unit", lambda: None, tags=["fast"]),
+            BenchmarkTask("unit2", "unit", lambda: None, tags=["slow"]),
+            BenchmarkTask("integration1", "integration", lambda: None, tags=["fast"]),
+            BenchmarkTask("integration2", "integration", lambda: None, tags=["slow"]),
+        ])
+        
+        # Run only unit tests
+        results = await runner.run(category_filter="unit")
+        assert len(results) == 2
+        assert all(r.task_name.startswith("unit") for r in results)
+        
+        # Run only fast tests
+        results = await runner.run(tag_filter="fast")
+        assert len(results) == 2
+        assert all("1" in r.task_name for r in results)
+        
+    @pytest.mark.asyncio
+    async def test_generate_report(self, tmp_path):
+        """Test report generation."""
+        runner = BenchmarkRunner(BenchmarkConfig())
+        
+        # Run some benchmarks
+        runner.add_task(BenchmarkTask("test_task", "unit", lambda: None))
+        await runner.run()
+        
+        # Generate report
+        report_path = runner.generate_report(tmp_path / "report.json")
+        
+        assert report_path.exists()
+        
+        with open(report_path) as f:
+            report = json.load(f)
+            
+        assert "metadata" in report
+        assert "results" in report
+        assert len(report["results"]) == 1
+        assert report["results"][0]["task_name"] == "test_task"
+        
+    def test_get_summary_statistics(self):
+        """Test getting summary statistics."""
+        runner = BenchmarkRunner(BenchmarkConfig())
+        
+        # Mock some results
+        from benchmarking.src.runner import BenchmarkResult
+        runner.results = [
+            BenchmarkResult(
+                task_name=f"task_{i}",
+                iterations=10,
+                total_duration=0.1 * (i + 1),
+                mean_duration=0.01 * (i + 1),
+                min_duration=0.009 * (i + 1),
+                max_duration=0.011 * (i + 1),
+                status="completed"
+            )
+            for i in range(3)
+        ]
+        
+        summary = runner.get_summary()
+        
+        assert summary["total_tasks"] == 3
+        assert summary["completed_tasks"] == 3
+        assert summary["failed_tasks"] == 0
+        assert summary["total_duration"] > 0
+        assert "task_statistics" in summary
+        assert len(summary["task_statistics"]) == 3

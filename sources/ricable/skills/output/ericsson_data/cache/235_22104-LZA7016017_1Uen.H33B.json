@@ -1,0 +1,254 @@
+{
+  "file_hash": "e0a80d75d256259cc0bf5b02c426299b",
+  "feature": {
+    "id": "121 5773",
+    "name": "Service Adaptive Admission and Preemption",
+    "cxc_code": "CXC4012765",
+    "value_package": "5G Advanced High-Load Handling",
+    "value_package_id": "FAJ 801 4032",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Service Adaptive Admission and Preemption feature introduces configurable limits for",
+    "parameters": [
+      {
+        "name": "ContentionControl.contentionControlId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ContentionControl"
+      },
+      {
+        "name": "FlowLimit.flowLimit5qiList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FlowLimit"
+      },
+      {
+        "name": "FlowLimit.flowLimitId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FlowLimit"
+      },
+      {
+        "name": "FlowLimit.maxNoOfFlows",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FlowLimit"
+      },
+      {
+        "name": "FlowLimit.preemptionEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FlowLimit"
+      },
+      {
+        "name": "FlowLimit.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FlowLimit"
+      },
+      {
+        "name": "NRCellDU.trafficDefinitionRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "SessionLimit.maxNoOfSessions",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SessionLimit"
+      },
+      {
+        "name": "SessionLimit.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SessionLimit"
+      },
+      {
+        "name": "SessionLimit.sessionLimitId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SessionLimit"
+      },
+      {
+        "name": "TrafficDefinition.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficDefinition"
+      },
+      {
+        "name": "TrafficDefinition.trafficDefinitionId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficDefinition"
+      },
+      {
+        "name": "TrafficDefinitions.trafficDefinitionsId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficDefinitions"
+      },
+      {
+        "name": "TrafficSet.sessionLimitRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSet"
+      },
+      {
+        "name": "TrafficSet.trafficSetId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSet"
+      },
+      {
+        "name": "TrafficSetMember.pLMNIdList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSetMember"
+      },
+      {
+        "name": "TrafficSetMember.sNSSAIList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSetMember"
+      },
+      {
+        "name": "TrafficSetMember.spidRfspList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSetMember"
+      },
+      {
+        "name": "TrafficSetMember.trafficCategory",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSetMember"
+      },
+      {
+        "name": "TrafficSetMember.trafficSetMemberId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSetMember"
+      },
+      {
+        "name": "GNBDUFunction.trafficDefinitionDepHEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GNBDUFunction"
+      },
+      {
+        "name": "Uen.H33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmDrbAdmissionPreemptQos",
+        "description": "Performance counter pmDrbAdmissionPreemptQos",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbEstabFailAdmissionRejQos",
+        "description": "Performance counter pmDrbEstabFailAdmissionRejQos",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbModFailAdmissionRejQos",
+        "description": "Performance counter pmDrbModFailAdmissionRejQos",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalGnb25qi",
+        "description": "Performance counter pmDrbRelAbnormalGnb25qi",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalGnb2Arp",
+        "description": "Performance counter pmDrbRelAbnormalGnb2Arp",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalGnbAct25qi",
+        "description": "Performance counter pmDrbRelAbnormalGnbAct25qi",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalGnbAct2Arp",
+        "description": "Performance counter pmDrbRelAbnormalGnbAct2Arp",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbRelAbnormalGnb25qi",
+        "description": "Performance counter pmEbsDrbRelAbnormalGnb25qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbRelAbnormalGnb2CauseGrpNgCause",
+        "description": "Performance counter pmEbsDrbRelAbnormalGnb2CauseGrpNgCause",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbRelAbnormalGnbAct25qi",
+        "description": "Performance counter pmEbsDrbRelAbnormalGnbAct25qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbRelAbnormalGnbAct2CauseGrpNgCause",
+        "description": "Performance counter pmEbsDrbRelAbnormalGnbAct2CauseGrpNgCause",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsPduSessionRelAbnormalGnb2",
+        "description": "Performance counter pmEbsPduSessionRelAbnormalGnb2",
+        "category": "General"
+      },
+      {
+        "name": "pmPduSessionEstabFailAdmissionRej",
+        "description": "Performance counter pmPduSessionEstabFailAdmissionRej",
+        "category": "General"
+      },
+      {
+        "name": "pmPduSessionRelAbnormalGnb2",
+        "description": "Performance counter pmPduSessionRelAbnormalGnb2",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmember",
+        "description": "Performance counter pmember",
+        "category": "General"
+      },
+      {
+        "name": "pmemberId",
+        "description": "Performance counter pmemberId",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012765 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012765 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/235_22104-LZA7016017_1Uen.H33B.md",
+    "file_hash": "e0a80d75d256259cc0bf5b02c426299b",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,21 @@
+FROM node:22-slim
+
+WORKDIR /app
+
+# Copy local package
+COPY agentic-flow/package.json ./
+COPY agentic-flow/dist ./dist
+COPY agentic-flow/.claude ./.claude
+COPY agentic-flow/docs ./docs
+
+# Copy .env from root
+COPY .env ./.env
+
+# Install dependencies and link globally
+RUN npm install --omit=dev && npm link
+
+# Set up environment
+ENV NODE_ENV=production
+
+# Test command
+CMD ["agentic-flow", "--agent", "coder", "--task", "Write a simple hello world function in Python"]

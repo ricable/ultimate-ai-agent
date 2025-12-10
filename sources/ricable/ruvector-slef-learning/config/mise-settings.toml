@@ -1,0 +1,60 @@
+# Global mise settings
+# Place at ~/.config/mise/config.toml for system-wide settings
+# https://mise.jdx.dev/configuration/settings.html
+
+[settings]
+# General settings
+experimental = true
+always_keep_download = false
+legacy_version_file = true
+asdf_compat = true
+jobs = 4
+raw = false
+yes = true
+verbose = false
+
+# Shims configuration for non-interactive environments
+# Critical for Docker, CI/CD, and Kubernetes
+shims_dir = "~/.local/share/mise/shims"
+
+# Plugin settings
+disable_default_shorthands = false
+plugin_autoupdate_last_check_duration = "7 days"
+
+# Status/UX settings
+status.missing_tools = "if_other_versions_installed"
+status.show_env = false
+status.show_tools = true
+
+# Python settings
+python.compile = false
+python.default_packages_file = "~/.default-python-packages"
+python.venv_auto_create = true
+
+# Node.js settings
+node.compile = false
+
+# Rust settings
+rust.cargo_home = "~/.cargo"
+rust.rustup_home = "~/.rustup"
+
+# Age encryption for secrets
+age.key_file = "~/.config/mise/age.txt"
+age.identity_files = [
+  "~/.ssh/id_ed25519",
+  "~/.ssh/id_rsa"
+]
+age.strict = false
+
+# =============================================================================
+# HOOKS CONFIGURATION
+# =============================================================================
+# Hooks run at various points in the mise lifecycle
+
+# Run when entering a directory
+[hooks.enter]
+# env = { MISE_ENTERED = "true" }
+
+# Run when a watched file changes
+[hooks.watch_files]
+# patterns = ["mise.toml", "*.lock"]

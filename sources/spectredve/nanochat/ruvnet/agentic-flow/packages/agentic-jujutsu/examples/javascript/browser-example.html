@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic-Jujutsu Browser Example</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #output {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            min-height: 400px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error {
+            color: #dc3545;
+            background: #f8d7da;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 1px solid #f5c6cb;
+        }
+
+        .success {
+            color: #155724;
+            background: #d4edda;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 1px solid #c3e6cb;
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .info {
+            background: #e7f3ff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .operation {
+            background: white;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .operation-header {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .operation-meta {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            🚀 Agentic-Jujutsu WASM Demo
+            <span class="badge">v0.1.0</span>
+        </h1>
+
+        <div class="info">
+            <strong>Note:</strong> This demo requires Jujutsu to be installed and accessible.
+            The WASM module will execute jj commands in the browser context.
+        </div>
+
+        <div class="controls">
+            <button id="btnInit">Initialize</button>
+            <button id="btnStatus" disabled>Get Status</button>
+            <button id="btnOperations" disabled>Show Operations</button>
+            <button id="btnBranches" disabled>List Branches</button>
+            <button id="btnConflicts" disabled>Check Conflicts</button>
+            <button id="btnClear">Clear Output</button>
+        </div>
+
+        <div id="output">
+            <div class="info">Click "Initialize" to start the WASM module...</div>
+        </div>
+    </div>
+
+    <script type="module">
+        import init, { JJWrapper, JJConfig } from './pkg/web/agentic_jujutsu.js';
+
+        let jj = null;
+        const output = document.getElementById('output');
+        const btnInit = document.getElementById('btnInit');
+        const btnStatus = document.getElementById('btnStatus');
+        const btnOperations = document.getElementById('btnOperations');
+        const btnBranches = document.getElementById('btnBranches');
+        const btnConflicts = document.getElementById('btnConflicts');
+        const btnClear = document.getElementById('btnClear');
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : 'info';
+            output.innerHTML += `<div class="${className}">[${timestamp}] ${message}</div>`;
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function logOperation(op, index) {
+            const opHtml = `
+                <div class="operation">
+                    <div class="operation-header">${index}. ${op.operation_type.toUpperCase()}</div>
+                    <div>${op.description}</div>
+                    <div class="operation-meta">
+                        ID: ${op.id.slice(0, 12)} | User: ${op.user} | Time: ${new Date(op.timestamp).toLocaleString()}
+                    </div>
+                </div>
+            `;
+            output.innerHTML += opHtml;
+        }
+
+        btnInit.addEventListener('click', async () => {
+            try {
+                btnInit.disabled = true;
+                btnInit.innerHTML = '<span class="loading"></span> Initializing...';
+                log('Initializing WASM module...');
+
+                await init();
+                log('WASM module loaded successfully!', 'success');
+
+                const config = new JJConfig();
+                config.with_verbose(true);
+                config.with_timeout(10000);
+
+                log('Creating JJWrapper instance...');
+                jj = await JJWrapper.new(config);
+                log('JJWrapper initialized!', 'success');
+
+                btnStatus.disabled = false;
+                btnOperations.disabled = false;
+                btnBranches.disabled = false;
+                btnConflicts.disabled = false;
+                btnInit.innerHTML = '✓ Initialized';
+                btnInit.style.background = '#28a745';
+            } catch (error) {
+                log(`Error: ${error.message || error}`, 'error');
+                btnInit.disabled = false;
+                btnInit.innerHTML = 'Initialize';
+            }
+        });
+
+        btnStatus.addEventListener('click', async () => {
+            try {
+                log('Getting repository status...');
+                const result = await jj.status();
+                log('Status retrieved successfully!', 'success');
+                output.innerHTML += `<pre>${result.stdout}</pre>`;
+            } catch (error) {
+                log(`Error: ${error.message || error}`, 'error');
+            }
+        });
+
+        btnOperations.addEventListener('click', async () => {
+            try {
+                log('Fetching recent operations...');
+                const operations = await jj.getOperations(5);
+                log(`Retrieved ${operations.length} operations:`, 'success');
+                operations.forEach((op, idx) => logOperation(op, idx + 1));
+            } catch (error) {
+                log(`Error: ${error.message || error}`, 'error');
+            }
+        });
+
+        btnBranches.addEventListener('click', async () => {
+            try {
+                log('Listing branches...');
+                const branches = await jj.branch_list();
+                log(`Found ${branches.length} branches:`, 'success');
+                const branchList = branches.map(b =>
+                    `  • ${b.name} → ${b.target.slice(0, 12)}${b.remote ? ` (remote: ${b.remote_name})` : ''}`
+                ).join('\n');
+                output.innerHTML += `<pre>${branchList}</pre>`;
+            } catch (error) {
+                log(`Error: ${error.message || error}`, 'error');
+            }
+        });
+
+        btnConflicts.addEventListener('click', async () => {
+            try {
+                log('Checking for conflicts...');
+                const conflicts = await jj.getConflicts();
+                if (conflicts.length === 0) {
+                    log('No conflicts found ✓', 'success');
+                } else {
+                    log(`Found ${conflicts.length} conflicts:`, 'error');
+                    const conflictList = conflicts.map(c =>
+                        `  • ${c.path} (${c.num_hunks} hunks, ${c.resolved ? 'resolved' : 'unresolved'})`
+                    ).join('\n');
+                    output.innerHTML += `<pre>${conflictList}</pre>`;
+                }
+            } catch (error) {
+                log(`Error: ${error.message || error}`, 'error');
+            }
+        });
+
+        btnClear.addEventListener('click', () => {
+            output.innerHTML = '';
+            log('Output cleared');
+        });
+    </script>
+</body>
+</html>

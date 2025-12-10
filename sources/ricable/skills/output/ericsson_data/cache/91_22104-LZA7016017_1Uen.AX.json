@@ -1,0 +1,156 @@
+{
+  "file_hash": "089e5512d9557b919707e68b056794e4",
+  "feature": {
+    "id": "121 5325",
+    "name": "NR Service-Adaptive DRX",
+    "cxc_code": "CXC4012531",
+    "value_package": "Performance Boost",
+    "value_package_id": "FAJ 801 4021",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The NR Relative Priority Scheduling feature supports relative priority for",
+    "parameters": [
+      {
+        "name": "DU5qi.packetDelayBudget",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DU5qi"
+      },
+      {
+        "name": "DU5qi.priorityLevel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DU5qi"
+      },
+      {
+        "name": "DU5qi.schedulingProfileRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DU5qi"
+      },
+      {
+        "name": "DUModified5qi.ueConfGroupType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DUModified5qi"
+      },
+      {
+        "name": "DUModified5qiUeCfg.packetDelayBudget",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DUModified5qiUeCfg"
+      },
+      {
+        "name": "DUModified5qiUeCfg.prefUeGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DUModified5qiUeCfg"
+      },
+      {
+        "name": "DUModified5qiUeCfg.priorityLevel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DUModified5qiUeCfg"
+      },
+      {
+        "name": "DUModified5qiUeCfg.schedulingProfileRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DUModified5qiUeCfg"
+      },
+      {
+        "name": "DUModified5qiUeCfg.ueConfGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DUModified5qiUeCfg"
+      },
+      {
+        "name": "DUModified5qiUeCfg.ueGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DUModified5qiUeCfg"
+      },
+      {
+        "name": "SchedulingProfile.relativePriority",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SchedulingProfile"
+      },
+      {
+        "name": "SchedulingProfile.relativePriorityMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SchedulingProfile"
+      },
+      {
+        "name": "Uen.AX",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UeCfg.prefUeGroupList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeCfg"
+      },
+      {
+        "name": "UeCfg.ueConfGroupList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeCfg"
+      },
+      {
+        "name": "UeCfg.ueGroupList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeCfg"
+      },
+      {
+        "name": "UeCfg.packetDelayBudget",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeCfg"
+      },
+      {
+        "name": "UeCfg.priorityLevel",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeCfg"
+      },
+      {
+        "name": "UeCfg.schedulingProfileRef",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeCfg"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012531 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012531 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch4/91_22104-LZA7016017_1Uen.AX.md",
+    "file_hash": "089e5512d9557b919707e68b056794e4",
+    "processed_at": "2025-10-19 15:50:09",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

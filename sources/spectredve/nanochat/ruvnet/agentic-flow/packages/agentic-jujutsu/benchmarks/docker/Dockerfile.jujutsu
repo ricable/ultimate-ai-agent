@@ -1,0 +1,67 @@
+# Jujutsu Benchmark Container
+FROM rust:1.75-bookworm
+
+# Avoid interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    build-essential \
+    pkg-config \
+    libssl-dev \
+    curl \
+    time \
+    jq \
+    bc \
+    htop \
+    sysstat \
+    python3 \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Jujutsu from source (latest version)
+RUN cargo install --locked jj-cli --version "^0.21"
+
+# Verify installation
+RUN jj --version
+
+# Install Node.js for coordination scripts
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create workspace
+WORKDIR /benchmark
+
+# Copy benchmark scripts
+COPY scripts/setup-repos.sh /benchmark/scripts/
+COPY scripts/run-benchmarks.sh /benchmark/scripts/
+COPY scripts/collect-metrics.sh /benchmark/scripts/
+COPY config/jj-config.json /benchmark/config/
+
+# Make scripts executable
+RUN chmod +x /benchmark/scripts/*.sh
+
+# Configure Jujutsu
+RUN mkdir -p ~/.config/jj \
+    && echo '[user]' > ~/.config/jj/config.toml \
+    && echo 'name = "Benchmark Agent"' >> ~/.config/jj/config.toml \
+    && echo 'email = "benchmark@agentic-flow.dev"' >> ~/.config/jj/config.toml
+
+# Set up test repository structure
+RUN mkdir -p /repos /results
+
+# Install Python benchmarking tools
+RUN pip3 install --no-cache-dir \
+    psutil \
+    matplotlib \
+    numpy \
+    pandas
+
+# Install agentic-jujutsu WASM (for enhanced features)
+COPY ../../target/wasm32-unknown-unknown/release/*.wasm /benchmark/wasm/ 2>/dev/null || true
+
+VOLUME ["/repos", "/results"]
+
+CMD ["/benchmark/scripts/run-benchmarks.sh", "jj"]

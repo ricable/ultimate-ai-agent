@@ -1,0 +1,337 @@
+---
+# RAN Optimizer LLM Agent - Kubernetes Deployment
+# Uses LlamaEdge runtime with WASI-NN GGML backend
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ran-optimizer
+  labels:
+    app.kubernetes.io/name: ran-optimizer
+    app.kubernetes.io/component: llm-agent
+
+---
+# ConfigMap for RAN Optimizer settings
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ran-optimizer-config
+  namespace: ran-optimizer
+data:
+  CTX_SIZE: "8192"
+  N_PREDICT: "2048"
+  N_GPU_LAYERS: "35"
+  TEMPERATURE: "0.3"
+  TOP_P: "0.9"
+  REPEAT_PENALTY: "1.1"
+  STREAM_STDOUT: "true"
+  VERBOSE: "false"
+  # LiteLLM proxy endpoint for fallback
+  LITELLM_ENDPOINT: "http://litellm-proxy.default.svc.cluster.local:4000"
+  # RuVector endpoint for vector operations
+  RUVECTOR_ENDPOINT: "http://ruvector.default.svc.cluster.local:8765"
+
+---
+# PersistentVolumeClaim for model storage
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ran-optimizer-models
+  namespace: ran-optimizer
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: standard
+
+---
+# Model download job (one-time)
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: download-ran-model
+  namespace: ran-optimizer
+spec:
+  ttlSecondsAfterFinished: 3600
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: downloader
+          image: curlimages/curl:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Downloading Qwen2.5-7B-Instruct model..."
+              curl -L -o /models/qwen2.5-7b-instruct-q5_k_m.gguf \
+                "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct-GGUF/resolve/main/qwen2.5-7b-instruct-q5_k_m.gguf"
+              echo "Model download complete."
+              ls -la /models/
+          volumeMounts:
+            - name: models
+              mountPath: /models
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: ran-optimizer-models
+
+---
+# Main RAN Optimizer Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ran-optimizer
+  namespace: ran-optimizer
+  labels:
+    app: ran-optimizer
+    component: llm-agent
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ran-optimizer
+  template:
+    metadata:
+      labels:
+        app: ran-optimizer
+        component: llm-agent
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+    spec:
+      # Use LlamaEdge runtime class for GPU acceleration
+      runtimeClassName: llamaedge-gpu
+      serviceAccountName: ran-optimizer
+
+      initContainers:
+        # Wait for model to be available
+        - name: wait-for-model
+          image: busybox:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Waiting for model file..."
+              while [ ! -f /models/qwen2.5-7b-instruct-q5_k_m.gguf ]; do
+                echo "Model not ready, waiting..."
+                sleep 10
+              done
+              echo "Model ready!"
+          volumeMounts:
+            - name: models
+              mountPath: /models
+              readOnly: true
+
+      containers:
+        - name: ran-optimizer
+          image: ghcr.io/ruvnet/ran-optimizer:latest
+          imagePullPolicy: Always
+
+          args:
+            - default
+            - interactive
+
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+
+          envFrom:
+            - configMapRef:
+                name: ran-optimizer-config
+
+          env:
+            - name: MODEL_PATH
+              value: "/models/qwen2.5-7b-instruct-q5_k_m.gguf"
+            - name: WASMEDGE_PLUGIN_PATH
+              value: "/usr/local/lib/wasmedge"
+
+          volumeMounts:
+            - name: models
+              mountPath: /models
+              readOnly: true
+            - name: cache
+              mountPath: /tmp/cache
+
+          resources:
+            requests:
+              cpu: "2"
+              memory: "8Gi"
+              nvidia.com/gpu: "1"
+            limits:
+              cpu: "4"
+              memory: "16Gi"
+              nvidia.com/gpu: "1"
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: ran-optimizer-models
+        - name: cache
+          emptyDir:
+            sizeLimit: 1Gi
+
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: nvidia.com/gpu.present
+                    operator: In
+                    values:
+                      - "true"
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: ran-optimizer
+                topologyKey: kubernetes.io/hostname
+
+      tolerations:
+        - key: nvidia.com/gpu
+          operator: Exists
+          effect: NoSchedule
+
+---
+# Service for RAN Optimizer
+apiVersion: v1
+kind: Service
+metadata:
+  name: ran-optimizer
+  namespace: ran-optimizer
+  labels:
+    app: ran-optimizer
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: ran-optimizer
+
+---
+# ServiceAccount
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ran-optimizer
+  namespace: ran-optimizer
+
+---
+# RBAC - Role
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ran-optimizer
+  namespace: ran-optimizer
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps", "secrets"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list"]
+
+---
+# RBAC - RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ran-optimizer
+  namespace: ran-optimizer
+subjects:
+  - kind: ServiceAccount
+    name: ran-optimizer
+    namespace: ran-optimizer
+roleRef:
+  kind: Role
+  name: ran-optimizer
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# HorizontalPodAutoscaler
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ran-optimizer
+  namespace: ran-optimizer
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ran-optimizer
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 60
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+        - type: Pods
+          value: 2
+          periodSeconds: 60
+
+---
+# PodDisruptionBudget
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: ran-optimizer
+  namespace: ran-optimizer
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: ran-optimizer

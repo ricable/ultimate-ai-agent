@@ -1,0 +1,107 @@
+{
+  "file_hash": "d126bd2910d53349e53638d46eefcb04",
+  "feature": {
+    "id": "121 5661",
+    "name": "Ericsson Reduced Capability Enabler",
+    "cxc_code": "CXC4012800",
+    "value_package": "NR Base Package",
+    "value_package_id": "FAJ 801 4002",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature introduces support and mobility for RedCap UEs.",
+    "parameters": [
+      {
+        "name": "NRCellDU.redCap1RxEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.redCap2RxEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.redCapUeLimit",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRFreqRelation.redCapEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRFreqRelation"
+      },
+      {
+        "name": "Uen.Z",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmRrcConnLevelRedCapMax",
+        "description": "Performance counter pmRrcConnLevelRedCapMax",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnLevelRedCapSum",
+        "description": "Performance counter pmRrcConnLevelRedCapSum",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnRedCapLevelMax",
+        "description": "Performance counter pmRrcConnRedCapLevelMax",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnRedCapLevelSum",
+        "description": "Performance counter pmRrcConnRedCapLevelSum",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcInactLevelRedCapMax",
+        "description": "Performance counter pmRrcInactLevelRedCapMax",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcInactLevelRedCapSum",
+        "description": "Performance counter pmRrcInactLevelRedCapSum",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcInactRedCapLevelMax",
+        "description": "Performance counter pmRrcInactRedCapLevelMax",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcInactRedCapLevelSum",
+        "description": "Performance counter pmRrcInactRedCapLevelSum",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012800 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012800 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/184_22104-LZA7016017_1Uen.Z.md",
+    "file_hash": "d126bd2910d53349e53638d46eefcb04",
+    "processed_at": "2025-10-19 15:48:56",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,58 @@
+#cloud-config
+# Kairos Worker Node Configuration - x86_64
+# For Intel/AMD workstations, NUCs, and servers
+
+# Inherit from base config
+#!include cloud-config.yaml
+
+hostname: "edge-ai-worker-x86-{{.MachineID | truncate 8}}"
+
+# Enable K3s agent mode
+k3s:
+  enabled: true
+k3s-server:
+  enabled: false
+k3s-agent:
+  enabled: true
+  env:
+    K3S_URL: "${K3S_SERVER_URL}"
+    K3S_TOKEN: "${K3S_TOKEN}"
+
+# Worker-specific configuration
+stages:
+  boot:
+    - name: "Configure x86 worker node"
+      commands:
+        - |
+          # Label as worker
+          kubectl label node $(hostname) node-role.kubernetes.io/worker=true --overwrite
+          kubectl label node $(hostname) edge-ai.io/role=worker --overwrite
+          kubectl label node $(hostname) edge-ai.io/arch=x86_64 --overwrite
+
+          # Detect and label GPU
+          if lspci | grep -i nvidia > /dev/null; then
+            kubectl label node $(hostname) nvidia.com/gpu=true --overwrite
+            kubectl label node $(hostname) edge-ai.io/accelerator=nvidia --overwrite
+          elif lspci | grep -i "Intel.*Graphics" > /dev/null; then
+            kubectl label node $(hostname) intel.com/gpu=true --overwrite
+            kubectl label node $(hostname) edge-ai.io/accelerator=intel --overwrite
+          fi
+
+          # Detect AVX capabilities for AI inference
+          if grep -q avx512 /proc/cpuinfo; then
+            kubectl label node $(hostname) cpu.feature/avx512=true --overwrite
+            kubectl label node $(hostname) edge-ai.io/inference-tier=high --overwrite
+          elif grep -q avx2 /proc/cpuinfo; then
+            kubectl label node $(hostname) cpu.feature/avx2=true --overwrite
+            kubectl label node $(hostname) edge-ai.io/inference-tier=medium --overwrite
+          fi
+
+# Runtime configuration for AI workloads
+runtimes:
+  # Enable containerd with GPU support
+  containerd:
+    runtimes:
+      nvidia:
+        runtime_type: "io.containerd.runc.v2"
+        options:
+          BinaryName: "/usr/bin/nvidia-container-runtime"

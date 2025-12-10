@@ -1,0 +1,1550 @@
+{
+  "file_hash": "557545c4889e87b76479b67d6ac6bd37",
+  "feature": {
+    "id": "121 0497",
+    "name": "Automated Neighbor                                 Relations",
+    "cxc_code": "CXC4010620",
+    "value_package": "Self-Organizing Networks",
+    "value_package_id": "FAJ 801 0435",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Automated Neighbor Relations feature  minimizes the need for the manual",
+    "parameters": [
+      {
+        "name": "AnrFunctionNR.cellAddRsrpThresholdNR",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionNR"
+      },
+      {
+        "name": "AnrFunctionNR.cellAddRsrqThresholdNR",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionNR"
+      },
+      {
+        "name": "AnrFunction.cellRelHoAttRateThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.cgiReportCountEval",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.detectObsoleteExtCellsEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.maxNoPciReportsEvent",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.maxTimeEventBasedPciConf",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.pciConflictCellSelection",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.pciConflictDetectionEcgiMeas",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.pciConflictMobilityEcgiMeas",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.pciConflictSelectThreshPerc",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.perCgiMeasPlmnWhiteListGeran",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.perCgiMeasPlmnWhiteListUtran",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.perEcgiMeasPlmnWhiteList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.plmnWhiteListEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.plmnWhiteListGeranEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.plmnWhiteListUtranEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.probCellDetectLowHoSuccThres",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.probCellDetectLowHoSuccTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.probCellDetectMedHoSuccThres",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.probCellDetectMedHoSuccTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.problematicCellPolicy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.removeEutranFreqRelTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.removeFreqRelTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.removeNcellTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.removeNenbTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.removeNrelTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunction.s1HoPrepConsFailThres",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "AnrFunctionEUtran.acquirePlmnIdListEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrEutranInterFMeasReportDecr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrEutranInterFMeasReportIncr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrEutranInterFMeasReportMax",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrEutranInterFMeasReportMin",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrInterFreqState",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrIntraFreqState",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrUesEUtraIntraFDecr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrUesEUtraIntraFIncrAnr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrUesEUtraIntraFIncrHo",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrUesEUtraIntraFMax",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrUesEUtraIntraFMin",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrUesThreshInterFDecr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrUesThreshInterFIncrAnr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrUesThreshInterFIncrHo",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrUesThreshInterFMax",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.anrUesThreshInterFMin",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.cellAddRsrpThresholdEutran",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.cellAddRsrqThresholdEutran",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.hoAllowedEutranPolicy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionEUtran.x2SetupPolicy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionEUtran"
+      },
+      {
+        "name": "AnrFunctionGeran.anrGeranMeasReportDecr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionGeran"
+      },
+      {
+        "name": "AnrFunctionGeran.anrGeranMeasReportIncr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionGeran"
+      },
+      {
+        "name": "AnrFunctionGeran.anrGeranMeasReportMax",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionGeran"
+      },
+      {
+        "name": "AnrFunctionGeran.anrGeranMeasReportMin",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionGeran"
+      },
+      {
+        "name": "AnrFunctionGeran.anrGeranMeasReportRacIncr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionGeran"
+      },
+      {
+        "name": "AnrFunctionGeran.anrGeranRacMeasOn",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionGeran"
+      },
+      {
+        "name": "AnrFunctionGeran.anrStateGsm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionGeran"
+      },
+      {
+        "name": "AnrFunctionGeran.problematicCellPolicy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionGeran"
+      },
+      {
+        "name": "AnrFunctionNR.anrStateNR",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionNR"
+      },
+      {
+        "name": "AnrFunctionNR.endcRachFailThrPerUe",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionNR"
+      },
+      {
+        "name": "AnrFunctionNR.essNRNeighborCellInfoUsed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionNR"
+      },
+      {
+        "name": "AnrFunctionNR.gNodebIdLength",
+        "type": "Introduced",
+        "description": "See MOM description",
+        "mo_class": "AnrFunctionNR"
+      },
+      {
+        "name": "AnrFunctionNR.maxNoOfUeForPciConflictDetect",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionNR"
+      },
+      {
+        "name": "AnrFunctionNR.pciConflictDetectionType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionNR"
+      },
+      {
+        "name": "AnrFunctionNR.scgSessTimeForEndcRachFail",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionNR"
+      },
+      {
+        "name": "AnrFunctionNR.supportNrFreqChange",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionNR"
+      },
+      {
+        "name": "AnrFunctionUtran.anrStateUtran",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionUtran"
+      },
+      {
+        "name": "AnrFunctionUtran.anrUtranAcMeasOn",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionUtran"
+      },
+      {
+        "name": "AnrFunctionUtran.anrUtranMeasReportAcIncr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionUtran"
+      },
+      {
+        "name": "AnrFunctionUtran.anrUtranMeasReportDecr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionUtran"
+      },
+      {
+        "name": "AnrFunctionUtran.anrUtranMeasReportIncr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionUtran"
+      },
+      {
+        "name": "AnrFunctionUtran.anrUtranMeasReportMax",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionUtran"
+      },
+      {
+        "name": "AnrFunctionUtran.anrUtranMeasReportMin",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionUtran"
+      },
+      {
+        "name": "AnrFunctionUtran.hoAllowedUtranPolicy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionUtran"
+      },
+      {
+        "name": "AnrPciConflictDrxProfile.anrPciConflictDrxInactivityTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrPciConflictDrxProfile"
+      },
+      {
+        "name": "AnrPciConflictDrxProfile.anrPciConflictLongDrxCycle",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrPciConflictDrxProfile"
+      },
+      {
+        "name": "AnrPciConflictDrxProfile.anrPciConflictOnDurationTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrPciConflictDrxProfile"
+      },
+      {
+        "name": "ENodeBFunction.endcX2IpAddrViaS1Active",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.measuringEcgiWithAgActive",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.x2WhiteList",
+        "type": "Introduced",
+        "description": "See MOM description.  The attribute has the following members:  enbId     mcc     mnc     mncLength",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.separateEnGnbForMoranEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranCellRelation.barringLowHoAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.isRemoveAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.pciConflictPreferredCellAuto",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.pciConflictPreferredCellMan",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.anrMeasOn",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.candNeighborRel",
+        "type": "Introduced",
+        "description": "See MOM description.  The attribute has the following members:  cellId     enbId     mcc     mnc     mncLength     mobilityStatusReason     physicalLayerCellIdGroup     physicalLayerSubCellId     tac",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "ExternalBroadcastPLMNInfo.externalBroadcastPLMNInfoId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalBroadcastPLMNInfo"
+      },
+      {
+        "name": "ExternalBroadcastPLMNInfo.createdBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalBroadcastPLMNInfo"
+      },
+      {
+        "name": "ExternalBroadcastPLMNInfo.pLMNIdList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalBroadcastPLMNInfo"
+      },
+      {
+        "name": "ExternalBroadcastPLMNInfo.nRTAC",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalBroadcastPLMNInfo"
+      },
+      {
+        "name": "ExternalEUtranCellFDD.isRemoveAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalEUtranCellFDD"
+      },
+      {
+        "name": "ExternalEUtranCellFDD.plmnListVerifiedByX2OrCgi",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalEUtranCellFDD"
+      },
+      {
+        "name": "ExternalEUtranCellTDD.isRemoveAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalEUtranCellTDD"
+      },
+      {
+        "name": "ExternalEUtranCellTDD.plmnListVerifiedByX2OrCgi",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalEUtranCellTDD"
+      },
+      {
+        "name": "ExternalGUtranCell.configuredTAC",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGUtranCell"
+      },
+      {
+        "name": "ExternalGUtranCell.nRTAC",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGUtranCell"
+      },
+      {
+        "name": "ExternalGUtranCell.plmnIdList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGUtranCell"
+      },
+      {
+        "name": "GeranCellRelation.hoSuccLevel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GeranCellRelation"
+      },
+      {
+        "name": "GeranCellRelation.mobilityStatus",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GeranCellRelation"
+      },
+      {
+        "name": "GUtranCellRelation.isRemoveAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GUtranCellRelation"
+      },
+      {
+        "name": "GUtranCellRelation.mobilityStatusNR",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GUtranCellRelation"
+      },
+      {
+        "name": "GUtranFreqRelation.anrMeasOn",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GUtranFreqRelation"
+      },
+      {
+        "name": "GUtranFreqRelation.cellAddRsrpThrNROverride",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GUtranFreqRelation"
+      },
+      {
+        "name": "GUtranFreqRelation.cellAddRsrqThrNROverride",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GUtranFreqRelation"
+      },
+      {
+        "name": "PlmnInfo.actualPlmn",
+        "type": "Introduced",
+        "description": "See MOM description.  The attribute has the following members:  mcc     mnc     mncLength",
+        "mo_class": "PlmnInfo"
+      },
+      {
+        "name": "PlmnInfo.plmnWhiteList(1)",
+        "type": "Introduced",
+        "description": "See MOM description.  The attribute has the following members:  mcc     mnc     mncLength",
+        "mo_class": "PlmnInfo"
+      },
+      {
+        "name": "ReportConfigA5Anr.a5Threshold1RsrpAnrDelta",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5Anr"
+      },
+      {
+        "name": "ReportConfigA5Anr.a5Threshold1RsrqAnrDelta",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5Anr"
+      },
+      {
+        "name": "ReportConfigA5Anr.a5Threshold2RsrpAnrDelta",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5Anr"
+      },
+      {
+        "name": "ReportConfigA5Anr.a5Threshold2RsrqAnrDelta",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5Anr"
+      },
+      {
+        "name": "ReportConfigA5Anr.hysteresisA5",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5Anr"
+      },
+      {
+        "name": "ReportConfigA5Anr.timeToTriggerA5",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5Anr"
+      },
+      {
+        "name": "ReportConfigEUtraBestCellAnr.a3offsetAnrDelta",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBestCellAnr"
+      },
+      {
+        "name": "ReportConfigEUtraBestCellAnr.hysteresisA3",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBestCellAnr"
+      },
+      {
+        "name": "ReportConfigEUtraBestCellAnr.timeToTriggerA3",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBestCellAnr"
+      },
+      {
+        "name": "TermPointToENB.domainName",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TermPointToENB"
+      },
+      {
+        "name": "UeMeasControl.maxMeasInterFreqEUtra",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.maxMeasUtraFdd",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.maxNoMeasReportsInact",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.maxNoMeasReportsInact",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.maxNoMeasReportsInact",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.measQuantityUtraFDD",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UtranFreqRelation.anrMeasOn",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UtranFreqRelation"
+      },
+      {
+        "name": "AnrFunction.removeNgnbTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunction"
+      },
+      {
+        "name": "ExternalGUtranCell.isRemoveAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGUtranCell"
+      },
+      {
+        "name": "GUtranCellRelation.isRemoveAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GUtranCellRelation"
+      },
+      {
+        "name": "INTERNAL_EVENT_ANR_NR_EVAL",
+        "type": "EVENT_PARAM_ANR_EVAL_RESULT  EVENT_PARAM_ANR_TRIGGER  EVENT_PARAM_FREQ  EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_RSRP  EVENT_PARAM_NEIGHBOR_RSRQ  EVENT_PARAM_TRIGGER_QUANTITY_NR",
+        "description": "Triggered when the reported radio link quality is below the ANR-specific threshold                 to indicate if GUtranCellRelation creation toward a weak cell is prevented.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_ANR_NR_FREQ_REL_ADD",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_NCGI  EVENT_PARAM_ANR_RESULT  EVENT_PARAM_PREVIOUS_NR_NEIGHBOR_FREQ  EVENT_PARAM_UPDATED_NR_NEIGHBOR_FREQ  EVENT_PARAM_PREVIOUS_NR_NEIGHBOR_SMTC_SCS  EVENT_PARAM_UPDATED_NR_NEIGHBOR_SMTC_SCS",
+        "description": "Triggered when a GUtranFreqRelation MO is automatically                 added.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBREL_ADD",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_RAT  EVENT_PARAM_ANR_RESULT  EVENT_PARAM_NEIGHBOR_NCGI  EVENT_PARAM_NEIGH_ADD_METHOD",
+        "description": "Triggered when the neighbor cell is automatically added.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBREL_ADD",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_OPERATION  EVENT_PARAM_SELECT_METHOD",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBCELL_CHANGE",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_ANR_CAUSE  EVENT_PARAM_ANR_OPERATION  EVENT_PARAM_RAT  EVENT_PARAM_FREQ  EVENT_PARAM_ANR_RESULT  EVENT_PARAM_NEIGHBOR_NCGI",
+        "description": "Triggered when a neighbor cell is automatically added, removed, or updated.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBENB_CHANGE",
+        "type": "EVENT_PARAM_GENBID  EVENT_PARAM_ENB_NAME  EVENT_PARAM_ANR_CAUSE  EVENT_PARAM_ANR_OPERATION  EVENT_PARAM_ANR_RESULT",
+        "description": "Triggered when a neighbor RBS is automatically added, removed, or updated.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBREL_REMOVE",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_ANR_CAUSE  EVENT_PARAM_RAT  EVENT_PARAM_ANR_RESULT  EVENT_PARAM_NEIGHBOR_NCGI",
+        "description": "Triggered when the neighbor cell is automatically removed.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBREL_SELECT_PCI_CONFLICT",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_OPERATION  EVENT_PARAM_SELECT_METHOD",
+        "description": "Triggered when a preferred neighbor relation is selected or deselected by the                 selection of preferred neighbor cell in PCI conflicts function.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_ANR_CGI_REPORT",
+        "type": "EVENT_PARAM_REJECT_MEAS_CAUSE  EVENT_PARAM_AFFECTED_MEAS_TYPE  EVENT_PARAM_MEASUREMENT_ID  EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_ANR_MEASURE_RESULT  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_RAT  EVENT_PARAM_FREQ  EVENT_PARAM_NO_SIB1_IN_CGI_INFO  EVENT_PARAM_NEIGHBOR_NCGI",
+        "description": "Triggered when the ANR feature initiates a CGI measurement and RBS receives a CGI                 report from the UE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_ANR_CONFIG_PCI",
+        "type": "EVENT_PARAM_RAT  EVENT_PARAM_FREQ  EVENT_PARAM_GERAN_FREQ_GROUP_ID",
+        "description": "Triggered when the configuration measurements are sent to measure PCI.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_ANR_PCI_REPORT",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_RAT  EVENT_PARAM_FREQ  EVENT_PARAM_ANR_MEASURE_RESULT",
+        "description": "Triggered when the PCI report from UE is received.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_ANR_CONFIG_PCI_REMOVE",
+        "type": "EVENT_PARAM_ANR_REMOVE_CAUSE",
+        "description": "Triggered when an ANR PCI measurement is removed.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_ANR_PCI_REPORT_WANTED",
+        "type": "EVENT_PARAM_ANR_PCI_MEASURE_RESULT  EVENT_PARAM_RAT  EVENT_PARAM_FREQ  EVENT_PARAM_GERAN_FREQ_GROUP_ID  EVENT_PARAM_UE_CAP_ANR_FEATURE_INDICATORS",
+        "description": "Triggered when UE becomes available to perform ANR-specific PCI measurements  The event specifies the success or failure of selecting this UE to measure on a                 particular frequency.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_ANR _HO_LEVEL_CHANGED",
+        "type": "EVENT_PARAM_HO_SUCC_LEVEL  EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "Triggered when handover execution success rate is changed in any of the following                 ways for the ANR Detection of Problematic Cells function:    From HIGH to MEDIUM     From MEDUIM to LOW     From LOW to MEDIUM     From MEDIUM to HIGH",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_ANR_PCI_CONFLICT_CGI_REPORT",
+        "type": "EVENT_PARAM_REJECT_MEAS_CAUSE  EVENT_PARAM_AFFECTED_MEAS_TYPE  EVENT_PARAM_MEASUREMENT_ID  EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_ANR_PCI_CONFLICT_MEASURE_RESULT  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_RAT  EVENT_PARAM_FREQ  EVENT_PARAM_START_CGI_MEAS_QCI1  EVENT_PARAM_CGI_MEAS_METHOD_TYPE  EVENT_ARRAY_ERAB_SERVICE_TYPE",
+        "description": "Generated for the procedure to request and receive CGI measurements for ANR PCI                 Conflict Detection.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_PERIODICAL_NR",
+        "type": "EVENT_PARAM_MEASUREMENT_ID  EVENT_PARAM_MEAS_OBJECT_ID  EVENT_PARAM_MEAS_REQUESTER  EVENT_PARAM_PERIODICAL_PURPOSE  EVENT_PARAM_ARFCN  EVENT_PARAM_MAX_REPORT_CELLS  EVENT_PARAM_REPORT_INTERVAL  EVENT_PARAM_REPORT_AMOUNT  EVENT_PARAM_EXT_MAX_MEASID  EVENT_PARAM_EXT_MAX_MEASID  EVENT_PARAM_INC_MON_EUTRA  EVENT_PARAM_UE_TRACE_ID",
+        "description": "Triggered when a UE uses RRC Reconfiguration to report measurements on NR with                 Report Configuration of type Periodical.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBGNB_CHANGE",
+        "type": "EVENT_PARAM_GLOBAL_RN_ID  EVENT_PARAM_GNB_NAME  EVENT_PARAM_ANR_CAUSE  EVENT_PARAM_ANR_OPERATION  EVENT_PARAM_ANR_RESULT",
+        "description": "Triggered when a neighbor gNodeB is automatically added, removed, or updated.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "",
+        "description": "Can be used to observe the performance of LTE-to-NR standalone relations.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+        "type": "",
+        "description": "Can be used to observe the performance of LTE-to-NR standalone relations.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBGNB_CHANGE",
+        "type": "",
+        "description": "Triggered when a neighbor gNodeB is automatically added, removed, or updated.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_NR_PCI_CONFLICT_SUSPECTED",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_NCGI",
+        "description": "Triggered if a source cell finds an NR cell where PCI conflict is suspected if the                   RRC SCGFailureInformationNR message is received from the UE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "externalENodeBFunctionId",
+        "type": "The Automated Neighbor Relations feature constructs the RDN of the MO as                 follows:  [  ][  ]-[  ]  Example:   If MCC=125, MNC=46 , and eNBId=10243 , then                   externalENodeBFunctionId will be                   12546-10243.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "termPointToENBId(1)",
+        "type": "The Automated Neighbor Relations feature constructs the RDN of the MO as                 follows:  [  ][  ]-[  ]  Example:   If MCC=125, MNC=46 , and eNBId=10243, then                   termPointToENBId will be 12546-10243.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "externalEUtranCellFDDId  externalEUtranCellTDDId",
+        "type": "The Automated Neighbor Relations feature constructs the RDN of the MO as                 follows:  [  ][  ]-[  ]-[  ]  Example:   If MCC=125, MNC=46 , eNBId=10243 , and                   localCellId=30, then                   externalEUtranCellFDDId will be                   12546-10243-30.  Exists for MO classes:  ExternalEUtranCellFDD.ExternalEUtranCellFDDId     ExternalEUtranCellTDD.ExternalEUtranCellTDDId",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "eUtranCellRelationId",
+        "type": "The Automated Neighbor Relations feature constructs the RDN of the MO as                 follows:  [  ][  ]-[  ]-[  ], where localCellId applies to the                 case where the cell is in another RBS. If both cells are in the same RBS,                   cellId applies. That is, the                   eUtranCellRelationId corresponds to CGI, which refers to the                 target cell. ,                     Example:   If the target cell has MCC=125, MNC=46eNBId=10243 , and localCellId=30 ,, then                   eUtranCellRelationId will be                   12546-10243-30.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "externalUtranCellFDDId  externalUtranCellTDDId",
+        "type": "The Automated Neighbor Relations feature constructs the RDN of the MO as                 follows:  [  ][  ]-[ RNC-ID ]-[  ]  Example:   If MCC=125, MNC=46 , and rncId=1024 and                   cId=30, then externalUtranCellFDDId will                 be 12546-1024-30.  Bits 1\u20136 of cellIdentity is cId and bits                 17\u201328 of cellIdentity is rncId.  Exists for MO classes:  ExternalUtranCellFDD.externalUtranCellFDDId     ExternalUtranCellTDD.externalUtranCellTDDId",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "utranCellRelationId",
+        "type": "The Automated Neighbor Relations feature constructs the RDN of the MO as                 follows:  [  ][  ]-[ RNC-ID ]-[  ]  Example:   If the target cell has MCC=125, MNC=46 ,                   rncId=1024 and cId=30 , then                   utranCellRelationId will be                 12546-1024-30.  Bits 1\u20136 of cellIdentity is cId and bits                 17\u201328 of cellIdentity is rncId.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "externalGeranCellId",
+        "type": "The Automated Neighbor Relations feature constructs the RDN of the MO as                 follows:  [  ][  ]-[  ]-[  ]  Example:   If MCC=125, MNC=46 , lac=10243 , and                   cellIdentity=30 , then externalGeranCellId                 will be 12546-10243-30.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "geranCellRelationId",
+        "type": "The Automated Neighbor Relations feature constructs the RDN of the MO as                 follows:  [  ][  ]-[  ]-[  ]  Example:   If the target cell has MCC=125, MNC=46                   ,lac=10243 , and cellIdentity=30 , then                   geranCellRelationId will be                 12546-10243-30.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "externalGUtranCellId",
+        "type": "The Automated Neighbor Relations feature constructs the RDN of the MO as                 follows:  [  ][  ]-[ leading 0s ( length : 32- gNodeBIdLength ) ][ < gNBId > ]-[  ]  Example:   If MCC=123, MNC=45, Node_MCC=125, Node_MNC=46 ,                   gNBId=10243 , gNodeBIdLength=22 , and                   localCellId=30 , then externalGUtranCellId                 will be 12546-000000000010243-30.  The Node_MCC&Node_MNC is used for RDN",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "gUtranCellRelationId",
+        "type": "The Automated Neighbor Relations feature constructs the RDN of the MO as                 follows:  [  ][  ]-[ leading 0s ( length : 32- gNodeBIdLength ) ][ < gNBId > ]-[  ]  Example:   If the target cell has MCC=123, MNC=45, Node_MCC=125, Node_MNC=46 gNBId=10243 , gNodeBIdLength=22 , and                   localCellId=30 , then gUtranCellRelationId                 will be 12546-000000000010243-30.  The Node_MCC&Node_MNC is used for RDN",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "externalGNodeBFunctionId",
+        "type": "The Automated Neighbor Relations feature constructs the RDN of the MO as                 follows:  [  ][  ]-[ leading 0s ( length : 32- gNodeBIdLength ) ][  ]  Example:   If the target cell has MCC=125, MNC=46 ,                   gNBId=10243 , and gNodeBIdLength=22 ,                 then externalGNodeBFunctionId will be                   12546-000000000010243.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "termPointToGNBId",
+        "type": "The Automated Neighbor Relations feature constructs the RDN of the MO as                 follows:  [  ][  ]-[ leading 0s ( length : 32- gNodeBIdLength ) ][  ]  Example:   If the target cell has Node_MCC=125, Node_MNC=46 ,                   gNBId=10243, and gNodeBIdLength=22 ,                 then termPointToGNBId will be                   12546-000000000010243.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.KK",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ExternalGNodeBFunction.dirDataPathAvail",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ExternalGNodeBFunction"
+      },
+      {
+        "name": "SubscriberGroupProfile.featuresToDisableMeas",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "SubscriberGroupProfile"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmAgMeasSuccCgi",
+        "description": "Performance counter pmAgMeasSuccCgi",
+        "category": "General"
+      },
+      {
+        "name": "pmAgMeasSuccCgiMcPtt",
+        "description": "Performance counter pmAgMeasSuccCgiMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmAgMeasSuccCgiNonMcPtt",
+        "description": "Performance counter pmAgMeasSuccCgiNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmAgMeasSuccCgiQci1",
+        "description": "Performance counter pmAgMeasSuccCgiQci1",
+        "category": "General"
+      },
+      {
+        "name": "pmAnrHoSuccLevelLow",
+        "description": "Performance counter pmAnrHoSuccLevelLow",
+        "category": "General"
+      },
+      {
+        "name": "pmAnrHoSuccLevelMedium",
+        "description": "Performance counter pmAnrHoSuccLevelMedium",
+        "category": "General"
+      },
+      {
+        "name": "pmAnrMeasSuccNrCgi",
+        "description": "Performance counter pmAnrMeasSuccNrCgi",
+        "category": "General"
+      },
+      {
+        "name": "pmAnrMeasSuccNrCgiNoSIB1",
+        "description": "Performance counter pmAnrMeasSuccNrCgiNoSIB1",
+        "category": "General"
+      },
+      {
+        "name": "pmAnrNeighbrelAdd",
+        "description": "Performance counter pmAnrNeighbrelAdd",
+        "category": "General"
+      },
+      {
+        "name": "pmAnrNeighbrelAddNr",
+        "description": "Performance counter pmAnrNeighbrelAddNr",
+        "category": "General"
+      },
+      {
+        "name": "pmAnrNeighbrelDelNr",
+        "description": "Performance counter pmAnrNeighbrelDelNr",
+        "category": "General"
+      },
+      {
+        "name": "pmAnrNeighbrelRem",
+        "description": "Performance counter pmAnrNeighbrelRem",
+        "category": "General"
+      },
+      {
+        "name": "pmAnrNrNoActionTooWeak",
+        "description": "Performance counter pmAnrNrNoActionTooWeak",
+        "category": "General"
+      },
+      {
+        "name": "pmAnrPciConflictMeasFailEutranCgi",
+        "description": "Performance counter pmAnrPciConflictMeasFailEutranCgi",
+        "category": "General"
+      },
+      {
+        "name": "pmAnrPciConflictMeasSuccEutranCgi",
+        "description": "Performance counter pmAnrPciConflictMeasSuccEutranCgi",
+        "category": "General"
+      },
+      {
+        "name": "pmB1BestCellEvalReport",
+        "description": "Performance counter pmB1BestCellEvalReport",
+        "category": "General"
+      },
+      {
+        "name": "pmB1BestCellEvalReportRsrp",
+        "description": "Performance counter pmB1BestCellEvalReportRsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmB1BestCellEvalReportRsrq",
+        "description": "Performance counter pmB1BestCellEvalReportRsrq",
+        "category": "General"
+      },
+      {
+        "name": "pmB1MeasRepEndcConfig",
+        "description": "Performance counter pmB1MeasRepEndcConfig",
+        "category": "General"
+      },
+      {
+        "name": "pmB1MeasRepEndcConfigRestart",
+        "description": "Performance counter pmB1MeasRepEndcConfigRestart",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteInterFEndcHo",
+        "description": "Performance counter pmCellHoExeAttLteInterFEndcHo",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteInterFEndcHo",
+        "description": "Performance counter pmCellHoExeSuccLteInterFEndcHo",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteInterFEndcHo",
+        "description": "Performance counter pmCellHoPrepAttLteInterFEndcHo",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepSuccLteInterFEndcHo",
+        "description": "Performance counter pmCellHoPrepSuccLteInterFEndcHo",
+        "category": "General"
+      },
+      {
+        "name": "pmCgiMeasFailAnrPciConflict",
+        "description": "Performance counter pmCgiMeasFailAnrPciConflict",
+        "category": "General"
+      },
+      {
+        "name": "pmCgiMeasSuccAg",
+        "description": "Performance counter pmCgiMeasSuccAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCgiMeasSuccAgQci1",
+        "description": "Performance counter pmCgiMeasSuccAgQci1",
+        "category": "General"
+      },
+      {
+        "name": "pmCgiMeasSuccAnrPciConflict",
+        "description": "Performance counter pmCgiMeasSuccAnrPciConflict",
+        "category": "General"
+      },
+      {
+        "name": "pmCgiMeasSuccDrx",
+        "description": "Performance counter pmCgiMeasSuccDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCgiMeasSuccDrxQci1",
+        "description": "Performance counter pmCgiMeasSuccDrxQci1",
+        "category": "General"
+      },
+      {
+        "name": "pmConnModeMobilityExcluded",
+        "description": "Performance counter pmConnModeMobilityExcluded",
+        "category": "General"
+      },
+      {
+        "name": "pmCounter",
+        "description": "Performance counter pmCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmDrxMeasSuccCgi",
+        "description": "Performance counter pmDrxMeasSuccCgi",
+        "category": "General"
+      },
+      {
+        "name": "pmDrxMeasSuccCgiMcPtt",
+        "description": "Performance counter pmDrxMeasSuccCgiMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmDrxMeasSuccCgiNonMcPtt",
+        "description": "Performance counter pmDrxMeasSuccCgiNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmDrxMeasSuccCgiQci1",
+        "description": "Performance counter pmDrxMeasSuccCgiQci1",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcSetupScgUeAtt",
+        "description": "Performance counter pmEndcSetupScgUeAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcSetupScgUeSucc",
+        "description": "Performance counter pmEndcSetupScgUeSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcSetupUeAtt",
+        "description": "Performance counter pmEndcSetupUeAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcSetupUeSucc",
+        "description": "Performance counter pmEndcSetupUeSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmEvent",
+        "description": "Performance counter pmEvent",
+        "category": "General"
+      },
+      {
+        "name": "pmEvents",
+        "description": "Performance counter pmEvents",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeAttNr",
+        "description": "Performance counter pmFlexCellHoExeAttNr",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeSuccNr",
+        "description": "Performance counter pmFlexCellHoExeSuccNr",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepAttNr",
+        "description": "Performance counter pmFlexCellHoPrepAttNr",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepSuccNr",
+        "description": "Performance counter pmFlexCellHoPrepSuccNr",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexUeCtxtRelSCNr",
+        "description": "Performance counter pmFlexUeCtxtRelSCNr",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAtt",
+        "description": "Performance counter pmHoExeAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSucc",
+        "description": "Performance counter pmHoExeSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAtt",
+        "description": "Performance counter pmHoPrepAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSucc",
+        "description": "Performance counter pmHoPrepSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPreventedNotInPlmnWL",
+        "description": "Performance counter pmHoPreventedNotInPlmnWL",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPreventedNotInPlmnWLGeran",
+        "description": "Performance counter pmHoPreventedNotInPlmnWLGeran",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPreventedNotInPlmnWLUtran",
+        "description": "Performance counter pmHoPreventedNotInPlmnWLUtran",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPreventedProblematicCell",
+        "description": "Performance counter pmHoPreventedProblematicCell",
+        "category": "General"
+      },
+      {
+        "name": "pmIdleModeMobilityExcluded",
+        "description": "Performance counter pmIdleModeMobilityExcluded",
+        "category": "General"
+      },
+      {
+        "name": "pmMeasRepEndcConfig",
+        "description": "Performance counter pmMeasRepEndcConfig",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolDlDrb",
+        "description": "Performance counter pmPdcpVolDlDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgRestoreMcPtt",
+        "description": "Performance counter pmRrcConnReconfAgRestoreMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgRestoreNonMcPtt",
+        "description": "Performance counter pmRrcConnReconfAgRestoreNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgRestoreQci1",
+        "description": "Performance counter pmRrcConnReconfAgRestoreQci1",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgSuccCgi",
+        "description": "Performance counter pmRrcConnReconfAgSuccCgi",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgSuccMcPtt",
+        "description": "Performance counter pmRrcConnReconfAgSuccMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgSuccNonMcPtt",
+        "description": "Performance counter pmRrcConnReconfAgSuccNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgSuccQci1",
+        "description": "Performance counter pmRrcConnReconfAgSuccQci1",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxFail",
+        "description": "Performance counter pmRrcConnReconfDrxFail",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxRestoreMcPtt",
+        "description": "Performance counter pmRrcConnReconfDrxRestoreMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxRestoreNonMcPtt",
+        "description": "Performance counter pmRrcConnReconfDrxRestoreNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxRestoreQci1",
+        "description": "Performance counter pmRrcConnReconfDrxRestoreQci1",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxSucc",
+        "description": "Performance counter pmRrcConnReconfDrxSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxSuccCgi",
+        "description": "Performance counter pmRrcConnReconfDrxSuccCgi",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxSuccMcPtt",
+        "description": "Performance counter pmRrcConnReconfDrxSuccMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxSuccNonMcPtt",
+        "description": "Performance counter pmRrcConnReconfDrxSuccNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxSuccQci1",
+        "description": "Performance counter pmRrcConnReconfDrxSuccQci1",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCNr",
+        "description": "Performance counter pmUeCtxtRelSCNr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCNrB1Rsrp",
+        "description": "Performance counter pmUeCtxtRelSCNrB1Rsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCNrB1Rsrq",
+        "description": "Performance counter pmUeCtxtRelSCNrB1Rsrq",
+        "category": "General"
+      },
+      {
+        "name": "pmand",
+        "description": "Performance counter pmand",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      },
+      {
+        "name": "pmstatistics",
+        "description": "Performance counter pmstatistics",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_ANR_NR_EVAL",
+        "type": "EVENT_PARAM_ANR_EVAL_RESULT  EVENT_PARAM_ANR_TRIGGER  EVENT_PARAM_FREQ  EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_RSRP  EVENT_PARAM_NEIGHBOR_RSRQ  EVENT_PARAM_TRIGGER_QUANTITY_NR",
+        "description": "Triggered when the reported radio link quality is below the ANR-specific threshold                 to indicate if GUtranCellRelation creation toward a weak cell is prevented."
+      },
+      {
+        "name": "INTERNAL_EVENT_ANR_NR_FREQ_REL_ADD",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_NCGI  EVENT_PARAM_ANR_RESULT  EVENT_PARAM_PREVIOUS_NR_NEIGHBOR_FREQ  EVENT_PARAM_UPDATED_NR_NEIGHBOR_FREQ  EVENT_PARAM_PREVIOUS_NR_NEIGHBOR_SMTC_SCS  EVENT_PARAM_UPDATED_NR_NEIGHBOR_SMTC_SCS",
+        "description": "Triggered when a GUtranFreqRelation MO is automatically                 added."
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBREL_ADD",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_RAT  EVENT_PARAM_ANR_RESULT  EVENT_PARAM_NEIGHBOR_NCGI  EVENT_PARAM_NEIGH_ADD_METHOD",
+        "description": "Triggered when the neighbor cell is automatically added."
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBREL_ADD",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_OPERATION  EVENT_PARAM_SELECT_METHOD",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBCELL_CHANGE",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_ANR_CAUSE  EVENT_PARAM_ANR_OPERATION  EVENT_PARAM_RAT  EVENT_PARAM_FREQ  EVENT_PARAM_ANR_RESULT  EVENT_PARAM_NEIGHBOR_NCGI",
+        "description": "Triggered when a neighbor cell is automatically added, removed, or updated."
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBENB_CHANGE",
+        "type": "EVENT_PARAM_GENBID  EVENT_PARAM_ENB_NAME  EVENT_PARAM_ANR_CAUSE  EVENT_PARAM_ANR_OPERATION  EVENT_PARAM_ANR_RESULT",
+        "description": "Triggered when a neighbor RBS is automatically added, removed, or updated."
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBREL_REMOVE",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_ANR_CAUSE  EVENT_PARAM_RAT  EVENT_PARAM_ANR_RESULT  EVENT_PARAM_NEIGHBOR_NCGI",
+        "description": "Triggered when the neighbor cell is automatically removed."
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBREL_SELECT_PCI_CONFLICT",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_OPERATION  EVENT_PARAM_SELECT_METHOD",
+        "description": "Triggered when a preferred neighbor relation is selected or deselected by the                 selection of preferred neighbor cell in PCI conflicts function."
+      },
+      {
+        "name": "INTERNAL_PROC_ANR_CGI_REPORT",
+        "type": "EVENT_PARAM_REJECT_MEAS_CAUSE  EVENT_PARAM_AFFECTED_MEAS_TYPE  EVENT_PARAM_MEASUREMENT_ID  EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_ANR_MEASURE_RESULT  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_RAT  EVENT_PARAM_FREQ  EVENT_PARAM_NO_SIB1_IN_CGI_INFO  EVENT_PARAM_NEIGHBOR_NCGI",
+        "description": "Triggered when the ANR feature initiates a CGI measurement and RBS receives a CGI                 report from the UE."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_ANR_CONFIG_PCI",
+        "type": "EVENT_PARAM_RAT  EVENT_PARAM_FREQ  EVENT_PARAM_GERAN_FREQ_GROUP_ID",
+        "description": "Triggered when the configuration measurements are sent to measure PCI."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_ANR_PCI_REPORT",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_RAT  EVENT_PARAM_FREQ  EVENT_PARAM_ANR_MEASURE_RESULT",
+        "description": "Triggered when the PCI report from UE is received."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_ANR_CONFIG_PCI_REMOVE",
+        "type": "EVENT_PARAM_ANR_REMOVE_CAUSE",
+        "description": "Triggered when an ANR PCI measurement is removed."
+      },
+      {
+        "name": "INTERNAL_EVENT_ANR_PCI_REPORT_WANTED",
+        "type": "EVENT_PARAM_ANR_PCI_MEASURE_RESULT  EVENT_PARAM_RAT  EVENT_PARAM_FREQ  EVENT_PARAM_GERAN_FREQ_GROUP_ID  EVENT_PARAM_UE_CAP_ANR_FEATURE_INDICATORS",
+        "description": "Triggered when UE becomes available to perform ANR-specific PCI measurements  The event specifies the success or failure of selecting this UE to measure on a                 particular frequency."
+      },
+      {
+        "name": "INTERNAL_EVENT_ANR _HO_LEVEL_CHANGED",
+        "type": "EVENT_PARAM_HO_SUCC_LEVEL  EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "Triggered when handover execution success rate is changed in any of the following                 ways for the ANR Detection of Problematic Cells function:    From HIGH to MEDIUM     From MEDUIM to LOW     From LOW to MEDIUM     From MEDIUM to HIGH"
+      },
+      {
+        "name": "INTERNAL_PROC_ANR_PCI_CONFLICT_CGI_REPORT",
+        "type": "EVENT_PARAM_REJECT_MEAS_CAUSE  EVENT_PARAM_AFFECTED_MEAS_TYPE  EVENT_PARAM_MEASUREMENT_ID  EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_ANR_PCI_CONFLICT_MEASURE_RESULT  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_RAT  EVENT_PARAM_FREQ  EVENT_PARAM_START_CGI_MEAS_QCI1  EVENT_PARAM_CGI_MEAS_METHOD_TYPE  EVENT_ARRAY_ERAB_SERVICE_TYPE",
+        "description": "Generated for the procedure to request and receive CGI measurements for ANR PCI                 Conflict Detection."
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_PERIODICAL_NR",
+        "type": "EVENT_PARAM_MEASUREMENT_ID  EVENT_PARAM_MEAS_OBJECT_ID  EVENT_PARAM_MEAS_REQUESTER  EVENT_PARAM_PERIODICAL_PURPOSE  EVENT_PARAM_ARFCN  EVENT_PARAM_MAX_REPORT_CELLS  EVENT_PARAM_REPORT_INTERVAL  EVENT_PARAM_REPORT_AMOUNT  EVENT_PARAM_EXT_MAX_MEASID  EVENT_PARAM_EXT_MAX_MEASID  EVENT_PARAM_INC_MON_EUTRA  EVENT_PARAM_UE_TRACE_ID",
+        "description": "Triggered when a UE uses RRC Reconfiguration to report measurements on NR with                 Report Configuration of type Periodical."
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBGNB_CHANGE",
+        "type": "EVENT_PARAM_GLOBAL_RN_ID  EVENT_PARAM_GNB_NAME  EVENT_PARAM_ANR_CAUSE  EVENT_PARAM_ANR_OPERATION  EVENT_PARAM_ANR_RESULT",
+        "description": "Triggered when a neighbor gNodeB is automatically added, removed, or updated."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "",
+        "description": "Can be used to observe the performance of LTE-to-NR standalone relations."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+        "type": "",
+        "description": "Can be used to observe the performance of LTE-to-NR standalone relations."
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBGNB_CHANGE",
+        "type": "",
+        "description": "Triggered when a neighbor gNodeB is automatically added, removed, or updated."
+      },
+      {
+        "name": "INTERNAL_EVENT_NR_PCI_CONFLICT_SUSPECTED",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_NCGI",
+        "description": "Triggered if a source cell finds an NR cell where PCI conflict is suspected if the                   RRC SCGFailureInformationNR message is received from the UE."
+      },
+      {
+        "name": "INTERNAL_PROC_ANR_PCI_CONFLICT_CGI_REPORT",
+        "type": "Generated for the procedure to request and receive CGI measurements for ANR PCI Conflict          Detection.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PROC_ANR_PCI_CONFLICT_CGI_REPORT",
+        "type": "Generated for the procedure to request and receive CGI measurements for ANR PCI         Conflict Detection.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBREL_ADD",
+        "type": "Triggered when a neighbor relation is created by the                                             EVENT_PARAM_NEIGHBREL_ADD_METHOD_NR                                         event value.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBCELL_CHANGE",
+        "type": "Triggered when a neighbor cell is added, removed, or                                         updated.  Cause of PCI report on found NR cell in an ESS cell pair is                                         added to the event.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_NEIGHBREL_ADD",
+        "type": "Triggered when the neighbor cell relation is automatically                                         added.  Cause of PCI report on found NR cell in an ESS cell pair is                                         added to the event.",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010620 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010620 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/76_22104-LZA7016014_1Uen.KK.md",
+    "file_hash": "557545c4889e87b76479b67d6ac6bd37",
+    "processed_at": "2025-10-19 15:50:06",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

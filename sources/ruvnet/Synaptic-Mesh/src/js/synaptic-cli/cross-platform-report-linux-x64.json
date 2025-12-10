@@ -1,0 +1,164 @@
+{
+  "platform": "linux",
+  "arch": "x64",
+  "node": "v22.16.0",
+  "timestamp": "2025-07-13T03:54:38.284Z",
+  "tests": {
+    "os_info": {
+      "name": "OS Information",
+      "status": "passed",
+      "success": true,
+      "data": {
+        "platform": "linux",
+        "arch": "x64",
+        "release": "6.8.0-1027-azure",
+        "type": "Linux",
+        "cpus": 16,
+        "memory": "63GB",
+        "uptime": "0h"
+      }
+    },
+    "node_features": {
+      "name": "Node.js Features",
+      "status": "passed",
+      "success": true,
+      "data": {
+        "version": "v22.16.0",
+        "v8": "12.4.254.21-node.26",
+        "uv": "1.49.2",
+        "zlib": "1.3.0.1-motley-780819f",
+        "openssl": "3.0.16",
+        "unicode": "16.0",
+        "worker_threads": true,
+        "async_hooks": true
+      }
+    },
+    "path_resolution": {
+      "name": "Path Resolution",
+      "status": "passed",
+      "success": true
+    },
+    "binary_permissions": {
+      "name": "Binary Permissions",
+      "status": "passed",
+      "success": true
+    },
+    "binary_execution": {
+      "name": "Binary Execution Test",
+      "status": "passed",
+      "success": true,
+      "output": "1.0.0-alpha.1\nSynaptic Neural Mesh v1.0.0-alpha.1"
+    },
+    "npm_pack_test": {
+      "name": "NPM Pack Test",
+      "status": "passed",
+      "success": true,
+      "output": "synaptic-mesh-1.0.0-alpha.1.tgz"
+    },
+    "local_install_test": {
+      "name": "Local Install Test",
+      "status": "passed",
+      "success": true
+    },
+    "npx_version": {
+      "name": "NPX Version Test",
+      "status": "passed",
+      "success": true,
+      "warning": "Using local binary"
+    },
+    "npx_help": {
+      "name": "NPX Help Test",
+      "status": "passed",
+      "success": true,
+      "warning": "Using local binary"
+    },
+    "wasm_availability": {
+      "name": "WebAssembly Availability",
+      "status": "passed",
+      "success": true
+    },
+    "wasm_modules": {
+      "name": "WASM Module Loading",
+      "status": "passed",
+      "success": true,
+      "modules": [
+        "neuro-divergent.wasm",
+        "ruv-fann.wasm",
+        "ruv_swarm_simd.wasm",
+        "ruv_swarm_wasm_bg.wasm"
+      ]
+    },
+    "network_interfaces": {
+      "name": "Network Interfaces",
+      "status": "passed",
+      "success": true,
+      "interfaces": [
+        "eth0"
+      ]
+    },
+    "port_availability": {
+      "name": "Port Availability",
+      "status": "passed",
+      "success": true,
+      "ports": {
+        "8080": "available",
+        "8081": "available",
+        "8082": "available"
+      }
+    },
+    "file_operations": {
+      "name": "File System Operations",
+      "status": "passed",
+      "success": true
+    },
+    "child_process": {
+      "name": "Child Process Support",
+      "status": "passed",
+      "success": true,
+      "version": "v22.16.0"
+    },
+    "signal_handling": {
+      "name": "Signal Handling",
+      "status": "passed",
+      "success": true
+    },
+    "memory_info": {
+      "name": "Memory Information",
+      "status": "passed",
+      "success": true,
+      "process": {
+        "rss": 74289152,
+        "heapTotal": 26017792,
+        "heapUsed": 13837304,
+        "external": 2842159,
+        "arrayBuffers": 1079607
+      },
+      "system": {
+        "total": 67421265920,
+        "free": 61183557632,
+        "used": 6237708288
+      }
+    },
+    "crypto_support": {
+      "name": "Crypto Support",
+      "status": "passed",
+      "success": true
+    },
+    "tls_support": {
+      "name": "TLS Support",
+      "status": "passed",
+      "success": true
+    }
+  },
+  "summary": {
+    "total": 19,
+    "passed": 19,
+    "failed": 0,
+    "warnings": 2
+  },
+  "errors": [],
+  "warnings": [
+    "NPX Version Test: Using local binary",
+    "NPX Help Test: Using local binary"
+  ]
+}

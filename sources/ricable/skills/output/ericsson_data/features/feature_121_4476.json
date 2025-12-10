@@ -1,0 +1,63 @@
+{
+  "id": "121 4476",
+  "name": "UE-Assisted Signaling Reduction",
+  "cxc_code": "CXC4011991",
+  "value_package": "High Load Handling",
+  "value_package_id": "FAJ 801 0415",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature allows for a reduction in signaling between the network and supported",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.enableUeAssistedSigReduction",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "PreschedulingProfile.preschedulingDuration",
+      "type": "Affecting",
+      "description": "The Prescheduling feature affects Efficient DRX/DTX for Connected UE feature and prolongs             the DRX active state. As such, configure                 PreschedulingProfile.preschedulingDuration and                 PreschedulingProfile.preschedulingPeriod parameters to minimum             values to minimize impact on the UE-Assisted Signaling Reduction feature.",
+      "mo_class": "PreschedulingProfile"
+    },
+    {
+      "name": "PreschedulingProfile.preschedulingPeriod",
+      "type": "Affecting",
+      "description": "The Prescheduling feature affects Efficient DRX/DTX for Connected UE feature and prolongs             the DRX active state. As such, configure                 PreschedulingProfile.preschedulingDuration and                 PreschedulingProfile.preschedulingPeriod parameters to minimum             values to minimize impact on the UE-Assisted Signaling Reduction feature.",
+      "mo_class": "PreschedulingProfile"
+    },
+    {
+      "name": "Uen.AD",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmFastPucchAssignPft",
+      "description": "Performance counter pmFastPucchAssignPft",
+      "category": "General"
+    },
+    {
+      "name": "pmZtemporary118",
+      "description": "Performance counter pmZtemporary118",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011991 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011991 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/191_22104-LZA7016014_1Uen.AD.md",
+  "file_hash": "248c64dcb7a27fbc221f6f8b17b83da7",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

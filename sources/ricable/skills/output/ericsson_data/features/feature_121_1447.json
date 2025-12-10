@@ -1,0 +1,175 @@
+{
+  "id": "121 1447",
+  "name": "System Improvements in LTE RAN L19.Q3",
+  "cxc_code": "CXC4011050",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "DU Radio Node, Baseband Radio Node",
+  "description": "",
+  "summary": "TCP Optimization feature provides low queuing delay with high link utilization and also",
+  "parameters": [
+    {
+      "name": "QciProfilePredefined.aqmMode",
+      "type": "See MOM description.",
+      "description": "",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfileOperatorDefined.aqmMode",
+      "type": "See MOM description.",
+      "description": "",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "EUtranCellFDD.estimatedE2ERTT",
+      "type": "See MOM description.",
+      "description": "",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.estimatedE2ERTT",
+      "type": "See MOM description.",
+      "description": "",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "QciProfilePredefined.pdb",
+      "type": "The contribution from eNodeB to the Packet Delay Budget (PDB) for                                     a QCI. Packet delays outside eNodeB, for example in the                                     transport network, are excluded. For more information about PDB,                                     see 3GPP TS 23.203: Policy and charging                                         control architecture.",
+      "description": "",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfileOperatorDefined.pdb",
+      "type": "The contribution from eNodeB to the Packet Delay Budget (PDB) for                                     a QCI. Packet delays outside eNodeB, for example in the                                     transport network, are excluded. For more information about PDB,                                     see 3GPP TS 23.203: Policy and charging                                         control architecture.",
+      "description": "",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "INTERNAL_PER_UE_RB_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_DRB_PACKET_DISC_AQM_DL",
+      "description": "Total number of packets (PDCP SDUs) for which no part has been                                     transmitted over the air in the downlink direction and are                                     discarded due to AQM.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.BE",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "ProfilePredefined.aqmMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ProfilePredefined"
+    },
+    {
+      "name": "EUtranCellFDD.pmPdcpPktDiscDlAqm",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmFlexPdcpPktDiscDlRbLimit",
+      "description": "Performance counter pmFlexPdcpPktDiscDlRbLimit",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexPdcpPktDiscDlStaleSdu",
+      "description": "Performance counter pmFlexPdcpPktDiscDlStaleSdu",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktDiscDlAqm",
+      "description": "Performance counter pmPdcpPktDiscDlAqm",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktDiscDlAqmQci",
+      "description": "Performance counter pmPdcpPktDiscDlAqmQci",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktDiscDlBbmLimit",
+      "description": "Performance counter pmPdcpPktDiscDlBbmLimit",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktDiscDlPelr",
+      "description": "Performance counter pmPdcpPktDiscDlPelr",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktDiscDlRbLimitQci",
+      "description": "Performance counter pmPdcpPktDiscDlRbLimitQci",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktDiscDlStaleSduQci",
+      "description": "Performance counter pmPdcpPktDiscDlStaleSduQci",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktLostUl",
+      "description": "Performance counter pmPdcpPktLostUl",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcDelayPktTransDl",
+      "description": "Performance counter pmRlcDelayPktTransDl",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcDelayPktTransDlQci",
+      "description": "Performance counter pmRlcDelayPktTransDlQci",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcDelayTimeDl",
+      "description": "Performance counter pmRlcDelayTimeDl",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcDelayTimeDlQci",
+      "description": "Performance counter pmRlcDelayTimeDlQci",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmeasRprtMaxSinr",
+      "description": "Performance counter pmeasRprtMaxSinr",
+      "category": "General"
+    },
+    {
+      "name": "pmeasRprtMinSinr",
+      "description": "Performance counter pmeasRprtMinSinr",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PER_UE_RB_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_DRB_PACKET_DISC_AQM_DL",
+      "description": "Total number of packets (PDCP SDUs) for which no part has been                                     transmitted over the air in the downlink direction and are                                     discarded due to AQM."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011050 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011050 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/44_22104-LZA7016014_1Uen.BE.md",
+  "file_hash": "ca6b6021116c1ac3f6bfcac8295c470b",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

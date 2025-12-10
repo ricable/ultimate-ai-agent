@@ -1,0 +1,376 @@
+{
+  "id": "121 5095",
+  "name": "RAN Slicing Framework",
+  "cxc_code": "CXC4012379",
+  "value_package": "NR Base Package",
+  "value_package_id": "FAJ 801 4002",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables RAN slicing and adds new configurations to the Single-Network Slice",
+  "parameters": [
+    {
+      "name": "CUCP5qiTable.default5qiTable",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CUCP5qiTable"
+    },
+    {
+      "name": "CUCP5qiTable.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CUCP5qiTable"
+    },
+    {
+      "name": "CUUP5qiTable.default5qiTable",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CUUP5qiTable"
+    },
+    {
+      "name": "CUUP5qiTable.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CUUP5qiTable"
+    },
+    {
+      "name": "DU5qiTable.default5qiTable",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DU5qiTable"
+    },
+    {
+      "name": "DU5qiTable.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DU5qiTable"
+    },
+    {
+      "name": "ExternalNRCellCU.sNSSAIList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExternalNRCellCU"
+    },
+    {
+      "name": "GNBCUUPFunction.sNSSAIList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GNBCUUPFunction"
+    },
+    {
+      "name": "NRCellCU.sNSSAIList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "NRCellDU.sNSSAIList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "ResourcePartition.related5qiTableRef",
+      "type": "Introduced",
+      "description": "This parameter is available in the following MO branches:  GNBCUCPFunction     GNBCUUPFunction     GNBDUFunction",
+      "mo_class": "ResourcePartition"
+    },
+    {
+      "name": "ResourcePartition.resourcePartitionId",
+      "type": "Introduced",
+      "description": "This parameter is available in the following MO branches:  GNBCUCPFunction     GNBCUUPFunction     GNBDUFunction",
+      "mo_class": "ResourcePartition"
+    },
+    {
+      "name": "ResourcePartitions.resourcePartitionsId",
+      "type": "Introduced",
+      "description": "This parameter is available in the following MO branches:  GNBCUCPFunction     GNBCUUPFunction     GNBDUFunction",
+      "mo_class": "ResourcePartitions"
+    },
+    {
+      "name": "ResourcePartition.resourcePartitionName",
+      "type": "Introduced",
+      "description": "This parameter is available in the following MO branches:  GNBCUCPFunction     GNBCUUPFunction     GNBDUFunction",
+      "mo_class": "ResourcePartition"
+    },
+    {
+      "name": "ResourcePartitionMember.cellIdList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ResourcePartitionMember"
+    },
+    {
+      "name": "ResourcePartitionMember.pLMNIdList",
+      "type": "Introduced",
+      "description": "This parameter is available in the following MO branches:  GNBCUCPFunction     GNBCUUPFunction     GNBDUFunction",
+      "mo_class": "ResourcePartitionMember"
+    },
+    {
+      "name": "ResourcePartitionMember.resourcePartitionMemberId",
+      "type": "Introduced",
+      "description": "This parameter is available in the following MO branches:  GNBCUCPFunction     GNBCUUPFunction     GNBDUFunction",
+      "mo_class": "ResourcePartitionMember"
+    },
+    {
+      "name": "ResourcePartitionMember.sNSSAIList",
+      "type": "Introduced",
+      "description": "This parameter is available in the following MO branches:  GNBCUCPFunction     GNBCUUPFunction     GNBDUFunction",
+      "mo_class": "ResourcePartitionMember"
+    },
+    {
+      "name": "TermPointToAmf.defaultAmf",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToAmf"
+    },
+    {
+      "name": "TermPointToAmf.pLMNIdList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToAmf"
+    },
+    {
+      "name": "TermPointToAmf.relativeCapacity",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToAmf"
+    },
+    {
+      "name": "TermPointToAmf.servedGuamiList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToAmf"
+    },
+    {
+      "name": "TermPointToAmf.sNSSAIList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToAmf"
+    },
+    {
+      "name": "CuCpProcPduSessionResourceRelease",
+      "type": "pdu_session_resource_release_result  nci  pdu_session_release_list  drb_release_list",
+      "description": "PDU Session Resource Release procedure.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.CA",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRCellDU.sNSSAIListNote",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsDrbEstabAtt5qi",
+      "description": "Performance counter pmEbsDrbEstabAtt5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbEstabSucc5qi",
+      "description": "Performance counter pmEbsDrbEstabSucc5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbRelAbnormalAmf5qi",
+      "description": "Performance counter pmEbsDrbRelAbnormalAmf5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbRelAbnormalAmfAct5qi",
+      "description": "Performance counter pmEbsDrbRelAbnormalAmfAct5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbRelAbnormalGnb5qi",
+      "description": "Performance counter pmEbsDrbRelAbnormalGnb5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbRelAbnormalGnbAct5qi",
+      "description": "Performance counter pmEbsDrbRelAbnormalGnbAct5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbRelNormal5qi",
+      "description": "Performance counter pmEbsDrbRelNormal5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsMacRBSymUtilDlPartitionDistr",
+      "description": "Performance counter pmEbsMacRBSymUtilDlPartitionDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsMacRBSymUtilUlPartitionDistr",
+      "description": "Performance counter pmEbsMacRBSymUtilUlPartitionDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsMacTimeDlDrb",
+      "description": "Performance counter pmEbsMacTimeDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsMacTimeDlDrbQos",
+      "description": "Performance counter pmEbsMacTimeDlDrbQos",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsMacTimeUlResUe",
+      "description": "Performance counter pmEbsMacTimeUlResUe",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsMacVolDlDrb",
+      "description": "Performance counter pmEbsMacVolDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsMacVolDlDrbQos",
+      "description": "Performance counter pmEbsMacVolDlDrbQos",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsMacVolUlResUe",
+      "description": "Performance counter pmEbsMacVolUlResUe",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPduSessionEstabAtt",
+      "description": "Performance counter pmEbsPduSessionEstabAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPduSessionEstabSucc",
+      "description": "Performance counter pmEbsPduSessionEstabSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPduSessionModifyAtt",
+      "description": "Performance counter pmEbsPduSessionModifyAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPduSessionModifySucc",
+      "description": "Performance counter pmEbsPduSessionModifySucc",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPduSessionRelAbnormalAmf",
+      "description": "Performance counter pmEbsPduSessionRelAbnormalAmf",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPduSessionRelAbnormalGnb",
+      "description": "Performance counter pmEbsPduSessionRelAbnormalGnb",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPduSessionRelNormal",
+      "description": "Performance counter pmEbsPduSessionRelNormal",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsnMacTimeDlDrb",
+      "description": "Performance counter pmEbsnMacTimeDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsnMacTimeDlDrbQos",
+      "description": "Performance counter pmEbsnMacTimeDlDrbQos",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsnMacTimeUlResUe",
+      "description": "Performance counter pmEbsnMacTimeUlResUe",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsnMacVolDlDrb",
+      "description": "Performance counter pmEbsnMacVolDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsnMacVolDlDrbQos",
+      "description": "Performance counter pmEbsnMacVolDlDrbQos",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsnMacVolUlResUe",
+      "description": "Performance counter pmEbsnMacVolUlResUe",
+      "category": "General"
+    },
+    {
+      "name": "pmXnNodeConfigUpdateAckIn",
+      "description": "Performance counter pmXnNodeConfigUpdateAckIn",
+      "category": "General"
+    },
+    {
+      "name": "pmXnNodeConfigUpdateAckOut",
+      "description": "Performance counter pmXnNodeConfigUpdateAckOut",
+      "category": "General"
+    },
+    {
+      "name": "pmXnNodeConfigUpdateFailIn",
+      "description": "Performance counter pmXnNodeConfigUpdateFailIn",
+      "category": "General"
+    },
+    {
+      "name": "pmXnNodeConfigUpdateFailOut",
+      "description": "Performance counter pmXnNodeConfigUpdateFailOut",
+      "category": "General"
+    },
+    {
+      "name": "pmXnNodeConfigUpdateIn",
+      "description": "Performance counter pmXnNodeConfigUpdateIn",
+      "category": "General"
+    },
+    {
+      "name": "pmXnNodeConfigUpdateOut",
+      "description": "Performance counter pmXnNodeConfigUpdateOut",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "CuCpProcPduSessionResourceRelease",
+      "type": "pdu_session_resource_release_result  nci  pdu_session_release_list  drb_release_list",
+      "description": "PDU Session Resource Release procedure."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012379 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012379 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/40_22104-LZA7016017_1Uen.CA.md",
+  "file_hash": "b6ae34ec300d03e5a82e0eff36db8684",
+  "processed_at": "2025-10-19 15:50:09",
+  "network_impact": {},
+  "performance_impact": {}
+}

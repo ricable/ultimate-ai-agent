@@ -1,0 +1,105 @@
+{
+  "id": "121 5424",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4012598",
+  "value_package": "Advanced Coverage Extension",
+  "value_package_id": "FAJ 801 4006",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature boosts transmission power for specific messages on the PDCCH and the PDSCH,",
+  "parameters": [
+    {
+      "name": "NRCellDU.pdcchRachBoost",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pdschRachBoost",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.actualPdcchRachBoost",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.actualPdschRachBoost",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "Uen.V",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRSectorCarrier.txPowerRatio",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRSectorCarrier"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmRadioEirpDlDistr",
+      "description": "Performance counter pmRadioEirpDlDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioNarrowBeamAcqTimeDistr",
+      "description": "Performance counter pmRadioNarrowBeamAcqTimeDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioPowerDlDistr",
+      "description": "Performance counter pmRadioPowerDlDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioPucchFailSr",
+      "description": "Performance counter pmRadioPucchFailSr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioPucchFailSrNote",
+      "description": "Performance counter pmRadioPucchFailSrNote",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbAttMsg2",
+      "description": "Performance counter pmRadioRaCbAttMsg2",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbSuccMsg3",
+      "description": "Performance counter pmRadioRaCbSuccMsg3",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012598 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012598 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/136_22104-LZA7016017_1Uen.V.md",
+  "file_hash": "4860c8e6f98038dc62f7f83d33fa70c6",
+  "processed_at": "2025-10-19 15:48:56",
+  "network_impact": {},
+  "performance_impact": {}
+}

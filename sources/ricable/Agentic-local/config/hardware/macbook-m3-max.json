@@ -1,0 +1,178 @@
+{
+  "hardware": {
+    "type": "macbook-pro",
+    "chip": "m3-max",
+    "architecture": "arm64",
+    "capabilities": {
+      "compute": "extreme",
+      "memory": "extreme",
+      "storage": "very-high",
+      "power": "moderate",
+      "network": "very-high",
+      "gpu": "apple-silicon-unified",
+      "neuralEngine": true,
+      "rayTracing": true
+    },
+    "specs": {
+      "cpuCores": 16,
+      "gpuCores": 40,
+      "neuralCores": 16,
+      "ram": "128GB",
+      "unifiedMemory": true
+    }
+  },
+
+  "inference": {
+    "provider": "llamaedge",
+    "runtime": "wasmedge",
+    "backend": "wasi-nn-mlx",
+
+    "models": {
+      "recommended": [
+        {
+          "name": "Qwen2.5-Coder-32B-Instruct",
+          "format": "mlx",
+          "quantization": "4bit",
+          "ram": "24GB",
+          "speed": "50-70 tokens/sec",
+          "useGPU": true,
+          "preferred": true
+        },
+        {
+          "name": "Qwen2.5-Coder-32B-Instruct",
+          "format": "mlx",
+          "quantization": "8bit",
+          "ram": "40GB",
+          "speed": "60-80 tokens/sec",
+          "useGPU": true,
+          "quality": "highest"
+        },
+        {
+          "name": "Qwen-72B-Instruct",
+          "format": "mlx",
+          "quantization": "4bit",
+          "ram": "48GB",
+          "speed": "25-35 tokens/sec",
+          "useGPU": true,
+          "experimental": true
+        }
+      ],
+      "maxContextSize": 131072,
+      "parallelInference": {
+        "enabled": true,
+        "maxInstances": 4
+      }
+    },
+
+    "optimization": {
+      "threads": 12,
+      "batchSize": 4096,
+      "enableMmap": false,
+      "useUnifiedMemory": true,
+      "mlxOptimizations": {
+        "useFlashAttention": true,
+        "quantizeKVCache": true,
+        "memoryFraction": 0.85,
+        "useM3Optimizations": true
+      }
+    }
+  },
+
+  "orchestration": {
+    "role": "super-coordinator",
+    "capabilities": [
+      "extreme-inference",
+      "massive-context",
+      "multi-model-hosting",
+      "swarm-coordination",
+      "research-workloads",
+      "multi-modal-processing",
+      "real-time-streaming"
+    ],
+
+    "limits": {
+      "maxConcurrentTasks": 20,
+      "maxMemoryPerTask": "32GB",
+      "taskTimeout": 3600000
+    },
+
+    "priority": "maximum"
+  },
+
+  "gaianet": {
+    "enabled": true,
+    "nodeType": "ultra-premium",
+    "publicEndpoint": true,
+    "domains": ["developer-tools", "web3-dev", "ai-research", "enterprise"],
+    "pricing": {
+      "tier": "ultra",
+      "multiplier": 3.0
+    },
+    "features": {
+      "priorityRouting": true,
+      "reservedCapacity": true,
+      "slaGuarantees": true
+    }
+  },
+
+  "quad": {
+    "enabled": true,
+    "nodeRole": "super-coordinator",
+    "canCoordinate": true,
+    "acceptTaskTypes": [
+      "all"
+    ],
+    "scheduling": {
+      "strategy": "intelligent-routing",
+      "prioritize": ["extreme-inference", "massive-context", "research"],
+      "loadBalancing": "dynamic"
+    },
+    "failover": {
+      "primary": true,
+      "backupNodes": ["mac-studio-m1"]
+    }
+  },
+
+  "agentDB": {
+    "primary": true,
+    "master": true,
+    "replication": {
+      "enabled": true,
+      "mode": "master-slave",
+      "replicateTo": ["mac-studio-m1", "intel-nuc-1", "intel-nuc-2"]
+    },
+    "sharding": {
+      "enabled": true,
+      "strategy": "hash-based"
+    }
+  },
+
+  "ruvLLM": {
+    "loadBalancing": {
+      "strategy": "round-robin-weighted",
+      "localWeight": 100,
+      "fallbackWeight": 1
+    },
+    "caching": {
+      "enabled": true,
+      "maxSize": "10GB",
+      "strategy": "lru"
+    }
+  },
+
+  "environment": {
+    "NODE_ENV": "production",
+    "LLM_PROVIDER": "local",
+    "GAIANET_ENDPOINT": "http://localhost:8080/v1",
+    "GAIANET_MODEL": "Qwen2.5-Coder-32B-Instruct",
+    "SANDBOX_MEMORY_LIMIT": "16g",
+    "SANDBOX_CPU_LIMIT": "12",
+    "CONTEXT_WINDOW": "131072",
+    "ENABLE_AGENT_BOOSTER": "true",
+    "MLX_ENABLE_GPU": "true",
+    "MLX_MEMORY_FRACTION": "0.85",
+    "WASI_NN_BACKEND": "mlx",
+    "REDIS_HOST": "localhost",
+    "REDIS_PORT": "6379"
+  }
+}

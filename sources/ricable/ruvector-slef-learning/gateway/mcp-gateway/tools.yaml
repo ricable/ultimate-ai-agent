@@ -1,0 +1,138 @@
+# Docker MCP Gateway - Tool Filtering Rules
+# Control which tools are exposed to clients
+# Location: ~/.docker/mcp/tools.yaml
+
+# Global Tool Visibility
+global:
+  # Allow all tools by default (can be restricted per-server)
+  default_visibility: allow
+
+  # Blocked tool patterns (security-sensitive operations)
+  blocked_patterns:
+    - "*:admin:*"  # Block admin operations
+    - "*:delete:all"  # Block bulk deletes
+    - "*:system:shutdown"  # Block shutdown commands
+    - "*:config:write"  # Block config modifications
+
+# Per-Server Tool Configuration
+servers:
+  ruvector:
+    # Vector database operations
+    allowed:
+      - "ruvector:vector:*"  # All vector operations
+      - "ruvector:search:*"  # Search operations
+      - "ruvector:index:*"  # Index operations
+    blocked:
+      - "ruvector:admin:*"  # Block admin
+
+  agentdb:
+    # Agent memory operations
+    allowed:
+      - "agentdb:memory:*"
+      - "agentdb:causal:*"
+      - "agentdb:reflexion:*"
+      - "agentdb:skill:*"
+    blocked:
+      - "agentdb:admin:*"
+
+  claude-flow:
+    # Agent orchestration
+    allowed:
+      - "claude-flow:agent:*"
+      - "claude-flow:workflow:*"
+      - "claude-flow:memory:*"
+      - "claude-flow:swarm:*"
+      - "claude-flow:hive:*"
+    blocked:
+      - "claude-flow:config:*"
+
+  agentic-flow:
+    # Multi-agent operations
+    allowed:
+      - "agentic-flow:agent:*"
+      - "agentic-flow:task:*"
+      - "agentic-flow:federation:*"
+      - "agentic-flow:mcp:*"
+    blocked:
+      - "agentic-flow:admin:*"
+
+  litellm:
+    # LLM routing
+    allowed:
+      - "litellm:chat:*"
+      - "litellm:completion:*"
+      - "litellm:embedding:*"
+      - "litellm:model:list"
+    blocked:
+      - "litellm:config:*"
+      - "litellm:key:*"
+
+  e2b-sandbox:
+    # Code execution (carefully controlled)
+    allowed:
+      - "e2b:execute:python"
+      - "e2b:execute:javascript"
+      - "e2b:file:read"
+      - "e2b:file:write"
+    blocked:
+      - "e2b:system:*"
+      - "e2b:network:*"
+
+  localai:
+    # Local inference
+    allowed:
+      - "localai:generate:*"
+      - "localai:embed:*"
+      - "localai:model:list"
+    blocked:
+      - "localai:model:download"  # Prevent unauthorized downloads
+
+  postgres:
+    # Database operations
+    allowed:
+      - "postgres:query:select"
+      - "postgres:query:insert"
+      - "postgres:query:update"
+    blocked:
+      - "postgres:query:drop"
+      - "postgres:query:truncate"
+      - "postgres:admin:*"
+
+  redis:
+    # Cache operations
+    allowed:
+      - "redis:cache:*"
+      - "redis:session:*"
+    blocked:
+      - "redis:admin:*"
+      - "redis:config:*"
+
+  ruvector-gnn:
+    # GNN operations
+    allowed:
+      - "gnn:train:*"
+      - "gnn:predict:*"
+      - "gnn:graph:*"
+    blocked:
+      - "gnn:admin:*"
+
+  ruvector-graph:
+    # Graph database operations
+    allowed:
+      - "graph:cypher:read"
+      - "graph:cypher:write"
+      - "graph:node:*"
+      - "graph:edge:*"
+    blocked:
+      - "graph:admin:*"
+      - "graph:cypher:admin"
+
+# Dynamic Tools (when dynamic-tools feature is enabled)
+dynamic:
+  enabled: true
+  allowed_operations:
+    - mcp-find
+    - mcp-add
+    - mcp-config-set
+  blocked_operations:
+    - mcp-remove  # Require explicit permission

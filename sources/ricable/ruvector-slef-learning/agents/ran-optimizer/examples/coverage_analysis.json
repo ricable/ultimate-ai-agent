@@ -1,0 +1,71 @@
+{
+  "scenario": "Coverage Optimization",
+  "description": "Analyze cells with poor coverage and recommend antenna adjustments",
+  "cells": [
+    {
+      "cell_id": "ENB_STHLM_001_C1",
+      "site_name": "Stockholm_Sergels_Torg",
+      "timestamp": "2024-12-08T14:00:00Z",
+      "technology": "LTE",
+      "radio_kpis": {
+        "rsrp_avg": -108.5,
+        "rsrp_p10": -118.0,
+        "rsrp_p90": -95.0,
+        "rsrq_avg": -14.2,
+        "sinr_avg": 4.5,
+        "sinr_p10": -2.0,
+        "prb_dl_utilization": 45.0
+      },
+      "throughput_kpis": {
+        "dl_throughput_avg": 35.5,
+        "dl_throughput_p10": 8.2
+      },
+      "mobility_kpis": {
+        "ho_attempts": 850,
+        "ho_success_rate": 94.2,
+        "too_late_ho_rate": 3.8
+      },
+      "retainability_kpis": {
+        "call_drop_rate": 1.8
+      },
+      "alarms": [
+        {
+          "alarm_id": "COV_001",
+          "severity": "Major",
+          "alarm_text": "Poor cell edge coverage detected",
+          "raised_time": "2024-12-08T10:00:00Z"
+        }
+      ],
+      "config": {
+        "pci": 201,
+        "earfcn": 1850,
+        "bandwidth": 20,
+        "tx_power": 43.0,
+        "rs_power": 15.0,
+        "antenna": {
+          "electrical_tilt": 8.0,
+          "mechanical_tilt": 2.0,
+          "azimuth": 30.0,
+          "height": 42.0,
+          "antenna_type": "AIR 6488",
+          "beamwidth": 65.0
+        },
+        "ho_params": {
+          "time_to_trigger": 480,
+          "hysteresis": 3.0,
+          "a3_offset": 4.0
+        }
+      },
+      "neighbors": [
+        {"cell_id": "ENB_STHLM_002_C1", "rsrp_diff": 8.5, "ho_success_rate": 96.5},
+        {"cell_id": "ENB_STHLM_003_C2", "rsrp_diff": 12.0, "ho_success_rate": 91.2}
+      ]
+    }
+  ],
+  "query": "Analyze the coverage situation for this cell. The cell is located in a dense urban area (Sergels Torg, Stockholm city center) with many high-rise buildings. Users are reporting poor indoor coverage and dropped calls at cell edges. Recommend antenna parameter adjustments to improve coverage while minimizing impact on neighboring cells.",
+  "constraints": {
+    "max_tilt_change": 3.0,
+    "maintain_neighbor_coverage": true,
+    "peak_hours": ["08:00-10:00", "16:00-19:00"]
+  }
+}

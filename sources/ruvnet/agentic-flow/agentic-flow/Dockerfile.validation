@@ -1,0 +1,41 @@
+# Dockerfile for v1.7.0 Validation
+# Comprehensive testing and regression detection
+
+FROM node:20-alpine
+
+# Install dependencies for SQLite and testing
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    git \
+    bash
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies (includes agentdb@^1.3.9)
+RUN npm install
+
+# Copy source code and configuration
+COPY config/ ./config/
+COPY src/ ./src/
+COPY tests/ ./tests/
+COPY wasm/ ./wasm/
+
+# Create test database directory
+RUN mkdir -p /app/test-data
+
+# Set environment variables for testing
+ENV NODE_ENV=test
+ENV AGENTDB_PATH=/app/test-data/agentdb.db
+ENV LOG_LEVEL=debug
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD node -e "console.log('healthy')" || exit 1
+
+# Default command runs validation suite
+CMD ["npx", "tsx", "/app/validation-suite.ts"]

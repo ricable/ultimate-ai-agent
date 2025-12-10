@@ -1,0 +1,195 @@
+{
+  "file_hash": "b3716a05bfb2d51a25fa73d0df5eec8f",
+  "feature": {
+    "id": "121 5237",
+    "name": "Carrier Aggregation Downlink Traffic Steering",
+    "cxc_code": "CXC4012496",
+    "value_package": "Advanced Carrier Aggregation",
+    "value_package_id": "FAJ 801 0564",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature enables downlink traffic steering to selected SCells for UEs configured",
+    "parameters": [
+      {
+        "name": "CarrierAggregationFunction.caOffloadingMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CarrierAggregationFunction"
+      },
+      {
+        "name": "CarrierAggregationFunction.offloadingDataThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CarrierAggregationFunction"
+      },
+      {
+        "name": "EUtranFrequency.caOffloadingEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFrequency"
+      },
+      {
+        "name": "EUtranFreqRelation.caOffloadingEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelationUnlicensed.caOffloadingEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelationUnlicensed"
+      },
+      {
+        "name": "QciProfileOperatorDefined.caOffloadingEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfilePredefined.caOffloadingEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "CarrierAggregationFunction.sCellScheduleSinrThres",
+        "type": "Affecting",
+        "description": "The                                     CarrierAggregationFunction.sCellScheduleSinrThres                                 attribute is used to determine SCell activation and deactivation                                 threshold.  The                                     SubscriberGroupProfile.sCellScheduleSinrThresOffset                                 attribute can affect the activation and deactivation of the                                 offloading SCell.  When the ASGH-Based Spectral Efficiency Package feature is active,             the operator can configure differentiated SCell activation and deactivation threshold             for the UEs in subscriber groups by using the                 SubscriberGroupProfile.sCellScheduleSinrThresOffset             attribute.  If the                 SubscriberGroupProfile.sCellScheduleSinrThresOffset attribute is             configured, the threshold for the UEs in a subscriber group is the sum of the following                 attributes:  CarrierAggregationFunction.sCellScheduleSinrThres     SubscriberGroupProfile.sCellScheduleSinrThresOffset     For the UEs that are not in the subscriber group, the                 CarrierAggregationFunction.sCellScheduleSinrThres attribute             determines the SCell activation and deactivation threshold. For more information, see MOM description and ASGH-Based Spectral Efficiency                                     Package.",
+        "mo_class": "CarrierAggregationFunction"
+      },
+      {
+        "name": "SubscriberGroupProfile.sCellScheduleSinrThresOffset",
+        "type": "Affecting",
+        "description": "The                                     CarrierAggregationFunction.sCellScheduleSinrThres                                 attribute is used to determine SCell activation and deactivation                                 threshold.  The                                     SubscriberGroupProfile.sCellScheduleSinrThresOffset                                 attribute can affect the activation and deactivation of the                                 offloading SCell.  When the ASGH-Based Spectral Efficiency Package feature is active,             the operator can configure differentiated SCell activation and deactivation threshold             for the UEs in subscriber groups by using the                 SubscriberGroupProfile.sCellScheduleSinrThresOffset             attribute.  If the                 SubscriberGroupProfile.sCellScheduleSinrThresOffset attribute is             configured, the threshold for the UEs in a subscriber group is the sum of the following                 attributes:  CarrierAggregationFunction.sCellScheduleSinrThres     SubscriberGroupProfile.sCellScheduleSinrThresOffset     For the UEs that are not in the subscriber group, the                 CarrierAggregationFunction.sCellScheduleSinrThres attribute             determines the SCell activation and deactivation threshold. For more information, see MOM description and ASGH-Based Spectral Efficiency                                     Package.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "Uen.AN",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "CarrierAggregationFunction.sCellDeactOutOfCoverageTimer",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "CarrierAggregationFunction"
+      },
+      {
+        "name": "QciProfilePredefined.laaSupported",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfileOperatorDefined.laaSupported",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfileOperatorDefined"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCaSchedDlOffloadingDistr",
+        "description": "Performance counter pmCaSchedDlOffloadingDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsTransScell",
+        "description": "Performance counter pmDlAssigsTransScell",
+        "category": "General"
+      },
+      {
+        "name": "pmLaaScheduledDlDistr",
+        "description": "Performance counter pmLaaScheduledDlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmLaaScheduledDlEranDistr",
+        "description": "Performance counter pmLaaScheduledDlEranDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPucchFailSr",
+        "description": "Performance counter pmPucchFailSr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpResDl",
+        "description": "Performance counter pmRadioThpResDl",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDlScell",
+        "description": "Performance counter pmRadioThpVolDlScell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCell",
+        "description": "Performance counter pmRadioThpVolTxDlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCellEran",
+        "description": "Performance counter pmRadioThpVolTxDlSCellEran",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCellEranOffl",
+        "description": "Performance counter pmRadioThpVolTxDlSCellEranOffl",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCellExtLaa",
+        "description": "Performance counter pmRadioThpVolTxDlSCellExtLaa",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCellIcmOffl",
+        "description": "Performance counter pmRadioThpVolTxDlSCellIcmOffl",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCellLaa",
+        "description": "Performance counter pmRadioThpVolTxDlSCellLaa",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCellOffl",
+        "description": "Performance counter pmRadioThpVolTxDlSCellOffl",
+        "category": "General"
+      },
+      {
+        "name": "pmSchedActivityCellDl",
+        "description": "Performance counter pmSchedActivityCellDl",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012496 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012496 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/497_22104-LZA7016014_1Uen.AN.md",
+    "file_hash": "b3716a05bfb2d51a25fa73d0df5eec8f",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

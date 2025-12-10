@@ -1,0 +1,170 @@
+{
+  "name": "agentic-jujutsu",
+  "version": "0.1.0",
+  "description": "State-of-the-art GitOps platform using Jujutsu for policy-first, progressive delivery on Kubernetes",
+  "keywords": [
+    "gitops",
+    "jujutsu",
+    "kubernetes",
+    "progressive-delivery",
+    "policy-as-code",
+    "argocd",
+    "kyverno",
+    "crossplane",
+    "devops",
+    "platform-engineering"
+  ],
+  "homepage": "https://github.com/yourusername/agentic-jujutsu#readme",
+  "bugs": {
+    "url": "https://github.com/yourusername/agentic-jujutsu/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/agentic-jujutsu.git"
+  },
+  "license": "MIT",
+  "author": "Your Name <your.email@example.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "ajj": "dist/cli/index.js"
+  },
+  "files": [
+    "dist",
+    "templates",
+    "policies",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "npm run build:packages && npm run build:controller",
+    "build:packages": "turbo run build --filter=./packages/*",
+    "build:controller": "cd packages/controller && make build",
+    "clean": "turbo run clean && rm -rf dist",
+    "dev": "turbo run dev --parallel",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md,yaml,yml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,json,md,yaml,yml}\"",
+    "test": "jest --coverage",
+    "test:unit": "jest --testPathPattern=unit",
+    "test:integration": "jest --testPathPattern=integration",
+    "test:e2e": "jest --testPathPattern=e2e",
+    "test:watch": "jest --watch",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky install",
+    "prepublishOnly": "npm run build && npm run test",
+    "release": "semantic-release",
+    "docs": "typedoc --out docs/api src",
+    "cli": "node dist/cli/index.js",
+    "mcp": "node dist/mcp/index.js"
+  },
+  "dependencies": {
+    "@kubernetes/client-node": "^0.20.0",
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "ajv": "^8.12.0",
+    "axios": "^1.6.0",
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "cosmiconfig": "^9.0.0",
+    "execa": "^8.0.1",
+    "glob": "^10.3.10",
+    "inquirer": "^9.2.12",
+    "js-yaml": "^4.1.0",
+    "listr2": "^8.0.0",
+    "lodash": "^4.17.21",
+    "ora": "^7.0.1",
+    "p-limit": "^5.0.0",
+    "pino": "^8.16.2",
+    "pino-pretty": "^10.2.3",
+    "table": "^6.8.1",
+    "yaml": "^2.3.4",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@swc/core": "^1.3.100",
+    "@swc/jest": "^0.2.29",
+    "@types/inquirer": "^9.0.7",
+    "@types/jest": "^29.5.11",
+    "@types/js-yaml": "^4.0.9",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^20.10.5",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "esbuild": "^0.19.9",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jest": "^27.6.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "semantic-release": "^22.0.12",
+    "testcontainers": "^10.4.0",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.1",
+    "turbo": "^1.11.2",
+    "typedoc": "^0.25.4",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yaml,yml}": [
+      "prettier --write"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "release": {
+    "branches": [
+      "main",
+      {
+        "name": "next",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json",
+            "package-lock.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

@@ -1,0 +1,454 @@
+{
+  "id": "121 4945",
+  "name": "Mixed Mode Radio",
+  "cxc_code": "CXC4012015",
+  "value_package": "NR Base Package  Mixed Mode Radio Node LTE  Mixed Mode Radio Node WCDMA  Mixed Mode Radio Node GSM RAN",
+  "value_package_id": "FAJ 801 4002  FAJ 801 0424  FAJ 801 0337  FAJ 801 0388",
+  "access_type": "NR  LTE  WCDMA  GSM",
+  "node_type": "Baseband Radio Node",
+  "description": "The Mixed Mode Baseband feature allows multi-standard operation within a single RAN\nCompute unit.\nFeature Name\nMixed Mode Baseband\nMixed Mode Baseband\nMixed Mode Baseband\nMixed Mode Baseband\n\n\n\n\nFeature Identity\nFAJ 121 4567\nFAJ 121 4566\nFAJ 121 4565\nFAJ 121 5021\n\n\nValue Package Name\nMixed Mode Radio Node GSM RAN\nMixed Mode Radio Node WCDMA\nMixed Mode Radio Node LTE\nNR Base Package\n\n\nValue Package Identity\nFAJ 801 0388\nFAJ 801 0337\nFAJ 801 0424\nFAJ 801 4002\n\n\nNode Type\nBaseband Radio Node\nBaseband Radio Node\nBaseband Radio Node\nBaseband Radio Node\n\n\nAccess Type\nGSM\nWCDMA\nLTE\nNR\n\n\nLicensing\nLicense-controlled feature. One license is required for each                                 node.\nLicense-controlled feature. One license is required for each                                 node.\nLicense-controlled feature. One license is required for each                                 node.\nNon-license-controlled feature. No license is required.\nSummary\nThis feature provides the possibility to add an additional RAT without the need to\ninstall additional Baseband hardware. This feature also allows efficient use of the\nBaseband hardware for sites with medium requirements on Baseband capacity. This\nfeature allows flexible multi-standard configuration, adding or replacing standards\nfor the desired combination, even without site visits. Efficient use of RAN Compute\nhardware for sites with medium requirements on RAN Compute capacity.\nBoth FDD and TDD for LTE and NR are supported.\nHardware reconfiguration is not required to divide the physical resources, as the\nBaseband Radio Node detects which sector carriers or TRXs are configured in the\nsystem, and configures itself accordingly.",
+  "summary": "definitions, through feature descriptions, through initial configuration and O&M",
+  "parameters": [
+    {
+      "name": "Absolute frequency number",
+      "type": "NRSectorCarrier.arfcnDL",
+      "description": "NR",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Absolute frequency number",
+      "type": "NRSectorCarrier.arfcnUL",
+      "description": "NR",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Absolute frequency number",
+      "type": "EUtranCellFDD.earfcndl",
+      "description": "LTE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Absolute frequency number",
+      "type": "EUtranCellFDD.earfcnul",
+      "description": "LTE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Absolute frequency number",
+      "type": "EUtranCellTDD.earfcn",
+      "description": "LTE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Absolute frequency number",
+      "type": "Trx.arfcnMax",
+      "description": "GSM",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Absolute frequency number",
+      "type": "Trx.arfcnMin",
+      "description": "GSM",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Frequency band",
+      "type": "Trx.frequencyBand",
+      "description": "GSM",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Number of Rx antennas",
+      "type": "NRSectorCarrier.noOfRxAntennas",
+      "description": "NR",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Number of Rx antennas",
+      "type": "SectorCarrier.noOfRxAntennas",
+      "description": "LTE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Number of Rx antennas",
+      "type": "NodeBSectorCarrier.numOfRxAntennas",
+      "description": "WCDMA",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Number of Rx antennas",
+      "type": "Trx.noOfRxAntennas",
+      "description": "GSM",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Number of Tx antennas",
+      "type": "NRSectorCarrier.noOfTxAntennas",
+      "description": "NR",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Number of Tx antennas",
+      "type": "SectorCarrier.noOfTxAntennas",
+      "description": "LTE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Number of Tx antennas",
+      "type": "NodeBSectorCarrier.numOfTxAntennas",
+      "description": "WCDMA",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Number of Tx antennas",
+      "type": "Trx.noOfTxAntennas",
+      "description": "GSM",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "References to RfBranch MO instances for Rx",
+      "type": "NRSectorCarrier.rfBranchRxRef",
+      "description": "NR",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "References to RfBranch MO instances for Rx",
+      "type": "SectorCarrier.rfBranchRxRef",
+      "description": "LTE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "References to RfBranch MO instances for Rx",
+      "type": "NodeBSectorCarrier.rfBranchRxRef",
+      "description": "WCDMA",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "References to RfBranch MO instances for Rx",
+      "type": "ExtTrx.rfBranchRxRef",
+      "description": "GSM",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "References to RfBranch MO instances for Rx",
+      "type": "Trx.rfBranchRxRef",
+      "description": "GSM",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "References to RfBranch MO instances for Tx",
+      "type": "NRSectorCarrier.rfBranchTxRef",
+      "description": "NR",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "References to RfBranch MO instances for Tx",
+      "type": "SectorCarrier.rfBranchTxRef",
+      "description": "LTE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "References to RfBranch MO instances for Tx",
+      "type": "NodeBSectorCarrier.rfBranchTxRef",
+      "description": "WCDMA",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "References to RfBranch MO instances for Tx",
+      "type": "ExtTrx.rfBranchTxRef",
+      "description": "GSM",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "References to RfBranch MO instances for Tx",
+      "type": "Trx.rfBranchTxRef",
+      "description": "GSM",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Shared unit configuration per ME",
+      "type": "FieldReplaceableUnit.isSharedWithExternalMe",
+      "description": "All",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Unique ID for top-level ManagedElement MO                                 class",
+      "type": "ManagedElement.managedElementId",
+      "description": "NR(1)",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Power",
+      "type": "See Output Power.",
+      "description": "All",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "NR",
+      "type": "NRSectorCarrier.configuredMaxTxPower",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "LTE",
+      "type": "SectorCarrier.configuredMaxTxPower",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "WCDMA",
+      "type": "NodeBSectorCarrier.configuredMaxTxPower",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "GSM",
+      "type": "Trx.configuredMaxTxPower",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "GSM",
+      "type": "Trx.reservedMaxTxPower",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "GSM",
+      "type": "PowerControlDownlink.bsPwrBDec(1)",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "GSM",
+      "type": "PowerControlDownlink.bsPwrTDec(1)",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "GSM",
+      "type": "Trx.maxTxPowerCapability(2)",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "GSM",
+      "type": "Trx.bscMaxTxPower(3)",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "bsPwrBDec and bsPwrTDec",
+      "type": "Set as integer [dBm], used to configure Tx power for each Tx in                                     the BSC.  The sum of Tx power is used for GSM power allocation in radio                                     units.",
+      "description": "Set as integer [dBm], used to configure max power for each Tx in                                     the BSC.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "configuredMaxTxPower",
+      "type": "Set as integer [mW], used to configure absolute power                                     for                                     each Tx.",
+      "description": "Set as integer [mW], used to configure absolute power                                     for                                     each Tx.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "reservedMaxTxPower",
+      "type": "Not applicable.",
+      "description": "The sum of reservedMaxTxPower for all TRX used                                     cannot be greater than the part of MCPA that has been assigned                                     to GSM.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "bscMaxTxPower",
+      "type": "Read as integer [dBm] with resolution 0.1 dB, shows the amount of                                     power requested for a TRX from the BSC.",
+      "description": "Read as integer [dBm] with resolution 0.1 dB, shows the amount of                                     power requested for a TRX from the BSC.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "maxTxPowerCapability",
+      "type": "Read as integer [dBm] with resolution 0.1 dB, shows the amount of                                     power allocated for a TRX.",
+      "description": "Read as integer [dBm] with resolution 0.1 dB, shows the amount of                                     power allocated for a TRX.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.EV33E",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "FieldReplaceableUnit.isSharedWithExternalMe",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FieldReplaceableUnit"
+    },
+    {
+      "name": "ENodeBFunction.timeAndPhaseSynchAlignment",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "EUtranCellFDD.administrativeState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.administrativeState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "NbIotCell.administrativeState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NbIotCell"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmBbmDlBbCapacityPttReservation",
+      "description": "Performance counter pmBbmDlBbCapacityPttReservation",
+      "category": "General"
+    },
+    {
+      "name": "pmBbmDlBbCapacityUtilization",
+      "description": "Performance counter pmBbmDlBbCapacityUtilization",
+      "category": "General"
+    },
+    {
+      "name": "pmBbmUlBbCapacityUtilization",
+      "description": "Performance counter pmBbmUlBbCapacityUtilization",
+      "category": "General"
+    },
+    {
+      "name": "pmLaaActivatedIcmSumDistr",
+      "description": "Performance counter pmLaaActivatedIcmSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmLaaConfiguredDlIcmSumDistr",
+      "description": "Performance counter pmLaaConfiguredDlIcmSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmLaaScheduledDlIcmDistr",
+      "description": "Performance counter pmLaaScheduledDlIcmDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmLicDlCapActual",
+      "description": "Performance counter pmLicDlCapActual",
+      "category": "General"
+    },
+    {
+      "name": "pmLicDlCapDistr",
+      "description": "Performance counter pmLicDlCapDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmLicDlCapUsedMax",
+      "description": "Performance counter pmLicDlCapUsedMax",
+      "category": "General"
+    },
+    {
+      "name": "pmLicDlCapUsedSamp",
+      "description": "Performance counter pmLicDlCapUsedSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmLicDlCapUsedSum",
+      "description": "Performance counter pmLicDlCapUsedSum",
+      "category": "General"
+    },
+    {
+      "name": "pmLicUlCapActual",
+      "description": "Performance counter pmLicUlCapActual",
+      "category": "General"
+    },
+    {
+      "name": "pmLicUlCapDistr",
+      "description": "Performance counter pmLicUlCapDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmLicUlCapUsedMax",
+      "description": "Performance counter pmLicUlCapUsedMax",
+      "category": "General"
+    },
+    {
+      "name": "pmLicUlCapUsedSamp",
+      "description": "Performance counter pmLicUlCapUsedSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmLicUlCapUsedSum",
+      "description": "Performance counter pmLicUlCapUsedSum",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolTxDlSCellIcmLaa",
+      "description": "Performance counter pmRadioThpVolTxDlSCellIcmLaa",
+      "category": "General"
+    },
+    {
+      "name": "pmStatistics",
+      "description": "Performance counter pmStatistics",
+      "category": "General"
+    },
+    {
+      "name": "pmSupport",
+      "description": "Performance counter pmSupport",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmentFunction",
+      "description": "Performance counter pmentFunction",
+      "category": "General"
+    },
+    {
+      "name": "pmstatistics",
+      "description": "Performance counter pmstatistics",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": [
+      "121 5224",
+      "121 4945",
+      "121 0906",
+      "121 1553",
+      "121 1553",
+      "121 4776",
+      "121 3095"
+    ]
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the CXC4012015 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the CXC4012015 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/138_1553-LZA7016014_1Uen.EV33E.md",
+  "file_hash": "1c32a85a5843086020301a02025af66f",
+  "processed_at": "2025-10-19 17:07:26",
+  "network_impact": {},
+  "performance_impact": {
+    "kpi": "Affects KPI monitoring",
+    "counters": "New counters introduced"
+  }
+}

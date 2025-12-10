@@ -1,0 +1,29 @@
+[package]
+name = "agent-booster"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Fast code editing library using tree-sitter and similarity matching"
+
+[dependencies]
+tree-sitter = { workspace = true, optional = true }
+tree-sitter-javascript = { workspace = true, optional = true }
+tree-sitter-typescript = { workspace = true, optional = true }
+strsim.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+regex = "1.10"
+once_cell = "1.19"
+
+[dev-dependencies]
+proptest.workspace = true
+criterion.workspace = true
+
+[features]
+default = ["tree-sitter-parser"]
+tree-sitter-parser = ["tree-sitter", "tree-sitter-javascript", "tree-sitter-typescript"]
+lite-parser = []

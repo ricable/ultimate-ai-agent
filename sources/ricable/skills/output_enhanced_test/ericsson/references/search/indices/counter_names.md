@@ -1,0 +1,123 @@
+# Counter Name Search Index
+
+Alphabetical index of all performance counters for quick lookup.
+
+## P
+
+- pmActiveUeUlPresched
+  - Category: General
+  - Feature: Prescheduling (FAJ 121 3085)
+- pmActiveUeUlPreschedData
+  - Category: General
+  - Feature: Prescheduling (FAJ 121 3085)
+- pmCounter
+  - Category: General
+  - Feature: Prescheduling (FAJ 121 3085)
+- pmCounters
+  - Category: General
+  - Feature: Prescheduling (FAJ 121 3085)
+- pmMimoSleepOppTime
+  - Category: MIMO
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmMimoSleepTime
+  - Category: MIMO
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmPdcchCceUsedUlPresched
+  - Category: General
+  - Feature: Prescheduling (FAJ 121 3085)
+- pmPdcpPktDiscDlAqm
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmPdcpPktDiscDlPelr
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmPrachPrbOffsetUpdate
+  - Category: General
+  - Feature: Dynamic PUCCH (FAJ 121 4377)
+- pmPrbUsedUlPresched
+  - Category: General
+  - Feature: Prescheduling (FAJ 121 3085)
+- pmPucchSrResCongBbm
+  - Category: General
+  - Feature: Dynamic PUCCH (FAJ 121 4377)
+- pmPucchSrResLongUtilCell
+  - Category: General
+  - Feature: Dynamic PUCCH (FAJ 121 4377)
+- pmPucchSrResMediumUtilCell
+  - Category: General
+  - Feature: Dynamic PUCCH (FAJ 121 4377)
+- pmPucchSrResShortUtilCell
+  - Category: General
+  - Feature: Dynamic PUCCH (FAJ 121 4377)
+- pmPucchSrResUtilBbm
+  - Category: General
+  - Feature: Dynamic PUCCH (FAJ 121 4377)
+- pmRadioThpVolDlSCellExt
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmRadioThpVolTxDlSCellExt
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmRadioTxRankDistr
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmSinrPucchDistr
+  - Category: General
+  - Feature: Dynamic PUCCH (FAJ 121 4377)
+- pmTxOffRatio
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmTxOffRatio1
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmTxOffRatio2
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmTxOffRatio3
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmTxOffRatio4
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmTxOffTime
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmTxOffTime1
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmTxOffTime2
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmTxOffTime3
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmTxOffTime4
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmcounter
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmcounter
+  - Category: General
+  - Feature: Dynamic PUCCH (FAJ 121 4377)
+- pmcounters
+  - Category: General
+  - Feature: Prescheduling (FAJ 121 3085)
+- pmcounters
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pment
+  - Category: General
+  - Feature: Prescheduling (FAJ 121 3085)
+- pmevents
+  - Category: General
+  - Feature: Cell ID-Based Location Support (FAJ 121 0735)
+- pmode
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmonitorDurTimer
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)
+- pmonitordurTimer
+  - Category: General
+  - Feature: MIMO Sleep Mode (FAJ 121 3094)

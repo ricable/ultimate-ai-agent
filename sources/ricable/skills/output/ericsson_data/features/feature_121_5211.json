@@ -1,0 +1,377 @@
+{
+  "id": "121 5211",
+  "name": "Shared NR RAN",
+  "cxc_code": "CXC4012479",
+  "value_package": "Shared Networks",
+  "value_package_id": "FAJ 801 4010",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "3.2.1 Configuration Overview\nFor Shared NR RAN, the configuration needs to be done in the way relevant to the intended\nsharing configurations such as Shared NR Cells for MOCN or Dedicated NR Cells for\nMORAN.\nThe parameters mainly concern the handling of the PLMNs of each operator and their\ncorresponding tracking areas.\nFor configuration of the transport network, there are additional parameters that may need\nconfiguration and they are described in the chapters related to Transport Network\nconfiguration.\nThe\nconfiguration related parameters are shown in Figure 4.\nFigure 4   Configuration Management Overview\nRelated concepts\nEN-DC Specific Mobility\n3.2.2 Xn Connection Handling\nOne Xn-C\nconnection connects gNodeBs shared by multiple operators. The information of the NR cells in\na gNodeB is transferred using XnAP messages.\nThere\nis\none Xn-C connection between two gNodeBs shared by multiple operators. Each gNodeB is\nidentified by the PLMN ID in the\nGNBCUCPFunction.pLMNId\nattribute and the\ngNodeB\nID in the GNBCUCPFunction.gNBId attribute.\nIn MOCN and MORAN configuration, one gNodeB can serve multiple PLMN IDs for different\noperators. The PLMN identity part of the global gNodeB ID and PLMN ID served by the NR\nCells on the gNodeB can be different. To specify the PLMN ID of the target gNodeB, the\ncandidate PLMN IDs are collected from the external NR cells.\nEPS TAC is sent as a private extension over the Xn interface, so forbidden TAI can be\nconsidered at intra-gNodeB and inter-gNodeB carrier aggregation.\nServed Cell Information\nAll the information of the NR cells in a gNodeB is transferred to a neighbor gNodeB\nusing the following XnAP messages:\nXN SETUP REQUEST\nXN SETUP RESPONSE\nNG-RAN NODE CONFIGURATION UPDATE\nThe\nXnAP messages include all cells configured in the gNodeB. Cells used for EN-DC\nonly\nare indicated with their TAC\nvalue,\nthat is, the\n5G\nTAC,\nset to\n0.\nFor each cell, the gNodeBs send information about the served PLMNs over the Xn\nconnection to the neighbor gNodeBs. The served PLMNs and their corresponding TACs\nare deduced from the NRCellCU.pLMNIdList attribute and the\nAdditionalPLMNInfo.pLMNIdList attribute under the\nNRCellCU MO.\nThe information\nis\nthen\ndisplayed in the following\nattributes:\nExternalNRCellCU.plmnIdList\nExternalBroadcastPLMNInfo.pLMNIdList\nExternalNRCellCU.nRTAC\nExternalBroadcastPLMNInfo.nRTAC\nThe information is used for validation during PSCell change, SCell\nconfiguration,\nand SCell change\nwhen\nthe\nCarrier\nAggregation\nfeature\nis used.\nThe candidate TAI list contains the NR TAC and the PLMN ID combination to which the\ngNodeB can belong. When the NRCellRelation MO and the\nExternalNRCellCU MO referred by the\nExternalNRCellCU MO are created, the candidate TAI list from\nthe ExternalNRCellCU and its\nExternalBroadcastPlmnInfo objects are collected according to\nthe gNodeB ID of the\nExternalNRCellCU.nRCGI.\nThe combination of the PLMN ID and the NR TAC is chosen based on the following\nproperties:\nThe NR TAC element is chosen from the ExternalNRCellCU.nRTAC and the ExternalBroadcastPlmnInfo.nRTAC attributes.\nEach PLMN ID of the NR TAC element corresponds with each entry of the ExternalNRCellCU.plmnIdList and the ExternalBroadcastPLMNInfo.pLMNIdList attributes.\nEach PLMN ID belongs to a pLMNIdList of any TermPointToAmf.\nEach PLMN ID belongs to an NRCellCU.pLMNIdList or an AdditionalPLMNInfo.pLMNIdList attribute.\nEach PLMN ID has a corresponding NR TAC value on the NRCellCU or the AdditionalPLMNInfo MOs.\nIf the default TN configuration is not used, then the PLMN ID element is only valid for the configured PLMN ID in the dedicated TN configuration for Xn.\nIf a new NCGI measurement report with the additional TAIs for an existing\nExternalGNBCUCPFunction MO is received, the additional TAIs\nare added to the candidate TAI list.\nFor the general description of the Xn configuration, see Xn Configuration.\n3.2.3 X2 Connection Handling for EN-DC Support\nThe gNodeB sends the Served NR Cell Information IE to the eNodeBs over\nthe X2 interface to support deployments with EN-DC and the Shared NR RAN\nfeature.\nThe following subelements of the Served NR Cell Information IE are used\nfor UEs in EN-DC deployments that use the Shared NR RAN feature:\nConfigured TAC\n\nThis IE contains the EPS TAC configured in the gNodeB that differs from the                         5GS TAC broadcast in the NR cell. The configured TAC enables the application                         of roaming and access restrictions for EN-DC.\n\n\n\n\n\n\n\n\n\n5GS-TAC\n\nThis IE contains the 5GS TAC broadcast (not used).\n\n\n\n\n\n\n\nServed PLMNs\n\nThis IE contains the served PLMNs. If more broadcast PLMNs are required for                         the NR cell than the value defined in the                             maxnoofBPLMNs, the additional PLMNs are                         provided by the Broadcast PLMN Identity Info List NR IE.\n\n\n\n\n\n\n\nBroadcast PLMN Identity Info List NR\n\nThis IE contains the network identity information and the gNodeB version for                         the NR cell. This information is used to automatically update the neighbor                         cell relation in the eNodeB toward an NR cell in a shared configuration.\nThe Served PLMNs and the Broadcast PLMN Identity Info List\nNR IEs contain information from the NRCellCU.pLMNIdList\nattribute and the AdditionalPLMNInfo.pLMNIdList attribute.\nThe Served NR Cell Information IE is sent in the following messages:\nEN-DC X2 SETUP RESPONSE\nEN-DC CONFIGURATION UPDATE from the gNodeB\nEN-DC CONFIGURATION UPDATE ACKNOWLEDGE\nThe information sent over the X2 interface is used for validation during EN-DC setup, and\nPSCell change when the Carrier Aggregation feature is used.\nWhen an EN-DC leg is set up, the eNodeB can send the SGNB ADDITION REQUEST\nor the SGNB MODIFICATION REQUEST message. The SGNB ADDITION\nREQUEST and the SGNB MODIFICATION REQUEST messages can\ncontain the following information:\nSelected PLMN\n\nContains the PLMN selected by the eNodeB.\n\n\n\n\n\n\n\n\n\nHandover Restriction List (HRL)\n\nContains mobility restrictions for the UE with EN-DC in the NR RAN. If                             the HRL is included in the SGNB ADDITION REQUEST or the                                 SGNB MODIFICATION REQUEST, it is used in the NR RAN. The HRL contains the following information:  Mobility restrictions for the UE with EN-DC in the NR RAN     Serving PLMN of the SCG in the nodes\nThis information can be used for mobility control and observability in\nthe\nSecondary\ngNodeB.\nFor X2 connection handling in the eNodeB for EN-DC with shared RAN, see Shared LTE\nRAN in the LTE RAN library.\n3.2.4 X2 Connection Handling for NR Standalone Support\nThe gNodeB sends the Served NR Cell Information IE to the eNodeB over\nthe X2 interface to support deployments with the NR Standalone and Shared NR RAN\nfeatures.\nThe following IEs of the Served NR Cell Information IE are used for UEs in\nNR\nstandalone\ndeployments that\nuse\nthe Shared NR RAN feature:\nConfigured TAC\n\nThis IE contains the EPS TAC configured in the gNodeB that differs from the                         5GS TAC broadcast in the NR cell. The configured TAC enables the application                         of roaming and access restrictions for EN-DC.\n\n\n\n\n\n\n\n\n\n5GS-TAC\n\nThis IE contains the 5GS TAC broadcast in the NR cell.\n\n\n\n\n\n\n\nServed PLMNs\n\nThis IE contains the PLMNs served by the NR cell. If more broadcast PLMNs are                         required for the NR cell than the value defined in the                             maxnoofBPLMNs, the additional PLMNs are                         provided by the Broadcast PLMN Identity Info List NR IE.\n\n\n\n\n\n\n\nBroadcast PLMN Identity Info List NR\n\nThis IE contains the network identity information and the gNodeB version for                         the NR cell. This information is used to                         automatically                         update the neighbor cell relation in the eNodeB toward an NR cell in a                         shared configuration.\nThe Served PLMNs and the Broadcast PLMN Identity Info List\nNR IEs contain information from the NRCellCU.pLMNIdList\nattribute and the AdditionalPLMNInfo.pLMNIdList attribute.\nThe Served NR Cell Information IE is sent in the following messages:\nEN-DC X2 SETUP RESPONSE\nEN-DC CONFIGURATION UPDATE\nEN-DC CONFIGURATION UPDATE ACKNOWLEDGE\nThe Broadcast PLMN Identity Info List NR IE that is\nincluded\nin the Served NR Cell Information IE is used to update neighbor cell\ninformation in the eNodeB for the shared NR cell.\nThe information sent over the\nX2\ninterface is used for validation during setup with NR cells in NR standalone\ndeployments.",
+  "summary": "The Shared NR RAN feature enables the sharing of NR RAN between hosting and",
+  "parameters": [
+    {
+      "name": "NRCellDU.pLMNIdList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "AdditionalPLMNInfo.pLMNIdList under the                                 NRCellDU MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdditionalPLMNInfo"
+    },
+    {
+      "name": "NRCellDU.nRTAC",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "AdditionalPLMNInfo.nRTAC under the                                 NRCellDU MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdditionalPLMNInfo"
+    },
+    {
+      "name": "AdditionalPLMNInfo.cellReservedForOperator under                             the NRCellDU MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdditionalPLMNInfo"
+    },
+    {
+      "name": "NRCellDU.cellReservedForOperator",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "ResourcePartitionMember.endpointResourceRef under the                                 GNBCUCPFunction MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ResourcePartitionMember"
+    },
+    {
+      "name": "ResourcePartitionMember.endpointResourceRef under the                                 GNBCUUPFunction MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ResourcePartitionMember"
+    },
+    {
+      "name": "ResourcePartitionMember.endpointResourceRef under the                                 GNBDUFunction MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ResourcePartitionMember"
+    },
+    {
+      "name": "ResourcePartitionMember.pLMNIdList under the                                 GNBCUCPFunction MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ResourcePartitionMember"
+    },
+    {
+      "name": "ResourcePartitionMember.pLMNIdList under the                                 GNBCUUPFunction MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ResourcePartitionMember"
+    },
+    {
+      "name": "ResourcePartitionMember.pLMNIdList under the                                 GNBDUFunction MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ResourcePartitionMember"
+    },
+    {
+      "name": "ResourcePartitionMember.sNSSAIList under the                                 GNBCUCPFunction MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ResourcePartitionMember"
+    },
+    {
+      "name": "ResourcePartitionMember.sNSSAIList under the                                 GNBCUUPFunction MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ResourcePartitionMember"
+    },
+    {
+      "name": "ResourcePartitionMember.sNSSAIList under the                                     GNBDUFunction MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ResourcePartitionMember"
+    },
+    {
+      "name": "NRCellCU.primaryPLMNId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "NRCellCU.nRTAC",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "AdditionalPLMNInfo.pLMNIdList under the                                 NRCellCU MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdditionalPLMNInfo"
+    },
+    {
+      "name": "AdditionalPLMNInfo.nRTAC under the                                 NRCellCU MO",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdditionalPLMNInfo"
+    },
+    {
+      "name": "ExternalNRCellCU.primaryPLMNId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExternalNRCellCU"
+    },
+    {
+      "name": "GNBDUFunction.dUpLMNId",
+      "type": "Affecting",
+      "description": "PLMN identifier used as part of PM events data.",
+      "mo_class": "GNBDUFunction"
+    },
+    {
+      "name": "NRCellCU.pLMNIdList",
+      "type": "Affecting",
+      "description": "Sent as part of the served cell information in the following X2AP                                     messages:  EN-DC X2 SETUP RESPONSE     EN-DC CONFIGURATION UPDATE      EN-DC CONFIGURATION UPDATE ACKNOWLEDGE",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "NRCellDU.configuredEpsTAC",
+      "type": "Affecting",
+      "description": "The EPS TAC is only sent over X2.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "TermPointToAmf.operatorPLMNId",
+      "type": "Affecting",
+      "description": "Only used for IP addresses selection.",
+      "mo_class": "TermPointToAmf"
+    },
+    {
+      "name": "ExternalBroadcastPLMNInfo.pLMNIdList under the                                     ExternalNRCellCU MO",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "ExternalBroadcastPLMNInfo"
+    },
+    {
+      "name": "ExternalBroadcastPLMNInfo.nRTAC under the                                     ExternalNRCellCU MO",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "ExternalBroadcastPLMNInfo"
+    },
+    {
+      "name": "ExternalNRCellCU.plmnIdList",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "ExternalNRCellCU"
+    },
+    {
+      "name": "ExternalNRCellCU.nRTAC",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "ExternalNRCellCU"
+    },
+    {
+      "name": "CuCpNgSetupRequest",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG SETUP REQUEST message is sent.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "CuCpNgSetupResponse",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG SETUP RESPONSE message is received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "CuCpNgSetupFailure",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG SETUP FAILURE message is received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "CuCpNgRanConfigurationUpdate",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG RAN CONFIGURATION UPDATE message is sent.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "CuCpNgRanConfigurationUpdateAcknowledge",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG RAN CONFIGURATION UPDATE ACKNOWLEDGE message is                                     received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "CuCpNgRanConfigurationUpdateFailure",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG RAN CONFIGURATION UPDATE FAILURE message is                                     received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "CuCpNgAmfConfigurationUpdate",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG AMF CONFIGURATION UPDATE message is                                     received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "CuCpNgAmfConfigurationUpdateAcknowledge",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG AMF CONFIGURATION UPDATE ACKNOWLEDGE message is                                     sent.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "CuCpNgAmfConfigurationUpdateFailure",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG AMF CONFIGURATION UPDATE FAILURE message is                                     sent.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.DN33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "GNBCUCPFunction.pLMNId",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "GNBCUCPFunction"
+    },
+    {
+      "name": "GNBCUCPFunction.gNBId",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "GNBCUCPFunction"
+    },
+    {
+      "name": "AdditionalPLMNInfo.pLMNIdList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AdditionalPLMNInfo"
+    },
+    {
+      "name": "ExternalBroadcastPLMNInfo.pLMNIdList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ExternalBroadcastPLMNInfo"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsnMacPduVolDlUePCell",
+      "description": "Performance counter pmEbsnMacPduVolDlUePCell",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsnMacPduVolDlUeSCell",
+      "description": "Performance counter pmEbsnMacPduVolDlUeSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmEvents",
+      "description": "Performance counter pmEvents",
+      "category": "General"
+    },
+    {
+      "name": "pmMacPduVolDlUePCell",
+      "description": "Performance counter pmMacPduVolDlUePCell",
+      "category": "General"
+    },
+    {
+      "name": "pmMacPduVolDlUeSCell",
+      "description": "Performance counter pmMacPduVolDlUeSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "CuCpNgSetupRequest",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG SETUP REQUEST message is sent."
+    },
+    {
+      "name": "CuCpNgSetupResponse",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG SETUP RESPONSE message is received."
+    },
+    {
+      "name": "CuCpNgSetupFailure",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG SETUP FAILURE message is received."
+    },
+    {
+      "name": "CuCpNgRanConfigurationUpdate",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG RAN CONFIGURATION UPDATE message is sent."
+    },
+    {
+      "name": "CuCpNgRanConfigurationUpdateAcknowledge",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG RAN CONFIGURATION UPDATE ACKNOWLEDGE message is                                     received."
+    },
+    {
+      "name": "CuCpNgRanConfigurationUpdateFailure",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG RAN CONFIGURATION UPDATE FAILURE message is                                     received."
+    },
+    {
+      "name": "CuCpNgAmfConfigurationUpdate",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG AMF CONFIGURATION UPDATE message is                                     received."
+    },
+    {
+      "name": "CuCpNgAmfConfigurationUpdateAcknowledge",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG AMF CONFIGURATION UPDATE ACKNOWLEDGE message is                                     sent."
+    },
+    {
+      "name": "CuCpNgAmfConfigurationUpdateFailure",
+      "type": "Main_plmn_id     Gnb_id     Asn.1     Gnb_id_length     NCI",
+      "description": "NG AMF CONFIGURATION UPDATE FAILURE message is                                     sent."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012479 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012479 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch4/76_22104-LZA7016017_1Uen.DN33B.md",
+  "file_hash": "c829227e515a6b0b01d30bae243e3b0b",
+  "processed_at": "2025-10-19 15:50:09",
+  "network_impact": {},
+  "performance_impact": {}
+}

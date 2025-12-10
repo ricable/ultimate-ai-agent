@@ -1,0 +1,346 @@
+# Comprehensive Testing Docker Compose for Synaptic Neural Mesh
+# Supports unit, integration, performance, and security testing
+
+version: '3.8'
+
+services:
+  # ==============================================================================
+  # Application Under Test
+  # ==============================================================================
+  
+  neural-mesh-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: neural-mesh-test-app
+    hostname: neural-mesh-test
+    environment:
+      - NODE_ENV=test
+      - NODE_ID=neural-test-node
+      - RUST_LOG=debug,qudag=trace,neural_mesh=trace
+      - BOOTSTRAP_MODE=true
+      - NEURAL_MESH_MODE=coordinator
+      - QUDAG_P2P_PORT=4001
+      - QUDAG_RPC_PORT=8080
+      - NEURAL_API_PORT=8081
+      - MCP_PORT=3000
+    ports:
+      - "4001:4001"
+      - "8080:8080"
+      - "8081:8081"
+      - "3000:3000"
+      - "9090:9090"
+    volumes:
+      - test-data:/app/data
+      - test-logs:/app/logs
+    networks:
+      - test-network
+    healthcheck:
+      test: ["CMD", "/app/docker/healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # ==============================================================================
+  # Unit Tests
+  # ==============================================================================
+  
+  unit-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+      target: test-base
+    container_name: neural-mesh-unit-tests
+    environment:
+      - NODE_ENV=test
+      - TEST_TYPE=unit
+      - COVERAGE=true
+    volumes:
+      - ./tests:/app/tests:ro
+      - ./src:/app/src:ro
+      - test-results:/app/test-results
+      - coverage-data:/app/coverage
+    networks:
+      - test-network
+    command: ["npm", "test", "--", "--coverage", "--testPathPattern=unit"]
+    profiles:
+      - unit-test
+
+  # ==============================================================================
+  # Integration Tests
+  # ==============================================================================
+  
+  integration-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+      target: test-base
+    container_name: neural-mesh-integration-tests
+    environment:
+      - NODE_ENV=test
+      - TEST_TYPE=integration
+      - TARGET_HOST=neural-mesh-test
+      - TARGET_PORT=8080
+      - MCP_HOST=neural-mesh-test
+      - MCP_PORT=3000
+    volumes:
+      - ./tests:/app/tests:ro
+      - test-results:/app/test-results
+    networks:
+      - test-network
+    depends_on:
+      neural-mesh-test:
+        condition: service_healthy
+    command: ["npm", "test", "--", "--testPathPattern=integration"]
+    profiles:
+      - integration-test
+
+  # ==============================================================================
+  # End-to-End Tests
+  # ==============================================================================
+  
+  e2e-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+      target: test-base
+    container_name: neural-mesh-e2e-tests
+    environment:
+      - NODE_ENV=test
+      - TEST_TYPE=e2e
+      - BASE_URL=http://neural-mesh-test:8080
+      - API_URL=http://neural-mesh-test:8081
+      - MCP_URL=http://neural-mesh-test:3000
+      - HEADLESS=true
+    volumes:
+      - ./tests:/app/tests:ro
+      - test-results:/app/test-results
+      - ./playwright.config.js:/app/playwright.config.js:ro
+    networks:
+      - test-network
+    depends_on:
+      neural-mesh-test:
+        condition: service_healthy
+    command: ["npx", "playwright", "test"]
+    profiles:
+      - e2e-test
+
+  # ==============================================================================
+  # Performance Tests
+  # ==============================================================================
+  
+  performance-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+      target: performance-test
+    container_name: neural-mesh-performance-tests
+    environment:
+      - NODE_ENV=test
+      - TEST_TYPE=performance
+      - TARGET_URL=http://neural-mesh-test:8080
+      - API_URL=http://neural-mesh-test:8081
+      - MCP_URL=http://neural-mesh-test:3000
+      - DURATION=60s
+      - CONNECTIONS=100
+      - RPS=500
+    volumes:
+      - ./benchmarks:/app/benchmarks:ro
+      - test-results:/app/test-results
+    networks:
+      - test-network
+    depends_on:
+      neural-mesh-test:
+        condition: service_healthy
+    profiles:
+      - performance-test
+
+  # ==============================================================================
+  # Load Tests
+  # ==============================================================================
+  
+  load-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+      target: load-test
+    container_name: neural-mesh-load-tests
+    environment:
+      - NODE_ENV=test
+      - TEST_TYPE=load
+      - TARGET_URL=http://neural-mesh-test:8080
+      - LOAD_PATTERN=spike
+      - VIRTUAL_USERS=1000
+      - DURATION=300
+    volumes:
+      - ./benchmarks:/app/benchmarks:ro
+      - test-results:/app/test-results
+    networks:
+      - test-network
+    depends_on:
+      neural-mesh-test:
+        condition: service_healthy
+    profiles:
+      - load-test
+
+  # ==============================================================================
+  # Security Tests
+  # ==============================================================================
+  
+  security-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+      target: security-test
+    container_name: neural-mesh-security-tests
+    environment:
+      - NODE_ENV=test
+      - TEST_TYPE=security
+      - TARGET_HOST=neural-mesh-test
+      - TARGET_PORTS=4001,8080,8081,3000
+    volumes:
+      - test-results:/app/test-results
+    networks:
+      - test-network
+    depends_on:
+      neural-mesh-test:
+        condition: service_healthy
+    profiles:
+      - security-test
+
+  # ==============================================================================
+  # Chaos Engineering
+  # ==============================================================================
+  
+  chaos-tests:
+    image: chaostoolkit/chaostoolkit:latest
+    container_name: neural-mesh-chaos-tests
+    environment:
+      - TARGET_SERVICE=neural-mesh-test
+    volumes:
+      - ./tests/chaos:/home/chaostoolkit/chaos:ro
+      - test-results:/home/chaostoolkit/results
+    networks:
+      - test-network
+    depends_on:
+      neural-mesh-test:
+        condition: service_healthy
+    profiles:
+      - chaos-test
+    command: ["chaos", "run", "/home/chaostoolkit/chaos/neural-mesh-experiment.json"]
+
+  # ==============================================================================
+  # Test Monitoring and Reporting
+  # ==============================================================================
+  
+  test-prometheus:
+    image: prom/prometheus:v2.47.0
+    container_name: neural-mesh-test-prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.enable-lifecycle'
+      - '--storage.tsdb.retention.time=1d'
+    ports:
+      - "9094:9090"
+    volumes:
+      - ./monitoring/test-prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - test-prometheus-data:/prometheus
+    networks:
+      - test-network
+    profiles:
+      - monitoring
+
+  test-grafana:
+    image: grafana/grafana:10.1.0
+    container_name: neural-mesh-test-grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=test
+      - GF_USERS_ALLOW_SIGN_UP=false
+    ports:
+      - "3003:3000"
+    volumes:
+      - ./monitoring/grafana/test-provisioning:/etc/grafana/provisioning:ro
+      - test-grafana-data:/var/lib/grafana
+    networks:
+      - test-network
+    depends_on:
+      - test-prometheus
+    profiles:
+      - monitoring
+
+  # ==============================================================================
+  # Test Report Generator
+  # ==============================================================================
+  
+  test-reporter:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+      target: test-base
+    container_name: neural-mesh-test-reporter
+    environment:
+      - NODE_ENV=test
+      - REPORT_FORMAT=html,json,junit
+    volumes:
+      - test-results:/app/test-results
+      - coverage-data:/app/coverage
+      - ./reports:/app/reports
+    networks:
+      - test-network
+    command: ["/app/docker/test/generate-reports.sh"]
+    profiles:
+      - reporting
+    depends_on:
+      - unit-tests
+      - integration-tests
+      - e2e-tests
+      - performance-tests
+
+  # ==============================================================================
+  # Test Database
+  # ==============================================================================
+  
+  test-postgres:
+    image: postgres:16-alpine
+    container_name: neural-mesh-test-postgres
+    environment:
+      - POSTGRES_DB=neural_mesh_test
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5434:5432"
+    volumes:
+      - test-postgres-data:/var/lib/postgresql/data
+      - ./sql/test-init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - test-network
+
+  test-redis:
+    image: redis:7.2-alpine
+    container_name: neural-mesh-test-redis
+    command: redis-server --save ""
+    ports:
+      - "6381:6379"
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.27.0.0/16
+
+volumes:
+  test-data:
+  test-logs:
+  test-results:
+  coverage-data:
+  test-prometheus-data:
+  test-grafana-data:
+  test-postgres-data:

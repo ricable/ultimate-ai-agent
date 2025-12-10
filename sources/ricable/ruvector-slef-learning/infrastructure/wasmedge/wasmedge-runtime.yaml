@@ -1,0 +1,169 @@
+# WasmEdge Runtime Configuration for Kubernetes
+# Enables running JavaScript/Node.js applications with WasmEdge QuickJS engine
+# Supports npm packages through wasmedge-quickjs modules
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: wasmedge-system
+  labels:
+    app.kubernetes.io/name: wasmedge
+    app.kubernetes.io/component: runtime
+    runtime.kubernetes.io/type: wasm
+---
+# WasmEdge RuntimeClass for containerd-shim-wasmedge
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: wasmedge
+  labels:
+    runtime.kubernetes.io/type: wasm
+    runtime.kubernetes.io/engine: wasmedge
+handler: wasmedge
+overhead:
+  podFixed:
+    cpu: "50m"
+    memory: "32Mi"
+scheduling:
+  nodeSelector:
+    kubernetes.io/os: linux
+    wasm.runtime/wasmedge: "true"
+  tolerations:
+    - key: "wasm.runtime/wasmedge"
+      operator: "Exists"
+      effect: "NoSchedule"
+---
+# WasmEdge RuntimeClass for ARM64 nodes
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: wasmedge-arm64
+  labels:
+    runtime.kubernetes.io/type: wasm
+    runtime.kubernetes.io/engine: wasmedge
+handler: wasmedge
+overhead:
+  podFixed:
+    cpu: "50m"
+    memory: "32Mi"
+scheduling:
+  nodeSelector:
+    kubernetes.io/os: linux
+    kubernetes.io/arch: arm64
+    wasm.runtime/wasmedge: "true"
+---
+# WasmEdge with GPU support for AI inference
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: wasmedge-gpu
+  labels:
+    runtime.kubernetes.io/type: wasm
+    runtime.kubernetes.io/engine: wasmedge
+    runtime.kubernetes.io/gpu: "true"
+handler: wasmedge
+overhead:
+  podFixed:
+    cpu: "100m"
+    memory: "128Mi"
+scheduling:
+  nodeSelector:
+    kubernetes.io/os: linux
+    wasm.runtime/wasmedge: "true"
+    nvidia.com/gpu.present: "true"
+---
+# ConfigMap for WasmEdge QuickJS modules
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wasmedge-quickjs-modules
+  namespace: wasmedge-system
+data:
+  # Module paths for npm compatibility
+  module-paths.json: |
+    {
+      "modulePaths": [
+        "/modules",
+        "/app/node_modules",
+        "/usr/share/wasmedge/modules"
+      ],
+      "builtinModules": [
+        "buffer",
+        "querystring",
+        "encoding",
+        "http",
+        "https",
+        "net",
+        "fs",
+        "path",
+        "os",
+        "process",
+        "events",
+        "stream",
+        "util",
+        "crypto"
+      ]
+    }
+---
+# WasmEdge Plugin ConfigMap for AI inference
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wasmedge-plugins
+  namespace: wasmedge-system
+data:
+  plugins.json: |
+    {
+      "plugins": {
+        "wasi_nn": {
+          "enabled": true,
+          "backends": ["ggml", "openvino", "tensorflow-lite"]
+        },
+        "wasi_crypto": {
+          "enabled": true
+        },
+        "wasi_logging": {
+          "enabled": true,
+          "level": "info"
+        },
+        "wasmedge_tensorflow": {
+          "enabled": true,
+          "gpu": "auto"
+        }
+      }
+    }
+---
+# ServiceAccount for WasmEdge workloads
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: wasmedge-workload
+  namespace: wasmedge-system
+---
+# RBAC for WasmEdge workloads
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: wasmedge-workload
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get"]
+    resourceNames: ["wasmedge-secrets"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: wasmedge-workload
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: wasmedge-workload
+subjects:
+  - kind: ServiceAccount
+    name: wasmedge-workload
+    namespace: wasmedge-system

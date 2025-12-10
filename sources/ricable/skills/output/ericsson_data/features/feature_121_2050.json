@@ -1,0 +1,784 @@
+{
+  "id": "121 2050",
+  "name": "Public Warning System",
+  "cxc_code": "CXC4011252",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Public Warning System feature introduces a notification system for public",
+  "parameters": [
+    {
+      "name": "Paging.noOfDefPagCyclPrim",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Paging"
+    },
+    {
+      "name": "EUtranCellFDD.emergencyAreaId  EUtranCellTDD.emergencyAreaId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.mappingInfo (mappingInfoSIB10)  EUtranCellTDD.mappingInfo (mappingInfoSIB10)",
+      "type": "Introduced",
+      "description": "Defines to which SI message SIB10 is mapped. The recommended value of                                 the periodicity for this SI message is 8 radio frames (80 ms).",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.mappingInfo (mappingInfoSIB11)  EUtranCellTDD.mappingInfo (mappingInfoSIB11)",
+      "type": "Introduced",
+      "description": "Defines to which SI message SIB11 is mapped. The recommended value of                                 the periodicity for this SI message is 64 radio frames (640 ms).",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.mappingInfo (mappingInfoSIB12)  EUtranCellTDD.mappingInfo (mappingInfoSIB12)",
+      "type": "Introduced",
+      "description": "Defines to which SI message SIB12 is mapped. The recommended value of                                 the periodicity for this SI message is 64 radio frames (640 ms).",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "Paging.defaultPagingCycle",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "Paging"
+    },
+    {
+      "name": "EUtranCellFDD.siWindowLength  EUtranCellTDD.siWindowLength  NbIotCell.siWindowLength",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "siPeriodicitySI(x)",
+      "type": "Affecting",
+      "description": "Defines the periodicity of the SI(x) message to which an SIB is                                 mapped.  Please observe that siPeriodicitySI(x) is no real                                 parameter name, x denotes that the parameter is general for all SI                                 messages. The parameters siPeriodicitySIx (with                                 x=1-10) are members in the struct PeriodicitySI                                 which is the type of attributes                                     EUtranCellFDD.siPeriodicity and                                     EUtranCellTDD.siPeriodicity.   Mapping to SIx have the following three ways:    SIB10 is mapped to SIx.  The recommended value of the periodicity is 8 radio frames                                         (80 ms).     SIB11 is mapped to SIx.  The recommended value of the periodicity is 64 radio frames                                         (640 ms).     SIB12 is mapped to SIx.  The recommended value of the periodicity is 64 radio frames                                         (640 ms).",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_ETWS_TYPE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_REPET_PERIOD",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_ETWS_TYPE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_ETWS_RESULT",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_REPET_PERIOD",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_MESSAGE_ID",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_CMAS_RESULT",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_MESSAGE_ID",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_ETWS_REPET_COMPL",
+      "type": "One repetition of an ETWS message has been completed or                                     interrupted by replacement of the ongoing ETWS message. A                                     repetition comprises one paging message, with                                         etws-Indication set, sent during one full                                     paging cycle.",
+      "description": "No parameters.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REPET_STOPPED",
+      "type": "The repetitions of an ETWS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by replacement of the ongoing message.",
+      "description": "EVENT_PARAM_NO_OF_REPET_COMPL",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REPET_STOPPED",
+      "type": "The repetitions of an ETWS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by replacement of the ongoing message.",
+      "description": "EVENT_PARAM_ETWS_REPET_RESULT",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_CMAS_REPET_COMPL",
+      "type": "One repetition of a CMAS message has been completed. A repetition                                     comprises a number of SIB12 transmissions with one paging cycle                                     at the start and one paging cycle after stop of                                     transmission.",
+      "description": "EVENT_PARAM_MESSAGE_ID",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_CMAS_REPET_COMPL",
+      "type": "One repetition of a CMAS message has been completed. A repetition                                     comprises a number of SIB12 transmissions with one paging cycle                                     at the start and one paging cycle after stop of                                     transmission.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_MESSAGE_ID",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_CMAS_REPET_RESULT",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_NO_OF_REPET_COMPL",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_PWS_RESTART                                 INDICATION",
+      "type": "The event value is increased for a configured cell on the eNodeB                                     each time when information on this cell is compiled into an S1AP  PWS RESTART INDICATION                                     message.",
+      "description": "No parameters.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_PWS_RESTART_INDICATION",
+      "type": "The event value is increased each time the eNodeB sends an S1AP PWS RESTART INDICATION message to the MME                                     over the S1-C                                     interface.",
+      "description": "No parameters.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_ETWS_TYPE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_REPET_PERIOD",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_ETWS_TYPE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_ETWS_RESULT",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_REPET_PERIOD",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_MESSAGE_ID",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_CMAS_RESULT",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_MESSAGE_ID",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_ETWS_REPET_COMPL",
+      "type": "One repetition of an ETWS message has been completed or                                     interrupted by replacement of the ongoing ETWS message. A                                     repetition comprises one paging message, with                                         etws-Indication set, sent during one full                                     paging cycle.",
+      "description": "No parameters.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REPET_STOPPED",
+      "type": "The repetitions of an ETWS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by replacement of the ongoing message.",
+      "description": "EVENT_PARAM_NO_OF_REPET_COMPL",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REPET_STOPPED",
+      "type": "The repetitions of an ETWS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by replacement of the ongoing message.",
+      "description": "EVENT_PARAM_ETWS_REPET_RESULT",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_CMAS_REPET_COMPL",
+      "type": "One repetition of a CMAS message has been completed. A repetition                                     comprises a number of SIB12 transmissions with one paging cycle                                     at the start and one paging cycle after stop of                                     transmission.",
+      "description": "EVENT_PARAM_MESSAGE_ID",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_CMAS_REPET_COMPL",
+      "type": "One repetition of a CMAS message has been completed. A repetition                                     comprises a number of SIB12 transmissions with one paging cycle                                     at the start and one paging cycle after stop of                                     transmission.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_MESSAGE_ID",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_CMAS_REPET_RESULT",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_NO_OF_REPET_COMPL",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_PWS_RESTART                                 INDICATION",
+      "type": "The event value is increased for a configured cell on the eNodeB                                     each time when information on this cell is compiled into an S1AP  PWS RESTART INDICATION                                     message.",
+      "description": "No parameters.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_PWS_RESTART_INDICATION",
+      "type": "The event value is increased each time the eNodeB sends an S1AP PWS RESTART INDICATION message to the MME                                     over the S1-C                                     interface.",
+      "description": "No parameters.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.CA",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "CellSleepFunction.capCellRequiredActivationTime",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "CellSleepFunction"
+    },
+    {
+      "name": "TermPointToMme.pwsRestartHandling",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TermPointToMme"
+    },
+    {
+      "name": "EUtranCellFDD.siWindowLength",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.siWindowLength",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.mappingInfo",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEvents",
+      "description": "Performance counter pmEvents",
+      "category": "General"
+    },
+    {
+      "name": "pmNoOfCmasRepReq",
+      "description": "Performance counter pmNoOfCmasRepReq",
+      "category": "General"
+    },
+    {
+      "name": "pmNoOfCmasRepSucc",
+      "description": "Performance counter pmNoOfCmasRepSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmNoOfCmasReq",
+      "description": "Performance counter pmNoOfCmasReq",
+      "category": "General"
+    },
+    {
+      "name": "pmNoOfCmasSucc",
+      "description": "Performance counter pmNoOfCmasSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmNoOfEtwsPrimReq",
+      "description": "Performance counter pmNoOfEtwsPrimReq",
+      "category": "General"
+    },
+    {
+      "name": "pmNoOfEtwsPrimSucc",
+      "description": "Performance counter pmNoOfEtwsPrimSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmNoOfEtwsSecReq",
+      "description": "Performance counter pmNoOfEtwsSecReq",
+      "category": "General"
+    },
+    {
+      "name": "pmNoOfEtwsSecSucc",
+      "description": "Performance counter pmNoOfEtwsSecSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsCmasRepReq",
+      "description": "Performance counter pmPwsCmasRepReq",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsCmasRepSucc",
+      "description": "Performance counter pmPwsCmasRepSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsCmasReq",
+      "description": "Performance counter pmPwsCmasReq",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsCmasSucc",
+      "description": "Performance counter pmPwsCmasSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsEtwsPrimReq",
+      "description": "Performance counter pmPwsEtwsPrimReq",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsEtwsPrimSucc",
+      "description": "Performance counter pmPwsEtwsPrimSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsEtwsSecReq",
+      "description": "Performance counter pmPwsEtwsSecReq",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsEtwsSecSucc",
+      "description": "Performance counter pmPwsEtwsSecSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsRestartIndication",
+      "description": "Performance counter pmPwsRestartIndication",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsRestartIndicationSent",
+      "description": "Performance counter pmPwsRestartIndicationSent",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_ETWS_TYPE"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_REPET_PERIOD"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_ETWS_TYPE"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_ETWS_RESULT"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_REPET_PERIOD"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_MESSAGE_ID"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_CMAS_RESULT"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_MESSAGE_ID"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_ETWS_REPET_COMPL",
+      "type": "One repetition of an ETWS message has been completed or                                     interrupted by replacement of the ongoing ETWS message. A                                     repetition comprises one paging message, with                                         etws-Indication set, sent during one full                                     paging cycle.",
+      "description": "No parameters."
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REPET_STOPPED",
+      "type": "The repetitions of an ETWS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by replacement of the ongoing message.",
+      "description": "EVENT_PARAM_NO_OF_REPET_COMPL"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REPET_STOPPED",
+      "type": "The repetitions of an ETWS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by replacement of the ongoing message.",
+      "description": "EVENT_PARAM_ETWS_REPET_RESULT"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_CMAS_REPET_COMPL",
+      "type": "One repetition of a CMAS message has been completed. A repetition                                     comprises a number of SIB12 transmissions with one paging cycle                                     at the start and one paging cycle after stop of                                     transmission.",
+      "description": "EVENT_PARAM_MESSAGE_ID"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_CMAS_REPET_COMPL",
+      "type": "One repetition of a CMAS message has been completed. A repetition                                     comprises a number of SIB12 transmissions with one paging cycle                                     at the start and one paging cycle after stop of                                     transmission.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_MESSAGE_ID"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_CMAS_REPET_RESULT"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_NO_OF_REPET_COMPL"
+    },
+    {
+      "name": "INTERNAL_EVENT_PWS_RESTART                                 INDICATION",
+      "type": "The event value is increased for a configured cell on the eNodeB                                     each time when information on this cell is compiled into an S1AP  PWS RESTART INDICATION                                     message.",
+      "description": "No parameters."
+    },
+    {
+      "name": "S1_PWS_RESTART_INDICATION",
+      "type": "The event value is increased each time the eNodeB sends an S1AP PWS RESTART INDICATION message to the MME                                     over the S1-C                                     interface.",
+      "description": "No parameters."
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_ETWS_TYPE"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_REPET_PERIOD"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_ETWS_TYPE"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_ETWS_RESULT"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_REPET_PERIOD"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_MESSAGE_ID"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_CMAS_RESULT"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_MESSAGE_ID"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_ETWS_REPET_COMPL",
+      "type": "One repetition of an ETWS message has been completed or                                     interrupted by replacement of the ongoing ETWS message. A                                     repetition comprises one paging message, with                                         etws-Indication set, sent during one full                                     paging cycle.",
+      "description": "No parameters."
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REPET_STOPPED",
+      "type": "The repetitions of an ETWS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by replacement of the ongoing message.",
+      "description": "EVENT_PARAM_NO_OF_REPET_COMPL"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REPET_STOPPED",
+      "type": "The repetitions of an ETWS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by replacement of the ongoing message.",
+      "description": "EVENT_PARAM_ETWS_REPET_RESULT"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_CMAS_REPET_COMPL",
+      "type": "One repetition of a CMAS message has been completed. A repetition                                     comprises a number of SIB12 transmissions with one paging cycle                                     at the start and one paging cycle after stop of                                     transmission.",
+      "description": "EVENT_PARAM_MESSAGE_ID"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_CMAS_REPET_COMPL",
+      "type": "One repetition of a CMAS message has been completed. A repetition                                     comprises a number of SIB12 transmissions with one paging cycle                                     at the start and one paging cycle after stop of                                     transmission.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_MESSAGE_ID"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_CMAS_REPET_RESULT"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_NO_OF_REPET_COMPL"
+    },
+    {
+      "name": "INTERNAL_EVENT_PWS_RESTART                                 INDICATION",
+      "type": "The event value is increased for a configured cell on the eNodeB                                     each time when information on this cell is compiled into an S1AP  PWS RESTART INDICATION                                     message.",
+      "description": "No parameters."
+    },
+    {
+      "name": "S1_PWS_RESTART_INDICATION",
+      "type": "The event value is increased each time the eNodeB sends an S1AP PWS RESTART INDICATION message to the MME                                     over the S1-C                                     interface.",
+      "description": "No parameters."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011252 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011252 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/99_22104-LZA7016014_1Uen.CA.md",
+  "file_hash": "2ecc0579dccca64098d3294b207df59b",
+  "processed_at": "2025-10-19 15:50:05",
+  "network_impact": {},
+  "performance_impact": {}
+}

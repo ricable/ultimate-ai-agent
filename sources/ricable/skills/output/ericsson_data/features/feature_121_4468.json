@@ -1,0 +1,107 @@
+{
+  "id": "121 4468",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4011982",
+  "value_package": "Uplink Spectrum Adaptations",
+  "value_package_id": "FAJ 801 0566",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Multi-Clustered PUSCH feature allocates two non-contiguous fragments to a single",
+  "parameters": [
+    {
+      "name": "Uen.AT",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.clusteredPuschMprFactor",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmLcgThpTimeUlLcg",
+      "description": "Performance counter pmLcgThpTimeUlLcg",
+      "category": "General"
+    },
+    {
+      "name": "pmMacCellThpTimeUl",
+      "description": "Performance counter pmMacCellThpTimeUl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacLcgThpTimeUlLcg",
+      "description": "Performance counter pmMacLcgThpTimeUlLcg",
+      "category": "General"
+    },
+    {
+      "name": "pmMacUeThpTimeUl",
+      "description": "Performance counter pmMacUeThpTimeUl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacUeThpUlDistr",
+      "description": "Performance counter pmMacUeThpUlDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpBitrateUlDrbMax",
+      "description": "Performance counter pmPdcpBitrateUlDrbMax",
+      "category": "General"
+    },
+    {
+      "name": "pmPrbUtilUl",
+      "description": "Performance counter pmPrbUtilUl",
+      "category": "General"
+    },
+    {
+      "name": "pmSchedActivityCellUl",
+      "description": "Performance counter pmSchedActivityCellUl",
+      "category": "General"
+    },
+    {
+      "name": "pmSchedActivityUeUl",
+      "description": "Performance counter pmSchedActivityUeUl",
+      "category": "General"
+    },
+    {
+      "name": "pmUeThpTimeUl",
+      "description": "Performance counter pmUeThpTimeUl",
+      "category": "General"
+    },
+    {
+      "name": "pmUeThpUlDistr",
+      "description": "Performance counter pmUeThpUlDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011982 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011982 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/180_22104-LZA7016014_1Uen.AT.md",
+  "file_hash": "014e4a7317406947d6978ca957dfc4a4",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

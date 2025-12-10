@@ -1,0 +1,224 @@
+{
+  "id": "121 0877",
+  "name": "Coverage-Triggered Inter-Frequency Handover",
+  "cxc_code": "CXC4010974",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "Coverage-Triggered-Inter-Frequency Handover feature enhances active mode mobility between",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.covTriggerdBlindHoAllowed",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellRelation.coverageIndicator",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellTDD.covTriggerdBlindHoAllowed",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranFreqRelation.mobilityAction",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPEfi",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AZ",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "UnsupportedFreqProfile.unsupportedFreqList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UnsupportedFreqProfile"
+    },
+    {
+      "name": "RobustCallSetup.intraLteMobilityDelayEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RobustCallSetup"
+    },
+    {
+      "name": "EUtranCellFDD.pmBadCovEvalReport",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmFlexUeCtxtRelSCEutra",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmBadCovEvalReport",
+      "description": "Performance counter pmBadCovEvalReport",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexUeCtxtRelSCEutra",
+      "description": "Performance counter pmFlexUeCtxtRelSCEutra",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeAttLteInterF",
+      "description": "Performance counter pmHoExeAttLteInterF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccLteInterF",
+      "description": "Performance counter pmHoExeSuccLteInterF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttLteInterF",
+      "description": "Performance counter pmHoPrepAttLteInterF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccLteInterF",
+      "description": "Performance counter pmHoPrepSuccLteInterF",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPEfi",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010974 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010974 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/30_22104-LZA7016014_1Uen.AZ.md",
+  "file_hash": "76301b61ad0c02cadc5dd3d25766dae5",
+  "processed_at": "2025-10-19 15:50:05",
+  "network_impact": {},
+  "performance_impact": {}
+}

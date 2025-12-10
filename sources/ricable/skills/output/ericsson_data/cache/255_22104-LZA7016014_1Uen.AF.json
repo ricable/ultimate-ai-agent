@@ -1,0 +1,43 @@
+{
+  "file_hash": "4d63f2c33ae5f06023dfae712c1a1821",
+  "feature": {
+    "id": "121 3010",
+    "name": "TM7 Mode Switching",
+    "cxc_code": "CXC4011326",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The TM7 Mode Switching feature improves cell-edge UE performance while offering higher data",
+    "parameters": [
+      {
+        "name": "Uen.AF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011326 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011326 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/255_22104-LZA7016014_1Uen.AF.md",
+    "file_hash": "4d63f2c33ae5f06023dfae712c1a1821",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

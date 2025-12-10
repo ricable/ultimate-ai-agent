@@ -1,0 +1,58 @@
+{
+  "id": "121 4730",
+  "name": "Virtual Sectors",
+  "cxc_code": "CXC4012110",
+  "value_package": "Advanced Downlink MIMO",
+  "value_package_id": "FAJ 801 0562",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Virtual Sectors feature provides high-order sectorization with three 8T8R radios",
+  "parameters": [
+    {
+      "name": "SectorCarrier.virtualSector",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SectorCarrier"
+    },
+    {
+      "name": "SectorCarrier.virtualComChBeamfrmWtsAmplitude",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SectorCarrier"
+    },
+    {
+      "name": "SectorCarrier.virtualComChBeamfrmWtsPhase",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SectorCarrier"
+    },
+    {
+      "name": "Uen.AL",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012110 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012110 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/338_22104-LZA7016014_1Uen.AL.md",
+  "file_hash": "ca902346adc2254b446658078df0add9",
+  "processed_at": "2025-10-19 15:50:05",
+  "network_impact": {},
+  "performance_impact": {}
+}

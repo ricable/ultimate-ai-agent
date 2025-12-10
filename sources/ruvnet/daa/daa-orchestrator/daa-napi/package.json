@@ -1,0 +1,86 @@
+{
+  "name": "@daa/orchestrator",
+  "version": "0.2.1",
+  "description": "Node.js bindings for DAA Orchestrator - autonomous agent orchestration with MRAP loop, workflow engine, rules engine, and token economy",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/daa.git",
+    "directory": "daa-orchestrator/daa-napi"
+  },
+  "license": "MIT OR Apache-2.0",
+  "keywords": [
+    "daa",
+    "autonomous-agents",
+    "orchestrator",
+    "workflow",
+    "rules-engine",
+    "token-economy",
+    "napi-rs",
+    "rust"
+  ],
+  "napi": {
+    "name": "daa-orchestrator",
+    "triples": {
+      "defaults": true,
+      "additional": [
+        "aarch64-apple-darwin",
+        "aarch64-unknown-linux-gnu",
+        "aarch64-unknown-linux-musl",
+        "aarch64-pc-windows-msvc",
+        "x86_64-unknown-linux-musl"
+      ]
+    }
+  },
+  "engines": {
+    "node": ">= 16"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "bench": "node -r @swc-node/register benchmark/bench.ts",
+    "build": "napi build --platform --release",
+    "build:debug": "napi build --platform",
+    "format": "run-p format:prettier format:rs",
+    "format:prettier": "prettier . -w",
+    "format:rs": "cargo fmt",
+    "lint": "eslint . -c ./.eslintrc.yml",
+    "prepublishOnly": "napi prepublish -t npm",
+    "test": "ava",
+    "version": "napi version",
+    "dev": "napi build --platform"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^2.18.0",
+    "@swc-node/register": "^1.6.8",
+    "@types/node": "^20.10.0",
+    "ava": "^6.0.0",
+    "chalk": "^5.3.0",
+    "eslint": "^8.55.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3"
+  },
+  "ava": {
+    "extensions": {
+      "ts": "module"
+    },
+    "timeout": "3m",
+    "workerThreads": false,
+    "environmentVariables": {
+      "TS_NODE_PROJECT": "./tsconfig.json"
+    }
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": true,
+    "trailingComma": "all",
+    "singleQuote": true,
+    "arrowParens": "always"
+  },
+  "packageManager": "npm@10.2.4"
+}

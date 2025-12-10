@@ -1,0 +1,137 @@
+{
+  "file_hash": "3852cb7cfd714ea370fb33df773a2e84",
+  "feature": {
+    "id": "121 1747",
+    "name": "Service Triggered Mobility  Multi-Layer Service-Triggered Mobility",
+    "cxc_code": "CXC4011815",
+    "value_package": "Service-Based Mobility",
+    "value_package_id": "FAJ 801 0433",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node, DU Radio Node",
+    "description": "",
+    "summary": "The Multi-Layer Service-Triggered Mobility feature provides the possibility to configure",
+    "parameters": [
+      {
+        "name": "INTERNAL_EVENT_ERAB_DATA_INFO",
+        "type": "EVENT_ARRAY_RECONF_MEAS_QCI",
+        "description": "Indicates the QCIs of set up, released, or modified bearers that                                     lead to a measurement reconfiguration within the corresponding                                     procedure.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_ERAB_DATA_INFO",
+        "type": "EVENT_PARAM_ERAB_PROCEDURE",
+        "description": "Indicates the E-RAB-related procedure (setup, release, or modify)                                     that is executed when the event containing transparent E-RAB or                                     E-RAB procedure-related data is issued.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.BA",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.spifhoDedicatedReportConfig",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.spifhoDedicatedReportConfig",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "UlTraffic.a5Threshold2Rsrp",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UlTraffic"
+      },
+      {
+        "name": "ReportConfigSearch.a1a2SearchThresholdRsrp",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "ReportConfigSearch.a1a2SearchThresholdX",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "ReportConfigSearch.qciA1A2ThrOffsets",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ReportConfigSearch"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmHoExeOutAttQci",
+        "description": "Performance counter pmHoExeOutAttQci",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeOutSuccQci",
+        "description": "Performance counter pmHoExeOutSuccQci",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAtt",
+        "description": "Performance counter pmHoPrepAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteInterF",
+        "description": "Performance counter pmHoPrepAttLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteInterFQci",
+        "description": "Performance counter pmHoPrepAttLteInterFQci",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttSrvcc",
+        "description": "Performance counter pmHoPrepAttSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccLteInterFQci",
+        "description": "Performance counter pmHoPrepSuccLteInterFQci",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_ERAB_DATA_INFO",
+        "type": "EVENT_ARRAY_RECONF_MEAS_QCI",
+        "description": "Indicates the QCIs of set up, released, or modified bearers that                                     lead to a measurement reconfiguration within the corresponding                                     procedure."
+      },
+      {
+        "name": "INTERNAL_EVENT_ERAB_DATA_INFO",
+        "type": "EVENT_PARAM_ERAB_PROCEDURE",
+        "description": "Indicates the E-RAB-related procedure (setup, release, or modify)                                     that is executed when the event containing transparent E-RAB or                                     E-RAB procedure-related data is issued."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011815 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011815 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/144_22104-LZA7016014_1Uen.BA.md",
+    "file_hash": "3852cb7cfd714ea370fb33df773a2e84",
+    "processed_at": "2025-10-19 15:48:55",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

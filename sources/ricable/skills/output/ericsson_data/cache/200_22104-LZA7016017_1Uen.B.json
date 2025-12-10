@@ -1,0 +1,59 @@
+{
+  "file_hash": "20a8b511cfa5aa1551e058425d8359e6",
+  "feature": {
+    "id": "121 5709",
+    "name": "NR QoS-Aware Uplink Throughput Observability",
+    "cxc_code": "CXC4012728",
+    "value_package": "Advanced RAN Slicing",
+    "value_package_id": "FAJ 801 4019",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature introduces the possibility for differentiated throughput observability in",
+    "parameters": [
+      {
+        "name": "Uen.B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsnMacTimeUlResDrb",
+        "description": "Performance counter pmEbsnMacTimeUlResDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacVolUlResDrb",
+        "description": "Performance counter pmEbsnMacVolUlResDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012728 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012728 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/200_22104-LZA7016017_1Uen.B.md",
+    "file_hash": "20a8b511cfa5aa1551e058425d8359e6",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,369 @@
+{
+  "id": "121 4983",
+  "name": "NR Coverage-Triggered NR Session Continuity",
+  "cxc_code": "CXC4012324",
+  "value_package": "Basic NR Mobility Support",
+  "value_package_id": "FAJ 801 1018",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The NR Coverage-Triggered NR Session Continuity feature provides basic connected mode",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.systemInformationBlock24  EUtranCellTDD.systemInformationBlock24",
+      "type": "Introduced",
+      "description": "See MOM description.  The attribute references struct SIB24. The struct                                 has the following members:   NRFreqRelation.tReselectionNR  NRFreqRelation.tReselectionNrSfMedium  NRFreqRelation.tReselectionNrSfHigh",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "ENodeBFunction.mobilityBackToNrFreqDisabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "GUtranSyncSignalFrequency.smtcPeriodicity",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranSyncSignalFrequency"
+    },
+    {
+      "name": "GUtranSyncSignalFrequency.smtcOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranSyncSignalFrequency"
+    },
+    {
+      "name": "GUtranSyncSignalFrequency.smtcDuration",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranSyncSignalFrequency"
+    },
+    {
+      "name": "GUtranSyncSignalFrequency.smtcScs",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranSyncSignalFrequency"
+    },
+    {
+      "name": "GUtranFreqRelation.gUtranSyncSignalFrequencyRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "GUtranFreqRelation.cellReselectionPriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "GUtranFreqRelation.timeToTriggerNrB1B2Override",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "GUtranFreqRelation.threshXHigh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "GUtranFreqRelation.threshXLow",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "GUtranFreqRelation.threshXHighQ",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "GUtranFreqRelation.threshXLowQ",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "GUtranFreqRelation.qRxLevMin",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "GUtranFreqRelation.pMaxNR",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "GUtranFreqRelation.qQualMin",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "GUtranFreqRelation.cellReselectionSubPriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "GUtranFreqRelation.connectedModeMobilityPrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "GUtranFreqRelation.qOffsetFreq",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "UeMeasControl.nrB1MeasAtEndcEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "UeMeasControl.nrB1MeasWindow",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "UeMeasControl.nrB1MeasEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "UeMeasControl.maxMeasNR",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "UeMeasControl.waitForStartNRMeas",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "UeMeasControl.nrB1MobilityTimerLessTtt",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "UeMeasControl.waitForResumeNRMeas",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "ReportConfigB1NR.hysteresisB1",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigB1NR"
+    },
+    {
+      "name": "ReportConfigB1NR.timeToTriggerB1",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigB1NR"
+    },
+    {
+      "name": "ReportConfigB1NR.triggerQuantityB1NR",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigB1NR"
+    },
+    {
+      "name": "ReportConfigB1NR.b1ThresholdRsrp",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigB1NR"
+    },
+    {
+      "name": "ReportConfigB1NR.b1ThresholdRsrq",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigB1NR"
+    },
+    {
+      "name": "GUtranFreqRelation.allowedPlmnList",
+      "type": "Affecting",
+      "description": "The attribute can be used for restricting UEs from mobility to an NR                                 network of another operator.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "FreqPrioNR.arfcnValueNRDl",
+      "type": "Affecting",
+      "description": "Priority of NR frequencies is defined in                                     FreqPrioNR MO instance as a child of                                     RATFreqPrio MO.",
+      "mo_class": "FreqPrioNR"
+    },
+    {
+      "name": "FreqPrioNR.cellReselectionPrio",
+      "type": "Affecting",
+      "description": "Priority of NR frequencies is defined in                                     FreqPrioNR MO instance as a child of                                     RATFreqPrio MO.",
+      "mo_class": "FreqPrioNR"
+    },
+    {
+      "name": "FreqPrioNR.connModeMobilityPrio",
+      "type": "Affecting",
+      "description": "Priority of NR frequencies is defined in                                     FreqPrioNR MO instance as a child of                                     RATFreqPrio MO.",
+      "mo_class": "FreqPrioNR"
+    },
+    {
+      "name": "ExternalBroadcastPLMNInfo.pLMNIdList",
+      "type": "Affecting",
+      "description": "The PLMN is checked against the HRL of the UE for the RwR to NR with                                 validation procedure.",
+      "mo_class": "ExternalBroadcastPLMNInfo"
+    },
+    {
+      "name": "ExternalGUtranCell.pLMNIdList",
+      "type": "Affecting",
+      "description": "The PLMN is checked against the HRL of the UE for the RwR to NR with                                 validation procedure.",
+      "mo_class": "ExternalGUtranCell"
+    },
+    {
+      "name": "ExternalBroadcastPLMNInfo.nRTAC",
+      "type": "Affecting",
+      "description": "The nRTAC is checked for the RwR to NR with validation procedure.",
+      "mo_class": "ExternalBroadcastPLMNInfo"
+    },
+    {
+      "name": "ExternalGUtranCell.nRTAC",
+      "type": "Affecting",
+      "description": "The nRTAC is checked for the RwR to NR with validation                             procedure.",
+      "mo_class": "ExternalGUtranCell"
+    },
+    {
+      "name": "EUtranCellFDD.changeNotification  EUtranCellTDD.changeNotification",
+      "type": "Affected",
+      "description": "The attribute references struct ChangeNotificationSIBs. The                                     changeNotificationSIB24 struct member is                                 added.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.mappingInfo  EUtranCellTDD.mappingInfo",
+      "type": "Affected",
+      "description": "The attribute references struct MappingInfoSIBs. The                                     mappingInfoSIB24 struct member is                                 added.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "Uen.EY",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "GUtranFreqRelation.allowedPLMNList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "UePolicyOptimization.zzzTemporary1",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UePolicyOptimization"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmB1BestCellEvalReport",
+      "description": "Performance counter pmB1BestCellEvalReport",
+      "category": "General"
+    },
+    {
+      "name": "pmB1BestCellEvalReportRsrp",
+      "description": "Performance counter pmB1BestCellEvalReportRsrp",
+      "category": "General"
+    },
+    {
+      "name": "pmConnModeMobilityExcluded",
+      "description": "Performance counter pmConnModeMobilityExcluded",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexUeCtxtRelSCNr",
+      "description": "Performance counter pmFlexUeCtxtRelSCNr",
+      "category": "General"
+    },
+    {
+      "name": "pmIdleModeMobilityExcluded",
+      "description": "Performance counter pmIdleModeMobilityExcluded",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelSCNr",
+      "description": "Performance counter pmUeCtxtRelSCNr",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelSCNrB1Rsrp",
+      "description": "Performance counter pmUeCtxtRelSCNrB1Rsrp",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelSCNrB1Rsrq",
+      "description": "Performance counter pmUeCtxtRelSCNrB1Rsrq",
+      "category": "General"
+    },
+    {
+      "name": "pmaxNR",
+      "description": "Performance counter pmaxNR",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_EVENT_MEAS_CONFIG_B1_NR",
+      "type": "When a UE is to be configured using RRC Connection                                     Reconfiguration to report measurements on NR with Report                                     Configuration of type B1 measurement.",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "type": "The EVENT_VALUE_NR enum value is introduced for                                     the EVENT_PARAM_REDIRECT_RELEASE_INFO event parameter.  The EVENT_VALUE_MEAS_REPORT_B1_BEST_CELL enum                                     value is introduced for the EVENT_PARAM_MOBILITY_TRIGGER event                                     parameter.",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_NR_FREQUENCY_EXCLUDED",
+      "type": "Sent when NR frequency is excluded from mobility back to NR.  The following event enum values and event parameter are                                         introduced:  EVENT_PARAM_MOBILITY_MODE_PER_EXCLUDED_NR_FREQUENCY     EVENT_VALUE_CONN_MODE_MOBILITY_BWISHO     EVENT_VALUE_IDLE_MODE_MOBILITY_BWISHO",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MOBILITY_TRIGGER",
+      "type": "",
+      "description": "The EVENT_VALUE_MEAS_REPORT_B1_BEST_CELL enum                                 value is introduced."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012324 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012324 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/431_22104-LZA7016014_1Uen.EY.md",
+  "file_hash": "ed769cdcd83e02afcd977517b87661d5",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

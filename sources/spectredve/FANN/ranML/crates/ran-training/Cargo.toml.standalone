@@ -1,0 +1,108 @@
+[package]
+name = "ran-training"
+version = "0.1.0"
+edition = "2021"
+authors = ["ruv-swarm <ruvnet@gmail.com>"]
+description = "Unified neural network training system for telecom data with swarm orchestration"
+license = "MIT OR Apache-2.0"
+keywords = ["neural-networks", "machine-learning", "fann", "telecom", "wasm", "swarm"]
+categories = ["science", "mathematics", "wasm"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Core FANN library (commented out for testing)
+# ruv-fann = { path = "../../../" }
+
+# Data processing
+csv = "1.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+ndarray = "0.15"
+
+# Async and futures
+tokio = { version = "1.0", features = ["full"], optional = true }
+futures = "0.3"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Logging
+log = "0.4"
+env_logger = "0.10"
+
+# Random number generation
+rand = "0.8"
+rand_chacha = "0.3"
+
+# Math utilities
+num-traits = "0.2"
+
+# Parallel processing
+rayon = "1.8"
+
+# Time utilities
+chrono = { version = "0.4", features = ["serde"] }
+
+# Configuration
+clap = { version = "4.0", features = ["derive"] }
+
+# Utilities
+uuid = { version = "1.0", features = ["v4", "serde"] }
+
+# ML frameworks (optional)
+candle-core = { version = "0.6", optional = true }
+candle-nn = { version = "0.6", optional = true }
+
+# WebAssembly support
+wasm-bindgen = { version = "0.2", optional = true }
+js-sys = { version = "0.3", optional = true }
+web-sys = { version = "0.3", optional = true }
+console_error_panic_hook = { version = "0.1", optional = true }
+wee_alloc = { version = "0.4", optional = true }
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+tempfile = "3.8"
+
+[features]
+default = ["std"]
+std = []
+async = ["tokio"]
+swarm = ["async"]
+gpu = ["candle-core", "candle-nn"]
+wasm = [
+    "wasm-bindgen",
+    "js-sys", 
+    "web-sys",
+    "console_error_panic_hook",
+    "wee_alloc"
+]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.release.package.wee_alloc]
+opt-level = 3
+
+[[bench]]
+name = "training_benchmark"
+harness = false
+
+[[example]]
+name = "telecom_training"
+required-features = ["std"]
+
+[[example]]
+name = "swarm_training"
+required-features = ["swarm"]
+
+[[example]]
+name = "wasm_training"
+required-features = ["wasm"]

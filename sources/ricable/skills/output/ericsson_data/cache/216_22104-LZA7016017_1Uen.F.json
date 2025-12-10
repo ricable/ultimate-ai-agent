@@ -1,0 +1,101 @@
+{
+  "file_hash": "f5dc53876d344a22ba51c928b0f04fe4",
+  "feature": {
+    "id": "121 5700",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012804",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "This feature enables extended sleep periods for RedCap UEs in idle",
+    "parameters": [
+      {
+        "name": "NRCellDU.eDrxMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "Paging.pagingDiscardTimerEdrx",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Paging"
+      },
+      {
+        "name": "Paging.nS",
+        "type": "Affecting",
+        "description": "If the Paging.nS attribute is set to a value                                     greater than 1 during upgrade, the value of the                                         Paging.pagingDiscardTimerEdrx attribute                                     is set to 3 or to the value of the                                         Paging.pagingDiscardTimer. This depends                                     on which is the lowest                                     value.To                                     activate the Ericsson Reduced Capability Extended DRX feature in                                     this case, all cells in the gNodeB-DU must be locked and                                     unlocked to change both the Paging.nS and the                                         Paging.pagingDiscardTimerEdrx attribute                                     to the required setting.",
+        "mo_class": "Paging"
+      },
+      {
+        "name": "Uen.F",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmPagDiscardedEdrx",
+        "description": "Performance counter pmPagDiscardedEdrx",
+        "category": "General"
+      },
+      {
+        "name": "pmPagDiscardedMpLoadEdrx",
+        "description": "Performance counter pmPagDiscardedMpLoadEdrx",
+        "category": "General"
+      },
+      {
+        "name": "pmPagF1DiscardedEdrx",
+        "description": "Performance counter pmPagF1DiscardedEdrx",
+        "category": "General"
+      },
+      {
+        "name": "pmPagF1ReceivedEdrx",
+        "description": "Performance counter pmPagF1ReceivedEdrx",
+        "category": "General"
+      },
+      {
+        "name": "pmPagNgDiscardedEdrx",
+        "description": "Performance counter pmPagNgDiscardedEdrx",
+        "category": "General"
+      },
+      {
+        "name": "pmPagNgReceivedEdrx",
+        "description": "Performance counter pmPagNgReceivedEdrx",
+        "category": "General"
+      },
+      {
+        "name": "pmPagReceivedEdrx",
+        "description": "Performance counter pmPagReceivedEdrx",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012804 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012804 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/216_22104-LZA7016017_1Uen.F.md",
+    "file_hash": "f5dc53876d344a22ba51c928b0f04fe4",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

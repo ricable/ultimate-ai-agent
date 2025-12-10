@@ -1,0 +1,142 @@
+{
+  "file_hash": "e4ec9f7021db307fafb8abd379378295",
+  "feature": {
+    "id": "121 4884",
+    "name": "VoLTE Optimized Carrier Aggregation",
+    "cxc_code": "CXC4012259",
+    "value_package": "VoLTE Performance",
+    "value_package_id": "FAJ 801 0444",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature provides functions to improve VoLTE retainability when the UE is more",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.sCellHandlingAtVolteCall",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.sCellHandlingAtVolteCall",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.enhVolteOptimizedCa",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.enhVolteOptimizedCa",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "CarrierAggregationFunction.sCellSelectionMode",
+        "type": "Affecting",
+        "description": "When this attribute is set to                                     ACK_SEQUENTIAL_SCELL_SELECTION, and the                                     EUtranCellFDD.enhVolteOptimizedCa or the                                     EUtranCellTDD.enhVolteOptimizedCa attribute                                 is set to true while the                                     EUtranCellFDD.sCellHandlingAtVolteCall or                                     EUtranCellTDD.sCellHandlingAtVolteCall                                 attribute is set to DECONF_UL_SUPPRESS_DL_SCELLS,                                 the Carrier Aggregation configuration can be decreased.",
+        "mo_class": "CarrierAggregationFunction"
+      },
+      {
+        "name": "INTERNAL_EVENT_RRC_SCELL_DECONFIGURED",
+        "type": "EVENT_VALUE_VOIP_SETUP",
+        "description": "SCell deconfigured because of VoIP setup.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.BT",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "QciProfilePredefined.serviceType",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfileOperatorDefined.serviceType",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfileOperatorDefined"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCaDeconfiguredVolte",
+        "description": "Performance counter pmCaDeconfiguredVolte",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActQci",
+        "description": "Performance counter pmErabRelAbnormalEnbActQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActUeLostQci",
+        "description": "Performance counter pmErabRelAbnormalEnbActUeLostQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbQci",
+        "description": "Performance counter pmErabRelAbnormalEnbQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabVolteTimeDistr",
+        "description": "Performance counter pmErabVolteTimeDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolDlDrb",
+        "description": "Performance counter pmPdcpVolDlDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolUlDrb",
+        "description": "Performance counter pmPdcpVolUlDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabAttMoVoice",
+        "description": "Performance counter pmRrcConnEstabAttMoVoice",
+        "category": "General"
+      },
+      {
+        "name": "pmSchedActivityCellDl",
+        "description": "Performance counter pmSchedActivityCellDl",
+        "category": "General"
+      },
+      {
+        "name": "pmSchedActivityCellUl",
+        "description": "Performance counter pmSchedActivityCellUl",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_RRC_SCELL_DECONFIGURED",
+        "type": "EVENT_VALUE_VOIP_SETUP",
+        "description": "SCell deconfigured because of VoIP setup."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012259 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012259 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/399_22104-LZA7016014_1Uen.BT.md",
+    "file_hash": "e4ec9f7021db307fafb8abd379378295",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

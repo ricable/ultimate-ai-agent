@@ -1,0 +1,91 @@
+{
+  "id": "121 3076",
+  "name": "4x4 Quad Antenna Downlink Performance Package  4x2 Quad-Antenna Downlink Performance Package",
+  "cxc_code": "CXC4011427",
+  "value_package": "4x4 Downlink MIMO   4x2 Downlink MIMO",
+  "value_package_id": "FAJ 801 0560 R3  FAJ 801 0401 R2",
+  "access_type": "LTE, WCDMA, GSM",
+  "node_type": "Baseband Radio Node, DU Radio Node",
+  "description": "",
+  "summary": "The feature supports four transmit antennas used for",
+  "parameters": [
+    {
+      "name": "ENodeBFunction.extendMixedTxModeEnabled",
+      "type": "Affecting",
+      "description": "If the value of this attribute is set to true, not only TM3 but                 TM2 or TM4, can be applied to 2TX TDD and 4TX TDD cells that coexist with TM3, TM7,                 or TM8 8TX TDD cells.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "EUtranCellFDD.csiRsConfigType",
+      "type": "Affecting",
+      "description": "For TM9, switching EUtranCellFDD.csiRsConfigType from                   NZP_CSIRS to NZP_ZP_CSIRS configuration                 reduces the interference to the CSI-RS in neighboring cells. However, the switching                 results in fewer available resource elements for PDSCH.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.dlChannelBandwidth",
+      "type": "Affecting",
+      "description": "For TM9, the attribute must be set to 5 MHz or larger. Because TM9 cannot be                 enabled in cells with bandwidth smaller than or equal to 5 MHz, as smaller bandwidth                 do not allow for sufficient SI message allocation.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.siWindowLength",
+      "type": "Affecting",
+      "description": "For TM9, the attribute must be set to 10 ms or longer.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.transmissionMode",
+      "type": "Affecting",
+      "description": "For TM9, the attribute must be set to TRANSMISSION_MODE_9.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "SectorCarrier.noOfTxAntennas",
+      "type": "Affecting",
+      "description": "With a parameter value of 0, the installed licensed feature combination for                 multiple antennas defines the configuration and the number of used TX antennas. If                 the parameter value is set to four, and the 4x2 Quad Antenna Downlink Performance                 Package feature is enabled, the number of used TX antennas is four.",
+      "mo_class": "SectorCarrier"
+    },
+    {
+      "name": "Uen.CN",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmI",
+      "description": "Performance counter pmI",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmentFunction",
+      "description": "Performance counter pmentFunction",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011427 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011427 MO instance.",
+  "engineering_guidelines": "General Guidelines for Switching from 2TX to 4TX Deployment When switching from 2TX to 4TX deployment, it is necessary to retune the following configurations: Enumeration CfiMode For the same cell power and CRS scaling, the measured RSRP at a given location in the configured cell is lowered by 3 dB going from 2TX to 4TX. This is because of the way RSRP is defined by the 3GPP standard. The change in RSRP levels requires the retuning of HO thresholds. To maintain the HO boundary, it is necessary to adjust the CRS scaling, that is, crsGain, as to be explained. Consider setting enumeration CfiMode to 4 or 5. This helps mitigate the fact that there are fewer CCEs for PDCCH with 4TX compared to 2TX, since the introduction of 2 extra CRSs comes at the expense of RE available for PDCCH and PDSCH. The crsGain setting does not change the RSRP level and CRS interference level in the same way. CRS scaling Handover (HO) thresholds (qRxLevMin, A1/A2/A5/B2 thresholds) These settings can have been optimized for 2TX, but are not necessarily optimal for 4TX. Basically, it is in general difficult to maintain RSRP parity and CRS interference parity simultaneously going from 2TX to 4TX, a trade-off has to be made. If the cluster is not coverage limited, one can maintain CRS interference parity. Otherwise, one can maintain RSRP parity. All of those need to be considered in the performance comparison. Example 1 If we maintain the same crsGain and cell power, from 2TX to 4TX, the change in RSRP is -3.01dB but the change in CRS interference is only -1.25dB. The reason for the discrepancy of 3.01 - 1.25 = 1.76dB is due to the RS power spectral density being halved from 2TX to 4TX. However, the number of RS resource elements increased 1.5 times rather than in a two-fold manner, because antenna ports 2 and 3 have half the number of RS REs, as compared to antenna ports 0 and 1. In case of one PRB, 16 REs are used for CRS in 2TX (8 from port 0 and 8 from port 1), while there are 24 REs used for CRS in 4TX (8 from port 0, 8 from port 1, 4 from port 2 and 4 from port 3). The resulting total CRS power of 4TX is 1.76 dB (10log(24/16)) higher than the total CRS power of 2TX. For details on the CRS RE locations, see Figure 6.10.1.2-1 in TS36.211 (v14.2.0).\n\nExamples are highlighted in a different font in Table 5. crsGain crsGain 4TX 4TX 4TX 4TX 4TX 4TX 4TX 4TX\n\ncrsGain crsGain -300 -200 -100 0 177 300 477 600\n\n2TX -300 -3.01 -2.01 -1.01 -0.01 1.76 2.99 4.76 5.99\n\n2TX -200 -4.01 -3.01 -2.01 -1.01 0.76 1.99 3.76 4.99\n\n2TX -100 -5.01 -4.01 -3.01 -2.01 -0.24 0.99 2.76 3.99\n\n2TX 0 -6.01 -5.01 -4.01 -3.01 -1.24 -0.01 1.76 2.99\n\n2TX 177 -7.78 -6.78 -5.78 -4.78 -3.01 -1.78 -0.01 1.22\n\n2TX 300 -9.01 -8.01 -7.01 -6.01 -4.24 -3.01 -1.24 -0.01\n\n2TX 477 -10.78 -9.78 -8.78 -7.78 -6.01 -4.78 -3.01 -1.78\n\n2TX 600 -12.01 -11.01 -10.01 -9.01 -7.24 -6.01 -4.24 -3.01\n\nCRS Interference [dB] (Same Cell Power) . Examples are highlighted in a different font in Table 6. crsGain crsGain 4TX 4TX 4TX 4TX 4TX 4TX 4TX 4TX\n\ncrsGain crsGain -300 -200 -100 0 177 300 477 600\n\n2TX -300 -1.25 -0.25 0.75 1.75 3.52 4.75 6.52 7.75\n\n2TX -200 -2.25 -1.25 -0.25 0.75 2.52 3.75 5.52 6.75\n\n2TX -100 -3.25 -2.25 -1.25 -0.25 1.52 2.75 4.52 5.75\n\n2TX 0 -4.25 -3.25 -2.25 -1.25 0.52 1.75 3.52 4.75\n\n2TX 177 -6.02 -5.02 -4.02 -3.02 -1.25 -0.02 1.75 2.98\n\n2TX 300 -7.25 -6.25 -5.25 -4.25 -2.48 -1.25 0.52 1.75\n\n2TX 477 -9.02 -8.02 -7.02 -6.02 -4.25 -3.02 -1.25 -0.02\n\n2TX 600 -10.25 -9.25 -8.25 -7.25 -5.48 -4.25 -2.48 -1.25 Example 2 Assume that 2TX deployment was with crsGain= 0. For 4TX deployment. If crsGain setting = 0 is kept, the 4TX RSRP is 3.01dB lower than the 2TX RSRP, and 4TX CRS interference is 1.25dB lower than the 2TX counterpart. Example 3 Assume that 2TX deployment was with crsGain= 0. If the same HO boundary as before is to be kept, there can be a need to increase crsGain by 300. So, it is possible to set 4TX crsGain to 300. In that case, the 4TX RSRP relative to 2TX RSRP is only -0.01dB. However, 4TX CRS interference is 1.75dB higher than the 2TX counterpart, which has negative impact on the 4TX throughput. Example 4   Assume that 2TX deployment was with crsGain= 0. If 4TX crsGain is set to 177 to reduce CRS interference to be 0.52dB higher than the 2TX counterpart, the 4TX RSRP is still 1.24dB lower than the 2TX RSRP, impacting the HO boundary. Deployment Scenarios for 4TX with Doubled Cell Power To analyze the resulting performance gain, view this deployment as a two-step solution: Upgrade from 2TX to 4TX with the same cell power. Change the configuration to double the cell power, but keep all other settings unchanged.\n\nDoubled) crsGain crsGain 4TX 4TX 4TX 4TX 4TX 4TX 4TX 4TX\n\ncrsGain crsGain -300 -200 -100 0 177 300 477 600\n\n2TX -300 0 1 2 3 4.77 6 7.77 9\n\n2TX -200 -1 0 1 2 3.77 5 6.77 8\n\n2TX -100 -2 -1 0 1 2.77 4 5.77 7\n\n2TX 0 -3 -2 -1 0 1.77 3 4.77 6\n\n2TX 177 -4.77 -3.77 -2.77 -1.77 0 1.23 3 4.23\n\n2TX 300 -6 -5 -4 -3 -1.23 0 1.77 3\n\n2TX 477 -7.77 -6.77 -5.77 -4.77 -3 -1.77 0 1.23\n\n2TX 600 -9 -8 -7 -6 -4.23 -3 -1.23 0\n\n2TX CRS Interference [dB] (Cell Power Doubled) crsGain crsGain 4TX 4TX 4TX 4TX 4TX 4TX 4TX 4TX\n\ncrsGain crsGain -300 -200 -100 0 177 300 477 600\n\n2TX -300 1.76 2.76 3.76 4.76 6.53 7.76 9.53 10.76\n\n2TX -200 0.76 1.76 2.76 3.76 5.53 6.76 8.53 9.76\n\n2TX -100 -0.24 0.76 1.76 2.76 4.53 5.76 7.53 8.76\n\n2TX 0 -1.24 -0.24 0.76 1.76 3.53 4.76 6.53 7.76\n\n2TX 177 -3.01 -2.01 -1.01 -0.01 1.76 2.99 4.76 5.99\n\n2TX 300 -4.24 -3.24 -2.24 -1.24 0.53 1.76 3.53 4.76\n\n2TX 477 -6.01 -5.01 -4.01 -3.01 -1.24 -0.01 1.76 2.99\n\n2TX 600 -7.24 -6.24 -5.24 -4.24 -2.47 -1.24 0.53 1.76",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/114_22104-LZA7016014_1Uen.CN.md",
+  "file_hash": "c82eb452feeaae31e71caf87168643d6",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

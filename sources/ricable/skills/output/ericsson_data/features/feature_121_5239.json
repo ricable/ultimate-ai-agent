@@ -1,0 +1,175 @@
+{
+  "id": "121 5239",
+  "name": "SSB Power Boost",
+  "cxc_code": "CXC4012500",
+  "value_package": "Advanced Coverage Extension",
+  "value_package_id": "FAJ 801 4006",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "In High-Band cells, the feature improves coverage on the cell edge so that the UE can detect",
+  "parameters": [
+    {
+      "name": "NRCellDU.actualSsbPowerBoost",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.ssbPowerBoost",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "ReportConfigB1GUtra.b1ThresholdRsrp",
+      "type": "Affecting",
+      "description": "In High-Band cells, the value of this attribute has to be                                         increased with the same value configured for the                                             NRCellDU.ssbPowerBoost attribute. For                                         fixed wireless access deployments, the recommendation to                                         increase the B1 RSRP threshold is not applicable.",
+      "mo_class": "ReportConfigB1GUtra"
+    },
+    {
+      "name": "Uen.CC33C",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRCellDU.ssbPowerBoostMMimoSleep",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmB1MeasRepEndcConfig",
+      "description": "Performance counter pmB1MeasRepEndcConfig",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelAbnormalAmf5qi",
+      "description": "Performance counter pmDrbRelAbnormalAmf5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelAbnormalGnb5qi",
+      "description": "Performance counter pmDrbRelAbnormalGnb5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelNormal5qi",
+      "description": "Performance counter pmDrbRelNormal5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcRelUeAbnormalMenbAct",
+      "description": "Performance counter pmEndcRelUeAbnormalMenbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcRelUeAbnormalSgnbAct",
+      "description": "Performance counter pmEndcRelUeAbnormalSgnbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcRelUeNormal",
+      "description": "Performance counter pmEndcRelUeNormal",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcSetupScgUeSucc",
+      "description": "Performance counter pmEndcSetupScgUeSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcSetupUeAtt",
+      "description": "Performance counter pmEndcSetupUeAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmEnsdcRelUeAbnormalMenbAct",
+      "description": "Performance counter pmEnsdcRelUeAbnormalMenbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAck16QamInitSlotDistr",
+      "description": "Performance counter pmMacHarqDlAck16QamInitSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAckQpskInitSlotDistr",
+      "description": "Performance counter pmMacHarqDlAckQpskInitSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack16QamInitSlotDistr",
+      "description": "Performance counter pmMacHarqDlNack16QamInitSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNackQpskInitSlotDistr",
+      "description": "Performance counter pmMacHarqDlNackQpskInitSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDl",
+      "description": "Performance counter pmMacVolDl",
+      "category": "General"
+    },
+    {
+      "name": "pmMeasConfigB1Endc",
+      "description": "Performance counter pmMeasConfigB1Endc",
+      "category": "General"
+    },
+    {
+      "name": "pmPdschAvailTime",
+      "description": "Performance counter pmPdschAvailTime",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbAttMsg2",
+      "description": "Performance counter pmRadioRaCbAttMsg2",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbPreambles",
+      "description": "Performance counter pmRadioRaCbPreambles",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "RRC_SCG_FAILURE_INFORMATION_NR",
+      "type": "This event occurs when an eNodeB receives the                                             RRCSCGFailureInformationNR message. The                                         event allows to check the reason for the failure of setting                                         up SCG radio resources.",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012500 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012500 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch4/70_22104-LZA7016017_1Uen.CC33C.md",
+  "file_hash": "ebf2ded48e72dc25c53558b1688db2c3",
+  "processed_at": "2025-10-19 15:50:09",
+  "network_impact": {},
+  "performance_impact": {}
+}

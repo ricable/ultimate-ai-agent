@@ -1,0 +1,23 @@
+[package]
+name = "alignment-engine"
+version = "0.1.0"
+edition = "2021"
+authors = ["CRISPR-Cas13 Team"]
+description = "Read alignment engine for CRISPR-Cas13 pipeline"
+license = "MIT"
+
+[dependencies]
+data-models = { path = "../data-models" }
+tokio = { version = "1.40", features = ["full"] }
+async-trait = "0.1"
+thiserror = "1.0"
+tracing = "0.1"
+rust-htslib = "0.47"
+bio = "2.0"
+needletail = "0.5"
+rayon = "1.8"
+uuid = { version = "1.10", features = ["v4", "serde"] }
+
+[dev-dependencies]
+proptest = "1.5"
+tempfile = "3.8"

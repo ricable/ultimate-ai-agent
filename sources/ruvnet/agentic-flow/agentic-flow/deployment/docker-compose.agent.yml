@@ -1,0 +1,113 @@
+# Docker Compose examples for different agent modes
+# Usage: docker-compose -f docker-compose.agent.yml up <service-name>
+
+services:
+  # List all available agents
+  list-agents:
+    build:
+      context: ../..
+      dockerfile: docker/claude-agent-sdk/Dockerfile
+    command: ["--list"]
+    profiles: ["list"]
+
+  # Goal planner agent
+  goal-planner:
+    build:
+      context: ../..
+      dockerfile: docker/claude-agent-sdk/Dockerfile
+    command:
+      - "--agent"
+      - "goal-planner"
+      - "--task"
+      - "Create a 3-step plan to improve API performance"
+      - "--stream"
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      ENABLE_STREAMING: "true"
+    profiles: ["goal-planner"]
+
+  # Coder agent
+  coder:
+    build:
+      context: ../..
+      dockerfile: docker/claude-agent-sdk/Dockerfile
+    command:
+      - "--agent"
+      - "coder"
+      - "--task"
+      - "Implement retry logic with exponential backoff"
+      - "--stream"
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      ENABLE_STREAMING: "true"
+    profiles: ["coder"]
+
+  # Code reviewer agent
+  reviewer:
+    build:
+      context: ../..
+      dockerfile: docker/claude-agent-sdk/Dockerfile
+    command:
+      - "--agent"
+      - "reviewer"
+      - "--task"
+      - "Review error handling implementation in src/utils/retry.ts"
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+    profiles: ["reviewer"]
+
+  # Tester agent
+  tester:
+    build:
+      context: ../..
+      dockerfile: docker/claude-agent-sdk/Dockerfile
+    command:
+      - "--agent"
+      - "tester"
+      - "--task"
+      - "Create test cases for the retry logic"
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+    profiles: ["tester"]
+
+  # Researcher agent
+  researcher:
+    build:
+      context: ../..
+      dockerfile: docker/claude-agent-sdk/Dockerfile
+    command:
+      - "--agent"
+      - "researcher"
+      - "--task"
+      - "Research best practices for distributed systems"
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+    profiles: ["researcher"]
+
+  # Flow Nexus swarm agent
+  flow-nexus-swarm:
+    build:
+      context: ../..
+      dockerfile: docker/claude-agent-sdk/Dockerfile
+    command:
+      - "--agent"
+      - "flow-nexus-swarm"
+      - "--task"
+      - "Deploy a multi-agent swarm for code analysis"
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+    profiles: ["swarm"]
+
+  # Default parallel mode (original behavior)
+  parallel:
+    build:
+      context: ../..
+      dockerfile: docker/claude-agent-sdk/Dockerfile
+    # No command - runs default parallel mode
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      TOPIC: "migrate payments service"
+      DIFF: "feat: add payments router and mandate checks"
+      DATASET: "monthly tx volume, refunds, chargebacks"
+      ENABLE_STREAMING: "true"
+    profiles: ["parallel"]

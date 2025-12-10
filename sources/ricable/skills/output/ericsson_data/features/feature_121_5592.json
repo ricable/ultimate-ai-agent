@@ -1,0 +1,867 @@
+{
+  "id": "121 5592",
+  "name": "NR Standalone High-Band for Fixed Wireless Access",
+  "cxc_code": "CXC4012677",
+  "value_package": "Standalone High-Band Deployment",
+  "value_package_id": "FAJ 801 4024",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature introduces the standalone deployment on High-Band for FWA UEs with power",
+  "parameters": [
+    {
+      "name": "AasData.antSegmentation",
+      "type": "Affected",
+      "description": "This attribute must be set to SPLIT_H_50_50 if less                                 than eight sector carriers are configured on an AIR 5322 radio                                 unit.",
+      "mo_class": "AasData"
+    },
+    {
+      "name": "AqmCfg.aqmMode",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "AqmCfg"
+    },
+    {
+      "name": "AqmCfg.estimatedE2ERTT",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "AqmCfg"
+    },
+    {
+      "name": "AqmCfg.tDiscardDl",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "AqmCfg"
+    },
+    {
+      "name": "EUtranCellRelation.isHoAllowed",
+      "type": "Affected",
+      "description": "This attribute must be set to false.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "GNBCUCPFunction.rrcReestSupportType",
+      "type": "Affected",
+      "description": "This attribute must be set to NO_RRE_SUPPORT.",
+      "mo_class": "GNBCUCPFunction"
+    },
+    {
+      "name": "IntraFreqMCCellProfileUeCfg.rsrpBetterSpCell",
+      "type": "Affected",
+      "description": "The offsetparameter of the                                     ReportConfigA3Rsrp struct must be set to                                     150.",
+      "mo_class": "IntraFreqMCCellProfileUeCfg"
+    },
+    {
+      "name": "CaCellMeasProfileUeCfg.rsrpSCellCoverage",
+      "type": "Affected",
+      "description": "The hysteresis parameter of the                                     ReportConfigA1A2Rsrp struct must be set to                                     150.",
+      "mo_class": "CaCellMeasProfileUeCfg"
+    },
+    {
+      "name": "CaFreqRelMeasProfileUeCfg.rsrpSCellCoverageThrOffset",
+      "type": "Affected",
+      "description": "This attribute must be set to -30.",
+      "mo_class": "CaFreqRelMeasProfileUeCfg"
+    },
+    {
+      "name": "McpcPCellEUtranFreqRelProfileUeCfg.inhibitMeasForCellCandidate",
+      "type": "Affected",
+      "description": "This attribute must be set to true.",
+      "mo_class": "McpcPCellEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "McpcPCellNrFreqRelProfileUeCfg.inhibitMeasForCellCandidate",
+      "type": "Affected",
+      "description": "This attribute must be set to true.",
+      "mo_class": "McpcPCellNrFreqRelProfileUeCfg"
+    },
+    {
+      "name": "McpcPCellProfileUeCfg.rsrpCandidateA5PcOffset",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "McpcPCellProfileUeCfg"
+    },
+    {
+      "name": "McpcPCellProfileUeCfg.rsrpCandidateB2PcOffset",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "McpcPCellProfileUeCfg"
+    },
+    {
+      "name": "McpcPCellProfileUeCfg.rsrpCriticalEnabled",
+      "type": "Affected",
+      "description": "This attribute must be set to false.",
+      "mo_class": "McpcPCellProfileUeCfg"
+    },
+    {
+      "name": "McpcPCellProfileUeCfg.rsrpCriticalPcOffset",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "McpcPCellProfileUeCfg"
+    },
+    {
+      "name": "McpcPCellProfileUeCfg.rsrpSearchZonePcOffset",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "McpcPCellProfileUeCfg"
+    },
+    {
+      "name": "NRCellCU.mcpcPCellEnabled",
+      "type": "Affected",
+      "description": "This attribute must be set to false.",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "NRCellCU.pmUeIntraFreqEnabled",
+      "type": "Affected",
+      "description": "This attribute must be set to false.",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "NRCellDU.cellRange",
+      "type": "Affected",
+      "description": "This attribute must be set to                                     4000\u00a0or                                 lower.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pZeroNomPucch",
+      "type": "Affected",
+      "description": "This attribute must be set to                                     1000.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pZeroNomPuschGrant",
+      "type": "Affected",
+      "description": "This attribute must be set to                                     1000.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.qRxLevMin",
+      "type": "Affected",
+      "description": "This attribute must be set to -120.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rachPreambleFormat",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rachPreambleRecTargetPower",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rachPreambleTransMax",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rachRootSequence",
+      "type": "Affected",
+      "description": "It is recommended to set this attribute to different values in each                                 cell if there are neighbor PCells or PSCells in the same                                 frequency.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.secondaryCellOnly",
+      "type": "Affected",
+      "description": "This attribute must be set to false in the                                 PCells.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.ssbDuration",
+      "type": "Affected",
+      "description": "This attribute must be set to one of the following values:  empty     3",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.tddUlDlPattern",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellRelation.coverageIndicator",
+      "type": "Affected",
+      "description": "This attribute must be set to OVERLAP in the SCells                                 and the PCells.",
+      "mo_class": "NRCellRelation"
+    },
+    {
+      "name": "NRCellRelation.isHoAllowed",
+      "type": "Affected",
+      "description": "This attribute must be set to false.",
+      "mo_class": "NRCellRelation"
+    },
+    {
+      "name": "NRCellRelation.sCellCandidate",
+      "type": "Affected",
+      "description": "This attribute must be set to ALLOWED in the                                 SCells.  This attribute must be set to                                 NOT_ALLOWED in the PCells.",
+      "mo_class": "NRCellRelation"
+    },
+    {
+      "name": "Paging.defaultPagingCycle",
+      "type": "Affected",
+      "description": "It is recommended to set this attribute to a high value if higher UE                                 power saving is desired.  It is recommended to set this attribute to a low value if shorter                                 latency is desired.",
+      "mo_class": "Paging"
+    },
+    {
+      "name": "Paging.n",
+      "type": "Affected",
+      "description": "This feature supports the following values of this attribute:  T1_2     T1_4     T1_8     T1_16     It is recommended to set this attribute to                                     T1_2.",
+      "mo_class": "Paging"
+    },
+    {
+      "name": "Paging.nS",
+      "type": "Affected",
+      "description": "This attribute must be set to 1 when using this                                 feature.",
+      "mo_class": "Paging"
+    },
+    {
+      "name": "Rrc.t300",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "Rrc"
+    },
+    {
+      "name": "RrcInactiveProfileUeCfg.rrcInactiveStateSupport",
+      "type": "Affected",
+      "description": "This attribute must be set to false.",
+      "mo_class": "RrcInactiveProfileUeCfg"
+    },
+    {
+      "name": "SecurityHandling.cipheringAlgoPrio",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "SecurityHandling"
+    },
+    {
+      "name": "SecurityHandling.integrityProtectAlgoPrio",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "SecurityHandling"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.actionAtRelease",
+      "type": "Affected",
+      "description": "This attribute must be set to DISABLED to prevent                                 traffic steering.  If the NR Standalone High-Band with Multiple PCell Support feature is                                 activated, this attribute can be set to                                     RANDOM_REDIRECT to enable the random redirect                                 at release function.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.bwTrigISHoEnabled",
+      "type": "Affected",
+      "description": "This attribute must be set to false to prevent                                 traffic steering.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.mlcEnabled",
+      "type": "Affected",
+      "description": "This attribute must be set to false to prevent                                 traffic steering.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.mlcPeriodicEnabled",
+      "type": "Affected",
+      "description": "This attribute must be set to false to prevent                                 traffic steering.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.rsrpPCellCandidatePcOffset",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "UeMCEUtranFreqRelProfileUeCfg.blindRwrAllowed",
+      "type": "Affected",
+      "description": "This attribute must be set to false.",
+      "mo_class": "UeMCEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "UeMCEUtranFreqRelProfileUeCfg.connModeAllowedPCell",
+      "type": "Affected",
+      "description": "This attribute must be set to false.",
+      "mo_class": "UeMCEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "CUCP5qi.profile5qi",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "CUCP5qi"
+    },
+    {
+      "name": "CUUP5qi.profile5qi",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "CUUP5qi"
+    },
+    {
+      "name": "DU5qi.profile5qi",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "DU5qi"
+    },
+    {
+      "name": "LocalIpEndpoint.addressRef",
+      "type": "Affecting",
+      "description": "The NG and F1 interfaces must be added to the                                     LocalIpEndpoint.interfaceList list in any                                 combination.",
+      "mo_class": "LocalIpEndpoint"
+    },
+    {
+      "name": "LocalSctpEndpoint.sctpEndpointRef",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "LocalSctpEndpoint"
+    },
+    {
+      "name": "NRCellDU.ssbOffset",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.ssbFrequency",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.ssbFrequencyAutoSelected",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.ssbGscn",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "Paging.pagingDiscardTimer",
+      "type": "Affecting",
+      "description": "Determines how long paging messages are retained before being                                 discarded.",
+      "mo_class": "Paging"
+    },
+    {
+      "name": "Uen.AZ",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "TermPointToAmf.administrativeState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TermPointToAmf"
+    },
+    {
+      "name": "TermPointToAmf.ipv4Address1",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TermPointToAmf"
+    },
+    {
+      "name": "TermPointToAmf.ipv6Address1",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TermPointToAmf"
+    },
+    {
+      "name": "TermPointToAmf.ipv4Address2",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TermPointToAmf"
+    },
+    {
+      "name": "TermPointToAmf.ipv6Address2",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TermPointToAmf"
+    },
+    {
+      "name": "TermPointToAmf.operationalState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TermPointToAmf"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmDrbEstabAtt5qi",
+      "description": "Performance counter pmDrbEstabAtt5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbEstabSucc5qi",
+      "description": "Performance counter pmDrbEstabSucc5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelAbnormalAmf5qi",
+      "description": "Performance counter pmDrbRelAbnormalAmf5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelAbnormalGnb5qi",
+      "description": "Performance counter pmDrbRelAbnormalGnb5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelNormal5qi",
+      "description": "Performance counter pmDrbRelNormal5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbEstabAtt5qi",
+      "description": "Performance counter pmEbsDrbEstabAtt5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbEstabAttInit5qi",
+      "description": "Performance counter pmEbsDrbEstabAttInit5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbEstabSucc5qi",
+      "description": "Performance counter pmEbsDrbEstabSucc5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbEstabSuccInit5qi",
+      "description": "Performance counter pmEbsDrbEstabSuccInit5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPduSessionEstabAtt",
+      "description": "Performance counter pmEbsPduSessionEstabAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPduSessionEstabSucc",
+      "description": "Performance counter pmEbsPduSessionEstabSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPduSessionModifyAtt",
+      "description": "Performance counter pmEbsPduSessionModifyAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPduSessionModifySucc",
+      "description": "Performance counter pmEbsPduSessionModifySucc",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUeCtxtEstabAtt",
+      "description": "Performance counter pmEbsUeCtxtEstabAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUeCtxtEstabLatDistr",
+      "description": "Performance counter pmEbsUeCtxtEstabLatDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUeCtxtEstabSucc",
+      "description": "Performance counter pmEbsUeCtxtEstabSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsnMacPduVolDlUePCell",
+      "description": "Performance counter pmEbsnMacPduVolDlUePCell",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsnMacPduVolDlUeSCell",
+      "description": "Performance counter pmEbsnMacPduVolDlUeSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmIntra",
+      "description": "Performance counter pmIntra",
+      "category": "General"
+    },
+    {
+      "name": "pmMacPduVolDlUePCell",
+      "description": "Performance counter pmMacPduVolDlUePCell",
+      "category": "General"
+    },
+    {
+      "name": "pmMacPduVolDlUeSCell",
+      "description": "Performance counter pmMacPduVolDlUeSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrb",
+      "description": "Performance counter pmMacVolDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlResUe",
+      "description": "Performance counter pmMacVolUlResUe",
+      "category": "General"
+    },
+    {
+      "name": "pmNgSigConnEstabAtt",
+      "description": "Performance counter pmNgSigConnEstabAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmNgSigConnEstabAttMos",
+      "description": "Performance counter pmNgSigConnEstabAttMos",
+      "category": "General"
+    },
+    {
+      "name": "pmNgSigConnEstabSucc",
+      "description": "Performance counter pmNgSigConnEstabSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmNgSigConnEstabSuccMos",
+      "description": "Performance counter pmNgSigConnEstabSuccMos",
+      "category": "General"
+    },
+    {
+      "name": "pmO",
+      "description": "Performance counter pmO",
+      "category": "General"
+    },
+    {
+      "name": "pmOs",
+      "description": "Performance counter pmOs",
+      "category": "General"
+    },
+    {
+      "name": "pmPagBundledUeDistr",
+      "description": "Performance counter pmPagBundledUeDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmPagBundledUeSampDistr",
+      "description": "Performance counter pmPagBundledUeSampDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmPagDiscarded",
+      "description": "Performance counter pmPagDiscarded",
+      "category": "General"
+    },
+    {
+      "name": "pmPagDiscardedMpLoad",
+      "description": "Performance counter pmPagDiscardedMpLoad",
+      "category": "General"
+    },
+    {
+      "name": "pmPagDiscardedRan",
+      "description": "Performance counter pmPagDiscardedRan",
+      "category": "General"
+    },
+    {
+      "name": "pmPagF1Discarded",
+      "description": "Performance counter pmPagF1Discarded",
+      "category": "General"
+    },
+    {
+      "name": "pmPagF1Received",
+      "description": "Performance counter pmPagF1Received",
+      "category": "General"
+    },
+    {
+      "name": "pmPagNgDiscarded",
+      "description": "Performance counter pmPagNgDiscarded",
+      "category": "General"
+    },
+    {
+      "name": "pmPagNgReceived",
+      "description": "Performance counter pmPagNgReceived",
+      "category": "General"
+    },
+    {
+      "name": "pmPagReceived",
+      "description": "Performance counter pmPagReceived",
+      "category": "General"
+    },
+    {
+      "name": "pmPagReceivedRan",
+      "description": "Performance counter pmPagReceivedRan",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktLossUlQos",
+      "description": "Performance counter pmPdcpPktLossUlQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktLossUlToDiscQos",
+      "description": "Performance counter pmPdcpPktLossUlToDiscQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktLossUlToQos",
+      "description": "Performance counter pmPdcpPktLossUlToQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktRecDl5qi",
+      "description": "Performance counter pmPdcpPktRecDl5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktRecDlDisc5qi",
+      "description": "Performance counter pmPdcpPktRecDlDisc5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktRecDlDiscAqm5qi",
+      "description": "Performance counter pmPdcpPktRecDlDiscAqm5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktRecUlOooQos",
+      "description": "Performance counter pmPdcpPktRecUlOooQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktRecUlQos",
+      "description": "Performance counter pmPdcpPktRecUlQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktTransDlAckQos",
+      "description": "Performance counter pmPdcpPktTransDlAckQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktTransDlDiscAqmQos",
+      "description": "Performance counter pmPdcpPktTransDlDiscAqmQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktTransDlDiscQos",
+      "description": "Performance counter pmPdcpPktTransDlDiscQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktTransDlQos",
+      "description": "Performance counter pmPdcpPktTransDlQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktTransUl5qi",
+      "description": "Performance counter pmPdcpPktTransUl5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolRecUlQos",
+      "description": "Performance counter pmPdcpVolRecUlQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolTransDlQos",
+      "description": "Performance counter pmPdcpVolTransDlQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolTransUl5qi",
+      "description": "Performance counter pmPdcpVolTransUl5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmPduSessionEstabAtt",
+      "description": "Performance counter pmPduSessionEstabAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmPduSessionEstabSucc",
+      "description": "Performance counter pmPduSessionEstabSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmPduSessionModifyAtt",
+      "description": "Performance counter pmPduSessionModifyAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmPduSessionModifySucc",
+      "description": "Performance counter pmPduSessionModifySucc",
+      "category": "General"
+    },
+    {
+      "name": "pmPduSessionRelAbnormalAmf",
+      "description": "Performance counter pmPduSessionRelAbnormalAmf",
+      "category": "General"
+    },
+    {
+      "name": "pmPduSessionRelAbnormalGnb",
+      "description": "Performance counter pmPduSessionRelAbnormalGnb",
+      "category": "General"
+    },
+    {
+      "name": "pmPduSessionRelNormal",
+      "description": "Performance counter pmPduSessionRelNormal",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioPucchFailSr",
+      "description": "Performance counter pmRadioPucchFailSr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaAttTaDistr",
+      "description": "Performance counter pmRadioRaAttTaDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbAttMsg2",
+      "description": "Performance counter pmRadioRaCbAttMsg2",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbFail3Dtx",
+      "description": "Performance counter pmRadioRaCbFail3Dtx",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbFailMsg1MaxMsg3Sched",
+      "description": "Performance counter pmRadioRaCbFailMsg1MaxMsg3Sched",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbFailMsg1Ooc",
+      "description": "Performance counter pmRadioRaCbFailMsg1Ooc",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbFailMsg2Disc",
+      "description": "Performance counter pmRadioRaCbFailMsg2Disc",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbFailMsg3Crc",
+      "description": "Performance counter pmRadioRaCbFailMsg3Crc",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbFailMsg3Crnti",
+      "description": "Performance counter pmRadioRaCbFailMsg3Crnti",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbFailMsg3Dtx",
+      "description": "Performance counter pmRadioRaCbFailMsg3Dtx",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbPreambles",
+      "description": "Performance counter pmRadioRaCbPreambles",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRaCbSuccMsg3",
+      "description": "Performance counter pmRadioRaCbSuccMsg3",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRecInterferencePowerDistr",
+      "description": "Performance counter pmRadioRecInterferencePowerDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAtt",
+      "description": "Performance counter pmRrcConnEstabAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttMos",
+      "description": "Performance counter pmRrcConnEstabAttMos",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttReatt",
+      "description": "Performance counter pmRrcConnEstabAttReatt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttReattMos",
+      "description": "Performance counter pmRrcConnEstabAttReattMos",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabSucc",
+      "description": "Performance counter pmRrcConnEstabSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabSuccMos",
+      "description": "Performance counter pmRrcConnEstabSuccMos",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtEstabAtt",
+      "description": "Performance counter pmUeCtxtEstabAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtEstabSucc",
+      "description": "Performance counter pmUeCtxtEstabSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalAmf",
+      "description": "Performance counter pmUeCtxtRelAbnormalAmf",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalGnb",
+      "description": "Performance counter pmUeCtxtRelAbnormalGnb",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelNormal",
+      "description": "Performance counter pmUeCtxtRelNormal",
+      "category": "General"
+    },
+    {
+      "name": "pmUeIntraFreqEnabled",
+      "description": "Performance counter pmUeIntraFreqEnabled",
+      "category": "General"
+    },
+    {
+      "name": "pmand",
+      "description": "Performance counter pmand",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012677 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012677 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/180_22104-LZA7016017_1Uen.AZ.md",
+  "file_hash": "9eb555d4b77c40cf3fc9338a747c8bb2",
+  "processed_at": "2025-10-19 15:50:03",
+  "network_impact": {},
+  "performance_impact": {}
+}

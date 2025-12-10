@@ -1,0 +1,85 @@
+{
+  "id": "121 4947",
+  "name": "",
+  "cxc_code": "CXC4012311",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "The Privileged Access Admission Balancing feature differentiates privileged access",
+  "parameters": [
+    {
+      "name": "AdmissionControl.nrOfPaConnHpaReservPerCell",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.paArpOverrideHpa",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.nrOfPaConnReservationsPerCell",
+      "type": "Affected",
+      "description": "Dependencies are updated to mention the following relation with the                                     AdmissionControl.nrOfPaConnHpaReservPerCell                                     attribute:AdmissionControl.nrOfPaConnReservationsPerCell                                 is more than or equal to                                     AdmissionControl.nrOfPaConnHpaReservPerCell",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.paArpOverride",
+      "type": "Affected",
+      "description": "Dependencies are updated to mention the following relation with the                                     AdmissionControl.paArpOverrideHpa attribute:                                     AdmissionControl.paArpOverride is more than                                 or equal to                                 AdmissionControl.paArpOverrideHpa.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "Uen.Y",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "AdmissionControl.paArpOverrideEc",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AdmissionControl"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmErabEstabAttAddedHpa",
+      "description": "Performance counter pmErabEstabAttAddedHpa",
+      "category": "General"
+    },
+    {
+      "name": "pmErabEstabAttInitHpa",
+      "description": "Performance counter pmErabEstabAttInitHpa",
+      "category": "General"
+    },
+    {
+      "name": "pmErabEstabSuccAddedHpa",
+      "description": "Performance counter pmErabEstabSuccAddedHpa",
+      "category": "General"
+    },
+    {
+      "name": "pmErabEstabSuccInitHpa",
+      "description": "Performance counter pmErabEstabSuccInitHpa",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012311 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012311 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/421_22104-LZA7016014_1Uen.Y.md",
+  "file_hash": "2d9a76ae7d8056e54cce61b405a53695",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

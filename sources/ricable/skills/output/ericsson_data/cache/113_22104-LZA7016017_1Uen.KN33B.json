@@ -1,0 +1,1292 @@
+{
+  "file_hash": "9d98f99bee62141f5fbe01561c7b1b42",
+  "feature": {
+    "id": "121 5201",
+    "name": "NR DL Carrier Aggregation",
+    "cxc_code": "CXC4012582",
+    "value_package": "Peak Rate Evolution",
+    "value_package_id": "FAJ 801 4005",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The NR-NR Dual Connectivity feature introduces support for Multi-Radio Dual Connectivity",
+    "parameters": [
+      {
+        "name": "NrdcControl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "NrdcMnCellProfile",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "NrdcMnCellProfileUeCfg",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "NrdcSnTermination",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "NrdcSnTerminationUeCfg",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "UeUlResMon",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "UlBufferMonCfg",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "NRCellCU.nrdcMnCellProfileRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "NrdcControl.nrdcControlId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcControl"
+      },
+      {
+        "name": "NrdcMnCellProfile.nrdcMnCellProfileId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcMnCellProfile"
+      },
+      {
+        "name": "NrdcMnCellProfile.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcMnCellProfile"
+      },
+      {
+        "name": "NrdcMnCellProfileUeCfg.nrdcMnCellProfileUeCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcMnCellProfileUeCfg"
+      },
+      {
+        "name": "NrdcMnCellProfileUeCfg.nrdcEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcMnCellProfileUeCfg"
+      },
+      {
+        "name": "NrdcMnCellProfileUeCfg.nrdcMeasRestartTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcMnCellProfileUeCfg"
+      },
+      {
+        "name": "NrdcMnCellProfileUeCfg.nrdcMeasTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcMnCellProfileUeCfg"
+      },
+      {
+        "name": "NrdcMnCellProfileUeCfg.rsrpPSCellCandidate",
+        "type": "Introduced",
+        "description": "See MOM description.  The attribute contains the following configurable members: threshold  hysteresis  timeToTrigger",
+        "mo_class": "NrdcMnCellProfileUeCfg"
+      },
+      {
+        "name": "NrdcMnCellProfileUeCfg.nrdcMaxMeasFreqA4",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcMnCellProfileUeCfg"
+      },
+      {
+        "name": "NRFreqRelation.nrdcA4ThrRsrpFreqOffset",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRFreqRelation"
+      },
+      {
+        "name": "NrdcMnCellProfileUeCfg.maxReportCells",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NrdcMnCellProfileUeCfg"
+      },
+      {
+        "name": "NrdcMnCellProfileUeCfg.nrdcSetupDlPktAgeThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcMnCellProfileUeCfg"
+      },
+      {
+        "name": "NrdcMnCellProfileUeCfg.nrdcSetupDlPktVolThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcMnCellProfileUeCfg"
+      },
+      {
+        "name": "UlBufferMonCfg.ulBsVolThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlBufferMonCfg"
+      },
+      {
+        "name": "NrdcMnCellProfileUeCfg.nrdcSetupUlBufferMonCfgRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcMnCellProfileUeCfg"
+      },
+      {
+        "name": "IntraFreqMCCellProfileUeCfg.betterSpCellTriggerQuantity",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "IntraFreqMCCellProfileUeCfg"
+      },
+      {
+        "name": "IntraFreqMCCellProfileUeCfg.rsrpBetterSpCell",
+        "type": "Affecting",
+        "description": "See MOM description.  The attribute contains the following configurable members: hysteresis  offset  timeToTrigger",
+        "mo_class": "IntraFreqMCCellProfileUeCfg"
+      },
+      {
+        "name": "IntraFreqMCCellProfileUeCfg.rsrqBetterSpCell",
+        "type": "Affecting",
+        "description": "See MOM description.  The attribute contains the following configurable members: hysteresis  offset  timeToTrigger",
+        "mo_class": "IntraFreqMCCellProfileUeCfg"
+      },
+      {
+        "name": "IntraFreqMCCellProfileUeCfg.sinrBetterSpCell",
+        "type": "Affecting",
+        "description": "See MOM description.  The attribute contains the following configurable members: hysteresis  offset  timeToTrigger",
+        "mo_class": "IntraFreqMCCellProfileUeCfg"
+      },
+      {
+        "name": "IntraFreqMCCellProfileUeCfg.maxReportCells",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "IntraFreqMCCellProfileUeCfg"
+      },
+      {
+        "name": "McpcNrdcPSCellProfile.ueConfGroupType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "McpcNrdcPSCellProfile"
+      },
+      {
+        "name": "McpcNrdcPSCellProfileUeCfg.mcpcNrdcPSCellProfileUeCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "McpcNrdcPSCellProfileUeCfg"
+      },
+      {
+        "name": "McpcNrdcPSCellProfileUeCfg.ueGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "McpcNrdcPSCellProfileUeCfg"
+      },
+      {
+        "name": "McpcNrdcPSCellProfileUeCfg.prefUeGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "McpcNrdcPSCellProfileUeCfg"
+      },
+      {
+        "name": "McpcNrdcPSCellProfileUeCfg.ueConfGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "McpcNrdcPSCellProfileUeCfg"
+      },
+      {
+        "name": "McpcNrdcPSCellProfileUeCfg.mcpcA2Quantity",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "McpcNrdcPSCellProfileUeCfg"
+      },
+      {
+        "name": "McpcNrdcPSCellProfileUeCfg.rsrqCritical",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "McpcNrdcPSCellProfileUeCfg"
+      },
+      {
+        "name": "McpcNrdcPSCellProfileUeCfg.rsrpCritical",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "McpcNrdcPSCellProfileUeCfg"
+      },
+      {
+        "name": "McpcNrdcPSCellProfileUeCfg.sinrCritical",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "McpcNrdcPSCellProfileUeCfg"
+      },
+      {
+        "name": "NRCellCU.mcpcNrdcPSCellProfileRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "CUCP5qi.nrdcSnTerminationRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CUCP5qi"
+      },
+      {
+        "name": "NrdcSnTermination.defaultNrdcSnTerm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcSnTermination"
+      },
+      {
+        "name": "NrdcSnTermination.nrdcSnTerminationId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcSnTermination"
+      },
+      {
+        "name": "NrdcSnTermination.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcSnTermination"
+      },
+      {
+        "name": "NrdcSnTerminationUeCfg.nrdcSnTermAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcSnTerminationUeCfg"
+      },
+      {
+        "name": "NrdcSnTerminationUeCfg.nrdcSnTerminationUeCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NrdcSnTerminationUeCfg"
+      },
+      {
+        "name": "InactivityProfileUeCfg.tInactivityTimerNrdcSn",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InactivityProfileUeCfg"
+      },
+      {
+        "name": "GNBCUCPFunction.nasInactivityTime",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "GNBCUCPFunction"
+      },
+      {
+        "name": "InactivityProfileUeCfg.tInactivityTimer",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "InactivityProfileUeCfg"
+      },
+      {
+        "name": "GNBCUCPFunction.tXnDcOverall",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GNBCUCPFunction"
+      },
+      {
+        "name": "GNBCUCPFunction.tXnDcPrep",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GNBCUCPFunction"
+      },
+      {
+        "name": "Rrc.t310",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "Rrc"
+      },
+      {
+        "name": "Rrc.t304",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "Rrc"
+      },
+      {
+        "name": "DrbRlcUeCfg.dlMaxRetxThreshold",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DrbRlcUeCfg"
+      },
+      {
+        "name": "DrbRlcUeCfg.ulMaxRetxThreshold",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DrbRlcUeCfg"
+      },
+      {
+        "name": "DrbRlcUeCfg.tPollRetransmitDl",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DrbRlcUeCfg"
+      },
+      {
+        "name": "DrbRlcUeCfg.tPollRetransmitUl",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DrbRlcUeCfg"
+      },
+      {
+        "name": "AqmCfg.aqmMode",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "AqmCfg"
+      },
+      {
+        "name": "AqmCfg.estimatedE2ERTT",
+        "type": "Affecting",
+        "description": "The AQM maximum age for packets in AQM MODE1 in RLC can be                                         calculated by using the AqmCfg.estimatedE2ERTT attribute.  See MOM description.",
+        "mo_class": "AqmCfg"
+      },
+      {
+        "name": "AqmCfg.tDiscardDl",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "AqmCfg"
+      },
+      {
+        "name": "CgSwitchCfg.dlCgSwitchMode",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CgSwitchCfg"
+      },
+      {
+        "name": "CgSwitchCfg.dlScgLowQualThresh",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CgSwitchCfg"
+      },
+      {
+        "name": "CgSwitchCfg.dlScgLowQualHyst",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CgSwitchCfg"
+      },
+      {
+        "name": "UserPlaneProfileUeCfg.ulPdcpScgRetProhibitTime",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UserPlaneProfileUeCfg"
+      },
+      {
+        "name": "UlCgSwitchCfg.ulCgSwitchMode",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchCfg"
+      },
+      {
+        "name": "UlCgSwitchCfg.ulScgLowQualThresh",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchCfg"
+      },
+      {
+        "name": "UlCgSwitchCfg.ulScgLowQualHyst",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchCfg"
+      },
+      {
+        "name": "UlDataSplitUeCfg.initialUlPrimaryPathMode",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplitUeCfg"
+      },
+      {
+        "name": "DcDlCfg.dcDlAggAllowed",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DcDlCfg"
+      },
+      {
+        "name": "UserPlaneProfileUeCfg.dcDlAggActTime",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UserPlaneProfileUeCfg"
+      },
+      {
+        "name": "UserPlaneProfileUeCfg.dcDlAggAgeDiffPreferredCg",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UserPlaneProfileUeCfg"
+      },
+      {
+        "name": "UserPlaneProfileUeCfg.dcDlAggAgeDiffProhibitTime",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UserPlaneProfileUeCfg"
+      },
+      {
+        "name": "UserPlaneProfileUeCfg.dcDlAggAgeDiffThresh",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UserPlaneProfileUeCfg"
+      },
+      {
+        "name": "UserPlaneProfileUeCfg.dcDlAggExpiryTimer",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UserPlaneProfileUeCfg"
+      },
+      {
+        "name": "UserPlaneProfileUeCfg.dlPdcpMcgInitialRate",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UserPlaneProfileUeCfg"
+      },
+      {
+        "name": "UserPlaneProfileUeCfg.dlPdcpMcgSpsTargetTime",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UserPlaneProfileUeCfg"
+      },
+      {
+        "name": "UserPlaneProfileUeCfg.dlPdcpScgInitialRate",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UserPlaneProfileUeCfg"
+      },
+      {
+        "name": "UserPlaneProfileUeCfg.dlPdcpScgRetProhibitTime",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UserPlaneProfileUeCfg"
+      },
+      {
+        "name": "UserPlaneProfileUeCfg.dlPdcpScgSpsTargetTime",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UserPlaneProfileUeCfg"
+      },
+      {
+        "name": "UlDataSplitUeCfg.ulDataSplitThreshMcg",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplitUeCfg"
+      },
+      {
+        "name": "UlDataSplitUeCfg.ulDataSplitThreshScg",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplitUeCfg"
+      },
+      {
+        "name": "DrbRlcUeCfg.tStatusProhibitDlHighRate",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbRlcUeCfg"
+      },
+      {
+        "name": "DrbRlcUeCfg.dlHighRateTimerSwitchEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbRlcUeCfg"
+      },
+      {
+        "name": "DrbRlcUeCfg.tReassemblyDlHighRate",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbRlcUeCfg"
+      },
+      {
+        "name": "CapabilityHandlingUeCfg.gaplessFr2InterFreqMeasSupp",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CapabilityHandlingUeCfg"
+      },
+      {
+        "name": "Uen.KN33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCaConfigDlSamp",
+        "description": "Performance counter pmCaConfigDlSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigDlSumNrdcDistr",
+        "description": "Performance counter pmCaConfigDlSumNrdcDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigDlSumSaDistr",
+        "description": "Performance counter pmCaConfigDlSumSaDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCounter",
+        "description": "Performance counter pmCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmCounters",
+        "description": "Performance counter pmCounters",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbModAtt",
+        "description": "Performance counter pmEbsDrbModAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbModFailCauseGrpNgCause",
+        "description": "Performance counter pmEbsDrbModFailCauseGrpNgCause",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbModSucc",
+        "description": "Performance counter pmEbsDrbModSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeAttOutEutran",
+        "description": "Performance counter pmEbsHoExeAttOutEutran",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeAttOutEutranPoorCov",
+        "description": "Performance counter pmEbsHoExeAttOutEutranPoorCov",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeAttOutInterGnb",
+        "description": "Performance counter pmEbsHoExeAttOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeAttOutInterGnbIntraF",
+        "description": "Performance counter pmEbsHoExeAttOutInterGnbIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeAttOutIntraGnb",
+        "description": "Performance counter pmEbsHoExeAttOutIntraGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeAttOutIntraGnbIntraF",
+        "description": "Performance counter pmEbsHoExeAttOutIntraGnbIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeSuccOutEutran",
+        "description": "Performance counter pmEbsHoExeSuccOutEutran",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeSuccOutEutranPoorCov",
+        "description": "Performance counter pmEbsHoExeSuccOutEutranPoorCov",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeSuccOutInterGnb",
+        "description": "Performance counter pmEbsHoExeSuccOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeSuccOutInterGnbIntraF",
+        "description": "Performance counter pmEbsHoExeSuccOutInterGnbIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeSuccOutIntraGnb",
+        "description": "Performance counter pmEbsHoExeSuccOutIntraGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeSuccOutIntraGnbIntraF",
+        "description": "Performance counter pmEbsHoExeSuccOutIntraGnbIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepAttOutEutran",
+        "description": "Performance counter pmEbsHoPrepAttOutEutran",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepAttOutEutranPoorCov",
+        "description": "Performance counter pmEbsHoPrepAttOutEutranPoorCov",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepAttOutInterGnb",
+        "description": "Performance counter pmEbsHoPrepAttOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepAttOutInterGnbIntraF",
+        "description": "Performance counter pmEbsHoPrepAttOutInterGnbIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepAttOutIntraGnb",
+        "description": "Performance counter pmEbsHoPrepAttOutIntraGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepAttOutIntraGnbIntraF",
+        "description": "Performance counter pmEbsHoPrepAttOutIntraGnbIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepSuccOutEutran",
+        "description": "Performance counter pmEbsHoPrepSuccOutEutran",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepSuccOutEutranPoorCov",
+        "description": "Performance counter pmEbsHoPrepSuccOutEutranPoorCov",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepSuccOutInterGnb",
+        "description": "Performance counter pmEbsHoPrepSuccOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepSuccOutInterGnbIntraF",
+        "description": "Performance counter pmEbsHoPrepSuccOutInterGnbIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepSuccOutIntraGnb",
+        "description": "Performance counter pmEbsHoPrepSuccOutIntraGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepSuccOutIntraGnbIntraF",
+        "description": "Performance counter pmEbsHoPrepSuccOutIntraGnbIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacDrbThpDlMbbHighVolDistr",
+        "description": "Performance counter pmEbsMacDrbThpDlMbbHighVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacDrbThpDlMbbLowVolDistr",
+        "description": "Performance counter pmEbsMacDrbThpDlMbbLowVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacUeThpUlMbbHighVolDistr",
+        "description": "Performance counter pmEbsMacUeThpUlMbbHighVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacUeThpUlMbbLowVolDistr",
+        "description": "Performance counter pmEbsMacUeThpUlMbbLowVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMeasReportNrdcType",
+        "description": "Performance counter pmEbsMeasReportNrdcType",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcPrimaryCgSwitchUlMcgTrigger",
+        "description": "Performance counter pmEbsNrdcPrimaryCgSwitchUlMcgTrigger",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcPrimaryCgSwitchUlScgTrigger",
+        "description": "Performance counter pmEbsNrdcPrimaryCgSwitchUlScgTrigger",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcRelRelocUeMnAttIcho",
+        "description": "Performance counter pmEbsNrdcRelRelocUeMnAttIcho",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcRelRelocUeMnSuccIcho",
+        "description": "Performance counter pmEbsNrdcRelRelocUeMnSuccIcho",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcSetupBufMonReportUl",
+        "description": "Performance counter pmEbsNrdcSetupBufMonReportUl",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcSetupBufMonReportUlNote",
+        "description": "Performance counter pmEbsNrdcSetupBufMonReportUlNote",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcSetupMnBufMonConfig",
+        "description": "Performance counter pmEbsNrdcSetupMnBufMonConfig",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcSetupMnBufMonReport",
+        "description": "Performance counter pmEbsNrdcSetupMnBufMonReport",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcSetupMnBufMonReportUl",
+        "description": "Performance counter pmEbsNrdcSetupMnBufMonReportUl",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcSetupUeMnAttIcho",
+        "description": "Performance counter pmEbsNrdcSetupUeMnAttIcho",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcSetupUeMnSuccIcho",
+        "description": "Performance counter pmEbsNrdcSetupUeMnSuccIcho",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelMaxSa",
+        "description": "Performance counter pmEbsRrcConnLevelMaxSa",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelSamp",
+        "description": "Performance counter pmEbsRrcConnLevelSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelSumSa",
+        "description": "Performance counter pmEbsRrcConnLevelSumSa",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacDrbThpDlMbbHighVolDistr",
+        "description": "Performance counter pmEbsnMacDrbThpDlMbbHighVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacDrbThpDlMbbLowVolDistr",
+        "description": "Performance counter pmEbsnMacDrbThpDlMbbLowVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacPduVolDlUePCell",
+        "description": "Performance counter pmEbsnMacPduVolDlUePCell",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacPduVolDlUeSCell",
+        "description": "Performance counter pmEbsnMacPduVolDlUeSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacUeThpUlMbbHighVol2Distr",
+        "description": "Performance counter pmEbsnMacUeThpUlMbbHighVol2Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacUeThpUlMbbHighVolDistr",
+        "description": "Performance counter pmEbsnMacUeThpUlMbbHighVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacUeThpUlMbbLowVol2Distr",
+        "description": "Performance counter pmEbsnMacUeThpUlMbbLowVol2Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacUeThpUlMbbLowVolDistr",
+        "description": "Performance counter pmEbsnMacUeThpUlMbbLowVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpRadioResSwitchDlMcgQoS",
+        "description": "Performance counter pmEbsnPdcpRadioResSwitchDlMcgQoS",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpRadioResSwitchDlScgQoS",
+        "description": "Performance counter pmEbsnPdcpRadioResSwitchDlScgQoS",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqDlDtx16Qam",
+        "description": "Performance counter pmMacHarqDlDtx16Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqDlDtx64Qam",
+        "description": "Performance counter pmMacHarqDlDtx64Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqDlDtxQpsk",
+        "description": "Performance counter pmMacHarqDlDtxQpsk",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlAckQpsk",
+        "description": "Performance counter pmMacHarqUlAckQpsk",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlDtx16Qam",
+        "description": "Performance counter pmMacHarqUlDtx16Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlDtx64Qam",
+        "description": "Performance counter pmMacHarqUlDtx64Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlDtxQpsk",
+        "description": "Performance counter pmMacHarqUlDtxQpsk",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlNackQpsk",
+        "description": "Performance counter pmMacHarqUlNackQpsk",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPuschTypeA",
+        "description": "Performance counter pmMacRBSymUsedPuschTypeA",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPuschTypeB",
+        "description": "Performance counter pmMacRBSymUsedPuschTypeB",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUtilUlDistr",
+        "description": "Performance counter pmMacRBSymUtilUlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeUlResUe",
+        "description": "Performance counter pmMacTimeUlResUe",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDl",
+        "description": "Performance counter pmMacVolDl",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrb",
+        "description": "Performance counter pmMacVolDlDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrbQos",
+        "description": "Performance counter pmMacVolDlDrbQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlSCell",
+        "description": "Performance counter pmMacVolDlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlSCellExt",
+        "description": "Performance counter pmMacVolDlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUl",
+        "description": "Performance counter pmMacVolUl",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlResUe",
+        "description": "Performance counter pmMacVolUlResUe",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlResUeLastSlot",
+        "description": "Performance counter pmMacVolUlResUeLastSlot",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlResUeLate",
+        "description": "Performance counter pmMacVolUlResUeLate",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlSCell",
+        "description": "Performance counter pmMacVolUlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMeasGapDurationDistr",
+        "description": "Performance counter pmMeasGapDurationDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMeasGapUeMaxDistr",
+        "description": "Performance counter pmMeasGapUeMaxDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMeasGapUeMnMaxDistr",
+        "description": "Performance counter pmMeasGapUeMnMaxDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMeasGapUeMnSumDistr",
+        "description": "Performance counter pmMeasGapUeMnSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMeasGapUeSamp",
+        "description": "Performance counter pmMeasGapUeSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmMeasGapUeSumDistr",
+        "description": "Performance counter pmMeasGapUeSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcPSCellChangeMnAttInterSgnb",
+        "description": "Performance counter pmNrdcPSCellChangeMnAttInterSgnb",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcPSCellChangeMnSuccInterSgnb",
+        "description": "Performance counter pmNrdcPSCellChangeMnSuccInterSgnb",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcPSCellChangeResAllocSnAttInterSgnb",
+        "description": "Performance counter pmNrdcPSCellChangeResAllocSnAttInterSgnb",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcPSCellChangeResAllocSnSuccInterSgnb",
+        "description": "Performance counter pmNrdcPSCellChangeResAllocSnSuccInterSgnb",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcPSCellChangeSnAttInterSgnb",
+        "description": "Performance counter pmNrdcPSCellChangeSnAttInterSgnb",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcPSCellChangeSnSuccInterSgnb",
+        "description": "Performance counter pmNrdcPSCellChangeSnSuccInterSgnb",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcRelRelocUeMnAtt",
+        "description": "Performance counter pmNrdcRelRelocUeMnAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcRelRelocUeMnSucc",
+        "description": "Performance counter pmNrdcRelRelocUeMnSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcRelUeSnAbnormalMnInit",
+        "description": "Performance counter pmNrdcRelUeSnAbnormalMnInit",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcRelUeSnAbnormalMnInitAct",
+        "description": "Performance counter pmNrdcRelUeSnAbnormalMnInitAct",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcRelUeSnAbnormalSnInit",
+        "description": "Performance counter pmNrdcRelUeSnAbnormalSnInit",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcRelUeSnAbnormalSnInitAct",
+        "description": "Performance counter pmNrdcRelUeSnAbnormalSnInitAct",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcRelUeSnNormal",
+        "description": "Performance counter pmNrdcRelUeSnNormal",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeMnAtt",
+        "description": "Performance counter pmNrdcSetupUeMnAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeMnAttHoInterGnb",
+        "description": "Performance counter pmNrdcSetupUeMnAttHoInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeMnAttHoIntraCell",
+        "description": "Performance counter pmNrdcSetupUeMnAttHoIntraCell",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeMnAttHoIntraGnb",
+        "description": "Performance counter pmNrdcSetupUeMnAttHoIntraGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeMnAttInit",
+        "description": "Performance counter pmNrdcSetupUeMnAttInit",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeMnAttInitBufDl",
+        "description": "Performance counter pmNrdcSetupUeMnAttInitBufDl",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeMnAttInitBufUl",
+        "description": "Performance counter pmNrdcSetupUeMnAttInitBufUl",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeMnSucc",
+        "description": "Performance counter pmNrdcSetupUeMnSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeMnSuccHoInterGnb",
+        "description": "Performance counter pmNrdcSetupUeMnSuccHoInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeMnSuccHoInterGnbPSCellKeep",
+        "description": "Performance counter pmNrdcSetupUeMnSuccHoInterGnbPSCellKeep",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeMnSuccHoIntraCell",
+        "description": "Performance counter pmNrdcSetupUeMnSuccHoIntraCell",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeMnSuccHoIntraGnb",
+        "description": "Performance counter pmNrdcSetupUeMnSuccHoIntraGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeMnSuccHoIntraGnbPSCellKeep",
+        "description": "Performance counter pmNrdcSetupUeMnSuccHoIntraGnbPSCellKeep",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeSnAtt",
+        "description": "Performance counter pmNrdcSetupUeSnAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcSetupUeSnSucc",
+        "description": "Performance counter pmNrdcSetupUeSnSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmNrdcUeMeasurementReport",
+        "description": "Performance counter pmNrdcUeMeasurementReport",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktFwdRecDlDiscQos",
+        "description": "Performance counter pmPdcpPktFwdRecDlDiscQos",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktFwdRecDlQos",
+        "description": "Performance counter pmPdcpPktFwdRecDlQos",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktFwdTransDlDiscQos",
+        "description": "Performance counter pmPdcpPktFwdTransDlDiscQos",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktFwdTransDlQos",
+        "description": "Performance counter pmPdcpPktFwdTransDlQos",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktLossUlQos",
+        "description": "Performance counter pmPdcpPktLossUlQos",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktLossUlToDiscQos",
+        "description": "Performance counter pmPdcpPktLossUlToDiscQos",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktLossUlToQos",
+        "description": "Performance counter pmPdcpPktLossUlToQos",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktRecUlOooQos",
+        "description": "Performance counter pmPdcpPktRecUlOooQos",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktRecUlQos",
+        "description": "Performance counter pmPdcpPktRecUlQos",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpRadioResSwitchDlMcg",
+        "description": "Performance counter pmPdcpRadioResSwitchDlMcg",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpRadioResSwitchDlScg",
+        "description": "Performance counter pmPdcpRadioResSwitchDlScg",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolRecUlQos",
+        "description": "Performance counter pmPdcpVolRecUlQos",
+        "category": "General"
+      },
+      {
+        "name": "pmPduSessionModifySucc",
+        "description": "Performance counter pmPduSessionModifySucc",
+        "category": "General"
+      },
+      {
+        "name": "pmProhibitTimerRefuseUlLegSwitch",
+        "description": "Performance counter pmProhibitTimerRefuseUlLegSwitch",
+        "category": "General"
+      },
+      {
+        "name": "pmPuschSchedActivity",
+        "description": "Performance counter pmPuschSchedActivity",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnLevelMaxNrDc",
+        "description": "Performance counter pmRrcConnLevelMaxNrDc",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnLevelMaxSa",
+        "description": "Performance counter pmRrcConnLevelMaxSa",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnLevelSamp",
+        "description": "Performance counter pmRrcConnLevelSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnLevelSumNrDc",
+        "description": "Performance counter pmRrcConnLevelSumNrDc",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnLevelSumSa",
+        "description": "Performance counter pmRrcConnLevelSumSa",
+        "category": "General"
+      },
+      {
+        "name": "pmand",
+        "description": "Performance counter pmand",
+        "category": "General"
+      },
+      {
+        "name": "pmcgInitialRate",
+        "description": "Performance counter pmcgInitialRate",
+        "category": "General"
+      },
+      {
+        "name": "pmcgSpsTargetTime",
+        "description": "Performance counter pmcgSpsTargetTime",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmeasurementReportNrdcEval",
+        "description": "Performance counter pmeasurementReportNrdcEval",
+        "category": "General"
+      },
+      {
+        "name": "pmeasurementReportSaEval",
+        "description": "Performance counter pmeasurementReportSaEval",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      },
+      {
+        "name": "pmnNrdcSetupBufMonConfig",
+        "description": "Performance counter pmnNrdcSetupBufMonConfig",
+        "category": "General"
+      },
+      {
+        "name": "pmnNrdcSetupBufMonReport",
+        "description": "Performance counter pmnNrdcSetupBufMonReport",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "Secondary Node terminated PDU sessions",
+        "type": "",
+        "description": "This type of PDU session carries QoS flows configured with specific 5QI                             profiles and ARP levels that allow the QoS flow to be Secondary Node                             terminated. This is why all QoS flows within this type of PDU session                             are terminated by the Secondary Node. For such a PDU session, one user                             plane tunnel is set up over the NG-U interface for all its QoS flows                             between the Secondary Node and the 5GC."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012582 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012582 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/113_22104-LZA7016017_1Uen.KN33B.md",
+    "file_hash": "9d98f99bee62141f5fbe01561c7b1b42",
+    "processed_at": "2025-10-19 15:48:57",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "file_hash": "8b16de4c04ed61eb21de5f43e247f7c2",
+  "feature": {
+    "id": "121 5802",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012781",
+    "value_package": "5G Advanced Mission Critical Services",
+    "value_package_id": "FAJ 801 4032",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature improves the prioritization of UEs in idle state based on the paging",
+    "parameters": [
+      {
+        "name": "AdmissionControl.pagingPrioThreshold",
+        "type": "Introduced",
+        "description": "See MOM description",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "PrefUeGroupSelectionProfile.selectionCriteria",
+        "type": "Affecting",
+        "description": "The  variable can be used to                                     configure paging priority as a selection criteria for UE                                     Admission Control Function 2.",
+        "mo_class": "PrefUeGroupSelectionProfile"
+      },
+      {
+        "name": "UeAdmissionGroupDefinition.selectionCriteria",
+        "type": "Affecting",
+        "description": "The  variable can be used to                                     configure paging priority as a selection criteria for UE                                     Admission Control Function 2.",
+        "mo_class": "UeAdmissionGroupDefinition"
+      },
+      {
+        "name": "UeGroupSelectionProfile.selectionCriteria",
+        "type": "Affecting",
+        "description": "The  variable can be used to                                     configure paging priority as a selection criteria for UE                                     Admission Control Function 2.",
+        "mo_class": "UeGroupSelectionProfile"
+      },
+      {
+        "name": "UeMobilityGroupDefinition.selectionCriteria",
+        "type": "Affecting",
+        "description": "The  variable can be used to                                     configure paging priority as a selection criteria for UE                                     Admission Control Function 2.",
+        "mo_class": "UeMobilityGroupDefinition"
+      },
+      {
+        "name": "UeServiceGroupDefinition.selectionCriteria",
+        "type": "Affecting",
+        "description": "The  variable can be used to                                     configure paging priority as a selection criteria for UE                                     Admission Control Function 2.",
+        "mo_class": "UeServiceGroupDefinition"
+      },
+      {
+        "name": "Uen.E",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UeGroupSelection.validityTimePagingPrio",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeGroupSelection"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsRrcConnEstabAtt",
+        "description": "Performance counter pmEbsRrcConnEstabAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnEstabFailAdmission",
+        "description": "Performance counter pmEbsRrcConnEstabFailAdmission",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnEstabSucc",
+        "description": "Performance counter pmEbsRrcConnEstabSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmPagDiscardedMpLoad",
+        "description": "Performance counter pmPagDiscardedMpLoad",
+        "category": "General"
+      },
+      {
+        "name": "pmPagNgDiscarded",
+        "description": "Performance counter pmPagNgDiscarded",
+        "category": "General"
+      },
+      {
+        "name": "pmPagNgReceived",
+        "description": "Performance counter pmPagNgReceived",
+        "category": "General"
+      },
+      {
+        "name": "pmPagNgReceivedPriority",
+        "description": "Performance counter pmPagNgReceivedPriority",
+        "category": "General"
+      },
+      {
+        "name": "pmand",
+        "description": "Performance counter pmand",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012781 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012781 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/230_22104-LZA7016017_1Uen.E.md",
+    "file_hash": "8b16de4c04ed61eb21de5f43e247f7c2",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

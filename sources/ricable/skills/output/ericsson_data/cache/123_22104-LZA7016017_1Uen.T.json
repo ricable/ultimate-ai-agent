@@ -1,0 +1,49 @@
+{
+  "file_hash": "b18dce9103458a5646430581065f6afc",
+  "feature": {
+    "id": "121 5394",
+    "name": "Uplink Data and DMRS Multiplexing",
+    "cxc_code": "CXC4012587",
+    "value_package": "Performance Boost",
+    "value_package_id": "FAJ 801 4021",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature transmits uplink data in unused resource elements in symbols carrying NR",
+    "parameters": [
+      {
+        "name": "NRCellDU.puschAllowedInDmrsSym",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "Uen.T",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012587 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012587 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/123_22104-LZA7016017_1Uen.T.md",
+    "file_hash": "b18dce9103458a5646430581065f6afc",
+    "processed_at": "2025-10-19 15:48:56",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

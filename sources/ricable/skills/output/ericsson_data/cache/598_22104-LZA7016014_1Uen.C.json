@@ -1,0 +1,43 @@
+{
+  "file_hash": "4c56b279a3aac62a4e96d5c7243fd517",
+  "feature": {
+    "id": "121 5551",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012651",
+    "value_package": "Large eNodeB",
+    "value_package_id": "FAJ 801 0403",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The LTE 25-33 Cell Support feature increases the number of supported cells on RAN",
+    "parameters": [
+      {
+        "name": "Uen.C",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012651 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012651 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/598_22104-LZA7016014_1Uen.C.md",
+    "file_hash": "4c56b279a3aac62a4e96d5c7243fd517",
+    "processed_at": "2025-10-19 15:50:06",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

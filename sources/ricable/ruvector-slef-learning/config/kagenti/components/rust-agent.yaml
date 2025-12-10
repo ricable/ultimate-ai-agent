@@ -1,0 +1,107 @@
+# Kagenti Component CR for Rust Agent
+# Defines a high-performance WASM-based AI agent unit
+# https://github.com/kagenti/kagenti-operator
+
+apiVersion: kagenti.io/v1alpha1
+kind: Component
+metadata:
+  name: rust-agent
+  namespace: zgents
+  labels:
+    app.kubernetes.io/name: rust-agent
+    app.kubernetes.io/component: agent
+    app.kubernetes.io/part-of: zgents-platform
+    zgents.io/category: rust
+    zgents.io/runtime: wasm
+spec:
+  type: Agent
+
+  source:
+    git:
+      url: "https://github.com/ricable/ruvector-slef-learning"
+      ref: main
+      path: "agents/rust"
+
+  build:
+    enabled: true
+    type: wasm
+
+    # Use mise for reproducible builds
+    mise:
+      configPath: "agents/rust/mise.toml"
+      tasks:
+        - build-wasm
+        - test
+
+    # Multi-target compilation
+    targets:
+      - wasm32-wasi
+      - wasm32-wasip1
+      - wasm32-unknown-unknown
+
+    # Optimization settings
+    optimization:
+      level: 3
+      lto: true
+      stripDebug: true
+
+    output:
+      type: oci
+      registry: "ghcr.io/ruvnet"
+      image: "rust-agent"
+
+  runtime:
+    class: wasmtime-spin
+
+    # WASM component model support
+    component:
+      enabled: true
+      wit: "wit/agent.wit"
+
+  deployment:
+    replicas: 2
+
+    resources:
+      requests:
+        memory: "32Mi"
+        cpu: "25m"
+      limits:
+        memory: "128Mi"
+        cpu: "150m"
+
+    envFrom:
+      - secretRef:
+          name: agent-secrets
+
+    healthCheck:
+      httpGet:
+        path: /health
+        port: 8080
+      initialDelaySeconds: 2
+      periodSeconds: 5
+
+    service:
+      ports:
+        - name: http
+          port: 8080
+          targetPort: 8080
+
+  a2a:
+    enabled: true
+    endpoints:
+      - name: invoke
+        path: /a2a/invoke
+        method: POST
+      - name: status
+        path: /a2a/status
+        method: GET
+
+  mcp:
+    enabled: true
+    tools:
+      - name: fast-inference
+        description: "High-performance inference operations"
+      - name: vector-ops
+        description: "Optimized vector operations"
+      - name: crypto
+        description: "Cryptographic operations"

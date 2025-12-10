@@ -1,0 +1,139 @@
+{
+  "id": "121 4728",
+  "name": "Assisted Time Holdover",
+  "cxc_code": "CXC4012104",
+  "value_package": "NR Base Package",
+  "value_package_id": "FAJ 801 4002",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Assisted Time Holdover feature is a network synchronization feature. It reduces the",
+  "parameters": [
+    {
+      "name": "AssistingReference.assistingQLFrom",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AssistingReference"
+    },
+    {
+      "name": "AssistingReference.encapsulation",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AssistingReference"
+    },
+    {
+      "name": "AssistingReference.priority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AssistingReference"
+    },
+    {
+      "name": "AssistingReference.remappedQualityLevel",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AssistingReference"
+    },
+    {
+      "name": "RadioEquipmentClock.startWithPreservedAssistingOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RadioEquipmentClock"
+    },
+    {
+      "name": "SyncEthInput.adminCascadedEec",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SyncEthInput"
+    },
+    {
+      "name": "SyncEthInput.adminCascadedEnhancedEec",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SyncEthInput"
+    },
+    {
+      "name": "SyncEthInput.useNumberEecFrom",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SyncEthInput"
+    },
+    {
+      "name": "AssistingReference.encapsulation",
+      "type": "The parameter can refer to the SyncEthInput MO                                     class to support SyncE configuration.",
+      "description": "",
+      "mo_class": "AssistingReference"
+    },
+    {
+      "name": "AssistingReference.encapsulation",
+      "type": "The parameter refers to the                                         BoundaryOrdinaryClock.ptpProfile                                     parameter set to G_8275_1.",
+      "description": "",
+      "mo_class": "AssistingReference"
+    },
+    {
+      "name": "Uen.DG",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "BoundaryOrdinaryClock.clockType",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "BoundaryOrdinaryClock"
+    },
+    {
+      "name": "RadioEquipmentClock.radioClockState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RadioEquipmentClock"
+    },
+    {
+      "name": "AssistingReference.operationalState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AssistingReference"
+    },
+    {
+      "name": "AssistingReference.assistedReferenceStatus",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AssistingReference"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCounter",
+      "description": "Performance counter pmCounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmentClock",
+      "description": "Performance counter pmentClock",
+      "category": "General"
+    },
+    {
+      "name": "pmentClockReference",
+      "description": "Performance counter pmentClockReference",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012104 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012104 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/340_22104-LZA7016014_1Uen.DG.md",
+  "file_hash": "8d9326364e21cf26d2bf0f61faaf4f85",
+  "processed_at": "2025-10-19 17:07:27",
+  "network_impact": {},
+  "performance_impact": {}
+}

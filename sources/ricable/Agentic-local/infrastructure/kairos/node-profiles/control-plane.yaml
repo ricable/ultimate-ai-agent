@@ -1,0 +1,45 @@
+#cloud-config
+# Kairos Control Plane Node Configuration
+# For high-memory x86_64 nodes (Intel NUC, Mac Mini, etc.)
+
+# Inherit from base config
+#!include cloud-config.yaml
+
+hostname: "edge-ai-control-{{.MachineID | truncate 8}}"
+
+# Enable K3s server mode
+k3s:
+  enabled: true
+k3s-server:
+  enabled: true
+  args:
+    - --cluster-init
+    - --disable=traefik
+    - --disable=servicelb
+    - --flannel-backend=wireguard-native
+    - --kubelet-arg=max-pods=250
+    - --tls-san=control-plane.edge-ai.local
+    - --etcd-expose-metrics
+    - --kube-controller-manager-arg=node-monitor-period=2s
+    - --kube-controller-manager-arg=node-monitor-grace-period=16s
+    - --kube-apiserver-arg=default-not-ready-toleration-seconds=20
+
+k3s-agent:
+  enabled: false
+
+# Control plane specific labels and taints
+stages:
+  boot:
+    - name: "Label control plane node"
+      commands:
+        - kubectl label node $(hostname) node-role.kubernetes.io/control-plane=true --overwrite
+        - kubectl label node $(hostname) edge-ai.io/role=coordinator --overwrite
+        - kubectl label node $(hostname) edge-ai.io/tier=premium --overwrite
+        # Taint to prevent regular workloads on control plane
+        - kubectl taint node $(hostname) node-role.kubernetes.io/control-plane=true:PreferNoSchedule --overwrite
+
+# Additional services for control plane
+services:
+  # Enable etcd metrics
+  etcd:
+    metrics: extensive

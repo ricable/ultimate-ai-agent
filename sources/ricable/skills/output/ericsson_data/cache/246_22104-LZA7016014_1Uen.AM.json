@@ -1,0 +1,225 @@
+{
+  "file_hash": "8a623bc33c1eec42132fa0b65a35952c",
+  "feature": {
+    "id": "121 3042",
+    "name": "Intra-LTE Inter-Mode Handover",
+    "cxc_code": "CXC4011443",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature improves network capacity and control over the traffic load by enabling",
+    "parameters": [
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the target cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the RAT of the source cell.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the target cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_IN",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the source cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_OUT",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the target cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the source cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the target cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_X2_IN",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the source cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AM",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UnsupportedFreqProfile.unsupportedFreqList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UnsupportedFreqProfile"
+      },
+      {
+        "name": "EUtranCellRelation.pmHoPrepAttLteInterF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.pmHoPrepSuccLteInterF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.pmHoExeAttLteInterF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.pmHoExeSuccLteInterF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.pmHoPrepAttLteInterFLb",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.pmHoPrepSuccLteInterFLb",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.pmHoExeAttLteInterFLb",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEvents",
+        "description": "Performance counter pmEvents",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttLteInterF",
+        "description": "Performance counter pmHoExeAttLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttLteInterFLb",
+        "description": "Performance counter pmHoExeAttLteInterFLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccLteInterF",
+        "description": "Performance counter pmHoExeSuccLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccLteInterFLb",
+        "description": "Performance counter pmHoExeSuccLteInterFLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteInterF",
+        "description": "Performance counter pmHoPrepAttLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteInterFLb",
+        "description": "Performance counter pmHoPrepAttLteInterFLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccLteInterF",
+        "description": "Performance counter pmHoPrepSuccLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccLteInterFLb",
+        "description": "Performance counter pmHoPrepSuccLteInterFLb",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the target cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the RAT of the source cell.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the target cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_IN",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the source cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_OUT",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the target cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the source cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the target cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_X2_IN",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the source cell RAT.  Has the value EVENT_VALUE_LTE_INTER_FREQ after an Intra-LTE                   Inter-Mode Handover preparation is performed."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011443 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011443 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/246_22104-LZA7016014_1Uen.AM.md",
+    "file_hash": "8a623bc33c1eec42132fa0b65a35952c",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

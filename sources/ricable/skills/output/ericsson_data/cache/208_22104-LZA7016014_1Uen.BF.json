@@ -1,0 +1,162 @@
+{
+  "file_hash": "3abc88b769a6c160ed5c7ce464e719e2",
+  "feature": {
+    "id": "121 1447",
+    "name": "System Improvements in LTE RAN L19.Q3",
+    "cxc_code": "CXC4012003",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "DU Radio Node, Baseband Radio Node",
+    "description": "",
+    "summary": "The Uplink Scheduling Control for Out-of-Coverage UEs feature improves system",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.outOfCoverageSrTimerPeriodicity",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.outOfCoverageSrTimerPeriodicity",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.outOfCoverageThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.outOfCoverageThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.ulSchedCtrlForOocUesEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.ulSchedCtrlForOocUesEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.outOfCoverageDepth",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.outOfCoverageDepth",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.outOfCoverageSparseGrantingBsr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.outOfCoverageSparseGrantingBsr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "Uen.BF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.pmOocStateEntries",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmOocStateEntries",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.commonSrPeriodicity",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.commonSrPeriodicity",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmOocNewDataUlGrants",
+        "description": "Performance counter pmOocNewDataUlGrants",
+        "category": "General"
+      },
+      {
+        "name": "pmOocStateEntries",
+        "description": "Performance counter pmOocStateEntries",
+        "category": "General"
+      },
+      {
+        "name": "pmOocStateExits",
+        "description": "Performance counter pmOocStateExits",
+        "category": "General"
+      },
+      {
+        "name": "pmOocStateExitsUeRel",
+        "description": "Performance counter pmOocStateExitsUeRel",
+        "category": "General"
+      },
+      {
+        "name": "pmOocUesLevSum",
+        "description": "Performance counter pmOocUesLevSum",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmeasRprtMaxSinr",
+        "description": "Performance counter pmeasRprtMaxSinr",
+        "category": "General"
+      },
+      {
+        "name": "pmeasRprtMinSinr",
+        "description": "Performance counter pmeasRprtMinSinr",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012003 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012003 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/208_22104-LZA7016014_1Uen.BF.md",
+    "file_hash": "3abc88b769a6c160ed5c7ce464e719e2",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

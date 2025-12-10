@@ -1,0 +1,504 @@
+# Agentic-Jujutsu Deployment Patterns
+# Optimized configurations for different use cases
+
+---
+apiVersion: ajj.io/v1
+kind: DeploymentPattern
+metadata:
+  name: self-learning
+  description: Self-learning agents with ReasoningBank integration
+spec:
+  pattern: self-learning
+
+  # ReasoningBank configuration for experience replay
+  reasoningBank:
+    enabled: true
+    memoryRetention: 30d
+    trajectoryTracking: true
+    verdictJudgment: true
+    similarityThreshold: 0.85
+
+  # Adaptive learning configuration
+  learning:
+    enabled: true
+    algorithms:
+      - decision-transformer
+      - q-learning
+      - actor-critic
+    experienceReplay:
+      bufferSize: 10000
+      batchSize: 32
+      updateFrequency: 100
+
+  # Memory optimization for learning
+  memory:
+    agentdb:
+      enabled: true
+      quantization: 8bit
+      hnswIndex: true
+      caching: aggressive
+
+  # Neural pattern training
+  neural:
+    enabled: true
+    models: 27
+    trainingSchedule: "*/30 * * * *"
+    autoImprovement: true
+
+  resources:
+    memory: high
+    cpu: medium
+    gpu: optional
+
+---
+apiVersion: ajj.io/v1
+kind: DeploymentPattern
+metadata:
+  name: continuous-operations
+  description: 24/7 operations with auto-healing and zero-downtime
+spec:
+  pattern: continuous-operations
+
+  # High availability configuration
+  highAvailability:
+    enabled: true
+    replicas: 3
+    leaderElection: true
+    healthChecks:
+      liveness:
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        failureThreshold: 3
+      readiness:
+        initialDelaySeconds: 5
+        periodSeconds: 5
+        failureThreshold: 2
+
+  # Auto-healing configuration
+  autoHealing:
+    enabled: true
+    selfRepair: true
+    automaticRollback: true
+    healthMonitoring:
+      interval: 30s
+      timeout: 10s
+
+  # Zero-downtime deployment
+  deployment:
+    strategy: blue-green
+    progressiveDelivery:
+      enabled: true
+      canary:
+        steps:
+          - weight: 10
+            pause: 5m
+          - weight: 25
+            pause: 10m
+          - weight: 50
+            pause: 15m
+          - weight: 75
+            pause: 20m
+          - weight: 100
+      analysis:
+        enabled: true
+        successRate: 0.99
+        errorBudget: 0.01
+
+  # Backup and recovery
+  backup:
+    enabled: true
+    schedule: "0 */6 * * *"
+    retention: 7d
+
+  resources:
+    memory: high
+    cpu: high
+    storage: high
+
+---
+apiVersion: ajj.io/v1
+kind: DeploymentPattern
+metadata:
+  name: security-first
+  description: Security-hardened deployment with Sigstore and policy enforcement
+spec:
+  pattern: security-first
+
+  # Supply chain security
+  supplyChain:
+    sigstore:
+      enabled: true
+      keyless: true
+      transparency: true
+    cosign:
+      verify: true
+      publicKey: ""
+    sbom:
+      generate: true
+      format: spdx
+
+  # Policy enforcement
+  policy:
+    enforcement: strict
+    kyverno:
+      enabled: true
+      policies:
+        - require-signed-images
+        - disallow-latest-tag
+        - require-resource-limits
+        - require-non-root
+        - require-read-only-root-fs
+    opa:
+      enabled: true
+      policies:
+        - rbac-authorization
+        - network-policy
+        - pod-security-standards
+
+  # Security scanning
+  scanning:
+    vulnerabilities:
+      enabled: true
+      severity: high
+      failOnCritical: true
+    secrets:
+      detection: true
+      prevention: true
+    compliance:
+      enabled: true
+      standards:
+        - cis-kubernetes
+        - pci-dss
+        - hipaa
+
+  # Network security
+  network:
+    networkPolicy:
+      enabled: true
+      defaultDeny: true
+    serviceMesh:
+      enabled: true
+      mtls: enforce
+    encryption:
+      inTransit: true
+      atRest: true
+
+  # Access control
+  rbac:
+    enabled: true
+    leastPrivilege: true
+    auditLogging: true
+
+  resources:
+    memory: medium
+    cpu: medium
+    securityContext:
+      runAsNonRoot: true
+      readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+
+---
+apiVersion: ajj.io/v1
+kind: DeploymentPattern
+metadata:
+  name: ai-autonomous-scaling
+  description: AI-driven predictive scaling based on workload patterns
+spec:
+  pattern: ai-autonomous-scaling
+
+  # AI-powered autoscaling
+  autoscaling:
+    enabled: true
+    type: predictive
+    ai:
+      enabled: true
+      model: lstm
+      predictionWindow: 30m
+      trainingData: 7d
+      retrainInterval: 24h
+
+  # Workload prediction
+  prediction:
+    enabled: true
+    metrics:
+      - cpu_utilization
+      - memory_utilization
+      - request_rate
+      - response_time
+      - queue_depth
+    algorithms:
+      - time-series-forecast
+      - pattern-recognition
+      - anomaly-detection
+
+  # Dynamic resource allocation
+  resources:
+    dynamic: true
+    min:
+      replicas: 2
+      cpu: "100m"
+      memory: "128Mi"
+    max:
+      replicas: 100
+      cpu: "4000m"
+      memory: "8Gi"
+    targets:
+      cpu: 70
+      memory: 80
+      custom:
+        - name: request_rate
+          target: 1000
+
+  # Proactive scaling
+  proactive:
+    enabled: true
+    scaleUpAhead: 5m
+    scaleDownDelay: 10m
+    cooldown: 3m
+
+  # Cost awareness
+  costOptimization:
+    enabled: true
+    preferSpot: true
+    rightSizing: true
+
+  monitoring:
+    metrics: true
+    alerts: true
+    dashboards: true
+
+---
+apiVersion: ajj.io/v1
+kind: DeploymentPattern
+metadata:
+  name: cost-optimization
+  description: Cost-optimized deployment with resource efficiency
+spec:
+  pattern: cost-optimization
+
+  # Resource optimization
+  optimization:
+    enabled: true
+    rightSizing:
+      enabled: true
+      analysis: continuous
+      recommendations: auto-apply
+    binPacking:
+      enabled: true
+      strategy: best-fit
+
+  # Cost allocation
+  cost:
+    tracking: true
+    budgets:
+      enabled: true
+      alerts: true
+    showback: true
+
+  # Spot/preemptible instances
+  compute:
+    spotInstances:
+      enabled: true
+      maxPrice: "0.10"
+      fallbackToOnDemand: true
+    preemptible:
+      enabled: true
+      tolerance: 80
+
+  # Intelligent scheduling
+  scheduling:
+    timeBasedScaling: true
+    workloadScheduling:
+      enabled: true
+      priority: cost
+    nodeSelection:
+      preferCheaper: true
+
+  # Resource limits enforcement
+  resources:
+    requests:
+      enforced: true
+      recommendations: true
+    limits:
+      enforced: true
+      overcommit: 1.2
+
+  # Idle resource cleanup
+  cleanup:
+    enabled: true
+    idleTimeout: 30m
+    gracePeriod: 5m
+
+  # Storage optimization
+  storage:
+    compression: true
+    deduplication: true
+    tiering: true
+    lifecycle:
+      enabled: true
+      archiveAfter: 30d
+      deleteAfter: 90d
+
+---
+apiVersion: ajj.io/v1
+kind: DeploymentPattern
+metadata:
+  name: quic-multi-agent
+  description: QUIC-based multi-agent architecture for low-latency coordination
+spec:
+  pattern: quic-multi-agent
+
+  # QUIC transport configuration
+  quic:
+    enabled: true
+    version: v1
+    maxStreams: 1000
+    connectionMigration: true
+    zeroRTT: true
+
+  # Multi-agent coordination
+  coordination:
+    protocol: quic
+    topology: adaptive
+    latency:
+      target: "<50ms"
+      monitoring: true
+    multiplexing:
+      enabled: true
+      streams: unlimited
+
+  # AgentDB with QUIC sync
+  agentdb:
+    enabled: true
+    sync:
+      protocol: quic
+      interval: 100ms
+      compression: true
+    replication:
+      enabled: true
+      factor: 3
+      async: true
+
+  # Low-latency optimizations
+  performance:
+    prioritization:
+      enabled: true
+      qos: high
+    congestionControl:
+      algorithm: bbr
+    flowControl:
+      enabled: true
+      windowSize: 65536
+
+  # Agent communication
+  agents:
+    communication:
+      protocol: quic
+      encryption: tls13
+      multiplexed: true
+    discovery:
+      enabled: true
+      protocol: mdns
+
+  # Network optimization
+  network:
+    mtu: 1500
+    bufferSize: 2MB
+    keepAlive: 30s
+
+  resources:
+    memory: high
+    cpu: high
+    network:
+      bandwidth: "10Gbps"
+      latency: "<10ms"
+
+---
+apiVersion: ajj.io/v1
+kind: DeploymentPattern
+metadata:
+  name: performance-optimizer
+  description: Maximum performance deployment with advanced optimizations
+spec:
+  pattern: performance-optimizer
+
+  # Performance configuration
+  performance:
+    mode: maximum
+    profiling:
+      enabled: true
+      continuous: true
+      pprof: true
+
+  # CPU optimization
+  cpu:
+    pinning: true
+    isolatedCores: true
+    numaAware: true
+    governor: performance
+
+  # Memory optimization
+  memory:
+    hugepages: true
+    preallocation: true
+    compaction: disabled
+    swappiness: 0
+
+  # I/O optimization
+  io:
+    scheduler: none
+    directIO: true
+    asyncIO: true
+    readahead: 8192
+
+  # Network optimization
+  network:
+    tso: true
+    gro: true
+    rss: true
+    rfs: true
+    xdp: true
+
+  # Caching strategy
+  caching:
+    enabled: true
+    levels:
+      - l1: cpu-cache
+      - l2: memory-cache
+      - l3: distributed-cache
+    size: 10GB
+    eviction: lru
+
+  # Database optimization
+  database:
+    connectionPooling:
+      enabled: true
+      minConnections: 10
+      maxConnections: 100
+    queryOptimization:
+      enabled: true
+      caching: true
+      indexing: aggressive
+
+  # Concurrency optimization
+  concurrency:
+    workers: auto
+    goroutines: 10000
+    channelBuffer: 1000
+
+  # Monitoring and tuning
+  monitoring:
+    metrics:
+      interval: 1s
+      detailed: true
+    autoTuning:
+      enabled: true
+      algorithm: hill-climbing
+
+  resources:
+    memory: maximum
+    cpu: maximum
+    exclusive: true
+    guaranteed: true

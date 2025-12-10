@@ -1,0 +1,106 @@
+{
+  "file_hash": "be6deb122b1f18f2ae32a13dd06feb20",
+  "feature": {
+    "id": "121 2037",
+    "name": "Relative Priority Scheduling",
+    "cxc_code": "CXC4011251",
+    "value_package": "Differentiated Mobile Broadband",
+    "value_package_id": "FAJ 801 0409",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Relative Priority Scheduling feature enables the controlling of bit rate",
+    "parameters": [
+      {
+        "name": "QciProfileOperatorDefined.relativePriority",
+        "type": "Introduced",
+        "description": "For the description, see the MOM.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfilePredefined.relativePriority",
+        "type": "Introduced",
+        "description": "For the description, see the MOM.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfilePredefined.schedulingAlgorithm",
+        "type": "Affecting",
+        "description": "The Relative Priority Scheduling feature can be combined with the following               scheduling algorithms:  EQUAL_RATE     PROPORTIONAL_FAIR_HIGH     PROPORTIONAL_FAIR_MEDIUM     PROPORTIONAL_FAIR_LOW     RESOURCE_FAIR",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "LOCAL_PER_BB_QCI_EVENT",
+        "type": "",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "LOCAL_PER_BB_RB_EVENT",
+        "type": "",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "LOCAL_PER_BB_RB_ON_CELL_QCI_LEVEL_EVENT",
+        "type": "",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AT",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmActiveDrbDlSumQci",
+        "description": "Performance counter pmActiveDrbDlSumQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolDlDrbQci",
+        "description": "Performance counter pmPdcpVolDlDrbQci",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "LOCAL_PER_BB_QCI_EVENT",
+        "type": "",
+        "description": ""
+      },
+      {
+        "name": "LOCAL_PER_BB_RB_EVENT",
+        "type": "",
+        "description": ""
+      },
+      {
+        "name": "LOCAL_PER_BB_RB_ON_CELL_QCI_LEVEL_EVENT",
+        "type": "",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011251 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011251 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/97_22104-LZA7016014_1Uen.AT.md",
+    "file_hash": "be6deb122b1f18f2ae32a13dd06feb20",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

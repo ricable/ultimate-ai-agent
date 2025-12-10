@@ -1,0 +1,232 @@
+{
+  "file_hash": "1121cdcfd66f2aa66323800f60b03713",
+  "feature": {
+    "id": "121 5031",
+    "name": "256-QAM Uplink",
+    "cxc_code": "CXC4012344",
+    "value_package": "Spectral Efficiency",
+    "value_package_id": "FAJ 801 1015",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature increases the maximum throughput and spectral efficiency by adding higher",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.puschPwrOffset256qam",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.ul256qamEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.puschPwrOffset256qam",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.ul256qamEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_PER_SCELL_MAC_DTX_UL_256QAM",
+        "description": "The total number of occasions an uplink grant is meant for HARQ                                     transmission of a transport block. It uses 256-QAM modulation in                                     the uplink direction where DTX is the reason for no reception of                                     HARQ in uplink in the eNodeB. Only SCell traffic is                                     included.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_PER_UE_MAC_DTX_UL_256QAM",
+        "description": "The total number of occasions an uplink grant is meant for HARQ                                     transmission of a transport block. It uses 256-QAM                                     modulation in the uplink direction where DTX is the reason for                                     no reception of HARQ in uplink in the eNodeB. Only PCell traffic                                     is included.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_SCELL_HARQ_UL_FAIL_256QAM",
+        "description": "The total number of unsuccessful HARQ transmissions in the uplink                                     direction using 256-QAM modulation. Failure is based on the CRC                                     check which resulted in a NACK. Only SCell traffic is                                     included.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_SCELL_HARQ_UL_SUCC_256QAM",
+        "description": "The total number of successful HARQ transmissions in the uplink                                     direction using 256-QAM modulation. Successful transmissions are                                     based on the CRC check, not based on if RBS sends HARQ ACK. RBS                                     can use the ACK even if the transport block is not successfully                                     decoded in a way to control the HARQ. Only SCell traffic is                                     included.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_UE_HARQ_UL_FAIL_256QAM",
+        "description": "The total number of unsuccessful HARQ transmissions in the uplink                                     direction using 256-QAM modulation. Failure is based on the CRC                                     check which results in an NACK. Only PCell traffic is                                     included.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_UE_HARQ_UL_SUCC_256QAM",
+        "description": "The total number of successful HARQ transmissions in the uplink                                     direction using 256-QAM modulation. Successful transmissions are                                     based on the CRC check. Only PCell traffic is included.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AG",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "SubscriberGroupProfile.ulMcsUpperLimit",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "SubscriberGroupProfile.ulMcsLowerLimit",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodSinrThr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodSinrOffset256Qam",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.p0ClpcExGoodSinrThr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.p0ClpcExGoodSinrOffset256Qam",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmUlSinrDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmUlSinrDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmFlexMacHarqUlDtx256qam",
+        "description": "Performance counter pmFlexMacHarqUlDtx256qam",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexMacHarqUlFail256qam",
+        "description": "Performance counter pmFlexMacHarqUlFail256qam",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexMacHarqUlSucc256qam",
+        "description": "Performance counter pmFlexMacHarqUlSucc256qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlDtx256Qam",
+        "description": "Performance counter pmMacHarqUlDtx256Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlFail256Qam",
+        "description": "Performance counter pmMacHarqUlFail256Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlSucc256Qam",
+        "description": "Performance counter pmMacHarqUlSucc256Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCategoryDlUlCombDistr",
+        "description": "Performance counter pmUeCategoryDlUlCombDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUlSinrDistr",
+        "description": "Performance counter pmUlSinrDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_PER_SCELL_MAC_DTX_UL_256QAM",
+        "description": "The total number of occasions an uplink grant is meant for HARQ                                     transmission of a transport block. It uses 256-QAM modulation in                                     the uplink direction where DTX is the reason for no reception of                                     HARQ in uplink in the eNodeB. Only SCell traffic is                                     included."
+      },
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_PER_UE_MAC_DTX_UL_256QAM",
+        "description": "The total number of occasions an uplink grant is meant for HARQ                                     transmission of a transport block. It uses 256-QAM                                     modulation in the uplink direction where DTX is the reason for                                     no reception of HARQ in uplink in the eNodeB. Only PCell traffic                                     is included."
+      },
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_SCELL_HARQ_UL_FAIL_256QAM",
+        "description": "The total number of unsuccessful HARQ transmissions in the uplink                                     direction using 256-QAM modulation. Failure is based on the CRC                                     check which resulted in a NACK. Only SCell traffic is                                     included."
+      },
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_SCELL_HARQ_UL_SUCC_256QAM",
+        "description": "The total number of successful HARQ transmissions in the uplink                                     direction using 256-QAM modulation. Successful transmissions are                                     based on the CRC check, not based on if RBS sends HARQ ACK. RBS                                     can use the ACK even if the transport block is not successfully                                     decoded in a way to control the HARQ. Only SCell traffic is                                     included."
+      },
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_UE_HARQ_UL_FAIL_256QAM",
+        "description": "The total number of unsuccessful HARQ transmissions in the uplink                                     direction using 256-QAM modulation. Failure is based on the CRC                                     check which results in an NACK. Only PCell traffic is                                     included."
+      },
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_UE_HARQ_UL_SUCC_256QAM",
+        "description": "The total number of successful HARQ transmissions in the uplink                                     direction using 256-QAM modulation. Successful transmissions are                                     based on the CRC check. Only PCell traffic is included."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012344 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012344 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/445_22104-LZA7016014_1Uen.AG.md",
+    "file_hash": "1121cdcfd66f2aa66323800f60b03713",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

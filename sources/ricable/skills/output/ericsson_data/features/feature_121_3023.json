@@ -1,0 +1,826 @@
+{
+  "id": "121 3023",
+  "name": "Multi-Target RRC Connection Re-Establishment",
+  "cxc_code": "CXC4011366",
+  "value_package": "VoLTE Performance",
+  "value_package_id": "FAJ 801 0444",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Multi-Target RRC Connection Re-Establishment feature extends the RRC Connection",
+  "parameters": [
+    {
+      "name": "Rrc.t301",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Rrc"
+    },
+    {
+      "name": "Rrc.t304",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Rrc"
+    },
+    {
+      "name": "RlfProfile.t310",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RlfProfile"
+    },
+    {
+      "name": "Rrc.t311",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Rrc"
+    },
+    {
+      "name": "ENodeBFunction.tS1HoCancelTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ENodeBFunction.tRelocOverall",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ENodeBFunction.rrcConnReestActive",
+      "type": "Affecting",
+      "description": "Indicates if the basic RRC Connection Re-establishment functionality is ACTIVATED                 or DEACTIVATED.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ENodeBFunction.mtRreWithoutNeighborActive",
+      "type": "Affecting",
+      "description": "Enables or disables the RRC Connection Re-establishment in the source cell when                 there is no target neighbor cell information.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "type": "EVENT_PARAM_REESTAB_CAUSE",
+      "description": "The cause value sent in by the UE in the re-establishment                                     request",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "type": "EVENT_PARAM_REESTAB_RESULT",
+      "description": "The outcome of the re-establishment procedure",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "type": "EVENT_PARAM_TTI_BUNDLING_MODE",
+      "description": "TTI Bundling mode of the UE after the RRC Connection                                     Re-Establishment is completed.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "type": "EVENT_PARAM_TA",
+      "description": "Time Alignment for UE.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "type": "EVENT_ARRAY_ERAB_REEST_RESULT",
+      "description": "Result of re-establishing the bearers of the UE.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_PROC_UE_CTXT_FETCH_RESULT",
+      "description": "The result of the Context Fetch.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_PROCEDURE_STATUS",
+      "description": "Describes what procedure was ongoing for the UE when the context                                     fetch request was received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_HO_TYPE",
+      "description": "If the ongoing procedure is handover, this parameter describes                                     which type of handover.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "If the ongoing procedure is handover, this parameter describes                                     the target type for the handover.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_SRVCC_TYPE",
+      "description": "Indicates if the HO is an SRVCC and the type of SRVCC.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "",
+      "description": "When the ongoing procedure is RRC Connection Reconfiguration,                                     this parameter describes the cause of RRC Connection                                     Reconfiguration.                                     EVENT_PARAM_UE_CTXT_FETCH_DURING_RRC_RECONF_CAUSE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_UE_CTXT_FETCH_TARGET_TYPE",
+      "description": "Indicates if target cell has an                                         ExternalEUtranCellFDD or an                                         ExternalEUtranCellTDD relation in the                                     source cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_REESTAB_CAUSE",
+      "description": "Re-establishment cause received in RRC Connection                                     Re-establishment message",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_NEW_X2AP_ID",
+      "description": "UE identity in RRE target cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_3GPP_PROCEDURE",
+      "description": "EVENT_PARAM_UE_CTXT_FETCH_DURING_RRC_RECONF_CAUSEIndicates if the event is generated by the UE Context Fetch or                                     the Retrieve UE Context procedure.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_UE_ENDC_STAGE",
+      "description": "Determines if the event is generated for an EN-DC configured                                     UE.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_CONTEXT_FETCH_REQUEST",
+      "type": "This event has no parameters",
+      "description": "Sent when a context fetch request is sent or received, either                                     from another UE context in the same eNodeB, or in an                                     X2AP:PRIVATE MESSAGE from another Ericsson eNodeB.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_CONTEXT_FETCH_RESPONSE",
+      "type": "This event has no parameters",
+      "description": "Sent when a context fetch response is sent or received, either                                     from another UE context in the same eNodeB, or in an                                     X2AP:PRIVATE MESSAGE from another Ericsson eNodeB.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_CONTEXT_FETCH_RESPONSE_ACCEPT",
+      "type": "This event has no parameters",
+      "description": "Sent when a context fetch response accept is sent or received,                                     either from another UE context in the same eNodeB, or in an                                     X2AP:PRIVATE MESSAGE from another Ericsson eNodeB.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_RRC_CONNECTION_RE_ESTABLISHMENT_REQUEST",
+      "type": "This event has no parameters",
+      "description": "Sent when an RRC:RRCConnectionReestablishmentRequest is received                                     from the UE.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_RRC_CONNECTION_RE_ESTABLISHMENT_REJECT",
+      "type": "This event has no parameters",
+      "description": "Sent when an RRC:RRCConnectionReestablishmentReject is received                                     from the UE.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_CONNECTION_RE_ESTABLISHMENT",
+      "type": "This event has no parameters",
+      "description": "Sent when an RRC:RRCConnectionReestablishment is sent to the                                     UE.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_CONNECTION_RE_ESTABLISHMENT_COMPLETE",
+      "type": "This event has no parameters",
+      "description": "Sent when an RRC:RRCConnectionReestablishmentComplete is received                                     from the UE.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_RETRIEVE_UE_CONTEXT_REQUEST",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Retrieve UE Context Request X2 message was sent or                                     received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_RETRIEVE_UE_CONTEXT_RESPONSE",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Retrieve UE Context Response X2 message was sent or                                     received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_RETRIEVE_UE_CONTEXT_FAILURE",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Retrieve UE Context Failure X2 message was sent or                                     received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_DATA_FORWARDING_ADDRESS_INDICATION",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Data Forwarding Address Indication X2 message was sent or                                     received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "For non-Ericsson MME",
+      "type": "",
+      "description": "The X2 Handover triggered is to be used. Set the ENodeBFunction.zzzTemporary52 parameter to 1.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_RETRIEVE_UE_CONTEXT_REQUEST",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Retrieve UE Context Request X2 message is                                         sent or received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_RETRIEVE_UE_CONTEXT_RESPONSE",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Retrieve UE Context Response X2 message is                                         sent or received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_RETRIEVE_UE_CONTEXT_FAILURE",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Retrieve UE Context Failure X2 message is                                         sent or received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_DATA_FORWARDING_ADDRESS_INDICATION",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Data Forwarding Address Indication X2                                         message is sent or received.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.EG",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellRelation.isHoAllowed",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "ExternalEUtranCellFDD.activePlmnList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ExternalEUtranCellFDD"
+    },
+    {
+      "name": "ExternalEUtranCellTDD.activePlmnList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ExternalEUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCounters",
+      "description": "Performance counter pmCounters",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcRelMnMcgRelocAtt",
+      "description": "Performance counter pmEndcRelMnMcgRelocAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcRelMnMcgRelocSucc",
+      "description": "Performance counter pmEndcRelMnMcgRelocSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmEvent",
+      "description": "Performance counter pmEvent",
+      "category": "General"
+    },
+    {
+      "name": "pmEvents",
+      "description": "Performance counter pmEvents",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexErabRelAbnormalEnbAct",
+      "description": "Performance counter pmFlexErabRelAbnormalEnbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexRrcConnReestAtt",
+      "description": "Performance counter pmFlexRrcConnReestAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexRrcConnReestSucc",
+      "description": "Performance counter pmFlexRrcConnReestSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnReestAttHo",
+      "description": "Performance counter pmRrcConnReestAttHo",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnReestFailLicMtReest",
+      "description": "Performance counter pmRrcConnReestFailLicMtReest",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnReestSuccHo",
+      "description": "Performance counter pmRrcConnReestSuccHo",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnReestSuccOthVend",
+      "description": "Performance counter pmRrcConnReestSuccOthVend",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAtt",
+      "description": "Performance counter pmUeCtxtFetchAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttCgiMeas",
+      "description": "Performance counter pmUeCtxtFetchAttCgiMeas",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttEndcRel",
+      "description": "Performance counter pmUeCtxtFetchAttEndcRel",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttEndcSetup",
+      "description": "Performance counter pmUeCtxtFetchAttEndcSetup",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttIntraEnbHoExe",
+      "description": "Performance counter pmUeCtxtFetchAttIntraEnbHoExe",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttIntraEnbHoIn",
+      "description": "Performance counter pmUeCtxtFetchAttIntraEnbHoIn",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttIntraEnbHoPrep",
+      "description": "Performance counter pmUeCtxtFetchAttIntraEnbHoPrep",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttNasTransferDl",
+      "description": "Performance counter pmUeCtxtFetchAttNasTransferDl",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttNoNeighRel",
+      "description": "Performance counter pmUeCtxtFetchAttNoNeighRel",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttNoNeighReld",
+      "description": "Performance counter pmUeCtxtFetchAttNoNeighReld",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttReconf",
+      "description": "Performance counter pmUeCtxtFetchAttReconf",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttReconfErabEstab",
+      "description": "Performance counter pmUeCtxtFetchAttReconfErabEstab",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttReconfErabMod",
+      "description": "Performance counter pmUeCtxtFetchAttReconfErabMod",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttReconfErabRel",
+      "description": "Performance counter pmUeCtxtFetchAttReconfErabRel",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttReconfRrcConnReest",
+      "description": "Performance counter pmUeCtxtFetchAttReconfRrcConnReest",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttReconfUeCtxtEstab",
+      "description": "Performance counter pmUeCtxtFetchAttReconfUeCtxtEstab",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttReconfUeCtxtEstabReconfFail",
+      "description": "Performance counter pmUeCtxtFetchAttReconfUeCtxtEstabReconfFail",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttS1HoExe",
+      "description": "Performance counter pmUeCtxtFetchAttS1HoExe",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttS1HoExeSrvccGeran",
+      "description": "Performance counter pmUeCtxtFetchAttS1HoExeSrvccGeran",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttS1HoExeSrvccUtran",
+      "description": "Performance counter pmUeCtxtFetchAttS1HoExeSrvccUtran",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttS1HoPrep",
+      "description": "Performance counter pmUeCtxtFetchAttS1HoPrep",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttS1HoPrepSrvccGeran",
+      "description": "Performance counter pmUeCtxtFetchAttS1HoPrepSrvccGeran",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttS1HoPrepSrvccUtran",
+      "description": "Performance counter pmUeCtxtFetchAttS1HoPrepSrvccUtran",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttUeCapEnq",
+      "description": "Performance counter pmUeCtxtFetchAttUeCapEnq",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttX2HoExe",
+      "description": "Performance counter pmUeCtxtFetchAttX2HoExe",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttX2HoIn",
+      "description": "Performance counter pmUeCtxtFetchAttX2HoIn",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchAttX2HoPrep",
+      "description": "Performance counter pmUeCtxtFetchAttX2HoPrep",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSucc",
+      "description": "Performance counter pmUeCtxtFetchSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccCgiMeas",
+      "description": "Performance counter pmUeCtxtFetchSuccCgiMeas",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccEndcRel",
+      "description": "Performance counter pmUeCtxtFetchSuccEndcRel",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccEndcSetup",
+      "description": "Performance counter pmUeCtxtFetchSuccEndcSetup",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccErabActQci",
+      "description": "Performance counter pmUeCtxtFetchSuccErabActQci",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccIntraEnbHoExe",
+      "description": "Performance counter pmUeCtxtFetchSuccIntraEnbHoExe",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccIntraEnbHoIn",
+      "description": "Performance counter pmUeCtxtFetchSuccIntraEnbHoIn",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccIntraEnbHoPrep",
+      "description": "Performance counter pmUeCtxtFetchSuccIntraEnbHoPrep",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccNasTransferDl",
+      "description": "Performance counter pmUeCtxtFetchSuccNasTransferDl",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccNoNeighRel",
+      "description": "Performance counter pmUeCtxtFetchSuccNoNeighRel",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccReconf",
+      "description": "Performance counter pmUeCtxtFetchSuccReconf",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccReconfErabEstab",
+      "description": "Performance counter pmUeCtxtFetchSuccReconfErabEstab",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccReconfRrcConnReest",
+      "description": "Performance counter pmUeCtxtFetchSuccReconfRrcConnReest",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccS1HoExe",
+      "description": "Performance counter pmUeCtxtFetchSuccS1HoExe",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccS1HoExeSrvccGeran",
+      "description": "Performance counter pmUeCtxtFetchSuccS1HoExeSrvccGeran",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccS1HoExeSrvccUtran",
+      "description": "Performance counter pmUeCtxtFetchSuccS1HoExeSrvccUtran",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccS1HoPrep",
+      "description": "Performance counter pmUeCtxtFetchSuccS1HoPrep",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccS1HoPrepSrvccGeran",
+      "description": "Performance counter pmUeCtxtFetchSuccS1HoPrepSrvccGeran",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccS1HoPrepSrvccUtran",
+      "description": "Performance counter pmUeCtxtFetchSuccS1HoPrepSrvccUtran",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccUeCapEnq",
+      "description": "Performance counter pmUeCtxtFetchSuccUeCapEnq",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccX2HoExe",
+      "description": "Performance counter pmUeCtxtFetchSuccX2HoExe",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccX2HoIn",
+      "description": "Performance counter pmUeCtxtFetchSuccX2HoIn",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtFetchSuccX2HoPrep",
+      "description": "Performance counter pmUeCtxtFetchSuccX2HoPrep",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRetrReestAtt",
+      "description": "Performance counter pmUeCtxtRetrReestAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRetrReestAttEndcUe",
+      "description": "Performance counter pmUeCtxtRetrReestAttEndcUe",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRetrReestFailEndcUe",
+      "description": "Performance counter pmUeCtxtRetrReestFailEndcUe",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRetrReestFailNRUe",
+      "description": "Performance counter pmUeCtxtRetrReestFailNRUe",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRetrReestFailOngUeProc",
+      "description": "Performance counter pmUeCtxtRetrReestFailOngUeProc",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRetrReestFailRreEval",
+      "description": "Performance counter pmUeCtxtRetrReestFailRreEval",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRetrReestFailUeCtxtRel",
+      "description": "Performance counter pmUeCtxtRetrReestFailUeCtxtRel",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRetrReestSucc",
+      "description": "Performance counter pmUeCtxtRetrReestSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRetrReestSuccEndcUe",
+      "description": "Performance counter pmUeCtxtRetrReestSuccEndcUe",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "type": "EVENT_PARAM_REESTAB_CAUSE",
+      "description": "The cause value sent in by the UE in the re-establishment                                     request"
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "type": "EVENT_PARAM_REESTAB_RESULT",
+      "description": "The outcome of the re-establishment procedure"
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "type": "EVENT_PARAM_TTI_BUNDLING_MODE",
+      "description": "TTI Bundling mode of the UE after the RRC Connection                                     Re-Establishment is completed."
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "type": "EVENT_PARAM_TA",
+      "description": "Time Alignment for UE."
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "type": "EVENT_ARRAY_ERAB_REEST_RESULT",
+      "description": "Result of re-establishing the bearers of the UE."
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_PROC_UE_CTXT_FETCH_RESULT",
+      "description": "The result of the Context Fetch."
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_PROCEDURE_STATUS",
+      "description": "Describes what procedure was ongoing for the UE when the context                                     fetch request was received."
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_HO_TYPE",
+      "description": "If the ongoing procedure is handover, this parameter describes                                     which type of handover."
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "If the ongoing procedure is handover, this parameter describes                                     the target type for the handover."
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_SRVCC_TYPE",
+      "description": "Indicates if the HO is an SRVCC and the type of SRVCC."
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "",
+      "description": "When the ongoing procedure is RRC Connection Reconfiguration,                                     this parameter describes the cause of RRC Connection                                     Reconfiguration.                                     EVENT_PARAM_UE_CTXT_FETCH_DURING_RRC_RECONF_CAUSE"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_UE_CTXT_FETCH_TARGET_TYPE",
+      "description": "Indicates if target cell has an                                         ExternalEUtranCellFDD or an                                         ExternalEUtranCellTDD relation in the                                     source cell."
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_REESTAB_CAUSE",
+      "description": "Re-establishment cause received in RRC Connection                                     Re-establishment message"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_NEW_X2AP_ID",
+      "description": "UE identity in RRE target cell."
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_3GPP_PROCEDURE",
+      "description": "EVENT_PARAM_UE_CTXT_FETCH_DURING_RRC_RECONF_CAUSEIndicates if the event is generated by the UE Context Fetch or                                     the Retrieve UE Context procedure."
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_FETCH",
+      "type": "EVENT_PARAM_UE_ENDC_STAGE",
+      "description": "Determines if the event is generated for an EN-DC configured                                     UE."
+    },
+    {
+      "name": "X2_CONTEXT_FETCH_REQUEST",
+      "type": "This event has no parameters",
+      "description": "Sent when a context fetch request is sent or received, either                                     from another UE context in the same eNodeB, or in an                                     X2AP:PRIVATE MESSAGE from another Ericsson eNodeB."
+    },
+    {
+      "name": "X2_CONTEXT_FETCH_RESPONSE",
+      "type": "This event has no parameters",
+      "description": "Sent when a context fetch response is sent or received, either                                     from another UE context in the same eNodeB, or in an                                     X2AP:PRIVATE MESSAGE from another Ericsson eNodeB."
+    },
+    {
+      "name": "X2_CONTEXT_FETCH_RESPONSE_ACCEPT",
+      "type": "This event has no parameters",
+      "description": "Sent when a context fetch response accept is sent or received,                                     either from another UE context in the same eNodeB, or in an                                     X2AP:PRIVATE MESSAGE from another Ericsson eNodeB."
+    },
+    {
+      "name": "RRC_RRC_CONNECTION_RE_ESTABLISHMENT_REQUEST",
+      "type": "This event has no parameters",
+      "description": "Sent when an RRC:RRCConnectionReestablishmentRequest is received                                     from the UE."
+    },
+    {
+      "name": "RRC_RRC_CONNECTION_RE_ESTABLISHMENT_REJECT",
+      "type": "This event has no parameters",
+      "description": "Sent when an RRC:RRCConnectionReestablishmentReject is received                                     from the UE."
+    },
+    {
+      "name": "RRC_CONNECTION_RE_ESTABLISHMENT",
+      "type": "This event has no parameters",
+      "description": "Sent when an RRC:RRCConnectionReestablishment is sent to the                                     UE."
+    },
+    {
+      "name": "RRC_CONNECTION_RE_ESTABLISHMENT_COMPLETE",
+      "type": "This event has no parameters",
+      "description": "Sent when an RRC:RRCConnectionReestablishmentComplete is received                                     from the UE."
+    },
+    {
+      "name": "X2_RETRIEVE_UE_CONTEXT_REQUEST",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Retrieve UE Context Request X2 message was sent or                                     received."
+    },
+    {
+      "name": "X2_RETRIEVE_UE_CONTEXT_RESPONSE",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Retrieve UE Context Response X2 message was sent or                                     received."
+    },
+    {
+      "name": "X2_RETRIEVE_UE_CONTEXT_FAILURE",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Retrieve UE Context Failure X2 message was sent or                                     received."
+    },
+    {
+      "name": "X2_DATA_FORWARDING_ADDRESS_INDICATION",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Data Forwarding Address Indication X2 message was sent or                                     received."
+    },
+    {
+      "name": "X2_RETRIEVE_UE_CONTEXT_REQUEST",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Retrieve UE Context Request X2 message is                                         sent or received."
+    },
+    {
+      "name": "X2_RETRIEVE_UE_CONTEXT_RESPONSE",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Retrieve UE Context Response X2 message is                                         sent or received."
+    },
+    {
+      "name": "X2_RETRIEVE_UE_CONTEXT_FAILURE",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Retrieve UE Context Failure X2 message is                                         sent or received."
+    },
+    {
+      "name": "X2_DATA_FORWARDING_ADDRESS_INDICATION",
+      "type": "EVENT_PARAM_SEND_GENBID  EVENT_PARAM_RECV_GENBID",
+      "description": "A Data Forwarding Address Indication X2                                         message is sent or received."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011366 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011366 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/43_22104-LZA7016014_1Uen.EG.md",
+  "file_hash": "2ea7fa08290521859b99f782939dcdba",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {
+    "kpi": "Affects KPI monitoring"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "agent-booster-cli",
+  "version": "0.1.0",
+  "description": "Command-line interface for Agent Booster prompt optimization",
+  "main": "index.js",
+  "bin": {
+    "agent-booster": "bin/agent-booster.js"
+  },
+  "files": [
+    "bin/",
+    "commands/",
+    "README.md"
+  ],
+  "keywords": [
+    "cli",
+    "ai",
+    "llm",
+    "prompt",
+    "optimization",
+    "agent",
+    "command-line"
+  ],
+  "author": "Agent Booster Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/agentic-flow.git",
+    "directory": "agent-booster/npm/agent-booster-cli"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "agent-booster": "^0.1.0",
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1"
+  },
+  "scripts": {
+    "test": "node test.js"
+  }
+}

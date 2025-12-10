@@ -1,0 +1,40 @@
+{
+  "id": "121 5049",
+  "name": "ASGH-Based A/B Testing Framework",
+  "cxc_code": "CXC4012356",
+  "value_package": "Differentiated Mobile Broadband",
+  "value_package_id": "FAJ 801 0409",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The ASGH-Based A/B Testing Framework feature introduces the possibility of A/B",
+  "parameters": [
+    {
+      "name": "SubscriberGroupProfile.selectionProbability",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "Uen.AC",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012356 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012356 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/437_22104-LZA7016014_1Uen.AC.md",
+  "file_hash": "ef4b64c55f5eb5bc371a2b691df50174",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

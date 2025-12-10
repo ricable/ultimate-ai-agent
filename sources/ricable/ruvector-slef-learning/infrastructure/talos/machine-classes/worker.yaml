@@ -1,0 +1,85 @@
+# Machine Class: Worker Node
+# Deploy: omnictl apply -f infrastructure/talos/machine-classes/
+# Reference: https://omni.siderolabs.io/docs/reference/omnictl/
+
+apiVersion: omni.siderolabs.io/v1alpha1
+kind: MachineClass
+metadata:
+  name: worker
+  namespace: default
+  labels:
+    ruvector.io/role: worker
+    ruvector.io/platform: talos
+spec:
+  matchLabels:
+    role: worker
+  resources:
+    cpu: 4
+    memory: 16384
+    disk: 100
+  patches:
+    - |
+      machine:
+        install:
+          disk: /dev/sda
+          extensions:
+            - image: ghcr.io/siderolabs/wasmedge:0.11.2
+            - image: ghcr.io/siderolabs/spin:2.0.0
+        kubelet:
+          registerWithFQDN: true
+          extraArgs:
+            rotate-server-certificates: "true"
+            feature-gates: "NodeSwap=true"
+          nodeIP:
+            validSubnets:
+              - 10.0.0.0/8
+              - 192.168.0.0/16
+        sysctls:
+          net.core.somaxconn: "65535"
+          vm.max_map_count: "262144"
+          fs.inotify.max_user_watches: "1048576"
+          fs.inotify.max_user_instances: "8192"
+        nodeLabels:
+          ruvector.io/wasm-enabled: "true"
+          node.kubernetes.io/workload-type: general
+
+---
+# Machine Class: High Memory Worker
+# For memory-intensive Wasm workloads and vector operations
+apiVersion: omni.siderolabs.io/v1alpha1
+kind: MachineClass
+metadata:
+  name: worker-highmem
+  namespace: default
+  labels:
+    ruvector.io/role: worker
+    ruvector.io/tier: highmem
+spec:
+  matchLabels:
+    role: worker
+    tier: highmem
+  resources:
+    cpu: 8
+    memory: 65536  # 64GB
+    disk: 200
+  patches:
+    - |
+      machine:
+        install:
+          disk: /dev/sda
+          extensions:
+            - image: ghcr.io/siderolabs/wasmedge:0.11.2
+            - image: ghcr.io/siderolabs/spin:2.0.0
+        kubelet:
+          registerWithFQDN: true
+          extraArgs:
+            rotate-server-certificates: "true"
+            system-reserved: "cpu=1,memory=2Gi"
+            kube-reserved: "cpu=1,memory=2Gi"
+        sysctls:
+          vm.max_map_count: "524288"
+          net.core.somaxconn: "65535"
+        nodeLabels:
+          ruvector.io/wasm-enabled: "true"
+          ruvector.io/vector-optimized: "true"
+          node.kubernetes.io/workload-type: highmem

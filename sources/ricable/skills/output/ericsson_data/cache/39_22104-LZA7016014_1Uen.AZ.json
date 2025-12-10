@@ -1,0 +1,111 @@
+{
+  "file_hash": "f7933c66e257483512200d6349d1424d",
+  "feature": {
+    "id": "121 1800",
+    "name": "Packet Forwarding at S1 Handover",
+    "cxc_code": "CXC4011075",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The purpose of the Packet Forwarding at S1 Handover feature is to reduce downlink packet",
+    "parameters": [
+      {
+        "name": "ENodeBFunction.s1HODirDataPathAvail",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "QciProfilePredefined.dataFwdPerQciEnabled",
+        "type": "Affected",
+        "description": "Parameters that indicate forwarding of data for the QCI. Only                                     valid if the license for the Data Forwarding at Intra-LTE                                         Handover feature or the Packet Forwarding at S1 Handover                                     feature is installed and active.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfileOperatorDefined.dataFwdPerQciEnabled",
+        "type": "Affected",
+        "description": "Parameters that indicate forwarding of data for the QCI. Only                                     valid if the license for the Data Forwarding at Intra-LTE                                         Handover feature or the Packet Forwarding at S1 Handover                                     feature is installed and active.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "Uen.AZ",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.pmPdcpPktFwdDl",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmPdcpPktFwdDl",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmPdcpPktDiscDlHo",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmPdcpPktDiscDlHo",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmPdcpPktDiscDlHo",
+        "description": "Performance counter pmPdcpPktDiscDlHo",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktFwdDl",
+        "description": "Performance counter pmPdcpPktFwdDl",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011075 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011075 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/39_22104-LZA7016014_1Uen.AZ.md",
+    "file_hash": "f7933c66e257483512200d6349d1424d",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

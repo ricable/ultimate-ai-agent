@@ -1,0 +1,68 @@
+{
+  "id": "121 5768",
+  "name": "High-Resolution Timing Advance for Macro Positioning",
+  "cxc_code": "CXC4012769",
+  "value_package": "5G Advanced Macro Positioning",
+  "value_package_id": "FAJ 801 4028",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature allows for NR Timing Advance measurements with high resolution in the",
+  "parameters": [
+    {
+      "name": "NRSectorCarrier.nrppaCellPortionId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRCellCU.advUePosMode",
+      "type": "Affecting",
+      "description": "The feature can only be used if the value of this attribute is                                     set to other than NONE.",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "Uen.J33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsEcidMeasInitReqOnDemand",
+      "description": "Performance counter pmEbsEcidMeasInitReqOnDemand",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsEcidMeasInitRespOnDemand",
+      "description": "Performance counter pmEbsEcidMeasInitRespOnDemand",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012769 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012769 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/214_22104-LZA7016017_1Uen.J33B.md",
+  "file_hash": "7f17e79571f72c706a4a0ae81dc14ba4",
+  "processed_at": "2025-10-19 15:50:10",
+  "network_impact": {},
+  "performance_impact": {}
+}

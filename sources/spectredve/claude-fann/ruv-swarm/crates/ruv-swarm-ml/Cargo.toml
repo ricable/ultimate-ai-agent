@@ -1,0 +1,38 @@
+[package]
+name = "ruv-swarm-ml"
+version = "1.0.5"
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+description = "Machine learning integration for RUV Swarm"
+
+[dependencies]
+ruv-swarm-core = { path = "../ruv-swarm-core", version = "1.0.6" }
+ruv-fann = { path = "../../..", features = ["gpu", "serde"] }
+
+# Core dependencies
+serde = { workspace = true }
+serde_json = { workspace = true }
+fastrand = "2.0"
+
+# Optional WASM dependencies
+wasm-bindgen = { workspace = true, optional = true }
+serde-wasm-bindgen = { version = "0.6", optional = true }
+js-sys = { workspace = true, optional = true }
+web-sys = { workspace = true, optional = true }
+
+# Neural network and ML dependencies
+# ruv-fann provides the actual neural network implementation
+
+[features]
+default = []
+wasm = ["wasm-bindgen", "serde-wasm-bindgen", "js-sys", "web-sys"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+# Target-specific dependencies for WASM
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+getrandom = { version = "0.2", features = ["js"] }

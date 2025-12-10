@@ -1,0 +1,149 @@
+{
+  "file_hash": "5315b3b6c8b24ecbed238534c4e5cb87",
+  "feature": {
+    "id": "121 3014",
+    "name": "",
+    "cxc_code": "CXC4011346",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "The feature enables the eNodeB to use handover to transfer UEs with voice bearers in",
+    "parameters": [
+      {
+        "name": "ExternalGeranCell.dtmSupport",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGeranCell"
+      },
+      {
+        "name": "GeranFreqGroupRelation.voicePrio",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GeranFreqGroupRelation"
+      },
+      {
+        "name": "UeMeasControl.allowReleaseQci1",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "GeranCellRelation.coverageIndicator",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "GeranCellRelation"
+      },
+      {
+        "name": "ExternalGeranCell.lac",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGeranCell"
+      },
+      {
+        "name": "EUtranCellFDD.covTriggerdBlindHoAllowed",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.covTriggerdBlindHoAllowed",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "GeranCellRelation.isHoAllowed",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "GeranCellRelation"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+        "type": "EVENT_PARAM_SRVCC_TYPE",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AK",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "GeranCellRelation.mobilityStatus",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "GeranCellRelation"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmHoExeAtt",
+        "description": "Performance counter pmHoExeAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeCancel",
+        "description": "Performance counter pmHoExeCancel",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSucc",
+        "description": "Performance counter pmHoExeSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAtt",
+        "description": "Performance counter pmHoPrepAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepCancel",
+        "description": "Performance counter pmHoPrepCancel",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepCancelReest",
+        "description": "Performance counter pmHoPrepCancelReest",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSucc",
+        "description": "Performance counter pmHoPrepSucc",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+        "type": "EVENT_PARAM_SRVCC_TYPE",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011346 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011346 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/253_22104-LZA7016014_1Uen.AK.md",
+    "file_hash": "5315b3b6c8b24ecbed238534c4e5cb87",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

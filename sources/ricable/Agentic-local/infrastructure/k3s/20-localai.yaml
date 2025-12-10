@@ -1,0 +1,170 @@
+# =============================================================================
+# Edge-Native AI - LocalAI Inference Server
+# OpenAI-compatible API for local model inference
+# =============================================================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: localai
+  namespace: edge-ai-inference
+  labels:
+    app: localai
+    component: inference
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: localai
+  template:
+    metadata:
+      labels:
+        app: localai
+    spec:
+      # Schedule on nodes with GPU or high CPU capability
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: nvidia.com/gpu
+                    operator: Exists
+            - weight: 80
+              preference:
+                matchExpressions:
+                  - key: edge-ai.io/inference-tier
+                    operator: In
+                    values: ["high", "medium"]
+            - weight: 50
+              preference:
+                matchExpressions:
+                  - key: cpu.feature/avx512
+                    operator: In
+                    values: ["true"]
+      containers:
+        - name: localai
+          image: localai/localai:latest-aio-cpu
+          # Use GPU image if available:
+          # image: localai/localai:latest-aio-gpu-nvidia-cuda-12
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: THREADS
+              value: "8"
+            - name: CONTEXT_SIZE
+              value: "8192"
+            - name: MODELS_PATH
+              value: "/models"
+            - name: DEBUG
+              value: "false"
+            - name: GALLERIES
+              value: '[{"name":"model-gallery","url":"github:go-skynet/model-gallery/index.yaml"},{"name":"huggingface","url":"github:go-skynet/model-gallery/huggingface.yaml"}]'
+          resources:
+            requests:
+              memory: "4Gi"
+              cpu: "2000m"
+            limits:
+              memory: "16Gi"
+              cpu: "8000m"
+              # Uncomment for GPU
+              # nvidia.com/gpu: 1
+          volumeMounts:
+            - name: models
+              mountPath: /models
+            - name: config
+              mountPath: /config
+          livenessProbe:
+            httpGet:
+              path: /readyz
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: ai-models-pvc
+        - name: config
+          configMap:
+            name: localai-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: localai
+  namespace: edge-ai-inference
+spec:
+  selector:
+    app: localai
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: localai-config
+  namespace: edge-ai-inference
+data:
+  # Default model configuration
+  models.yaml: |
+    - name: qwen2.5-coder-7b
+      backend: llama-cpp
+      parameters:
+        model: qwen2.5-coder-7b-instruct-q5_k_m.gguf
+        context_size: 32768
+        threads: 8
+        temperature: 0.7
+        top_p: 0.9
+
+    - name: qwen2.5-coder-14b
+      backend: llama-cpp
+      parameters:
+        model: qwen2.5-coder-14b-instruct-q5_k_m.gguf
+        context_size: 32768
+        threads: 8
+        temperature: 0.7
+
+    - name: embedding
+      backend: sentencetransformers
+      parameters:
+        model: all-MiniLM-L6-v2
+---
+# Model download job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: download-models
+  namespace: edge-ai-inference
+spec:
+  template:
+    spec:
+      containers:
+        - name: downloader
+          image: curlimages/curl:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              # Download Qwen 2.5 Coder 7B
+              echo "Downloading Qwen 2.5 Coder 7B..."
+              curl -L -o /models/qwen2.5-coder-7b-instruct-q5_k_m.gguf \
+                "https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct-GGUF/resolve/main/qwen2.5-coder-7b-instruct-q5_k_m.gguf"
+
+              echo "Models downloaded successfully!"
+          volumeMounts:
+            - name: models
+              mountPath: /models
+      restartPolicy: OnFailure
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: ai-models-pvc

@@ -1,0 +1,45 @@
+[package]
+name = "reasoningbank-wasm"
+description = "WASM bindings for browser and Node.js environments"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+documentation.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["wasm-storage"]
+wasm-storage = ["reasoningbank-storage/wasm-adapters"]
+
+[dependencies]
+reasoningbank-core = { path = "../reasoningbank-core" }
+reasoningbank-storage = { path = "../reasoningbank-storage" }
+# Removed reasoningbank-learning - not needed for WASM, causes tokio/mio issues
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+wasm-bindgen = { workspace = true }
+wasm-bindgen-futures = { workspace = true }
+js-sys = { workspace = true }
+web-sys = { workspace = true, features = ["console", "Window", "IdbFactory", "IdbDatabase", "IdbOpenDbRequest"] }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true, features = ["fmt"] }
+uuid = { workspace = true, features = ["v4", "serde", "js"] }
+console_error_panic_hook = "0.1"
+async-trait = { workspace = true }
+
+# Override workspace tokio to disable net features (mio) for WASM compatibility
+tokio = { version = "1.35", default-features = false, features = ["sync", "macros", "rt"] }
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = ["-O4", "--enable-simd", "--enable-bulk-memory"]

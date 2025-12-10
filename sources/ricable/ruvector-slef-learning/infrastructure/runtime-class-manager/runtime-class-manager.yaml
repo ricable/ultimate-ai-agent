@@ -1,0 +1,260 @@
+# Runtime Class Manager Deployment
+# Manages installation and lifecycle of containerd shims for Wasm runtimes
+# Supports: WasmEdge, Spin (wasmtime), Wasmer
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rcm-system
+  labels:
+    app.kubernetes.io/name: runtime-class-manager
+    app.kubernetes.io/component: operator
+---
+# Shim CRD - Custom Resource Definition for managing containerd shims
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: shims.runtime.kwasm.sh
+spec:
+  group: runtime.kwasm.sh
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required:
+                - shimName
+              properties:
+                shimName:
+                  type: string
+                  description: "Name of the containerd shim (e.g., spin, wasmedge)"
+                shimVersion:
+                  type: string
+                  description: "Version of the shim to install"
+                  default: "latest"
+                runtimeClassName:
+                  type: string
+                  description: "RuntimeClass name to create"
+                handler:
+                  type: string
+                  description: "Handler name for containerd"
+                nodeSelector:
+                  type: object
+                  additionalProperties:
+                    type: string
+                  description: "Node selector for shim installation"
+                fetchStrategy:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: ["oci", "http", "local"]
+                      default: "oci"
+                    ociRef:
+                      type: string
+                      description: "OCI reference for shim binary"
+                    httpUrl:
+                      type: string
+                      description: "HTTP URL for shim binary"
+                installPath:
+                  type: string
+                  default: "/usr/local/bin"
+                  description: "Path to install shim binary"
+            status:
+              type: object
+              properties:
+                phase:
+                  type: string
+                  enum: ["Pending", "Installing", "Ready", "Failed", "Updating"]
+                installedNodes:
+                  type: array
+                  items:
+                    type: string
+                message:
+                  type: string
+                lastUpdated:
+                  type: string
+                  format: date-time
+      subresources:
+        status: {}
+  scope: Cluster
+  names:
+    plural: shims
+    singular: shim
+    kind: Shim
+    shortNames:
+      - shm
+---
+# ServiceAccount for Runtime Class Manager
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: runtime-class-manager
+  namespace: rcm-system
+---
+# ClusterRole for Runtime Class Manager
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: runtime-class-manager
+rules:
+  - apiGroups: [""]
+    resources: ["nodes"]
+    verbs: ["get", "list", "watch", "patch"]
+  - apiGroups: [""]
+    resources: ["pods", "configmaps", "secrets"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["apps"]
+    resources: ["daemonsets"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["node.k8s.io"]
+    resources: ["runtimeclasses"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["runtime.kwasm.sh"]
+    resources: ["shims", "shims/status"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs: ["create", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: runtime-class-manager
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: runtime-class-manager
+subjects:
+  - kind: ServiceAccount
+    name: runtime-class-manager
+    namespace: rcm-system
+---
+# Runtime Class Manager Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runtime-class-manager
+  namespace: rcm-system
+  labels:
+    app: runtime-class-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: runtime-class-manager
+  template:
+    metadata:
+      labels:
+        app: runtime-class-manager
+    spec:
+      serviceAccountName: runtime-class-manager
+      containers:
+        - name: manager
+          image: ghcr.io/spinkube/runtime-class-manager:v0.3.0
+          imagePullPolicy: IfNotPresent
+          args:
+            - --leader-elect
+            - --metrics-bind-address=:8080
+            - --health-probe-bind-address=:8081
+          ports:
+            - containerPort: 8080
+              name: metrics
+            - containerPort: 8081
+              name: health
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8081
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8081
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      nodeSelector:
+        kubernetes.io/os: linux
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"
+---
+# Node Installer DaemonSet for shim installation
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: runtime-shim-installer
+  namespace: rcm-system
+  labels:
+    app: runtime-shim-installer
+spec:
+  selector:
+    matchLabels:
+      app: runtime-shim-installer
+  template:
+    metadata:
+      labels:
+        app: runtime-shim-installer
+    spec:
+      serviceAccountName: runtime-class-manager
+      hostPID: true
+      hostNetwork: true
+      containers:
+        - name: installer
+          image: ghcr.io/spinkube/node-installer:v0.3.0
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: CONTAINERD_SOCKET
+              value: "/host/run/containerd/containerd.sock"
+          volumeMounts:
+            - name: host-root
+              mountPath: /host
+              mountPropagation: Bidirectional
+            - name: containerd-socket
+              mountPath: /host/run/containerd/containerd.sock
+          resources:
+            limits:
+              cpu: 200m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 32Mi
+      volumes:
+        - name: host-root
+          hostPath:
+            path: /
+            type: Directory
+        - name: containerd-socket
+          hostPath:
+            path: /run/containerd/containerd.sock
+            type: Socket
+      tolerations:
+        - operator: Exists

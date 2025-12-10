@@ -1,0 +1,152 @@
+version: '3.8'
+
+services:
+  # Git baseline benchmark container
+  git-benchmark:
+    build:
+      context: .
+      dockerfile: Dockerfile.git
+    container_name: agentic-jj-git-bench
+    hostname: git-bench
+    volumes:
+      - ./data/repos:/repos
+      - ./data/results:/results
+      - ./scripts:/benchmark/scripts:ro
+      - ./config:/benchmark/config:ro
+    environment:
+      - TEST_SCENARIO=${TEST_SCENARIO:-concurrent}
+      - AGENT_COUNT=${AGENT_COUNT:-10}
+      - COMMIT_COUNT=${COMMIT_COUNT:-100}
+      - CONFLICT_RATE=${CONFLICT_RATE:-10}
+      - ENABLE_METRICS=true
+      - BENCHMARK_DURATION=${BENCHMARK_DURATION:-600}
+    networks:
+      - benchmark-net
+    depends_on:
+      - swarm-coordinator
+    mem_limit: 4g
+    cpus: 2
+
+  # Jujutsu benchmark container
+  jj-benchmark:
+    build:
+      context: .
+      dockerfile: Dockerfile.jujutsu
+    container_name: agentic-jj-bench
+    hostname: jj-bench
+    volumes:
+      - ./data/repos:/repos
+      - ./data/results:/results
+      - ./scripts:/benchmark/scripts:ro
+      - ./config:/benchmark/config:ro
+    environment:
+      - TEST_SCENARIO=${TEST_SCENARIO:-concurrent}
+      - AGENT_COUNT=${AGENT_COUNT:-10}
+      - COMMIT_COUNT=${COMMIT_COUNT:-100}
+      - CONFLICT_RATE=${CONFLICT_RATE:-10}
+      - ENABLE_METRICS=true
+      - BENCHMARK_DURATION=${BENCHMARK_DURATION:-600}
+      - JJ_WORKSPACE_MODE=${JJ_WORKSPACE_MODE:-shared-log}
+    networks:
+      - benchmark-net
+    depends_on:
+      - swarm-coordinator
+    mem_limit: 4g
+    cpus: 2
+
+  # Swarm coordinator for orchestration
+  swarm-coordinator:
+    build:
+      context: .
+      dockerfile: Dockerfile.swarm-coordinator
+    container_name: agentic-jj-coordinator
+    hostname: coordinator
+    volumes:
+      - ./data:/data
+      - ./scripts:/coordinator/scripts:ro
+      - ./config:/coordinator/config:ro
+    environment:
+      - COORDINATOR_MODE=benchmark
+      - ENABLE_LOGGING=true
+      - LOG_LEVEL=info
+      - API_PORT=8080
+    networks:
+      - benchmark-net
+    ports:
+      - "8080:8080"
+    mem_limit: 2g
+    cpus: 1
+
+  # AgentDB for pattern learning and metrics storage
+  agentdb:
+    image: agentdb:latest
+    container_name: agentic-jj-agentdb
+    hostname: agentdb
+    volumes:
+      - agentdb-data:/data
+      - ./data/metrics:/metrics
+    environment:
+      - AGENTDB_MODE=benchmark
+      - ENABLE_VECTOR_SEARCH=true
+      - ENABLE_HNSW_INDEX=true
+      - QUANTIZATION_LEVEL=8
+    networks:
+      - benchmark-net
+    ports:
+      - "5432:5432"
+    mem_limit: 4g
+    cpus: 2
+
+  # Metrics collection and visualization
+  metrics-collector:
+    image: prom/prometheus:latest
+    container_name: agentic-jj-metrics
+    hostname: metrics
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - metrics-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=30d'
+    networks:
+      - benchmark-net
+    ports:
+      - "9090:9090"
+    mem_limit: 1g
+    cpus: 0.5
+
+  # Visualization dashboard
+  grafana:
+    image: grafana/grafana:latest
+    container_name: agentic-jj-grafana
+    hostname: grafana
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./config/grafana-dashboards:/etc/grafana/provisioning/dashboards:ro
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    networks:
+      - benchmark-net
+    ports:
+      - "3000:3000"
+    depends_on:
+      - metrics-collector
+    mem_limit: 512m
+    cpus: 0.5
+
+networks:
+  benchmark-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+volumes:
+  agentdb-data:
+    driver: local
+  metrics-data:
+    driver: local
+  grafana-data:
+    driver: local

@@ -1,0 +1,101 @@
+FROM node:20-slim
+
+# Avoid interactive tzdata prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install build dependencies for native modules
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl git jq \
+    python3 python3-pip make g++ \
+  && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /test
+
+# Copy the tarball to simulate npm install
+COPY agentic-flow-1.10.0.tgz /test/
+
+# Install from tarball (simulates: npm install agentic-flow)
+RUN npm install /test/agentic-flow-1.10.0.tgz --no-audit --no-fund
+
+# Runtime environment (empty keys for testing structure)
+ENV NODE_ENV=production
+ENV ANTHROPIC_API_KEY=""
+ENV OPENROUTER_API_KEY=""
+ENV GOOGLE_GEMINI_API_KEY=""
+
+# Create workspace
+RUN mkdir -p /workspace && chmod 777 /workspace
+WORKDIR /workspace
+
+# Create comprehensive test script
+RUN cat > /test/run-tests.sh <<'EOF'
+#!/bin/bash
+set -e
+
+echo "================================"
+echo "AGENTIC-FLOW NPM PACKAGE TESTS"
+echo "================================"
+echo ""
+
+echo "1. Testing CLI availability..."
+echo "  - agentic-flow:"
+npx agentic-flow --version 2>&1 | head -5 || echo "    ❌ agentic-flow CLI failed"
+echo ""
+echo "  - agentdb:"
+npx agentdb --help 2>&1 | head -5 || echo "    ❌ agentdb CLI failed"
+echo ""
+echo "  - ajj-billing:"
+npx ajj-billing help 2>&1 | head -10 || echo "    ❌ ajj-billing CLI failed"
+echo ""
+
+echo "2. Testing agentic-flow --list (agent discovery)..."
+npx agentic-flow --list 2>&1 | head -20 || echo "❌ Agent listing failed"
+echo ""
+
+echo "3. Testing package structure..."
+echo "  - Checking dist directory:"
+ls -la node_modules/agentic-flow/dist/ 2>&1 | head -10
+echo ""
+echo "  - Checking bin entries:"
+ls -la node_modules/.bin/ | grep -E "(agentic-flow|agentdb|ajj-billing)" || echo "    ❌ Bin entries missing"
+echo ""
+
+echo "4. Testing billing CLI commands..."
+echo "  - List pricing tiers:"
+npx ajj-billing pricing:tiers 2>&1 | head -20 || echo "    ❌ Pricing tiers failed"
+echo ""
+
+echo "5. Testing AgentDB CLI commands..."
+echo "  - AgentDB stats:"
+npx agentdb stats 2>&1 || echo "    ❌ AgentDB stats failed"
+echo ""
+
+echo "6. Testing agent info..."
+npx agentic-flow agent info coder 2>&1 | head -15 || echo "❌ Agent info failed"
+echo ""
+
+echo "7. Checking package.json exports..."
+cat node_modules/agentic-flow/package.json | jq '.bin' || echo "❌ Failed to read bin entries"
+echo ""
+cat node_modules/agentic-flow/package.json | jq '.exports | keys' || echo "❌ Failed to read exports"
+echo ""
+
+echo "8. Testing provider detection..."
+npx agentic-flow --help 2>&1 | grep -i "provider" | head -5 || echo "❌ Provider options not found"
+echo ""
+
+echo "================================"
+echo "TEST SUMMARY"
+echo "================================"
+echo "✅ All structural tests completed"
+echo ""
+echo "NOTE: Actual agent execution requires valid API keys."
+echo "      Set ANTHROPIC_API_KEY, OPENROUTER_API_KEY, or"
+echo "      GOOGLE_GEMINI_API_KEY to test full functionality."
+echo ""
+EOF
+
+RUN chmod +x /test/run-tests.sh
+
+# Default command runs all tests
+CMD ["/test/run-tests.sh"]

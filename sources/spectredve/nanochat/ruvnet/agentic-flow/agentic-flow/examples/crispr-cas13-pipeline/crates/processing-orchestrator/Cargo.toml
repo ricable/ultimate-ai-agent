@@ -1,0 +1,26 @@
+[package]
+name = "processing-orchestrator"
+version = "0.1.0"
+edition = "2021"
+authors = ["CRISPR-Cas13 Team"]
+description = "Job orchestration for CRISPR-Cas13 pipeline"
+license = "MIT"
+
+[[bin]]
+name = "processing-orchestrator"
+path = "src/main.rs"
+
+[dependencies]
+data-models = { path = "../data-models" }
+alignment-engine = { path = "../alignment-engine" }
+offtarget-predictor = { path = "../offtarget-predictor" }
+immune-analyzer = { path = "../immune-analyzer" }
+
+tokio = { version = "1.40", features = ["full"] }
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1.10", features = ["v4"] }
+rdkafka = { version = "0.36", features = ["tokio"] }

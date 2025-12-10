@@ -1,0 +1,292 @@
+{
+  "file_hash": "d9151f5aeaf2750ff17e8ea06c0adc94",
+  "feature": {
+    "id": "121 5716",
+    "name": "LTE Decoupled Downlink and Uplink PDCCH Link Adaptation",
+    "cxc_code": "CXC4012732",
+    "value_package": "High Load Handling",
+    "value_package_id": "FAJ 801 0415",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature enables decoupling the PDCCH outer loop adjustment and PDCCH link",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.decouplePdcchDtxThres",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.decouplePdcchDtxThres",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.decoupledPdcchLaEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.decoupledPdcchLaEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pdcchDlOlaDtxOffset",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pdcchDlOlaDtxOffset",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pdcchUlDtxWorseThres",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pdcchUlDtxWorseThres",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pdcchCongestMeasurePeriod",
+        "type": "Affecting",
+        "description": "The feature uses the configured value of this attribute for PDCCH                                 congestion measurement period, if the Optimized PDCCH feature is                                 activated.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pdcchCongestMeasurePeriod",
+        "type": "Affecting",
+        "description": "The feature uses the configured value of this attribute for PDCCH                                 congestion measurement period, if the Optimized PDCCH feature is                                 activated.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "LOCAL_PER_BB_CELL5_EVENT",
+        "type": "EVENT_PARAM_PDCCH_DL_DTX_WORSE_DISTR_XXX",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "LOCAL_PER_BB_CELL5_EVENT",
+        "type": "EVENT_PARAM_PDCCH_UL_DTX_WORSE_DISTR_XXX",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "LOCAL_PER_BB_CELL5_EVENT",
+        "type": "EVENT_PARAM_PDCCH_CCE_AGGREGATION_LEVEL_DL_DISTR_XXX",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "LOCAL_PER_BB_CELL5_EVENT",
+        "type": "EVENT_PARAM_PDCCH_CCE_AGGREGATION_LEVEL_UL_DISTR_XXX",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "LOCAL_PER_BB_UE_ON_CELL_LEVEL_EVENT",
+        "type": "EVENT_PARAM_SINR_MEAS_PDCCH_DL _XXX                                         EVENT_PARAM_SINR_MEAS_PDCCH_DL                                         _XXX_XL",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "LOCAL_PER_BB_UE_ON_CELL_LEVEL_EVENT",
+        "type": "EVENT_PARAM_SINR_MEAS_PDCCH_UL_XXX                                         EVENT_PARAM_SINR_MEAS_PDCCH_UL _XXX_XL",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.Y",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.pmOocStateEntries",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmOocStateEntries",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCounters",
+        "description": "Performance counter pmCounters",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsTrans",
+        "description": "Performance counter pmDlAssigsTrans",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsWithDetectedHarqAck",
+        "description": "Performance counter pmDlAssigsWithDetectedHarqAck",
+        "category": "General"
+      },
+      {
+        "name": "pmDlSinrPdcchDistr",
+        "description": "Performance counter pmDlSinrPdcchDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacSkipUlDtxDynamic",
+        "description": "Performance counter pmMacSkipUlDtxDynamic",
+        "category": "General"
+      },
+      {
+        "name": "pmOocStateEntries",
+        "description": "Performance counter pmOocStateEntries",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcchCceAggregationDistr",
+        "description": "Performance counter pmPdcchCceAggregationDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcchCceAggregationDlDistr",
+        "description": "Performance counter pmPdcchCceAggregationDlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcchCceAggregationUlDistr",
+        "description": "Performance counter pmPdcchCceAggregationUlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcchCceUtil",
+        "description": "Performance counter pmPdcchCceUtil",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcchCongestDistr",
+        "description": "Performance counter pmPdcchCongestDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcchDlDtxWorseDistr",
+        "description": "Performance counter pmPdcchDlDtxWorseDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcchUlDtxWorseDistr",
+        "description": "Performance counter pmPdcchUlDtxWorseDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPucchFailSr",
+        "description": "Performance counter pmPucchFailSr",
+        "category": "General"
+      },
+      {
+        "name": "pmSchedActivityUeDl",
+        "description": "Performance counter pmSchedActivityUeDl",
+        "category": "General"
+      },
+      {
+        "name": "pmSchedActivityUeUl",
+        "description": "Performance counter pmSchedActivityUeUl",
+        "category": "General"
+      },
+      {
+        "name": "pmSchedTtiCellDl",
+        "description": "Performance counter pmSchedTtiCellDl",
+        "category": "General"
+      },
+      {
+        "name": "pmSchedTtiCellUl",
+        "description": "Performance counter pmSchedTtiCellUl",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTrans",
+        "description": "Performance counter pmUlGrantsTrans",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransNoAck",
+        "description": "Performance counter pmUlGrantsTransNoAck",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsWithDetectedPusch",
+        "description": "Performance counter pmUlGrantsWithDetectedPusch",
+        "category": "General"
+      },
+      {
+        "name": "pmUlSinrPdcchDistr",
+        "description": "Performance counter pmUlSinrPdcchDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "LOCAL_PER_BB_CELL5_EVENT",
+        "type": "EVENT_PARAM_PDCCH_DL_DTX_WORSE_DISTR_XXX",
+        "description": ""
+      },
+      {
+        "name": "LOCAL_PER_BB_CELL5_EVENT",
+        "type": "EVENT_PARAM_PDCCH_UL_DTX_WORSE_DISTR_XXX",
+        "description": ""
+      },
+      {
+        "name": "LOCAL_PER_BB_CELL5_EVENT",
+        "type": "EVENT_PARAM_PDCCH_CCE_AGGREGATION_LEVEL_DL_DISTR_XXX",
+        "description": ""
+      },
+      {
+        "name": "LOCAL_PER_BB_CELL5_EVENT",
+        "type": "EVENT_PARAM_PDCCH_CCE_AGGREGATION_LEVEL_UL_DISTR_XXX",
+        "description": ""
+      },
+      {
+        "name": "LOCAL_PER_BB_UE_ON_CELL_LEVEL_EVENT",
+        "type": "EVENT_PARAM_SINR_MEAS_PDCCH_DL _XXX                                         EVENT_PARAM_SINR_MEAS_PDCCH_DL                                         _XXX_XL",
+        "description": ""
+      },
+      {
+        "name": "LOCAL_PER_BB_UE_ON_CELL_LEVEL_EVENT",
+        "type": "EVENT_PARAM_SINR_MEAS_PDCCH_UL_XXX                                         EVENT_PARAM_SINR_MEAS_PDCCH_UL _XXX_XL",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012732 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012732 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/588_22104-LZA7016014_1Uen.Y.md",
+    "file_hash": "d9151f5aeaf2750ff17e8ea06c0adc94",
+    "processed_at": "2025-10-19 15:50:06",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

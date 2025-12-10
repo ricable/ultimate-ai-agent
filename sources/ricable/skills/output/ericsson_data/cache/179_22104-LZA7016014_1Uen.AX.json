@@ -1,0 +1,606 @@
+{
+  "file_hash": "0ed2f3580f2e75e7cbb6252116f1a4b2",
+  "feature": {
+    "id": "121 3048",
+    "name": "Inter-RAT Offload to WCDMA",
+    "cxc_code": "CXC4011478",
+    "value_package": "LTE Offload to WCDMA",
+    "value_package_id": "FAJ 801 0421",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature performs handovers of LTE cell traffic to WCDMA FDD",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.lbUtranOffloadThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.lbUtranOffloadThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "ExternalUtranCellFDD.lbUtranCellOffloadCapacity",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalUtranCellFDD"
+      },
+      {
+        "name": "LoadBalancingFunction.lbUtranOffloadBackoffTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoadBalancingFunction"
+      },
+      {
+        "name": "ReportConfigInterRatLb.utranB1ThresholdRscp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatLb"
+      },
+      {
+        "name": "ReportConfigInterRatLb.utranB1ThresholdEcNo",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatLb"
+      },
+      {
+        "name": "ReportConfigInterRatLb.utranHysteresisB1",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatLb"
+      },
+      {
+        "name": "UtranCellRelation.loadBalancing",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UtranCellRelation"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "CGI of target cell participating in load balancing, if available.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_DIFF",
+        "description": "Load difference in subscription ratio between source and neighbor cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_DIFF_INT_SIGN",
+        "description": "Unsigned integer value of EVENT_PARAM_LB_DIFF; positive or                   negative.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_AMOUNT",
+        "description": "Load balancing amount in subscription quanta to be moved from source to target                   cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_SOURCE_RATIO",
+        "description": "Subscription ratio of source cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_TARGET_RATIO",
+        "description": "Subscription ratio of target cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_RATE_OFFSET",
+        "description": "Rate offset applied to offset the load balancing towards a cell with higher                   capacity, if the general traffic load level is low.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_OFFSET_INT_SIGN",
+        "description": "Unsigned integer value of EVENT_PARAM_LB_RATE_OFFSET; positive                   or negative.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_FREQ",
+        "description": "Target frequency.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+        "description": "Indicates the function that has triggered the UE measurement and consequently the                   measurement report:    Load Balancing     CA triggered redirection     BNR for load balancing     ATO",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_UE_CA_CAPABLE",
+        "description": "Indicates whether the UE selected for load balancing related measurements is CA                   capable.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "CGI of neighbor target cells for which the UE fulfilled the criteria for event                   A5.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_TRAVERSED_UES",
+        "description": "Number of UEs checked and discarded before choosing this UE for load balancing                   related measurements.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "CGI of neighbor target cells for which UE fulfilled A5 measurement criteria.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the RAT of the source cell for incoming handover, or target cell for                   outgoing handover.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+        "description": "Indicates the reason for not proceeding with a Load Balancing or CA triggered                   redirection action when a measurement report has been received from the UE:    CA criteria not met     Reported cell is not a valid load balancing target      Reported cell is a valid target, but lbAmount has already been satisfied for                       the cell     Service Specific Load Management related restrictions     RSRQ of target cell is below configured threshold     UE has signaled interest in MBMS service on serving frequency     UE has an ongoing VoIP call and does not support SRVCC     ATO related restrictions",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+        "description": "Indicates the function that has triggered the UE measurement and consequently the                   measurement report:    Load balancing     CA triggered redirection      BNR for load balancing     ATO",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+        "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+        "description": "The cause of the procedure for Handover Preparation:    CS     CA     SPIFHO     ATO",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_ONGOING_UE_MEAS",
+        "type": "EVENT_PARAM_NEIGHBOR_RSRP",
+        "description": "RSRP of the neighbor cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_ONGOING_UE_MEAS",
+        "type": "EVENT_PARAM_NEIGHBOR_RSRQ",
+        "description": "RSRQ of the neighbor cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MEAS_FAILURE",
+        "type": "EVENT_PARAM_REJECT_MEAS_CAUSE",
+        "description": "The cause why the request to start UE Measurements was rejected.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_UE_MEAS_ABORT",
+        "type": "EVENT_PARAM_MEAS_ABORT_CAUSE",
+        "description": "The cause for the measurement in the UE being aborted.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+        "description": "The cause of the procedure for HO Execution.     CS     CA     SPIFHO     ATO",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_MOBILITY_TRIGGER",
+        "description": "Indicates the trigger for performing a mobility evaluation.    CS     CA     SPIFHO     ATO",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_B1_UTRA",
+        "type": "EVENT_PARAM_UTRA_THRESHOLD_RSCP",
+        "description": "The UTRA threshold for RSCP. See 3GPP TS 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_B1_UTRA",
+        "type": "EVENT_PARAM_MEAS_REQUESTER",
+        "description": "Indicates the function that requested the UE measurement.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_B1_UTRA",
+        "type": "EVENT_PARAM_UTRA_ARFCN_VALUE_DL",
+        "description": "Indicates the ARFCN value applicable for a downlink UTRA carrier frequency.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AX",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.lbActionForEndcUe",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.lbActionForEndcUe",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "RobustCallSetup.geranUtranMobilityDelayEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RATFreqPrio.freqPrioListUTRA",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "RATFreqPrio"
+      },
+      {
+        "name": "KPIs.When",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "KPIs"
+      },
+      {
+        "name": "EUtranCellFDD.cellSubscriptionCapacity",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.cellSubscriptionCapacity",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmErabRelAbnormalEnbActCdtAutoPnrQci",
+        "description": "Performance counter pmErabRelAbnormalEnbActCdtAutoPnrQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActCdtAutoQci",
+        "description": "Performance counter pmErabRelAbnormalEnbActCdtAutoQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActHoQci",
+        "description": "Performance counter pmErabRelAbnormalEnbActHoQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActHprQci",
+        "description": "Performance counter pmErabRelAbnormalEnbActHprQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActPeQci",
+        "description": "Performance counter pmErabRelAbnormalEnbActPeQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActTnFailQci",
+        "description": "Performance counter pmErabRelAbnormalEnbActTnFailQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActUeLostQci",
+        "description": "Performance counter pmErabRelAbnormalEnbActUeLostQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbCdtAutoPnrQci",
+        "description": "Performance counter pmErabRelAbnormalEnbCdtAutoPnrQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbCdtAutoQci",
+        "description": "Performance counter pmErabRelAbnormalEnbCdtAutoQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbCdtQci",
+        "description": "Performance counter pmErabRelAbnormalEnbCdtQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbHoQci",
+        "description": "Performance counter pmErabRelAbnormalEnbHoQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbHprQci",
+        "description": "Performance counter pmErabRelAbnormalEnbHprQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbPeQci",
+        "description": "Performance counter pmErabRelAbnormalEnbPeQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbTnFailQci",
+        "description": "Performance counter pmErabRelAbnormalEnbTnFailQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbUeLostQci",
+        "description": "Performance counter pmErabRelAbnormalEnbUeLostQci",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttLb",
+        "description": "Performance counter pmHoExeAttLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttNonMob",
+        "description": "Performance counter pmHoExeAttNonMob",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttSrvcc",
+        "description": "Performance counter pmHoExeAttSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttSrvccLb",
+        "description": "Performance counter pmHoExeAttSrvccLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccLb",
+        "description": "Performance counter pmHoExeSuccLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccNonMob",
+        "description": "Performance counter pmHoExeSuccNonMob",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccSrvcc",
+        "description": "Performance counter pmHoExeSuccSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccSrvccLb",
+        "description": "Performance counter pmHoExeSuccSrvccLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLb",
+        "description": "Performance counter pmHoPrepAttLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttNonMob",
+        "description": "Performance counter pmHoPrepAttNonMob",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttSrvcc",
+        "description": "Performance counter pmHoPrepAttSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttSrvccLb",
+        "description": "Performance counter pmHoPrepAttSrvccLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepCancelSrvcc",
+        "description": "Performance counter pmHoPrepCancelSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepCancelSrvccReest",
+        "description": "Performance counter pmHoPrepCancelSrvccReest",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccLb",
+        "description": "Performance counter pmHoPrepSuccLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccNonMob",
+        "description": "Performance counter pmHoPrepSuccNonMob",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccSrvcc",
+        "description": "Performance counter pmHoPrepSuccSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccSrvccLb",
+        "description": "Performance counter pmHoPrepSuccSrvccLb",
+        "category": "General"
+      },
+      {
+        "name": "pmLbMeasuredUe",
+        "description": "Performance counter pmLbMeasuredUe",
+        "category": "General"
+      },
+      {
+        "name": "pmLbQualifiedUe",
+        "description": "Performance counter pmLbQualifiedUe",
+        "category": "General"
+      },
+      {
+        "name": "pmfunction",
+        "description": "Performance counter pmfunction",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "CGI of target cell participating in load balancing, if available."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_DIFF",
+        "description": "Load difference in subscription ratio between source and neighbor cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_DIFF_INT_SIGN",
+        "description": "Unsigned integer value of EVENT_PARAM_LB_DIFF; positive or                   negative."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_AMOUNT",
+        "description": "Load balancing amount in subscription quanta to be moved from source to target                   cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_SOURCE_RATIO",
+        "description": "Subscription ratio of source cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_TARGET_RATIO",
+        "description": "Subscription ratio of target cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_RATE_OFFSET",
+        "description": "Rate offset applied to offset the load balancing towards a cell with higher                   capacity, if the general traffic load level is low."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_OFFSET_INT_SIGN",
+        "description": "Unsigned integer value of EVENT_PARAM_LB_RATE_OFFSET; positive                   or negative."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_FREQ",
+        "description": "Target frequency."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+        "description": "Indicates the function that has triggered the UE measurement and consequently the                   measurement report:    Load Balancing     CA triggered redirection     BNR for load balancing     ATO"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_UE_CA_CAPABLE",
+        "description": "Indicates whether the UE selected for load balancing related measurements is CA                   capable."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "CGI of neighbor target cells for which the UE fulfilled the criteria for event                   A5."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_TRAVERSED_UES",
+        "description": "Number of UEs checked and discarded before choosing this UE for load balancing                   related measurements."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "CGI of neighbor target cells for which UE fulfilled A5 measurement criteria."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the RAT of the source cell for incoming handover, or target cell for                   outgoing handover."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+        "description": "Indicates the reason for not proceeding with a Load Balancing or CA triggered                   redirection action when a measurement report has been received from the UE:    CA criteria not met     Reported cell is not a valid load balancing target      Reported cell is a valid target, but lbAmount has already been satisfied for                       the cell     Service Specific Load Management related restrictions     RSRQ of target cell is below configured threshold     UE has signaled interest in MBMS service on serving frequency     UE has an ongoing VoIP call and does not support SRVCC     ATO related restrictions"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+        "description": "Indicates the function that has triggered the UE measurement and consequently the                   measurement report:    Load balancing     CA triggered redirection      BNR for load balancing     ATO"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+        "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+        "description": "The cause of the procedure for Handover Preparation:    CS     CA     SPIFHO     ATO"
+      },
+      {
+        "name": "INTERNAL_EVENT_ONGOING_UE_MEAS",
+        "type": "EVENT_PARAM_NEIGHBOR_RSRP",
+        "description": "RSRP of the neighbor cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_ONGOING_UE_MEAS",
+        "type": "EVENT_PARAM_NEIGHBOR_RSRQ",
+        "description": "RSRQ of the neighbor cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MEAS_FAILURE",
+        "type": "EVENT_PARAM_REJECT_MEAS_CAUSE",
+        "description": "The cause why the request to start UE Measurements was rejected."
+      },
+      {
+        "name": "INTERNAL_UE_MEAS_ABORT",
+        "type": "EVENT_PARAM_MEAS_ABORT_CAUSE",
+        "description": "The cause for the measurement in the UE being aborted."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+        "description": "The cause of the procedure for HO Execution.     CS     CA     SPIFHO     ATO"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_MOBILITY_TRIGGER",
+        "description": "Indicates the trigger for performing a mobility evaluation.    CS     CA     SPIFHO     ATO"
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_B1_UTRA",
+        "type": "EVENT_PARAM_UTRA_THRESHOLD_RSCP",
+        "description": "The UTRA threshold for RSCP. See 3GPP TS 36.331."
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_B1_UTRA",
+        "type": "EVENT_PARAM_MEAS_REQUESTER",
+        "description": "Indicates the function that requested the UE measurement."
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_B1_UTRA",
+        "type": "EVENT_PARAM_UTRA_ARFCN_VALUE_DL",
+        "description": "Indicates the ARFCN value applicable for a downlink UTRA carrier frequency."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011478 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011478 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/179_22104-LZA7016014_1Uen.AX.md",
+    "file_hash": "0ed2f3580f2e75e7cbb6252116f1a4b2",
+    "processed_at": "2025-10-19 15:48:54",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

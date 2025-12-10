@@ -1,0 +1,211 @@
+{
+  "id": "121 4993",
+  "name": "Streaming of PM Events",
+  "cxc_code": "CXC4012325",
+  "value_package": "NR Base Package",
+  "value_package_id": "FAJ 801 4002",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Streaming of PM Events feature enables the gNodeB to stream PM events using TCP",
+  "parameters": [
+    {
+      "name": "StreamingCapabilities.dnsLookupSupport",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "StreamingCapabilities"
+    },
+    {
+      "name": "EventJob.streamDestination",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "EventJob"
+    },
+    {
+      "name": "EventJob.streamDestinationIpAddress",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "EventJob"
+    },
+    {
+      "name": "EventJob.streamDestinationPort",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "EventJob"
+    },
+    {
+      "name": "EventJob.streamOutputEnabled",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "EventJob"
+    },
+    {
+      "name": "Uen.AG33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEvent",
+      "description": "Performance counter pmEvent",
+      "category": "General"
+    },
+    {
+      "name": "pmEventM",
+      "description": "Performance counter pmEventM",
+      "category": "General"
+    },
+    {
+      "name": "pmEventSigM",
+      "description": "Performance counter pmEventSigM",
+      "category": "General"
+    },
+    {
+      "name": "pmEvents",
+      "description": "Performance counter pmEvents",
+      "category": "General"
+    },
+    {
+      "name": "pmFwkStreamDroppedEventDistr",
+      "description": "Performance counter pmFwkStreamDroppedEventDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmFwkStreamDroppedEventLicenseUnavailableDistr",
+      "description": "Performance counter pmFwkStreamDroppedEventLicenseUnavailableDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmFwkStreamDroppedEventSlowStreamDistr",
+      "description": "Performance counter pmFwkStreamDroppedEventSlowStreamDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmFwkStreamDroppedEventSocketConnectionFailDistr",
+      "description": "Performance counter pmFwkStreamDroppedEventSocketConnectionFailDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmFwkStreamDroppedEventSocketErrorDistr",
+      "description": "Performance counter pmFwkStreamDroppedEventSocketErrorDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmFwkStreamDroppedEventSocketSetupFailDistr",
+      "description": "Performance counter pmFwkStreamDroppedEventSocketSetupFailDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmFwkStreamProducedEventDistr",
+      "description": "Performance counter pmFwkStreamProducedEventDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmIC",
+      "description": "Performance counter pmIC",
+      "category": "General"
+    },
+    {
+      "name": "pmInitiation",
+      "description": "Performance counter pmInitiation",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    },
+    {
+      "name": "pmjob",
+      "description": "Performance counter pmjob",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "Feature Identity",
+      "type": "FAJ 121 4993",
+      "description": ""
+    },
+    {
+      "name": "Value Package Name",
+      "type": "NR Base Package",
+      "description": ""
+    },
+    {
+      "name": "Value Package Identity",
+      "type": "FAJ 801 4002",
+      "description": ""
+    },
+    {
+      "name": "Node Type",
+      "type": "Baseband Radio Node",
+      "description": ""
+    },
+    {
+      "name": "Access Type",
+      "type": "NR",
+      "description": ""
+    },
+    {
+      "name": "Licensing",
+      "type": "License-controlled feature. One license is required for each                                 node.",
+      "description": ""
+    },
+    {
+      "name": "Feature Identity",
+      "type": "FAJ 121 4993",
+      "description": "FAJ 121 0760"
+    },
+    {
+      "name": "Value Package Name",
+      "type": "NR Base Package",
+      "description": "RAN Data Collection"
+    },
+    {
+      "name": "Value Package Identity",
+      "type": "FAJ 801 4002",
+      "description": "FAJ 801 0431"
+    },
+    {
+      "name": "Node Type",
+      "type": "Baseband Radio Node",
+      "description": "Baseband Radio Node"
+    },
+    {
+      "name": "Access Type",
+      "type": "NR",
+      "description": "LTE"
+    },
+    {
+      "name": "Impact at Upgrade",
+      "type": "Optional",
+      "description": "Optional"
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": null,
+  "deactivation_step": null,
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/27_22104-LZA7016017_1Uen.AG33B.md",
+  "file_hash": "4d0af53c420d73a0a907abc8ee4d062f",
+  "processed_at": "2025-10-19 15:50:10",
+  "network_impact": {},
+  "performance_impact": {}
+}

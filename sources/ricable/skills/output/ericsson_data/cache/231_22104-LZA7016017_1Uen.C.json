@@ -1,0 +1,142 @@
+{
+  "file_hash": "5f4767bf2aec90f7fb11a084987032ef",
+  "feature": {
+    "id": "121 5806",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012795",
+    "value_package": "5G Advanced Energy Performance",
+    "value_package_id": "FAJ 801 4027",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature improves NR performance by providing delay options for the downlink",
+    "parameters": [
+      {
+        "name": "DrbRlcUeCfg.rlcAckPduDelayMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbRlcUeCfg"
+      },
+      {
+        "name": "SignalingRadioBearer.rlcAckPduDelayMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SignalingRadioBearer"
+      },
+      {
+        "name": "DrbRlcUeCfg.tPollReTransmitUl",
+        "type": "Affecting",
+        "description": "The attribute is used in the calculation of the downlink transmission delay for RLC ACK status PDU transmissions.",
+        "mo_class": "DrbRlcUeCfg"
+      },
+      {
+        "name": "DrbRlcUeCfg.tReassemblyUl",
+        "type": "Affecting",
+        "description": "The attribute is used in the calculation of the downlink transmission delay for RLC ACK status PDU transmissions.",
+        "mo_class": "DrbRlcUeCfg"
+      },
+      {
+        "name": "SignalingRadioBearer.tPollReTransmitUl",
+        "type": "Affecting",
+        "description": "The attribute is used in the calculation of the downlink transmission delay for RLC ACK status PDU transmissions.",
+        "mo_class": "SignalingRadioBearer"
+      },
+      {
+        "name": "SignalingRadioBearer.tReassemblyUl",
+        "type": "Affecting",
+        "description": "The attribute is used in the calculation of the downlink transmission delay for RLC ACK status PDU transmissions.",
+        "mo_class": "SignalingRadioBearer"
+      },
+      {
+        "name": "Uen.C",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "DrxProfileUeCfg.drxInactivityTimer",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "DrxProfileUeCfg"
+      },
+      {
+        "name": "DrbRlcUeCfg.tPollRetransmitUl",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "DrbRlcUeCfg"
+      },
+      {
+        "name": "SignalingRadioBearer.tPollRetransmitUl",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "SignalingRadioBearer"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmActiveUeDlSum",
+        "description": "Performance counter pmActiveUeDlSum",
+        "category": "General"
+      },
+      {
+        "name": "pmConsumedEnergy",
+        "description": "Performance counter pmConsumedEnergy",
+        "category": "General"
+      },
+      {
+        "name": "pmMacPdcchBlockingPdschOccasions",
+        "description": "Performance counter pmMacPdcchBlockingPdschOccasions",
+        "category": "General"
+      },
+      {
+        "name": "pmMacPdcchBlockingPuschOccasions",
+        "description": "Performance counter pmMacPdcchBlockingPuschOccasions",
+        "category": "General"
+      },
+      {
+        "name": "pmMicroTxSleepTime",
+        "description": "Performance counter pmMicroTxSleepTime",
+        "category": "Energy"
+      },
+      {
+        "name": "pmPdschSchedActivity",
+        "description": "Performance counter pmPdschSchedActivity",
+        "category": "General"
+      },
+      {
+        "name": "pmPowerConsumption",
+        "description": "Performance counter pmPowerConsumption",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffTime",
+        "description": "Performance counter pmTxOffTime",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012795 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012795 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/231_22104-LZA7016017_1Uen.C.md",
+    "file_hash": "5f4767bf2aec90f7fb11a084987032ef",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

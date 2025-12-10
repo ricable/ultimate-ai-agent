@@ -1,0 +1,264 @@
+--- a/src/ui/console/index.html
++++ b/src/ui/console/index.html
+@@ -145,7 +145,7 @@
+                         <select id="defaultMode">
+                             <option value="coder">Coder</option>
+                             <option value="architect">Architect</option>
+-                            <option value="analyzer">Analyzer</option>
++                            <option value="analyst">Analyst</option>
+                             <option value="researcher">Researcher</option>
+                             <option value="reviewer">Reviewer</option>
+                             <option value="tester">Tester</option>
+@@ -176,6 +176,36 @@
+                         </select>
+                     </div>
+                 </section>
++
++                <!-- Advanced Settings -->
++                <section class="setting-group">
++                    <h3>Advanced</h3>
++                    <div class="setting-item">
++                        <label for="reconnectAttempts">Reconnect Attempts:</label>
++                        <input type="number" id="reconnectAttempts" min="0" max="10" value="5" />
++                        <div class="setting-help">Number of times to retry connection on failure</div>
++                    </div>
++                    <div class="setting-item">
++                        <label for="heartbeatInterval">Heartbeat Interval (ms):</label>
++                        <input type="number" id="heartbeatInterval" min="10000" max="60000" value="30000" />
++                        <div class="setting-help">Keep-alive ping interval</div>
++                    </div>
++                    <div class="setting-item">
++                        <label for="commandTimeout">Command Timeout (ms):</label>
++                        <input type="number" id="commandTimeout" min="5000" max="120000" value="30000" />
++                        <div class="setting-help">Maximum wait time for command responses</div>
++                    </div>
++                </section>
++
++                <!-- Import/Export -->
++                <section class="setting-group">
++                    <h3>Import/Export</h3>
++                    <div class="settings-io">
++                        <button class="action-button secondary" id="exportSettingsBtn">Export Settings</button>
++                        <button class="action-button secondary" id="importSettingsBtn">Import Settings</button>
++                        <input type="file" id="importSettingsFile" accept=".json" style="display: none;" />
++                    </div>
++                </section>
+             </div>
+         </aside>
+
+--- a/src/ui/console/js/settings.js
++++ b/src/ui/console/js/settings.js
+@@ -8,6 +8,7 @@ export class SettingsManager {
+     this.settings = this.loadSettings();
+     this.settingsPanel = null;
+     this.isVisible = false;
++    this.initialized = false;
+     
+     // Default settings
+     this.defaults = {
+@@ -43,6 +44,7 @@ export class SettingsManager {
+     this.settings = { ...this.defaults, ...this.settings };
+     
+     this.setupEventListeners();
++    this.cleanup = [];
+   }
+   
+   /**
+@@ -50,7 +52,14 @@ export class SettingsManager {
+    */
+   init() {
++    if (this.initialized) return;
++    
+     this.settingsPanel = document.getElementById('settingsPanel');
++    if (!this.settingsPanel) {
++      console.error('Settings panel not found in DOM');
++      return;
++    }
++    
+     this.setupSettingsPanel();
+     this.applySettings();
++    this.initialized = true;
+   }
+   
+   /**
+@@ -78,16 +87,21 @@ export class SettingsManager {
+     this.setupActionButtons();
+     
+     // Click outside to close
+-    document.addEventListener('click', (event) => {
++    const clickHandler = (event) => {
++      const settingsToggle = document.getElementById('settingsToggle');
+       if (this.isVisible && 
+           !this.settingsPanel.contains(event.target) && 
+-          !document.getElementById('settingsToggle').contains(event.target)) {
++          settingsToggle && !settingsToggle.contains(event.target)) {
+         this.hide();
+       }
+-    });
++    };
++    document.addEventListener('click', clickHandler);
++    this.cleanup.push(() => document.removeEventListener('click', clickHandler));
+     
+     // ESC key to close
+-    document.addEventListener('keydown', (event) => {
++    const keyHandler = (event) => {
+       if (event.key === 'Escape' && this.isVisible) {
+         this.hide();
+       }
+-    });
++    };
++    document.addEventListener('keydown', keyHandler);
++    this.cleanup.push(() => document.removeEventListener('keydown', keyHandler));
+   }
+   
+   /**
+@@ -136,6 +150,11 @@ export class SettingsManager {
+     this.bindSetting('defaultMode', 'change');
+     this.bindSetting('swarmStrategy', 'change');
+     this.bindSetting('coordinationMode', 'change');
++    
++    // Advanced settings
++    this.bindSetting('reconnectAttempts', 'change');
++    this.bindSetting('heartbeatInterval', 'change'); 
++    this.bindSetting('commandTimeout', 'change');
+   }
+   
+   /**
+@@ -161,18 +180,50 @@ export class SettingsManager {
+       });
+     }
+     
+-    // Add reset button
+-    const resetButton = document.createElement('button');
+-    resetButton.className = 'reset-settings';
+-    resetButton.textContent = 'Reset to Defaults';
+-    resetButton.addEventListener('click', () => {
+-      if (confirm('Reset all settings to defaults? This cannot be undone.')) {
+-        this.resetToDefaults();
++    // Export/Import buttons
++    const exportBtn = document.getElementById('exportSettingsBtn');
++    const importBtn = document.getElementById('importSettingsBtn');
++    const importFile = document.getElementById('importSettingsFile');
++    
++    if (exportBtn) {
++      exportBtn.addEventListener('click', () => this.exportSettings());
++    }
++    
++    if (importBtn && importFile) {
++      importBtn.addEventListener('click', () => importFile.click());
++      importFile.addEventListener('change', async (e) => {
++        const file = e.target.files[0];
++        if (file) {
++          const success = await this.importSettings(file);
++          if (success) {
++            alert('Settings imported successfully');
++          } else {
++            alert('Failed to import settings. Please check the file format.');
++          }
++          e.target.value = ''; // Reset file input
++        }
++      });
++    }
++    
++    // Add reset button if not exists
++    if (!document.querySelector('.reset-settings')) {
++      const resetButton = document.createElement('button');
++      resetButton.className = 'reset-settings';
++      resetButton.textContent = 'Reset to Defaults';
++      resetButton.addEventListener('click', () => {
++        if (confirm('Reset all settings to defaults? This cannot be undone.')) {
++          this.resetToDefaults();
++        }
++      });
++      
++      const settingsContent = document.querySelector('.settings-content');
++      if (settingsContent) {
++        settingsContent.appendChild(resetButton);
+       }
+-    });
++    }
+     
+-    const settingsContent = document.querySelector('.settings-content');
+-    if (settingsContent) {
+-      settingsContent.appendChild(resetButton);
++    // Initialize button states
++    if (connectButton && disconnectButton) {
++      connectButton.disabled = false;
++      disconnectButton.disabled = true;
+     }
+   }
+   
+@@ -204,7 +255,17 @@ export class SettingsManager {
+         newValue = element.value;
+       }
+       
+-      this.set(settingName, newValue);
++      // Validate before saving
++      if (this.validateSetting(settingName, newValue)) {
++        this.set(settingName, newValue);
++        element.classList.remove('invalid');
++      } else {
++        element.classList.add('invalid');
++        // Revert to previous valid value
++        const oldValue = this.get(settingName);
++        element.value = oldValue;
++        console.warn(`Invalid value for ${settingName}: ${newValue}`);
++      }
+       
+       if (callback) {
+         callback(newValue);
+@@ -259,7 +320,13 @@ export class SettingsManager {
+    * Set setting value
+    */
+   set(key, value) {
++    // Always validate before setting
++    if (!this.validateSetting(key, value)) {
++      console.error(`Invalid value for setting ${key}:`, value);
++      return false;
++    }
++    
+     this.settings[key] = value;
+     this.saveSettings();
+     this.emit('setting_changed', { key, value });
++    return true;
+   }
+   
+   /**
+@@ -416,6 +483,9 @@ export class SettingsManager {
+    */
+   validateSetting(key, value) {
+     const validators = {
++      serverUrl: (v) => {
++        try { new URL(v); return true; } catch { return false; }
++      },
+       fontSize: (v) => v >= 10 && v <= 24,
+       lineHeight: (v) => v >= 1.0 && v <= 2.0,
+       maxLines: (v) => v >= 100 && v <= 10000,
+@@ -425,7 +495,10 @@ export class SettingsManager {
+       swarmStrategy: (v) => ['development', 'research', 'analysis', 'testing', 
+                            'optimization', 'maintenance'].includes(v),
+       coordinationMode: (v) => ['centralized', 'hierarchical', 'distributed', 
+-                              'mesh', 'hybrid'].includes(v)
++                              'mesh', 'hybrid'].includes(v),
++      reconnectAttempts: (v) => v >= 0 && v <= 10,
++      heartbeatInterval: (v) => v >= 10000 && v <= 60000,
++      commandTimeout: (v) => v >= 5000 && v <= 120000
+     };
+     
+     const validator = validators[key];
+@@ -569,4 +642,15 @@ export class SettingsManager {
+       commandTimeout: this.get('commandTimeout')
+     };
+   }
++  
++  /**
++   * Cleanup method to prevent memory leaks
++   */
++  destroy() {
++    this.cleanup.forEach(fn => fn());
++    this.cleanup = [];
++    this.eventListeners?.clear();
++    this.initialized = false;
++    this.settingsPanel = null;
++  }
+ }

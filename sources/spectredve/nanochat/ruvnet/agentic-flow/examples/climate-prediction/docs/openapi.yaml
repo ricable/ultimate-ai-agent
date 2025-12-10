@@ -1,0 +1,676 @@
+openapi: 3.0.0
+
+info:
+  title: Climate Prediction API
+  version: 1.0.0
+  description: |
+    High-performance weather prediction API powered by multi-model ensemble learning,
+    ReasoningBank adaptive intelligence, and WASM-accelerated neural networks.
+
+    ## Features
+    - Multi-model predictions (Neural Networks, ARIMA, Hybrid, Ensemble)
+    - 7-14 day forecasts with confidence intervals
+    - Batch predictions for multiple locations
+    - Historical data and accuracy tracking
+    - Real-time learning and model optimization
+    - WebSocket streaming (coming soon)
+
+    ## Rate Limits
+    - Free tier: 60 requests/minute, 1,000 requests/day
+    - Basic tier: 300 requests/minute, 10,000 requests/day
+    - Pro tier: 1,000 requests/minute, 50,000 requests/day
+    - Enterprise: Custom limits
+
+  termsOfService: https://api.climate-prediction.io/terms
+  contact:
+    name: API Support
+    email: support@climate-prediction.io
+    url: https://docs.climate-prediction.io
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.climate-prediction.io/v1
+    description: Production server
+  - url: https://staging.climate-prediction.io/v1
+    description: Staging server
+  - url: http://localhost:8080/api
+    description: Local development server
+
+tags:
+  - name: predictions
+    description: Weather prediction operations
+  - name: models
+    description: Model information and management
+  - name: history
+    description: Historical predictions and accuracy
+  - name: auth
+    description: Authentication and API key management
+  - name: system
+    description: System health and metrics
+
+paths:
+  /predictions:
+    post:
+      tags:
+        - predictions
+      summary: Get single weather prediction
+      description: |
+        Request a weather prediction for a specific location and timeframe.
+        Results are cached for 5 minutes for identical requests.
+      operationId: createPrediction
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PredictionRequest'
+            examples:
+              new_york:
+                summary: New York City 7-day forecast
+                value:
+                  latitude: 40.7128
+                  longitude: -74.0060
+                  days_ahead: 7
+                  model: ensemble
+                  include_uncertainty: true
+              london:
+                summary: London 14-day forecast
+                value:
+                  latitude: 51.5074
+                  longitude: -0.1278
+                  days_ahead: 14
+                  model: neural
+                  units: metric
+      responses:
+        '200':
+          description: Successful prediction
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: Request limit per minute
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining requests in current window
+            X-Cache-Status:
+              schema:
+                type: string
+                enum: [HIT, MISS]
+              description: Whether result was served from cache
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictionResponse'
+              examples:
+                successful_prediction:
+                  $ref: '#/components/examples/SuccessfulPrediction'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /predictions/batch:
+    post:
+      tags:
+        - predictions
+      summary: Get predictions for multiple locations
+      description: Request predictions for up to 100 locations in a single API call
+      operationId: createBatchPrediction
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchPredictionRequest'
+            example:
+              locations:
+                - latitude: 40.7128
+                  longitude: -74.0060
+                  name: "New York"
+                - latitude: 34.0522
+                  longitude: -118.2437
+                  name: "Los Angeles"
+              days_ahead: 7
+              model: ensemble
+      responses:
+        '200':
+          description: Batch predictions completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchPredictionResponse'
+
+  /predictions/history:
+    get:
+      tags:
+        - history
+      summary: Get historical predictions
+      description: Retrieve past predictions and their accuracy metrics
+      operationId: getHistoricalPredictions
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: lat
+          in: query
+          required: true
+          schema:
+            type: number
+            format: double
+          description: Latitude
+        - name: lon
+          in: query
+          required: true
+          schema:
+            type: number
+            format: double
+          description: Longitude
+        - name: days
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 90
+            default: 30
+          description: Number of days to retrieve
+        - name: start_date
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Start date (ISO 8601)
+        - name: end_date
+          in: query
+          schema:
+            type: string
+            format: date
+          description: End date (ISO 8601)
+      responses:
+        '200':
+          description: Historical data retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalResponse'
+
+  /predictions/search:
+    post:
+      tags:
+        - predictions
+      summary: Search predictions by conditions
+      description: Semantic search for weather patterns using natural language
+      operationId: searchPredictions
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+
+  /models:
+    get:
+      tags:
+        - models
+      summary: List available models
+      description: Get information about all prediction models
+      operationId: listModels
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Model list retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelsResponse'
+
+  /health:
+    get:
+      tags:
+        - system
+      summary: Health check
+      description: Check API and model health status
+      operationId: healthCheck
+      responses:
+        '200':
+          description: System healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /metrics:
+    get:
+      tags:
+        - system
+      summary: Prometheus metrics
+      description: Get system performance metrics in Prometheus format
+      operationId: getMetrics
+      responses:
+        '200':
+          description: Metrics retrieved
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: |
+                  # HELP predictions_total Total predictions
+                  # TYPE predictions_total counter
+                  predictions_total{model="ensemble"} 15234
+
+  /auth/register:
+    post:
+      tags:
+        - auth
+      summary: Register new user
+      description: Create a new user account and receive API key
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API_KEY
+      description: API key obtained from registration
+
+  schemas:
+    PredictionRequest:
+      type: object
+      required:
+        - latitude
+        - longitude
+      properties:
+        latitude:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+          description: Latitude in decimal degrees
+          example: 40.7128
+        longitude:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+          description: Longitude in decimal degrees
+          example: -74.0060
+        days_ahead:
+          type: integer
+          minimum: 1
+          maximum: 14
+          default: 7
+          description: Number of days to forecast
+        model:
+          type: string
+          enum: [neural, arima, hybrid, ensemble]
+          default: ensemble
+          description: Prediction model to use
+        include_uncertainty:
+          type: boolean
+          default: false
+          description: Include confidence intervals
+        units:
+          type: string
+          enum: [metric, imperial]
+          default: metric
+          description: Unit system for results
+
+    PredictionResponse:
+      type: object
+      properties:
+        prediction:
+          $ref: '#/components/schemas/Prediction'
+        daily_forecast:
+          type: array
+          items:
+            $ref: '#/components/schemas/DailyForecast'
+        metadata:
+          $ref: '#/components/schemas/PredictionMetadata'
+
+    Prediction:
+      type: object
+      properties:
+        temperature:
+          type: number
+          description: Temperature in °C or °F
+          example: 22.5
+        feels_like:
+          type: number
+          description: Apparent temperature
+          example: 21.8
+        humidity:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Relative humidity percentage
+          example: 65
+        precipitation:
+          type: number
+          description: Precipitation in mm or inches
+          example: 2.3
+        precipitation_probability:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Probability of precipitation
+          example: 0.35
+        wind_speed:
+          type: number
+          description: Wind speed in km/h or mph
+          example: 12.5
+        wind_direction:
+          type: integer
+          minimum: 0
+          maximum: 360
+          description: Wind direction in degrees
+          example: 180
+        pressure:
+          type: number
+          description: Atmospheric pressure in hPa
+          example: 1013.2
+        cloud_cover:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Cloud cover percentage
+          example: 45
+        uv_index:
+          type: integer
+          minimum: 0
+          description: UV index
+          example: 6
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Prediction confidence score
+          example: 0.89
+        model_name:
+          type: string
+          description: Model used for prediction
+          example: "ensemble"
+        uncertainty:
+          type: number
+          description: Prediction uncertainty range
+          example: 1.2
+          nullable: true
+
+    DailyForecast:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        temp_min:
+          type: number
+        temp_max:
+          type: number
+        precipitation:
+          type: number
+        conditions:
+          type: string
+
+    PredictionMetadata:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        location:
+          $ref: '#/components/schemas/Location'
+        processing_time_ms:
+          type: integer
+        cache_hit:
+          type: boolean
+
+    Location:
+      type: object
+      properties:
+        latitude:
+          type: number
+        longitude:
+          type: number
+        timezone:
+          type: string
+        elevation:
+          type: number
+
+    BatchPredictionRequest:
+      type: object
+      required:
+        - locations
+      properties:
+        locations:
+          type: array
+          maxItems: 100
+          items:
+            type: object
+            required:
+              - latitude
+              - longitude
+            properties:
+              latitude:
+                type: number
+              longitude:
+                type: number
+              name:
+                type: string
+        days_ahead:
+          type: integer
+          minimum: 1
+          maximum: 14
+          default: 7
+        model:
+          type: string
+          enum: [neural, arima, hybrid, ensemble]
+          default: ensemble
+
+    BatchPredictionResponse:
+      type: object
+      properties:
+        predictions:
+          type: array
+          items:
+            type: object
+            properties:
+              location:
+                $ref: '#/components/schemas/Location'
+              prediction:
+                $ref: '#/components/schemas/Prediction'
+        metadata:
+          type: object
+          properties:
+            total_locations:
+              type: integer
+            successful:
+              type: integer
+            failed:
+              type: integer
+            processing_time_ms:
+              type: integer
+
+    HistoricalResponse:
+      type: object
+      properties:
+        history:
+          type: array
+          items:
+            type: object
+        statistics:
+          type: object
+
+    SearchRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+        location:
+          type: object
+        date_range:
+          type: object
+        limit:
+          type: integer
+
+    SearchResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+        metadata:
+          type: object
+
+    ModelsResponse:
+      type: object
+      properties:
+        models:
+          type: array
+          items:
+            type: object
+
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        version:
+          type: string
+        uptime_seconds:
+          type: integer
+        models:
+          type: object
+        reasoningbank:
+          type: object
+        cache:
+          type: object
+
+    RegisterRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+        name:
+          type: string
+
+    AuthResponse:
+      type: object
+      properties:
+        api_key:
+          type: string
+        user_id:
+          type: string
+        expires_at:
+          type: string
+          format: date-time
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: object
+        request_id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: INVALID_COORDINATES
+              message: "Latitude must be between -90 and 90"
+            request_id: "req_abc123"
+            timestamp: "2025-10-14T10:30:00Z"
+
+    Unauthorized:
+      description: Invalid or missing API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    TooManyRequests:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  examples:
+    SuccessfulPrediction:
+      value:
+        prediction:
+          temperature: 22.5
+          feels_like: 21.8
+          humidity: 65
+          precipitation: 2.3
+          wind_speed: 12.5
+          confidence: 0.89
+          model_name: "ensemble"
+        metadata:
+          timestamp: "2025-10-14T10:30:00Z"
+          processing_time_ms: 42

@@ -1,0 +1,83 @@
+{
+  "file_hash": "adb71b96b5a8bbeef9c4e32bd469ff38",
+  "feature": {
+    "id": "121 5231",
+    "name": "Adaptive Power Adjustment for EIRP Limit",
+    "cxc_code": "CXC4012491",
+    "value_package": "Massive MIMO Enabler",
+    "value_package_id": "FAJ 801 4004",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature enables adaptive power backoff on the PDSCH to keep the instantaneous EIRP",
+    "parameters": [
+      {
+        "name": "NRSectorCarrier.maxAllowedEirpPsd",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.muEirpPmiDistBasedThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.configuredMaxTxPower",
+        "type": "Affecting",
+        "description": "The feature only reduces power on PDSCH. Therefore, this                                     attribute must be configured to limit the EIRP of other downlink                                     channels. Also, even with the feature, it is recommended to set                                     this attribute so that the EIRP of the weakest channel is                                     restricted without needing to reduce power automatically.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "Uen.AV33D",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "NRCellDU.pdcchSymbConfig",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmI",
+        "description": "Performance counter pmI",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmiDistBasedThreshold",
+        "description": "Performance counter pmiDistBasedThreshold",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012491 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012491 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/163_22104-LZA7016017_1Uen.AV33D.md",
+    "file_hash": "adb71b96b5a8bbeef9c4e32bd469ff38",
+    "processed_at": "2025-10-19 15:48:56",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

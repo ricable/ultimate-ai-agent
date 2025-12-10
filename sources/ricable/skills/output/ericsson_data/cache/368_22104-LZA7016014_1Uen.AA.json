@@ -1,0 +1,43 @@
+{
+  "file_hash": "4247cec25a27cd5be0266d3b25bc63a2",
+  "feature": {
+    "id": "121 4834",
+    "name": "TM9 Mode Switching",
+    "cxc_code": "CXC4012212",
+    "value_package": "Advanced Downlink MIMO",
+    "value_package_id": "FAJ 801 0562",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The TM9 Mode Switching feature chooses the optimal transmission mode with maximum two layers",
+    "parameters": [
+      {
+        "name": "Uen.AA",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012212 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012212 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/368_22104-LZA7016014_1Uen.AA.md",
+    "file_hash": "4247cec25a27cd5be0266d3b25bc63a2",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

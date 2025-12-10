@@ -1,0 +1,199 @@
+{
+  "id": "121 3064",
+  "name": "UE Throughput-Based Mobility to Wi-Fi",
+  "cxc_code": "CXC4010511",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The UE Throughput-Based Mobility to Wi-Fi feature controls mobility between Wi-Fi and",
+  "parameters": [
+    {
+      "name": "ENodeBFunction.biasThpWifiMobility",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "S1_WIFI_ACCESS_DECISION_REQUEST",
+      "type": "N/A",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_WIFI_ACCESS_DECISION_RESPONSE",
+      "type": "N/A",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_THROUGHPUT_ESTIMATION_REQUEST",
+      "type": "N/A",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_THROUGHPUT_ESTIMATION_RESPONSE",
+      "type": "N/A",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_CONNECTED",
+      "type": "EVENT_PARAM_WIFI_ACCESS_DECISION",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_CONNECTED",
+      "type": "EVENT_PARAM_WIFI_THROUGHPUT_ESTIMATE_EUTRA_CONNECTED",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_CONNECTED",
+      "type": "EVENT_PARAM_WIFI_THROUGHPUT_ESTIMATE_WIFI",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_IDLE",
+      "type": "EVENT_ARRAY_GLOBAL_CELL_ID_ESTIMATE_SUCC",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_IDLE",
+      "type": "EVENT_ARRAY_THROUGHPUT_ESTIMATE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_IDLE",
+      "type": "EVENT_ARRAY_GLOBAL_CELL_ID_ESTIMATE_FAIL",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_IDLE",
+      "type": "EVENT_ARRAY_ESTIMATE_FAIL_CAUSE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_IDLE",
+      "type": "EVENT_PARAM_ESTIMATE_FAIL_STATUS",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AC",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmWifiAccessAllowed",
+      "description": "Performance counter pmWifiAccessAllowed",
+      "category": "General"
+    },
+    {
+      "name": "pmWifiAccessDecisionByWic",
+      "description": "Performance counter pmWifiAccessDecisionByWic",
+      "category": "General"
+    },
+    {
+      "name": "pmWifiAccessEval",
+      "description": "Performance counter pmWifiAccessEval",
+      "category": "General"
+    },
+    {
+      "name": "pmWifiAccessEvalFailLic",
+      "description": "Performance counter pmWifiAccessEvalFailLic",
+      "category": "General"
+    },
+    {
+      "name": "pmWifiAccessRej",
+      "description": "Performance counter pmWifiAccessRej",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "S1_WIFI_ACCESS_DECISION_REQUEST",
+      "type": "N/A",
+      "description": ""
+    },
+    {
+      "name": "S1_WIFI_ACCESS_DECISION_RESPONSE",
+      "type": "N/A",
+      "description": ""
+    },
+    {
+      "name": "S1_THROUGHPUT_ESTIMATION_REQUEST",
+      "type": "N/A",
+      "description": ""
+    },
+    {
+      "name": "S1_THROUGHPUT_ESTIMATION_RESPONSE",
+      "type": "N/A",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_CONNECTED",
+      "type": "EVENT_PARAM_WIFI_ACCESS_DECISION",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_CONNECTED",
+      "type": "EVENT_PARAM_WIFI_THROUGHPUT_ESTIMATE_EUTRA_CONNECTED",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_CONNECTED",
+      "type": "EVENT_PARAM_WIFI_THROUGHPUT_ESTIMATE_WIFI",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_IDLE",
+      "type": "EVENT_ARRAY_GLOBAL_CELL_ID_ESTIMATE_SUCC",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_IDLE",
+      "type": "EVENT_ARRAY_THROUGHPUT_ESTIMATE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_IDLE",
+      "type": "EVENT_ARRAY_GLOBAL_CELL_ID_ESTIMATE_FAIL",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_IDLE",
+      "type": "EVENT_ARRAY_ESTIMATE_FAIL_CAUSE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_WIFI_MOBILITY_EVAL_IDLE",
+      "type": "EVENT_PARAM_ESTIMATE_FAIL_STATUS",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010511 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010511 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/161_22104-LZA7016014_1Uen.AC.md",
+  "file_hash": "0c2e6475f78d86182e1f7b2cbb85931a",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

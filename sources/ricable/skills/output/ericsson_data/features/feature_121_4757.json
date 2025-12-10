@@ -1,0 +1,76 @@
+{
+  "id": "121 4757",
+  "name": "Data-Aware Uplink Scheduling",
+  "cxc_code": "CXC4012129",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "The Scheduler feature distributes radio interface and RBS\nresources between various user and control data flows requesting transmission in the\ncell. It gives priority to robust system control signaling and retransmissions over\nuser data. It enables users to be multiplexed and scheduled in time and frequency,\nefficiently using spectral and hardware resources to optimize user throughput and\ncell capacity.\nScheduling, also referred to as DRA, is done dynamically\nfor every TTI of 1 ms. For every upcoming TTI, the Scheduler determines the users\nthat are assigned radio interface and RBS resources.\nThe Scheduler feature is a basic feature, and part of\nradio resource management. It adapts automatically to variations in traffic load and\ndistribution, and considers possible UE limitations, reducing the need for\nconfiguration and optimization by operators. However, the operator can control some\nof the scheduler behavior, such as for PDCCH and PUCCH resources, to meet specific\nneeds. These adjustments can have a direct impact on user peak throughput and cell\ncapacity.\nThe feature supports SU-MIMO in the downlink, which\nimproves coverage and peak bit rates.",
+  "summary": "The feature improves uplink UE throughput and PRB resource utilization for large-buffer",
+  "parameters": [
+    {
+      "name": "Uen.AL",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellTDD.ulImprovedUeSchedLastEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.noOfPucchSrUsers",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.noOfPucchSrUsers",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.ulInterferenceManagementActive",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.ulInterferenceManagementActive",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.dsrTransMax",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.dsrTransMax",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012129 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012129 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/321_22104-LZA7016014_1Uen.AL.md",
+  "file_hash": "abb72519a1d5180e0653ca0617f992b2",
+  "processed_at": "2025-10-19 15:50:04",
+  "network_impact": {},
+  "performance_impact": {}
+}

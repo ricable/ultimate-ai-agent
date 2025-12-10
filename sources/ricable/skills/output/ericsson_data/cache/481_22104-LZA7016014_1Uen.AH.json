@@ -1,0 +1,127 @@
+{
+  "file_hash": "6da842b1cd58fa1d969ff7aee00ae5b2",
+  "feature": {
+    "id": "121 5033",
+    "name": "7CC DL Carrier Aggregation Extension",
+    "cxc_code": "CXC4012346",
+    "value_package": "Carrier Aggregation",
+    "value_package_id": "FAJ 801 0405",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature allows enhanced carrier aggregation to be used with up to seven component",
+    "parameters": [
+      {
+        "name": "CarrierAggregationFunction.caPreference",
+        "type": "Affecting",
+        "description": "If the Uplink Carrier Aggregation feature is enabled, the parameter                                 is recommended to be set to DL. If it is set to                                     NONE, it is possible that some UEs are not                                 configured with the optimal number of downlink component                                 carriers.",
+        "mo_class": "CarrierAggregationFunction"
+      },
+      {
+        "name": "CarrierAggregationFunction.sCellDeactOutOfCoverageTimer",
+        "type": "Affecting",
+        "description": "To avoid unnecessary SCell deactivation in poor PCell uplink channel                                 condition, one of the following settings is recommended:  sCellDeactOutOfCoverageTimer \u2265                                             MAX(240, 3 *                                                 CarrierAggregationFunction.sCellDeactProhibitTimer                                             + 100)     sCellDeactOutOfCoverageTimer =                                             -1",
+        "mo_class": "CarrierAggregationFunction"
+      },
+      {
+        "name": "CarrierAggregationFunction.sCellSelectionMode",
+        "type": "Affecting",
+        "description": "The recommended setting is                                     UN_ACK_SIMULTANEOUS_SCELL_SELECTION or                                     ACK_SIMULTANEOUS_SCELL_SELECTION. If the                                 PCell has good coverage overlap with the SCells, these settings                                 reduce latency on initial SCell selection.",
+        "mo_class": "CarrierAggregationFunction"
+      },
+      {
+        "name": "EUtranCellFDD.noOfPucchFormat3PrbPairs",
+        "type": "Affecting",
+        "description": "The attribute must be set to 1 in cells to be used as PCell. Only                                 values 0 and 1 are supported.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellRelation.sCellCandidate",
+        "type": "Affecting",
+        "description": "It can be avoided that a cell relation is configured for unsupported                                 uplink carrier aggregation by setting                                     EUtranCellRelation.sCellCandidate to                                     ONLY_ALLOWED_FOR_DL.",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "QciProfileOperatorDefined.pdcpSNLength  QciProfilePredefined.pdcpSNLength",
+        "type": "Affecting",
+        "description": "The attribute must be set to 15.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfileOperatorDefined.rlcSNLength  QciProfilePredefined.rlcSNLength",
+        "type": "Affecting",
+        "description": "The attribute must be set to 16.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "Uen.AH",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellRelation.asmStatus",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellTDD.noOfPucchFormat3PrbPairs",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCaActivatedDl7ccSumDistr",
+        "description": "Performance counter pmCaActivatedDl7ccSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaScheduledDl7ccSumDistr",
+        "description": "Performance counter pmCaScheduledDl7ccSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDl7ccPCell",
+        "description": "Performance counter pmRadioThpVolDl7ccPCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDl7ccSCell",
+        "description": "Performance counter pmRadioThpVolTxDl7ccSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012346 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012346 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/481_22104-LZA7016014_1Uen.AH.md",
+    "file_hash": "6da842b1cd58fa1d969ff7aee00ae5b2",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

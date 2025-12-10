@@ -1,0 +1,45 @@
+# Neural Network Training Configuration
+training:
+  epochs: 500
+  batch_size: 1024
+  learning_rate: 0.001
+  validation_split: 0.2
+  early_stopping_patience: 10
+  optimizer: "adam"
+  loss_function: "mse"
+  metrics: ["accuracy", "precision", "recall"]
+  callbacks: ["checkpoint", "tensorboard"]
+  shuffle: true
+
+models:
+  cnn:
+    architecture: [101, 64, 32, 16, 8]
+    epochs: 500
+    learning_rate: 0.0015
+  
+  lstm:
+    architecture: [101, 128, 64, 32, 8]
+    epochs: 500
+    learning_rate: 0.001
+  
+  dense:
+    architecture: [101, 256, 128, 64, 32, 8]
+    epochs: 500
+    learning_rate: 0.002
+
+gpu:
+  enable: true
+  device: "mps"  # Mac Metal Performance Shaders
+  memory_limit_gb: 80
+  
+swarm:
+  max_agents: 10
+  topology: "hierarchical"
+  parallel_training: true
+
+data:
+  input_path: "data/pm/fanndata.csv"
+  output_dir: "models"
+  normalize: true
+  shuffle: true
+  random_seed: 42

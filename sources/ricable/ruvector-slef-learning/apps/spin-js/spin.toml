@@ -1,0 +1,85 @@
+# Spin Application Manifest for ruvnet Agent
+# Runs JavaScript/TypeScript agents on Kubernetes via SpinKube
+
+spin_manifest_version = 2
+
+[application]
+name = "ruvector-agent"
+version = "0.1.0"
+description = "AI Agent running ruvnet packages with Spin on Kubernetes"
+authors = ["ruvnet"]
+
+[application.trigger]
+type = "http"
+base = "/"
+
+# Main HTTP handler component
+[[trigger.http]]
+route = "/..."
+component = "agent-handler"
+
+[component.agent-handler]
+source = "dist/agent-handler.wasm"
+allowed_outbound_hosts = [
+    "https://*.anthropic.com",
+    "https://*.openai.com",
+    "https://*.googleapis.com",
+    "https://api.openrouter.ai",
+    "redis://redis.default.svc.cluster.local:6379",
+    "http://litellm.default.svc.cluster.local:4000",
+    "http://ruvector.default.svc.cluster.local:8765",
+    "http://agentdb.default.svc.cluster.local:8766"
+]
+
+[component.agent-handler.build]
+command = "npx @aspect-build/spin-js build"
+watch = ["src/**/*.ts", "package.json"]
+
+# Key-Value Store for agent state
+[[component.agent-handler.key_value_stores]]
+store = "agent-state"
+
+# SQLite for local data persistence
+[[component.agent-handler.sqlite_databases]]
+database = "agent-db"
+
+# Environment variables from Kubernetes secrets
+[component.agent-handler.variables]
+anthropic_api_key = "{{ anthropic_api_key }}"
+openai_api_key = "{{ openai_api_key }}"
+litellm_endpoint = "{{ litellm_endpoint }}"
+ruvector_endpoint = "{{ ruvector_endpoint }}"
+agent_id = "{{ agent_id }}"
+agent_model = "{{ agent_model }}"
+
+# Health check component
+[[trigger.http]]
+route = "/health"
+component = "health-check"
+
+[component.health-check]
+source = "dist/health-check.wasm"
+
+[component.health-check.build]
+command = "npx @aspect-build/spin-js build"
+
+# Metrics component
+[[trigger.http]]
+route = "/metrics"
+component = "metrics"
+
+[component.metrics]
+source = "dist/metrics.wasm"
+allowed_outbound_hosts = []
+
+[component.metrics.build]
+command = "npx @aspect-build/spin-js build"
+
+# Application variables schema
+[variables]
+anthropic_api_key = { required = true, secret = true }
+openai_api_key = { required = false, secret = true }
+litellm_endpoint = { default = "http://litellm:4000" }
+ruvector_endpoint = { default = "http://ruvector:8765" }
+agent_id = { required = true }
+agent_model = { default = "claude-3-5-sonnet-20241022" }

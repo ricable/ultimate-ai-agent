@@ -1,0 +1,138 @@
+{
+  "id": "121 2027",
+  "name": "",
+  "cxc_code": "CXC4011247",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "The feature enables the eNodeB to use handover to transfer UEs with voice bearers from",
+  "parameters": [
+    {
+      "name": "EUtranFreqRelation.voicePrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "ExternalUtranCellFDD.srvccCapability",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExternalUtranCellFDD"
+    },
+    {
+      "name": "UtranFreqRelation.voicePrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UtranFreqRelation"
+    },
+    {
+      "name": "ENodeBFunction.hoSrvccToWcdmaMocnEnabled",
+      "type": "Affecting",
+      "description": "The parameter is used to enable PSHO and SRVCC handover to shared WCDMA RAN for UEs                 using additional PLMNs in MOCN configurations.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ENodeBFunction.rRCContSizeLimit",
+      "type": "Affecting",
+      "description": "The size limit of the                   SourceRNC-ToTargetRNC-TransparentContainer IE used in the                 S1AP HandoverRequired message can be configured with this                 parameter.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ExternalUtranCellFDD.lac",
+      "type": "Affecting",
+      "description": "See MOM description.  This attribute is required in the HANDOVER REQUIRED S1 message that                 is sent as part of the SRVCC handover preparation procedure. The attribute is used                 to identify the MSC/SGSN that serves the target WCDMA RNC.",
+      "mo_class": "ExternalUtranCellFDD"
+    },
+    {
+      "name": "ExternalUtranCellFDD.rac",
+      "type": "Affecting",
+      "description": "See MOM description.  When the UE has data bearers to be handed over to WCDMA, this attribute is included                 in the HANDOVER REQUIRED S1 message. The attribute is used to                 identify the SGSN in the target location area of the WCDMA cell.",
+      "mo_class": "ExternalUtranCellFDD"
+    },
+    {
+      "name": "UtranCellRelation.coverageIndicator",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "UtranCellRelation"
+    },
+    {
+      "name": "UtranFreqRelation.allowedPlmnList",
+      "type": "Affecting",
+      "description": "The parameter is used when PSHO and SRVCC handover is enabled to shared WCDMA RAN                 for UEs using additional PLMNs in MOCN configurations.",
+      "mo_class": "UtranFreqRelation"
+    },
+    {
+      "name": "UtranFreqRelation.mobilityAction",
+      "type": "Affecting",
+      "description": "See MOM description.  This parameter must be set to HANDOVER, otherwise SRVCC handover                 is not performed.",
+      "mo_class": "UtranFreqRelation"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_SRVCC_TYPE",
+      "description": "Indicates an SRVCC handover and the type of SRVCC.  For more information on the SRVCC HO Indication IE in the                     HANDOVER REQUIRED S1AP message, see 3GPP TS                   36.413.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AM",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "UeMeasControl.allowReleaseQci1",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UeMeasControl"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmHoExeAttSrvcc",
+      "description": "Performance counter pmHoExeAttSrvcc",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccSrvcc",
+      "description": "Performance counter pmHoExeSuccSrvcc",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttSrvcc",
+      "description": "Performance counter pmHoPrepAttSrvcc",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccSrvcc",
+      "description": "Performance counter pmHoPrepSuccSrvcc",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_SRVCC_TYPE",
+      "description": "Indicates an SRVCC handover and the type of SRVCC.  For more information on the SRVCC HO Indication IE in the                     HANDOVER REQUIRED S1AP message, see 3GPP TS                   36.413."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011247 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011247 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/38_22104-LZA7016014_1Uen.AM.md",
+  "file_hash": "49c5d26931a5e1dc170a64eaaf42051d",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

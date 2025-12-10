@@ -1,0 +1,121 @@
+{
+  "id": "121 5588",
+  "name": "NR Large Bandwidth Support Low-Band",
+  "cxc_code": "CXC4012671",
+  "value_package": "Peak Rate Evolution",
+  "value_package_id": "FAJ 801 4005",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature introduces support for wider carrier bandwidths in FDD.",
+  "parameters": [
+    {
+      "name": "NRSectorCarrier.bSChannelBwDL",
+      "type": "Affecting",
+      "description": "The downlink and uplink carrier bandwidth can be configured through                                 these attributes. Asymmetric bandwidths are not supported, so these                                 attributes must be set to the same value in a cell.",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.bSChannelBwUL",
+      "type": "Affecting",
+      "description": "The downlink and uplink carrier bandwidth can be configured through                                 these attributes. Asymmetric bandwidths are not supported, so these                                 attributes must be set to the same value in a cell.",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "Uen.X33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRCellDU.pmMacRBSymAvailDl",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pmMacRBSymAvailUl",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pmMacVolDl",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pmMacVolDlDrb",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsMacRBSymAvailPdcch",
+      "description": "Performance counter pmEbsMacRBSymAvailPdcch",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymAvailDl",
+      "description": "Performance counter pmMacRBSymAvailDl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymAvailPdcch",
+      "description": "Performance counter pmMacRBSymAvailPdcch",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymAvailUl",
+      "description": "Performance counter pmMacRBSymAvailUl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDl",
+      "description": "Performance counter pmMacVolDl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrb",
+      "description": "Performance counter pmMacVolDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUl",
+      "description": "Performance counter pmMacVolUl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlResUe",
+      "description": "Performance counter pmMacVolUlResUe",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": null,
+  "deactivation_step": null,
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/167_22104-LZA7016017_1Uen.X33B.md",
+  "file_hash": "8d19f722f046b3f7ff8a8a1b83b45754",
+  "processed_at": "2025-10-19 15:48:56",
+  "network_impact": {},
+  "performance_impact": {}
+}

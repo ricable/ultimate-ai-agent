@@ -1,0 +1,142 @@
+{
+  "id": "121 0859",
+  "name": "QoS-Aware Scheduler",
+  "cxc_code": "CXC4010959",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The QoS-Aware Scheduler feature allows the configuration of the scheduler on a QCI basis. This",
+  "parameters": [
+    {
+      "name": "ENodeBFunction.channelQualityMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "QciProfilePredefined.absPrioOverride",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfilePredefined.priorityFraction",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfilePredefined.priority",
+      "type": "Affecting",
+      "description": "The parameter QciProfilePredefined.priority                                 assigns priorities for scheduling. For the default parameter                                 parameter values, see 3GPP 23.203.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfilePredefined.schedulingAlgorithm",
+      "type": "Affecting",
+      "description": "The parameter                                     QciProfilePredefined.schedulingAlgorithm                                 selects the scheduling algorithm (on a QCI basis) that is used                                 during scheduling.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "INTERNAL_PER_UE_RB_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_DRB_DL_RLC_DELAY",
+      "description": "Aggregated time for the downlink delay measure in the RLC layer.                                     One sample for each RLC SDU sent to MAC. The time for each                                     sample is between reception of a packet (PDCP SDU), until the                                     packet is sent to the MAC layer entity for transmission on the                                     air.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_UE_RB_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_DRB_DL_RLC_DELAY_SAMPL",
+      "description": "Number of samples to be used\u00a0in downlink MAC delay measure                                     calculations.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_UE_RB_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_DRB_LAT_TIME_DL",
+      "description": "Aggregated time samples for the downlink latency measure. The                                     time is between reception of a PDCP SDU until the first                                     successful transmission of a MAC SDU are transmitted.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_UE_RB_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_DRB_LAT_SAMPL_DL",
+      "description": "Number of samples to be used\u00a0in downlink latency measure                                     calculations.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "QciProfilePredefined.priorityFraction",
+      "type": "Defines the decimal point of the new priority for predefined                                     QCIs.",
+      "description": "",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfileOperatorDefined.priorityFraction",
+      "type": "Defines the decimal point of the new priority for                                     operator-defined QCIs.",
+      "description": "",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "Uen.BF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmPdcpLatPktTransDlQci",
+      "description": "Performance counter pmPdcpLatPktTransDlQci",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpLatTimeDlQci",
+      "description": "Performance counter pmPdcpLatTimeDlQci",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcDelayPktTransDlQci",
+      "description": "Performance counter pmRlcDelayPktTransDlQci",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcDelayTimeDl2Qci",
+      "description": "Performance counter pmRlcDelayTimeDl2Qci",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PER_UE_RB_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_DRB_DL_RLC_DELAY",
+      "description": "Aggregated time for the downlink delay measure in the RLC layer.                                     One sample for each RLC SDU sent to MAC. The time for each                                     sample is between reception of a packet (PDCP SDU), until the                                     packet is sent to the MAC layer entity for transmission on the                                     air."
+    },
+    {
+      "name": "INTERNAL_PER_UE_RB_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_DRB_DL_RLC_DELAY_SAMPL",
+      "description": "Number of samples to be used\u00a0in downlink MAC delay measure                                     calculations."
+    },
+    {
+      "name": "INTERNAL_PER_UE_RB_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_DRB_LAT_TIME_DL",
+      "description": "Aggregated time samples for the downlink latency measure. The                                     time is between reception of a PDCP SDU until the first                                     successful transmission of a MAC SDU are transmitted."
+    },
+    {
+      "name": "INTERNAL_PER_UE_RB_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_DRB_LAT_SAMPL_DL",
+      "description": "Number of samples to be used\u00a0in downlink latency measure                                     calculations."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010959 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010959 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/88_22104-LZA7016014_1Uen.BF.md",
+  "file_hash": "6d86f6077c21e864d343edc2513a8829",
+  "processed_at": "2025-10-19 15:50:05",
+  "network_impact": {},
+  "performance_impact": {}
+}

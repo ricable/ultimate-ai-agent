@@ -1,0 +1,43 @@
+{
+  "node": {
+    "id": "be522679-cfc0-4e29-baf3-749fa5ab73e7",
+    "name": "test-node",
+    "version": "1.0.0",
+    "created": "2025-07-13T03:18:06.678Z"
+  },
+  "network": {
+    "port": 8080,
+    "network": "mainnet",
+    "bootstrapPeers": [
+      "/ip4/seed1.synaptic.network/tcp/8080/p2p/QmMainnet1...",
+      "/ip4/seed2.synaptic.network/tcp/8080/p2p/QmMainnet2...",
+      "/ip4/seed3.synaptic.network/tcp/8080/p2p/QmMainnet3..."
+    ],
+    "protocols": [
+      "/synaptic/1.0.0",
+      "/qudag/1.0.0",
+      "/neural/1.0.0"
+    ]
+  },
+  "security": {
+    "quantumResistant": true,
+    "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAqDUEuUTFm1Ah0c6ZSrzc+8hQyYty52ND072epXpLiIU=\n-----END PUBLIC KEY-----\n",
+    "algorithm": "ml-dsa-65"
+  },
+  "neural": {
+    "defaultArchitecture": "adaptive",
+    "maxAgents": 1000,
+    "memoryLimit": "50MB",
+    "inferenceTimeout": 100
+  },
+  "dag": {
+    "consensus": "qr-avalanche",
+    "maxVertices": 10000,
+    "pruningInterval": 3600
+  },
+  "storage": {
+    "dataDir": "/workspaces/Synaptic-Neural-Mesh/test-synaptic/.synaptic/data",
+    "cacheDir": "/workspaces/Synaptic-Neural-Mesh/test-synaptic/.synaptic/cache",
+    "logsDir": "/workspaces/Synaptic-Neural-Mesh/test-synaptic/.synaptic/logs"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "file_hash": "6d6629877d63c025be2399d79a2dafee",
+  "feature": {
+    "id": "121 1885",
+    "name": "UE Level Oscillating Handover Minimization",
+    "cxc_code": "CXC4011157",
+    "value_package": "Self-Organizing Networks",
+    "value_package_id": "FAJ 801 0435",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The UE Level Oscillating Handover Minimization feature enables the UE to perform a",
+    "parameters": [
+      {
+        "name": "a3offset",
+        "type": "Affected",
+        "description": "In certain prevention processes, an offset is added to this parameter for one UE.                 The offset does not affect the parameter value registered in the MOM.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "a5Threshold2RSRP",
+        "type": "Affected",
+        "description": "In certain prevention processes, an offset is added to this parameter for one UE.                 The offset does not affect the parameter value registered in the MOM.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "a5Threshold2RSRQ",
+        "type": "Affected",
+        "description": "In certain prevention processes, an offset is added to this parameter for one UE.                 The offset does not affect the parameter value registered in the MOM.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_SON_UE_OSCILLATION_PREVENTED",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_SON_UE_OSCILLATION_PREVENTED",
+        "type": "EVENT_PARAM_HO_PREV_CAUSE",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_SON_OSCILLATION_DETECTED",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_SON_OSCILLATION_DETECTED",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_SON_OSCILLATION_DETECTED",
+        "type": "EVENT_PARAM_ERAB_QCI1_IND",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AZ33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellRelation.pmHoOscIntraF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.pmHoOscQci1",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.pmHoOscInterF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEvents",
+        "description": "Performance counter pmEvents",
+        "category": "General"
+      },
+      {
+        "name": "pmHoOscInterF",
+        "description": "Performance counter pmHoOscInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoOscIntraF",
+        "description": "Performance counter pmHoOscIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoOscQci1",
+        "description": "Performance counter pmHoOscQci1",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_SON_UE_OSCILLATION_PREVENTED",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_SON_UE_OSCILLATION_PREVENTED",
+        "type": "EVENT_PARAM_HO_PREV_CAUSE",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_SON_OSCILLATION_DETECTED",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_SON_OSCILLATION_DETECTED",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_SON_OSCILLATION_DETECTED",
+        "type": "EVENT_PARAM_ERAB_QCI1_IND",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011157 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011157 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/119_22104-LZA7016014_1Uen.AZ33B.md",
+    "file_hash": "6d6629877d63c025be2399d79a2dafee",
+    "processed_at": "2025-10-19 15:48:55",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

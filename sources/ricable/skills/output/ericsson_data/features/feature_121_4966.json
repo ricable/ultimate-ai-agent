@@ -1,0 +1,72 @@
+{
+  "id": "121 4966",
+  "name": "",
+  "cxc_code": "CXC4012316",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "Evolved Uplink Frequency-Selective Scheduling feature improves the frequency selective",
+  "parameters": [
+    {
+      "name": "EUtranCellTDD.eUlFssSwitchThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.eUlFssSwitchThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "Uen.AF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCounters",
+      "description": "Performance counter pmCounters",
+      "category": "General"
+    },
+    {
+      "name": "pmPrbRemainedUsableUl",
+      "description": "Performance counter pmPrbRemainedUsableUl",
+      "category": "General"
+    },
+    {
+      "name": "pmPrbUtilUlMaxEstDistr",
+      "description": "Performance counter pmPrbUtilUlMaxEstDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmSchedTtiCellUlResAllocKept",
+      "description": "Performance counter pmSchedTtiCellUlResAllocKept",
+      "category": "General"
+    },
+    {
+      "name": "pmSchedTtiCellUlResAllocSwitched",
+      "description": "Performance counter pmSchedTtiCellUlResAllocSwitched",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012316 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012316 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/439_22104-LZA7016014_1Uen.AF.md",
+  "file_hash": "55e976c1bfb8703769c53a47bc41eb24",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

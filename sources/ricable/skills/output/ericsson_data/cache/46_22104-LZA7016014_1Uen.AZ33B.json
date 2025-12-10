@@ -1,0 +1,192 @@
+{
+  "file_hash": "e34855c793fe545b74705cb03cbaba2b",
+  "feature": {
+    "id": "121 4993",
+    "name": "Streaming of PM Events",
+    "cxc_code": "CXC4010856",
+    "value_package": "NR Base Package",
+    "value_package_id": "FAJ 801 4002",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature allows for the streaming of traces to a customer without waiting for",
+    "parameters": [
+      {
+        "name": "PmEventService.streamPortPmUeTrace",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PmEventService"
+      },
+      {
+        "name": "PmEventService.streamStatusPmCellTrace",
+        "type": "Introduced",
+        "description": "See MOM description.  The TraceStreamStruct struct has the                 following members:    fileStatus     ipAddress     portNumber     scannerId     streamStatus     traceReference",
+        "mo_class": "PmEventService"
+      },
+      {
+        "name": "PmEventService.streamStatusPmUeTrace",
+        "type": "Introduced",
+        "description": "See MOM description.  The TraceStreamStruct struct has the                 following members:    fileStatus     ipAddress     portNumber     scannerId     streamStatus     traceReference",
+        "mo_class": "PmEventService"
+      },
+      {
+        "name": "StreamingCapabilities.dnsLookupSupport",
+        "type": "Affected",
+        "description": "See MOM description.",
+        "mo_class": "StreamingCapabilities"
+      },
+      {
+        "name": "EventJob.streamDestination",
+        "type": "Affected",
+        "description": "See MOM description.",
+        "mo_class": "EventJob"
+      },
+      {
+        "name": "EventJob.streamDestinationIpAddress",
+        "type": "Affected",
+        "description": "See MOM description.",
+        "mo_class": "EventJob"
+      },
+      {
+        "name": "EventJob.streamDestinationPort",
+        "type": "Affected",
+        "description": "See MOM description.",
+        "mo_class": "EventJob"
+      },
+      {
+        "name": "EventJob.streamOutputEnabled",
+        "type": "Affected",
+        "description": "See MOM description.",
+        "mo_class": "EventJob"
+      },
+      {
+        "name": "Uen.AZ33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCellTrace",
+        "description": "Performance counter pmCellTrace",
+        "category": "General"
+      },
+      {
+        "name": "pmEvent",
+        "description": "Performance counter pmEvent",
+        "category": "General"
+      },
+      {
+        "name": "pmEventService",
+        "description": "Performance counter pmEventService",
+        "category": "General"
+      },
+      {
+        "name": "pmEvents",
+        "description": "Performance counter pmEvents",
+        "category": "General"
+      },
+      {
+        "name": "pmIC",
+        "description": "Performance counter pmIC",
+        "category": "General"
+      },
+      {
+        "name": "pmInitiation",
+        "description": "Performance counter pmInitiation",
+        "category": "General"
+      },
+      {
+        "name": "pmUeTrace",
+        "description": "Performance counter pmUeTrace",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "Feature Identity",
+        "type": "FAJ 121 0760",
+        "description": ""
+      },
+      {
+        "name": "Value Package Name",
+        "type": "RAN Data Collection",
+        "description": ""
+      },
+      {
+        "name": "Value Package Identity",
+        "type": "FAJ 801 0431",
+        "description": ""
+      },
+      {
+        "name": "Node Type",
+        "type": "Baseband Radio Node",
+        "description": ""
+      },
+      {
+        "name": "Access Type",
+        "type": "LTE",
+        "description": ""
+      },
+      {
+        "name": "Licensing",
+        "type": "License-controlled feature. One license is required for each                                 radio.",
+        "description": ""
+      },
+      {
+        "name": "Feature Identity",
+        "type": "FAJ 121 4993",
+        "description": "FAJ 121 0760"
+      },
+      {
+        "name": "Value Package Name",
+        "type": "NR Base Package",
+        "description": "RAN Data Collection"
+      },
+      {
+        "name": "Value Package Identity",
+        "type": "FAJ 801 4002",
+        "description": "FAJ 801 0431"
+      },
+      {
+        "name": "Node Type",
+        "type": "Baseband Radio Node",
+        "description": "Baseband Radio Node"
+      },
+      {
+        "name": "Access Type",
+        "type": "NR",
+        "description": "LTE"
+      },
+      {
+        "name": "Impact at Upgrade",
+        "type": "Optional",
+        "description": "Optional"
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010856 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010856 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/46_22104-LZA7016014_1Uen.AZ33B.md",
+    "file_hash": "e34855c793fe545b74705cb03cbaba2b",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

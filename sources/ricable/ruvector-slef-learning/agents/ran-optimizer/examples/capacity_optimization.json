@@ -1,0 +1,107 @@
+{
+  "scenario": "Capacity Optimization - Load Balancing",
+  "description": "High PRB utilization cells requiring load balancing to neighbors",
+  "cells": [
+    {
+      "cell_id": "gNB_MLMO_001_N1",
+      "site_name": "Malmo_Central_Station",
+      "timestamp": "2024-12-08T08:30:00Z",
+      "technology": "5G_NSA",
+      "radio_kpis": {
+        "rsrp_avg": -82.0,
+        "rsrq_avg": -9.5,
+        "sinr_avg": 15.2,
+        "prb_dl_utilization": 94.5,
+        "prb_ul_utilization": 72.8,
+        "cqi_avg": 11.5
+      },
+      "throughput_kpis": {
+        "dl_throughput_avg": 285.0,
+        "dl_throughput_max": 850.0,
+        "dl_throughput_p10": 45.0,
+        "ul_throughput_avg": 65.0,
+        "cell_throughput_dl": 8.5,
+        "dl_volume_gb": 425.0
+      },
+      "accessibility_kpis": {
+        "rrc_setup_sr": 98.2,
+        "erab_setup_sr": 97.5,
+        "connected_users": 485,
+        "max_connected_users": 500,
+        "active_users": 220
+      },
+      "retainability_kpis": {
+        "call_drop_rate": 0.95,
+        "erab_drop_rate": 1.2
+      },
+      "alarms": [
+        {
+          "alarm_id": "CAP_001",
+          "severity": "Critical",
+          "alarm_text": "PRB utilization exceeds 90% threshold",
+          "raised_time": "2024-12-08T07:45:00Z"
+        },
+        {
+          "alarm_id": "CAP_002",
+          "severity": "Major",
+          "alarm_text": "Connected users approaching maximum",
+          "raised_time": "2024-12-08T08:00:00Z"
+        }
+      ],
+      "config": {
+        "pci": 501,
+        "earfcn": 627264,
+        "bandwidth": 100,
+        "mimo_mode": "4x4 MIMO",
+        "antenna": {
+          "electrical_tilt": 6.0,
+          "azimuth": 0.0
+        },
+        "ho_params": {
+          "time_to_trigger": 320,
+          "a3_offset": 3.0,
+          "cio": 0.0
+        },
+        "load_balancing": {
+          "enabled": false,
+          "target_prb": 70,
+          "offset_step": 2
+        }
+      },
+      "neighbors": [
+        {
+          "cell_id": "gNB_MLMO_002_N1",
+          "prb_utilization": 52.0,
+          "rsrp_diff": -3.5,
+          "cio": 0.0,
+          "ho_success_rate": 98.5
+        },
+        {
+          "cell_id": "gNB_MLMO_003_N1",
+          "prb_utilization": 61.0,
+          "rsrp_diff": -5.0,
+          "cio": 0.0,
+          "ho_success_rate": 97.8
+        },
+        {
+          "cell_id": "ENB_MLMO_001_C1",
+          "technology": "LTE",
+          "prb_utilization": 48.0,
+          "rsrp_diff": 2.0,
+          "ho_success_rate": 96.2
+        }
+      ]
+    }
+  ],
+  "query": "This 5G NR cell at Malmo Central Station is experiencing severe congestion during morning rush hour. PRB utilization is at 94.5% and users are approaching the maximum limit. Neighboring cells have available capacity. Recommend load balancing parameters and any necessary handover threshold adjustments to redistribute traffic while maintaining service quality.",
+  "traffic_profile": {
+    "peak_hours": ["07:30-09:30", "16:30-18:30"],
+    "low_traffic_hours": ["00:00-05:00"],
+    "weekend_pattern": "reduced_by_40%"
+  },
+  "constraints": {
+    "min_throughput_p10": 30,
+    "max_drop_rate": 1.5,
+    "prefer_same_technology": true
+  }
+}

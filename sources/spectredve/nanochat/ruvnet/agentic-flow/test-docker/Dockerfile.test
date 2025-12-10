@@ -1,0 +1,36 @@
+FROM node:20-slim
+
+# Avoid interactive tzdata prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install minimal dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl git \
+  && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install agentic-flow from local build
+COPY ./agentic-flow/package.json ./agentic-flow/
+COPY ./agentic-flow/dist ./agentic-flow/dist
+COPY ./agentic-flow/wasm ./agentic-flow/wasm
+COPY ./agentic-flow/config ./agentic-flow/config
+COPY ./agentic-flow/.claude ./agentic-flow/.claude
+COPY ./package.json ./
+COPY ./package-lock.json* ./
+
+# Install dependencies
+RUN npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+
+# Runtime env
+ENV NODE_ENV=production
+ENV ANTHROPIC_API_KEY=""
+ENV OPENROUTER_API_KEY=""
+
+# Create writable workspace
+RUN mkdir -p /workspace && chmod 777 /workspace
+WORKDIR /workspace
+
+# Test entry point
+ENTRYPOINT ["npx", "agentic-flow"]
+CMD ["--help"]

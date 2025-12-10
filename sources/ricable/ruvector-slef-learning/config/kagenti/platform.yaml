@@ -1,0 +1,161 @@
+# Kagenti Platform CR for zgents orchestration
+# This Platform manages the collection of AI agents and supporting infrastructure
+# https://github.com/kagenti/kagenti-operator
+
+apiVersion: kagenti.io/v1alpha1
+kind: Platform
+metadata:
+  name: zgents-platform
+  namespace: zgents
+  labels:
+    app.kubernetes.io/name: zgents
+    app.kubernetes.io/component: platform
+    app.kubernetes.io/managed-by: kagenti-operator
+spec:
+  description: "Edge-Native AI Agent Platform powered by mise environments"
+
+  # Component execution order ensures dependencies are met
+  # Infrastructure -> Tools -> Agents
+  components:
+    # Infrastructure components (databases, storage, networking)
+    - name: ruvector-db
+      type: Infrastructure
+      order: 1
+      source:
+        git:
+          url: "https://github.com/ruvnet/ruvector"
+          ref: main
+          path: "infrastructure/database"
+      config:
+        replicas: 1
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+
+    - name: redis-cache
+      type: Infrastructure
+      order: 1
+      helm:
+        repository: "https://charts.bitnami.com/bitnami"
+        chart: redis
+        version: "18.x"
+        values:
+          architecture: standalone
+          auth:
+            enabled: false
+
+    # Tool components (MCP servers, gateways)
+    - name: mcp-gateway
+      type: Tool
+      order: 2
+      source:
+        git:
+          url: "https://github.com/ricable/ruvector-slef-learning"
+          ref: main
+          path: "gateway/mcp-gateway"
+      config:
+        replicas: 2
+
+    - name: litellm-proxy
+      type: Tool
+      order: 2
+      source:
+        git:
+          url: "https://github.com/ricable/ruvector-slef-learning"
+          ref: main
+          path: "gateway/litellm"
+      config:
+        replicas: 1
+
+    # Agent components (AI workloads)
+    - name: wasm-agent
+      type: Agent
+      order: 3
+      source:
+        git:
+          url: "https://github.com/ricable/ruvector-slef-learning"
+          ref: main
+          path: "agents/wasm"
+      build:
+        enabled: true
+        type: wasm
+        dockerfile: Dockerfile
+      runtime:
+        class: wasmtime-spin
+      config:
+        replicas: 2
+
+    - name: python-agent
+      type: Agent
+      order: 3
+      source:
+        git:
+          url: "https://github.com/ricable/ruvector-slef-learning"
+          ref: main
+          path: "agents/python"
+      build:
+        enabled: true
+        type: docker
+        dockerfile: Dockerfile
+      config:
+        replicas: 2
+
+    - name: rust-agent
+      type: Agent
+      order: 3
+      source:
+        git:
+          url: "https://github.com/ricable/ruvector-slef-learning"
+          ref: main
+          path: "agents/rust"
+      build:
+        enabled: true
+        type: wasm
+      runtime:
+        class: wasmtime-spin
+      config:
+        replicas: 2
+
+  # Platform-wide settings
+  settings:
+    # Use mise for reproducible environments
+    environmentManager: mise
+
+    # Default resource limits for agents
+    defaultResources:
+      requests:
+        memory: "128Mi"
+        cpu: "50m"
+      limits:
+        memory: "512Mi"
+        cpu: "250m"
+
+    # Networking
+    networking:
+      type: mesh
+      serviceMesh: istio-ambient
+
+    # Observability
+    observability:
+      metrics: true
+      tracing: true
+      logging: true
+
+    # Security
+    security:
+      spiffe: true
+      mtls: true
+      networkPolicies: true
+
+---
+# Namespace for zgents platform
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: zgents
+  labels:
+    istio.io/dataplane-mode: ambient

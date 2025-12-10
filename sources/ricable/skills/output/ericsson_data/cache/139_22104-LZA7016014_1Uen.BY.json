@@ -1,0 +1,155 @@
+{
+  "file_hash": "936487641b45253bc8df920f669994f3",
+  "feature": {
+    "id": "121 3093",
+    "name": "Load-Based Access Barring",
+    "cxc_code": "CXC4011807",
+    "value_package": "High Load Handling",
+    "value_package_id": "FAJ 801 0415",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node, DU Radio Node",
+    "description": "",
+    "summary": "The Load-Based Access Barring feature protects already established bearers in",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.lbabIncr  EUtranCellTDD.lbabIncr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.acBarringPresence  EUtranCellTDD.acBarringPresence",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.lbabThreshTimeHigh  EUtranCellTDD.lbabThreshTimeHigh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.lbabThreshTimeLow  EUtranCellTDD.lbabThreshTimeLow",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.lbabThreshRejectRateHigh  EUtranCellTDD.lbabThreshRejectRateHigh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.lbabThreshRejectRateLow  EUtranCellTDD.lbabThreshRejectRateLow",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.lbabDecr  EUtranCellTDD.lbabDecr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.lbabPeriod  EUtranCellTDD.lbabPeriod",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.lbabMinBarringFactor  EUtranCellTDD.lbabMinBarringFactor",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.minIntensityLimitForLbab  EUtranCellTDD.minIntensityLimitForLbab",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.ptmCellProfileRef",
+        "type": "Affecting",
+        "description": "If the Preferential Traffic Management solution is enabled, by setting                                 the PtmFunction.ptmEnabled attribute to                                         true, and the cell is configured as                                 priority cell, triggering of the access class barring calculation                                 mechanism does not disable the following events:    Subscription ratio evaluation     Inter-Frequency Load Balancing     Inter-Frequency Offload     A cell is configured as priority cell if the following is true:  PtmCellProfile.cellType is set                                                   to PRIORITY.     The                                                   EUtranCellFDD.ptmCellProfileRef                                                   or the                                                   EUtranCellTDD.ptmCellProfileRef                                                   reference to a cell profile is set as                                                   priority.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.ptmCellProfileRef",
+        "type": "Affecting",
+        "description": "If the Preferential Traffic Management solution is enabled, by setting                                 the PtmFunction.ptmEnabled attribute to                                         true, and the cell is configured as                                 priority cell, triggering of the access class barring calculation                                 mechanism does not disable the following events:    Subscription ratio evaluation     Inter-Frequency Load Balancing     Inter-Frequency Offload     A cell is configured as priority cell if the following is true:  PtmCellProfile.cellType is set                                                   to PRIORITY.     The                                                   EUtranCellFDD.ptmCellProfileRef                                                   or the                                                   EUtranCellTDD.ptmCellProfileRef                                                   reference to a cell profile is set as                                                   priority.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "PtmFunction.ptmEnabled",
+        "type": "Affecting",
+        "description": "If the Preferential Traffic Management solution is enabled, by setting                                 the PtmFunction.ptmEnabled attribute to                                         true, and the cell is configured as                                 priority cell, triggering of the access class barring calculation                                 mechanism does not disable the following events:    Subscription ratio evaluation     Inter-Frequency Load Balancing     Inter-Frequency Offload     A cell is configured as priority cell if the following is true:  PtmCellProfile.cellType is set                                                   to PRIORITY.     The                                                   EUtranCellFDD.ptmCellProfileRef                                                   or the                                                   EUtranCellTDD.ptmCellProfileRef                                                   reference to a cell profile is set as                                                   priority.",
+        "mo_class": "PtmFunction"
+      },
+      {
+        "name": "PtmCellProfile.cellType",
+        "type": "Affecting",
+        "description": "If the Preferential Traffic Management solution is enabled, by setting                                 the PtmFunction.ptmEnabled attribute to                                         true, and the cell is configured as                                 priority cell, triggering of the access class barring calculation                                 mechanism does not disable the following events:    Subscription ratio evaluation     Inter-Frequency Load Balancing     Inter-Frequency Offload     A cell is configured as priority cell if the following is true:  PtmCellProfile.cellType is set                                                   to PRIORITY.     The                                                   EUtranCellFDD.ptmCellProfileRef                                                   or the                                                   EUtranCellTDD.ptmCellProfileRef                                                   reference to a cell profile is set as                                                   priority.",
+        "mo_class": "PtmCellProfile"
+      },
+      {
+        "name": "EUtranCellFDD.iflbAbEnabled  EUtranCellTDD.iflbAbEnabled",
+        "type": "Affecting",
+        "description": "If load balancing during access class barring is enabled, the                                 triggering of the access class barring calculation mechanism does                                 not disable subscription ratio evaluation and Inter-Frequency Load                                 Balancing.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "Uen.BY",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.iflbAbEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.iflbAbEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmAccessClassBarringCsfbDistr",
+        "description": "Performance counter pmAccessClassBarringCsfbDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmAccessClassBarringModDistr",
+        "description": "Performance counter pmAccessClassBarringModDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmAccessClassBarringMosDistr",
+        "description": "Performance counter pmAccessClassBarringMosDistr",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011807 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011807 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/139_22104-LZA7016014_1Uen.BY.md",
+    "file_hash": "936487641b45253bc8df920f669994f3",
+    "processed_at": "2025-10-19 15:48:55",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

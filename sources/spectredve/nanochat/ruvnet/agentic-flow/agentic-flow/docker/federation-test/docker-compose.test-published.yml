@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Hub server using published npm package
+  federation-hub-published:
+    build:
+      context: .
+      dockerfile: Dockerfile.test-published-simple
+    container_name: federation-hub-published-test
+    environment:
+      - DEBUG_LEVEL=DETAILED
+      - DEBUG_FORMAT=human
+      - FEDERATION_HUB_PORT=8443
+      - FEDERATION_DB_PATH=/data/hub.db
+    ports:
+      - "8443:8443"
+      - "8444:8444"
+    volumes:
+      - hub-data-published:/data
+    networks:
+      - federation-network-published
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"fetch('http://localhost:8444/health').then(r => r.ok ? process.exit(0) : process.exit(1)).catch(() => process.exit(1))\""]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+networks:
+  federation-network-published:
+    driver: bridge
+
+volumes:
+  hub-data-published:
+    driver: local

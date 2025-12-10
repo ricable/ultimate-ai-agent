@@ -1,0 +1,63 @@
+{
+  "id": "121 4299",
+  "name": "Dynamic Random Access Backoff",
+  "cxc_code": "CXC4011937",
+  "value_package": "High Load Handling",
+  "value_package_id": "FAJ 801 0415",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature improves the random access success rate, and decreases inter-cell",
+  "parameters": [
+    {
+      "name": "Uen.AB",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.pmRaBackoffDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmRaBackoffDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmRaBackoffDistr",
+      "description": "Performance counter pmRaBackoffDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011937 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011937 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/242_22104-LZA7016014_1Uen.AB.md",
+  "file_hash": "1cc47bd4036a09e7af8edc3f06461614",
+  "processed_at": "2025-10-19 15:50:04",
+  "network_impact": {},
+  "performance_impact": {}
+}

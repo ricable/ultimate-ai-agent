@@ -1,0 +1,135 @@
+version: '3.8'
+
+services:
+  # Federation Hub Server
+  federation-hub:
+    build:
+      context: ../..
+      dockerfile: docker/federation-test/Dockerfile.hub
+    container_name: federation-hub
+    ports:
+      - "8443:8443"
+    environment:
+      - NODE_ENV=production
+      - HUB_PORT=8443
+      - HUB_DB_PATH=/data/hub.db
+    volumes:
+      - hub-data:/data
+    networks:
+      - federation-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8443/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+
+  # Agent 1: Researcher (finds patterns)
+  agent-researcher:
+    build:
+      context: ../..
+      dockerfile: docker/federation-test/Dockerfile.agent
+    container_name: agent-researcher
+    depends_on:
+      - federation-hub
+    environment:
+      - AGENT_TYPE=researcher
+      - AGENT_ID=researcher-001
+      - TENANT_ID=test-collaboration
+      - HUB_ENDPOINT=ws://federation-hub:8443
+      - TASK=research
+    networks:
+      - federation-network
+
+  # Agent 2: Coder (implements solutions)
+  agent-coder:
+    build:
+      context: ../..
+      dockerfile: docker/federation-test/Dockerfile.agent
+    container_name: agent-coder
+    depends_on:
+      - federation-hub
+      - agent-researcher
+    environment:
+      - AGENT_TYPE=coder
+      - AGENT_ID=coder-001
+      - TENANT_ID=test-collaboration
+      - HUB_ENDPOINT=ws://federation-hub:8443
+      - TASK=implement
+    networks:
+      - federation-network
+
+  # Agent 3: Tester (validates work)
+  agent-tester:
+    build:
+      context: ../..
+      dockerfile: docker/federation-test/Dockerfile.agent
+    container_name: agent-tester
+    depends_on:
+      - federation-hub
+      - agent-coder
+    environment:
+      - AGENT_TYPE=tester
+      - AGENT_ID=tester-001
+      - TENANT_ID=test-collaboration
+      - HUB_ENDPOINT=ws://federation-hub:8443
+      - TASK=validate
+    networks:
+      - federation-network
+
+  # Agent 4: Reviewer (quality check)
+  agent-reviewer:
+    build:
+      context: ../..
+      dockerfile: docker/federation-test/Dockerfile.agent
+    container_name: agent-reviewer
+    depends_on:
+      - federation-hub
+      - agent-tester
+    environment:
+      - AGENT_TYPE=reviewer
+      - AGENT_ID=reviewer-001
+      - TENANT_ID=test-collaboration
+      - HUB_ENDPOINT=ws://federation-hub:8443
+      - TASK=review
+    networks:
+      - federation-network
+
+  # Agent 5: Different tenant (should be isolated)
+  agent-isolated:
+    build:
+      context: ../..
+      dockerfile: docker/federation-test/Dockerfile.agent
+    container_name: agent-isolated
+    depends_on:
+      - federation-hub
+    environment:
+      - AGENT_TYPE=researcher
+      - AGENT_ID=isolated-001
+      - TENANT_ID=different-tenant
+      - HUB_ENDPOINT=ws://federation-hub:8443
+      - TASK=research
+    networks:
+      - federation-network
+
+  # Monitoring Dashboard
+  monitor:
+    build:
+      context: ../..
+      dockerfile: docker/federation-test/Dockerfile.monitor
+    container_name: federation-monitor
+    depends_on:
+      - federation-hub
+    ports:
+      - "3000:3000"
+    environment:
+      - HUB_ENDPOINT=http://federation-hub:8443
+    networks:
+      - federation-network
+
+volumes:
+  hub-data:
+    driver: local
+
+networks:
+  federation-network:
+    driver: bridge

@@ -1,0 +1,332 @@
+{
+  "id": "121 3075",
+  "name": "Carrier Aggregation-Aware IFLB",
+  "cxc_code": "CXC4011666",
+  "value_package": "Advanced Carrier Aggregation",
+  "value_package_id": "FAJ 801 0564",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Carrier Aggregation-Aware IFLB feature improves load balancing by considering the",
+  "parameters": [
+    {
+      "name": "EUtranFreqRelation.caTriggeredRedirectionActive",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "ExternalENodeBFunction.eSCellCapacityScaling",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExternalENodeBFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbCaCapHysteresis",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbCaHysteresis",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbCaThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbDiffCaOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "EUtranCellFDD.cellSubscriptionCapacity",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.cellSubscriptionCapacity",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellRelation.loadBalancing",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "LoadBalancingFunction.lbCeiling",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbThreshold",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "QciProfileOperatorDefined.qciSubscriptionQuanta",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "QciProfilePredefined.qciSubscriptionQuanta",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqLb.a5Threshold1Rsrp",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigEUtraInterFreqLb"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqLb.a5Threshold2Rsrp",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigEUtraInterFreqLb"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqLb.a5Threshold2Rsrq",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigEUtraInterFreqLb"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqLb.hysteresisA5",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigEUtraInterFreqLb"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_FREQ",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_UE_CA_CAPABLE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRAVERSED_UES",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.CH",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "RobustCallSetup.intraLteMobilityDelayEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RobustCallSetup"
+    },
+    {
+      "name": "EUtranCellFDD.lbActionForEndcUe",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.lbActionForEndcUe",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "UnsupportedFreqProfile.unsupportedFreqList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UnsupportedFreqProfile"
+    },
+    {
+      "name": "RATFreqPrio.freqPrioListEUTRA",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RATFreqPrio"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCaRedirectMeasRepUe",
+      "description": "Performance counter pmCaRedirectMeasRepUe",
+      "category": "General"
+    },
+    {
+      "name": "pmCaRedirectMeasuredUe",
+      "description": "Performance counter pmCaRedirectMeasuredUe",
+      "category": "General"
+    },
+    {
+      "name": "pmCaRedirectQualifiedUe",
+      "description": "Performance counter pmCaRedirectQualifiedUe",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeAttNonMob",
+      "description": "Performance counter pmHoExeAttNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccNonMob",
+      "description": "Performance counter pmHoExeSuccNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExecAttLteInterFCaRedirect",
+      "description": "Performance counter pmHoExecAttLteInterFCaRedirect",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExecSuccLteInterFCaRedirect",
+      "description": "Performance counter pmHoExecSuccLteInterFCaRedirect",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttLteInterFCaRedirect",
+      "description": "Performance counter pmHoPrepAttLteInterFCaRedirect",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttNonMob",
+      "description": "Performance counter pmHoPrepAttNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccLteInterFCaRedirect",
+      "description": "Performance counter pmHoPrepSuccLteInterFCaRedirect",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccNonMob",
+      "description": "Performance counter pmHoPrepSuccNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmfunction",
+      "description": "Performance counter pmfunction",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_FREQ",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_UE_CA_CAPABLE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRAVERSED_UES",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011666 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011666 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/173_22104-LZA7016014_1Uen.CH.md",
+  "file_hash": "974e9ecae5aeb8e9e3feab64b8913f44",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

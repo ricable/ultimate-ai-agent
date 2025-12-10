@@ -1,0 +1,209 @@
+{
+  "file_hash": "cadad892d6525b04eda8c3b2b9ec9ee7",
+  "feature": {
+    "id": "121 4755",
+    "name": "IEEE 1588 Boundary Clock",
+    "cxc_code": "CXC4040007",
+    "value_package": "NR Base Package  Time and Phase Synchronization",
+    "value_package_id": "FAJ 801 4002  FAJ 801 0439",
+    "access_type": "NR  LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature uses PTP to transfer the frequency of the PRC to the radio",
+    "parameters": [
+      {
+        "name": "RadioEquipmentClockReference.encapsulation",
+        "type": "Must be set to BoundaryOrdinaryClock for this                                 feature.",
+        "description": "",
+        "mo_class": "RadioEquipmentClockReference"
+      },
+      {
+        "name": "RadioEquipmentClockReference.holdOffTime",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "RadioEquipmentClockReference"
+      },
+      {
+        "name": "RadioEquipmentClockReference.priority",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "RadioEquipmentClockReference"
+      },
+      {
+        "name": "RadioEquipmentClockReference.waitToRestoreTime",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "RadioEquipmentClockReference"
+      },
+      {
+        "name": "BoundaryOrdinaryClock.clockType",
+        "type": "Must be set to SLAVE_ONLY_ORDINARY_CLOCK for                                 this feature.",
+        "description": "",
+        "mo_class": "BoundaryOrdinaryClock"
+      },
+      {
+        "name": "BoundaryOrdinaryClock.ptpProfile",
+        "type": "Must be set to G_8265_1 for this feature.",
+        "description": "",
+        "mo_class": "BoundaryOrdinaryClock"
+      },
+      {
+        "name": "BoundaryOrdinaryClock.domainNumber",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "BoundaryOrdinaryClock"
+      },
+      {
+        "name": "PtpBcOcPort.associatedGrandmaster",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "PtpBcOcPort.dscp",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "PtpBcOcPort.transportInterface",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "Synchronization.featureStatePtpFreq",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "Synchronization"
+      },
+      {
+        "name": "Synchronization.licenseStatePtpFreq",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "Synchronization"
+      },
+      {
+        "name": "PacketFrequencySyncRef.cachedIpAddress",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PacketFrequencySyncRef"
+      },
+      {
+        "name": "PacketFrequencySyncRef.dscp",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PacketFrequencySyncRef"
+      },
+      {
+        "name": "PacketFrequencySyncRef.ipAccessHostEtRef",
+        "type": "Used to send and receive PTP messages.",
+        "description": "",
+        "mo_class": "PacketFrequencySyncRef"
+      },
+      {
+        "name": "PacketFrequencySyncRef.packetSyncStatus",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PacketFrequencySyncRef"
+      },
+      {
+        "name": "PacketFrequencySyncRef.ptpDomain",
+        "type": "PTP domain of the synchronization reference. This must be set the                                     same as in the PTP Grandmaster.",
+        "description": "",
+        "mo_class": "PacketFrequencySyncRef"
+      },
+      {
+        "name": "PacketFrequencySyncRef.ptpGrandMasterIdentity",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PacketFrequencySyncRef"
+      },
+      {
+        "name": "PacketFrequencySyncRef.ptpOwnPortIdentity",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PacketFrequencySyncRef"
+      },
+      {
+        "name": "PacketFrequencySyncRef.ptpParentPortIdentity",
+        "type": "PTP identity for the parent port that sends synchronization messages                                 to the node. That is, the PTP identity of the nearest master                                 port.",
+        "description": "",
+        "mo_class": "PacketFrequencySyncRef"
+      },
+      {
+        "name": "PacketFrequencySyncRef.ptpQualityLevel",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PacketFrequencySyncRef"
+      },
+      {
+        "name": "PacketFrequencySyncRef.serverAddress",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PacketFrequencySyncRef"
+      },
+      {
+        "name": "Uen.BM",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "BoundaryOrdinaryClock.clockStatus",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "BoundaryOrdinaryClock"
+      },
+      {
+        "name": "PtpBcOcPort.ptpPortStatus",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PtpBcOcPort"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmeanPathDelayAvg",
+        "description": "Performance counter pmeanPathDelayAvg",
+        "category": "General"
+      },
+      {
+        "name": "pmeanPathDelayMax",
+        "description": "Performance counter pmeanPathDelayMax",
+        "category": "General"
+      },
+      {
+        "name": "pmeanPathDelayMin",
+        "description": "Performance counter pmeanPathDelayMin",
+        "category": "General"
+      },
+      {
+        "name": "pmeanPathDelayStDev",
+        "description": "Performance counter pmeanPathDelayStDev",
+        "category": "General"
+      },
+      {
+        "name": "pmentClockReference",
+        "description": "Performance counter pmentClockReference",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": null,
+    "deactivation_step": null,
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/194_22104-LZA7016014_1Uen.BM.md",
+    "file_hash": "cadad892d6525b04eda8c3b2b9ec9ee7",
+    "processed_at": "2025-10-19 17:07:27",
+    "network_impact": {},
+    "performance_impact": {
+      "counters": "New counters introduced"
+    }
+  }
+}

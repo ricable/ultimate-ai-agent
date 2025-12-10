@@ -1,0 +1,23 @@
+{
+  "name": "@agentic-jujutsu/e2b-tests",
+  "version": "0.1.0",
+  "description": "E2B sandbox tests for Kubernetes controller",
+  "private": true,
+  "scripts": {
+    "test:e2b": "ts-node run_e2b_tests.ts",
+    "test:watch": "nodemon --watch '*.ts' --exec 'npm run test:e2b'",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@e2b/code-interpreter": "^0.0.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "file_hash": "3544ca3e69e90a293769c33b06e3daca",
+  "feature": {
+    "id": "121 4578",
+    "name": "Return Loss Antenna Supervision",
+    "cxc_code": "CXC4012024",
+    "value_package": "NR Base Package",
+    "value_package_id": "FAJ 801 4002",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature detects breaks in the cables connected to radio units by measuring return loss as",
+    "parameters": [
+      {
+        "name": "FreqBandData.dlFrequencyRange",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FreqBandData"
+      },
+      {
+        "name": "FreqBandData.ulFrequencyRange",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FreqBandData"
+      },
+      {
+        "name": "FreqBandData.vswrValue",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FreqBandData"
+      },
+      {
+        "name": "RfBranch.bandList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RfBranch"
+      },
+      {
+        "name": "RfPort.vswrValue",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RfPort"
+      },
+      {
+        "name": "FreqBandData.vswrSupervisionActive",
+        "type": "Affecting",
+        "description": "The value of the attribute must be set to                 true to enable the feature.",
+        "mo_class": "FreqBandData"
+      },
+      {
+        "name": "FreqBandData.vswrSupervisionSensitivity",
+        "type": "Affecting",
+        "description": "The desired supervision sensitivity must be set as the value             of the attribute.",
+        "mo_class": "FreqBandData"
+      },
+      {
+        "name": "RfPort.administrativeState",
+        "type": "Affecting",
+        "description": "The VSWR Over Threshold alarm is only raised             if the value of the attribute is set to UNLOCKED.",
+        "mo_class": "RfPort"
+      },
+      {
+        "name": "RfPort.vswrSupervisionActive",
+        "type": "Affecting",
+        "description": "The value of the attribute must be set to                 true to enable the feature.",
+        "mo_class": "RfPort"
+      },
+      {
+        "name": "RfPort.vswrSupervisionSensitivity",
+        "type": "Affecting",
+        "description": "The desired supervision sensitivity must be set as the value             of the attribute.",
+        "mo_class": "RfPort"
+      },
+      {
+        "name": "Uen.AZ",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmReturnLoss",
+        "description": "Performance counter pmReturnLoss",
+        "category": "General"
+      },
+      {
+        "name": "pmReturnLossAvg",
+        "description": "Performance counter pmReturnLossAvg",
+        "category": "General"
+      },
+      {
+        "name": "pmReturnLossDiff",
+        "description": "Performance counter pmReturnLossDiff",
+        "category": "General"
+      },
+      {
+        "name": "pmReturnLossMin",
+        "description": "Performance counter pmReturnLossMin",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012024 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012024 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/169_22104-LZA7016014_1Uen.AZ.md",
+    "file_hash": "3544ca3e69e90a293769c33b06e3daca",
+    "processed_at": "2025-10-19 17:07:26",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

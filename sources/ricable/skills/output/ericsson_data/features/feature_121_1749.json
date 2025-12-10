@@ -1,0 +1,143 @@
+{
+  "id": "121 1749",
+  "name": "Dynamic QoS Modification",
+  "cxc_code": "CXC4011061",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature modifies the QoS profile (as defined by 3GPP) for an already established",
+  "parameters": [
+    {
+      "name": "INTERNAL_PROC_ERAB_MODIFY",
+      "type": "EVENT_PARAM_ERAB_MODIFY_RESULT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_ERAB_MODIFY",
+      "type": "EVENT_PARAM_ERAB_QCI",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ERAB_DATA_INFO",
+      "type": "EVENT_PARAM_ERAB_GBR",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ERAB_DATA_INFO",
+      "type": "EVENT_PARAM_ERAB_ARP",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AV",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "QciProfileOperatorDefined.dataFwdPerQciEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "QciProfilePredefined.dataFwdPerQciEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfileOperatorDefined.rohcEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "QciProfilePredefined.rohcEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "EUtranCellFDD.pmErabModAttQci",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmErabModAttQci",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmErabModSuccQci",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmErabModSuccQci",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmErabModAttQci",
+      "description": "Performance counter pmErabModAttQci",
+      "category": "General"
+    },
+    {
+      "name": "pmErabModFailLic",
+      "description": "Performance counter pmErabModFailLic",
+      "category": "General"
+    },
+    {
+      "name": "pmErabModSuccQci",
+      "description": "Performance counter pmErabModSuccQci",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_ERAB_MODIFY",
+      "type": "EVENT_PARAM_ERAB_MODIFY_RESULT",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_ERAB_MODIFY",
+      "type": "EVENT_PARAM_ERAB_QCI",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_ERAB_DATA_INFO",
+      "type": "EVENT_PARAM_ERAB_GBR",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_ERAB_DATA_INFO",
+      "type": "EVENT_PARAM_ERAB_ARP",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011061 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011061 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/47_22104-LZA7016014_1Uen.AV.md",
+  "file_hash": "3bc39133b9f0b911af378044f0afc94a",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

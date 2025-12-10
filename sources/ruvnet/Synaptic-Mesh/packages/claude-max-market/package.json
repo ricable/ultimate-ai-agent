@@ -1,0 +1,71 @@
+{
+  "name": "@synaptic-neural-mesh/claude-max-market",
+  "version": "1.0.0",
+  "description": "NPX wrapper for Claude Max Docker orchestration and market integration with compliance",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "claude-max-market": "bin/claude-max-market.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest",
+    "lint": "eslint src/",
+    "docker:build": "docker build -t synaptic-mesh/claude-max .",
+    "docker:run": "docker run --rm synaptic-mesh/claude-max",
+    "compliance-check": "node src/compliance/check.js",
+    "legal-notice": "node src/legal/notice.js"
+  },
+  "keywords": [
+    "claude",
+    "docker", 
+    "orchestration",
+    "market",
+    "compliance",
+    "npx",
+    "synaptic-neural-mesh"
+  ],
+  "author": "Synaptic Neural Mesh Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "dockerode": "^4.0.2",
+    "commander": "^11.1.0",
+    "inquirer": "^9.2.12",
+    "chalk": "^5.3.0",
+    "crypto": "^1.0.1",
+    "node-cron": "^3.0.3",
+    "ws": "^8.16.0",
+    "uuid": "^9.0.1",
+    "yaml": "^2.3.4",
+    "tar": "^6.2.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.57.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/synaptic-neural-mesh"
+  },
+  "bugs": {
+    "url": "https://github.com/ruvnet/synaptic-neural-mesh/issues"
+  },
+  "homepage": "https://github.com/ruvnet/synaptic-neural-mesh#readme",
+  "compliance": {
+    "anthropicTosCompliant": true,
+    "noSharedApiKeys": true,
+    "peerOrchestrated": true,
+    "voluntaryParticipation": true,
+    "userControlRequired": true
+  },
+  "security": {
+    "dockerSandboxed": true,
+    "encryptedPayloads": true,
+    "userConsentRequired": true,
+    "usageLimitsEnforced": true
+  }
+}

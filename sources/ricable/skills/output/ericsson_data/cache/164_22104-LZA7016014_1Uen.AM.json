@@ -1,0 +1,383 @@
+{
+  "file_hash": "b443cb228c746aac1ec7bf434f2c8a8a",
+  "feature": {
+    "id": "121 4406",
+    "name": "Limited-Uplink-Aware IFLB",
+    "cxc_code": "CXC4011966",
+    "value_package": "Multi-Carrier Load Management",
+    "value_package_id": "FAJ 801 0427",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature introduces limited uplink awareness to load balancing and adapts the",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.cellDownlinkCaCapacity",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.estCellCapUsableFraction",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.cellDownlinkCaCapacity",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.estCellCapUsableFraction",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_SUB_RATIO",
+        "type": "EVENT_PARAM_SUB_RATIO",
+        "description": "Average subscription ratio for a cell during a load reporting period. Default                     time is 15 seconds.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PRIVATE_MESSAGE",
+        "type": "ASN.1 encoded content is part of the pmEventHeader",
+        "description": "X2 messages used to subscribe and exchange load information between RBSs.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "CGI of target cell that participates in load balancing if it is available.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_DIFF",
+        "description": "Load difference (in subscription ratio) between source and neighbor cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_DIFF_INT_SIGN",
+        "description": "Unsigned integer value of EVENT_PARAM_LB_DIFF . The value                     can be positive or negative.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_AMOUNT",
+        "description": "Load balancing amount (in subscription quanta) to be moved from source to                     target cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_SOURCE_RATIO",
+        "description": "Subscription ratio of source cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_TARGET_RATIO",
+        "description": "Subscription ratio of target cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_RATE_OFFSET",
+        "description": "Rate offset applied to offset the load balancing towards a cell with higher                     capacity, if the general traffic load level is low.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_OFFSET_INT_SIGN",
+        "description": "Unsigned integer value of EVENT_PARAM_LB_RATE_OFFSET. The                     value can be positive or negative.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_FREQ",
+        "description": "Target frequency",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+        "description": "Indicates the function that has triggered UE measurement.  Can be one of the following:    Load Balancing     CATR     Best Neighbor Relation (BNR) for Load Balancing",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_UE_CA_CABABLE",
+        "description": "Indicates whether or not the UE selected for load balancing related                     measurements is CA-capable.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "CGI of neighbor target cells for which UEs fulfilled A5 measurement criteria.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_TRAVERSED_UES",
+        "description": "Number of UEs checked and discarded before choosing this UE for load balancing                     related measurements.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "CGI of neighbor target cells for which UEs fulfilled A5 measurement criteria.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the RAT of the source for incoming handover and for target for                     outgoing handover cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+        "description": "Indicates the reason for not proceeding with a load balancing or CATR when a                     measurement report has been received from the UE:    CA criteria not met     Reported cell is not a valid load balancing target     Reported cell is a valid target, but lbAmount is already satisfied for the                         cell     Service Specific Load Management (SSLM) related restrictions     RSRQ of target cell is lower than configured threshold     UE has signalled interest in Multimedia Broadcast Multicast Service (MBMS)                         on serving frequency     UE has an ongoing Voice over IP (VoIP) call and does not support Single                         Radio Voice Call Continuity (SRVCC)",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+        "description": "Indicates the function that has triggered the UE measurement.   Can be one of the following:    Load balancing     CATR     BNR for load balancing",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+        "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+        "description": "Cause added indicating mobility due to load balancing.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+        "description": "Cause added indicating mobility due to load balancing.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AM",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellRelation.pmLbQualifiedUe",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.pmHoPrepAttLteInterFLb",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.pmHoPrepSuccLteInterFLb",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.pmHoExeAttLteInterFLb",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCaRedirectMeasuredUe",
+        "description": "Performance counter pmCaRedirectMeasuredUe",
+        "category": "General"
+      },
+      {
+        "name": "pmCaRedirectQualifiedUe",
+        "description": "Performance counter pmCaRedirectQualifiedUe",
+        "category": "General"
+      },
+      {
+        "name": "pmEventHeader",
+        "description": "Performance counter pmEventHeader",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttLteInterFLb",
+        "description": "Performance counter pmHoExeAttLteInterFLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccLteInterFLb",
+        "description": "Performance counter pmHoExeSuccLteInterFLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExecAttLteInterFCaRedirect",
+        "description": "Performance counter pmHoExecAttLteInterFCaRedirect",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExecSuccLteInterFCaRedirect",
+        "description": "Performance counter pmHoExecSuccLteInterFCaRedirect",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteInterFCaRedirect",
+        "description": "Performance counter pmHoPrepAttLteInterFCaRedirect",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteInterFLb",
+        "description": "Performance counter pmHoPrepAttLteInterFLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccLteInterFCaRedirect",
+        "description": "Performance counter pmHoPrepSuccLteInterFCaRedirect",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccLteInterFLb",
+        "description": "Performance counter pmHoPrepSuccLteInterFLb",
+        "category": "General"
+      },
+      {
+        "name": "pmLbQualifiedUe",
+        "description": "Performance counter pmLbQualifiedUe",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_LB_SUB_RATIO",
+        "type": "EVENT_PARAM_SUB_RATIO",
+        "description": "Average subscription ratio for a cell during a load reporting period. Default                     time is 15 seconds."
+      },
+      {
+        "name": "X2_PRIVATE_MESSAGE",
+        "type": "ASN.1 encoded content is part of the pmEventHeader",
+        "description": "X2 messages used to subscribe and exchange load information between RBSs."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "CGI of target cell that participates in load balancing if it is available."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_DIFF",
+        "description": "Load difference (in subscription ratio) between source and neighbor cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_DIFF_INT_SIGN",
+        "description": "Unsigned integer value of EVENT_PARAM_LB_DIFF . The value                     can be positive or negative."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_AMOUNT",
+        "description": "Load balancing amount (in subscription quanta) to be moved from source to                     target cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_SOURCE_RATIO",
+        "description": "Subscription ratio of source cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_TARGET_RATIO",
+        "description": "Subscription ratio of target cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_RATE_OFFSET",
+        "description": "Rate offset applied to offset the load balancing towards a cell with higher                     capacity, if the general traffic load level is low."
+      },
+      {
+        "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+        "type": "EVENT_PARAM_LB_OFFSET_INT_SIGN",
+        "description": "Unsigned integer value of EVENT_PARAM_LB_RATE_OFFSET. The                     value can be positive or negative."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_FREQ",
+        "description": "Target frequency"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+        "description": "Indicates the function that has triggered UE measurement.  Can be one of the following:    Load Balancing     CATR     Best Neighbor Relation (BNR) for Load Balancing"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_UE_CA_CABABLE",
+        "description": "Indicates whether or not the UE selected for load balancing related                     measurements is CA-capable."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "CGI of neighbor target cells for which UEs fulfilled A5 measurement criteria."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_MEAS",
+        "type": "EVENT_PARAM_TRAVERSED_UES",
+        "description": "Number of UEs checked and discarded before choosing this UE for load balancing                     related measurements."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_NEIGHBOR_CGI",
+        "description": "CGI of neighbor target cells for which UEs fulfilled A5 measurement criteria."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the RAT of the source for incoming handover and for target for                     outgoing handover cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+        "description": "Indicates the reason for not proceeding with a load balancing or CATR when a                     measurement report has been received from the UE:    CA criteria not met     Reported cell is not a valid load balancing target     Reported cell is a valid target, but lbAmount is already satisfied for the                         cell     Service Specific Load Management (SSLM) related restrictions     RSRQ of target cell is lower than configured threshold     UE has signalled interest in Multimedia Broadcast Multicast Service (MBMS)                         on serving frequency     UE has an ongoing Voice over IP (VoIP) call and does not support Single                         Radio Voice Call Continuity (SRVCC)"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_LB_QUAL",
+        "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+        "description": "Indicates the function that has triggered the UE measurement.   Can be one of the following:    Load balancing     CATR     BNR for load balancing"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+        "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+        "description": "Cause added indicating mobility due to load balancing."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+        "description": "Cause added indicating mobility due to load balancing."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011966 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011966 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/164_22104-LZA7016014_1Uen.AM.md",
+    "file_hash": "b443cb228c746aac1ec7bf434f2c8a8a",
+    "processed_at": "2025-10-19 15:48:55",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

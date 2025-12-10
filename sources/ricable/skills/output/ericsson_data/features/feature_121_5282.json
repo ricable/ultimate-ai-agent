@@ -1,0 +1,111 @@
+{
+  "id": "121 5282",
+  "name": "AI Powered Advanced Cell Supervision",
+  "cxc_code": "CXC4012522",
+  "value_package": "Self-Organizing Networks",
+  "value_package_id": "FAJ 201 0435",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "AI Powered Advanced Cell Supervision is a feature that delivers AI powered sleeping",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.aiAdvCellSupMode  EUtranCellTDD.aiAdvCellSupMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.aiAdvCellSupAction  EUtranCellTDD.aiAdvCellSupAction",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.aiAdvCellSupAdjustMimoSleep  EUtranCellTDD.aiAdvCellSupAdjustMimoSleep",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "Uen.AB",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.aiAdvCellSupMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.aiAdvCellSupMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.aiAdvCellSupAction",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.aiAdvCellSupAction",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.aiAdvCellSupAdjustMimoSleep",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.aiAdvCellSupAdjustMimoSleep",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmode",
+      "description": "Performance counter pmode",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_EVENT_AI_ACS_CONCEPT_DRIFT_DETECTION",
+      "type": "Indicating whether AI Powered ACS detects concept drift.",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012522 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012522 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/536_22104-LZA7016014_1Uen.AB.md",
+  "file_hash": "9f33d556d471d355dddb5b0f8337f741",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

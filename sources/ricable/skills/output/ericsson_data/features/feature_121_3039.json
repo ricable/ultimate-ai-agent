@@ -1,0 +1,162 @@
+{
+  "id": "121 3039",
+  "name": "Coverage-Triggered TD-SCDMA IRAT Handover",
+  "cxc_code": "CXC4011011",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Coverage-Triggered TD-SCDMA Session Continuity feature (optionally combined with",
+  "parameters": [
+    {
+      "name": "coverageIndicator                 TOOLTIPFLAG",
+      "type": "Indicates whether the coverage area of the cell indicated by the cell relation has approximately the same coverage area (overlap) as this cell, or whether it fully covers this cell, or if it is fully contained in this cell",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "mobilityAction                 TOOLTIPFLAG",
+      "type": "Preferred way to transfer UE in connected mode to a specific TD-SCDMA frequency",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "rac                 TOOLTIPFLAG",
+      "type": "Routing area code of a routing area  The value -1 of the attribute is used to mark that the optional RAC IE should not be sent in the Target ID IE of the HANDOVER REQUIRED S1 message. More information can be found in 3GPP TS 36.413.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "lac                 TOOLTIPFLAG",
+      "type": "Location area code of the external UTRAN cell  A fixed-length code identifying the location area within a PLMN. More information can be found in 3GPP TS 23.003.  The value 0 of the attribute is used to mark invalid or unusable location area code information for the cell. For example, handover to an external UTRAN cell (that is part of a UTRAN cell relation) can be considered only if the value of the location area code attribute is not 0.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the target cell  Will have the value EVENT_VALUE_TDSCDMA when a TD-SCDMA Handover preparation was performed.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": "Type of selection for the handover target cell: blind (non- measurement based, that is, based on preconfigured information) or measurement based",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the source cell  Will have the value EVENT_VALUE_UTRA_SOURCE when an incoming TD-SCDMA Handover preparation was performed.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the target cell  Will have the value EVENT_VALUE_TDSCDMA when a TD-SCDMA Handover execution was performed.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": "Type of selection for the handover target cell: blind (non-measurement based, that is, based on preconfigured information) or measurement based",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AC",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "RobustCallSetup.geranUtranMobilityDelayEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RobustCallSetup"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmBadCovEvalReport",
+      "description": "Performance counter pmBadCovEvalReport",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeAtt",
+      "description": "Performance counter pmHoExeAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSucc",
+      "description": "Performance counter pmHoExeSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAtt",
+      "description": "Performance counter pmHoPrepAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSucc",
+      "description": "Performance counter pmHoPrepSucc",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the target cell  Will have the value EVENT_VALUE_TDSCDMA when a TD-SCDMA Handover preparation was performed."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": "Type of selection for the handover target cell: blind (non- measurement based, that is, based on preconfigured information) or measurement based"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the source cell  Will have the value EVENT_VALUE_UTRA_SOURCE when an incoming TD-SCDMA Handover preparation was performed."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the target cell  Will have the value EVENT_VALUE_TDSCDMA when a TD-SCDMA Handover execution was performed."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": "Type of selection for the handover target cell: blind (non-measurement based, that is, based on preconfigured information) or measurement based"
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011011 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011011 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/34_22104-LZA7016014_1Uen.AC.md",
+  "file_hash": "f188022432f237c0e3752c243c0991a7",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,121 @@
+{
+  "id": "121 5697",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4012723",
+  "value_package": "Voice over NR",
+  "value_package_id": "FAJ 801 4017",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables packet prediction for UEs that run services with predictable and",
+  "parameters": [
+    {
+      "name": "LogicalChannelUeCfg.srDelayTimerApplied",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogicalChannelUeCfg"
+    },
+    {
+      "name": "BsrUeCfg.srDelayTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BsrUeCfg"
+    },
+    {
+      "name": "UlService.ulPacketPredictionMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UlService"
+    },
+    {
+      "name": "UlService.ulServicePacketSize",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UlService"
+    },
+    {
+      "name": "UlService.ulServicePacketInterval",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UlService"
+    },
+    {
+      "name": "UlService.ulService5qi",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UlService"
+    },
+    {
+      "name": "GNBDUFunction.ulServiceDepHEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GNBDUFunction"
+    },
+    {
+      "name": "DuPerUeTrafficRep",
+      "type": "per_ue_mac_predictive_grant_update_ul_empty  per_ue_mac_predictive_grant_update_ul_non_empty  per_ue_mac_ul_bsr_predictive_grant  per_ue_mac_vol_ul_bsr_predictive_grant",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "DuPerUeTrafficRepAggr10",
+      "type": "per_ue_mac_predictive_grant_update_ul_empty  per_ue_mac_predictive_grant_update_ul_non_empty  per_ue_mac_ul_bsr_predictive_grant  per_ue_mac_vol_ul_bsr_predictive_grant",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "DuPerUeTrafficRepAggr60",
+      "type": "per_ue_mac_predictive_grant_update_ul_empty  per_ue_mac_predictive_grant_update_ul_non_empty  per_ue_mac_ul_bsr_predictive_grant  per_ue_mac_vol_ul_bsr_predictive_grant",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.J",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsDrbEstabSuccSrDelayNotCapable5qi",
+      "description": "Performance counter pmEbsDrbEstabSuccSrDelayNotCapable5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "DuPerUeTrafficRep",
+      "type": "per_ue_mac_predictive_grant_update_ul_empty  per_ue_mac_predictive_grant_update_ul_non_empty  per_ue_mac_ul_bsr_predictive_grant  per_ue_mac_vol_ul_bsr_predictive_grant",
+      "description": ""
+    },
+    {
+      "name": "DuPerUeTrafficRepAggr10",
+      "type": "per_ue_mac_predictive_grant_update_ul_empty  per_ue_mac_predictive_grant_update_ul_non_empty  per_ue_mac_ul_bsr_predictive_grant  per_ue_mac_vol_ul_bsr_predictive_grant",
+      "description": ""
+    },
+    {
+      "name": "DuPerUeTrafficRepAggr60",
+      "type": "per_ue_mac_predictive_grant_update_ul_empty  per_ue_mac_predictive_grant_update_ul_non_empty  per_ue_mac_ul_bsr_predictive_grant  per_ue_mac_vol_ul_bsr_predictive_grant",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012723 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012723 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/221_22104-LZA7016017_1Uen.J.md",
+  "file_hash": "1c64825e5187bae8b59dab0fa3ea31e1",
+  "processed_at": "2025-10-19 15:50:10",
+  "network_impact": {},
+  "performance_impact": {}
+}

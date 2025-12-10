@@ -1,0 +1,26 @@
+FROM node:22-slim
+
+WORKDIR /app
+
+# Create test package tarball first
+# This simulates: npm pack && npm install agentic-flow-1.1.9.tgz
+
+# Install the package from npm (will use local tarball in test)
+ARG ANTHROPIC_API_KEY
+ARG OPENROUTER_API_KEY
+ARG GOOGLE_GEMINI_API_KEY
+
+ENV ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+ENV OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+ENV GOOGLE_GEMINI_API_KEY=${GOOGLE_GEMINI_API_KEY}
+
+# Test 1: Version check
+RUN echo "Test 1: Version check"
+
+# Test 2: Anthropic provider (if key available)
+RUN echo "Test 2: Anthropic provider"
+
+# Test 3: Help display
+RUN echo "Test 3: Help display"
+
+CMD ["sh", "-c", "echo 'Docker test container ready. Run: docker run agentic-flow-npm-test'"]

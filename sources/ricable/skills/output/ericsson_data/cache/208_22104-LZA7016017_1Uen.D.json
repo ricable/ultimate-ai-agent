@@ -1,0 +1,162 @@
+{
+  "file_hash": "f4ac0ef95a6534b3ada13d2887626fb5",
+  "feature": {
+    "id": "121 5626",
+    "name": "Automated Radio Resource Partitioning",
+    "cxc_code": "CXC4012729",
+    "value_package": "5G Advanced Automation",
+    "value_package_id": "FAJ 801 4026",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature allows automatic updating of the resource share of network",
+    "parameters": [
+      {
+        "name": "ResourceShareLimit.resourceShareLimitId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceShareLimit"
+      },
+      {
+        "name": "ResourceShareLimit.spectrumShareDlLowerLimit",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceShareLimit"
+      },
+      {
+        "name": "ResourceShareLimit.spectrumShareDlUpperLimit",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceShareLimit"
+      },
+      {
+        "name": "ResourceShareLimit.spectrumShareUlLowerLimit",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceShareLimit"
+      },
+      {
+        "name": "ResourceShareLimit.spectrumShareUlUpperLimit",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceShareLimit"
+      },
+      {
+        "name": "ResourceAllocationPolicy.rrpControllerRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "ResourceAllocationPolicy.resourceShareLimitRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "AutomatedQos.automatedQosId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AutomatedQos"
+      },
+      {
+        "name": "RrpController.rrpControllerId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RrpController"
+      },
+      {
+        "name": "RrpController.spectrumShareDlDownStepLimit",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RrpController"
+      },
+      {
+        "name": "RrpController.spectrumShareDlUpStepLimit",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RrpController"
+      },
+      {
+        "name": "RrpController.spectrumShareUlDownStepLimit",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RrpController"
+      },
+      {
+        "name": "RrpController.spectrumShareUlUpStepLimit",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RrpController"
+      },
+      {
+        "name": "RrpController.targetThpDl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RrpController"
+      },
+      {
+        "name": "RrpController.targetThpUl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RrpController"
+      },
+      {
+        "name": "RrpController.rrpControllerMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RrpController"
+      },
+      {
+        "name": "ResourceAllocationPolicy.overAllocationAllowed",
+        "type": "Affecting",
+        "description": "The value of this attribute defines whether the over-allocation of                                 resource shares is enabled. The default value of this attribute is                                 set to true.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "ServicePolicy.resourceShareLimitRef",
+        "type": "Affecting",
+        "description": "This attribute is used to reference an instance of the                                     ResourceShareLimit MO class where resource                                 share limits for service policies are configured.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "ServicePolicy.rrpControllerRef",
+        "type": "Affecting",
+        "description": "Partitions with different types of automation cannot coexist under                                 the same ResourceAllocationPolicy MO class.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "Uen.D",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012729 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012729 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/208_22104-LZA7016017_1Uen.D.md",
+    "file_hash": "f4ac0ef95a6534b3ada13d2887626fb5",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

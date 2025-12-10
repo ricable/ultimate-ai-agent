@@ -1,0 +1,152 @@
+{
+  "file_hash": "b1010f73c8fa81ce9d677f99b02bd74f",
+  "feature": {
+    "id": "121 4619",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012036",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Dynamic Uplink Resource Allocation feature enables the Uplink Scheduler to allocate",
+    "parameters": [
+      {
+        "name": "QciProfileOperatorDefined.relativePriority  QciProfilePredefined.relativePriority",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfileOperatorDefined.relativePriority  QciProfilePredefined.relativePriority  SciProfile.schedulingAlgorithm",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "EUtranCellTDD.pZeroNominalPusch  EUtranCellFDD.pZeroNominalPusch",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "Uen.AT",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "QciProfileOperatorDefined.relativePriority",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfilePredefined.relativePriority",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "SciProfile.schedulingAlgorithm",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "SciProfile"
+      },
+      {
+        "name": "EUtranCellTDD.pZeroNominalPusch",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pZeroNominalPusch",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmLcgThpTimeUlLcg",
+        "description": "Performance counter pmLcgThpTimeUlLcg",
+        "category": "General"
+      },
+      {
+        "name": "pmLcgThpVolUlLcg",
+        "description": "Performance counter pmLcgThpVolUlLcg",
+        "category": "General"
+      },
+      {
+        "name": "pmMacUeThpTimeUl",
+        "description": "Performance counter pmMacUeThpTimeUl",
+        "category": "General"
+      },
+      {
+        "name": "pmMacUeThpUlDistr",
+        "description": "Performance counter pmMacUeThpUlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacUeThpVolUl",
+        "description": "Performance counter pmMacUeThpVolUl",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolUlDrbQci",
+        "description": "Performance counter pmPdcpVolUlDrbQci",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThp2UlDistr",
+        "description": "Performance counter pmUeThp2UlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThpTimeUl",
+        "description": "Performance counter pmUeThpTimeUl",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThpUlDistr",
+        "description": "Performance counter pmUeThpUlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThpVolUl",
+        "description": "Performance counter pmUeThpVolUl",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012036 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012036 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/285_22104-LZA7016014_1Uen.AT.md",
+    "file_hash": "b1010f73c8fa81ce9d677f99b02bd74f",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

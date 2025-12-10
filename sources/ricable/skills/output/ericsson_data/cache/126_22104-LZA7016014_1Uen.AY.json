@@ -1,0 +1,139 @@
+{
+  "file_hash": "b0c7517718a5a4faccc7e514bc41f7cf",
+  "feature": {
+    "id": "121 2053",
+    "name": "Downlink Frequency-Selective Scheduling",
+    "cxc_code": "CXC4011255",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "Frequency-Selective Scheduling feature enables the allocation of spectrum parts to a user.",
+    "parameters": [
+      {
+        "name": "QciProfileOperatorDefined.dlResourceAllocationStrategy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfilePredefined.dlResourceAllocationStrategy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "EUtranCellFDD.dlInterferenceManagementActive",
+        "type": "Affected",
+        "description": "Specifies if the downlink interference management is enabled or                                 disabled.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.dlInterferenceManagementActive",
+        "type": "Affected",
+        "description": "Specifies if the downlink interference management is enabled or                                 disabled.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.dlConfigurableFrequencyStart",
+        "type": "Affected",
+        "description": "This parameter specifies the start frequency offset for resources                                 allocation when the downlink interference management is disabled.                                 The parameter is indicated as a percentage of the configured                                 bandwidth,",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.dlConfigurableFrequencyStart",
+        "type": "Affected",
+        "description": "This parameter specifies the start frequency offset for resources                                 allocation when the downlink interference management is disabled.                                 The parameter is indicated as a percentage of the configured                                 bandwidth,",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_CELL_CQI_SUBBAND",
+        "type": "EVENT_PARAM_PER_UE_CQI_SUBBAND[0..12]     EVENT_PARAM_PER_UE_CQI2_SUBBAND[0..12]     EVENT_PARAM_PER_UE_CQI_SUBBAND_SAMP     EVENT_PARAM_PER_UE_CQI2_SUBBAND_SAMP",
+        "description": "Event and event parameters to provide the data to obtain the                                     average CQI value of each sub-band reported by UEs in the cell                                     within the measurement period.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_CELL_CQI_SUBBAND",
+        "type": "EVENT_PARAM_PER_UE_CQI_SUBBAND[0..12]     EVENT_PARAM_PER_UE_CQI2_SUBBAND[0..12]     EVENT_PARAM_PER_UE_CQI_SUBBAND_SAMP     EVENT_PARAM_PER_UE_CQI2_SUBBAND_SAMP",
+        "description": "Event and event parameters to provide the data to obtain the                                     average CQI value of each sub-band reported by UEs in the cell                                     within the measurement period.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AY",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.dlFrequencyAllocationProportion",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.dlFrequencyAllocationProportion",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmRadioUeRepCqi2Subband0Sum",
+        "description": "Performance counter pmRadioUeRepCqi2Subband0Sum",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqi2Subband12Sum",
+        "description": "Performance counter pmRadioUeRepCqi2Subband12Sum",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqi2SubbandSamp",
+        "description": "Performance counter pmRadioUeRepCqi2SubbandSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqiSubband0Sum",
+        "description": "Performance counter pmRadioUeRepCqiSubband0Sum",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqiSubband12Sum",
+        "description": "Performance counter pmRadioUeRepCqiSubband12Sum",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqiSubbandSamp",
+        "description": "Performance counter pmRadioUeRepCqiSubbandSamp",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_RADIO_CELL_CQI_SUBBAND",
+        "type": "EVENT_PARAM_PER_UE_CQI_SUBBAND[0..12]     EVENT_PARAM_PER_UE_CQI2_SUBBAND[0..12]     EVENT_PARAM_PER_UE_CQI_SUBBAND_SAMP     EVENT_PARAM_PER_UE_CQI2_SUBBAND_SAMP",
+        "description": "Event and event parameters to provide the data to obtain the                                     average CQI value of each sub-band reported by UEs in the cell                                     within the measurement period."
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_CELL_CQI_SUBBAND",
+        "type": "EVENT_PARAM_PER_UE_CQI_SUBBAND[0..12]     EVENT_PARAM_PER_UE_CQI2_SUBBAND[0..12]     EVENT_PARAM_PER_UE_CQI_SUBBAND_SAMP     EVENT_PARAM_PER_UE_CQI2_SUBBAND_SAMP",
+        "description": "Event and event parameters to provide the data to obtain the                                     average CQI value of each sub-band reported by UEs in the cell                                     within the measurement period."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011255 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011255 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/126_22104-LZA7016014_1Uen.AY.md",
+    "file_hash": "b0c7517718a5a4faccc7e514bc41f7cf",
+    "processed_at": "2025-10-19 15:48:54",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

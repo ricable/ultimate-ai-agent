@@ -1,0 +1,184 @@
+{
+  "id": "121 4727",
+  "name": "OSPFv2",
+  "cxc_code": "CXC4011649",
+  "value_package": "NR Base Package",
+  "value_package_id": "FAJ 801 4002",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The OSPFv2 feature is a routing protocol to use within a network.",
+  "parameters": [
+    {
+      "name": "Area.ospfAreaId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Area"
+    },
+    {
+      "name": "Interface.adminCost",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Interface"
+    },
+    {
+      "name": "Interface.authenticationType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Interface"
+    },
+    {
+      "name": "Interface.bfdMonitoring",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Interface"
+    },
+    {
+      "name": "Interface.helloInterval",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Interface"
+    },
+    {
+      "name": "Interface.interfaceAddress",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Interface"
+    },
+    {
+      "name": "Interface.networkType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Interface"
+    },
+    {
+      "name": "Interface.passive",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Interface"
+    },
+    {
+      "name": "Interface.routerDeadInterval",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Interface"
+    },
+    {
+      "name": "Interface.routerPriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Interface"
+    },
+    {
+      "name": "Md5.md5Key",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Md5"
+    },
+    {
+      "name": "Md5.setPassword",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Md5"
+    },
+    {
+      "name": "Ospfv2.adminDistanceExternal",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Ospfv2"
+    },
+    {
+      "name": "Ospfv2.adminDistanceInter",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Ospfv2"
+    },
+    {
+      "name": "Ospfv2.adminDistanceIntra",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Ospfv2"
+    },
+    {
+      "name": "Ospfv2.instanceId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Ospfv2"
+    },
+    {
+      "name": "Ospfv2.maxHoldTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Ospfv2"
+    },
+    {
+      "name": "Ospfv2.minHoldTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Ospfv2"
+    },
+    {
+      "name": "Ospfv2.referenceBandwidth",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Ospfv2"
+    },
+    {
+      "name": "Ospfv2.routerId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Ospfv2"
+    },
+    {
+      "name": "Redistribute.metric",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Redistribute"
+    },
+    {
+      "name": "Redistribute.metricType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Redistribute"
+    },
+    {
+      "name": "Redistribute.routeType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Redistribute"
+    },
+    {
+      "name": "InterfaceIPv4.mtu",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "InterfaceIPv4"
+    },
+    {
+      "name": "InterfaceIPv4.routesHoldDownTimer",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "InterfaceIPv4"
+    },
+    {
+      "name": "Uen.AJ",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011649 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011649 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/111_22104-LZA7016014_1Uen.AJ.md",
+  "file_hash": "2169d36b5ee0e7a69a6382f66abbaf94",
+  "processed_at": "2025-10-19 17:07:26",
+  "network_impact": {},
+  "performance_impact": {}
+}

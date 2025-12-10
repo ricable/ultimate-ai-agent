@@ -1,0 +1,216 @@
+{
+  "id": "121 3070",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4011618",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The SIB16 Time Information Broadcast feature provides time source for accurate system",
+  "parameters": [
+    {
+      "name": "TimeSettings.daylightSavingTimeEndDate",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TimeSettings"
+    },
+    {
+      "name": "TimeSettings.daylightSavingTimeOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TimeSettings"
+    },
+    {
+      "name": "TimeSettings.daylightSavingTimeStartDate",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TimeSettings"
+    },
+    {
+      "name": "TimeSettings.gpsToUtcLeapSeconds",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TimeSettings"
+    },
+    {
+      "name": "TimeSettings.gpsToUtcLeapSecondsChangeDate",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TimeSettings"
+    },
+    {
+      "name": "TimeSettings.timeOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TimeSettings"
+    },
+    {
+      "name": "changeNotificationSIB16",
+      "type": "Introduced",
+      "description": "See MOM description of the ChangeNotificationSIBs struct associated                                 with EUtranCellFDD.ChangeNotificationSIBs or                                     EUtranCellTDD.ChangeNotificationSIBs.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "changeNotificationSIB16",
+      "type": "Introduced",
+      "description": "See MOM description of the MappingInfoSIBs struct associated with                                     EUtranCellFDD.mappingInfo or                                     EUtranCellTDD.mappingInfo.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_TIMESTAMP_HOUR",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) is done, for minimizing the risk for UEs of                                     missing SI changes. It is recommended to wait this time                                     remaining before performing the next SI update.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_TIMESTAMP_MILLISEC",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) is done, for minimizing the risk for UEs of                                     missing SI changes. It is recommended to wait this time                                     remaining before performing the next SI update.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_TIMESTAMP_MINUTE",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) is done, for minimizing the risk for UEs of                                     missing SI changes. It is recommended to wait this time                                     remaining before performing the next SI update.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_TIMESTAMP_SECOND",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) is done, for minimizing the risk for UEs of                                     missing SI changes. It is recommended to wait this time                                     remaining before performing the next SI update.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_SCANNER_ID",
+      "description": "16 scanners for UE Trace and 6 scanners for Cell Trace. The                                     scanner ID consists of a sequence of 22 bits, and each bit                                     corresponds to a particular scanner ID. For more information,                                     see Performance Management.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_RBS_MODULE_ID",
+      "description": "DUL",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_GLOBAL_CELL_ID",
+      "description": "Identity of the cell as defined in the MOM.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_TRACE_RECORDING_SESSION_REFERENCE",
+      "description": "The unique session ID for the UE.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_MESSAGE_DIRECTION",
+      "description": "Direction of message, received or sent.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_L3MESSAGE_LENGTH",
+      "description": "Number of bytes in the ASN.1 coded message.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_L3MESSAGE_CONTENTS",
+      "description": "The message content has variable length. This parameter has a                                     limit of 8 KB for RRC messages according to 3GPP. The actual                                     size used can vary as the recording functions only use the same                                     amount of space as is required by the message.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AS",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "ENodeBFunction.timePhaseMaxDeviationSib16",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ENodeBFunction"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_TIMESTAMP_HOUR",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) is done, for minimizing the risk for UEs of                                     missing SI changes. It is recommended to wait this time                                     remaining before performing the next SI update."
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_TIMESTAMP_MILLISEC",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) is done, for minimizing the risk for UEs of                                     missing SI changes. It is recommended to wait this time                                     remaining before performing the next SI update."
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_TIMESTAMP_MINUTE",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) is done, for minimizing the risk for UEs of                                     missing SI changes. It is recommended to wait this time                                     remaining before performing the next SI update."
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_TIMESTAMP_SECOND",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) is done, for minimizing the risk for UEs of                                     missing SI changes. It is recommended to wait this time                                     remaining before performing the next SI update."
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_SCANNER_ID",
+      "description": "16 scanners for UE Trace and 6 scanners for Cell Trace. The                                     scanner ID consists of a sequence of 22 bits, and each bit                                     corresponds to a particular scanner ID. For more information,                                     see Performance Management."
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_RBS_MODULE_ID",
+      "description": "DUL"
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_GLOBAL_CELL_ID",
+      "description": "Identity of the cell as defined in the MOM."
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_TRACE_RECORDING_SESSION_REFERENCE",
+      "description": "The unique session ID for the UE."
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_MESSAGE_DIRECTION",
+      "description": "Direction of message, received or sent."
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_L3MESSAGE_LENGTH",
+      "description": "Number of bytes in the ASN.1 coded message."
+    },
+    {
+      "name": "RRC_SYSTEM_INFORMATION",
+      "type": "EVENT_PARAM_L3MESSAGE_CONTENTS",
+      "description": "The message content has variable length. This parameter has a                                     limit of 8 KB for RRC messages according to 3GPP. The actual                                     size used can vary as the recording functions only use the same                                     amount of space as is required by the message."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011618 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011618 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/259_22104-LZA7016014_1Uen.AS.md",
+  "file_hash": "16d26a662c3a2842578203a6914f9712",
+  "processed_at": "2025-10-19 15:50:04",
+  "network_impact": {},
+  "performance_impact": {}
+}

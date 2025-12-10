@@ -1,0 +1,37 @@
+[
+  {
+    "query": "Read the tsconfig.json file",
+    "expected_tool": "read",
+    "expected_params": {
+      "file_path": "tsconfig.json"
+    }
+  },
+  {
+    "query": "Create a new component file",
+    "expected_tool": "write",
+    "expected_params": {
+      "file_path": "src/components/NewComponent.tsx"
+    }
+  },
+  {
+    "query": "Run the linter",
+    "expected_tool": "bash",
+    "expected_params": {
+      "command": "npm run lint"
+    }
+  },
+  {
+    "query": "Find all error handling code",
+    "expected_tool": "grep",
+    "expected_params": {
+      "pattern": "catch|throw"
+    }
+  },
+  {
+    "query": "List all React components",
+    "expected_tool": "glob",
+    "expected_params": {
+      "pattern": "src/components/**/*.tsx"
+    }
+  }
+]

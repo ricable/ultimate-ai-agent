@@ -1,0 +1,133 @@
+{
+  "file_hash": "68d64c86124ca204c70938b5c9c09b97",
+  "feature": {
+    "id": "121 5847",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012832",
+    "value_package": "Performance Boost",
+    "value_package_id": "FAJ 801 4021",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature optimizes codebook-based beamforming on the PDCCH.",
+    "parameters": [
+      {
+        "name": "DlBeamOptProfileUeCfg.pdcchBeamOptMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DlBeamOptProfileUeCfg"
+      },
+      {
+        "name": "Uen.B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "NRCellDU.pdcchLaBfGainFraction",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacPdcchBlockingPdschOccasions",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacPdcchBlockingPuschOccasions",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacPdcchBlockingPuschOccasionsExclPresched",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMacPdcchBlockingPdschOccasions",
+        "description": "Performance counter pmMacPdcchBlockingPdschOccasions",
+        "category": "General"
+      },
+      {
+        "name": "pmMacPdcchBlockingPuschOccasions",
+        "description": "Performance counter pmMacPdcchBlockingPuschOccasions",
+        "category": "General"
+      },
+      {
+        "name": "pmMacPdcchBlockingPuschOccasionsExclPresched",
+        "description": "Performance counter pmMacPdcchBlockingPuschOccasionsExclPresched",
+        "category": "General"
+      },
+      {
+        "name": "pmMacPdcchCongestionDlDistr",
+        "description": "Performance counter pmMacPdcchCongestionDlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacPdcchCongestionUlDistr",
+        "description": "Performance counter pmMacPdcchCongestionUlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacPdcchCongestionUlExclPreschedDistr",
+        "description": "Performance counter pmMacPdcchCongestionUlExclPreschedDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdcchTypeAAggrLvl1",
+        "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl1",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdcchTypeAAggrLvl16",
+        "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl16",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdcchTypeAAggrLvl2",
+        "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl2",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdcchTypeAAggrLvl4",
+        "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl4",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdcchTypeAAggrLvl8",
+        "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl8",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdcchTypeB",
+        "description": "Performance counter pmMacRBSymUsedPdcchTypeB",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012832 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012832 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/256_22104-LZA7016017_1Uen.B.md",
+    "file_hash": "68d64c86124ca204c70938b5c9c09b97",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

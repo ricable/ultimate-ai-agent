@@ -1,0 +1,176 @@
+{
+  "id": "121 4556",
+  "name": "Autoconfiguration of LTE Broadcast Subframes",
+  "cxc_code": "CXC4012012",
+  "value_package": "LTE Broadcast",
+  "value_package_id": "FAJ 801 0420",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Autoconfiguration of LTE Broadcast Subframes feature is designed to automate the",
+  "parameters": [
+    {
+      "name": "PmchMch.qci",
+      "type": "Introduced",
+      "description": "This attribute is used to configure a mapping of MBMS sessions to                                     PmchMch MOs based on the QCI parameter                                 received in the M3AP MBMS SESSION START messages. A                                 list of up to 10 QCI values can be configured for a                                     PmchMch MOI. The                                     PmchMch.qci parameter must be unique within                                 the whole MBSFN area the PmchMch MOI belongs                                 to.",
+      "mo_class": "PmchMch"
+    },
+    {
+      "name": "MbsfnArea.serviceAreaId",
+      "type": "Introduced",
+      "description": "This attribute stores MBMS Service Area identities that are covered                                 by the MBSFN area. At least one defined                                     MbsfnArea.serviceAreaId needs to be                                 configured in the eNodeB to enable a                                     TermPointToMmeM3 MO. To broadcast an MBMS                                 session in the MBSFN area, at least one MBMS Service Area Identity                                 from this list must match at least one MBMS Service Area Identity                                 from M3AP MBMS SESSION START message.",
+      "mo_class": "MbsfnArea"
+    },
+    {
+      "name": "PmchMch.sfAllocEnd",
+      "type": "Affected",
+      "description": "If the Autoconfiguration of LTE Broadcast Subframes feature is used,                                 new values are set by system every time subframe allocation changes                                 for (P)MCH.",
+      "mo_class": "PmchMch"
+    },
+    {
+      "name": "MbmsService.logicalChannelIdentity",
+      "type": "Affected",
+      "description": "If the Autoconfiguration of LTE Broadcast Subframes feature is                                 active, MbmsService.logicalChannelIdentity is set                                 automatically whenever a new session is added or an existing session                                 is removed.",
+      "mo_class": "MbmsService"
+    },
+    {
+      "name": "MbmsService.availabilityStatus",
+      "type": "Affected",
+      "description": "A new reason to switch to OFF_DUTY is added. If                                 there are not enough subframe resources available, the sessions with                                 the lowest priority are not broadcast and the                                     availabilityStatus attributes of the related                                     MbmsService MOs are set to                                     OFF_DUTY.",
+      "mo_class": "MbmsService"
+    },
+    {
+      "name": "INTERNAL_PROC_MBMS_SESSION_START",
+      "type": "EVENT_PARAM_MBMS_QOS_QCI",
+      "description": "Generated for the MBMS session start procedure to establish MBMS                                     SESSION. Contains information about the request and result.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_MBMS_SESSION_START",
+      "type": "EVENT_PARAM_MBMS_QOS_GBR",
+      "description": "Generated for the MBMS session start procedure to establish MBMS                                     SESSION. Contains information about the request and result.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_MBMS_SESSION_START",
+      "type": "EVENT_PARAM_MBMS_REQUESTED_SA",
+      "description": "Generated for the MBMS session start procedure to establish MBMS                                     SESSION. Contains information about the request and result.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AL",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "MbsfnArea.commonSFAllocList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "MbsfnArea"
+    },
+    {
+      "name": "MbmsService.tmgiList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "MbmsService"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmMbmsPktDiscSynchPayloadMuted",
+      "description": "Performance counter pmMbmsPktDiscSynchPayloadMuted",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsPktDiscSynchPayloadTooMuch",
+      "description": "Performance counter pmMbmsPktDiscSynchPayloadTooMuch",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsPktRecSynchPayload",
+      "description": "Performance counter pmMbmsPktRecSynchPayload",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionEnd",
+      "description": "Performance counter pmMbmsSessionEnd",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionEstabAtt",
+      "description": "Performance counter pmMbmsSessionEstabAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionEstabFailNotSupp",
+      "description": "Performance counter pmMbmsSessionEstabFailNotSupp",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionEstabFailUpdate",
+      "description": "Performance counter pmMbmsSessionEstabFailUpdate",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionEstabSucc",
+      "description": "Performance counter pmMbmsSessionEstabSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionStopAuditTimer",
+      "description": "Performance counter pmMbmsSessionStopAuditTimer",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionStopMme",
+      "description": "Performance counter pmMbmsSessionStopMme",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionStopMmeNoSession",
+      "description": "Performance counter pmMbmsSessionStopMmeNoSession",
+      "category": "General"
+    },
+    {
+      "name": "pmchMch",
+      "description": "Performance counter pmchMch",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_MBMS_SESSION_START",
+      "type": "EVENT_PARAM_MBMS_QOS_QCI",
+      "description": "Generated for the MBMS session start procedure to establish MBMS                                     SESSION. Contains information about the request and result."
+    },
+    {
+      "name": "INTERNAL_PROC_MBMS_SESSION_START",
+      "type": "EVENT_PARAM_MBMS_QOS_GBR",
+      "description": "Generated for the MBMS session start procedure to establish MBMS                                     SESSION. Contains information about the request and result."
+    },
+    {
+      "name": "INTERNAL_PROC_MBMS_SESSION_START",
+      "type": "EVENT_PARAM_MBMS_REQUESTED_SA",
+      "description": "Generated for the MBMS session start procedure to establish MBMS                                     SESSION. Contains information about the request and result."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012012 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012012 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/275_22104-LZA7016014_1Uen.AL.md",
+  "file_hash": "09b439e111ac37585e848b5a6b8f9acf",
+  "processed_at": "2025-10-19 15:50:05",
+  "network_impact": {},
+  "performance_impact": {}
+}

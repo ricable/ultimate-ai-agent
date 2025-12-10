@@ -1,0 +1,45 @@
+# Swarm Coordinator Container
+FROM node:20-bookworm
+
+# Avoid interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    jq \
+    bc \
+    python3 \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create workspace
+WORKDIR /coordinator
+
+# Install agentic-flow and dependencies
+RUN npm install -g \
+    claude-flow@alpha \
+    agentic-flow@latest \
+    pnpm
+
+# Copy coordinator scripts
+COPY scripts/swarm-coordinator.js /coordinator/
+COPY config/swarm-config.json /coordinator/config/
+
+# Install Python analysis tools
+RUN pip3 install --no-cache-dir \
+    psutil \
+    matplotlib \
+    numpy \
+    pandas \
+    scipy
+
+# Create directories
+RUN mkdir -p /data/results /data/metrics /data/logs
+
+VOLUME ["/data"]
+
+# Expose coordination API
+EXPOSE 8080
+
+CMD ["node", "/coordinator/swarm-coordinator.js"]

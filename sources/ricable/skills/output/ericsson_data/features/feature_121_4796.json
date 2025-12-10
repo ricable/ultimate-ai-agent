@@ -1,0 +1,170 @@
+{
+  "id": "121 4796",
+  "name": "ASGH Performance Package",
+  "cxc_code": "CXC4012199",
+  "value_package": "Differentiated Mobile Broadband",
+  "value_package_id": "FAJ 801 0409",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The ASGH Performance Package feature enables operators to differentiate",
+  "parameters": [
+    {
+      "name": "SubscriberGroupProfile.drxMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.pZeroNominalPuschOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.pZeroNominalPucchOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.caRateAdjustCoeff",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.ulMcsUpperLimit",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.ulMcsLowerLimit",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.fastACqiReportEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.featuresToDisableMeas",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.higherPriorityEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "Uen.CG",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "CarrierAggregationFunction.caRateAdjustCoeff",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "CarrierAggregationFunction"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmErabRelAbnormalEnbAct",
+      "description": "Performance counter pmErabRelAbnormalEnbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmErabRelAbnormalMmeAct",
+      "description": "Performance counter pmErabRelAbnormalMmeAct",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexPdcpPktLostUl",
+      "description": "Performance counter pmFlexPdcpPktLostUl",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexPdcpPktReceivedUl",
+      "description": "Performance counter pmFlexPdcpPktReceivedUl",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexVoipQualityRbUlNok",
+      "description": "Performance counter pmFlexVoipQualityRbUlNok",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexVoipQualityRbUlOk",
+      "description": "Performance counter pmFlexVoipQualityRbUlOk",
+      "category": "General"
+    },
+    {
+      "name": "pmPuschHomMcsDistr",
+      "description": "Performance counter pmPuschHomMcsDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmPuschMcsDistr",
+      "description": "Performance counter pmPuschMcsDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmPuschMcsSubsGroup0Distr",
+      "description": "Performance counter pmPuschMcsSubsGroup0Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmPuschMcsSubsGroup1Distr",
+      "description": "Performance counter pmPuschMcsSubsGroup1Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmPuschMcsSubsGroup2Distr",
+      "description": "Performance counter pmPuschMcsSubsGroup2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmPuschMcsSubsGroup3Distr",
+      "description": "Performance counter pmPuschMcsSubsGroup3Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmPuschMcsSubsGroup4Distr",
+      "description": "Performance counter pmPuschMcsSubsGroup4Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmPuschMcsVoipDistr",
+      "description": "Performance counter pmPuschMcsVoipDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmSessionTimeUe",
+      "description": "Performance counter pmSessionTimeUe",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012199 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012199 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/365_22104-LZA7016014_1Uen.CG.md",
+  "file_hash": "62cab292b7679bfe61a97cbcb0dcc059",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

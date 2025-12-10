@@ -1,0 +1,212 @@
+{
+  "id": "121 5609",
+  "name": "NR Unified Access Control",
+  "cxc_code": "CXC4012705",
+  "value_package": "NR Base Package",
+  "value_package_id": "FAJ 801 4002",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables cell load-based access and service request barring in the",
+  "parameters": [
+    {
+      "name": "BarringGroup.accessCategoryList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.barringTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.bgCounterId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.cellUsageBarringMax",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.cellUsageBarringStart",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.maxBarringProbability",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.pLMNIdList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.rejRatioBarringMax",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.rejRatioBarringStart",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.startBarringAi1",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.startBarringAi2(1)",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.startBarringAi11",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.startBarringAi12",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.startBarringAi13",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.startBarringAi14",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "BarringGroup.startBarringAi15",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "NRCellCU.uacBroadcast",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "NRCellCU.uacProfileRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "UacProfile.barringEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UacProfile"
+    },
+    {
+      "name": "AdmissionLimit.maxConnectedUe",
+      "type": "GNBCUCPFunction.resourceStatusReportF1Enabled",
+      "description": "Rejection Ratio",
+      "mo_class": "AdmissionLimit"
+    },
+    {
+      "name": "> 0  (1)",
+      "type": "True",
+      "description": "Available for activated load control functions  (2)",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "> 0  (1)",
+      "type": "False",
+      "description": "Not available",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "== 0  (3)",
+      "type": "True",
+      "description": "Available for activated load control functions  (2)(4)",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "== 0  (3)",
+      "type": "False",
+      "description": "Not available  (5)",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.G",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "BarringGroup.barringStartAi1",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "BarringGroup"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsUacBarringCellUsageBg",
+      "description": "Performance counter pmEbsUacBarringCellUsageBg",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUacBarringProbDistrBg",
+      "description": "Performance counter pmEbsUacBarringProbDistrBg",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUacBarringRejBg",
+      "description": "Performance counter pmEbsUacBarringRejBg",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012705 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012705 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/194_22104-LZA7016017_1Uen.G.md",
+  "file_hash": "419c1d8d8921734903f2c8eb5ffac806",
+  "processed_at": "2025-10-19 15:50:10",
+  "network_impact": {},
+  "performance_impact": {
+    "counters": "New counters introduced"
+  }
+}

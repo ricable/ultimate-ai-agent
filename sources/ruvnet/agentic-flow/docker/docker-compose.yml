@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # Base Agentic Flow service
+  agentic-flow:
+    build:
+      context: ..
+      dockerfile: docker/base/Dockerfile
+    container_name: agentic-flow
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - E2B_API_KEY=${E2B_API_KEY}
+      - AGENTS_DIR=/app/.claude/agents
+      - USE_OPENROUTER=${USE_OPENROUTER:-false}
+      - COMPLETION_MODEL=${COMPLETION_MODEL:-claude-sonnet-4}
+    volumes:
+      - agent-memory:/app/.claude-flow/memory
+      - agent-metrics:/app/.claude-flow/metrics
+    healthcheck:
+      test: ["CMD", "node", "dist/health.js"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+
+  # Claude model instance
+  agentic-flow-claude:
+    extends: agentic-flow
+    container_name: agentic-flow-claude
+    ports:
+      - "8081:8080"
+    environment:
+      - PROVIDER=anthropic
+      - COMPLETION_MODEL=claude-sonnet-4
+
+  # OpenRouter/Llama instance
+  agentic-flow-llama:
+    extends: agentic-flow
+    container_name: agentic-flow-llama
+    ports:
+      - "8082:8080"
+    environment:
+      - PROVIDER=openrouter
+      - USE_OPENROUTER=true
+      - COMPLETION_MODEL=meta-llama/llama-3.1-8b-instruct
+
+  # DeepSeek instance
+  agentic-flow-deepseek:
+    extends: agentic-flow
+    container_name: agentic-flow-deepseek
+    ports:
+      - "8083:8080"
+    environment:
+      - PROVIDER=openrouter
+      - USE_OPENROUTER=true
+      - COMPLETION_MODEL=deepseek/deepseek-chat
+
+volumes:
+  agent-memory:
+    driver: local
+  agent-metrics:
+    driver: local
+
+networks:
+  default:
+    name: agentic-flow-network

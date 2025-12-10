@@ -1,0 +1,49 @@
+{
+  "file_hash": "0380e8d072a3b97877aa5fccc09cff8c",
+  "feature": {
+    "id": "121 5555",
+    "name": "User- and Service-Specific Carrier Aggregation",
+    "cxc_code": "CXC4012663",
+    "value_package": "Intelligent Traffic Management and Mobility",
+    "value_package_id": "FAJ 801 4022",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature allows differentiated carrier aggregation configuration for UE groups and",
+    "parameters": [
+      {
+        "name": "Uen.AA",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ExternalGNBCUCPFunction.sameUeGroupSelection",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ExternalGNBCUCPFunction"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012663 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012663 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/172_22104-LZA7016017_1Uen.AA.md",
+    "file_hash": "0380e8d072a3b97877aa5fccc09cff8c",
+    "processed_at": "2025-10-19 15:50:03",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

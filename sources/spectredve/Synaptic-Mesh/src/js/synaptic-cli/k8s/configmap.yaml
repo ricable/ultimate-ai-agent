@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: synaptic-mesh-config
+data:
+  config.json: |
+    {
+      "node": {
+        "name": "k8s-node",
+        "version": "1.0.0"
+      },
+      "network": {
+        "port": 8080,
+        "network": "mainnet",
+        "protocols": ["/synaptic/1.0.0", "/qudag/1.0.0", "/neural/1.0.0"]
+      },
+      "security": {
+        "quantumResistant": true,
+        "algorithm": "ml-dsa-65"
+      },
+      "neural": {
+        "defaultArchitecture": "adaptive",
+        "maxAgents": 1000,
+        "memoryLimit": "50MB",
+        "inferenceTimeout": 100
+      },
+      "dag": {
+        "consensus": "qr-avalanche",
+        "maxVertices": 10000,
+        "pruningInterval": 3600
+      }
+    }
+  bootstrap-peers.json: |
+    [
+      "/ip4/seed1.synaptic.network/tcp/8080/p2p/QmMainnet1",
+      "/ip4/seed2.synaptic.network/tcp/8080/p2p/QmMainnet2",
+      "/ip4/seed3.synaptic.network/tcp/8080/p2p/QmMainnet3"
+    ]

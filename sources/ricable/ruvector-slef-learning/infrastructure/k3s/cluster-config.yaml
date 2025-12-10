@@ -1,0 +1,161 @@
+# K3s Cluster Configuration for Decentralized Edge-Native AI
+# Optimized for heterogeneous hardware (x86_64/ARM64)
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k3s-cluster-config
+  namespace: kube-system
+data:
+  # Cluster networking configuration
+  network-config.yaml: |
+    # Use WireGuard for encrypted cluster networking
+    flannel-backend: wireguard-native
+    flannel-iface: edgevpn0  # Use P2P mesh interface
+
+    # Pod networking CIDR
+    cluster-cidr: 10.42.0.0/16
+    service-cidr: 10.43.0.0/16
+    cluster-dns: 10.43.0.10
+
+    # Enable IPv6 dual-stack for modern deployments
+    cluster-cidr-ipv6: fd00:42::/56
+    service-cidr-ipv6: fd00:43::/112
+
+  # Node affinity rules for heterogeneous scheduling
+  node-affinity-rules.yaml: |
+    # AI Inference workloads - prefer GPU/NPU nodes
+    ai-inference:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          preference:
+            matchExpressions:
+              - key: hardware.kairos.io/gpu
+                operator: In
+                values: ["nvidia", "apple-neural-engine", "amd"]
+        - weight: 50
+          preference:
+            matchExpressions:
+              - key: hardware.kairos.io/simd
+                operator: In
+                values: ["avx512", "avx2"]
+
+    # Vector database workloads - prefer high-memory nodes
+    vector-db:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values: ["amd64", "arm64"]
+
+    # WebAssembly agents - can run anywhere (lightweight)
+    wasm-agents:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 10
+          preference:
+            matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values: ["arm64"]  # Prefer energy-efficient ARM nodes
+
+---
+# Priority Classes for workload scheduling
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: ai-critical
+value: 1000000
+globalDefault: false
+description: "Priority class for critical AI inference workloads"
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: agent-standard
+value: 100000
+globalDefault: true
+description: "Default priority for AI agent workloads"
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: background-tasks
+value: 10000
+globalDefault: false
+description: "Low priority for background processing tasks"
+
+---
+# Resource Quotas for multi-tenant agent isolation
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: default-agent-quota
+  namespace: agents
+spec:
+  hard:
+    requests.cpu: "4"
+    requests.memory: 8Gi
+    limits.cpu: "8"
+    limits.memory: 16Gi
+    persistentvolumeclaims: "10"
+    pods: "50"
+    services: "10"
+
+---
+# Network Policy for agent isolation
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: agent-isolation
+  namespace: agents
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    # Allow traffic from API gateway
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: gateway
+      ports:
+        - protocol: TCP
+          port: 80
+        - protocol: TCP
+          port: 443
+    # Allow inter-agent A2A communication
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: agents
+  egress:
+    # Allow DNS resolution
+    - to:
+        - namespaceSelector: {}
+      ports:
+        - protocol: UDP
+          port: 53
+    # Allow external API calls (LLM providers, E2B)
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except:
+              - 10.0.0.0/8
+              - 172.16.0.0/12
+              - 192.168.0.0/16
+      ports:
+        - protocol: TCP
+          port: 443
+    # Allow internal cluster communication
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              name: agents
+        - namespaceSelector:
+            matchLabels:
+              name: gateway
+        - namespaceSelector:
+            matchLabels:
+              name: databases

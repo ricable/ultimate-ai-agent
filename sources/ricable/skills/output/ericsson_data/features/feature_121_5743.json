@@ -1,0 +1,163 @@
+{
+  "id": "121 5743",
+  "name": "NR Flexible Downlink Resource Allocation Type Low/Mid-Band                                 feature",
+  "cxc_code": "CXC4012772",
+  "value_package": "Performance Boost",
+  "value_package_id": "FAJ 801 4021",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature allows for the use of downlink PDSCH resource allocation type",
+  "parameters": [
+    {
+      "name": "ResourceAllocTypeDlUeCfg.prefUeResourceAllocDlTypeFr1",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ResourceAllocTypeDlUeCfg"
+    },
+    {
+      "name": "Uen.U33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRCellDU.pmMacHarqDlResAllocType0Dci11",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pmMacHarqDlResAllocType1Dci11",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pmMacRBSymUsedPdschTypeA",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pmMacRBSymUsedPdschTypeB",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pmMacVolDl",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pmMacVolDlDrb",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pmMacVolDlDrbLastSlot",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmAccumulatedEnergyConsumption",
+      "description": "Performance counter pmAccumulatedEnergyConsumption",
+      "category": "General"
+    },
+    {
+      "name": "pmConsumedEnergy",
+      "description": "Performance counter pmConsumedEnergy",
+      "category": "General"
+    },
+    {
+      "name": "pmConsumedEnergyAccumulated",
+      "description": "Performance counter pmConsumedEnergyAccumulated",
+      "category": "General"
+    },
+    {
+      "name": "pmEnergyConsumption",
+      "description": "Performance counter pmEnergyConsumption",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlResAllocType0Dci11",
+      "description": "Performance counter pmMacHarqDlResAllocType0Dci11",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlResAllocType1Dci11",
+      "description": "Performance counter pmMacHarqDlResAllocType1Dci11",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschTypeA",
+      "description": "Performance counter pmMacRBSymUsedPdschTypeA",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschTypeB",
+      "description": "Performance counter pmMacRBSymUsedPdschTypeB",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDl",
+      "description": "Performance counter pmMacVolDl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrb",
+      "description": "Performance counter pmMacVolDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrbLastSlot",
+      "description": "Performance counter pmMacVolDlDrbLastSlot",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrbOverlapLastSlot",
+      "description": "Performance counter pmMacVolDlDrbOverlapLastSlot",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrbSingleBurst",
+      "description": "Performance counter pmMacVolDlDrbSingleBurst",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrbSingleSlotShortBurst",
+      "description": "Performance counter pmMacVolDlDrbSingleSlotShortBurst",
+      "category": "General"
+    },
+    {
+      "name": "pmPowerConsumption",
+      "description": "Performance counter pmPowerConsumption",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012772 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012772 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/226_22104-LZA7016017_1Uen.U33B.md",
+  "file_hash": "d8080bccd5ae8db640dc7423ea7b5655",
+  "processed_at": "2025-10-19 15:50:10",
+  "network_impact": {},
+  "performance_impact": {}
+}

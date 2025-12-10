@@ -1,0 +1,61 @@
+# Google Gemini Flash Model Configuration for Cloud Run
+# Fastest response times, good for rapid iterations
+
+name: gemini-2-flash
+provider: openrouter
+description: "Google Gemini 2.0 Flash - Fastest response times"
+
+# Model settings
+model:
+  id: google/gemini-2.0-flash-exp:free
+  temperature: 0.8
+  max_tokens: 8192
+  top_p: 0.95
+
+# Cloud Run Job Configuration
+cloudrun:
+  memory: 2Gi
+  cpu: 2
+  timeout: 1800  # 30 minutes (faster tasks)
+  max_instances: 100  # Can scale very high due to speed
+  min_instances: 0  # Scale to zero when idle
+
+# Environment variables
+env:
+  PROVIDER: openrouter
+  USE_OPENROUTER: "true"
+  COMPLETION_MODEL: google/gemini-2.0-flash-exp:free
+  ENABLE_STREAMING: "true"
+  PROXY_PORT: "3000"
+
+# Secrets (from Google Secret Manager)
+secrets:
+  - name: OPENROUTER_API_KEY
+    key: openrouter-api-key
+    version: latest
+
+# Agent configuration
+agents:
+  enabled: true
+  agents_dir: /app/.claude/agents
+  auto_load: true
+  preferred_agents:  # Optimized for quick tasks
+    - researcher
+    - planner
+    - analyst
+
+# MCP Servers
+mcp:
+  enabled: true
+  servers:
+    - claude-flow
+    - flow-nexus
+    - agentic-payments
+
+# Cost tracking
+cost:
+  input_cost_per_1k: 0.0  # Free tier
+  output_cost_per_1k: 0.0  # Free tier
+  estimated_monthly: 0  # Free!
+  savings_vs_claude: 100%
+  specialization: speed

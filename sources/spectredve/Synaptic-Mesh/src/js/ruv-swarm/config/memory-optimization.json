@@ -1,0 +1,22 @@
+{
+  "connectionPool": {
+    "maxConnections": 10,
+    "idleTimeout": 30000,
+    "maxLifetime": 300000
+  },
+  "wasmMemory": {
+    "initialPages": 256,
+    "maxPages": 512,
+    "sharedMemory": true
+  },
+  "neuralNetworks": {
+    "pruningThreshold": 0.01,
+    "memoryBudget": 20971520,
+    "batchSize": 32
+  },
+  "cache": {
+    "maxEntries": 100,
+    "maxSize": 10485760,
+    "ttl": 300000
+  }
+}

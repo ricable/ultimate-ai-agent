@@ -1,0 +1,170 @@
+# agentic-flow v1.7.1 Validation Dockerfile
+#
+# Validates:
+# - Full ReasoningBank implementation with CausalRecall
+# - AgentDB v1.3.9 integration with patch
+# - HybridReasoningBank functionality
+# - AdvancedMemorySystem operations
+# - Build and runtime tests
+
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install build dependencies
+RUN apk add --no-cache \
+    git \
+    python3 \
+    make \
+    g++ \
+    cargo \
+    rust
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Apply agentdb patch for v1.3.9 import resolution
+RUN cd node_modules/agentdb/dist/controllers && \
+    sed -i "s|from './ReflexionMemory'|from './ReflexionMemory.js'|g" index.js && \
+    sed -i "s|from './SkillLibrary'|from './SkillLibrary.js'|g" index.js && \
+    sed -i "s|from './EmbeddingService'|from './EmbeddingService.js'|g" index.js && \
+    echo "✅ AgentDB patch applied" && \
+    cat index.js
+
+# Copy built distribution (already compiled)
+COPY dist/ ./dist/
+
+# Verify dist exists
+RUN ls -la ./dist/reasoningbank/ && \
+    echo "✅ Distribution files verified"
+
+# Validation script
+RUN cat > /app/validate-v1.7.1.js << 'EOF'
+#!/usr/bin/env node
+
+console.log('🔍 Validating agentic-flow v1.7.1...\n');
+
+async function validate() {
+  let passed = 0;
+  let failed = 0;
+
+  // Test 1: Module imports
+  console.log('Test 1: Module imports...');
+  try {
+    const { HybridReasoningBank } = await import('./dist/reasoningbank/HybridBackend.js');
+    const { AdvancedMemorySystem } = await import('./dist/reasoningbank/AdvancedMemory.js');
+    console.log('✅ Module imports successful');
+    passed++;
+  } catch (e) {
+    console.error('❌ Module import failed:', e.message);
+    failed++;
+  }
+
+  // Test 2: HybridReasoningBank instantiation
+  console.log('\nTest 2: HybridReasoningBank instantiation...');
+  try {
+    const { HybridReasoningBank } = await import('./dist/reasoningbank/HybridBackend.js');
+    const rb = new HybridReasoningBank({ preferWasm: false });
+    console.log('✅ HybridReasoningBank instantiated');
+
+    // Verify methods exist
+    const methods = ['storePattern', 'retrievePatterns', 'learnStrategy', 'autoConsolidate', 'whatIfAnalysis', 'searchSkills', 'getStats'];
+    for (const method of methods) {
+      if (typeof rb[method] !== 'function') {
+        throw new Error(`Missing method: ${method}`);
+      }
+    }
+    console.log('✅ All methods present:', methods.join(', '));
+    passed++;
+  } catch (e) {
+    console.error('❌ HybridReasoningBank instantiation failed:', e.message);
+    failed++;
+  }
+
+  // Test 3: AdvancedMemorySystem instantiation
+  console.log('\nTest 3: AdvancedMemorySystem instantiation...');
+  try {
+    const { AdvancedMemorySystem } = await import('./dist/reasoningbank/AdvancedMemory.js');
+    const memory = new AdvancedMemorySystem({ preferWasm: false });
+    console.log('✅ AdvancedMemorySystem instantiated');
+
+    // Verify methods exist
+    const methods = ['autoConsolidate', 'replayFailures', 'whatIfAnalysis', 'composeSkills', 'runLearningCycle', 'getStats'];
+    for (const method of methods) {
+      if (typeof memory[method] !== 'function') {
+        throw new Error(`Missing method: ${method}`);
+      }
+    }
+    console.log('✅ All methods present:', methods.join(', '));
+    passed++;
+  } catch (e) {
+    console.error('❌ AdvancedMemorySystem instantiation failed:', e.message);
+    failed++;
+  }
+
+  // Test 4: AgentDB direct imports
+  console.log('\nTest 4: AgentDB controller imports...');
+  try {
+    const { ReflexionMemory } = await import('agentdb/controllers/ReflexionMemory');
+    const { SkillLibrary } = await import('agentdb/controllers/SkillLibrary');
+    const { CausalRecall } = await import('agentdb/controllers/CausalRecall');
+    const { CausalMemoryGraph } = await import('agentdb/controllers/CausalMemoryGraph');
+    const { NightlyLearner } = await import('agentdb/controllers/NightlyLearner');
+    console.log('✅ All AgentDB controllers imported successfully');
+    passed++;
+  } catch (e) {
+    console.error('❌ AgentDB controller imports failed:', e.message);
+    failed++;
+  }
+
+  // Test 5: Statistics methods
+  console.log('\nTest 5: Statistics methods...');
+  try {
+    const { HybridReasoningBank } = await import('./dist/reasoningbank/HybridBackend.js');
+    const rb = new HybridReasoningBank({ preferWasm: false });
+    const stats = rb.getStats();
+
+    if (!stats || typeof stats !== 'object') {
+      throw new Error('Invalid stats object');
+    }
+
+    if (!stats.causalRecall || !stats.reflexion || stats.skills === undefined) {
+      throw new Error('Missing stats properties');
+    }
+
+    console.log('✅ Statistics retrieved:', Object.keys(stats));
+    passed++;
+  } catch (e) {
+    console.error('❌ Statistics test failed:', e.message);
+    failed++;
+  }
+
+  // Summary
+  console.log('\n' + '='.repeat(50));
+  console.log(`✅ Passed: ${passed}`);
+  console.log(`❌ Failed: ${failed}`);
+  console.log('='.repeat(50));
+
+  if (failed === 0) {
+    console.log('\n🎉 All validation tests passed!');
+    console.log('v1.7.1 is ready for production');
+    process.exit(0);
+  } else {
+    console.log('\n❌ Some tests failed');
+    process.exit(1);
+  }
+}
+
+validate().catch(e => {
+  console.error('Fatal error:', e);
+  process.exit(1);
+});
+EOF
+
+RUN chmod +x /app/validate-v1.7.1.js
+
+# Run validation
+CMD ["node", "/app/validate-v1.7.1.js"]

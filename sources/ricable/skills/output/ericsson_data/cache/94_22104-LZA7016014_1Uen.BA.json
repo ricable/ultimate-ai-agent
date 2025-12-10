@@ -1,0 +1,163 @@
+{
+  "file_hash": "7985e4cc890c0c1b01650afd1aaa9967",
+  "feature": {
+    "id": "121 0801",
+    "name": "Efficient DRX/DTX for Connected UE",
+    "cxc_code": "CXC4010912",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "feature provides opportunities for the UE to stop monitoring the PDCCH to reduce the battery",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.drxActive",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.drxActive",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "DrxProfile.onDurationTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.drxInactivityTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.drxRetransmissionTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.longDrxCycle",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.longDrxCycleOnly",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.shortDrxCycle",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.shortDrxCycleTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "Uen.BA",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "PreschedProfile.preschedulingDuration",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PreschedProfile"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmDlAssigsDetectedHarqNDO",
+        "description": "Performance counter pmDlAssigsDetectedHarqNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsDetectedHarqVolteNDO",
+        "description": "Performance counter pmDlAssigsDetectedHarqVolteNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsTransNDO",
+        "description": "Performance counter pmDlAssigsTransNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsTransVolteNDO",
+        "description": "Performance counter pmDlAssigsTransVolteNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmDrxSleepTime",
+        "description": "Performance counter pmDrxSleepTime",
+        "category": "Energy"
+      },
+      {
+        "name": "pmDrxTotalTime",
+        "description": "Performance counter pmDrxTotalTime",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpLatPktTransDlDrxSync",
+        "description": "Performance counter pmPdcpLatPktTransDlDrxSync",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpLatTimeDlDrxSync",
+        "description": "Performance counter pmPdcpLatTimeDlDrxSync",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpLatTimeDlNoDrxSyncQci",
+        "description": "Performance counter pmPdcpLatTimeDlNoDrxSyncQci",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsDetectedPuschNDO",
+        "description": "Performance counter pmUlGrantsDetectedPuschNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsDetectedPuschVolteNDO",
+        "description": "Performance counter pmUlGrantsDetectedPuschVolteNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransNDO",
+        "description": "Performance counter pmUlGrantsTransNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransVolteNDO",
+        "description": "Performance counter pmUlGrantsTransVolteNDO",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010912 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010912 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/94_22104-LZA7016014_1Uen.BA.md",
+    "file_hash": "7985e4cc890c0c1b01650afd1aaa9967",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

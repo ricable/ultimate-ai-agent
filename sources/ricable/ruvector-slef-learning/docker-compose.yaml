@@ -1,0 +1,412 @@
+# Edge-Native AI SaaS - Docker Compose Stack
+# Decentralized architecture with Kairos, SpinKube, and Agentic Protocols
+#
+# Usage:
+#   docker compose up -d                    # Start all services
+#   docker compose --profile gpu up -d      # Start with GPU support
+#   docker compose --profile edge up -d     # Start edge-optimized stack
+
+version: "3.9"
+
+x-common-env: &common-env
+  TZ: UTC
+  LOG_LEVEL: info
+
+x-healthcheck: &healthcheck
+  interval: 30s
+  timeout: 10s
+  retries: 3
+  start_period: 40s
+
+services:
+  # =========================================================================
+  # Core Infrastructure
+  # =========================================================================
+
+  # PostgreSQL - Primary Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: edge-ai-postgres
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      POSTGRES_DB: edge_ai_saas
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./infrastructure/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5432:5432"
+    secrets:
+      - postgres_password
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD-SHELL", "pg_isready -U admin -d edge_ai_saas"]
+    networks:
+      - edge-ai-network
+
+  # Redis - Cache and Session Store
+  redis:
+    image: redis:7-alpine
+    container_name: edge-ai-redis
+    restart: unless-stopped
+    command: >
+      redis-server
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+      --appendonly yes
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "redis-cli", "ping"]
+    networks:
+      - edge-ai-network
+
+  # =========================================================================
+  # Vector Database & AI Memory
+  # =========================================================================
+
+  # RuVector - High-performance Vector Database
+  ruvector:
+    image: ghcr.io/ruvnet/ruvector:latest
+    container_name: edge-ai-ruvector
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      RUVECTOR_DIMENSION: 384
+      RUVECTOR_INDEX_TYPE: hnsw
+      RUVECTOR_M: 16
+      RUVECTOR_EF_CONSTRUCTION: 200
+      RUVECTOR_PERSISTENCE: "true"
+      RUVECTOR_DATA_PATH: /data
+    volumes:
+      - ruvector-data:/data
+    ports:
+      - "8765:8765"
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "curl", "-f", "http://localhost:8765/health"]
+    networks:
+      - edge-ai-network
+
+  # AgentDB - AI Agent Memory with Causal Reasoning
+  agentdb:
+    image: ghcr.io/ruvnet/agentdb:latest
+    container_name: edge-ai-agentdb
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      AGENTDB_BACKEND: ruvector
+      AGENTDB_DIMENSION: 384
+      AGENTDB_MODEL: Xenova/all-MiniLM-L6-v2
+      AGENTDB_GNN_ENABLED: "true"
+      AGENTDB_PATH: /data/agentdb.db
+    volumes:
+      - agentdb-data:/data
+    depends_on:
+      ruvector:
+        condition: service_healthy
+    ports:
+      - "8766:8766"
+    networks:
+      - edge-ai-network
+
+  # =========================================================================
+  # LLM Gateway & Routing
+  # =========================================================================
+
+  # LiteLLM - Unified LLM API Gateway
+  litellm:
+    image: ghcr.io/berriai/litellm:main-latest
+    container_name: edge-ai-litellm
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      LITELLM_MASTER_KEY: ${LITELLM_MASTER_KEY:-sk-master-key}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      GOOGLE_GEMINI_API_KEY: ${GOOGLE_GEMINI_API_KEY:-}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    volumes:
+      - ./gateway/litellm/litellm_config.yaml:/app/config.yaml:ro
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+    ports:
+      - "4000:4000"
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "curl", "-f", "http://localhost:4000/health"]
+    networks:
+      - edge-ai-network
+
+  # LocalAI - Local LLM Inference
+  localai:
+    image: localai/localai:latest-cpu
+    container_name: edge-ai-localai
+    restart: unless-stopped
+    profiles:
+      - local-llm
+    environment:
+      <<: *common-env
+      MODELS_PATH: /models
+      THREADS: 4
+      CONTEXT_SIZE: 4096
+    volumes:
+      - localai-models:/models
+    ports:
+      - "8080:8080"
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "curl", "-f", "http://localhost:8080/readyz"]
+    networks:
+      - edge-ai-network
+
+  # LocalAI with GPU (NVIDIA)
+  localai-gpu:
+    image: localai/localai:latest-gpu-nvidia-cuda-12
+    container_name: edge-ai-localai-gpu
+    restart: unless-stopped
+    profiles:
+      - gpu
+    environment:
+      <<: *common-env
+      MODELS_PATH: /models
+      THREADS: 8
+      CONTEXT_SIZE: 8192
+    volumes:
+      - localai-models:/models
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    networks:
+      - edge-ai-network
+
+  # =========================================================================
+  # Docker MCP Gateway
+  # =========================================================================
+
+  # MCP Gateway - Unified MCP Server Access
+  mcp-gateway:
+    image: docker/mcp-gateway:latest
+    container_name: edge-ai-mcp-gateway
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      DOCKER_MCP_IN_CONTAINER: "1"
+      MCP_TRANSPORT: streaming
+      MCP_PORT: 8081
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./gateway/mcp-gateway:/config:ro
+      - mcp-gateway-data:/data
+    ports:
+      - "8081:8081"
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "curl", "-f", "http://localhost:8081/health"]
+    networks:
+      - edge-ai-network
+
+  # =========================================================================
+  # Agent Orchestration
+  # =========================================================================
+
+  # Claude Flow - Agent Orchestration with ReasoningBank
+  claude-flow:
+    image: ghcr.io/ruvnet/claude-flow:latest
+    container_name: edge-ai-claude-flow
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      CLAUDE_FLOW_MODE: server
+      CLAUDE_FLOW_DB: /data/memory.db
+      REASONINGBANK_ENABLED: "true"
+      HIVE_MIND_ENABLED: "true"
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    volumes:
+      - claude-flow-data:/data
+    depends_on:
+      - agentdb
+      - litellm
+    ports:
+      - "8082:8082"
+    networks:
+      - edge-ai-network
+
+  # Agentic Flow - Multi-Agent Swarms
+  agentic-flow:
+    image: ghcr.io/ruvnet/agentic-flow:latest
+    container_name: edge-ai-agentic-flow
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      AGENTIC_FLOW_MODE: production
+      PROVIDER_FALLBACK: "true"
+      CIRCUIT_BREAKER_ENABLED: "true"
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+    volumes:
+      - agentic-flow-data:/data
+    depends_on:
+      - claude-flow
+    ports:
+      - "8083:8083"
+    networks:
+      - edge-ai-network
+
+  # =========================================================================
+  # FastAPI Backend
+  # =========================================================================
+
+  # FastAPI - Control Plane API
+  api:
+    build:
+      context: ./apps/fastapi
+      dockerfile: Dockerfile
+    container_name: edge-ai-api
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgresql://admin:${POSTGRES_PASSWORD:-password}@postgres:5432/edge_ai_saas
+      REDIS_URL: redis://redis:6379/0
+      LITELLM_URL: http://litellm:4000
+      RUVECTOR_URL: http://ruvector:8765
+      AGENTDB_URL: http://agentdb:8766
+      MCP_GATEWAY_URL: http://mcp-gateway:8081
+      E2B_API_KEY: ${E2B_API_KEY:-}
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+    volumes:
+      - ./apps/fastapi:/app:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      litellm:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+    networks:
+      - edge-ai-network
+
+  # =========================================================================
+  # Observability
+  # =========================================================================
+
+  # OpenTelemetry Collector
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: edge-ai-otel
+    restart: unless-stopped
+    profiles:
+      - observability
+    volumes:
+      - ./infrastructure/observability/otel-config.yaml:/etc/otel/config.yaml:ro
+    command: ["--config", "/etc/otel/config.yaml"]
+    ports:
+      - "4317:4317"  # OTLP gRPC
+      - "4318:4318"  # OTLP HTTP
+      - "8888:8888"  # Prometheus metrics
+    networks:
+      - edge-ai-network
+
+  # Grafana - Dashboards
+  grafana:
+    image: grafana/grafana:latest
+    container_name: edge-ai-grafana
+    restart: unless-stopped
+    profiles:
+      - observability
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+      GF_INSTALL_PLUGINS: grafana-clock-panel
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./infrastructure/observability/grafana/provisioning:/etc/grafana/provisioning:ro
+    ports:
+      - "3000:3000"
+    networks:
+      - edge-ai-network
+
+  # =========================================================================
+  # Reverse Proxy & Ingress
+  # =========================================================================
+
+  # Traefik - Reverse Proxy
+  traefik:
+    image: traefik:v3.0
+    container_name: edge-ai-traefik
+    restart: unless-stopped
+    command:
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge=true"
+      - "--certificatesresolvers.letsencrypt.acme.email=${ACME_EMAIL:-admin@example.com}"
+      - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik-certs:/letsencrypt
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=Host(`traefik.${DOMAIN:-localhost}`)"
+      - "traefik.http.routers.dashboard.service=api@internal"
+    networks:
+      - edge-ai-network
+
+# =========================================================================
+# Networks
+# =========================================================================
+
+networks:
+  edge-ai-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+# =========================================================================
+# Volumes
+# =========================================================================
+
+volumes:
+  postgres-data:
+  redis-data:
+  ruvector-data:
+  agentdb-data:
+  claude-flow-data:
+  agentic-flow-data:
+  mcp-gateway-data:
+  localai-models:
+  grafana-data:
+  traefik-certs:
+
+# =========================================================================
+# Secrets
+# =========================================================================
+
+secrets:
+  postgres_password:
+    file: ./secrets/postgres_password.txt

@@ -1,0 +1,123 @@
+{
+  "name": "research-swarm",
+  "version": "1.2.2",
+  "description": "🔬 Local SQLite-based AI research agent swarm with GOAP planning, multi-perspective analysis, long-horizon recursive framework, AgentDB self-learning, anti-hallucination controls, and MCP server. Goal-oriented with parallel execution. No cloud dependencies.",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./db": "./lib/db-utils.js",
+    "./reasoningbank": "./lib/reasoningbank-integration.js",
+    "./cli": "./bin/cli.js",
+    "./mcp": "./lib/mcp-server.js"
+  },
+  "bin": {
+    "research-swarm": "./bin/cli.js"
+  },
+  "scripts": {
+    "start": "node run-researcher-local.js",
+    "test": "node run-researcher-local.js researcher \"Comprehensive research validation test\"",
+    "list-jobs": "node scripts/list-jobs.js",
+    "view-job": "node scripts/view-job.js",
+    "init-db": "node scripts/init-database.js",
+    "mcp": "node lib/mcp-server.js",
+    "mcp:http": "node lib/mcp-server.js http --port 3000",
+    "cli": "node bin/cli.js"
+  },
+  "keywords": [
+    "ai-research",
+    "research-agent",
+    "ai-agent-swarm",
+    "multi-agent-system",
+    "research-automation",
+    "goap",
+    "goal-oriented",
+    "goalie",
+    "planning-algorithm",
+    "claude-ai",
+    "anthropic-claude",
+    "claude-sonnet-4",
+    "sqlite-database",
+    "local-ai",
+    "agentdb",
+    "reasoningbank",
+    "self-learning-ai",
+    "mcp-server",
+    "model-context-protocol",
+    "long-horizon-research",
+    "recursive-research",
+    "citation-verification",
+    "anti-hallucination",
+    "research-quality",
+    "ai-verification",
+    "federated-agents",
+    "distributed-research",
+    "openrouter",
+    "gemini-api",
+    "multi-model-ai",
+    "research-sdk",
+    "npx-cli",
+    "local-first",
+    "no-cloud",
+    "privacy-focused"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.21.0",
+    "better-sqlite3": "^11.0.0",
+    "chalk": "^5.6.2",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "goalie": "^1.3.1",
+    "ora": "^8.2.0",
+    "uuid": "^10.0.0"
+  },
+  "peerDependencies": {
+    "agentic-flow": ">=1.9.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruvnet/agentic-flow.git",
+    "directory": "examples/research-swarm"
+  },
+  "bugs": {
+    "url": "https://github.com/ruvnet/agentic-flow/issues",
+    "email": "ruv@ruv.net"
+  },
+  "homepage": "https://github.com/ruvnet/agentic-flow/tree/main/examples/research-swarm#readme",
+  "author": {
+    "name": "rUv",
+    "email": "ruv@ruv.net",
+    "url": "https://ruv.io"
+  },
+  "contributors": [
+    {
+      "name": "rUv",
+      "email": "ruv@ruv.net",
+      "url": "https://ruv.io"
+    }
+  ],
+  "license": "ISC",
+  "files": [
+    "bin/",
+    "lib/",
+    "schema/",
+    "scripts/",
+    "docs/",
+    "run-researcher-local.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "funding": {
+    "type": "individual",
+    "url": "https://ruv.io"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "id": "121 5442",
+  "name": "NR Reduced UE Bandwidth Support",
+  "cxc_code": "CXC4012606",
+  "value_package": "Peak Rate Evolution",
+  "value_package_id": "FAJ 801 4005",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables UEs with reduced bandwidth capabilities to use cells with wider",
+  "parameters": [
+    {
+      "name": "BWP.bwpContext",
+      "type": "Affecting",
+      "description": "The attribute can only be modified when it is referenced or used by a                                 locked cell.",
+      "mo_class": "BWP"
+    },
+    {
+      "name": "BWP.bWPId",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "BWP"
+    },
+    {
+      "name": "BWP.isInitialBwp",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "BWP"
+    },
+    {
+      "name": "BWP.numberOfRBs",
+      "type": "Affecting",
+      "description": "The attribute can only be modified when it is referenced or used by a                                 locked cell.",
+      "mo_class": "BWP"
+    },
+    {
+      "name": "BWP.reservedBy",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "BWP"
+    },
+    {
+      "name": "BWP.startRB",
+      "type": "Affecting",
+      "description": "The attribute can only be modified when it is referenced or used by a                                 locked cell.",
+      "mo_class": "BWP"
+    },
+    {
+      "name": "BWP.userLabel",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "BWP"
+    },
+    {
+      "name": "BWPSet.allBWPRegularRef",
+      "type": "Affecting",
+      "description": "The attribute can only be modified when it is referenced or used by a                                 locked cell.",
+      "mo_class": "BWPSet"
+    },
+    {
+      "name": "BWPSet.bWPSetId",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "BWPSet"
+    },
+    {
+      "name": "BWPSet.reservedBy",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "BWPSet"
+    },
+    {
+      "name": "BWPSet.startBWPDlRef",
+      "type": "Affecting",
+      "description": "The attribute can only be modified when it is referenced or used by a                                 locked cell.",
+      "mo_class": "BWPSet"
+    },
+    {
+      "name": "BWPSet.startBWPUlRef",
+      "type": "Affecting",
+      "description": "The attribute can only be modified when it is referenced or used by a                                 locked cell.",
+      "mo_class": "BWPSet"
+    },
+    {
+      "name": "BWPSet.userLabel",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "BWPSet"
+    },
+    {
+      "name": "BWPSetCfg.bWPDlRef",
+      "type": "Affecting",
+      "description": "The attribute can only be modified when it is referenced or used by a                                 locked cell.",
+      "mo_class": "BWPSetCfg"
+    },
+    {
+      "name": "BWPSetCfg.bWPSetCfgId",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "BWPSetCfg"
+    },
+    {
+      "name": "BWPSetCfg.bWPUlRef",
+      "type": "Affecting",
+      "description": "The attribute can only be modified when it is referenced or used by a                                 locked cell.",
+      "mo_class": "BWPSetCfg"
+    },
+    {
+      "name": "BWPSetCfg.userLabel",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "BWPSetCfg"
+    },
+    {
+      "name": "BWPSetUeCfg.bWPSetUeCfgId",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "BWPSetUeCfg"
+    },
+    {
+      "name": "BWPSetUeCfg.prefUeGroupList",
+      "type": "Affecting",
+      "description": "See Dependencies of NR Reduced UE Bandwidth Support",
+      "mo_class": "BWPSetUeCfg"
+    },
+    {
+      "name": "BWPSetUeCfg.ueConfGroupList",
+      "type": "Affecting",
+      "description": "See Dependencies of NR Reduced UE Bandwidth Support",
+      "mo_class": "BWPSetUeCfg"
+    },
+    {
+      "name": "BWPSetUeCfg.ueGroupList",
+      "type": "Affecting",
+      "description": "See Dependencies of NR Reduced UE Bandwidth Support",
+      "mo_class": "BWPSetUeCfg"
+    },
+    {
+      "name": "BWPSetUeCfg.userLabel",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "BWPSetUeCfg"
+    },
+    {
+      "name": "NRCellDU.bWPRef",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.bWPSetRef",
+      "type": "Affecting",
+      "description": "The attribute can only be modified when it is referenced or used by a                                 locked cell.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.dlAvailableCrbs",
+      "type": "Affected",
+      "description": "See CRB Blanking in Cells with NR Reduced UE Bandwidth Support.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.dlStartCrb",
+      "type": "Affected",
+      "description": "See CRB Blanking in Cells with NR Reduced UE Bandwidth Support.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.ulAvailableCrbs",
+      "type": "Affected",
+      "description": "See CRB Blanking in Cells with NR Reduced UE Bandwidth Support.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.ulStartCrb",
+      "type": "Affected",
+      "description": "See CRB Blanking in Cells with NR Reduced UE Bandwidth Support.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "Uen.CU33C",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRCellDU.pmBwpUeConfSumDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pmMacRBSymUsedPdschAdvSuMimoTxRankDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pdschStartPrbStrategy",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pmRadioRecInterferencePwrSpecialSlot2Distr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmBwpUeConfSamp",
+      "description": "Performance counter pmBwpUeConfSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmBwpUeConfSumDistr",
+      "description": "Performance counter pmBwpUeConfSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCounter",
+      "description": "Performance counter pmCounter",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschAdvSuMimoTxRankDistr",
+      "description": "Performance counter pmMacRBSymUsedPdschAdvSuMimoTxRankDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacVolDlBwp",
+      "description": "Performance counter pmMacVolDlBwp",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlSCellBwp",
+      "description": "Performance counter pmMacVolDlSCellBwp",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlSCellExtBwp",
+      "description": "Performance counter pmMacVolDlSCellExtBwp",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlBwp",
+      "description": "Performance counter pmMacVolUlBwp",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlSCellBwp",
+      "description": "Performance counter pmMacVolUlSCellBwp",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRecInterferencePwrSpecialSlot2Distr",
+      "description": "Performance counter pmRadioRecInterferencePwrSpecialSlot2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012606 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012606 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/114_22104-LZA7016017_1Uen.CU33C.md",
+  "file_hash": "7df22fa969293c6125ceabc42a7f6fab",
+  "processed_at": "2025-10-19 15:50:03",
+  "network_impact": {},
+  "performance_impact": {}
+}

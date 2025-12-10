@@ -1,0 +1,304 @@
+# AgentDB v2 Benchmark Workflow
+# Runs performance benchmarks and detects regressions
+
+name: Benchmarks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/agentdb/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/agentdb/**'
+  schedule:
+    # Run nightly for trend tracking
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      full_benchmark:
+        description: 'Run full benchmark suite (slower)'
+        required: false
+        default: 'false'
+      vector_count:
+        description: 'Number of vectors for benchmarks'
+        required: false
+        default: '100000'
+
+env:
+  NODE_VERSION: '20'
+  BENCHMARK_ITERATIONS: 100
+
+jobs:
+  # ============================================
+  # Quick Benchmarks (Always Run)
+  # ============================================
+  quick-benchmark:
+    name: Quick Benchmarks
+    runs-on: ubuntu-latest
+    outputs:
+      ruvector_p50: ${{ steps.results.outputs.ruvector_p50 }}
+      hnswlib_p50: ${{ steps.results.outputs.hnswlib_p50 }}
+      regression: ${{ steps.regression.outputs.detected }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Install RuVector
+        run: npm install @ruvector/core @ruvector/gnn
+        working-directory: packages/agentdb
+
+      - name: Run quick benchmarks
+        id: benchmark
+        run: |
+          npm run bench:quick -- --json > benchmark-results.json
+          cat benchmark-results.json
+        working-directory: packages/agentdb
+
+      - name: Extract results
+        id: results
+        run: |
+          RUVECTOR_P50=$(jq '.ruvector.search_k10.p50' benchmark-results.json)
+          HNSWLIB_P50=$(jq '.hnswlib.search_k10.p50' benchmark-results.json)
+          echo "ruvector_p50=$RUVECTOR_P50" >> $GITHUB_OUTPUT
+          echo "hnswlib_p50=$HNSWLIB_P50" >> $GITHUB_OUTPUT
+        working-directory: packages/agentdb
+
+      - name: Check for regression
+        id: regression
+        run: |
+          REGRESSION=$(npm run bench:check-regression --silent || echo "true")
+          echo "detected=$REGRESSION" >> $GITHUB_OUTPUT
+        working-directory: packages/agentdb
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: quick-benchmark-results
+          path: packages/agentdb/benchmark-results.json
+
+  # ============================================
+  # Full Benchmarks (On Demand / Nightly)
+  # ============================================
+  full-benchmark:
+    name: Full Benchmarks
+    runs-on: ubuntu-latest
+    if: github.event.inputs.full_benchmark == 'true' || github.event_name == 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Install RuVector
+        run: npm install @ruvector/core @ruvector/gnn
+        working-directory: packages/agentdb
+
+      - name: Run full benchmark suite
+        run: |
+          npm run bench:full -- \
+            --vectors ${{ github.event.inputs.vector_count || '100000' }} \
+            --iterations 1000 \
+            --json > full-benchmark-results.json
+        working-directory: packages/agentdb
+        timeout-minutes: 30
+
+      - name: Generate report
+        run: |
+          npm run bench:report -- \
+            --input full-benchmark-results.json \
+            --output benchmark-report.md
+        working-directory: packages/agentdb
+
+      - name: Upload full results
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-benchmark-results
+          path: |
+            packages/agentdb/full-benchmark-results.json
+            packages/agentdb/benchmark-report.md
+
+  # ============================================
+  # Memory Benchmarks
+  # ============================================
+  memory-benchmark:
+    name: Memory Benchmarks
+    runs-on: ubuntu-latest
+    if: github.event.inputs.full_benchmark == 'true' || github.event_name == 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Install RuVector
+        run: npm install @ruvector/core @ruvector/gnn
+        working-directory: packages/agentdb
+
+      - name: Run memory benchmarks
+        run: |
+          node --expose-gc benchmarks/memory.bench.js > memory-results.json
+        working-directory: packages/agentdb
+
+      - name: Upload memory results
+        uses: actions/upload-artifact@v4
+        with:
+          name: memory-benchmark-results
+          path: packages/agentdb/memory-results.json
+
+  # ============================================
+  # Comparison Report
+  # ============================================
+  comparison-report:
+    name: Generate Comparison Report
+    runs-on: ubuntu-latest
+    needs: [quick-benchmark]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download benchmark results
+        uses: actions/download-artifact@v4
+        with:
+          name: quick-benchmark-results
+          path: ./results
+
+      - name: Generate comparison
+        run: |
+          echo "## Benchmark Comparison" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | RuVector | hnswlib | Speedup |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|----------|---------|---------|" >> $GITHUB_STEP_SUMMARY
+
+          RUVECTOR_P50=${{ needs.quick-benchmark.outputs.ruvector_p50 }}
+          HNSWLIB_P50=${{ needs.quick-benchmark.outputs.hnswlib_p50 }}
+
+          SPEEDUP=$(echo "scale=1; $HNSWLIB_P50 / $RUVECTOR_P50" | bc)
+
+          echo "| Search k=10 (p50) | ${RUVECTOR_P50}ms | ${HNSWLIB_P50}ms | ${SPEEDUP}x |" >> $GITHUB_STEP_SUMMARY
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const ruvectorP50 = ${{ needs.quick-benchmark.outputs.ruvector_p50 }};
+            const hnswlibP50 = ${{ needs.quick-benchmark.outputs.hnswlib_p50 }};
+            const speedup = (hnswlibP50 / ruvectorP50).toFixed(1);
+
+            const body = `## 🚀 Benchmark Results
+
+            | Backend | Search k=10 (p50) |
+            |---------|-------------------|
+            | RuVector | ${ruvectorP50}ms |
+            | hnswlib | ${hnswlibP50}ms |
+
+            **Speedup: ${speedup}x**
+
+            ${ruvectorP50 < 0.5 ? '✅ Meets performance target (<0.5ms)' : '⚠️ Above performance target'}
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body
+            });
+
+  # ============================================
+  # Regression Alert
+  # ============================================
+  regression-alert:
+    name: Regression Alert
+    runs-on: ubuntu-latest
+    needs: [quick-benchmark]
+    if: needs.quick-benchmark.outputs.regression == 'true'
+    steps:
+      - name: Create issue for regression
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '⚠️ Performance Regression Detected';
+            const body = `
+            ## Performance Regression Alert
+
+            A performance regression was detected in the latest benchmark run.
+
+            **Workflow Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            Please investigate and address before merging.
+
+            /cc @ruvnet
+            `;
+
+            // Check if issue already exists
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'performance-regression'
+            });
+
+            if (issues.data.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['performance-regression', 'priority-high']
+              });
+            }
+
+  # ============================================
+  # Store Historical Data
+  # ============================================
+  store-benchmark-data:
+    name: Store Benchmark Data
+    runs-on: ubuntu-latest
+    needs: [quick-benchmark]
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download results
+        uses: actions/download-artifact@v4
+        with:
+          name: quick-benchmark-results
+          path: ./benchmark-data
+
+      - name: Append to historical data
+        run: |
+          DATE=$(date -I)
+          COMMIT=${GITHUB_SHA::7}
+
+          mkdir -p benchmark-history
+
+          # Append to CSV
+          echo "${DATE},${COMMIT},${{ needs.quick-benchmark.outputs.ruvector_p50 }},${{ needs.quick-benchmark.outputs.hnswlib_p50 }}" >> benchmark-history/history.csv
+
+      - name: Upload historical data
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-history
+          path: benchmark-history/
+          retention-days: 365

@@ -1,0 +1,89 @@
+{
+  "hardware": {
+    "type": "raspberry-pi",
+    "variants": ["pi-4", "pi-5"],
+    "architecture": "arm64",
+    "capabilities": {
+      "compute": "low",
+      "memory": "limited",
+      "storage": "moderate",
+      "power": "very-low",
+      "network": "moderate"
+    }
+  },
+
+  "inference": {
+    "provider": "llamaedge",
+    "runtime": "wasmedge",
+    "backend": "ggml-cpu",
+
+    "models": {
+      "recommended": [
+        {
+          "name": "Qwen2.5-Coder-1.5B-Instruct",
+          "format": "gguf",
+          "quantization": "Q4_K_M",
+          "ram": "2GB",
+          "speed": "5-10 tokens/sec"
+        },
+        {
+          "name": "Phi-2",
+          "format": "gguf",
+          "quantization": "Q4_K_M",
+          "ram": "2GB",
+          "speed": "8-12 tokens/sec"
+        }
+      ],
+      "maxContextSize": 4096
+    },
+
+    "optimization": {
+      "threads": 4,
+      "batchSize": 32,
+      "enableMmap": true,
+      "swapMemory": false
+    }
+  },
+
+  "orchestration": {
+    "role": "worker",
+    "capabilities": [
+      "edge-processing",
+      "data-aggregation",
+      "lightweight-inference",
+      "sensor-integration"
+    ],
+
+    "limits": {
+      "maxConcurrentTasks": 2,
+      "maxMemoryPerTask": "500MB",
+      "taskTimeout": 300000
+    }
+  },
+
+  "gaianet": {
+    "enabled": false,
+    "reason": "Insufficient resources for public serving",
+    "localOnly": true
+  },
+
+  "quad": {
+    "enabled": true,
+    "nodeRole": "edge-worker",
+    "acceptTaskTypes": [
+      "data-preprocessing",
+      "lightweight-inference",
+      "monitoring"
+    ]
+  },
+
+  "environment": {
+    "NODE_ENV": "production",
+    "LLM_PROVIDER": "local",
+    "GAIANET_ENDPOINT": "http://localhost:8080/v1",
+    "GAIANET_MODEL": "Qwen2.5-Coder-1.5B-Instruct",
+    "SANDBOX_MEMORY_LIMIT": "512m",
+    "SANDBOX_CPU_LIMIT": "2",
+    "CONTEXT_WINDOW": "4096"
+  }
+}

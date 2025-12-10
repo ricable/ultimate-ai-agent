@@ -1,0 +1,139 @@
+{
+  "file_hash": "0b4cdaba2857a3b3d506dcb40774cab1",
+  "feature": {
+    "id": "121 5470",
+    "name": "VoLTE Prescheduling",
+    "cxc_code": "CXC4012629",
+    "value_package": "VoLTE Performance",
+    "value_package_id": "FAJ 801 0444",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature introduces uplink prescheduling for UEs with voice bearers.",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.voltePreschedulingEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.voltePreschedulingEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "PreschedProfile.preschedulingDataSize",
+        "type": "Affecting",
+        "description": "See MOM description.(1)",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "PreschedProfile.preschedulingDuration",
+        "type": "Affecting",
+        "description": "See MOM description.(1)",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "PreschedProfile.preschedulingPeriod",
+        "type": "Affecting",
+        "description": "See MOM description.(1)",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "PreschedProfile.preschedulingSinrThreshold",
+        "type": "Affecting",
+        "description": "See MOM description.(1)",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "Uen.K",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmActiveUeUlPresched",
+        "description": "Performance counter pmActiveUeUlPresched",
+        "category": "General"
+      },
+      {
+        "name": "pmActiveUeUlPreschedData",
+        "description": "Performance counter pmActiveUeUlPreschedData",
+        "category": "General"
+      },
+      {
+        "name": "pmCellCceUtilization",
+        "description": "Performance counter pmCellCceUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmCellUlPrbUtilization",
+        "description": "Performance counter pmCellUlPrbUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmDrxSleepTime",
+        "description": "Performance counter pmDrxSleepTime",
+        "category": "Energy"
+      },
+      {
+        "name": "pmDrxTotalTime",
+        "description": "Performance counter pmDrxTotalTime",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexActiveUeUlPresched",
+        "description": "Performance counter pmFlexActiveUeUlPresched",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcchCceUsedUlPresched",
+        "description": "Performance counter pmPdcchCceUsedUlPresched",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbUsedUlPresched",
+        "description": "Performance counter pmPrbUsedUlPresched",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRecInterferencePwr",
+        "description": "Performance counter pmRadioRecInterferencePwr",
+        "category": "General"
+      },
+      {
+        "name": "pmULgrantsTransVolte",
+        "description": "Performance counter pmULgrantsTransVolte",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityUeUlNok",
+        "description": "Performance counter pmVoipQualityUeUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityUeUlOk",
+        "description": "Performance counter pmVoipQualityUeUlOk",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012629 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012629 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/567_22104-LZA7016014_1Uen.K.md",
+    "file_hash": "0b4cdaba2857a3b3d506dcb40774cab1",
+    "processed_at": "2025-10-19 15:50:06",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

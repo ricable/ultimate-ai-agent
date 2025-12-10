@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  # Development PostgreSQL with ruvector extension
+  postgres:
+    build:
+      context: ../../..
+      dockerfile: crates/ruvector-postgres/docker/Dockerfile
+    container_name: ruvector-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ruvector
+      POSTGRES_PASSWORD: ruvector
+      POSTGRES_DB: ruvector_test
+      # Performance tuning
+      POSTGRES_INITDB_ARGS: "--data-checksums"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ruvector -d ruvector_test"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ruvector-network
+
+  # Test runner container
+  test-runner:
+    build:
+      context: ../../..
+      dockerfile: crates/ruvector-postgres/docker/Dockerfile.test
+    container_name: ruvector-test-runner
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://ruvector:ruvector@postgres:5432/ruvector_test
+      RUST_LOG: info
+      RUST_BACKTRACE: 1
+    volumes:
+      - ../../..:/app
+      - cargo_cache:/usr/local/cargo/registry
+      - target_cache:/app/target
+    networks:
+      - ruvector-network
+    command: ["cargo", "test", "--features", "pg_test"]
+
+  # Benchmark runner
+  benchmark:
+    build:
+      context: ../../..
+      dockerfile: crates/ruvector-postgres/docker/Dockerfile.test
+    container_name: ruvector-benchmark
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://ruvector:ruvector@postgres:5432/ruvector_test
+      RUST_LOG: info
+    volumes:
+      - ../../..:/app
+      - cargo_cache:/usr/local/cargo/registry
+      - target_cache:/app/target
+    networks:
+      - ruvector-network
+    command: ["cargo", "bench", "--features", "pg_test"]
+    profiles:
+      - benchmark
+
+volumes:
+  postgres_data:
+  cargo_cache:
+  target_cache:
+
+networks:
+  ruvector-network:
+    driver: bridge

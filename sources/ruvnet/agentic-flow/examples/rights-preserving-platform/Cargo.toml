@@ -1,0 +1,142 @@
+[package]
+name = "rights-preserving-platform"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+authors = ["rUv AI Governance Team <support@ruv.io>"]
+description = "Production-grade Rust platform for AI governance, auditing, and rights-preserving oversight with differential privacy"
+documentation = "https://docs.rs/rights-preserving-platform"
+homepage = "https://ruv.io"
+repository = "https://github.com/ruvnet/agentic-flow"
+license = "MIT"
+keywords = ["ai-governance", "privacy", "compliance", "audit", "policy"]
+categories = ["cryptography", "web-programming", "science"]
+readme = "README.md"
+exclude = [
+    ".github/",
+    ".swarm/",
+    ".claude-flow/",
+    "target/",
+]
+
+[lib]
+name = "rights_preserving_platform"
+path = "src/lib.rs"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.40", features = ["full"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Logging & Tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Time & Date
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.10", features = ["v4", "v7", "serde"] }
+
+# Web framework
+axum = { version = "0.7", features = ["macros", "ws"] }
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors", "trace", "compression-gzip", "limit"] }
+
+# HTTP client
+reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
+
+# Database
+sqlx = { version = "0.8", features = ["runtime-tokio-rustls", "postgres", "uuid", "chrono", "json"] }
+redis = { version = "0.27", features = ["tokio-comp", "connection-manager"] }
+
+# Authentication & Authorization
+jsonwebtoken = "9.3"
+bcrypt = "0.15"
+
+# Cryptography
+ring = "0.17"
+sha2 = "0.10"
+hex = "0.4"
+
+# Privacy (Differential Privacy)
+rand = "0.8"
+rand_distr = "0.4"
+
+# Message Queue
+rdkafka = { version = "0.36", features = ["cmake-build"] }
+
+# Configuration
+config = "0.14"
+dotenv = "0.15"
+
+# Utilities
+bytes = "1.7"
+futures = "0.3"
+async-trait = "0.1"
+
+# Validation
+validator = { version = "0.18", features = ["derive"] }
+
+# Metrics
+prometheus = "0.13"
+lazy_static = "1.5"
+
+# Testing utilities
+mockall = "0.13"
+
+# Scientific computing (for fairness metrics)
+ndarray = "0.16"
+
+[dev-dependencies]
+tokio-test = "0.4"
+criterion = { version = "0.5", features = ["async_tokio", "html_reports"] }
+proptest = "1.5"
+pretty_assertions = "1.4"
+wiremock = "0.6"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+strip = true
+
+[profile.dev]
+opt-level = 0
+debug = true
+
+[profile.test]
+opt-level = 1
+
+[profile.bench]
+inherits = "release"
+
+# Feature flags
+[features]
+default = ["metrics", "tracing"]
+
+# Privacy
+differential-privacy = []
+secure-aggregation = []
+
+# Observability
+metrics = []
+tracing = []
+
+# Development
+mock-services = []
+
+[[bench]]
+name = "benchmarks"
+harness = false
+path = "benches/benchmarks.rs"
+
+# Additional metadata for docs.rs
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

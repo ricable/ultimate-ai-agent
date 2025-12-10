@@ -1,0 +1,101 @@
+{
+  "id": "121 1799",
+  "name": "Feature                                 Identity",
+  "cxc_code": "CXC4011074",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "Uplink Frequency-Selective Scheduling feature improves both significant cell edge and",
+  "parameters": [
+    {
+      "name": "QciProfilePredefined.resourceAllocationStrategy",
+      "type": "Introduced",
+      "description": "Defines the resource allocation strategy of the QoS Class Identifier                                 (QCI). Changes to this parameter take effect only if the Uplink                                 Frequency-Selective Scheduling and the QoS-Aware Scheduler features                                 are activated.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfilePredefined.srsAllocationStrategy",
+      "type": "Introduced",
+      "description": "If set to  ACTIVATED, an attempt is made to allocate                                 sounding for a UE. If several Data Radio Bearers are setup towards                                 the UE with different QoS configurations, and the QoS configurations                                 have different QCI parameters, an algorithm using the priority                                 parameter in the QoS configuration resolves which QoS configuration                                 that defines sounding.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "EUtranCellFDD.ulSrsEnable",
+      "type": "Introduced",
+      "description": "This parameter controls when sounding is enabled or not in a cell.                                 When enabled, cell resources are configured\u00a0for sounding.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.ulSrsEnable",
+      "type": "Introduced",
+      "description": "This parameter controls when sounding is enabled or not in a cell.                                 When enabled, cell resources are configured\u00a0for sounding.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "INTERNAL_PER_RADIO_CELL_NOISE_INTERFERENCE_PRB",
+      "type": "EVENT_PARAM_NOISEINTERF_SUM_PRB1     EVENT_PARAM_NOISEINTERF_SUM_PRB2     EVENT_PARAM_NOISEINTERF_SUM_PRB100",
+      "description": "Measurements of the accumulated interference power per PRB.  (In total 100 event parameters, one for each PRB.)",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.BN",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmRadioRecInterferencePwrPrb1",
+      "description": "Performance counter pmRadioRecInterferencePwrPrb1",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRecInterferencePwrPrb100",
+      "description": "Performance counter pmRadioRecInterferencePwrPrb100",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRecInterferencePwrPrb2",
+      "description": "Performance counter pmRadioRecInterferencePwrPrb2",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpResUl",
+      "description": "Performance counter pmRadioThpResUl",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolUl",
+      "description": "Performance counter pmRadioThpVolUl",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PER_RADIO_CELL_NOISE_INTERFERENCE_PRB",
+      "type": "EVENT_PARAM_NOISEINTERF_SUM_PRB1     EVENT_PARAM_NOISEINTERF_SUM_PRB2     EVENT_PARAM_NOISEINTERF_SUM_PRB100",
+      "description": "Measurements of the accumulated interference power per PRB.  (In total 100 event parameters, one for each PRB.)"
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011074 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011074 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/96_22104-LZA7016014_1Uen.BN.md",
+  "file_hash": "44e33de1d868eed98256f837a831275f",
+  "processed_at": "2025-10-19 15:50:05",
+  "network_impact": {},
+  "performance_impact": {}
+}

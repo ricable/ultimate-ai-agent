@@ -1,0 +1,17 @@
+[package]
+name = "climate-core"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+chrono = { workspace = true }
+ndarray = { workspace = true }
+async-trait = { workspace = true }
+
+[dev-dependencies]
+anyhow = { workspace = true }

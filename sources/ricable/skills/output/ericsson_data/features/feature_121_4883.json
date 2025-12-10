@@ -1,0 +1,221 @@
+{
+  "id": "121 4883",
+  "name": "Configurable Distribution Counters",
+  "cxc_code": "CXC4012258",
+  "value_package": "RAN Slicing",
+  "value_package_id": "FAJ 801 0570",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature enables operators to group a set of cells and collect information on",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.measCellGroupCellRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.measCellGroupCellRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.measCellGroupUeRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.measCellGroupUeRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "MeasCellGroup.groupId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "MeasCellGroup"
+    },
+    {
+      "name": "MeasCellGroup.groupPrbUnit",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "MeasCellGroup"
+    },
+    {
+      "name": "MeasCellGroup.plmnList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "MeasCellGroup"
+    },
+    {
+      "name": "MeasCellGroup.spidList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "MeasCellGroup"
+    },
+    {
+      "name": "INTERNAL_PER_CELLGROUP_MEAS_REPORT",
+      "type": "EVENT_PARAM_MEASCELLGROUP_ID",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELLGROUP_MEAS_REPORT",
+      "type": "EVENT_PARAM_PER_MEASCELLGROUP_PRB_UNIT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELLGROUP_MEAS_REPORT",
+      "type": "EVENT_PARAM_PER_MEASCELLGROUP_DL_PRB_UTIL_DISTR_0",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELLGROUP_MEAS_REPORT",
+      "type": "EVENT_PARAM_PER_MEASCELLGROUP_DL_PRB_UTIL_DISTR_XX                                     (XX=1...28)",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELLGROUP_MEAS_REPORT",
+      "type": "EVENT_PARAM_PER_MEASCELLGROUP_DL_PRB_UTIL_DISTR_29",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "BbProcessingResource.pmLicDlPrbCapDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "BbProcessingResource"
+    },
+    {
+      "name": "BbProcessingResource.pmLicDlPrbUsedDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "BbProcessingResource"
+    },
+    {
+      "name": "SPID.Note",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "SPID"
+    },
+    {
+      "name": "EUtranCellFDD.pmUeThp2DlDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmUeThp2DlDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmUeThp2UlDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmUeThp2UlDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmLicDlPrbCapDistr",
+      "description": "Performance counter pmLicDlPrbCapDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmLicDlPrbUsedDistr",
+      "description": "Performance counter pmLicDlPrbUsedDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMeasCellGroupDlPrbUsedDistr",
+      "description": "Performance counter pmMeasCellGroupDlPrbUsedDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMeasCellGroupPrbUnit",
+      "description": "Performance counter pmMeasCellGroupPrbUnit",
+      "category": "General"
+    },
+    {
+      "name": "pmMeasCellGroupUeThp2DlDistr",
+      "description": "Performance counter pmMeasCellGroupUeThp2DlDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMeasCellGroupUeThp2UlDistr",
+      "description": "Performance counter pmMeasCellGroupUeThp2UlDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmUeThp2DlDistr",
+      "description": "Performance counter pmUeThp2DlDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmUeThp2UlDistr",
+      "description": "Performance counter pmUeThp2UlDistr",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PER_CELLGROUP_MEAS_REPORT",
+      "type": "EVENT_PARAM_MEASCELLGROUP_ID",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELLGROUP_MEAS_REPORT",
+      "type": "EVENT_PARAM_PER_MEASCELLGROUP_PRB_UNIT",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELLGROUP_MEAS_REPORT",
+      "type": "EVENT_PARAM_PER_MEASCELLGROUP_DL_PRB_UTIL_DISTR_0",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELLGROUP_MEAS_REPORT",
+      "type": "EVENT_PARAM_PER_MEASCELLGROUP_DL_PRB_UTIL_DISTR_XX                                     (XX=1...28)",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELLGROUP_MEAS_REPORT",
+      "type": "EVENT_PARAM_PER_MEASCELLGROUP_DL_PRB_UTIL_DISTR_29",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012258 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012258 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/393_22104-LZA7016014_1Uen.AF.md",
+  "file_hash": "6ce5580fd4a087cec050efd2372a750d",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

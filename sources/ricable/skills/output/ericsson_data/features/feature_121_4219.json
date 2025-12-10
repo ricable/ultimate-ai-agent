@@ -1,0 +1,205 @@
+{
+  "id": "121 4219",
+  "name": "UE Throughput-Aware IFLB",
+  "cxc_code": "CXC4011911",
+  "value_package": "Multi-Carrier Load Management",
+  "value_package_id": "FAJ 801 0427",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The UE Throughput-Aware IFLB feature estimates and compares UE throughput in the",
+  "parameters": [
+    {
+      "name": "LoadBalancingFunction.lbUeEvaluationTimer",
+      "type": "Introduced",
+      "description": "Timer to initiate evaluation of a UE for load balancing measurement.                                 The timer is started at UE Context Setup.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "EUtranCellFDD.lbTpNonQualFraction",
+      "type": "Introduced",
+      "description": "Configures the fraction of UEs to be non-qualified for                                 throughput-aware load balancing.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.lbTpNonQualFraction",
+      "type": "Introduced",
+      "description": "Configures the fraction of UEs to be non-qualified for                                 throughput-aware load balancing.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbTpRankThreshMin",
+      "type": "Introduced",
+      "description": "Configures a minimum relative gain threshold for throughput-aware                                 load balancing.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.lbTpRankThreshMin",
+      "type": "Introduced",
+      "description": "Configures a minimum relative gain threshold for throughput-aware                                 load balancing.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.loadBalancing",
+      "type": "Affecting",
+      "description": "Indicator for whether the Inter-frequency Load Balancing feature is                                 allowed from the current cell and towards the cell indicated by the                                 cell relation. This must be activated to allow the UE                                 Throughput-Aware IFLB towards the cell.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.cellSubscriptionCapacity",
+      "type": "Affecting",
+      "description": "Subscription capacity of the cell.  The value represents the total capacity of the cell. It is used for                                 traffic load balancing purposes.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "QciProfilePredefined.qciSubscriptionQuanta",
+      "type": "Affecting",
+      "description": "Subscription quantity associated with the specific predefined                                 QCI.  The value specifies the subscription cost of a bearer with this                                 predefined profile. The subscription cost is used for traffic load                                 balancing purposes.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfilePredefined.qciSubscriptionQuanta                                 (Operator Defined)",
+      "type": "Affecting",
+      "description": "Subscription quantity associated with the specific operator-defined                                 QCI.  The value specifies the subscription cost of a bearer with this                                 operator defined profile. The subscription cost is used for traffic                                 load balancing purposes.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "LoadBalancingFunction.lbThreshold",
+      "type": "Affecting",
+      "description": "Minimum load (subscription ratio) difference to trigger load                                 balancing action.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqLb.a5Threshold1Rsrp",
+      "type": "Affecting",
+      "description": "Maximum load (subscription ratio) difference taken into account in                                 load balancing action.",
+      "mo_class": "ReportConfigEUtraInterFreqLb"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqLb.a5Threshold2Rsrp",
+      "type": "Affecting",
+      "description": "RSRP threshold 2 value for A5 measurement.",
+      "mo_class": "ReportConfigEUtraInterFreqLb"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqLb.a5Threshold2Rsrq",
+      "type": "Affecting",
+      "description": "RSRQ threshold 2 value for A5 measurement.",
+      "mo_class": "ReportConfigEUtraInterFreqLb"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqLb.hysteresisA5",
+      "type": "Affecting",
+      "description": "Hysteresis value for A5 measurement.",
+      "mo_class": "ReportConfigEUtraInterFreqLb"
+    },
+    {
+      "name": "EUtranFreqRelation.lbA5Thr1RsrpFreqOffset",
+      "type": "Affecting",
+      "description": "The frequency-relation specific offset for the absolute threshold                                     a5Threshold1Rsrp, RSRP threshold1 for event                                 A5.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranCellFDD.lbUeEvaluationTimer",
+      "type": "Affecting",
+      "description": "Used to configure a short timer value for evaluating load balancing                                 of incoming intra-frequency HO UEs per E-UTRAN cell. The eNodeB                                 starts the EUtranCellFDD.lbUeEvaluationTimer with                                 the configured short timer value upon completing an incoming                                 intra-frequency HO.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.lbUeEvaluationTimer",
+      "type": "Affecting",
+      "description": "Used to configure a short timer value for evaluating load balancing                                 of incoming intra-frequency HO UEs per E-UTRAN cell. The eNodeB                                 starts the EUtranCellTDD.lbUeEvaluationTimer with                                 the configured short timer value upon completing an incoming                                 intra-frequency HO.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRAVERSED_UES",
+      "description": "Number of UEs evaluated before choosing UE for load balancing                                     related measurements. If UE Throughput Aware IFLB feature is                                     operable, then the parameter shows the number of UEs that are                                     setup before choosing UE for load balancing related                                     measurements.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+      "description": "Indicates the reason for not proceeding with a load balancing or                                     Carrier Aggregation (CA) triggered redirection action when a                                     measurement report is received from the UE:    CA criteria not met     Reported cell is not a valid load balancing target     Reported cell is a valid target, but                                                 lbAmount has already been                                             satisfied for the cell     Service Specific Load Management (SSLM) related                                             restrictions     Throughput criteria not met",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.BF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.lbActionForEndcUe",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.lbActionForEndcUe",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "RobustCallSetup.intraLteMobilityDelayEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RobustCallSetup"
+    },
+    {
+      "name": "QciProfileOperatorDefined.qciSubscriptionQuanta",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "EUtranCellRelation.loadBalancing",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellRelation"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmLbEvalExpiredUe",
+      "description": "Performance counter pmLbEvalExpiredUe",
+      "category": "General"
+    },
+    {
+      "name": "pmLbTpAcceptedUe",
+      "description": "Performance counter pmLbTpAcceptedUe",
+      "category": "General"
+    },
+    {
+      "name": "pmLbTpEvalUe",
+      "description": "Performance counter pmLbTpEvalUe",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRAVERSED_UES",
+      "description": "Number of UEs evaluated before choosing UE for load balancing                                     related measurements. If UE Throughput Aware IFLB feature is                                     operable, then the parameter shows the number of UEs that are                                     setup before choosing UE for load balancing related                                     measurements."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+      "description": "Indicates the reason for not proceeding with a load balancing or                                     Carrier Aggregation (CA) triggered redirection action when a                                     measurement report is received from the UE:    CA criteria not met     Reported cell is not a valid load balancing target     Reported cell is a valid target, but                                                 lbAmount has already been                                             satisfied for the cell     Service Specific Load Management (SSLM) related                                             restrictions     Throughput criteria not met"
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011911 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011911 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/10_22104-LZA7016014_1Uen.BF.md",
+  "file_hash": "797eb80dc1b00f2c73547b4b006b392d",
+  "processed_at": "2025-10-19 15:48:54",
+  "network_impact": {},
+  "performance_impact": {}
+}

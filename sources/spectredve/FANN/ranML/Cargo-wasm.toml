@@ -1,0 +1,95 @@
+# WASM-specific workspace configuration for ranML
+# This configuration enables WebAssembly compilation for edge deployment
+
+[workspace]
+members = [
+    "crates/ran-core",
+    "crates/ran-neural", 
+    "crates/ran-forecasting",
+    "crates/ran-edge",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["RAN ML Team"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/your-org/ranML"
+homepage = "https://github.com/your-org/ranML"
+description = "WASM-enabled Radio Access Network ML optimization"
+keywords = ["radio", "5g", "machine-learning", "wasm", "edge"]
+categories = ["science", "algorithms", "wasm"]
+rust-version = "1.70"
+
+[workspace.dependencies]
+# WASM-compatible core dependencies
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1.0", features = ["v4", "js"] }
+chrono = { version = "0.4", features = ["serde", "wasmbind"] }
+
+# WASM-specific dependencies
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+js-sys = "0.3"
+web-sys = { version = "0.3", features = [
+    "console",
+    "Performance",
+    "Window",
+    "Document",
+    "Element",
+    "HtmlElement",
+    "Worker",
+    "WorkerGlobalScope",
+    "MessageEvent",
+    "ErrorEvent",
+    "WebGlRenderingContext",
+    "OffscreenCanvas",
+] }
+
+# Numeric computing for WASM
+ndarray = { version = "0.15", default-features = false }
+num-traits = { version = "0.2", default-features = false }
+rand = { version = "0.8", features = ["small_rng"] }
+
+# Async runtime for WASM
+wasm-bindgen-test = "0.3"
+
+# Local dependencies (WASM-compatible)
+ruv-fann = { path = "../src", features = ["wasm"] }
+
+# Optional GPU acceleration via WebGPU
+wgpu = { version = "0.17", optional = true, features = ["webgl"] }
+
+[profile.release]
+# Optimize for size in WASM builds
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.dev]
+opt-level = 0
+debug = true
+panic = "abort"
+
+# WASM-specific features
+[workspace.metadata.features]
+default = ["wasm"]
+wasm = ["wasm-bindgen", "js-sys", "web-sys"]
+webgpu = ["wgpu", "wasm"]
+no-std = []
+edge = ["wasm", "no-std"]
+
+# Package-specific WASM configurations
+[workspace.metadata.wasm-pack]
+out-dir = "pkg"
+target = "web"
+scope = "@ranml"
+
+[workspace.metadata.wasm-opt]
+# Optimize WASM output
+enabled = true
+level = "s"  # Optimize for size
+extra-args = ["--enable-simd", "--enable-threads"]

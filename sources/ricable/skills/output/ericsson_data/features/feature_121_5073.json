@@ -1,0 +1,121 @@
+{
+  "id": "121 5073",
+  "name": "Capability-Aware Idle Mode Control",
+  "cxc_code": "CXC4012416",
+  "value_package": "Intelligent Connectivity",
+  "value_package_id": "FAJ 801 1013",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature checks UE capability at RRC connection release to prioritize TM9-capable",
+  "parameters": [
+    {
+      "name": "RATFreqPrio.ueCapPrioAllowed",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RATFreqPrio"
+    },
+    {
+      "name": "UePolicyOptimization.t320",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UePolicyOptimization"
+    },
+    {
+      "name": "UePolicyOptimization.coverageAwareImc",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UePolicyOptimization"
+    },
+    {
+      "name": "UePolicyOptimization.ueCapPrioList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UePolicyOptimization"
+    },
+    {
+      "name": "UePolicyOptimization.loadAwareImc",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UePolicyOptimization"
+    },
+    {
+      "name": "EUtranCellFDD.subscriptionRatioHighThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.subscriptionRatioHighThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "Uen.BB",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "RATFreqPrio.spidListattribute",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RATFreqPrio"
+    },
+    {
+      "name": "RATFreqPrio.spidList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RATFreqPrio"
+    },
+    {
+      "name": "UePolicyOptimization.zzzTemporary1",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UePolicyOptimization"
+    },
+    {
+      "name": "GUtranFreqRelation.allowedPLMNList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "GUtranFreqRelation"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCellSubscriptionRatioHigh",
+      "description": "Performance counter pmCellSubscriptionRatioHigh",
+      "category": "General"
+    },
+    {
+      "name": "pmTm9PrioritizedUe",
+      "description": "Performance counter pmTm9PrioritizedUe",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012416 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012416 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/475_22104-LZA7016014_1Uen.BB.md",
+  "file_hash": "9304a5c61a59381b233896680c72d0a9",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,151 @@
+{
+  "file_hash": "2fad3f5a74b3b0dcae30e9388fe04387",
+  "feature": {
+    "id": "121 5490",
+    "name": "Enhanced UE Preemption for Privileged Access",
+    "cxc_code": "CXC4012630",
+    "value_package": "High Load Handling",
+    "value_package_id": "FAJ 801 0415",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature enables the admission of HPA and emergency call users into the cell",
+    "parameters": [
+      {
+        "name": "AdmissionControl.recalcPreemptableUeTimer",
+        "type": "Introduced",
+        "description": "The time-triggered cell registration for inter-cell UE preemption can                                 be configured with this attribute.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "EUtranCellFDD.peUeToInterCellPreHyst",
+        "type": "Introduced",
+        "description": "The                                 attributes can be used to configure the threshold for registering                                 cells for inter-cell UE preemption.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.peUeToInterCellPreHyst",
+        "type": "Introduced",
+        "description": "The                                 attributes can be used to configure the threshold for registering                                 cells for inter-cell UE preemption.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.peUeToInterCellPreThrUnreg",
+        "type": "Introduced",
+        "description": "The                                 attributes can be used to configure the threshold for registering                                 cells for inter-cell UE preemption.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.peUeToInterCellPreThrUnreg",
+        "type": "Introduced",
+        "description": "The                                 attributes can be used to configure the threshold for registering                                 cells for inter-cell UE preemption.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.paConnCellUeReservations",
+        "type": "Introduced",
+        "description": "The PA reservation pool can be defined with these attributes.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.paConnCellUeReservations",
+        "type": "Introduced",
+        "description": "The PA reservation pool can be defined with these attributes.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "AdmissionControl.nrOfPaConnHpaReservPerCell",
+        "type": "Affecting",
+        "description": "The HPA pool can be defined with this attribute.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "INTERNAL_PROC_UE_CTXT_RELEASE",
+        "type": "EVENT_PARAM_UE_PREEMPTION_CAUSE",
+        "description": "The following values are added:  EVENT_VALUE_INTER_CELL_UE_PREEMPTION     EVENT_VALUE_PREEMPTION_CELL_THRESHOLD_EXCEEDED",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.Y",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "AdmissionControl.paArpOverrideEc",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "AdmissionControl.paArpOverrideHpa",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "AdmissionControl.paArpOverride",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "AdmissionControl"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmRrcConnEstabAttHpa",
+        "description": "Performance counter pmRrcConnEstabAttHpa",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabSuccHpa",
+        "description": "Performance counter pmRrcConnEstabSuccHpa",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelAbnormalEnbPe",
+        "description": "Performance counter pmUeCtxtRelAbnormalEnbPe",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelAbnormalEnbPeInterCell",
+        "description": "Performance counter pmUeCtxtRelAbnormalEnbPeInterCell",
+        "category": "General"
+      },
+      {
+        "name": "pmUePeAttInterCell",
+        "description": "Performance counter pmUePeAttInterCell",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PROC_UE_CTXT_RELEASE",
+        "type": "EVENT_PARAM_UE_PREEMPTION_CAUSE",
+        "description": "The following values are added:  EVENT_VALUE_INTER_CELL_UE_PREEMPTION     EVENT_VALUE_PREEMPTION_CELL_THRESHOLD_EXCEEDED"
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012630 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the CXC4012630 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/566_22104-LZA7016014_1Uen.Y.md",
+    "file_hash": "2fad3f5a74b3b0dcae30e9388fe04387",
+    "processed_at": "2025-10-19 15:50:06",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

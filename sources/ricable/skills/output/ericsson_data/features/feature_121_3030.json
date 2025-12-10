@@ -1,0 +1,371 @@
+{
+  "id": "121 3030",
+  "name": "",
+  "cxc_code": "CXC4011372",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "The LPPa-based E-CID Support feature allows the E-SMLC to initiate UE and eNodeB",
+  "parameters": [
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_HOUR",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_MINUTE",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_SECOND",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_MILLISEC",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_SCANNER_ID",
+      "description": "16 scanners for UE Trace and 6 scanners for Cell Trace. The                                     scanner ID consists of a sequence of 22 bits, each bit                                     corresponds to a particular scanner ID. See also \"Performance                                     Management\" 3/1551-HSC 105 50/1.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_RBS_MODULE_ID",
+      "description": "DUL (Digital Unit reference)",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_GLOBAL_CELL_ID",
+      "description": "Identity of the cell, defined in MOM.   If EVENT_PARAM_RBS_MODULE_ID is                                         EVENT_VALUE_HOME_ENB_ID, the format is                                     28 bit eNodeB ID or else the format is Marco-enb-id (eNodeB ID                                     (20 bits) + Cell ID (8 bits)).",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_ENBS1APID",
+      "description": "eNodeB S1 AP ID. The value of this parameter can be                                         UNAVAILABLE before initial connection                                     setup.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_MMES1APID",
+      "description": "MME S1 AP ID. The value of this parameter can be                                         UNAVAILABLE before MME allocate mmeS1ApId                                     and send it to EnodeB.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_GUMMEI",
+      "description": "Indicates whether the registered MME identity is native (assigned                                     by EPC) or mapped (mapped from 2G or 3G identifiers).",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_RAC_UE_REF",
+      "description": "The UE identity used in service between RAC layer and                                     Baseband.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TRACE_RECORDING_SESSION_REFERENCE",
+      "description": "The unique session ID for UE.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_MESSAGE_DIRECTION",
+      "description": "Direction of message (received or sent).",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_L3MESSAGE_LENGTH",
+      "description": "Number of bytes in ASN.1 coded message.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_L3MESSAGE_CONTENTS",
+      "description": "The message content has variable length. This parameter has a                                     limit of 8 kbytes for RRC messages according to 3GPP. The actual                                     size used is variable as the recording functions only use the                                     same amount of space as is required by the message.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_HOUR",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_MINUTE",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_SECOND",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_MILLISEC",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_SCANNER_ID",
+      "description": "16 scanners for UE Trace and 6 scanners for Cell Trace. The                                     scanner ID consists of a sequence of 22 bits, each bit                                     corresponds to a particular scanner ID. See also \"Performance                                     Management\" 3/1551-HSC 105 50/1.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_RBS_MODULE_ID",
+      "description": "DUL (Digital Unit reference)",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_GLOBAL_CELL_ID",
+      "description": "Identity of the cell, defined in MOM.   If EVENT_PARAM_RBS_MODULE_ID is                                         EVENT_VALUE_HOME_ENB_ID, the format is                                     28 bit eNodeB ID or else the format is Marco-enb-id (eNodeB ID                                     (20 bits) + Cell ID (8 bits)).",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_ENBS1APID",
+      "description": "eNodeB S1 AP ID. The value of this parameter can be                                         UNAVAILABLE before initial connection                                     setup.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_MMES1APID",
+      "description": "MME S1 AP ID. The value of this parameter can be                                         UNAVAILABLE before MME allocate mmeS1ApId                                     and send it to EnodeB.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_GUMMEI",
+      "description": "Indicates whether the registered MME identity is native (assigned                                     by EPC) or mapped (mapped from 2G or 3G identifiers).",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_RAC_UE_REF",
+      "description": "The UE identity used in service between RAC layer and                                     Baseband.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TRACE_RECORDING_SESSION_REFERENCE",
+      "description": "The unique session ID for UE.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_MESSAGE_DIRECTION",
+      "description": "Direction of message (received or sent).",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_L3MESSAGE_LENGTH",
+      "description": "Number of bytes in ASN.1 coded message.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_L3MESSAGE_CONTENTS",
+      "description": "The message content has variable length. This parameter has a                                     limit of 8 kbytes for RRC messages according to 3GPP. The actual                                     size used is variable as the recording functions only use the                                     same amount of space as is required by the message.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [],
+  "events": [
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_HOUR",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated."
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_MINUTE",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated."
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_SECOND",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated."
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_MILLISEC",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated."
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_SCANNER_ID",
+      "description": "16 scanners for UE Trace and 6 scanners for Cell Trace. The                                     scanner ID consists of a sequence of 22 bits, each bit                                     corresponds to a particular scanner ID. See also \"Performance                                     Management\" 3/1551-HSC 105 50/1."
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_RBS_MODULE_ID",
+      "description": "DUL (Digital Unit reference)"
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_GLOBAL_CELL_ID",
+      "description": "Identity of the cell, defined in MOM.   If EVENT_PARAM_RBS_MODULE_ID is                                         EVENT_VALUE_HOME_ENB_ID, the format is                                     28 bit eNodeB ID or else the format is Marco-enb-id (eNodeB ID                                     (20 bits) + Cell ID (8 bits))."
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_ENBS1APID",
+      "description": "eNodeB S1 AP ID. The value of this parameter can be                                         UNAVAILABLE before initial connection                                     setup."
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_MMES1APID",
+      "description": "MME S1 AP ID. The value of this parameter can be                                         UNAVAILABLE before MME allocate mmeS1ApId                                     and send it to EnodeB."
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_GUMMEI",
+      "description": "Indicates whether the registered MME identity is native (assigned                                     by EPC) or mapped (mapped from 2G or 3G identifiers)."
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_RAC_UE_REF",
+      "description": "The UE identity used in service between RAC layer and                                     Baseband."
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TRACE_RECORDING_SESSION_REFERENCE",
+      "description": "The unique session ID for UE."
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_MESSAGE_DIRECTION",
+      "description": "Direction of message (received or sent)."
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_L3MESSAGE_LENGTH",
+      "description": "Number of bytes in ASN.1 coded message."
+    },
+    {
+      "name": "S1_DOWNLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_L3MESSAGE_CONTENTS",
+      "description": "The message content has variable length. This parameter has a                                     limit of 8 kbytes for RRC messages according to 3GPP. The actual                                     size used is variable as the recording functions only use the                                     same amount of space as is required by the message."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_HOUR",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_MINUTE",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_SECOND",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TIMESTAMP_MILLISEC",
+      "description": "Time remaining (in seconds) until the next update of System                                     Information (SIB2) may be done, for minimizing the risk for UEs                                     of missing SI changes. It is recommended to wait this time                                     before performing the next SI updated."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_SCANNER_ID",
+      "description": "16 scanners for UE Trace and 6 scanners for Cell Trace. The                                     scanner ID consists of a sequence of 22 bits, each bit                                     corresponds to a particular scanner ID. See also \"Performance                                     Management\" 3/1551-HSC 105 50/1."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_RBS_MODULE_ID",
+      "description": "DUL (Digital Unit reference)"
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_GLOBAL_CELL_ID",
+      "description": "Identity of the cell, defined in MOM.   If EVENT_PARAM_RBS_MODULE_ID is                                         EVENT_VALUE_HOME_ENB_ID, the format is                                     28 bit eNodeB ID or else the format is Marco-enb-id (eNodeB ID                                     (20 bits) + Cell ID (8 bits))."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_ENBS1APID",
+      "description": "eNodeB S1 AP ID. The value of this parameter can be                                         UNAVAILABLE before initial connection                                     setup."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_MMES1APID",
+      "description": "MME S1 AP ID. The value of this parameter can be                                         UNAVAILABLE before MME allocate mmeS1ApId                                     and send it to EnodeB."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_GUMMEI",
+      "description": "Indicates whether the registered MME identity is native (assigned                                     by EPC) or mapped (mapped from 2G or 3G identifiers)."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_RAC_UE_REF",
+      "description": "The UE identity used in service between RAC layer and                                     Baseband."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_TRACE_RECORDING_SESSION_REFERENCE",
+      "description": "The unique session ID for UE."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_MESSAGE_DIRECTION",
+      "description": "Direction of message (received or sent)."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_L3MESSAGE_LENGTH",
+      "description": "Number of bytes in ASN.1 coded message."
+    },
+    {
+      "name": "S1_UPLINK_UE_ASSOCIATED_LPPA_TRANSPORT",
+      "type": "EVENT_PARAM_L3MESSAGE_CONTENTS",
+      "description": "The message content has variable length. This parameter has a                                     limit of 8 kbytes for RRC messages according to 3GPP. The actual                                     size used is variable as the recording functions only use the                                     same amount of space as is required by the message."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011372 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011372 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/103_22104-LZA7016014_1Uen.AF.md",
+  "file_hash": "70dd0bc66ef2625e4b6032d77ee317dc",
+  "processed_at": "2025-10-19 15:48:54",
+  "network_impact": {},
+  "performance_impact": {}
+}

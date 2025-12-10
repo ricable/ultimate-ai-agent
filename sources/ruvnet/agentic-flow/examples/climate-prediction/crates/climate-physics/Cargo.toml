@@ -1,0 +1,16 @@
+[package]
+name = "climate-physics"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+climate-core = { path = "../climate-core" }
+ndarray = { workspace = true }
+ndarray-stats = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+approx = "0.5"

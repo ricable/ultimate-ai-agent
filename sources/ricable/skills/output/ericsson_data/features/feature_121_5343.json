@@ -1,0 +1,46 @@
+{
+  "id": "121 5343",
+  "name": "UE Location Information in Traces",
+  "cxc_code": null,
+  "value_package": "NR Base Package",
+  "value_package_id": "FAJ 801 4002",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature enables collecting statistics on UE level timing advance values. The timing",
+  "parameters": [
+    {
+      "name": "DuPerRadioUeMeasurement",
+      "type": "per_ue_nr_timing_advance",
+      "description": "NR Timing Advance value, see 3GPP TS 38.211",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.L",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [],
+  "events": [
+    {
+      "name": "DuPerRadioUeMeasurement",
+      "type": "per_ue_nr_timing_advance",
+      "description": "NR Timing Advance value, see 3GPP TS 38.211"
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": null,
+  "deactivation_step": null,
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/532_22104-LZA7016014_1Uen.L.md",
+  "file_hash": "02b386d53adeaf5313b38805f50cc36b",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

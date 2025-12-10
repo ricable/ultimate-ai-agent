@@ -1,0 +1,501 @@
+{
+  "file_hash": "4235b3d69140d136153f250ca5397a30",
+  "feature": {
+    "id": "121 3094",
+    "name": "MIMO Sleep Mode",
+    "cxc_code": "CXC4011808",
+    "value_package": "Energy Efficiency",
+    "value_package_id": "FAJ 801 0413",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The MIMO Sleep Mode feature is an energy efficiency feature that saves energy by",
+    "parameters": [
+      {
+        "name": "CellSleepFunction.sleepEndTimeApplied",
+        "type": "Affecting",
+        "description": "This attribute is set automatically by the feature.",
+        "mo_class": "CellSleepFunction"
+      },
+      {
+        "name": "CellSleepFunction.sleepStartTimeApplied",
+        "type": "Affecting",
+        "description": "This attribute is set automatically by the feature.",
+        "mo_class": "CellSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.portMerging4TxOpMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.portMergingEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.portMergingOptionFor4TxTo2Tx",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.rank2Enabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.sleepEndTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.sleepEndTimeApplied",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.sleepMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.sleepPowerControl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.sleepStartTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.sleepStartTimeApplied",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.sleepState",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.switchDownMonitorDurTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.switchDownPrbThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.switchDownRrcConnThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.switchUpMonitorDurTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.switchUpPrbThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "MimoSleepFunction.switchUpRrcConnThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MimoSleepFunction"
+      },
+      {
+        "name": "SectorCarrier.noOfMutedTxAntennas",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SectorCarrier"
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_TX_CONFIG",
+        "description": "The number of used TX antennas on the cell sector carriers at the                                     time of MIMO sleep detection.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_DL_PRB_USAGE",
+        "description": "The adjusted Downlink PRB use percentage during the MIMO sleep                                     detection.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_DL_PRB_THRESHOLD",
+        "description": "The configured Downlink PRB use percentage threshold for the MIMO                                     sleep detection.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_UES",
+        "description": "The PM counters and events of this feature only suggest the                                     duration andThe adjusted number of RRC connections found during                                     the MIMO sleep detection.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_UES_THRESHOLD",
+        "description": "The configured number of RRC connections threshold for the MIMO                                     sleep detection.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_DURATION",
+        "description": "The configured duration for the MIMO sleep detection.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_DIRECTION",
+        "description": "The direction of the MIMO sleep detection.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_MODE",
+        "description": "Mode for MIMO sleep switching.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_HOUR",
+        "description": "The time stamp when the MIMO sleep switching procedure                                     starts.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_MINUTE",
+        "description": "The time stamp when the MIMO sleep switching procedure                                     starts.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_SECOND",
+        "description": "The time stamp when the MIMO sleep switching procedure                                     starts.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_MILLISEC",
+        "description": "The time stamp when the MIMO sleep switching procedure                                     starts.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_HOUR",
+        "description": "The time stamp when the MIMO sleep switching procedure ends.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_MINUTE",
+        "description": "The time stamp when the MIMO sleep switching procedure ends.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_SECOND",
+        "description": "The time stamp when the MIMO sleep switching procedure ends.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_MILLISEC",
+        "description": "The time stamp when the MIMO sleep switching procedure ends.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_CURRENT_TX_CONFIG",
+        "description": "The number of used TX antennas on the cell sector carriers at the                                     time of MIMO sleep switch.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DESIRED_TX_CONFIG",
+        "description": "The number of TX antennas desired on the cell sector carriers at                                     the time of MIMO sleep switch.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_SWITCH_RESULT",
+        "description": "Result for MIMO sleep switching.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_MODE",
+        "description": "Mode for MIMO Sleep switching",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.EC33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.pdcchCfiMode",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pdcchCfiMode",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMimoSleepOppTime",
+        "description": "Performance counter pmMimoSleepOppTime",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMimoSleepTime",
+        "description": "Performance counter pmMimoSleepTime",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmPdcpPktDiscDlAqm",
+        "description": "Performance counter pmPdcpPktDiscDlAqm",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktDiscDlPelr",
+        "description": "Performance counter pmPdcpPktDiscDlPelr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDlSCellExt",
+        "description": "Performance counter pmRadioThpVolDlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCellExt",
+        "description": "Performance counter pmRadioThpVolTxDlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioTxRankDistr",
+        "description": "Performance counter pmRadioTxRankDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffRatio",
+        "description": "Performance counter pmTxOffRatio",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffRatio1",
+        "description": "Performance counter pmTxOffRatio1",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffRatio2",
+        "description": "Performance counter pmTxOffRatio2",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffRatio3",
+        "description": "Performance counter pmTxOffRatio3",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffRatio4",
+        "description": "Performance counter pmTxOffRatio4",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffTime",
+        "description": "Performance counter pmTxOffTime",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffTime1",
+        "description": "Performance counter pmTxOffTime1",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffTime2",
+        "description": "Performance counter pmTxOffTime2",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffTime3",
+        "description": "Performance counter pmTxOffTime3",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffTime4",
+        "description": "Performance counter pmTxOffTime4",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmode",
+        "description": "Performance counter pmode",
+        "category": "General"
+      },
+      {
+        "name": "pmonitorDurTimer",
+        "description": "Performance counter pmonitorDurTimer",
+        "category": "General"
+      },
+      {
+        "name": "pmonitordurTimer",
+        "description": "Performance counter pmonitordurTimer",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_TX_CONFIG",
+        "description": "The number of used TX antennas on the cell sector carriers at the                                     time of MIMO sleep detection."
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_DL_PRB_USAGE",
+        "description": "The adjusted Downlink PRB use percentage during the MIMO sleep                                     detection."
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_DL_PRB_THRESHOLD",
+        "description": "The configured Downlink PRB use percentage threshold for the MIMO                                     sleep detection."
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_UES",
+        "description": "The PM counters and events of this feature only suggest the                                     duration andThe adjusted number of RRC connections found during                                     the MIMO sleep detection."
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_UES_THRESHOLD",
+        "description": "The configured number of RRC connections threshold for the MIMO                                     sleep detection."
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_DURATION",
+        "description": "The configured duration for the MIMO sleep detection."
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DET_DIRECTION",
+        "description": "The direction of the MIMO sleep detection."
+      },
+      {
+        "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_MODE",
+        "description": "Mode for MIMO sleep switching."
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_HOUR",
+        "description": "The time stamp when the MIMO sleep switching procedure                                     starts."
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_MINUTE",
+        "description": "The time stamp when the MIMO sleep switching procedure                                     starts."
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_SECOND",
+        "description": "The time stamp when the MIMO sleep switching procedure                                     starts."
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_MILLISEC",
+        "description": "The time stamp when the MIMO sleep switching procedure                                     starts."
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_HOUR",
+        "description": "The time stamp when the MIMO sleep switching procedure ends."
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_MINUTE",
+        "description": "The time stamp when the MIMO sleep switching procedure ends."
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_SECOND",
+        "description": "The time stamp when the MIMO sleep switching procedure ends."
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_MILLISEC",
+        "description": "The time stamp when the MIMO sleep switching procedure ends."
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_CURRENT_TX_CONFIG",
+        "description": "The number of used TX antennas on the cell sector carriers at the                                     time of MIMO sleep switch."
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_DESIRED_TX_CONFIG",
+        "description": "The number of TX antennas desired on the cell sector carriers at                                     the time of MIMO sleep switch."
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_SWITCH_RESULT",
+        "description": "Result for MIMO sleep switching."
+      },
+      {
+        "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+        "type": "EVENT_PARAM_MIMO_SLEEP_MODE",
+        "description": "Mode for MIMO Sleep switching"
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011808 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011808 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/15_22104-LZA7016014_1Uen.EC33B.md",
+    "file_hash": "4235b3d69140d136153f250ca5397a30",
+    "processed_at": "2025-10-19 15:30:38",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

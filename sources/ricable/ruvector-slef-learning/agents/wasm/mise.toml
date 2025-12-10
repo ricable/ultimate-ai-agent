@@ -1,0 +1,293 @@
+# mise.toml - WASM Agent Category Configuration
+# For WasmEdge and Spin/SpinKube agents
+# https://mise.jdx.dev/
+
+[env]
+# WASM-specific environment
+AGENT_CATEGORY = "wasm"
+WASM_RUNTIME = "wasmedge"
+
+# WasmEdge configuration
+WASMEDGE_PLUGIN_PATH = "{{env.HOME}}/.wasmedge/plugin"
+WASMEDGE_DIR = "{{env.HOME}}/.wasmedge"
+
+# Build output directories
+WASM_OUTPUT_DIR = "{{config_root}}/dist"
+WASM_CACHE_DIR = "{{env.HOME}}/.cache/wasm"
+
+# Spin configuration
+SPIN_DATA_DIR = "{{env.HOME}}/.spin"
+
+# Add local binaries to path
+_.path = [
+  "{{config_root}}/node_modules/.bin",
+  "{{env.HOME}}/.wasmedge/bin",
+  "{{env.HOME}}/.spin"
+]
+
+[tools]
+# JavaScript runtime for WASM compilation
+node = "22"
+bun = "latest"
+
+# Rust for native WASM compilation
+rust = { version = "stable", targets = "wasm32-unknown-unknown,wasm32-wasi,wasm32-wasip1" }
+
+# WASM-specific cargo tools
+"cargo:wasm-pack" = "latest"
+"cargo:cargo-component" = "latest"
+"cargo:wasm-bindgen-cli" = "latest"
+"cargo:wasm-opt" = "latest"
+
+# Build tools
+"npm:esbuild" = "latest"
+"npm:@aspect-build/spin-js" = "latest"
+
+# Spin CLI
+[tools.spin]
+version = "latest"
+
+[settings]
+# WASM-optimized settings
+jobs = 4
+experimental = true
+
+# =============================================================================
+# WASM AGENT TASKS
+# =============================================================================
+
+[tasks.build]
+description = "Build WASM agent"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🔨 Building WASM agent..."
+
+# Bundle JavaScript
+if [ -f "package.json" ]; then
+  bun run build:bundle || npm run build:bundle
+fi
+
+# Build Rust WASM if present
+if [ -f "Cargo.toml" ]; then
+  cargo build --target wasm32-wasi --release
+  wasm-opt -O3 target/wasm32-wasi/release/*.wasm -o dist/agent.wasm
+fi
+
+echo "✅ WASM agent built"
+"""
+
+[tasks.build-wasmedge]
+description = "Build for WasmEdge runtime"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🔨 Building for WasmEdge..."
+
+# Bundle JavaScript for QuickJS
+npx esbuild src/index.js --bundle --outfile=dist/agent.js --format=esm --platform=neutral --target=es2022
+
+# Compile to WASM if wasmedge is available
+if command -v wasmedge &> /dev/null; then
+  wasmedge compile --enable-all dist/agent.js dist/agent.wasm
+fi
+
+echo "✅ WasmEdge build complete"
+"""
+
+[tasks.build-spin]
+description = "Build for Spin/SpinKube runtime"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🔨 Building for Spin..."
+spin build
+echo "✅ Spin build complete"
+"""
+
+[tasks.test]
+description = "Test WASM agent"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🧪 Testing WASM agent..."
+
+# Run JavaScript tests
+if [ -f "package.json" ]; then
+  bun test || npm test
+fi
+
+# Run Rust tests if present
+if [ -f "Cargo.toml" ]; then
+  cargo test
+fi
+
+echo "✅ Tests complete"
+"""
+
+[tasks.run-wasmedge]
+description = "Run agent with WasmEdge"
+run = """
+#!/usr/bin/env bash
+if [ -f "dist/agent.wasm" ]; then
+  wasmedge --dir .:. dist/agent.wasm "$@"
+elif [ -f "dist/agent.js" ]; then
+  wasmedge --dir .:. dist/agent.js "$@"
+else
+  echo "❌ No built agent found. Run: mise run build"
+  exit 1
+fi
+"""
+
+[tasks.run-spin]
+description = "Run agent with Spin locally"
+run = "spin up"
+
+[tasks.deploy]
+description = "Deploy WASM agent to Kubernetes"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+NAMESPACE=${NAMESPACE:-"default"}
+
+echo "🚀 Deploying WASM agent to namespace: $NAMESPACE"
+
+# Apply Kubernetes manifests
+kubectl apply -f k8s/ -n "$NAMESPACE"
+
+echo "✅ Agent deployed"
+"""
+
+[tasks.logs]
+description = "View WASM agent logs"
+run = """
+#!/usr/bin/env bash
+AGENT_NAME=${1:-"wasm-agent"}
+kubectl logs -f -l app="$AGENT_NAME"
+"""
+
+[tasks.package]
+description = "Package WASM agent as OCI artifact"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+REGISTRY=${REGISTRY:-"ghcr.io/ruvnet"}
+AGENT_NAME=${AGENT_NAME:-$(basename $(pwd))}
+VERSION=${VERSION:-"latest"}
+
+echo "📦 Packaging as OCI artifact..."
+echo "   Registry: $REGISTRY"
+echo "   Name: $AGENT_NAME"
+echo "   Version: $VERSION"
+
+# Use spin registry push or oras
+if command -v spin &> /dev/null; then
+  spin registry push "$REGISTRY/$AGENT_NAME:$VERSION"
+else
+  echo "Install Spin CLI for OCI packaging"
+fi
+
+echo "✅ Agent packaged"
+"""
+
+[tasks.template]
+description = "Create new WASM agent from template"
+run = """
+#!/usr/bin/env bash
+AGENT_NAME=${1:?"Usage: mise run template <agent-name>"}
+
+echo "🤖 Creating WASM agent: $AGENT_NAME"
+
+mkdir -p "$AGENT_NAME"/{src,k8s,dist}
+
+# Create package.json
+cat > "$AGENT_NAME/package.json" << 'EOF'
+{
+  "name": "@zgents/wasm-$AGENT_NAME",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "build:bundle": "esbuild src/index.js --bundle --outfile=dist/agent.js --format=esm --platform=neutral",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "claude-flow": "^2.7.41",
+    "ruvector": "^0.1.31"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.0"
+  }
+}
+EOF
+
+# Create basic agent
+cat > "$AGENT_NAME/src/index.js" << 'EOF'
+// WASM Agent Entry Point
+export async function handler(request) {
+  return new Response(JSON.stringify({
+    status: "ok",
+    agent: "$AGENT_NAME",
+    runtime: "wasmedge"
+  }), {
+    headers: { "content-type": "application/json" }
+  });
+}
+EOF
+
+# Create mise.toml that inherits from parent
+cat > "$AGENT_NAME/mise.toml" << 'EOF'
+# Inherits from parent agents/wasm/mise.toml
+[env]
+AGENT_NAME = "$AGENT_NAME"
+EOF
+
+echo "✅ Agent created at $AGENT_NAME/"
+"""
+
+# =============================================================================
+# WASMEDGE INSTALLATION TASKS
+# =============================================================================
+
+[tasks.install-wasmedge]
+description = "Install WasmEdge runtime"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "📦 Installing WasmEdge..."
+
+# Detect architecture
+ARCH=$(uname -m)
+OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+
+if [ "$OS" = "darwin" ]; then
+  brew install wasmedge
+else
+  curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- --plugins wasi_nn-ggml
+fi
+
+echo "✅ WasmEdge installed"
+wasmedge --version
+"""
+
+[tasks.install-spin]
+description = "Install Spin CLI"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "📦 Installing Spin CLI..."
+
+curl -fsSL https://developer.fermyon.com/downloads/install.sh | bash
+sudo mv spin /usr/local/bin/
+
+echo "✅ Spin installed"
+spin --version
+"""

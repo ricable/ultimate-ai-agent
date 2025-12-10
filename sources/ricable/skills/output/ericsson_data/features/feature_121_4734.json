@@ -1,0 +1,160 @@
+{
+  "id": "121 4734",
+  "name": "Global SCell Evaluation",
+  "cxc_code": "CXC4012111",
+  "value_package": "Advanced Carrier Aggregation",
+  "value_package_id": "FAJ 801 0564",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature is an SCell selection framework, which provides an enhanced blind SCell",
+  "parameters": [
+    {
+      "name": "CarrierAggregationFunction.sCellEvaluationLevel",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "CarrierAggregationFunction.selectionPolicyUlWeighting",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "CarrierAggregationFunction.useAbsolutePrioForCspEffBw",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "CarrierAggregationFunction.effectiveBwImpactDl2Layer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "CarrierAggregationFunction.effectiveBwImpactDl4Layer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "CarrierAggregationFunction.sCellSelectionMode",
+      "type": "Affecting",
+      "description": "The value of this attribute determines how the possible SCell band                                 combinations are evaluated:  ACK_SEQUENTIAL_SCELL_SELECTION: The band                                             combinations are evaluated on one component carrier (CC)                                             aggregation level at a time. It starts on the 2 (CC)                                             level. Then the reselection process evaluates the next                                             CC level, and if it finds an SCell band combinations                                             with better throughput, it reconfigures the SCells. The                                             process repeats itself until the maximum CC level or                                             throughput is reached.     ACK_SIMULTANEOUS_SCELL_SELECTION,                                                 UN_ACK_SIMULTANEOUS_SCELL_SELECTION:     CarrierAggregationFunction.sCellEvaluationLevel                                                   is set to EFFECTIVE: The band                                                   combinations are evaluated on all CC aggregation                                                   levels at the same time.     CarrierAggregationFunction.sCellEvaluationLevel                                                   is set to HIGH: The band                                                   combinations are evaluated on the highest possible                                                   component carrier aggregation level. If no valid                                                   SCell combination is found, it continues with the                                                   second highest CC level. The process repeats                                                   itself until a valid SCell combination is found or                                                   there are no more SCell among the component                                                   carriers.",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "CarrierAggregationFunction.dynamicSCellSelectionMethod",
+      "type": "Affecting",
+      "description": "Must be set to GLOBAL_EVALUATION for the feature to                                 operate.",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "EUtranCellFDD.caPrioThreshold  EUtranCellTDD.caPrioThreshold",
+      "type": "Affecting",
+      "description": "The value of this attribute has an impact on how the Effective                                 Bandwidth Evaluation considers the load on SCells. For more                                 information, see MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranFreqRelation.caFreqPriority",
+      "type": "Affecting",
+      "description": "The value of this attribute has an impact on how the Effective                                 Bandwidth Evaluation considers the load on SCells. For more                                 information, see MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranFreqRelation.caFreqProportion",
+      "type": "Affecting",
+      "description": "The value of this attribute has an impact on how the Effective                                 Bandwidth Evaluation considers the load on SCells. For more                                 information, see MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranCellRelation.sCellPriority  EUtranCellRelationUnlicensed.sCellPriority",
+      "type": "Affecting",
+      "description": "The value of this attribute has an impact on how the Effective                                 Bandwidth Evaluation considers the load on SCells. For more                                 information, see MOM description.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranFreqRelationUnlicensed.caFreqPriority",
+      "type": "Affecting",
+      "description": "The value of this attribute has an impact on how the Effective                                 Bandwidth Evaluation considers the load on SCells. For more                                 information, see MOM description.",
+      "mo_class": "EUtranFreqRelationUnlicensed"
+    },
+    {
+      "name": "EUtranFreqRelationUnlicensed.caFreqProportion",
+      "type": "Affecting",
+      "description": "The value of this attribute has an impact on how the Effective                                 Bandwidth Evaluation considers the load on SCells. For more                                 information, see MOM description.",
+      "mo_class": "EUtranFreqRelationUnlicensed"
+    },
+    {
+      "name": "CarrierAggregationFunction.caPreference",
+      "type": "Affecting",
+      "description": "See Uplink Weight in the Evaluation.",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "Uen.AE",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellRelation.sCellPriority",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellRelation"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCaConfiguredDlSum",
+      "description": "Performance counter pmCaConfiguredDlSum",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfiguredUlSum",
+      "description": "Performance counter pmCaConfiguredUlSum",
+      "category": "General"
+    },
+    {
+      "name": "pmCounters",
+      "description": "Performance counter pmCounters",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolDlDrbCa",
+      "description": "Performance counter pmPdcpVolDlDrbCa",
+      "category": "General"
+    },
+    {
+      "name": "pmUeThpVolUlCa",
+      "description": "Performance counter pmUeThpVolUlCa",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012111 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012111 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/444_22104-LZA7016014_1Uen.AE.md",
+  "file_hash": "dedb4a395744f1b538f1dfc2473fb591",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

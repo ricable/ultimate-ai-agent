@@ -1,0 +1,56 @@
+{
+  "timestamp": "2025-07-13T15:25:05.491Z",
+  "platform": {
+    "os": "linux",
+    "arch": "x64",
+    "nodeVersion": "v22.16.0",
+    "npmVersion": "9.8.1"
+  },
+  "results": {
+    "passed": 6,
+    "failed": 2,
+    "warnings": 1,
+    "tests": [
+      {
+        "name": "Node.js Version Compatibility",
+        "status": "passed",
+        "duration": 195
+      },
+      {
+        "name": "Package Structure Validation",
+        "status": "passed",
+        "duration": 0
+      },
+      {
+        "name": "Dependency Analysis",
+        "status": "passed",
+        "duration": 1692
+      },
+      {
+        "name": "Binary Validation",
+        "status": "passed",
+        "duration": 1
+      },
+      {
+        "name": "Local Installation Test",
+        "status": "failed",
+        "error": "Command failed: npm install /workspaces/Synaptic-Neural-Mesh/src/js/synaptic-cli/synaptic-mesh-1.0.0-alpha.1.tgz\nnpm ERR! code E404\nnpm ERR! 404 Not Found - GET https://registry.npmjs.org/@synaptic-mesh%2fkimi-k2-integration - Not found\nnpm ERR! 404 \nnpm ERR! 404  '@synaptic-mesh/kimi-k2-integration@^1.0.0-alpha.1' is not in this registry.\nnpm ERR! 404 \nnpm ERR! 404 Note that you can also install from a\nnpm ERR! 404 tarball, folder, http url, or git url.\n\nnpm ERR! A complete log of this run can be found in: /home/codespace/.npm/_logs/2025-07-13T15_24_55_929Z-debug-0.log\n"
+      },
+      {
+        "name": "Global Installation Test",
+        "status": "failed",
+        "error": "Global installation test failed: Command failed: npm install -g /workspaces/Synaptic-Neural-Mesh/src/js/synaptic-cli/synaptic-mesh-1.0.0-alpha.1.tgz --dry-run\nnpm ERR! code E404\nnpm ERR! 404 Not Found - GET https://registry.npmjs.org/@synaptic-mesh%2fkimi-k2-integration - Not found\nnpm ERR! 404 \nnpm ERR! 404  '@synaptic-mesh/kimi-k2-integration@^1.0.0-alpha.1' is not in this registry.\nnpm ERR! 404 \nnpm ERR! 404 Note that you can also install from a\nnpm ERR! 404 tarball, folder, http url, or git url.\n\nnpm ERR! A complete log of this run can be found in: /home/codespace/.npm/_logs/2025-07-13T15_25_04_292Z-debug-0.log\n"
+      },
+      {
+        "name": "Cross-Platform Compatibility",
+        "status": "passed",
+        "duration": 0
+      },
+      {
+        "name": "Alpha Release Validation",
+        "status": "passed",
+        "duration": 0
+      }
+    ]
+  }
+}

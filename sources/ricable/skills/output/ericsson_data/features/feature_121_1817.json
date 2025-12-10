@@ -1,0 +1,321 @@
+{
+  "id": "121 1817",
+  "name": "Cell Soft Lock",
+  "cxc_code": "CXC4011378",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "Using the Cell Soft Lock feature, the operator can soft lock one or several",
+  "parameters": [
+    {
+      "name": "ReportConfigA5SoftLock.a5Threshold2Rsrp",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5SoftLock"
+    },
+    {
+      "name": "EUtranCellFDD.administrativeState  EUtranCellTDD.administrativeState  (1)",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "ENodeBFunction.checkEmergencySoftLock",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "EUtranCellFDD.maxSoftLockBackoffTime  EUtranCellTDD.maxSoftLockBackoffTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "ENodeBFunction.softLockRwRWaitTimerInternal",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ENodeBFunction.softLockRwRWaitTimerOperator",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "EUtranCellFDD.dlPowerRampUpInitRatio  EUtranCellTDD.dlPowerRampUpInitRatio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.dlPowerRampUpRate  EUtranCellTDD.dlPowerRampUpRate",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "INTERNAL_PROC_SOFT_LOCK",
+      "type": "EVENT_PARAM_TIMESTAMP_START_HOUR    EVENT_PARAM_TIMESTAMP_START_MINUTE    EVENT_PARAM_TIMESTAMP_START_SECOND    EVENT_PARAM_TIMESTAMP_START_MILLISEC    EVENT_PARAM_TIMESTAMP_STOP_HOUR    EVENT_PARAM_TIMESTAMP_STOP_MINUTE    EVENT_PARAM_TIMESTAMP_STOP_SECOND    EVENT_PARAM_TIMESTAMP_STOP_MILLISEC    EVENT_PARAM_SOFT_LOCK_RESULT    EVENT_PARAM_SOFT_LOCK_START_NR_OF_RRC_CONN_UES    EVENT_PARAM_SOFT_LOCK_START_NR_OF_VOLTE_UES    EVENT_PARAM_SOFT_LOCK_START_NR_OF_EMERGENCY_UES    EVENT_PARAM_SOFT_LOCK_END_NR_OF_RRC_CONN_UES    EVENT_PARAM_SOFT_LOCK_END_NR_OF_VOLTE_UES    EVENT_PARAM_SOFT_LOCK_END_NR_OF_EMERGENCY_UES",
+      "description": "The event is generated after the operation of cell soft lock, with parameter that                   shows the result of the operation.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_RELEASE",
+      "type": "EVENT_PARAM_INTERNAL_RELEASE_CAUSE",
+      "description": "Ericsson Internal UE release cause. Used to give additional information over and                   above the S1 Release Cause (External).",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": "Indicates the target cell RAT. Has the value EVENT_VALUE_SOFT_LOCK after a                   handover execution is performed.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": "Indicates the target cell RAT. Has the value EVENT_VALUE_SOFT_LOCK after a                   handover execution is performed.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "type": "EVENT_PARAM_MOBILITY_TRIGGER",
+      "description": "Indicates the trigger for performing a mobility evaluation. Has the value                   EVENT_VALUE_SOFT_LOCK after a mobility evaluation is performed.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+      "description": "Indicates the target cell RAT. Has the value EVENT_VALUE_SOFT_LOCK after a                   handover preparation is performed.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+      "description": "Indicates the target cell RAT. Has the value EVENT_VALUE_SOFT_LOCK after a                   handover preparation is performed.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.BJ33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "UnsupportedFreqProfile.unsupportedFreqList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UnsupportedFreqProfile"
+    },
+    {
+      "name": "EUtranCellFDD.administrativeState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.administrativeState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "UpgradePackage.activate",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UpgradePackage"
+    },
+    {
+      "name": "EUtranCellTDD.cbrsTxExpireTime",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmErabRelAbnormalEnb",
+      "description": "Performance counter pmErabRelAbnormalEnb",
+      "category": "General"
+    },
+    {
+      "name": "pmErabRelAbnormalEnbAct",
+      "description": "Performance counter pmErabRelAbnormalEnbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmErabRelAbnormalEnbActArp",
+      "description": "Performance counter pmErabRelAbnormalEnbActArp",
+      "category": "General"
+    },
+    {
+      "name": "pmErabRelAbnormalEnbActCdt",
+      "description": "Performance counter pmErabRelAbnormalEnbActCdt",
+      "category": "General"
+    },
+    {
+      "name": "pmErabRelAbnormalEnbActCdtAuto",
+      "description": "Performance counter pmErabRelAbnormalEnbActCdtAuto",
+      "category": "General"
+    },
+    {
+      "name": "pmErabRelAbnormalEnbActQci",
+      "description": "Performance counter pmErabRelAbnormalEnbActQci",
+      "category": "General"
+    },
+    {
+      "name": "pmErabRelAbnormalEnbArp",
+      "description": "Performance counter pmErabRelAbnormalEnbArp",
+      "category": "General"
+    },
+    {
+      "name": "pmErabRelAbnormalEnbCdt",
+      "description": "Performance counter pmErabRelAbnormalEnbCdt",
+      "category": "General"
+    },
+    {
+      "name": "pmErabRelAbnormalEnbCdtAuto",
+      "description": "Performance counter pmErabRelAbnormalEnbCdtAuto",
+      "category": "General"
+    },
+    {
+      "name": "pmErabRelAbnormalEnbQci",
+      "description": "Performance counter pmErabRelAbnormalEnbQci",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexUeCtxtRelSCEutra",
+      "description": "Performance counter pmFlexUeCtxtRelSCEutra",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepRejInSl",
+      "description": "Performance counter pmHoPrepRejInSl",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalEnb",
+      "description": "Performance counter pmUeCtxtRelAbnormalEnb",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalEnbAct",
+      "description": "Performance counter pmUeCtxtRelAbnormalEnbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalEnbActCdt",
+      "description": "Performance counter pmUeCtxtRelAbnormalEnbActCdt",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalEnbActCdtAuto",
+      "description": "Performance counter pmUeCtxtRelAbnormalEnbActCdtAuto",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalEnbCdt",
+      "description": "Performance counter pmUeCtxtRelAbnormalEnbCdt",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalEnbCdtAuto",
+      "description": "Performance counter pmUeCtxtRelAbnormalEnbCdtAuto",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalEnbTuneOut",
+      "description": "Performance counter pmUeCtxtRelAbnormalEnbTuneOut",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelCsfbCdma1xRtt",
+      "description": "Performance counter pmUeCtxtRelCsfbCdma1xRtt",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelSCCdma",
+      "description": "Performance counter pmUeCtxtRelSCCdma",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelSCEUtra",
+      "description": "Performance counter pmUeCtxtRelSCEUtra",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelSCEUtraCe",
+      "description": "Performance counter pmUeCtxtRelSCEUtraCe",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelSCGsm",
+      "description": "Performance counter pmUeCtxtRelSCGsm",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelSCTdScdma",
+      "description": "Performance counter pmUeCtxtRelSCTdScdma",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelSCWcdma",
+      "description": "Performance counter pmUeCtxtRelSCWcdma",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_SOFT_LOCK",
+      "type": "EVENT_PARAM_TIMESTAMP_START_HOUR    EVENT_PARAM_TIMESTAMP_START_MINUTE    EVENT_PARAM_TIMESTAMP_START_SECOND    EVENT_PARAM_TIMESTAMP_START_MILLISEC    EVENT_PARAM_TIMESTAMP_STOP_HOUR    EVENT_PARAM_TIMESTAMP_STOP_MINUTE    EVENT_PARAM_TIMESTAMP_STOP_SECOND    EVENT_PARAM_TIMESTAMP_STOP_MILLISEC    EVENT_PARAM_SOFT_LOCK_RESULT    EVENT_PARAM_SOFT_LOCK_START_NR_OF_RRC_CONN_UES    EVENT_PARAM_SOFT_LOCK_START_NR_OF_VOLTE_UES    EVENT_PARAM_SOFT_LOCK_START_NR_OF_EMERGENCY_UES    EVENT_PARAM_SOFT_LOCK_END_NR_OF_RRC_CONN_UES    EVENT_PARAM_SOFT_LOCK_END_NR_OF_VOLTE_UES    EVENT_PARAM_SOFT_LOCK_END_NR_OF_EMERGENCY_UES",
+      "description": "The event is generated after the operation of cell soft lock, with parameter that                   shows the result of the operation."
+    },
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_RELEASE",
+      "type": "EVENT_PARAM_INTERNAL_RELEASE_CAUSE",
+      "description": "Ericsson Internal UE release cause. Used to give additional information over and                   above the S1 Release Cause (External)."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": "Indicates the target cell RAT. Has the value EVENT_VALUE_SOFT_LOCK after a                   handover execution is performed."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": "Indicates the target cell RAT. Has the value EVENT_VALUE_SOFT_LOCK after a                   handover execution is performed."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "type": "EVENT_PARAM_MOBILITY_TRIGGER",
+      "description": "Indicates the trigger for performing a mobility evaluation. Has the value                   EVENT_VALUE_SOFT_LOCK after a mobility evaluation is performed."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+      "description": "Indicates the target cell RAT. Has the value EVENT_VALUE_SOFT_LOCK after a                   handover preparation is performed."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+      "description": "Indicates the target cell RAT. Has the value EVENT_VALUE_SOFT_LOCK after a                   handover preparation is performed."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011378 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011378 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/77_22104-LZA7016014_1Uen.BJ33B.md",
+  "file_hash": "69c92104416e5c33bfadc6b397643b01",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

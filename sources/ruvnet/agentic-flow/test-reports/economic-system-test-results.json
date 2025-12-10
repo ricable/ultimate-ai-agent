@@ -1,0 +1,725 @@
+{
+  "timestamp": "2025-11-16T00:57:41.293Z",
+  "summary": {
+    "totalTests": 43,
+    "passed": 42,
+    "failed": 1,
+    "successRate": 97.7,
+    "duration": 2
+  },
+  "results": [
+    {
+      "category": "Pricing",
+      "testName": "Free Tier Configuration",
+      "passed": true,
+      "duration": 0,
+      "details": "Free: $0/mo, 100 agent hours",
+      "errors": []
+    },
+    {
+      "category": "Pricing",
+      "testName": "Starter Tier Configuration",
+      "passed": true,
+      "duration": 0,
+      "details": "Starter: $29/mo, 500 agent hours",
+      "errors": []
+    },
+    {
+      "category": "Pricing",
+      "testName": "Pro Tier Configuration",
+      "passed": true,
+      "duration": 1,
+      "details": "Pro: $99/mo, 2000 agent hours",
+      "errors": []
+    },
+    {
+      "category": "Pricing",
+      "testName": "Enterprise Tier Configuration",
+      "passed": true,
+      "duration": 0,
+      "details": "Enterprise: $499/mo, 10000 agent hours",
+      "errors": []
+    },
+    {
+      "category": "Pricing",
+      "testName": "Annual Billing Discounts",
+      "passed": true,
+      "duration": 1,
+      "details": "Starter: 2 months free, Pro: 2 months free, Enterprise: 2 months free",
+      "errors": []
+    },
+    {
+      "category": "Pricing",
+      "testName": "Overage Rate Configuration",
+      "passed": true,
+      "duration": 1,
+      "details": "Agent hours: $0.04-$0.10/hr, GPU: $0.30-$0.50/hr",
+      "errors": []
+    },
+    {
+      "category": "Subscriptions",
+      "testName": "Create Subscription",
+      "passed": true,
+      "duration": 45,
+      "details": "Pro subscription created with monthly billing",
+      "errors": []
+    },
+    {
+      "category": "Subscriptions",
+      "testName": "Upgrade Subscription",
+      "passed": true,
+      "duration": 38,
+      "details": "Upgraded from Starter to Pro with prorated billing",
+      "errors": []
+    },
+    {
+      "category": "Subscriptions",
+      "testName": "Downgrade Subscription",
+      "passed": true,
+      "duration": 35,
+      "details": "Downgraded from Enterprise to Pro at period end",
+      "errors": []
+    },
+    {
+      "category": "Subscriptions",
+      "testName": "Cancel Subscription",
+      "passed": true,
+      "duration": 28,
+      "details": "Subscription cancelled at end of billing period",
+      "errors": []
+    },
+    {
+      "category": "Subscriptions",
+      "testName": "Renew Subscription",
+      "passed": true,
+      "duration": 42,
+      "details": "Automatic renewal processed successfully",
+      "errors": []
+    },
+    {
+      "category": "Metering",
+      "testName": "Track agent_hours",
+      "passed": true,
+      "duration": 5,
+      "details": "450 / 2000 (22.5%)",
+      "errors": []
+    },
+    {
+      "category": "Metering",
+      "testName": "Track deployments",
+      "passed": true,
+      "duration": 5,
+      "details": "35 / 200 (17.5%)",
+      "errors": []
+    },
+    {
+      "category": "Metering",
+      "testName": "Track api_requests",
+      "passed": true,
+      "duration": 5,
+      "details": "250000 / 1000000 (25.0%)",
+      "errors": []
+    },
+    {
+      "category": "Metering",
+      "testName": "Track storage_gb",
+      "passed": true,
+      "duration": 5,
+      "details": "45 / 100 (45.0%)",
+      "errors": []
+    },
+    {
+      "category": "Metering",
+      "testName": "Track network_gb",
+      "passed": true,
+      "duration": 5,
+      "details": "180 / 1000 (18.0%)",
+      "errors": []
+    },
+    {
+      "category": "Metering",
+      "testName": "Track gpu_hours",
+      "passed": true,
+      "duration": 5,
+      "details": "12 / 50 (24.0%)",
+      "errors": []
+    },
+    {
+      "category": "Metering",
+      "testName": "Usage Aggregation",
+      "passed": true,
+      "duration": 12,
+      "details": "Hourly and daily aggregation completed",
+      "errors": []
+    },
+    {
+      "category": "Metering",
+      "testName": "Usage Forecasting",
+      "passed": true,
+      "duration": 18,
+      "details": "Predicted 950 agent hours for next 30 days",
+      "errors": []
+    },
+    {
+      "category": "Coupons",
+      "testName": "Validate WELCOME20",
+      "passed": true,
+      "duration": 8,
+      "details": "percentage discount: 20",
+      "errors": []
+    },
+    {
+      "category": "Coupons",
+      "testName": "Validate STARTUP50",
+      "passed": true,
+      "duration": 8,
+      "details": "fixed discount: 50",
+      "errors": []
+    },
+    {
+      "category": "Coupons",
+      "testName": "Validate FIRSTMONTH",
+      "passed": true,
+      "duration": 8,
+      "details": "fixed discount: 29",
+      "errors": []
+    },
+    {
+      "category": "Coupons",
+      "testName": "Validate EXPIRED",
+      "passed": false,
+      "duration": 8,
+      "details": "percentage discount: 10",
+      "errors": [
+        "Coupon expired"
+      ]
+    },
+    {
+      "category": "Coupons",
+      "testName": "Apply Coupon",
+      "passed": true,
+      "duration": 15,
+      "details": "WELCOME20 applied: $99 → $79.20",
+      "errors": []
+    },
+    {
+      "category": "Coupons",
+      "testName": "Usage Limit Enforcement",
+      "passed": true,
+      "duration": 6,
+      "details": "Coupon usage tracking working correctly",
+      "errors": []
+    },
+    {
+      "category": "Quota",
+      "testName": "Check agent_hours Quota",
+      "passed": true,
+      "duration": 4,
+      "details": "450/2000 (22.5%)",
+      "errors": []
+    },
+    {
+      "category": "Quota",
+      "testName": "Check deployments Quota",
+      "passed": true,
+      "duration": 4,
+      "details": "35/200 (17.5%)",
+      "errors": []
+    },
+    {
+      "category": "Quota",
+      "testName": "Check swarm_size Quota",
+      "passed": true,
+      "duration": 4,
+      "details": "8/12 (66.7%)",
+      "errors": []
+    },
+    {
+      "category": "Quota",
+      "testName": "Check gpu_hours Quota",
+      "passed": true,
+      "duration": 4,
+      "details": "48/50 (96.0%)",
+      "errors": []
+    },
+    {
+      "category": "Quota",
+      "testName": "Check concurrent_builds Quota",
+      "passed": true,
+      "duration": 4,
+      "details": "7/10 (70.0%)",
+      "errors": []
+    },
+    {
+      "category": "Quota",
+      "testName": "Soft Limit Warnings",
+      "passed": true,
+      "duration": 5,
+      "details": "Warnings triggered at 80% usage",
+      "errors": []
+    },
+    {
+      "category": "Quota",
+      "testName": "Hard Limit Enforcement",
+      "passed": true,
+      "duration": 7,
+      "details": "Operations blocked at 100% usage",
+      "errors": []
+    },
+    {
+      "category": "Payments",
+      "testName": "Payment Method: Visa",
+      "passed": true,
+      "duration": 12,
+      "details": "card - 4242",
+      "errors": []
+    },
+    {
+      "category": "Payments",
+      "testName": "Payment Method: Mastercard",
+      "passed": true,
+      "duration": 12,
+      "details": "card - 5555",
+      "errors": []
+    },
+    {
+      "category": "Payments",
+      "testName": "Payment Method: Chase",
+      "passed": true,
+      "duration": 12,
+      "details": "bank_account - 1234",
+      "errors": []
+    },
+    {
+      "category": "Payments",
+      "testName": "Payment Method: Bitcoin",
+      "passed": true,
+      "duration": 12,
+      "details": "crypto - bc1q",
+      "errors": []
+    },
+    {
+      "category": "Payments",
+      "testName": "Process Payment",
+      "passed": true,
+      "duration": 145,
+      "details": "Payment of $99.00 processed successfully",
+      "errors": []
+    },
+    {
+      "category": "Payments",
+      "testName": "Process Refund",
+      "passed": true,
+      "duration": 128,
+      "details": "Refund of $99.00 processed successfully",
+      "errors": []
+    },
+    {
+      "category": "Payments",
+      "testName": "Payment Retry Logic",
+      "passed": true,
+      "duration": 95,
+      "details": "Retry attempted with exponential backoff",
+      "errors": []
+    },
+    {
+      "category": "Integration",
+      "testName": "agentic-payments Installation",
+      "passed": true,
+      "duration": 2,
+      "details": "Library version 0.1.13 detected",
+      "errors": []
+    },
+    {
+      "category": "Integration",
+      "testName": "Provider Configuration",
+      "passed": true,
+      "duration": 5,
+      "details": "Stripe, PayPal, and crypto providers configured",
+      "errors": []
+    },
+    {
+      "category": "Integration",
+      "testName": "Webhook Integration",
+      "passed": true,
+      "duration": 8,
+      "details": "Payment webhooks configured and tested",
+      "errors": []
+    },
+    {
+      "category": "Integration",
+      "testName": "Multi-Currency Support",
+      "passed": true,
+      "duration": 6,
+      "details": "USD, EUR, GBP currencies supported",
+      "errors": []
+    }
+  ],
+  "byCategory": {
+    "Pricing": [
+      {
+        "category": "Pricing",
+        "testName": "Free Tier Configuration",
+        "passed": true,
+        "duration": 0,
+        "details": "Free: $0/mo, 100 agent hours",
+        "errors": []
+      },
+      {
+        "category": "Pricing",
+        "testName": "Starter Tier Configuration",
+        "passed": true,
+        "duration": 0,
+        "details": "Starter: $29/mo, 500 agent hours",
+        "errors": []
+      },
+      {
+        "category": "Pricing",
+        "testName": "Pro Tier Configuration",
+        "passed": true,
+        "duration": 1,
+        "details": "Pro: $99/mo, 2000 agent hours",
+        "errors": []
+      },
+      {
+        "category": "Pricing",
+        "testName": "Enterprise Tier Configuration",
+        "passed": true,
+        "duration": 0,
+        "details": "Enterprise: $499/mo, 10000 agent hours",
+        "errors": []
+      },
+      {
+        "category": "Pricing",
+        "testName": "Annual Billing Discounts",
+        "passed": true,
+        "duration": 1,
+        "details": "Starter: 2 months free, Pro: 2 months free, Enterprise: 2 months free",
+        "errors": []
+      },
+      {
+        "category": "Pricing",
+        "testName": "Overage Rate Configuration",
+        "passed": true,
+        "duration": 1,
+        "details": "Agent hours: $0.04-$0.10/hr, GPU: $0.30-$0.50/hr",
+        "errors": []
+      }
+    ],
+    "Subscriptions": [
+      {
+        "category": "Subscriptions",
+        "testName": "Create Subscription",
+        "passed": true,
+        "duration": 45,
+        "details": "Pro subscription created with monthly billing",
+        "errors": []
+      },
+      {
+        "category": "Subscriptions",
+        "testName": "Upgrade Subscription",
+        "passed": true,
+        "duration": 38,
+        "details": "Upgraded from Starter to Pro with prorated billing",
+        "errors": []
+      },
+      {
+        "category": "Subscriptions",
+        "testName": "Downgrade Subscription",
+        "passed": true,
+        "duration": 35,
+        "details": "Downgraded from Enterprise to Pro at period end",
+        "errors": []
+      },
+      {
+        "category": "Subscriptions",
+        "testName": "Cancel Subscription",
+        "passed": true,
+        "duration": 28,
+        "details": "Subscription cancelled at end of billing period",
+        "errors": []
+      },
+      {
+        "category": "Subscriptions",
+        "testName": "Renew Subscription",
+        "passed": true,
+        "duration": 42,
+        "details": "Automatic renewal processed successfully",
+        "errors": []
+      }
+    ],
+    "Metering": [
+      {
+        "category": "Metering",
+        "testName": "Track agent_hours",
+        "passed": true,
+        "duration": 5,
+        "details": "450 / 2000 (22.5%)",
+        "errors": []
+      },
+      {
+        "category": "Metering",
+        "testName": "Track deployments",
+        "passed": true,
+        "duration": 5,
+        "details": "35 / 200 (17.5%)",
+        "errors": []
+      },
+      {
+        "category": "Metering",
+        "testName": "Track api_requests",
+        "passed": true,
+        "duration": 5,
+        "details": "250000 / 1000000 (25.0%)",
+        "errors": []
+      },
+      {
+        "category": "Metering",
+        "testName": "Track storage_gb",
+        "passed": true,
+        "duration": 5,
+        "details": "45 / 100 (45.0%)",
+        "errors": []
+      },
+      {
+        "category": "Metering",
+        "testName": "Track network_gb",
+        "passed": true,
+        "duration": 5,
+        "details": "180 / 1000 (18.0%)",
+        "errors": []
+      },
+      {
+        "category": "Metering",
+        "testName": "Track gpu_hours",
+        "passed": true,
+        "duration": 5,
+        "details": "12 / 50 (24.0%)",
+        "errors": []
+      },
+      {
+        "category": "Metering",
+        "testName": "Usage Aggregation",
+        "passed": true,
+        "duration": 12,
+        "details": "Hourly and daily aggregation completed",
+        "errors": []
+      },
+      {
+        "category": "Metering",
+        "testName": "Usage Forecasting",
+        "passed": true,
+        "duration": 18,
+        "details": "Predicted 950 agent hours for next 30 days",
+        "errors": []
+      }
+    ],
+    "Coupons": [
+      {
+        "category": "Coupons",
+        "testName": "Validate WELCOME20",
+        "passed": true,
+        "duration": 8,
+        "details": "percentage discount: 20",
+        "errors": []
+      },
+      {
+        "category": "Coupons",
+        "testName": "Validate STARTUP50",
+        "passed": true,
+        "duration": 8,
+        "details": "fixed discount: 50",
+        "errors": []
+      },
+      {
+        "category": "Coupons",
+        "testName": "Validate FIRSTMONTH",
+        "passed": true,
+        "duration": 8,
+        "details": "fixed discount: 29",
+        "errors": []
+      },
+      {
+        "category": "Coupons",
+        "testName": "Validate EXPIRED",
+        "passed": false,
+        "duration": 8,
+        "details": "percentage discount: 10",
+        "errors": [
+          "Coupon expired"
+        ]
+      },
+      {
+        "category": "Coupons",
+        "testName": "Apply Coupon",
+        "passed": true,
+        "duration": 15,
+        "details": "WELCOME20 applied: $99 → $79.20",
+        "errors": []
+      },
+      {
+        "category": "Coupons",
+        "testName": "Usage Limit Enforcement",
+        "passed": true,
+        "duration": 6,
+        "details": "Coupon usage tracking working correctly",
+        "errors": []
+      }
+    ],
+    "Quota": [
+      {
+        "category": "Quota",
+        "testName": "Check agent_hours Quota",
+        "passed": true,
+        "duration": 4,
+        "details": "450/2000 (22.5%)",
+        "errors": []
+      },
+      {
+        "category": "Quota",
+        "testName": "Check deployments Quota",
+        "passed": true,
+        "duration": 4,
+        "details": "35/200 (17.5%)",
+        "errors": []
+      },
+      {
+        "category": "Quota",
+        "testName": "Check swarm_size Quota",
+        "passed": true,
+        "duration": 4,
+        "details": "8/12 (66.7%)",
+        "errors": []
+      },
+      {
+        "category": "Quota",
+        "testName": "Check gpu_hours Quota",
+        "passed": true,
+        "duration": 4,
+        "details": "48/50 (96.0%)",
+        "errors": []
+      },
+      {
+        "category": "Quota",
+        "testName": "Check concurrent_builds Quota",
+        "passed": true,
+        "duration": 4,
+        "details": "7/10 (70.0%)",
+        "errors": []
+      },
+      {
+        "category": "Quota",
+        "testName": "Soft Limit Warnings",
+        "passed": true,
+        "duration": 5,
+        "details": "Warnings triggered at 80% usage",
+        "errors": []
+      },
+      {
+        "category": "Quota",
+        "testName": "Hard Limit Enforcement",
+        "passed": true,
+        "duration": 7,
+        "details": "Operations blocked at 100% usage",
+        "errors": []
+      }
+    ],
+    "Payments": [
+      {
+        "category": "Payments",
+        "testName": "Payment Method: Visa",
+        "passed": true,
+        "duration": 12,
+        "details": "card - 4242",
+        "errors": []
+      },
+      {
+        "category": "Payments",
+        "testName": "Payment Method: Mastercard",
+        "passed": true,
+        "duration": 12,
+        "details": "card - 5555",
+        "errors": []
+      },
+      {
+        "category": "Payments",
+        "testName": "Payment Method: Chase",
+        "passed": true,
+        "duration": 12,
+        "details": "bank_account - 1234",
+        "errors": []
+      },
+      {
+        "category": "Payments",
+        "testName": "Payment Method: Bitcoin",
+        "passed": true,
+        "duration": 12,
+        "details": "crypto - bc1q",
+        "errors": []
+      },
+      {
+        "category": "Payments",
+        "testName": "Process Payment",
+        "passed": true,
+        "duration": 145,
+        "details": "Payment of $99.00 processed successfully",
+        "errors": []
+      },
+      {
+        "category": "Payments",
+        "testName": "Process Refund",
+        "passed": true,
+        "duration": 128,
+        "details": "Refund of $99.00 processed successfully",
+        "errors": []
+      },
+      {
+        "category": "Payments",
+        "testName": "Payment Retry Logic",
+        "passed": true,
+        "duration": 95,
+        "details": "Retry attempted with exponential backoff",
+        "errors": []
+      }
+    ],
+    "Integration": [
+      {
+        "category": "Integration",
+        "testName": "agentic-payments Installation",
+        "passed": true,
+        "duration": 2,
+        "details": "Library version 0.1.13 detected",
+        "errors": []
+      },
+      {
+        "category": "Integration",
+        "testName": "Provider Configuration",
+        "passed": true,
+        "duration": 5,
+        "details": "Stripe, PayPal, and crypto providers configured",
+        "errors": []
+      },
+      {
+        "category": "Integration",
+        "testName": "Webhook Integration",
+        "passed": true,
+        "duration": 8,
+        "details": "Payment webhooks configured and tested",
+        "errors": []
+      },
+      {
+        "category": "Integration",
+        "testName": "Multi-Currency Support",
+        "passed": true,
+        "duration": 6,
+        "details": "USD, EUR, GBP currencies supported",
+        "errors": []
+      }
+    ]
+  },
+  "performance": {
+    "avgDuration": 17.976744186046513,
+    "maxDuration": 145,
+    "minDuration": 0
+  }
+}

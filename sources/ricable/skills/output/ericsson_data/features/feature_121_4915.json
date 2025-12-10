@@ -1,0 +1,123 @@
+{
+  "id": "121 4915",
+  "name": "",
+  "cxc_code": "CXC4012275",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "This feature provides a Baseband priority setting for each cell, which then can be configured",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.highBasebandPriority",
+      "type": "Introduced",
+      "description": "Indicates if the cell is prioritized for baseband resources or not. Cells with this attribute set to true get to pick baseband resource before cells with attribute set to false. Only has effect if the feature Baseband Resource Prioritization is enabled. Takes effect: Next cell unlock.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.highBasebandPriority",
+      "type": "Introduced",
+      "description": "Indicated if the cell is prioritized for baseband resources or not. Cells with this attribute set to true get to pick baseband resource before cells with attribute set to false. Only has effect if the feature Baseband Resource Prioritization is enabled. Takes effect: Next cell unlock.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "Uen.AC",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "BbProcessingResource.pmLicDlCapDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "BbProcessingResource"
+    },
+    {
+      "name": "BbProcessingResource.pmLicDlPrbCapDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "BbProcessingResource"
+    },
+    {
+      "name": "BbProcessingResource.pmLicUlCapDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "BbProcessingResource"
+    },
+    {
+      "name": "BbProcessingResource.pmLicUlPrbCapDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "BbProcessingResource"
+    },
+    {
+      "name": "BbProcessingResource.pmBbmDlBbCapacityUtilization",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "BbProcessingResource"
+    },
+    {
+      "name": "BbProcessingResource.pmBbmDlPrbUtilization",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "BbProcessingResource"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmBbmDlBbCapacityUtilization",
+      "description": "Performance counter pmBbmDlBbCapacityUtilization",
+      "category": "General"
+    },
+    {
+      "name": "pmBbmDlPrbUtilization",
+      "description": "Performance counter pmBbmDlPrbUtilization",
+      "category": "General"
+    },
+    {
+      "name": "pmBbmUlBbCapacityUtilization",
+      "description": "Performance counter pmBbmUlBbCapacityUtilization",
+      "category": "General"
+    },
+    {
+      "name": "pmBbmUlPrbUtilization",
+      "description": "Performance counter pmBbmUlPrbUtilization",
+      "category": "General"
+    },
+    {
+      "name": "pmLicDlCapDistr",
+      "description": "Performance counter pmLicDlCapDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmLicDlPrbCapDistr",
+      "description": "Performance counter pmLicDlPrbCapDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmLicUlCapDistr",
+      "description": "Performance counter pmLicUlCapDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmLicUlPrbCapDistr",
+      "description": "Performance counter pmLicUlPrbCapDistr",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012275 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012275 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/423_22104-LZA7016014_1Uen.AC.md",
+  "file_hash": "4069b5f3b77e7cc2f974f02b68ad8ad9",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

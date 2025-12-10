@@ -1,0 +1,22 @@
+{
+  "name": "@agentic-flow/e2b-benchmarks",
+  "version": "1.0.0",
+  "description": "E2B scalability benchmarks for agentic-flow swarms",
+  "private": true,
+  "scripts": {
+    "benchmark:swarm": "ts-node swarm-scalability-benchmark.ts",
+    "benchmark:quick": "ts-node swarm-scalability-benchmark.ts --quick",
+    "test": "npm run benchmark:swarm"
+  },
+  "dependencies": {
+    "@e2b/code-interpreter": "^0.0.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

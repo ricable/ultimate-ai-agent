@@ -1,0 +1,58 @@
+# Talos Machine Patch: WebAssembly Runtime Support
+# Apply with: talosctl apply-config --patch @patches/wasm-runtime-patch.yaml
+#
+# This patch enables WasmEdge and Spin runtimes on Talos nodes
+# for running Wasm workloads alongside containers.
+
+machine:
+  install:
+    # System extensions for Wasm runtimes
+    extensions:
+      # WasmEdge - High performance WebAssembly runtime
+      - image: ghcr.io/siderolabs/wasmedge:0.11.2
+      # Spin - Serverless WebAssembly framework
+      - image: ghcr.io/siderolabs/spin:2.0.0
+
+  # Containerd configuration for Wasm runtimes
+  files:
+    - content: |
+        # WasmEdge containerd shim configuration
+        [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.wasmedge]
+          runtime_type = "io.containerd.wasmedge.v1"
+          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.wasmedge.options]
+            BinaryName = "/usr/local/bin/containerd-shim-wasmedge-v1"
+
+        # Spin containerd shim configuration
+        [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.spin]
+          runtime_type = "io.containerd.spin.v2"
+          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.spin.options]
+            BinaryName = "/usr/local/bin/containerd-shim-spin-v2"
+      path: /etc/cri/conf.d/wasm-runtimes.toml
+      permissions: 0644
+
+  # System configuration optimizations for Wasm
+  sysctls:
+    # Memory mapping limits (important for large Wasm modules)
+    vm.max_map_count: "524288"
+    # File descriptor limits
+    fs.file-max: "2097152"
+    # inotify limits for file watching
+    fs.inotify.max_user_watches: "1048576"
+    fs.inotify.max_user_instances: "8192"
+    # Network optimizations
+    net.core.somaxconn: "65535"
+    net.ipv4.tcp_max_syn_backlog: "65535"
+    net.core.netdev_max_backlog: "65535"
+
+  # Kubelet configuration
+  kubelet:
+    extraArgs:
+      # Enable feature gates for Wasm support
+      feature-gates: "GracefulNodeShutdown=true,NodeSwap=true"
+      # Rotate server certificates
+      rotate-server-certificates: "true"
+    # Node labels for Wasm scheduling
+    nodeLabels:
+      ruvector.io/wasm-enabled: "true"
+      runtime.kubernetes.io/wasmedge: "true"
+      runtime.kubernetes.io/spin: "true"

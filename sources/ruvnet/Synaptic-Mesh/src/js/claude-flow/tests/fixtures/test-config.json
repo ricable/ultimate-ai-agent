@@ -1,0 +1,40 @@
+{
+  "system": {
+    "logLevel": "silent",
+    "dataDir": "./tests/data",
+    "maxConcurrentTasks": 5,
+    "taskTimeout": 30000,
+    "enableMetrics": false,
+    "enableTelemetry": false
+  },
+  "terminal": {
+    "adapter": "native",
+    "maxSessions": 3,
+    "sessionTimeout": 60000,
+    "commandTimeout": 30000,
+    "maxHistorySize": 100
+  },
+  "memory": {
+    "backend": "sqlite",
+    "sqliteFile": "./tests/data/test-memory.db",
+    "cacheSize": 1000,
+    "flushInterval": 1000,
+    "maxEntrySize": 1048576,
+    "enableIndexing": true
+  },
+  "coordination": {
+    "enableWorkStealing": true,
+    "enableConflictResolution": true,
+    "schedulerType": "basic",
+    "maxRetries": 2,
+    "retryDelay": 100,
+    "circuitBreakerThreshold": 3
+  },
+  "mcp": {
+    "maxConnections": 5,
+    "connectionTimeout": 5000,
+    "requestTimeout": 10000,
+    "retryAttempts": 2,
+    "enableLoadBalancing": false
+  }
+}

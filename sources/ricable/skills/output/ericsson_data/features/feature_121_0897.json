@@ -1,0 +1,174 @@
+{
+  "id": "121 0897",
+  "name": "Coverage-Triggered WCDMA IRAT Handover",
+  "cxc_code": "CXC4011011",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables initiating handovers to WDCMA cells, instead of initiating RwR. The",
+  "parameters": [
+    {
+      "name": "ENodeBFunction.rRCContSizeLimit",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "UtranCellRelation.coverageIndicator",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UtranCellRelation"
+    },
+    {
+      "name": "UtranFreqRelation.mobilityAction",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UtranFreqRelation"
+    },
+    {
+      "name": "ExternalUtranCellFDD.rac",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExternalUtranCellFDD"
+    },
+    {
+      "name": "ExternalUtranCellFDD.lac",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExternalUtranCellFDD"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the target cell  Has the value EVENT_VALUE_WCDMA when a WCDMA Handover preparation i                   performed.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": "Type of selection for the handover target cell: blind (based on preconfigured                   information) or measurement based.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the source cell.  Has the value EVENT_VALUE_UTRA_SOURCE when an incoming WCDMA handover preparation                   is performed.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the target cell.  Has the value EVENT_VALUE_WCDMA when a WCDMA handover execution is performed.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": "Type of selection for the handover target cell: blind (based on preconfigured                   information) or measurement based.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.BB",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "RobustCallSetup.geranUtranMobilityDelayEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RobustCallSetup"
+    },
+    {
+      "name": "UeMeasControl.allowReleaseQci1",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "UtranFreqRelation.voicePrio",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UtranFreqRelation"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmBadCovEvalReport",
+      "description": "Performance counter pmBadCovEvalReport",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeAtt",
+      "description": "Performance counter pmHoExeAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSucc",
+      "description": "Performance counter pmHoExeSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAtt",
+      "description": "Performance counter pmHoPrepAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSucc",
+      "description": "Performance counter pmHoPrepSucc",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the target cell  Has the value EVENT_VALUE_WCDMA when a WCDMA Handover preparation i                   performed."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": "Type of selection for the handover target cell: blind (based on preconfigured                   information) or measurement based."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the source cell.  Has the value EVENT_VALUE_UTRA_SOURCE when an incoming WCDMA handover preparation                   is performed."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the target cell.  Has the value EVENT_VALUE_WCDMA when a WCDMA handover execution is performed."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_HO_TARGET_SELECTION_TYPE",
+      "description": "Type of selection for the handover target cell: blind (based on preconfigured                   information) or measurement based."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011011 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011011 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/33_22104-LZA7016014_1Uen.BB.md",
+  "file_hash": "e582356c4683862a82a598eed23e628c",
+  "processed_at": "2025-10-19 15:50:04",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,118 @@
+# Multi-stage Docker test for agentic-flow v1.5.9
+FROM node:22-slim AS base
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /test
+
+# Stage 1: Install from npm
+FROM base AS npm-install
+RUN npm install -g agentic-flow@1.5.9
+RUN which agentic-flow || echo "agentic-flow not in PATH"
+RUN ls -la /usr/local/lib/node_modules/agentic-flow/ || echo "Not found in expected location"
+
+# Stage 2: Verify package contents
+FROM npm-install AS verify-package
+RUN echo "=== Verifying Package Structure ===" && \
+    cd /usr/local/lib/node_modules/agentic-flow && \
+    echo "✓ Checking dist/ directory..." && \
+    test -d dist/ && echo "  ✓ dist/ exists" || exit 1 && \
+    echo "✓ Checking ReasoningBank..." && \
+    test -d dist/reasoningbank/ && echo "  ✓ dist/reasoningbank/ exists" || exit 1 && \
+    test -f dist/reasoningbank/demo-comparison.js && echo "  ✓ demo-comparison.js exists" || exit 1 && \
+    test -d dist/reasoningbank/prompts/ && echo "  ✓ prompts/ directory exists" || exit 1 && \
+    echo "✓ Checking router..." && \
+    test -d dist/router/ && echo "  ✓ dist/router/ exists" || exit 1 && \
+    test -f dist/router/model-mapping.js && echo "  ✓ model-mapping.js exists" || exit 1 && \
+    test -f dist/router/providers/openrouter.js && echo "  ✓ openrouter.js exists" || exit 1 && \
+    echo "✓ Checking agents..." && \
+    test -d .claude/agents/ && echo "  ✓ .claude/agents/ exists" || exit 1 && \
+    echo "✓ Checking docs..." && \
+    test -d docs/ && echo "  ✓ docs/ exists" || exit 1 && \
+    test -f docs/MODEL-ID-MAPPING.md && echo "  ✓ MODEL-ID-MAPPING.md exists" || exit 1 && \
+    echo "=== Package Structure Verified ==="
+
+# Stage 3: Test CLI availability
+FROM verify-package AS test-cli
+RUN echo "=== Testing CLI Commands ===" && \
+    npx agentic-flow --version && \
+    npx agentic-flow --help | head -n 20 && \
+    npx agentic-flow reasoningbank help && \
+    echo "=== CLI Tests Passed ==="
+
+# Stage 4: Test ReasoningBank initialization
+FROM test-cli AS test-reasoningbank-init
+ARG ANTHROPIC_API_KEY
+ENV ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+RUN echo "=== Testing ReasoningBank Initialization ===" && \
+    cd /tmp && \
+    npx agentic-flow reasoningbank init && \
+    test -d .swarm && echo "  ✓ .swarm directory created" || exit 1 && \
+    test -f .swarm/memory.db && echo "  ✓ memory.db created" || exit 1 && \
+    echo "=== ReasoningBank Init Passed ==="
+
+# Stage 5: Test model ID mapping (quick test)
+FROM test-reasoningbank-init AS test-model-mapping
+RUN echo "=== Testing Model ID Mapping ===" && \
+    cd /usr/local/lib/node_modules/agentic-flow && \
+    node -e "const { mapModelId } = require('./dist/router/model-mapping.js'); \
+    const anthropicId = 'claude-sonnet-4-5-20250929'; \
+    const openrouterId = mapModelId(anthropicId, 'openrouter'); \
+    console.log('Input:', anthropicId); \
+    console.log('Output:', openrouterId); \
+    if (openrouterId === 'anthropic/claude-sonnet-4.5') { \
+      console.log('✓ Model ID mapping working correctly'); \
+      process.exit(0); \
+    } else { \
+      console.error('✗ Model ID mapping failed'); \
+      process.exit(1); \
+    }" && \
+    echo "=== Model ID Mapping Test Passed ==="
+
+# Stage 6: Test ReasoningBank demo (with timeout)
+FROM test-model-mapping AS test-demo
+RUN echo "=== Testing ReasoningBank Demo (30s sample) ===" && \
+    cd /tmp && \
+    rm -rf .swarm && \
+    timeout 30 npx agentic-flow reasoningbank demo 2>&1 | tee /tmp/demo-output.txt || true && \
+    echo "" && \
+    echo "=== Checking Demo Output ===" && \
+    grep -q "ReasoningBank vs Traditional Approach" /tmp/demo-output.txt && echo "  ✓ Demo started" || exit 1 && \
+    grep -q "Initializing ReasoningBank" /tmp/demo-output.txt && echo "  ✓ Initialization working" || exit 1 && \
+    grep -q "Seeding initial knowledge base" /tmp/demo-output.txt && echo "  ✓ Memory seeding working" || exit 1 && \
+    (grep -q "Cost-optimized routing: selected openrouter" /tmp/demo-output.txt && echo "  ✓ OpenRouter routing working") || echo "  ℹ OpenRouter not attempted (may need API key)" && \
+    ! grep -q "❌ Provider error from openrouter: claude-sonnet-4-5-20250929 is not a valid model ID" /tmp/demo-output.txt && echo "  ✓ No OpenRouter model ID errors" || (echo "  ✗ OpenRouter model ID errors found" && exit 1) && \
+    echo "=== Demo Test Passed ==="
+
+# Final stage: Summary
+FROM test-demo AS final
+RUN echo "" && \
+    echo "╔════════════════════════════════════════════════════════════════════╗" && \
+    echo "║                                                                    ║" && \
+    echo "║  ✓ agentic-flow v1.5.9 - All Tests Passed!                       ║" && \
+    echo "║                                                                    ║" && \
+    echo "║  Verified:                                                         ║" && \
+    echo "║  ✓ NPM package installation                                       ║" && \
+    echo "║  ✓ Package structure and files                                    ║" && \
+    echo "║  ✓ CLI commands working                                           ║" && \
+    echo "║  ✓ ReasoningBank initialization                                   ║" && \
+    echo "║  ✓ Model ID mapping (OpenRouter fix)                              ║" && \
+    echo "║  ✓ Demo execution                                                 ║" && \
+    echo "║  ✓ No OpenRouter model ID errors                                  ║" && \
+    echo "║                                                                    ║" && \
+    echo "║  Features:                                                         ║" && \
+    echo "║  • 66 specialized agents                                          ║" && \
+    echo "║  • 213 MCP tools                                                  ║" && \
+    echo "║  • ReasoningBank learning system                                  ║" && \
+    echo "║  • Multi-provider routing (Anthropic/OpenRouter/Gemini/ONNX)     ║" && \
+    echo "║  • Automatic model ID mapping                                     ║" && \
+    echo "║  • 99% cost savings with OpenRouter                               ║" && \
+    echo "║                                                                    ║" && \
+    echo "╚════════════════════════════════════════════════════════════════════╝" && \
+    echo ""
+
+CMD ["/bin/bash"]

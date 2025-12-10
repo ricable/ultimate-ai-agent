@@ -1,0 +1,52 @@
+{
+  "id": "121 4274",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4011930",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The FDD and TDD on Same eNodeB feature manages both FDD and TDD bands on the same",
+  "parameters": [
+    {
+      "name": "ENodeBFunction.tddVoipDrxProfileId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "Uen.BN",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "OptionalFeatureLicense.serviceState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "OptionalFeatureLicense"
+    },
+    {
+      "name": "OptionalFeatureLicense.licenseState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "OptionalFeatureLicense"
+    }
+  ],
+  "counters": [],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011930 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011930 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/158_22104-LZA7016014_1Uen.BN.md",
+  "file_hash": "a50d4d5e56feb9794fb55d9669e375ef",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

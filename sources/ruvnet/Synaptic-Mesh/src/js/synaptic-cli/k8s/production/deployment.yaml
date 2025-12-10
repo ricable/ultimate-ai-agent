@@ -1,0 +1,218 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synaptic-mesh-core
+  namespace: synaptic-mesh
+  labels:
+    app: synaptic-mesh
+    component: core
+    version: v1.0.0-alpha.1
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: synaptic-mesh
+      component: core
+  template:
+    metadata:
+      labels:
+        app: synaptic-mesh
+        component: core
+        version: v1.0.0-alpha.1
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: "/metrics"
+    spec:
+      serviceAccountName: synaptic-mesh
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: synaptic-mesh
+        image: ruvnet/synaptic-mesh:1.0.0-alpha.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        - name: p2p
+          containerPort: 8081
+          protocol: TCP
+        - name: metrics
+          containerPort: 9090
+          protocol: TCP
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: SYNAPTIC_PORT
+          value: "8080"
+        - name: SYNAPTIC_P2P_PORT
+          value: "8081"
+        - name: SYNAPTIC_METRICS_PORT
+          value: "9090"
+        - name: SYNAPTIC_LOG_LEVEL
+          value: "info"
+        - name: SYNAPTIC_NETWORK
+          valueFrom:
+            configMapKeyRef:
+              name: synaptic-mesh-config
+              key: network
+        - name: SYNAPTIC_CLUSTER_SIZE
+          valueFrom:
+            configMapKeyRef:
+              name: synaptic-mesh-config
+              key: cluster-size
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 1
+            memory: 2Gi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: http
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 2
+        volumeMounts:
+        - name: data
+          mountPath: /app/data
+        - name: config
+          mountPath: /app/config
+          readOnly: true
+        - name: wasm-modules
+          mountPath: /app/wasm
+          readOnly: true
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: synaptic-mesh-data
+      - name: config
+        configMap:
+          name: synaptic-mesh-config
+      - name: wasm-modules
+        configMap:
+          name: synaptic-mesh-wasm
+          defaultMode: 0755
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      tolerations:
+      - key: "synaptic-mesh"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - synaptic-mesh
+              topologyKey: kubernetes.io/hostname
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synaptic-mesh-worker
+  namespace: synaptic-mesh
+  labels:
+    app: synaptic-mesh
+    component: worker
+    version: v1.0.0-alpha.1
+spec:
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: synaptic-mesh
+      component: worker
+  template:
+    metadata:
+      labels:
+        app: synaptic-mesh
+        component: worker
+        version: v1.0.0-alpha.1
+    spec:
+      serviceAccountName: synaptic-mesh
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: synaptic-worker
+        image: ruvnet/synaptic-mesh:1.0.0-alpha.1
+        imagePullPolicy: IfNotPresent
+        command: ["node", "bin/synaptic-mesh", "worker"]
+        ports:
+        - name: worker
+          containerPort: 8082
+          protocol: TCP
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: SYNAPTIC_MODE
+          value: "worker"
+        - name: SYNAPTIC_WORKER_PORT
+          value: "8082"
+        - name: SYNAPTIC_CORE_ENDPOINT
+          value: "synaptic-mesh-core:8080"
+        resources:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: worker
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: worker
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: worker-data
+          mountPath: /app/worker-data
+        - name: wasm-modules
+          mountPath: /app/wasm
+          readOnly: true
+      volumes:
+      - name: worker-data
+        emptyDir: {}
+      - name: wasm-modules
+        configMap:
+          name: synaptic-mesh-wasm
+          defaultMode: 0755
+      nodeSelector:
+        kubernetes.io/arch: amd64

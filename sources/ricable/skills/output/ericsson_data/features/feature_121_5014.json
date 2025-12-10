@@ -1,0 +1,126 @@
+{
+  "id": "121 5014",
+  "name": "VoLTE Rate Recommendation",
+  "cxc_code": "CXC4012333",
+  "value_package": "VoLTE Performance",
+  "value_package_id": "FAJ 801 0444",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature improves VoLTE call quality at the cell edge because the UE can select",
+  "parameters": [
+    {
+      "name": "QciProfileOperatorDefined.bitRateRecommendationEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "QciProfilePredefined.bitRateRecommendationEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "EUtranCellFDD.enhVolteRateRecommEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.enhVolteRateRecommEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.bitRateUpRecommTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.bitRateUpRecommTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.bitRateDownRecommTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.bitRateDownRecommTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "Uen.Z",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "QciProfileOperatorDefined.rohcEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "QciProfilePredefined.rohcEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "SubscriberGroupProfile.volteCodecRateForUlSinrEst",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "SubscriberGroupProfile"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmBitRateDownUlVoipTimeDistr",
+      "description": "Performance counter pmBitRateDownUlVoipTimeDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmBitRateUpUlVoipTimeDistr",
+      "description": "Performance counter pmBitRateUpUlVoipTimeDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacUeBitRateRecommUlVoipDistr",
+      "description": "Performance counter pmMacUeBitRateRecommUlVoipDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacUeBitRateSelectUlVoipDistr",
+      "description": "Performance counter pmMacUeBitRateSelectUlVoipDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": null,
+  "deactivation_step": null,
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/459_22104-LZA7016014_1Uen.Z.md",
+  "file_hash": "aba47fe8abf2e858781609abb51c538a",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

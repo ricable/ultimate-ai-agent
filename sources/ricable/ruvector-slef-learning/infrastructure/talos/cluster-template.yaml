@@ -1,0 +1,157 @@
+# Sidero Omni Cluster Template for Ruvector Edge AI
+# Deploy: omnictl cluster template sync -v -f infrastructure/talos/cluster-template.yaml
+# Reference: https://github.com/siderolabs/omni
+
+kind: Cluster
+name: ruvector-cluster
+kubernetes:
+  version: v1.31.0
+talos:
+  version: v1.8.0
+
+patches:
+  # Control plane patches
+  - name: control-plane-config
+    labels:
+      role: control-plane
+    patch:
+      machine:
+        install:
+          # Enable Wasm runtime extensions
+          extensions:
+            - image: ghcr.io/siderolabs/wasmedge:0.11.2
+            - image: ghcr.io/siderolabs/spin:2.0.0
+        kubelet:
+          extraArgs:
+            rotate-server-certificates: "true"
+          nodeIP:
+            validSubnets:
+              - 10.0.0.0/8
+              - 192.168.0.0/16
+        network:
+          hostname: cp-{{.MachineIndex}}
+        sysctls:
+          # Optimize for edge workloads
+          net.core.somaxconn: "65535"
+          net.ipv4.tcp_max_syn_backlog: "65535"
+          vm.max_map_count: "262144"
+      cluster:
+        network:
+          cni:
+            name: none  # Use Cilium CNI
+        proxy:
+          disabled: true  # Cilium replaces kube-proxy
+        allowSchedulingOnControlPlanes: false
+        etcd:
+          advertisedSubnets:
+            - 10.0.0.0/8
+            - 192.168.0.0/16
+
+  # Worker node patches
+  - name: worker-config
+    labels:
+      role: worker
+    patch:
+      machine:
+        install:
+          extensions:
+            - image: ghcr.io/siderolabs/wasmedge:0.11.2
+            - image: ghcr.io/siderolabs/spin:2.0.0
+        kubelet:
+          extraArgs:
+            rotate-server-certificates: "true"
+        network:
+          hostname: worker-{{.MachineIndex}}
+        sysctls:
+          net.core.somaxconn: "65535"
+          vm.max_map_count: "262144"
+
+  # GPU worker patches (optional)
+  - name: gpu-worker-config
+    labels:
+      role: gpu-worker
+    patch:
+      machine:
+        install:
+          extensions:
+            - image: ghcr.io/siderolabs/wasmedge:0.11.2
+            - image: ghcr.io/siderolabs/spin:2.0.0
+            - image: ghcr.io/siderolabs/nvidia-open-gpu-kernel-modules:latest
+            - image: ghcr.io/siderolabs/nvidia-container-toolkit:latest
+        kernel:
+          modules:
+            - name: nvidia
+            - name: nvidia_uvm
+            - name: nvidia_drm
+        kubelet:
+          extraArgs:
+            rotate-server-certificates: "true"
+        network:
+          hostname: gpu-worker-{{.MachineIndex}}
+
+machines:
+  # Control plane nodes (3 for HA)
+  - name: control-plane
+    controlPlane: true
+    machineClass:
+      name: control-plane
+      size:
+        unlimited: false
+        value: 3
+
+  # Worker nodes (scalable)
+  - name: workers
+    controlPlane: false
+    machineClass:
+      name: worker
+      size:
+        unlimited: false
+        value: 3
+
+  # GPU workers (optional)
+  - name: gpu-workers
+    controlPlane: false
+    machineClass:
+      name: gpu-worker
+      size:
+        unlimited: false
+        value: 0  # Set to desired count when GPUs available
+
+---
+# Machine Class: Control Plane
+# For Proxmox: Define VM specs for control plane nodes
+kind: MachineClass
+name: control-plane
+spec:
+  matchLabels:
+    role: control-plane
+  # Proxmox VM specifications (when using omni-infra-provider-proxmox)
+  resources:
+    cpu: 4
+    memory: 8192  # 8GB
+    disk: 50      # 50GB
+
+---
+# Machine Class: Worker
+kind: MachineClass
+name: worker
+spec:
+  matchLabels:
+    role: worker
+  resources:
+    cpu: 4
+    memory: 16384  # 16GB
+    disk: 100      # 100GB
+
+---
+# Machine Class: GPU Worker
+kind: MachineClass
+name: gpu-worker
+spec:
+  matchLabels:
+    role: gpu-worker
+    hardware.gpu: nvidia
+  resources:
+    cpu: 8
+    memory: 32768  # 32GB
+    disk: 200      # 200GB

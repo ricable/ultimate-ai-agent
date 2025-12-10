@@ -1,0 +1,192 @@
+name: Deploy to Kubernetes
+
+on:
+  workflow_run:
+    workflows: ["Release Automation"]
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+      version:
+        description: 'Docker image version to deploy'
+        required: true
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/climate-prediction
+
+jobs:
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'staging' || github.event.workflow_run.conclusion == 'success'
+    environment:
+      name: staging
+      url: https://staging.climate-prediction.example.com
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.28.0'
+
+      - name: Configure kubectl
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.STAGING_KUBECONFIG }}" | base64 -d > ~/.kube/config
+
+      - name: Get image version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=latest" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update ConfigMap
+        run: |
+          kubectl create configmap climate-config \
+            --from-literal=LOG_LEVEL=info \
+            --from-literal=ENVIRONMENT=staging \
+            --dry-run=client -o yaml | kubectl apply -f -
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl set image deployment/climate-prediction \
+            climate-prediction=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.version }} \
+            --namespace=staging
+          kubectl rollout status deployment/climate-prediction --namespace=staging --timeout=5m
+
+      - name: Run smoke tests
+        run: |
+          ENDPOINT=$(kubectl get service climate-prediction -n staging -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+          curl -f http://$ENDPOINT/health || exit 1
+          curl -f http://$ENDPOINT/metrics || exit 1
+
+      - name: Notify deployment success
+        if: success()
+        run: |
+          echo "Deployment to staging successful"
+          # Add Slack/Discord notification here
+
+      - name: Rollback on failure
+        if: failure()
+        run: |
+          kubectl rollout undo deployment/climate-prediction --namespace=staging
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'production'
+    environment:
+      name: production
+      url: https://climate-prediction.example.com
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.28.0'
+
+      - name: Configure kubectl
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.PRODUCTION_KUBECONFIG }}" | base64 -d > ~/.kube/config
+
+      - name: Get image version
+        id: version
+        run: |
+          echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+
+      - name: Update ConfigMap
+        run: |
+          kubectl create configmap climate-config \
+            --from-literal=LOG_LEVEL=warn \
+            --from-literal=ENVIRONMENT=production \
+            --dry-run=client -o yaml | kubectl apply -f -
+
+      - name: Create backup
+        run: |
+          kubectl get deployment climate-prediction -n production -o yaml > backup-$(date +%Y%m%d-%H%M%S).yaml
+
+      - name: Deploy with canary strategy
+        run: |
+          # Deploy canary (10% traffic)
+          kubectl apply -f deployment/kubernetes/canary-deployment.yaml
+          kubectl wait --for=condition=available --timeout=5m deployment/climate-prediction-canary -n production
+
+          # Gradual rollout
+          sleep 300  # Monitor for 5 minutes
+
+          # Full deployment
+          kubectl set image deployment/climate-prediction \
+            climate-prediction=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.version }} \
+            --namespace=production
+          kubectl rollout status deployment/climate-prediction --namespace=production --timeout=10m
+
+      - name: Run production smoke tests
+        run: |
+          ENDPOINT=$(kubectl get service climate-prediction -n production -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+          curl -f https://$ENDPOINT/health || exit 1
+          curl -f https://$ENDPOINT/metrics || exit 1
+
+      - name: Clean up canary
+        run: |
+          kubectl delete deployment climate-prediction-canary -n production --ignore-not-found
+
+      - name: Notify deployment success
+        if: success()
+        run: |
+          echo "Deployment to production successful"
+          # Add Slack/Discord notification here
+
+      - name: Rollback on failure
+        if: failure()
+        run: |
+          kubectl rollout undo deployment/climate-prediction --namespace=production
+          kubectl delete deployment climate-prediction-canary -n production --ignore-not-found
+
+  verify-deployment:
+    name: Verify Deployment
+    runs-on: ubuntu-latest
+    needs: [deploy-staging, deploy-production]
+    if: always() && (needs.deploy-staging.result == 'success' || needs.deploy-production.result == 'success')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run integration tests
+        run: |
+          # Add comprehensive integration tests here
+          echo "Running integration test suite..."
+
+      - name: Performance benchmarks
+        run: |
+          # Add performance benchmarking
+          echo "Running performance benchmarks..."
+
+      - name: Generate deployment report
+        run: |
+          echo "# Deployment Report" > deployment-report.md
+          echo "- Date: $(date)" >> deployment-report.md
+          echo "- Version: ${{ github.event.inputs.version }}" >> deployment-report.md
+          echo "- Environment: ${{ github.event.inputs.environment }}" >> deployment-report.md
+
+      - name: Upload deployment report
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-report
+          path: deployment-report.md

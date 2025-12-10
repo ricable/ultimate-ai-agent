@@ -1,0 +1,119 @@
+{
+  "id": "121 5587",
+  "name": "NR Closed-Loop Power Control Low/Mid-Band",
+  "cxc_code": "CXC4012673",
+  "value_package": "Performance Boost",
+  "value_package_id": "FAJ 801 4021",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables power-based PUSCH closed-loop power control in Low-Band and",
+  "parameters": [
+    {
+      "name": "NRCellDU.autoSelectedModeOffset",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pZeroNomPuschAutoSelected",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pZeroNomPuschGrant",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "PowerControl.powerControlId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PowerControl"
+    },
+    {
+      "name": "PowerControlUeCfg.puschPowerControlModeFr1",
+      "type": "Introduced",
+      "description": "To be able to set the value of the attribute to                                     POWER_BASED_CLPC, the feature license must be                                 activated. See MOM description.",
+      "mo_class": "PowerControlUeCfg"
+    },
+    {
+      "name": "PowerControlUeCfg.pZeroNomPuschOffset",
+      "type": "Introduced",
+      "description": "The                                 attribute takes effect only if the value of the                                     PowerControlUeCfg.puschPowerControlModeFr1                                 attribute is set to POWER_BASED_CLPC in a UE                                 group.  See MOM description.",
+      "mo_class": "PowerControlUeCfg"
+    },
+    {
+      "name": "PowerControlUeCfg.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PowerControlUeCfg"
+    },
+    {
+      "name": "PowerControlUeCfg.userLabel",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PowerControlUeCfg"
+    },
+    {
+      "name": "UeBbProfileUeCfg.powerControlUeCfgRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeBbProfileUeCfg"
+    },
+    {
+      "name": "Uen.AB33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmRadioPathlossUlDistr",
+      "description": "Performance counter pmRadioPathlossUlDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioPuschPhrDistr",
+      "description": "Performance counter pmRadioPuschPhrDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioPuschPwrSpectralDensityDistr",
+      "description": "Performance counter pmRadioPuschPwrSpectralDensityDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioSinrPuschDistr",
+      "description": "Performance counter pmRadioSinrPuschDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012673 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012673 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/173_22104-LZA7016017_1Uen.AB33B.md",
+  "file_hash": "cf71ba5f2a5a0231fb135f4c462478c1",
+  "processed_at": "2025-10-19 15:50:03",
+  "network_impact": {},
+  "performance_impact": {}
+}

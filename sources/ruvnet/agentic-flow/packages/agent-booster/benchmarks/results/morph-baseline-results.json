@@ -1,0 +1,168 @@
+{
+  "timestamp": "2025-10-07T21:08:37.134Z",
+  "model": "morph-v3-fast",
+  "total_tests": 12,
+  "successful_tests": 12,
+  "failed_tests": 0,
+  "performance": {
+    "total_time_ms": 16238,
+    "avg_latency_ms": 352,
+    "total_api_time_ms": 4219
+  },
+  "usage": {
+    "applies_used": 12,
+    "input_tokens": 963,
+    "output_tokens": 427,
+    "remaining_budget": {
+      "applies": 488,
+      "input_tokens": 299037,
+      "output_tokens": 99573
+    }
+  },
+  "results": [
+    {
+      "test_id": "test-001",
+      "description": "Add type annotations to function",
+      "category": "typescript-conversion",
+      "success": true,
+      "output": "function add(a: number, b: number): number {\n  return a + b;\n}\n\n",
+      "latency": 466,
+      "tokens": {
+        "input": 70,
+        "output": 20
+      }
+    },
+    {
+      "test_id": "test-002",
+      "description": "Add error handling to async function",
+      "category": "error-handling",
+      "success": true,
+      "output": "async function fetchData(url) {\n  const response = await fetch(url);\n  return response.json();\n}\n\n",
+      "latency": 252,
+      "tokens": {
+        "input": 77,
+        "output": 21
+      }
+    },
+    {
+      "test_id": "test-003",
+      "description": "Convert var to const/let",
+      "category": "modernization",
+      "success": true,
+      "output": "const count = 0;\nconst name = 'John';\nfor (let i = 0; i < 10; i++) {\n  count++;\n}\n\n",
+      "latency": 285,
+      "tokens": {
+        "input": 90,
+        "output": 34
+      }
+    },
+    {
+      "test_id": "test-004",
+      "description": "Add JSDoc comments",
+      "category": "documentation",
+      "success": true,
+      "output": "/**\n * Multiply two numbers.\n * @param {number} x - The first number.\n * @param {number} y - The second number.\n * @returns {number} The product of x and y.\n */\nfunction multiply(x, y) {\n  return x * y;\n}\n\n",
+      "latency": 541,
+      "tokens": {
+        "input": 70,
+        "output": 59
+      }
+    },
+    {
+      "test_id": "test-005",
+      "description": "Convert callback to Promise",
+      "category": "async-conversion",
+      "success": true,
+      "output": "function readFile(path) {\n  return new Promise((resolve, reject) => {\n    fs.readFile(path, 'utf8', (err, data) => {\n      if (err) reject(err);\n      else resolve(data);\n    });\n  });\n}",
+      "latency": 395,
+      "tokens": {
+        "input": 98,
+        "output": 51
+      }
+    },
+    {
+      "test_id": "test-006",
+      "description": "Add null checks",
+      "category": "safety",
+      "success": true,
+      "output": "function getUserName(user) {\n  return user.profile.name;\n}\n\n",
+      "latency": 298,
+      "tokens": {
+        "input": 67,
+        "output": 14
+      }
+    },
+    {
+      "test_id": "test-007",
+      "description": "Convert to arrow function",
+      "category": "modernization",
+      "success": true,
+      "output": "const numbers = [1, 2, 3, 4, 5];\nconst doubled = numbers.map(n => n * 2);\n\n",
+      "latency": 292,
+      "tokens": {
+        "input": 90,
+        "output": 31
+      }
+    },
+    {
+      "test_id": "test-008",
+      "description": "Add input validation",
+      "category": "validation",
+      "success": true,
+      "output": "function divide(a, b) {\n  if (typeof a !== 'number' || typeof b !== 'number') {\n    throw new Error('Both arguments must be numbers');\n  }\n  return a / b;\n}",
+      "latency": 394,
+      "tokens": {
+        "input": 68,
+        "output": 45
+      }
+    },
+    {
+      "test_id": "test-009",
+      "description": "Convert class to TypeScript",
+      "category": "typescript-conversion",
+      "success": true,
+      "output": "class Calculator {\n  constructor() {\n    this.result = 0;\n  }\n  add(value) {\n    this.result += value;\n  }\n}\n\n",
+      "latency": 269,
+      "tokens": {
+        "input": 85,
+        "output": 31
+      }
+    },
+    {
+      "test_id": "test-010",
+      "description": "Add destructuring",
+      "category": "modernization",
+      "success": true,
+      "output": "function formatUser(user) {\n  const { name, email, age } = user;\n  return `${name} (${email}) - ${age} years old`;\n}\n\n",
+      "latency": 319,
+      "tokens": {
+        "input": 97,
+        "output": 35
+      }
+    },
+    {
+      "test_id": "test-011",
+      "description": "Add try-catch wrapper",
+      "category": "error-handling",
+      "success": true,
+      "output": "function parseJSON(str) {\n  try {\n    return JSON.parse(str);\n  } catch (e) {\n    return null;\n  }\n}",
+      "latency": 331,
+      "tokens": {
+        "input": 69,
+        "output": 30
+      }
+    },
+    {
+      "test_id": "test-012",
+      "description": "Add async/await",
+      "category": "async-conversion",
+      "success": true,
+      "output": "function getData() {\n  return fetch('/api/data')\n    .then(res => res.json())\n    .then(data => data);\n}\n\nasync function getData() {\n  const res = await fetch('/api/data');\n  const data = await res.json();\n  return data;\n}",
+      "latency": 377,
+      "tokens": {
+        "input": 82,
+        "output": 56
+      }
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "file_hash": "dc81a61b86d2899f043a43d046de47ec",
+  "feature": {
+    "id": "121 5130",
+    "name": "Downlink Multi-User MIMO Low/Mid-Band",
+    "cxc_code": "CXC4012590",
+    "value_package": "Massive MIMO Performance",
+    "value_package_id": "FAJ 801 4008",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature improves the downlink multi-user MIMO capability of the gNodeB. Advanced",
+    "parameters": [
+      {
+        "name": "NRCellDU.advancedDlSuMimoEnabled",
+        "type": "Affecting",
+        "description": "This attribute is used to enable the Advanced Downlink Single-User                                 MIMO Mid-Band feature, which is a prerequisite for this feature.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.advDlBfWhenAllSrsPortsUsable",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.maxNoOfAdvancedDlMuMimoLayers",
+        "type": "Introduced",
+        "description": "This attribute must have a different value than 0 to enable the                                 feature in the cell.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pairwiseSrsCorrelationThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.speedAdvMuThresh",
+        "type": "Introduced",
+        "description": "See MOM description.  Advanced multi-user MIMO beamforming can be used depending on                                 estimated effective speed of the UE. For this, a value different                                 from the default value must be used.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.speedAdvSuThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "DlMimo.dlMimoId",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DlMimo"
+      },
+      {
+        "name": "DlMimoUeCfg.dlMimoUeCfgId",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DlMimoUeCfg"
+      },
+      {
+        "name": "DlMimoUeCfg.reservedBy",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DlMimoUeCfg"
+      },
+      {
+        "name": "DlMimoUeCfg.srsImpactHandling",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DlMimoUeCfg"
+      },
+      {
+        "name": "NRCellDU.pZeroNomSrs",
+        "type": "Affected",
+        "description": "See MOM description and RAN Parameter Recommendations Lists.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.srsHoppingBandwidth",
+        "type": "Affecting",
+        "description": "This attribute allows the configuration of full-band or             half-band SRS. If the attribute is set to HALF, half-band SRS is used,             which allows the UE to transmit SRS with increased coverage. Full-band SRS uses one             uplink OFDM symbol in a special slot, while half-band SRS uses two. The SRS capacity of             the cell is the same with both the half-band and the fullband configurations.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "UeBbProfileUeCfg.dlMimoUeCfgRef",
+        "type": "Affected",
+        "description": "See MOM description.",
+        "mo_class": "UeBbProfileUeCfg"
+      },
+      {
+        "name": "Uen.DT33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "NRCellDU.pZeroNomPuschGrant",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.puschModeOnFddSCell",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacRBSymUsedPdschAdvSuMimoTxRankDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "ResourceSet.usage",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ResourceSet"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMacActiveSrsUe",
+        "description": "Performance counter pmMacActiveSrsUe",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymAvailDl",
+        "description": "Performance counter pmMacRBSymAvailDl",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvEisMuMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvEisMuMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMimoSinrThresUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMimoSinrThresUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMimoUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMimoUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMimoUserDistrB",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMimoUserDistrB",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMimoUsersDistrNRCellDU",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMimoUsersDistrNRCellDU",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMuMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMuMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMuMimoLayersDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMuMimoLayersDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMuMimoLayersDistrNRCellDU",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMuMimoLayersDistrNRCellDU",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMuMimoTxRankDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMuMimoTxRankDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvSuMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvSuMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvSuMimoLayerDistrNote",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvSuMimoLayerDistrNote",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvSuMimoTxRankDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvSuMimoTxRankDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschCbRatDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschCbRatDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMimoSinrThresUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschMimoSinrThresUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMimoUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschMimoUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMuMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschMuMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschSuMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschSuMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschTypeA",
+        "description": "Performance counter pmMacRBSymUsedPdschTypeA",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschvMimoUsersDistrNRCellDU",
+        "description": "Performance counter pmMacRBSymUsedPdschvMimoUsersDistrNRCellDU",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRbSymUsedPdschCbRatDistr",
+        "description": "Performance counter pmMacRbSymUsedPdschCbRatDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacSrsPdschAgeDistr",
+        "description": "Performance counter pmMacSrsPdschAgeDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlRat",
+        "description": "Performance counter pmMacVolDlRat",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolPdschAdvMimoSinrThresUserDistr",
+        "description": "Performance counter pmMacVolPdschAdvMimoSinrThresUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacVolPdschMimoSinrThresUserDistr",
+        "description": "Performance counter pmMacVolPdschMimoSinrThresUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmRadioSrsResAvailAntSwitching",
+        "description": "Performance counter pmRadioSrsResAvailAntSwitching",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioSrsResUsedAntSwitching",
+        "description": "Performance counter pmRadioSrsResUsedAntSwitching",
+        "category": "General"
+      },
+      {
+        "name": "pmUeEffDopplerSpeedDistr",
+        "description": "Performance counter pmUeEffDopplerSpeedDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012590 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012590 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/137_22104-LZA7016017_1Uen.DT33B.md",
+    "file_hash": "dc81a61b86d2899f043a43d046de47ec",
+    "processed_at": "2025-10-19 15:50:03",
+    "network_impact": {
+      "performance": "Performance impact during reconfiguration"
+    },
+    "performance_impact": {
+      "counters": "New counters introduced"
+    }
+  }
+}

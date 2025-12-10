@@ -1,0 +1,175 @@
+# WasmEdge Agent Kubernetes Deployment
+# Uses WasmEdge RuntimeClass for native WebAssembly execution
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: agents
+  labels:
+    app.kubernetes.io/name: agents
+    runtime.kubernetes.io/type: wasm
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wasmedge-agent-config
+  namespace: agents
+data:
+  AGENT_MODEL: "claude-3-5-sonnet-20241022"
+  LITELLM_ENDPOINT: "http://litellm.default.svc.cluster.local:4000"
+  RUVECTOR_ENDPOINT: "http://ruvector.default.svc.cluster.local:8765"
+  AGENTDB_ENDPOINT: "http://agentdb.default.svc.cluster.local:8766"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: wasmedge-agent-secrets
+  namespace: agents
+type: Opaque
+stringData:
+  ANTHROPIC_API_KEY: "${ANTHROPIC_API_KEY}"
+  OPENAI_API_KEY: "${OPENAI_API_KEY}"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wasmedge-agent
+  namespace: agents
+  labels:
+    app: wasmedge-agent
+    runtime: wasmedge
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wasmedge-agent
+  template:
+    metadata:
+      labels:
+        app: wasmedge-agent
+        runtime: wasmedge
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+    spec:
+      # Use WasmEdge RuntimeClass
+      runtimeClassName: wasmedge
+      serviceAccountName: wasmedge-workload
+      containers:
+        - name: agent
+          image: ghcr.io/ruvnet/wasmedge-agent:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: wasmedge-agent-config
+            - secretRef:
+                name: wasmedge-agent-secrets
+          env:
+            - name: AGENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          resources:
+            # WebAssembly workloads are lightweight
+            limits:
+              cpu: 200m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 32Mi
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1000
+            capabilities:
+              drop:
+                - ALL
+      nodeSelector:
+        wasm.runtime/wasmedge: "true"
+      tolerations:
+        - key: "wasm.runtime/wasmedge"
+          operator: "Exists"
+          effect: "NoSchedule"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wasmedge-agent
+  namespace: agents
+  labels:
+    app: wasmedge-agent
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app: wasmedge-agent
+---
+# Horizontal Pod Autoscaler
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: wasmedge-agent-hpa
+  namespace: agents
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: wasmedge-agent
+  minReplicas: 1
+  maxReplicas: 50
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 60
+      policies:
+        - type: Percent
+          value: 50
+          periodSeconds: 60
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 15
+        - type: Pods
+          value: 10
+          periodSeconds: 15
+      selectPolicy: Max

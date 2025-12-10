@@ -1,0 +1,333 @@
+# AgentDB v2 Platform-Specific Build Tests
+# Ensures native bindings work across all supported platforms
+
+name: Platform Builds
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/agentdb/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/agentdb/**'
+  schedule:
+    # Run weekly to catch platform-specific issues
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+    inputs:
+      skip_slow_platforms:
+        description: 'Skip ARM64 builds (faster)'
+        required: false
+        default: 'false'
+
+env:
+  AGENTDB_LOG_LEVEL: 'warn'
+
+jobs:
+  # ============================================
+  # Linux Builds
+  # ============================================
+  linux-x64:
+    name: Linux x64
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['18', '20', '22']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Install RuVector
+        run: npm install @ruvector/core @ruvector/gnn
+        working-directory: packages/agentdb
+
+      - name: Verify native binding
+        run: |
+          node -e "
+            const { isNative } = require('@ruvector/core');
+            console.log('Native:', isNative?.() ?? 'unknown');
+          "
+        working-directory: packages/agentdb
+
+      - name: Run tests
+        run: npm test
+        working-directory: packages/agentdb
+        env:
+          AGENTDB_BACKEND: ruvector
+
+      - name: Run benchmarks
+        run: npm run bench:quick
+        working-directory: packages/agentdb
+
+  linux-arm64:
+    name: Linux ARM64
+    runs-on: ubuntu-latest
+    if: github.event.inputs.skip_slow_platforms != 'true'
+    strategy:
+      matrix:
+        node: ['20']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: uraimo/run-on-arch-action@v2
+        with:
+          arch: aarch64
+          distro: ubuntu22.04
+          githubToken: ${{ github.token }}
+          install: |
+            apt-get update
+            apt-get install -y curl
+            curl -fsSL https://deb.nodesource.com/setup_${{ matrix.node }}.x | bash -
+            apt-get install -y nodejs
+          run: |
+            cd packages/agentdb
+            npm ci
+            npm install @ruvector/core || echo "Native ARM64 may need WASM fallback"
+            npm test
+
+  # ============================================
+  # macOS Builds
+  # ============================================
+  macos-x64:
+    name: macOS x64
+    runs-on: macos-13  # Intel
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['18', '20', '22']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Install RuVector
+        run: npm install @ruvector/core @ruvector/gnn
+        working-directory: packages/agentdb
+
+      - name: Verify native binding
+        run: |
+          node -e "
+            const { isNative } = require('@ruvector/core');
+            console.log('Native:', isNative?.() ?? 'unknown');
+            console.log('Platform:', process.platform, process.arch);
+          "
+        working-directory: packages/agentdb
+
+      - name: Run tests
+        run: npm test
+        working-directory: packages/agentdb
+        env:
+          AGENTDB_BACKEND: ruvector
+
+  macos-arm64:
+    name: macOS ARM64 (Apple Silicon)
+    runs-on: macos-14  # M1/M2
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['18', '20', '22']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Install RuVector
+        run: npm install @ruvector/core @ruvector/gnn
+        working-directory: packages/agentdb
+
+      - name: Verify native binding
+        run: |
+          node -e "
+            const { isNative } = require('@ruvector/core');
+            console.log('Native:', isNative?.() ?? 'unknown');
+            console.log('Platform:', process.platform, process.arch);
+          "
+        working-directory: packages/agentdb
+
+      - name: Run tests
+        run: npm test
+        working-directory: packages/agentdb
+        env:
+          AGENTDB_BACKEND: ruvector
+
+      - name: Run benchmarks
+        run: npm run bench:quick
+        working-directory: packages/agentdb
+
+  # ============================================
+  # Windows Builds
+  # ============================================
+  windows-x64:
+    name: Windows x64
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['18', '20', '22']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Install RuVector
+        run: npm install @ruvector/core @ruvector/gnn
+        working-directory: packages/agentdb
+        continue-on-error: true  # May need WASM fallback
+
+      - name: Verify binding
+        run: |
+          node -e "
+            try {
+              const { isNative } = require('@ruvector/core');
+              console.log('Native:', isNative?.() ?? 'unknown');
+            } catch (e) {
+              console.log('Using WASM fallback');
+            }
+          "
+        working-directory: packages/agentdb
+
+      - name: Run tests
+        run: npm test
+        working-directory: packages/agentdb
+
+  # ============================================
+  # WASM Fallback Test
+  # ============================================
+  wasm-fallback:
+    name: WASM Fallback
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Install RuVector (core only, no native)
+        run: |
+          npm install @ruvector/core
+          # Remove native bindings to force WASM
+          rm -rf node_modules/@ruvector/node-*
+        working-directory: packages/agentdb
+
+      - name: Verify WASM fallback
+        run: |
+          node -e "
+            const { isNative } = require('@ruvector/core');
+            const native = isNative?.() ?? false;
+            if (native) {
+              console.error('Should be using WASM, not native');
+              process.exit(1);
+            }
+            console.log('WASM fallback working correctly');
+          "
+        working-directory: packages/agentdb
+
+      - name: Run tests with WASM
+        run: npm test
+        working-directory: packages/agentdb
+        env:
+          AGENTDB_BACKEND: ruvector
+
+  # ============================================
+  # hnswlib Fallback Test
+  # ============================================
+  hnswlib-fallback:
+    name: hnswlib Fallback (No RuVector)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies (without RuVector)
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Verify hnswlib fallback
+        run: |
+          node -e "
+            const { detectBackends } = require('./dist/backends/factory.js');
+            detectBackends().then(d => {
+              if (d.available !== 'hnswlib') {
+                console.error('Should be using hnswlib fallback');
+                process.exit(1);
+              }
+              console.log('hnswlib fallback working correctly');
+            });
+          "
+        working-directory: packages/agentdb
+
+      - name: Run tests with hnswlib
+        run: npm test
+        working-directory: packages/agentdb
+        env:
+          AGENTDB_BACKEND: hnswlib
+
+  # ============================================
+  # Summary
+  # ============================================
+  platform-summary:
+    name: Platform Build Summary
+    runs-on: ubuntu-latest
+    needs:
+      - linux-x64
+      - macos-x64
+      - macos-arm64
+      - windows-x64
+      - wasm-fallback
+      - hnswlib-fallback
+    if: always()
+    steps:
+      - name: Check results
+        run: |
+          echo "## Platform Build Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Platform | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Linux x64 | ${{ needs.linux-x64.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| macOS x64 | ${{ needs.macos-x64.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| macOS ARM64 | ${{ needs.macos-arm64.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Windows x64 | ${{ needs.windows-x64.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| WASM Fallback | ${{ needs.wasm-fallback.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| hnswlib Fallback | ${{ needs.hnswlib-fallback.result }} |" >> $GITHUB_STEP_SUMMARY

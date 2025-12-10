@@ -1,0 +1,102 @@
+{
+  "file_hash": "93500e4b72b22bcebfe5df6c529a6c03",
+  "feature": {
+    "id": "121 3086",
+    "name": "",
+    "cxc_code": "CXC4011716",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "This feature improves the accuracy of the positioning-related measurements of a",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.prsTransmisScheme",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.prsTransmisScheme",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.prsPowerBoosting",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.prsPowerBoosting",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.prsMutingPatternLen",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.prsMutingPatternLen",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.prsMutingPattern",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.prsMutingPattern",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "Uen.AK",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "RadioEquipmentClock.bfnOffset",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "RadioEquipmentClock"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmentClock",
+        "description": "Performance counter pmentClock",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011716 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011716 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/228_22104-LZA7016014_1Uen.AK.md",
+    "file_hash": "93500e4b72b22bcebfe5df6c529a6c03",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

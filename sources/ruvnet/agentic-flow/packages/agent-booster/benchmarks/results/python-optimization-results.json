@@ -1,0 +1,69 @@
+{
+  "results": [
+    {
+      "name": "Add type hints to function",
+      "success": true,
+      "confidence": 0.5467045307159424,
+      "latency": 3,
+      "strategy": "insert_after",
+      "output": "def add(x, y):\n    return x + y\n\ndef add(x: int, y: int) -> int:\n    return x + y"
+    },
+    {
+      "name": "Add docstring to function",
+      "success": true,
+      "confidence": 0.5822499990463257,
+      "latency": 0,
+      "strategy": "insert_after",
+      "output": "def calculate(a, b):\n    return a * b\n\ndef calculate(a, b):\n    \"\"\"Multiply two numbers\"\"\"\n    return a * b"
+    },
+    {
+      "name": "Add class method",
+      "success": true,
+      "confidence": 0.585504412651062,
+      "latency": 0,
+      "strategy": "insert_after",
+      "output": "class Calculator:\n    def __init__(self):\n        self.result = 0\n\nclass Calculator:\n    def __init__(self):\n        self.result = 0\n\n    def add(self, x):\n        self.result += x"
+    },
+    {
+      "name": "Convert to async function",
+      "success": true,
+      "confidence": 0.8188095688819885,
+      "latency": 0,
+      "strategy": "fuzzy_replace",
+      "output": "async def fetch_data(url):\n    response = await requests.get(url)\n    return response.json()"
+    },
+    {
+      "name": "Add error handling",
+      "success": true,
+      "confidence": 0.5146575570106506,
+      "latency": 1,
+      "strategy": "insert_after",
+      "output": "def divide(a, b):\n    return a / b\n\ndef divide(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return None"
+    },
+    {
+      "name": "Add decorator",
+      "success": true,
+      "confidence": 0.7763333320617676,
+      "latency": 0,
+      "strategy": "fuzzy_replace",
+      "output": "@staticmethod\ndef process_data(data):\n    return data.strip()"
+    },
+    {
+      "name": "Refactor list comprehension",
+      "success": false,
+      "confidence": 0,
+      "latency": 0,
+      "strategy": "failed",
+      "output": "result = []\nfor i in range(10):\n    result.append(i * 2)"
+    },
+    {
+      "name": "Add property decorator",
+      "success": true,
+      "confidence": 0.5720053911209106,
+      "latency": 0,
+      "strategy": "insert_after",
+      "output": "class Person:\n    def __init__(self, name):\n        self._name = name\n\nclass Person:\n    def __init__(self, name):\n        self._name = name\n\n    @property\n    def name(self):\n        return self._name"
+    }
+  ],
+  "timestamp": "2025-10-07T23:20:00.432Z"
+}

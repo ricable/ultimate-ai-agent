@@ -1,0 +1,258 @@
+{
+  "id": "121 5187",
+  "name": "Prioritized Call Queuing at High Load",
+  "cxc_code": "CXC4012457",
+  "value_package": "High Load Handling",
+  "value_package_id": "FAJ 801 0415",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables the queuing of prioritized calls. It can increase the admittance",
+  "parameters": [
+    {
+      "name": "PrioCallQueueHighLoad",
+      "type": "Introduced",
+      "description": "The feature can be activated or deactivated with this attribute.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EUtranCellFDD.rrcQueueT300Ratio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.rrcQueueT300Ratio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.rrcQueueAdaptivePulling",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.rrcQueueAdaptivePulling",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pagingPriorityOverloadThr",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pagingPriorityOverloadThr",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pagingPriorityDiffThr",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pagingPriorityDiffThr",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "LOCAL_EVENT_SRB1_ESTABLISHMENT_ATTEMPT",
+      "type": "EVENT_PARAM_QUEUE_TIME    EVENT_PARAM_QUEUE_ALLOC_ATTEMPT",
+      "description": "The event is triggered when a connection attempts to allocate                                     SRB1. It indicates information about allocation attempts for the                                     requests taken from the queue.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "LOCAL_EVENT_SRB1_ESTABLISHMENT_COMPLETE",
+      "type": "EVENT_PARAM_SRB1_ESTABLISHMENT_RESULT",
+      "description": "The event is triggered when a connection attempt finishes with a                                     successful SRB1 allocation attempt.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "LOCAL_RRC_CONN_SETUP_READY",
+      "type": "EVENT_PARAM_IS_CONN_REQ_FROM_QUEUE",
+      "description": "The event is triggered at the end of a successful or unsuccessful                                     connection establishment procedure. This event indicates if the                                     connection spends time in the queue.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "LOCAL_MC_RRC_CONNECTION_REJECT",
+      "type": "EVENT_PARAM_RRC_REJECT_CAUSE",
+      "description": "The event is triggered when connections are removed from the                                     admission queue.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "LOCAL_UE_ADMISSION_REJECT",
+      "type": "EVENT_PARAM_UE_ADMISSION_REJECT_CAUSE",
+      "description": "The event is triggered when the connections are removed from the                                     admission queue.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AA33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "AdmissionControl.paArpOverride",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AdmissionControl"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmRrcConnEstabFailDynUeAdmCtrl",
+      "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrl",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabFailDynUeAdmCtrlCe",
+      "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlCe",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueAdptPullDelayDistr",
+      "description": "Performance counter pmRrcConnQueueAdptPullDelayDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueAllocAtt",
+      "description": "Performance counter pmRrcConnQueueAllocAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueAllocSucc",
+      "description": "Performance counter pmRrcConnQueueAllocSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueAtt",
+      "description": "Performance counter pmRrcConnQueueAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueAttEm",
+      "description": "Performance counter pmRrcConnQueueAttEm",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueAttHpa",
+      "description": "Performance counter pmRrcConnQueueAttHpa",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueAttMoVoice",
+      "description": "Performance counter pmRrcConnQueueAttMoVoice",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueAttMtaHp",
+      "description": "Performance counter pmRrcConnQueueAttMtaHp",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueAttMtaVoice",
+      "description": "Performance counter pmRrcConnQueueAttMtaVoice",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueOverflow",
+      "description": "Performance counter pmRrcConnQueueOverflow",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueSizeDistr",
+      "description": "Performance counter pmRrcConnQueueSizeDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueSucc",
+      "description": "Performance counter pmRrcConnQueueSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueSuccEm",
+      "description": "Performance counter pmRrcConnQueueSuccEm",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueSuccHpa",
+      "description": "Performance counter pmRrcConnQueueSuccHpa",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueSuccMoVoice",
+      "description": "Performance counter pmRrcConnQueueSuccMoVoice",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueSuccMtaHp",
+      "description": "Performance counter pmRrcConnQueueSuccMtaHp",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueSuccMtaVoice",
+      "description": "Performance counter pmRrcConnQueueSuccMtaVoice",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueTimeDistr",
+      "description": "Performance counter pmRrcConnQueueTimeDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueTo",
+      "description": "Performance counter pmRrcConnQueueTo",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "LOCAL_EVENT_SRB1_ESTABLISHMENT_ATTEMPT",
+      "type": "EVENT_PARAM_QUEUE_TIME    EVENT_PARAM_QUEUE_ALLOC_ATTEMPT",
+      "description": "The event is triggered when a connection attempts to allocate                                     SRB1. It indicates information about allocation attempts for the                                     requests taken from the queue."
+    },
+    {
+      "name": "LOCAL_EVENT_SRB1_ESTABLISHMENT_COMPLETE",
+      "type": "EVENT_PARAM_SRB1_ESTABLISHMENT_RESULT",
+      "description": "The event is triggered when a connection attempt finishes with a                                     successful SRB1 allocation attempt."
+    },
+    {
+      "name": "LOCAL_RRC_CONN_SETUP_READY",
+      "type": "EVENT_PARAM_IS_CONN_REQ_FROM_QUEUE",
+      "description": "The event is triggered at the end of a successful or unsuccessful                                     connection establishment procedure. This event indicates if the                                     connection spends time in the queue."
+    },
+    {
+      "name": "LOCAL_MC_RRC_CONNECTION_REJECT",
+      "type": "EVENT_PARAM_RRC_REJECT_CAUSE",
+      "description": "The event is triggered when connections are removed from the                                     admission queue."
+    },
+    {
+      "name": "LOCAL_UE_ADMISSION_REJECT",
+      "type": "EVENT_PARAM_UE_ADMISSION_REJECT_CAUSE",
+      "description": "The event is triggered when the connections are removed from the                                     admission queue."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012457 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012457 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/501_22104-LZA7016014_1Uen.AA33B.md",
+  "file_hash": "22dea9446e63e661068b314bb7620b10",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {
+    "counters": "New counters introduced"
+  }
+}

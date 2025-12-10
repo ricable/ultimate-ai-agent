@@ -1,0 +1,32 @@
+[package]
+name = "api-service"
+version = "0.1.0"
+edition = "2021"
+authors = ["CRISPR-Cas13 Team"]
+description = "REST API service for CRISPR-Cas13 pipeline"
+license = "MIT"
+
+[[bin]]
+name = "api-service"
+path = "src/main.rs"
+
+[dependencies]
+data-models = { path = "../data-models" }
+alignment-engine = { path = "../alignment-engine" }
+offtarget-predictor = { path = "../offtarget-predictor" }
+immune-analyzer = { path = "../immune-analyzer" }
+
+tokio = { version = "1.40", features = ["full"] }
+axum = "0.7"
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors", "trace", "compression-gzip"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1.10", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+jsonwebtoken = "9.2"
+sqlx = { version = "0.8", features = ["runtime-tokio-native-tls", "postgres", "uuid", "chrono"] }
+mongodb = "3.1"

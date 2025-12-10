@@ -1,0 +1,82 @@
+{
+  "id": "121 0861",
+  "name": "",
+  "cxc_code": "CXC4010961",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "The RLC in Unacknowledged Mode feature provides reduced control signaling",
+  "parameters": [
+    {
+      "name": "QciProfilePredefined.rlcMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfilePredefined.rlcSNLength",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfilePredefined.pdcpSNLength",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_UE_PACKET_LOST_PELR_UU_DL_RLCUM",
+      "description": "Total number of packets (PDCP SDUs) lost for RLC UM bearers for                                     which at least a part has been transmitted over the air in the                                     downlink direction.  This applies if it was decided that no more transmission are                                     attempted, due to reasons other than handover.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AC",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "QciProfileOperatorDefined.rlcMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_UE_PACKET_LOST_PELR_UU_DL_RLCUM",
+      "description": "Total number of packets (PDCP SDUs) lost for RLC UM bearers for                                     which at least a part has been transmitted over the air in the                                     downlink direction.  This applies if it was decided that no more transmission are                                     attempted, due to reasons other than handover."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010961 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010961 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/48_22104-LZA7016014_1Uen.AC.md",
+  "file_hash": "a0192da6a90d1f1d0216f6e7099c8d51",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,78 @@
+# Kustomization base for Synaptic Neural Mesh
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: synaptic-neural-mesh-base
+
+# Common labels applied to all resources
+commonLabels:
+  app: synaptic-neural-mesh
+  version: v1.0.0
+  component: neural-mesh
+
+# Common annotations
+commonAnnotations:
+  neural-mesh.io/managed-by: kubernetes
+  neural-mesh.io/created-by: docker-specialist
+
+# Namespace for all resources
+namespace: neural-mesh
+
+# Base resources
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - secret.yaml
+  - deployment-bootstrap.yaml
+  - deployment-worker.yaml
+  - deployment-agent.yaml
+  - deployment-mcp.yaml
+  - service-bootstrap.yaml
+  - service-worker.yaml
+  - service-agent.yaml
+  - service-mcp.yaml
+  - service-lb.yaml
+  - ingress.yaml
+  - pvc.yaml
+  - networkpolicy.yaml
+  - poddisruptionbudget.yaml
+  - horizontalpodautoscaler.yaml
+
+# Images to be patched by overlays
+images:
+  - name: synaptic-neural-mesh
+    newName: neural-mesh/synaptic-mesh
+    newTag: latest
+
+# ConfigMap and Secret generators
+configMapGenerator:
+  - name: neural-mesh-config
+    files:
+      - config/neural-mesh.toml
+      - config/logging.yaml
+    options:
+      disableNameSuffixHash: true
+
+secretGenerator:
+  - name: neural-mesh-secrets
+    literals:
+      - postgres-password=PLACEHOLDER
+      - redis-password=PLACEHOLDER
+      - jwt-secret=PLACEHOLDER
+    options:
+      disableNameSuffixHash: true
+
+# Patches for common configurations
+patches:
+  - target:
+      kind: Deployment
+      labelSelector: component=neural-mesh
+    patch: |-
+      - op: add
+        path: /spec/template/spec/securityContext
+        value:
+          runAsNonRoot: true
+          runAsUser: 1000
+          runAsGroup: 1000
+          fsGroup: 1000

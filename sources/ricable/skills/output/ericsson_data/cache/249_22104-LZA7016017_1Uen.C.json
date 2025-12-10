@@ -1,0 +1,163 @@
+{
+  "file_hash": "2d9dd6097d1354e8671b9e62e0e76d0b",
+  "feature": {
+    "id": "121 5824",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012807",
+    "value_package": "5G Advanced Device Battery Performance",
+    "value_package_id": "FAJ 801 4031",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "feature allows UEs and RedCap UEs to use RRM measurement relaxation in RRC_IDLE",
+    "parameters": [
+      {
+        "name": "NRCellCU.relaxedRrmMeasCellProfileRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "NRCellCU.relaxedRrmMeasEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "RelaxedRrmMeas.relaxedRrmMeasId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeas"
+      },
+      {
+        "name": "RelaxedRrmMeasCellProfile.combineRelaxedMeasCondition",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeasCellProfile"
+      },
+      {
+        "name": "RelaxedRrmMeasCellProfile.combineRelaxedMeasCondition2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeasCellProfile"
+      },
+      {
+        "name": "RelaxedRrmMeasCellProfile.highPriorityMeasRelax",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeasCellProfile"
+      },
+      {
+        "name": "RelaxedRrmMeasCellProfile.relaxedRrmMeasCellProfileId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeasCellProfile"
+      },
+      {
+        "name": "RelaxedRrmMeasCellProfile.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeasCellProfile"
+      },
+      {
+        "name": "RelaxedRrmMeasCellProfile.sSearchDeltaP",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeasCellProfile"
+      },
+      {
+        "name": "RelaxedRrmMeasCellProfile.sSearchDeltaPStationary",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeasCellProfile"
+      },
+      {
+        "name": "RelaxedRrmMeasCellProfile.sSearchThresholdP",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeasCellProfile"
+      },
+      {
+        "name": "RelaxedRrmMeasCellProfile.sSearchThresholdP2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeasCellProfile"
+      },
+      {
+        "name": "RelaxedRrmMeasCellProfile.sSearchThresholdQ",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeasCellProfile"
+      },
+      {
+        "name": "RelaxedRrmMeasCellProfile.sSearchThresholdQ2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeasCellProfile"
+      },
+      {
+        "name": "RelaxedRrmMeasCellProfile.tSearchDeltaP",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeasCellProfile"
+      },
+      {
+        "name": "RelaxedRrmMeasCellProfile.tSearchDeltaPStationary",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RelaxedRrmMeasCellProfile"
+      },
+      {
+        "name": "NRCellCU.sNonIntraSearchP",
+        "type": "Affecting",
+        "description": "This attribute affects the configuration of RRM measurement                                     relaxation conditions.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "NRCellCU.sNonIntraSearchQ",
+        "type": "Affecting",
+        "description": "This attribute affects the configuration of RRM measurement                                     relaxation conditions.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "NRFreqRelation.sIntraSearchP",
+        "type": "Affecting",
+        "description": "This attribute affects the configuration of RRM measurement                                     relaxation conditions.",
+        "mo_class": "NRFreqRelation"
+      },
+      {
+        "name": "NRFreqRelation.sIntraSearchQ",
+        "type": "Affecting",
+        "description": "This attribute affects the configuration of RRM measurement                                     relaxation conditions.",
+        "mo_class": "NRFreqRelation"
+      },
+      {
+        "name": "Uen.C",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012807 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012807 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/249_22104-LZA7016017_1Uen.C.md",
+    "file_hash": "2d9dd6097d1354e8671b9e62e0e76d0b",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

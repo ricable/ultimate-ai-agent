@@ -1,0 +1,252 @@
+{
+  "file_hash": "c7cfced2d2b4056e8b9ecd22b557fbb4",
+  "feature": {
+    "id": "121 4571",
+    "name": "Radio Resource Partitioning",
+    "cxc_code": "CXC4012019",
+    "value_package": "RAN Slicing",
+    "value_package_id": "FAJ 801 0570",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature enables the configuration of predefined shares of radio resources in a",
+    "parameters": [
+      {
+        "name": "ResourcePartition.partitionId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourcePartition"
+      },
+      {
+        "name": "ResourcePartition.plmnList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourcePartition"
+      },
+      {
+        "name": "ResourcePartition.spidList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourcePartition"
+      },
+      {
+        "name": "ResourcePartitions.gbrPartitioning",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourcePartitions"
+      },
+      {
+        "name": "ResourcePartitionGroupMember.resourcePartitionRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourcePartitionGroupMember"
+      },
+      {
+        "name": "ResourcePartitionGroupMember.resourcePartitionShare",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourcePartitionGroupMember"
+      },
+      {
+        "name": "ResourcePartitionGroupMember.resourcePartitionMaxShare",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourcePartitionGroupMember"
+      },
+      {
+        "name": "EUtranCellFDD.resourcePartitionGroupRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.resourcePartitionGroupRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "QciProfileOperatorDefined.paPartitionOverride",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfilePredefined.paPartitionOverride",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "ResourcePartitions.gbrAdmCtrlPerPartition",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourcePartitions"
+      },
+      {
+        "name": "ResourcePartitions.rrpAdmCtrlRejPaReqOvlGbr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourcePartitions"
+      },
+      {
+        "name": "QciProfilePredefined.serviceType",
+        "type": "Affecting",
+        "description": "When this parameter is set to IMS_SIGNALING or                                     MC_SIGNALING and value of                                     ResourcePartitions.gbrPartitioning parameter                                 is set to false, all bearers with QCI keep their                                 priority.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfileOperatorDefined.serviceType",
+        "type": "Affecting",
+        "description": "When this parameter is set to IMS_SIGNALING or                                     MC_SIGNALING and value of                                     ResourcePartitions.gbrPartitioning parameter                                 is set to false, all bearers with QCI keep their                                 priority.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "INTERNAL_PER_PARTITION_REPORT",
+        "type": "EVENT_PARAM_PARTITION_ID  EVENT_PARAM_MEASUREMENT_PERIOD  EVENT_PARAM_PARTITION_PRB_DL_MAX  EVENT_PARAM_PARTITION_PRB_DL_MIN  EVENT_PARAM_PARTITION_PRB_DL_SUM  EVENT_PARAM_PARTITION_PRB_UL_MAX  EVENT_PARAM_PARTITION_PRB_UL_MIN  EVENT_PARAM_PARTITION_PRB_UL_SUM  EVENT_PARAM_AVAIL_PRB_UL_RESOURCES  EVENT_PARAM_AVAIL_PRB_DL_RESOURCES  EVENT_PARAM_PRB_UL_UTILIZATION  EVENT_PARAM_PRB_DL_UTILIZATION  EVENT_PARAM_GBR_UL_UTILIZATION  EVENT_PARAM_GBR_DL_UTILIZATION",
+        "description": "This event reports the use for each resource type for a given                                     partition. This event results in PM counter pegging.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UETR_PARTITION_REPORT",
+        "type": "EVENT_PARAM_PARTITION_ID  EVENT_PARAM_MEASUREMENT_PERIOD  EVENT_PARAM_PARTITION_PRB_DL_MAX  EVENT_PARAM_PARTITION_PRB_DL_MIN  EVENT_PARAM_PARTITION_PRB_DL_SUM  EVENT_PARAM_PARTITION_PRB_UL_MAX  EVENT_PARAM_PARTITION_PRB_UL_MIN  EVENT_PARAM_PARTITION_PRB_UL_SUM  EVENT_PARAM_AVAIL_PRB_UL_RESOURCES  EVENT_PARAM_AVAIL_PRB_DL_RESOURCES  EVENT_PARAM_PRB_UL_UTILIZATION  EVENT_PARAM_PRB_DL_UTILIZATION  EVENT_PARAM_GBR_UL_UTILIZATION   EVENT_PARAM_GBR_DL_UTILIZATION",
+        "description": "This event reports the use for each resource type for a given                                     partition.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_PARTITION_CONFIG_MISSING",
+        "type": "EVENT_PARAM_PARTITION_CONFIG_FAULT_BITMAP",
+        "description": "This event alerts a potential misconfiguration of resource                                     partition configuration. The event uses a bitmap to specify                                     configuration problems. The event is sent when there are fewer                                     than two resource partitions defined in the cell at cell unlock.                                     An event is sent if a PLMN exists in the shared RAN additional                                     PLMN list, but does not appear in any partition currently                                     configured in the cell. This applies to cell unlock and the                                     addition of a new PLMN to the additional PLMN list.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.DL",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmErabEstabAttRejAdmMsrAddedRpid",
+        "description": "Performance counter pmErabEstabAttRejAdmMsrAddedRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttRejAdmMsrInitRpid",
+        "description": "Performance counter pmErabEstabAttRejAdmMsrInitRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActPeRpid",
+        "description": "Performance counter pmErabRelAbnormalEnbActPeRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbPeRpid",
+        "description": "Performance counter pmErabRelAbnormalEnbPeRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInAdmMsrRpid",
+        "description": "Performance counter pmHoPrepRejInAdmMsrRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbDlUtilDistrPartition",
+        "description": "Performance counter pmPrbDlUtilDistrPartition",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbDlUtilDistrPartitionN",
+        "description": "Performance counter pmPrbDlUtilDistrPartitionN",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbDlUtilGbrDistrPartition",
+        "description": "Performance counter pmPrbDlUtilGbrDistrPartition",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbUlUtilDistrPartition",
+        "description": "Performance counter pmPrbUlUtilDistrPartition",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbUlUtilDistrPartitionN",
+        "description": "Performance counter pmPrbUlUtilDistrPartitionN",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbUlUtilGbrDistrPartition",
+        "description": "Performance counter pmPrbUlUtilGbrDistrPartition",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDlSCellEran",
+        "description": "Performance counter pmRadioThpVolDlSCellEran",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCellEran",
+        "description": "Performance counter pmRadioThpVolTxDlSCellEran",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReestFailInAdmMsrRpid",
+        "description": "Performance counter pmRrcConnReestFailInAdmMsrRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmember",
+        "description": "Performance counter pmember",
+        "category": "General"
+      },
+      {
+        "name": "pmtool",
+        "description": "Performance counter pmtool",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_PARTITION_REPORT",
+        "type": "EVENT_PARAM_PARTITION_ID  EVENT_PARAM_MEASUREMENT_PERIOD  EVENT_PARAM_PARTITION_PRB_DL_MAX  EVENT_PARAM_PARTITION_PRB_DL_MIN  EVENT_PARAM_PARTITION_PRB_DL_SUM  EVENT_PARAM_PARTITION_PRB_UL_MAX  EVENT_PARAM_PARTITION_PRB_UL_MIN  EVENT_PARAM_PARTITION_PRB_UL_SUM  EVENT_PARAM_AVAIL_PRB_UL_RESOURCES  EVENT_PARAM_AVAIL_PRB_DL_RESOURCES  EVENT_PARAM_PRB_UL_UTILIZATION  EVENT_PARAM_PRB_DL_UTILIZATION  EVENT_PARAM_GBR_UL_UTILIZATION  EVENT_PARAM_GBR_DL_UTILIZATION",
+        "description": "This event reports the use for each resource type for a given                                     partition. This event results in PM counter pegging."
+      },
+      {
+        "name": "INTERNAL_PER_UETR_PARTITION_REPORT",
+        "type": "EVENT_PARAM_PARTITION_ID  EVENT_PARAM_MEASUREMENT_PERIOD  EVENT_PARAM_PARTITION_PRB_DL_MAX  EVENT_PARAM_PARTITION_PRB_DL_MIN  EVENT_PARAM_PARTITION_PRB_DL_SUM  EVENT_PARAM_PARTITION_PRB_UL_MAX  EVENT_PARAM_PARTITION_PRB_UL_MIN  EVENT_PARAM_PARTITION_PRB_UL_SUM  EVENT_PARAM_AVAIL_PRB_UL_RESOURCES  EVENT_PARAM_AVAIL_PRB_DL_RESOURCES  EVENT_PARAM_PRB_UL_UTILIZATION  EVENT_PARAM_PRB_DL_UTILIZATION  EVENT_PARAM_GBR_UL_UTILIZATION   EVENT_PARAM_GBR_DL_UTILIZATION",
+        "description": "This event reports the use for each resource type for a given                                     partition."
+      },
+      {
+        "name": "INTERNAL_EVENT_PARTITION_CONFIG_MISSING",
+        "type": "EVENT_PARAM_PARTITION_CONFIG_FAULT_BITMAP",
+        "description": "This event alerts a potential misconfiguration of resource                                     partition configuration. The event uses a bitmap to specify                                     configuration problems. The event is sent when there are fewer                                     than two resource partitions defined in the cell at cell unlock.                                     An event is sent if a PLMN exists in the shared RAN additional                                     PLMN list, but does not appear in any partition currently                                     configured in the cell. This applies to cell unlock and the                                     addition of a new PLMN to the additional PLMN list."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012019 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012019 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/238_22104-LZA7016014_1Uen.DL.md",
+    "file_hash": "c7cfced2d2b4056e8b9ecd22b557fbb4",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

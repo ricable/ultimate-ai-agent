@@ -1,0 +1,105 @@
+{
+  "id": "121 5145",
+  "name": "Coverage-Optimized Uplink Transmission High-Band",
+  "cxc_code": "CXC4012408",
+  "value_package": "Advanced Coverage Extension",
+  "value_package_id": "FAJ 801 4006",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "In High-Band, the feature allows for dynamic waveform switching in the uplink, improving",
+  "parameters": [
+    {
+      "name": "NRCellDU.dftSOfdmPuschStartRsrpThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.dftSOfdmPuschEnabled",
+      "type": "Affecting",
+      "description": "Setting the attribute to true activates the                                 Coverage-Optimized Uplink Transmission High-Band feature if a                                 license is available.  If the feature is activated by enabling the                                     NRCellDU.dftSOfdmPuschEnabled attribute, the                                 following configuration values cannot be configured for the                                     NRCellDU.maxUeSpeed attribute:  UP_TO_50KMPH     UP_TO_100KMPH",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "UlCgSwitchCfg.ulScgLowQualThresh",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "UlCgSwitchCfg"
+    },
+    {
+      "name": "UlCgSwitchCfg.ulScgLowQualHyst",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "UlCgSwitchCfg"
+    },
+    {
+      "name": "Uen.AV",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRCellDU.maxUeSpeed",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmRadioMacCpofdmTransUl",
+      "description": "Performance counter pmRadioMacCpofdmTransUl",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioMacDftsTransUl",
+      "description": "Performance counter pmRadioMacDftsTransUl",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioMacWvfSwitchAttUlCpofdm",
+      "description": "Performance counter pmRadioMacWvfSwitchAttUlCpofdm",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioMacWvfSwitchAttUlDfts",
+      "description": "Performance counter pmRadioMacWvfSwitchAttUlDfts",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioMacWvfSwitchSuccUlCpofdm",
+      "description": "Performance counter pmRadioMacWvfSwitchSuccUlCpofdm",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioMacWvfSwitchSuccUlDfts",
+      "description": "Performance counter pmRadioMacWvfSwitchSuccUlDfts",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012408 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012408 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/52_22104-LZA7016017_1Uen.AV.md",
+  "file_hash": "4053809a901bdca359d72c38931f03e7",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

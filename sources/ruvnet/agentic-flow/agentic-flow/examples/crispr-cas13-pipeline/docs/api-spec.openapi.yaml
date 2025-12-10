@@ -1,0 +1,1258 @@
+openapi: 3.0.3
+info:
+  title: CRISPR-Cas13 Bioinformatics Pipeline API
+  version: 1.0.0
+  description: |
+    RESTful API for CRISPR-Cas13 RNA-targeting experiments in primate models.
+
+    **Features:**
+    - FASTQ data ingestion
+    - Automated QC and alignment pipelines
+    - Off-target prediction
+    - Innate immune response analysis
+    - Real-time job monitoring via WebSocket
+    - W3C PROV-O provenance tracking
+
+    **Authentication:** API Key (Header: `X-API-Key`) or OAuth2 Bearer token
+
+  contact:
+    name: Bioinformatics Core
+    email: support@crispr-pipeline.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.crispr-pipeline.org/v1
+    description: Production server
+  - url: https://staging-api.crispr-pipeline.org/v1
+    description: Staging server
+  - url: http://localhost:8000/v1
+    description: Local development server
+
+security:
+  - ApiKeyAuth: []
+  - OAuth2: [read, write]
+
+tags:
+  - name: Experiments
+    description: Experiment metadata management
+  - name: Sequencing
+    description: FASTQ data upload and management
+  - name: Jobs
+    description: Processing job submission and monitoring
+  - name: Results
+    description: Analysis results retrieval
+  - name: References
+    description: Reference genome management
+  - name: Users
+    description: User account management
+  - name: System
+    description: System health and configuration
+
+paths:
+  /experiments:
+    get:
+      summary: List experiments
+      description: Retrieve paginated list of experiments with optional filtering
+      tags: [Experiments]
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: per_page
+          in: query
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+        - name: species
+          in: query
+          schema:
+            type: string
+            enum: [rhesus_macaque, cynomolgus_macaque, human_cell_line]
+        - name: cas13_variant
+          in: query
+          schema:
+            type: string
+            enum: [Cas13a, Cas13b, Cas13c, Cas13d]
+        - name: experimenter
+          in: query
+          schema:
+            type: string
+        - name: date_from
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: date_to
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: sort_by
+          in: query
+          schema:
+            type: string
+            enum: [date_performed, created_at, title]
+            default: created_at
+        - name: sort_order
+          in: query
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Experiment'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    post:
+      summary: Create new experiment
+      description: Submit new experiment metadata
+      tags: [Experiments]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExperimentCreate'
+      responses:
+        '201':
+          description: Experiment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experiment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /experiments/{experiment_id}:
+    get:
+      summary: Get experiment details
+      tags: [Experiments]
+      parameters:
+        - $ref: '#/components/parameters/ExperimentId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experiment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      summary: Update experiment
+      tags: [Experiments]
+      parameters:
+        - $ref: '#/components/parameters/ExperimentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExperimentUpdate'
+      responses:
+        '200':
+          description: Experiment updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experiment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      summary: Delete experiment
+      description: Delete experiment and all associated data (requires admin role)
+      tags: [Experiments]
+      parameters:
+        - $ref: '#/components/parameters/ExperimentId'
+      responses:
+        '204':
+          description: Experiment deleted
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /experiments/{experiment_id}/provenance:
+    get:
+      summary: Get experiment provenance
+      description: Retrieve W3C PROV-O provenance graph
+      tags: [Experiments]
+      parameters:
+        - $ref: '#/components/parameters/ExperimentId'
+        - name: format
+          in: query
+          schema:
+            type: string
+            enum: [json-ld, turtle, rdf-xml]
+            default: json-ld
+      responses:
+        '200':
+          description: Provenance graph
+          content:
+            application/ld+json:
+              schema:
+                type: object
+            text/turtle:
+              schema:
+                type: string
+
+  /sequencing-data:
+    post:
+      summary: Upload FASTQ files
+      description: Upload raw sequencing data (FASTQ format)
+      tags: [Sequencing]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - experiment_id
+                - sample_id
+                - sequencing_platform
+                - read_type
+                - file_r1
+              properties:
+                experiment_id:
+                  type: string
+                  format: uuid
+                sample_id:
+                  type: string
+                sequencing_platform:
+                  type: string
+                  enum: [Illumina_NovaSeq_6000, Illumina_NextSeq_2000, Illumina_MiSeq]
+                read_type:
+                  type: string
+                  enum: [single_end, paired_end]
+                read_length:
+                  type: integer
+                file_r1:
+                  type: string
+                  format: binary
+                  description: "FASTQ file (R1 or single-end)"
+                file_r2:
+                  type: string
+                  format: binary
+                  description: "FASTQ file (R2, required for paired-end)"
+      responses:
+        '201':
+          description: Upload successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SequencingRun'
+        '400':
+          description: Invalid file format or missing required fields
+        '413':
+          description: File too large (>50GB)
+
+  /sequencing-data/{run_id}:
+    get:
+      summary: Get sequencing run details
+      tags: [Sequencing]
+      parameters:
+        - name: run_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Sequencing run details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SequencingRun'
+
+  /sequencing-data/{run_id}/qc:
+    get:
+      summary: Get QC results
+      description: Retrieve FastQC quality control metrics
+      tags: [Sequencing]
+      parameters:
+        - name: run_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: QC metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QualityControl'
+
+  /jobs:
+    get:
+      summary: List jobs
+      description: List all processing jobs for the authenticated user
+      tags: [Jobs]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [queued, running, completed, failed, cancelled, all]
+            default: all
+        - name: job_type
+          in: query
+          schema:
+            type: string
+            enum: [qc_only, alignment, full_pipeline, off_target_prediction]
+        - name: experiment_id
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Job list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProcessingJob'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+
+    post:
+      summary: Submit processing job
+      description: Submit a new bioinformatics pipeline job
+      tags: [Jobs]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobSubmission'
+      responses:
+        '201':
+          description: Job submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessingJob'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /jobs/{job_id}:
+    get:
+      summary: Get job status
+      description: Get detailed job status and progress
+      tags: [Jobs]
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Job status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessingJob'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      summary: Cancel job
+      description: Cancel a running or queued job
+      tags: [Jobs]
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Job cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessingJob'
+        '400':
+          description: Job cannot be cancelled (already completed)
+
+  /jobs/{job_id}/logs:
+    get:
+      summary: Get job logs
+      description: Retrieve stdout/stderr logs for debugging
+      tags: [Jobs]
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: log_type
+          in: query
+          schema:
+            type: string
+            enum: [stdout, stderr, both]
+            default: both
+        - name: tail
+          in: query
+          schema:
+            type: integer
+            description: "Number of lines from end of log"
+            default: 100
+      responses:
+        '200':
+          description: Job logs
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: object
+                properties:
+                  stdout:
+                    type: string
+                  stderr:
+                    type: string
+
+  /results/{experiment_id}:
+    get:
+      summary: Get experiment results
+      description: Retrieve all analysis results for completed experiment
+      tags: [Results]
+      parameters:
+        - $ref: '#/components/parameters/ExperimentId'
+        - name: include
+          in: query
+          schema:
+            type: string
+            description: "Comma-separated list: qc,alignment,target,offtargets,immune"
+            default: "qc,alignment,target"
+      responses:
+        '200':
+          description: Experiment results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExperimentResults'
+
+  /results/{experiment_id}/target-analysis:
+    get:
+      summary: Get target analysis results
+      description: On-target knockdown efficiency and statistics
+      tags: [Results]
+      parameters:
+        - $ref: '#/components/parameters/ExperimentId'
+      responses:
+        '200':
+          description: Target analysis
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetAnalysis'
+
+  /results/{experiment_id}/off-targets:
+    get:
+      summary: Get off-target predictions
+      description: Ranked list of predicted off-target sites
+      tags: [Results]
+      parameters:
+        - $ref: '#/components/parameters/ExperimentId'
+        - name: top_n
+          in: query
+          schema:
+            type: integer
+            default: 100
+            maximum: 1000
+        - name: min_score
+          in: query
+          schema:
+            type: number
+            default: 0.5
+            minimum: 0.0
+            maximum: 1.0
+      responses:
+        '200':
+          description: Off-target sites
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OffTargetSite'
+
+  /results/{experiment_id}/immune-response:
+    get:
+      summary: Get immune response analysis
+      description: Innate immune pathway activation metrics
+      tags: [Results]
+      parameters:
+        - $ref: '#/components/parameters/ExperimentId'
+      responses:
+        '200':
+          description: Immune response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImmuneResponse'
+
+  /results/{experiment_id}/files:
+    get:
+      summary: List result files
+      description: Get download URLs for result files (BAM, VCF, TSV, etc.)
+      tags: [Results]
+      parameters:
+        - $ref: '#/components/parameters/ExperimentId'
+      responses:
+        '200':
+          description: File list with pre-signed URLs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  files:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        file_type:
+                          type: string
+                          enum: [bam, bai, vcf, tsv, html, bed]
+                        file_name:
+                          type: string
+                        file_size:
+                          type: integer
+                        download_url:
+                          type: string
+                          format: uri
+                          description: "Pre-signed URL (expires in 1 hour)"
+                        md5_checksum:
+                          type: string
+
+  /references/genomes:
+    get:
+      summary: List reference genomes
+      description: Available reference genomes and their indices
+      tags: [References]
+      responses:
+        '200':
+          description: Reference genome list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReferenceGenome'
+
+    post:
+      summary: Upload custom reference genome
+      description: Add custom reference genome (requires admin role)
+      tags: [References]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [species, assembly_name, genome_fasta, annotation_gtf]
+              properties:
+                species:
+                  type: string
+                assembly_name:
+                  type: string
+                genome_fasta:
+                  type: string
+                  format: binary
+                annotation_gtf:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Reference genome uploaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferenceGenome'
+
+  /users/me:
+    get:
+      summary: Get current user profile
+      tags: [Users]
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+    patch:
+      summary: Update user profile
+      tags: [Users]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                institution:
+                  type: string
+                notification_email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Profile updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /users/me/api-key:
+    post:
+      summary: Generate new API key
+      description: Generate new API key (invalidates old key)
+      tags: [Users]
+      responses:
+        '201':
+          description: New API key generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  api_key:
+                    type: string
+                    description: "SAVE THIS! It will not be shown again."
+                  created_at:
+                    type: string
+                    format: date-time
+
+  /system/health:
+    get:
+      summary: System health check
+      description: Check API and database connectivity
+      tags: [System]
+      security: []  # No authentication required
+      responses:
+        '200':
+          description: System healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [healthy, degraded, unhealthy]
+                  timestamp:
+                    type: string
+                    format: date-time
+                  components:
+                    type: object
+                    properties:
+                      api:
+                        type: string
+                        enum: [up, down]
+                      database:
+                        type: string
+                        enum: [up, down]
+                      storage:
+                        type: string
+                        enum: [up, down]
+                      queue:
+                        type: string
+                        enum: [up, down]
+                  version:
+                    type: string
+                    example: "1.0.0"
+
+  /system/stats:
+    get:
+      summary: System statistics
+      description: Overall system usage statistics (admin only)
+      tags: [System]
+      responses:
+        '200':
+          description: System stats
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_experiments:
+                    type: integer
+                  total_sequencing_runs:
+                    type: integer
+                  total_jobs:
+                    type: object
+                    properties:
+                      queued:
+                        type: integer
+                      running:
+                        type: integer
+                      completed:
+                        type: integer
+                  storage_used_tb:
+                    type: number
+                  active_users:
+                    type: integer
+
+# WebSocket endpoint (not OpenAPI standard, documented separately)
+# ws://api.crispr-pipeline.org/v1/ws/jobs/{job_id}
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: "API key authentication. Obtain from /users/me/api-key"
+
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.crispr-pipeline.org/oauth/authorize
+          tokenUrl: https://auth.crispr-pipeline.org/oauth/token
+          scopes:
+            read: Read access to experiments and results
+            write: Submit jobs and create experiments
+            admin: Administrative access
+
+  parameters:
+    ExperimentId:
+      name: experiment_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Unique experiment identifier
+
+  schemas:
+    Experiment:
+      type: object
+      required:
+        - experiment_id
+        - title
+        - species
+        - cas13_variant
+        - guide_rna
+      properties:
+        experiment_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        species:
+          type: string
+          enum: [rhesus_macaque, cynomolgus_macaque, human_cell_line]
+        tissue_type:
+          type: string
+        cas13_variant:
+          type: string
+          enum: [Cas13a, Cas13b, Cas13c, Cas13d]
+        guide_rna:
+          $ref: '#/components/schemas/GuideRNA'
+        delivery_method:
+          type: string
+        timepoint_hours:
+          type: integer
+        replicate_number:
+          type: integer
+        control_type:
+          type: string
+          nullable: true
+        experimenter:
+          type: string
+        institution:
+          type: string
+        date_performed:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    ExperimentCreate:
+      type: object
+      required:
+        - title
+        - species
+        - cas13_variant
+        - guide_rna
+        - date_performed
+      properties:
+        title:
+          type: string
+          minLength: 10
+          maxLength: 200
+        description:
+          type: string
+        species:
+          type: string
+          enum: [rhesus_macaque, cynomolgus_macaque, human_cell_line]
+        tissue_type:
+          type: string
+        cas13_variant:
+          type: string
+        guide_rna:
+          $ref: '#/components/schemas/GuideRNA'
+        delivery_method:
+          type: string
+        timepoint_hours:
+          type: integer
+        replicate_number:
+          type: integer
+        experimenter:
+          type: string
+        institution:
+          type: string
+        date_performed:
+          type: string
+          format: date-time
+
+    ExperimentUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: object
+
+    GuideRNA:
+      type: object
+      required:
+        - sequence
+        - target_gene
+      properties:
+        sequence:
+          type: string
+          pattern: "^[ACGTU]{22,30}$"
+        target_gene:
+          type: string
+        target_transcript_id:
+          type: string
+        protospacer_coordinates:
+          type: object
+        gc_content:
+          type: number
+        off_target_potential:
+          type: string
+          enum: [low, medium, high]
+
+    SequencingRun:
+      type: object
+      properties:
+        run_id:
+          type: string
+          format: uuid
+        experiment_id:
+          type: string
+          format: uuid
+        sample_id:
+          type: string
+        sequencing_platform:
+          type: string
+        read_type:
+          type: string
+        read_length:
+          type: integer
+        total_reads:
+          type: integer
+        read_files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FastqFile'
+        created_at:
+          type: string
+          format: date-time
+
+    FastqFile:
+      type: object
+      properties:
+        file_id:
+          type: string
+          format: uuid
+        file_path:
+          type: string
+          format: uri
+        file_name:
+          type: string
+        read_pair:
+          type: string
+          enum: [R1, R2, single]
+        file_size:
+          type: integer
+        md5_checksum:
+          type: string
+
+    QualityControl:
+      type: object
+      properties:
+        qc_id:
+          type: string
+          format: uuid
+        sequencing_run_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [pass, warn, fail]
+        total_sequences:
+          type: integer
+        mean_quality_score:
+          type: number
+        gc_content:
+          type: number
+        duplication_rate:
+          type: number
+        report_html:
+          type: string
+          format: uri
+
+    ProcessingJob:
+      type: object
+      properties:
+        job_id:
+          type: string
+          format: uuid
+        job_type:
+          type: string
+        status:
+          type: string
+          enum: [queued, running, completed, failed, cancelled]
+        priority:
+          type: string
+        progress:
+          type: number
+        current_stage:
+          type: string
+        eta_seconds:
+          type: integer
+          nullable: true
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        error_message:
+          type: string
+          nullable: true
+
+    JobSubmission:
+      type: object
+      required:
+        - job_type
+        - sequencing_run_id
+        - reference_genome
+      properties:
+        job_type:
+          type: string
+          enum: [qc_only, alignment, full_pipeline, off_target_prediction]
+        sequencing_run_id:
+          type: string
+          format: uuid
+        reference_genome:
+          type: string
+        priority:
+          type: string
+          enum: [low, normal, high, urgent]
+          default: normal
+        parameters:
+          type: object
+          description: "Job-specific parameters"
+        notification_email:
+          type: string
+          format: email
+
+    ExperimentResults:
+      type: object
+      properties:
+        experiment_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+        qc_metrics:
+          type: object
+        alignment_metrics:
+          type: object
+        target_analysis:
+          $ref: '#/components/schemas/TargetAnalysis'
+        off_targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/OffTargetSite'
+        immune_response:
+          $ref: '#/components/schemas/ImmuneResponse'
+        files:
+          type: object
+
+    TargetAnalysis:
+      type: object
+      properties:
+        analysis_id:
+          type: string
+          format: uuid
+        target_gene:
+          type: string
+        knockdown_efficiency:
+          type: number
+        fold_change:
+          type: number
+        p_value:
+          type: number
+        control_expression_tpm:
+          type: number
+        treated_expression_tpm:
+          type: number
+
+    OffTargetSite:
+      type: object
+      properties:
+        offtarget_id:
+          type: string
+          format: uuid
+        rank:
+          type: integer
+        confidence_score:
+          type: number
+        gene_symbol:
+          type: string
+        transcript_id:
+          type: string
+        genomic_coordinates:
+          type: object
+        mismatch_count:
+          type: integer
+        expression_level:
+          type: number
+
+    ImmuneResponse:
+      type: object
+      properties:
+        immune_id:
+          type: string
+          format: uuid
+        overall_immune_score:
+          type: number
+        interferon_score:
+          type: number
+        activated_pathways:
+          type: array
+          items:
+            type: string
+        differential_genes:
+          type: array
+          items:
+            type: object
+
+    ReferenceGenome:
+      type: object
+      properties:
+        genome_id:
+          type: string
+          format: uuid
+        species:
+          type: string
+        assembly_name:
+          type: string
+        source:
+          type: string
+        total_genome_size:
+          type: integer
+        gene_count:
+          type: integer
+
+    User:
+      type: object
+      properties:
+        user_id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        username:
+          type: string
+        full_name:
+          type: string
+        institution:
+          type: string
+        role:
+          type: string
+        storage_quota_gb:
+          type: integer
+        storage_used_gb:
+          type: number
+        created_at:
+          type: string
+          format: date-time
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total_items:
+          type: integer
+        total_pages:
+          type: integer
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        timestamp:
+          type: string
+          format: date-time
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "BAD_REQUEST"
+            message: "Invalid input parameters"
+            timestamp: "2025-10-12T00:15:30Z"
+
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "UNAUTHORIZED"
+            message: "Invalid or missing API key"
+
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "FORBIDDEN"
+            message: "Insufficient permissions"
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "NOT_FOUND"
+            message: "Experiment not found"
+
+    ValidationError:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/Error'
+              - type: object
+                properties:
+                  details:
+                    type: object
+                    properties:
+                      field_errors:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                            message:
+                              type: string
+          example:
+            error: "VALIDATION_ERROR"
+            message: "Input validation failed"
+            details:
+              field_errors:
+                - field: "guide_rna.sequence"
+                  message: "Must be 22-30 nucleotides"
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: "INTERNAL_SERVER_ERROR"
+            message: "An unexpected error occurred"

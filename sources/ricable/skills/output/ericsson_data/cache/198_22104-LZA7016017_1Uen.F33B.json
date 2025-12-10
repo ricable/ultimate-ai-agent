@@ -1,0 +1,512 @@
+{
+  "file_hash": "63190cb6ea3bdb855fea2287cf69c710",
+  "feature": {
+    "id": "121 5724",
+    "name": "NR Massive MIMO Eco Mode",
+    "cxc_code": "CXC4012740",
+    "value_package": "Massive MIMO Enabler",
+    "value_package_id": "FAJ 801 4004",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature enables energy saving in radio units with low traffic load by putting",
+    "parameters": [
+      {
+        "name": "MMimoSleepProfile.switchDownMonitorDurTimerEco",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchDownPrbThreshDlEco",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchDownPrbThreshUlEco",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchDownRrcConnThreshEco",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchUpPrbThreshDlEco",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchUpPrbThreshUlEco",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchUpRrcConnThreshEco",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "NRSectorCarrier.massiveMimoSleepState",
+        "type": "Affected",
+        "description": "The parameter shows if eco mode is used.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.massiveMimoSleepEnabled",
+        "type": "Affecting",
+        "description": "The parameter enables or disables the NR Massive MIMO Eco Mode                                     feature.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.mMimoSleepTimeGroupRef",
+        "type": "Affecting",
+        "description": "The parameter determines whether a time window is used in the                                     given sector carrier.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "MMimoSleepProfile.sleepMode",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure a sleep profile for the NR Massive MIMO             Eco Mode feature.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchDownMonitorDurTimer",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure a sleep profile for the NR Massive MIMO             Eco Mode feature.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchDownPrbThreshDl",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure a sleep profile for the NR Massive MIMO             Eco Mode feature.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchDownRrcConnThresh",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure a sleep profile for the NR Massive MIMO             Eco Mode feature.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchUpMonitorDurTimer",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure a sleep profile for the NR Massive MIMO             Eco Mode feature.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchUpPrbThreshDl",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure a sleep profile for the NR Massive MIMO             Eco Mode feature.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchUpRrcConnThresh",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure the number of                                     required user connections during the                                         MMimoSleepProfile.switchUpMonitorDurTimer                                     period.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepTimeWindow.dayOfWeek",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure a time period             for the sleep profile of the NR Massive MIMO Eco Mode feature.",
+        "mo_class": "MMimoSleepTimeWindow"
+      },
+      {
+        "name": "MMimoSleepTimeWindow.mMimoSleepProfileRef",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure a time period             for the sleep profile of the NR Massive MIMO Eco Mode feature.",
+        "mo_class": "MMimoSleepTimeWindow"
+      },
+      {
+        "name": "MMimoSleepTimeWindow.mMimoSleepTimeWindowId",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure a time period             for the sleep profile of the NR Massive MIMO Eco Mode feature.",
+        "mo_class": "MMimoSleepTimeWindow"
+      },
+      {
+        "name": "MMimoSleepTimeWindow.startTime",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure a time period             for the sleep profile of the NR Massive MIMO Eco Mode feature.",
+        "mo_class": "MMimoSleepTimeWindow"
+      },
+      {
+        "name": "MMimoSleepTimeWindow.stopTime",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure a time period             for the sleep profile of the NR Massive MIMO Eco Mode feature.",
+        "mo_class": "MMimoSleepTimeWindow"
+      },
+      {
+        "name": "NRCellDU.ssbPowerBoost",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure a boost value                                     applied to SSB power.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.ssbPowerBoostMMimoSleep",
+        "type": "Affecting",
+        "description": "The parameter allows the operator to configure an additional                                     boost value applied to SSB power along with the value of the                                         NRCellDU.ssbPowerBoost attribute.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "Uen.F33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmDrbRelAbnormalAmf5qi",
+        "description": "Performance counter pmDrbRelAbnormalAmf5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalAmfAct5qi",
+        "description": "Performance counter pmDrbRelAbnormalAmfAct5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalAmfActArp",
+        "description": "Performance counter pmDrbRelAbnormalAmfActArp",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalAmfArp",
+        "description": "Performance counter pmDrbRelAbnormalAmfArp",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalAmfInact5qi",
+        "description": "Performance counter pmDrbRelAbnormalAmfInact5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalGnb5qi",
+        "description": "Performance counter pmDrbRelAbnormalGnb5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalGnbAct5qi",
+        "description": "Performance counter pmDrbRelAbnormalGnbAct5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalGnbActArp",
+        "description": "Performance counter pmDrbRelAbnormalGnbActArp",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalGnbArp",
+        "description": "Performance counter pmDrbRelAbnormalGnbArp",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalGnbInact5qi",
+        "description": "Performance counter pmDrbRelAbnormalGnbInact5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelNormal5qi",
+        "description": "Performance counter pmDrbRelNormal5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelNormalArp",
+        "description": "Performance counter pmDrbRelNormalArp",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelNormalInact5qi",
+        "description": "Performance counter pmDrbRelNormalInact5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbSuspend5qi",
+        "description": "Performance counter pmDrbSuspend5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnDrbExclThpDlRelativeHighVol",
+        "description": "Performance counter pmEbsnDrbExclThpDlRelativeHighVol",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnDrbExclThpDlRelativeLowVol",
+        "description": "Performance counter pmEbsnDrbExclThpDlRelativeLowVol",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnDrbExclThpDlShortTimeHighVol",
+        "description": "Performance counter pmEbsnDrbExclThpDlShortTimeHighVol",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnDrbExclThpDlShortTimeLowVol",
+        "description": "Performance counter pmEbsnDrbExclThpDlShortTimeLowVol",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnDrbExclThpDlSmallVol",
+        "description": "Performance counter pmEbsnDrbExclThpDlSmallVol",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacDrbThpDlMbbHighVolDistr",
+        "description": "Performance counter pmEbsnMacDrbThpDlMbbHighVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacDrbThpDlMbbLowVolDistr",
+        "description": "Performance counter pmEbsnMacDrbThpDlMbbLowVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacUeThpUlMbbHighVolDistr",
+        "description": "Performance counter pmEbsnMacUeThpUlMbbHighVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacUeThpUlMbbLowVolDistr",
+        "description": "Performance counter pmEbsnMacUeThpUlMbbLowVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnUeExclThpUlRelativeHighVol",
+        "description": "Performance counter pmEbsnUeExclThpUlRelativeHighVol",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnUeExclThpUlRelativeLowVol",
+        "description": "Performance counter pmEbsnUeExclThpUlRelativeLowVol",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnUeExclThpUlShortTimeHighVol",
+        "description": "Performance counter pmEbsnUeExclThpUlShortTimeHighVol",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnUeExclThpUlShortTimeLowVol",
+        "description": "Performance counter pmEbsnUeExclThpUlShortTimeLowVol",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnUeExclThpVoNR",
+        "description": "Performance counter pmEbsnUeExclThpVoNR",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcNrDrbSetupAtt",
+        "description": "Performance counter pmEndcNrDrbSetupAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcNrDrbSetupSucc",
+        "description": "Performance counter pmEndcNrDrbSetupSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcPSCellChangeAttInterSgnb",
+        "description": "Performance counter pmEndcPSCellChangeAttInterSgnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcPSCellChangeResAllocReqInterSgnb",
+        "description": "Performance counter pmEndcPSCellChangeResAllocReqInterSgnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcPSCellChangeResAllocSuccInterSgnb",
+        "description": "Performance counter pmEndcPSCellChangeResAllocSuccInterSgnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcPSCellChangeSuccInterSgnb",
+        "description": "Performance counter pmEndcPSCellChangeSuccInterSgnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcSetupScgUeAtt",
+        "description": "Performance counter pmEndcSetupScgUeAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcSetupScgUeSucc",
+        "description": "Performance counter pmEndcSetupScgUeSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcSetupUeAtt",
+        "description": "Performance counter pmEndcSetupUeAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcSetupUeSucc",
+        "description": "Performance counter pmEndcSetupUeSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttOutEutran",
+        "description": "Performance counter pmHoExeAttOutEutran",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttOutInterGnb",
+        "description": "Performance counter pmHoExeAttOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttOutIntraGnb",
+        "description": "Performance counter pmHoExeAttOutIntraGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccOutEutran",
+        "description": "Performance counter pmHoExeSuccOutEutran",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccOutInterGnb",
+        "description": "Performance counter pmHoExeSuccOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccOutIntraGnb",
+        "description": "Performance counter pmHoExeSuccOutIntraGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttOutEutran",
+        "description": "Performance counter pmHoPrepAttOutEutran",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttOutInterGnb",
+        "description": "Performance counter pmHoPrepAttOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttOutIntraGnb",
+        "description": "Performance counter pmHoPrepAttOutIntraGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccOutEutran",
+        "description": "Performance counter pmHoPrepSuccOutEutran",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccOutInterGnb",
+        "description": "Performance counter pmHoPrepSuccOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccOutIntraGnb",
+        "description": "Performance counter pmHoPrepSuccOutIntraGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmMassiveMimoSleepOppTimeEco",
+        "description": "Performance counter pmMassiveMimoSleepOppTimeEco",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMassiveMimoSleepTimeEco",
+        "description": "Performance counter pmMassiveMimoSleepTimeEco",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMassiveMimoSleepTimeEcoPending",
+        "description": "Performance counter pmMassiveMimoSleepTimeEcoPending",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmRadioRaCbAttMsg2",
+        "description": "Performance counter pmRadioRaCbAttMsg2",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg1MaxMsg3Sched",
+        "description": "Performance counter pmRadioRaCbFailMsg1MaxMsg3Sched",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg1Ooc",
+        "description": "Performance counter pmRadioRaCbFailMsg1Ooc",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg2Disc",
+        "description": "Performance counter pmRadioRaCbFailMsg2Disc",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg3Crc",
+        "description": "Performance counter pmRadioRaCbFailMsg3Crc",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg3Crnti",
+        "description": "Performance counter pmRadioRaCbFailMsg3Crnti",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg3Dtx",
+        "description": "Performance counter pmRadioRaCbFailMsg3Dtx",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbPreambles",
+        "description": "Performance counter pmRadioRaCbPreambles",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbSuccMsg3",
+        "description": "Performance counter pmRadioRaCbSuccMsg3",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmode",
+        "description": "Performance counter pmode",
+        "category": "General"
+      },
+      {
+        "name": "pmonitorDurTimer",
+        "description": "Performance counter pmonitorDurTimer",
+        "category": "General"
+      },
+      {
+        "name": "pmonitorDurTimerEco",
+        "description": "Performance counter pmonitorDurTimerEco",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012740 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012740 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/198_22104-LZA7016017_1Uen.F33B.md",
+    "file_hash": "63190cb6ea3bdb855fea2287cf69c710",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

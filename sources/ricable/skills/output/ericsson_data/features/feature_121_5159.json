@@ -1,0 +1,232 @@
+{
+  "id": "121 5159",
+  "name": "TM9 with AAS TDD",
+  "cxc_code": "CXC4012034",
+  "value_package": "Basic Massive MIMO",
+  "value_package_id": "FAJ 801 1010",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "algorithm. With the feature enabled, improved UE throughput and aggregated",
+  "parameters": [
+    {
+      "name": "EUtranCellRelationUnlicensed.eSCellCaConfigurationAvail                                     (read only, open)",
+      "type": "If the indicated LAA cell is currently able to serve as ESCell,                                     the following must be fulfilled:    The remoteCellState attribute in the                                                 ExternalEUtranCellTDD MO Classes                                             are ENABLED.     The Elastic RAN license is active and                                             Baseband-to-Baseband connections are enabled.     ExternalEUtranCellTDD.remoteCellState                                             must be operState ENABLED.     Supplemental Downlink with License-Assisted Access                                             license must be active.     If not, no UEs are configured with this candidate. UEs already                                     configured with this cell can retain the configuration.  If the SCell is not external, this attribute is set to                                     DISABLED.  For more information on LAA cells see, Supplemental Downlink with License-Assisted                                         Access.",
+      "description": "",
+      "mo_class": "EUtranCellRelationUnlicensed"
+    },
+    {
+      "name": "Uen.KT33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "AutoSCellMgmFunction.asmAlarmSuppression",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AutoSCellMgmFunction"
+    },
+    {
+      "name": "ENodeBFunction.extendMixedTxModeEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "RadioEquipmentClock.bfnOffset",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RadioEquipmentClock"
+    },
+    {
+      "name": "EUtranCellRelation.sCellCandidate",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellTDD.transmissionMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.frameStartOffset",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCaActDlIeNbSum",
+      "description": "Performance counter pmCaActDlIeNbSum",
+      "category": "General"
+    },
+    {
+      "name": "pmCaActivatedDlEranSumDistr",
+      "description": "Performance counter pmCaActivatedDlEranSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfDlEranSumDistr",
+      "description": "Performance counter pmCaConfDlEranSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfiguredDlIeNbSum",
+      "description": "Performance counter pmCaConfiguredDlIeNbSum",
+      "category": "General"
+    },
+    {
+      "name": "pmCaCrntiUnavail",
+      "description": "Performance counter pmCaCrntiUnavail",
+      "category": "General"
+    },
+    {
+      "name": "pmCaScheduledDlEranSumDistr",
+      "description": "Performance counter pmCaScheduledDlEranSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaScheduledDlIeNbSum",
+      "description": "Performance counter pmCaScheduledDlIeNbSum",
+      "category": "General"
+    },
+    {
+      "name": "pmCounter",
+      "description": "Performance counter pmCounter",
+      "category": "General"
+    },
+    {
+      "name": "pmCounters",
+      "description": "Performance counter pmCounters",
+      "category": "General"
+    },
+    {
+      "name": "pmEenbPktDiscDlCa",
+      "description": "Performance counter pmEenbPktDiscDlCa",
+      "category": "General"
+    },
+    {
+      "name": "pmEenbPktRecDlCa",
+      "description": "Performance counter pmEenbPktRecDlCa",
+      "category": "General"
+    },
+    {
+      "name": "pmEenbPktTransDlCa",
+      "description": "Performance counter pmEenbPktTransDlCa",
+      "category": "General"
+    },
+    {
+      "name": "pmEranCaPartnerBlock",
+      "description": "Performance counter pmEranCaPartnerBlock",
+      "category": "General"
+    },
+    {
+      "name": "pmEranThpVolDlRecDistr",
+      "description": "Performance counter pmEranThpVolDlRecDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEranThpVolDlTransDistr",
+      "description": "Performance counter pmEranThpVolDlTransDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmLinkDelayHigh",
+      "description": "Performance counter pmLinkDelayHigh",
+      "category": "General"
+    },
+    {
+      "name": "pmLinkDelayLow",
+      "description": "Performance counter pmLinkDelayLow",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolDlSCellExt",
+      "description": "Performance counter pmRadioThpVolDlSCellExt",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolDlScellEran",
+      "description": "Performance counter pmRadioThpVolDlScellEran",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolTxDlSCellEran",
+      "description": "Performance counter pmRadioThpVolTxDlSCellEran",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolTxDlSCellExt",
+      "description": "Performance counter pmRadioThpVolTxDlSCellExt",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioTxRankDistr",
+      "description": "Performance counter pmRadioTxRankDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioTxRankSCellDistr",
+      "description": "Performance counter pmRadioTxRankSCellDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioUeRepRankDistr",
+      "description": "Performance counter pmRadioUeRepRankDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmTm9CapableDistr",
+      "description": "Performance counter pmTm9CapableDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmentClock",
+      "description": "Performance counter pmentClock",
+      "category": "General"
+    },
+    {
+      "name": "pmentFunction",
+      "description": "Performance counter pmentFunction",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012034 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012034 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/273_22104-LZA7016014_1Uen.KT33B.md",
+  "file_hash": "52738d554dad811293fef3cfc3f8306d",
+  "processed_at": "2025-10-19 15:50:04",
+  "network_impact": {},
+  "performance_impact": {}
+}

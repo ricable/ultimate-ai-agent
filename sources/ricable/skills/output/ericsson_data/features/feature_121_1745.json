@@ -1,0 +1,80 @@
+{
+  "id": "121 1745",
+  "name": "End-User Bitrate Shaping",
+  "cxc_code": "CXC4011057",
+  "value_package": "Differentiated Mobile Broadband",
+  "value_package_id": "FAJ 801 0409",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The End-User Bitrate Shaping feature conforms the traffic stream of a specific profile",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.rateShapingActive",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.rateShapingActive",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_UE_RATE_SHAPE_TIME_UL",
+      "description": "Time where the UE has uplink data in a buffer and rate shaping                                     functionality prohibits transmission in the uplink.  Measured on UE level.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AT",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmRateShapeTimeUl",
+      "description": "Performance counter pmRateShapeTimeUl",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PER_UE_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_UE_RATE_SHAPE_TIME_UL",
+      "description": "Time where the UE has uplink data in a buffer and rate shaping                                     functionality prohibits transmission in the uplink.  Measured on UE level."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011057 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011057 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/178_22104-LZA7016014_1Uen.AT.md",
+  "file_hash": "c3771beb4ef55812edb818660ac66157",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

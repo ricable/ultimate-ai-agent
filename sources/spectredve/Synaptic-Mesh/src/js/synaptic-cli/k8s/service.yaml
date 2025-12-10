@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: synaptic-mesh-service
+  labels:
+    app: synaptic-mesh
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    name: p2p
+  - port: 9090
+    targetPort: 9090
+    protocol: TCP
+    name: metrics
+  selector:
+    app: synaptic-mesh
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: synaptic-mesh-headless
+  labels:
+    app: synaptic-mesh
+spec:
+  clusterIP: None
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    name: p2p
+  selector:
+    app: synaptic-mesh

@@ -1,0 +1,82 @@
+{
+  "id": "121 4296",
+  "name": "Release Inactive UE at High Load Handover",
+  "cxc_code": "CXC4011939",
+  "value_package": "High Load Handling",
+  "value_package_id": "FAJ 801 0415",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature handles the release of inactive UEs during handover to reduce inter-cell",
+  "parameters": [
+    {
+      "name": "ENodeBFunction.releaseInactiveUesInactTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ENodeBFunction.releaseInactiveUesMpLoadLevel",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "Rcs.hoProhibitInactUeVsTInact",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Rcs"
+    },
+    {
+      "name": "Uen.AY",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "UE.Note",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UE"
+    },
+    {
+      "name": "EUtranCellFDD.pmInactiveUeRelInHighLoad",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmInactiveUeRelInHighLoad",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmInactiveUeRelInHighLoad",
+      "description": "Performance counter pmInactiveUeRelInHighLoad",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011939 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011939 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/5_22104-LZA7016014_1Uen.AY.md",
+  "file_hash": "a6739be797eb758143fb84cbd44b8c15",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

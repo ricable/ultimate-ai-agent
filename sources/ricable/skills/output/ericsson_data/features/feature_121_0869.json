@@ -1,0 +1,58 @@
+{
+  "id": "121 0869",
+  "name": "Maximum Cell Range",
+  "cxc_code": "CXC4010967",
+  "value_package": "Maximum Cell Range",
+  "value_package_id": "FAJ 801 0422",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Maximum Cell Range feature increases maximum cell range in sparsely populated",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.cellRange",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.cellRange",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.specialSubframePattern",
+      "type": "Affected",
+      "description": "If this attribute is set to 5, it cannot be used in                                 combination with nB = 4T on MO Paging as defined in 3GPP TS                                     36.213. The round trip time at                                     EUtranCellTDD.cellRange together with                                 switching time must be less than the time available in special                                 subframe.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "Uen.AX",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellTDD.subframeAssignment",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010967 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010967 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/82_22104-LZA7016014_1Uen.AX.md",
+  "file_hash": "6f7b42ce397b91e8989037c1b5913289",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

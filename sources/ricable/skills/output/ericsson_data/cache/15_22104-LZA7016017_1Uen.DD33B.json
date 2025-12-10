@@ -1,0 +1,292 @@
+{
+  "file_hash": "6e55c4724814d8feb9f9470bbeb0a199",
+  "feature": {
+    "id": "121 5200",
+    "name": "NR System Improvements in 25.Q1",
+    "cxc_code": "CXC4012272",
+    "value_package": "NR Base Package",
+    "value_package_id": "FAJ 801 4002",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "MIMO feature. With downlink single-user MIMO, the antenna transmits more than one",
+    "parameters": [
+      {
+        "name": "CommonBeamforming.cbfMacroTaperType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CommonBeamforming"
+      },
+      {
+        "name": "CommonBeamforming.usedCbfMacroTaperType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CommonBeamforming"
+      },
+      {
+        "name": "CommonBeamforming.supportedCbfMacroTaperTypes",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CommonBeamforming"
+      },
+      {
+        "name": "CommonBeamforming.coverageShape",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CommonBeamforming"
+      },
+      {
+        "name": "CommonBeamforming.usedCoverageShape",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CommonBeamforming"
+      },
+      {
+        "name": "CommonBeamforming.supportedCoverageShapes",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CommonBeamforming"
+      },
+      {
+        "name": "CommonBeamforming.digitalTilt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CommonBeamforming"
+      },
+      {
+        "name": "CommonBeamforming.usedDigitalTilt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CommonBeamforming"
+      },
+      {
+        "name": "CommonBeamforming.supportedTiltRange",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CommonBeamforming"
+      },
+      {
+        "name": "NRCellDU.csiRsConfig8P",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.csiRsConfig16P",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.csiRsConfig32P",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.csiRsShiftingPrimary",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.csiRsShiftingSecondary",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.trsResourceShifting",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.typeISinglePanelRiRestriction",
+        "type": "Affecting",
+        "description": "This MO attribute can be used to restrict the UE from sending certain Rank Indicators.             Certain sites might benefit from a Rank Indicator restriction, for example where the             High Speed UE Low/Mid-Band feature is enabled. See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "Uen.DD33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ResourceAllocationPolicy.shareAdjustmentModeDl",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ResourceAllocationPolicy"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmI",
+        "description": "Performance counter pmI",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymCsiRs",
+        "description": "Performance counter pmMacRBSymCsiRs",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMimoSinrThresUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMimoSinrThresUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschCbRatDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschCbRatDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMimoSinrThresUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschMimoSinrThresUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMimoUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschMimoUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMuMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschMuMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschSuMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschSuMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacVolPdschAdvMimoSinrThresUserDistr",
+        "description": "Performance counter pmMacVolPdschAdvMimoSinrThresUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacVolPdschMimoSinrThresUserDistr",
+        "description": "Performance counter pmMacVolPdschMimoSinrThresUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmRadioUeRepCqi256QamRank1Distr",
+        "description": "Performance counter pmRadioUeRepCqi256QamRank1Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqi256QamRank2Distr",
+        "description": "Performance counter pmRadioUeRepCqi256QamRank2Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqi256QamRank3Distr",
+        "description": "Performance counter pmRadioUeRepCqi256QamRank3Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqi256QamRank4Distr",
+        "description": "Performance counter pmRadioUeRepCqi256QamRank4Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqi64QamRank1Distr",
+        "description": "Performance counter pmRadioUeRepCqi64QamRank1Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqi64QamRank2Distr",
+        "description": "Performance counter pmRadioUeRepCqi64QamRank2Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqi64QamRank3Distr",
+        "description": "Performance counter pmRadioUeRepCqi64QamRank3Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqi64QamRank4Distr",
+        "description": "Performance counter pmRadioUeRepCqi64QamRank4Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepPmiPrimaryCsiRsRank1Distr",
+        "description": "Performance counter pmRadioUeRepPmiPrimaryCsiRsRank1Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepPmiPrimaryCsiRsRank2Distr",
+        "description": "Performance counter pmRadioUeRepPmiPrimaryCsiRsRank2Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepPmiPrimaryCsiRsRank3Distr",
+        "description": "Performance counter pmRadioUeRepPmiPrimaryCsiRsRank3Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepPmiPrimaryCsiRsRank4Distr",
+        "description": "Performance counter pmRadioUeRepPmiPrimaryCsiRsRank4Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepPmiSecondaryCsiRsRank1Distr",
+        "description": "Performance counter pmRadioUeRepPmiSecondaryCsiRsRank1Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepPmiSecondaryCsiRsRank2Distr",
+        "description": "Performance counter pmRadioUeRepPmiSecondaryCsiRsRank2Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepPmiSecondaryCsiRsRank3Distr",
+        "description": "Performance counter pmRadioUeRepPmiSecondaryCsiRsRank3Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepPmiSecondaryCsiRsRank4Distr",
+        "description": "Performance counter pmRadioUeRepPmiSecondaryCsiRsRank4Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepRankDistr",
+        "description": "Performance counter pmRadioUeRepRankDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012272 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012272 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/15_22104-LZA7016017_1Uen.DD33B.md",
+    "file_hash": "6e55c4724814d8feb9f9470bbeb0a199",
+    "processed_at": "2025-10-19 15:50:03",
+    "network_impact": {},
+    "performance_impact": {
+      "counters": "New counters introduced"
+    }
+  }
+}

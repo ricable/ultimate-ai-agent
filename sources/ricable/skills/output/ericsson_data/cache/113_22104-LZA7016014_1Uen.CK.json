@@ -1,0 +1,448 @@
+{
+  "file_hash": "03b3d0981baec3ebc1e0d28a0e83cc41",
+  "feature": {
+    "id": "121 3076",
+    "name": "4x4 Quad Antenna Downlink Performance Package  4x2 Quad-Antenna Downlink Performance Package",
+    "cxc_code": "CXC4011667",
+    "value_package": "4x4 Downlink MIMO   4x2 Downlink MIMO",
+    "value_package_id": "FAJ 801 0560 R3  FAJ 801 0401 R2",
+    "access_type": "LTE, WCDMA, GSM",
+    "node_type": "Baseband Radio Node, DU Radio Node",
+    "description": "",
+    "summary": "The feature provides support for four transmit antennas to enable 4-way transmit",
+    "parameters": [
+      {
+        "name": "SectorCarrier.noOfTxAntennas",
+        "type": "Affected",
+        "description": "The number of antennas that can be used for downlink.  If the parameter value is set to 0, the installed license-controlled                                 features combination for multiple antennas defines the configuration                                 and the number of used TX antennas. If the parameter value is set to                                     4 and the QuadAntDlPerfPkg                                 is ENABLED, the number of used TX antennas is                                 4.",
+        "mo_class": "SectorCarrier"
+      },
+      {
+        "name": "SectorEquipmentFunction.rfBranchRef",
+        "type": "Affected",
+        "description": "The value of rfBranchRef parameter must be                                 configured with all possible rfBranches in the                                 sector.",
+        "mo_class": "SectorEquipmentFunction"
+      },
+      {
+        "name": "SectorCarrier.rfBranchRxRef",
+        "type": "Affected",
+        "description": "To ensure that the order of rfBranch is                                 deterministic, configure the parameters in a recommended order. For                                 examples on recommended orders, see Baseband Port to RF Branch Mapping with Same Polarization.",
+        "mo_class": "SectorCarrier"
+      },
+      {
+        "name": "SectorCarrier.rfBranchTxRef",
+        "type": "Affected",
+        "description": "To ensure that the order of rfBranch is                                 deterministic, configure the parameters in a recommended order. For                                 examples on recommended orders, see Baseband Port to RF Branch Mapping with Same Polarization.",
+        "mo_class": "SectorCarrier"
+      },
+      {
+        "name": "ENodeBFunction.extendMixedTxModeEnabled",
+        "type": "Affecting",
+        "description": "If the value of this attribute is set to true, not                                 only TM3 but TM2 or TM4, can be applied to 2TX TDD and 4TX TDD cells                                 that coexist with TM3, TM7, or TM8 8TX TDD cells.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_TX_8",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_TX_9",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_REPORTED_2",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_REPORTED_3",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI3_REPORTED_0",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI3_CQI3_REPORTED_15",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI4_REPORTED_0",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI4_REPORTED_15",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI3_REPORTED_0",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI3_REPORTED_15",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI4_REPORTED_0",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI4_REPORTED_15",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI3_REPORTED_0",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI3_REPORTED_15",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "ENT_PARAM_CQI4_REPORTED_0",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI4_REPORTED_15",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI3_REPORTED_0",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI3_REPORTED_15",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI4_REPORTED_0",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI4_REPORTED_15",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_14_UL_8",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_15_UL_3",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_15_UL_5",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_15_UL_7",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_15_UL_13",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_16_UL_3",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_16_UL_5",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_16_UL_7",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_16_UL_13",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.CK",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmRadioHomUeRepCqi3Distr",
+        "description": "Performance counter pmRadioHomUeRepCqi3Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioHomUeRepCqi4Distr",
+        "description": "Performance counter pmRadioHomUeRepCqi4Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioTxRankDistr",
+        "description": "Performance counter pmRadioTxRankDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqiDistr",
+        "description": "Performance counter pmRadioUeRepCqiDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqiDistr2",
+        "description": "Performance counter pmRadioUeRepCqiDistr2",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqiDistr3",
+        "description": "Performance counter pmRadioUeRepCqiDistr3",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepCqiDistr4",
+        "description": "Performance counter pmRadioUeRepCqiDistr4",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioUeRepRankDistr",
+        "description": "Performance counter pmRadioUeRepRankDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCategoryDlUlCombDistr",
+        "description": "Performance counter pmUeCategoryDlUlCombDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmentFunction",
+        "description": "Performance counter pmentFunction",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_TX_8",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_TX_9",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_REPORTED_2",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_REPORTED_3",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI3_REPORTED_0",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI3_CQI3_REPORTED_15",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI4_REPORTED_0",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI4_REPORTED_15",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI3_REPORTED_0",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI3_REPORTED_15",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI4_REPORTED_0",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI4_REPORTED_15",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI3_REPORTED_0",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI3_REPORTED_15",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "ENT_PARAM_CQI4_REPORTED_0",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_CQI4_REPORTED_15",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI3_REPORTED_0",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI3_REPORTED_15",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI4_REPORTED_0",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_UETR_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_HOM_CQI4_REPORTED_15",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_14_UL_8",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_15_UL_3",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_15_UL_5",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_15_UL_7",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_15_UL_13",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_16_UL_3",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_16_UL_5",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_16_UL_7",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_CAPABILITY",
+        "type": "EVENT_VALUE_UE_CATEGORY_DL_16_UL_13",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011667 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011667 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/113_22104-LZA7016014_1Uen.CK.md",
+    "file_hash": "03b3d0981baec3ebc1e0d28a0e83cc41",
+    "processed_at": "2025-10-19 15:48:54",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

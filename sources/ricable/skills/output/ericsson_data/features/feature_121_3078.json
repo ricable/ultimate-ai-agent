@@ -1,0 +1,165 @@
+{
+  "id": "121 3078",
+  "name": "Overlaid Cell Detection",
+  "cxc_code": "CXC4011699",
+  "value_package": "Self-Organizing Networks",
+  "value_package_id": "FAJ 801 0435",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "offload. The feature also improves offload by using automatic and dynamic",
+  "parameters": [
+    {
+      "name": "EUtranCellRelation.incomingLoadBalancing",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellRelation.lbCovIndicated",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "LoadBalancingFunction.ocdMaxNoHighHitRateCells",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.ocdMinHighHitThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.txPwrForOverlaidCellDetect",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "X2_PRIVATE_MESSAGE",
+      "type": "EVENT_PARAM_SEND_GENBID",
+      "description": "The ID of the source eNodeB in X2 messages.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_PRIVATE_MESSAGE",
+      "type": "EVENT_PARAM_RECV_GENBID",
+      "description": "The ID of the target eNodeB in X2 message.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_X2_SETUP_REQUEST",
+      "type": "EVENT_PARAM_SEND_GENBID",
+      "description": "The ID of the source eNodeB in X2 messages.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_X2_SETUP_REQUEST",
+      "type": "EVENT_PARAM_RECV_GENBID",
+      "description": "The ID of the target eNodeB in X2 message.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_X2_SETUP_RESPONSE",
+      "type": "EVENT_PARAM_SEND_GENBID",
+      "description": "The ID of the source eNodeB in X2 messages.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_X2_SETUP_RESPONSE",
+      "type": "EVENT_PARAM_RECV_GENBID",
+      "description": "The ID of the target eNodeB in X2 message.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_ENB_CONFIGURATION_UPDATE",
+      "type": "EVENT_PARAM_SEND_GENBID",
+      "description": "The ID of the source eNodeB in X2 messages.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_ENB_CONFIGURATION_UPDATE",
+      "type": "EVENT_PARAM_RECV_GENBID",
+      "description": "The ID of the target eNodeB in X2 message.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AH",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NodeBSectorCarrier.configuredMaxTxPower",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NodeBSectorCarrier"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "X2_PRIVATE_MESSAGE",
+      "type": "EVENT_PARAM_SEND_GENBID",
+      "description": "The ID of the source eNodeB in X2 messages."
+    },
+    {
+      "name": "X2_PRIVATE_MESSAGE",
+      "type": "EVENT_PARAM_RECV_GENBID",
+      "description": "The ID of the target eNodeB in X2 message."
+    },
+    {
+      "name": "X2_X2_SETUP_REQUEST",
+      "type": "EVENT_PARAM_SEND_GENBID",
+      "description": "The ID of the source eNodeB in X2 messages."
+    },
+    {
+      "name": "X2_X2_SETUP_REQUEST",
+      "type": "EVENT_PARAM_RECV_GENBID",
+      "description": "The ID of the target eNodeB in X2 message."
+    },
+    {
+      "name": "X2_X2_SETUP_RESPONSE",
+      "type": "EVENT_PARAM_SEND_GENBID",
+      "description": "The ID of the source eNodeB in X2 messages."
+    },
+    {
+      "name": "X2_X2_SETUP_RESPONSE",
+      "type": "EVENT_PARAM_RECV_GENBID",
+      "description": "The ID of the target eNodeB in X2 message."
+    },
+    {
+      "name": "X2_ENB_CONFIGURATION_UPDATE",
+      "type": "EVENT_PARAM_SEND_GENBID",
+      "description": "The ID of the source eNodeB in X2 messages."
+    },
+    {
+      "name": "X2_ENB_CONFIGURATION_UPDATE",
+      "type": "EVENT_PARAM_RECV_GENBID",
+      "description": "The ID of the target eNodeB in X2 message."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011699 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011699 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/272_22104-LZA7016014_1Uen.AH.md",
+  "file_hash": "48bc1edabbc4f66d05e38b5dbfe79397",
+  "processed_at": "2025-10-19 15:50:04",
+  "network_impact": {},
+  "performance_impact": {}
+}

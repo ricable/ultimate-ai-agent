@@ -1,0 +1,218 @@
+{
+  "id": "121 4338",
+  "name": "Load-Based Distribution at Release",
+  "cxc_code": "CXC4011944",
+  "value_package": "Multi-Carrier Load Management",
+  "value_package_id": "FAJ 801 0427",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Load-Based Distribution at Release feature allows for the configuration of how",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.idleModePrioAtReleaseRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.idleModePrioAtReleaseRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "IdleModePrioAtRelease.idleModePrioAtReleaseId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "IdleModePrioAtRelease"
+    },
+    {
+      "name": "IdleModePrioAtRelease.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "IdleModePrioAtRelease"
+    },
+    {
+      "name": "IdleModePrioAtRelease.lowLoadThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "IdleModePrioAtRelease"
+    },
+    {
+      "name": "IdleModePrioAtRelease.lowMediumLoadThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "IdleModePrioAtRelease"
+    },
+    {
+      "name": "IdleModePrioAtRelease.mediumLoadThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "IdleModePrioAtRelease"
+    },
+    {
+      "name": "IdleModePrioAtRelease.mediumHighLoadThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "IdleModePrioAtRelease"
+    },
+    {
+      "name": "IdleModePrioAtRelease.highLoadThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "IdleModePrioAtRelease"
+    },
+    {
+      "name": "IdleModePrioAtRelease.lowLoadDistributionInfo",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "IdleModePrioAtRelease"
+    },
+    {
+      "name": "IdleModePrioAtRelease.lowMediumLoadDistributionInfo",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "IdleModePrioAtRelease"
+    },
+    {
+      "name": "IdleModePrioAtRelease.mediumLoadDistributionInfo",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "IdleModePrioAtRelease"
+    },
+    {
+      "name": "IdleModePrioAtRelease.mediumHighLoadDistributionInfo",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "IdleModePrioAtRelease"
+    },
+    {
+      "name": "IdleModePrioAtRelease.highLoadDistributionInfo",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "IdleModePrioAtRelease"
+    },
+    {
+      "name": "DistributionInfo",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AY33C",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "UnsupportedFreqProfile.unsupportedFreqList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UnsupportedFreqProfile"
+    },
+    {
+      "name": "EUtranFreqRelation.allowedPlmnList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "ENodeBFunction.mobilityBackToNrFreqDisabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ExternalEUtranCellFDD.changeFrequency",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ExternalEUtranCellFDD"
+    },
+    {
+      "name": "ExternalEUtranCellTDD.changeFrequency",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ExternalEUtranCellTDD"
+    },
+    {
+      "name": "AnrFunction.removeEutranFreqRelTime",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AnrFunction"
+    },
+    {
+      "name": "EUtranFrequency.freqBand",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranFrequency"
+    },
+    {
+      "name": "EUtranFreqRelation.candNeighborRel",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranFreqRelation"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCounter",
+      "description": "Performance counter pmCounter",
+      "category": "General"
+    },
+    {
+      "name": "pmIdleModeRelDistrHighLoad",
+      "description": "Performance counter pmIdleModeRelDistrHighLoad",
+      "category": "General"
+    },
+    {
+      "name": "pmIdleModeRelDistrLowLoad",
+      "description": "Performance counter pmIdleModeRelDistrLowLoad",
+      "category": "General"
+    },
+    {
+      "name": "pmIdleModeRelDistrLowMediumLoad",
+      "description": "Performance counter pmIdleModeRelDistrLowMediumLoad",
+      "category": "General"
+    },
+    {
+      "name": "pmIdleModeRelDistrMediumHighLoad",
+      "description": "Performance counter pmIdleModeRelDistrMediumHighLoad",
+      "category": "General"
+    },
+    {
+      "name": "pmIdleModeRelDistrMediumLoad",
+      "description": "Performance counter pmIdleModeRelDistrMediumLoad",
+      "category": "General"
+    },
+    {
+      "name": "pmIdleModeRelDistrPrioFreq",
+      "description": "Performance counter pmIdleModeRelDistrPrioFreq",
+      "category": "General"
+    },
+    {
+      "name": "pmLbCellHighLoaded",
+      "description": "Performance counter pmLbCellHighLoaded",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011944 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011944 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/6_22104-LZA7016014_1Uen.AY33C.md",
+  "file_hash": "e5b04d3a67513b50ab4adb2c769001f4",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

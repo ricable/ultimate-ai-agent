@@ -1,0 +1,190 @@
+{
+  "file_hash": "bccfea145f2f11463483d3970ac558d5",
+  "feature": {
+    "id": "121 3036",
+    "name": "CS Fallback to CDMA 1X  CS Fallback to GERAN and UTRAN",
+    "cxc_code": "CXC4011377",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "CDMA 1X feature enables eNodeBs to respond to Circuit Switched",
+    "parameters": [
+      {
+        "name": "RATFreqPrio.bandClassPrioListCDMA1xRtt",
+        "type": "Introduced",
+        "description": "See MOM description.  The type of the attribute is BandClassPrioCdma1xRtt.                 The following members are used for the configuration of the feature:  cdma1xRttBandClass     cellReselectionPriority     csFallbackPrio     csFallbackPrioEC     freqCdma",
+        "mo_class": "RATFreqPrio"
+      },
+      {
+        "name": "ExternalCdma20001xRttCell.acBarring1xRttMoData",
+        "type": "Introduced",
+        "description": "See MOM description.  The type of the attribute is AcBarringConfig1xRtt.                 The struct has the following members:  acBarring0to9R9     acBarring10R9     acBarring11R9     acBarring12R9     acBarring13R9     acBarring14R9     acBarring15R9     acBarringEmgR9     acBarringMsgR9     acBarringRegR9",
+        "mo_class": "ExternalCdma20001xRttCell"
+      },
+      {
+        "name": "ExternalCdma20001xRttCell.csfbRegParams1xRttMoData",
+        "type": "Introduced",
+        "description": "See MOM description.  The type of the attribute is CsfbRegParams1xRtt. The                 struct has the following members:  foreignNidReg     foreignSidReg     homeReg     multipleNid     multipleSid     parameterReg     powerDownRegR9     powerUpReg     registrationPeriod     registrationZone     totalZone     zoneTimer",
+        "mo_class": "ExternalCdma20001xRttCell"
+      },
+      {
+        "name": "ExternalCdma20001xRttCell.mobilityParams1xRttMoData",
+        "type": "Introduced",
+        "description": "See MOM description.  The type of the attribute is MobilityParams1xRtt.                 The struct has the following members:  authenticationEnabled     dayLightSaving     fchFchInitSetupRc11     fchFchInitSetupRc12     fchFchInitSetupRc3     fchFchInitSetupRc4     fchFchInitSetupRc5     gcsnaL2AckTimer     gcsnaSequenceContextTimer     imsiBit11and12     imsiTSupported     localTimeOffset     maxNumAltServiceOption(1)    mcc     minProtocolRev     pilotIncrement     preferredMsidType     protocolRev",
+        "mo_class": "ExternalCdma20001xRttCell"
+      },
+      {
+        "name": "EUtranCellFDD.systemInformationBlock8  EUtranCellTDD.systemInformationBlock8",
+        "type": "Introduced",
+        "description": "See MOM description.  The type of the attribute is SIB8. The following members are used for                 the configuration of the feature:  tReselectionCdma1xRtt     tReselectionCdma1xRttSfHigh     tReselectionCdma1xRttSfMedium",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "ExternalCdma20001xRttCell.mscIdentifier",
+        "type": "Introduced",
+        "description": "See MOM description.  The type of the attribute is MSCid. The struct has the following                   members:  marketId     switchNumber",
+        "mo_class": "ExternalCdma20001xRttCell"
+      },
+      {
+        "name": "ExternalCdma20001xRttCell.cellIdentifier",
+        "type": "Introduced",
+        "description": "See MOM description.  The type of the attribute is                    Cdma1xRttCellIdTOOLTIPFLAG. The struct has the following                   members:  cellId     sectorNumber",
+        "mo_class": "ExternalCdma20001xRttCell"
+      },
+      {
+        "name": "Cdma20001xRttBandRelation.threshXHigh1xRtt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Cdma20001xRttBandRelation"
+      },
+      {
+        "name": "Cdma20001xRttBandRelation.threshXLow1xRtt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Cdma20001xRttBandRelation"
+      },
+      {
+        "name": "Cdma20001xRttCellRelation.includeInSystemInformation",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Cdma20001xRttCellRelation"
+      },
+      {
+        "name": "Cdma20001xRttCellRelation.includeInSystemInformationRel9",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Cdma20001xRttCellRelation"
+      },
+      {
+        "name": "ExternalCdma20001xRttCell.pnOffset",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalCdma20001xRttCell"
+      },
+      {
+        "name": "ExternalCdma20001xRttCell.acBarring1xRttForMoDataPresent",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalCdma20001xRttCell"
+      },
+      {
+        "name": "ExternalCdma20001xRttCell.sid",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalCdma20001xRttCell"
+      },
+      {
+        "name": "ExternalCdma20001xRttCell.nid",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalCdma20001xRttCell"
+      },
+      {
+        "name": "EUtranCellFDD.dummyCdmaBandClass  EUtranCellTDD.dummyCdmaBandClass",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "PlmnInfo.actualPlmn",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PlmnInfo"
+      },
+      {
+        "name": "PlmnInfo.csfbTargetRat",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PlmnInfo"
+      },
+      {
+        "name": "Uen.AN",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "C.S0008",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "C"
+      },
+      {
+        "name": "C.S0097",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "C"
+      },
+      {
+        "name": "C.S0024",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "C"
+      },
+      {
+        "name": "Rtt.csFallbackPrio",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Rtt"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmUeCtxtRelCsfbCdma1xRt",
+        "description": "Performance counter pmUeCtxtRelCsfbCdma1xRt",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbCdma1xRtEm",
+        "description": "Performance counter pmUeCtxtRelCsfbCdma1xRtEm",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      },
+      {
+        "name": "pmis",
+        "description": "Performance counter pmis",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011377 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011377 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/312_22104-LZA7016014_1Uen.AN.md",
+    "file_hash": "bccfea145f2f11463483d3970ac558d5",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

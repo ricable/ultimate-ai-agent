@@ -1,0 +1,213 @@
+# =============================================================================
+# Edge-Native AI - LiteLLM Proxy
+# Unified LLM API gateway with local-first routing
+# =============================================================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: litellm
+  namespace: edge-ai-gateway
+  labels:
+    app: litellm
+    component: gateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: litellm
+  template:
+    metadata:
+      labels:
+        app: litellm
+    spec:
+      containers:
+        - name: litellm
+          image: ghcr.io/berriai/litellm:main-latest
+          ports:
+            - containerPort: 4000
+              name: http
+          env:
+            - name: LITELLM_MASTER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: edge-ai-secrets
+                  key: LITELLM_MASTER_KEY
+            - name: DATABASE_URL
+              value: "postgresql://edgeai:$(POSTGRES_PASSWORD)@postgres.edge-ai-data:5432/litellm"
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: edge-ai-secrets
+                  key: POSTGRES_PASSWORD
+            - name: REDIS_URL
+              value: "redis://:$(REDIS_PASSWORD)@redis.edge-ai-data:6379"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: edge-ai-secrets
+                  key: REDIS_PASSWORD
+            # Local model configuration
+            - name: LOCALAI_API_BASE
+              value: "http://localai.edge-ai-inference:8080/v1"
+            # Cloud API keys (optional fallback)
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: llm-api-keys
+                  key: OPENAI_API_KEY
+                  optional: true
+            - name: ANTHROPIC_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: llm-api-keys
+                  key: ANTHROPIC_API_KEY
+                  optional: true
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+          volumeMounts:
+            - name: config
+              mountPath: /app/config.yaml
+              subPath: config.yaml
+          livenessProbe:
+            httpGet:
+              path: /health/liveliness
+              port: 4000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 4000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      volumes:
+        - name: config
+          configMap:
+            name: litellm-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: litellm
+  namespace: edge-ai-gateway
+spec:
+  selector:
+    app: litellm
+  ports:
+    - port: 4000
+      targetPort: 4000
+      name: http
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: litellm-config
+  namespace: edge-ai-gateway
+data:
+  config.yaml: |
+    # ==========================================================================
+    # LiteLLM Configuration - Local-First AI Gateway
+    # ==========================================================================
+
+    model_list:
+      # ========================================================================
+      # LOCAL MODELS (Priority 1 - Free, Low Latency)
+      # ========================================================================
+
+      # Qwen 2.5 Coder - Primary local model
+      - model_name: qwen-coder
+        litellm_params:
+          model: openai/qwen2.5-coder-7b
+          api_base: http://localai.edge-ai-inference:8080/v1
+          api_key: "not-needed"
+        model_info:
+          tier: local
+          cost_per_1k_tokens: 0
+
+      - model_name: qwen-coder-14b
+        litellm_params:
+          model: openai/qwen2.5-coder-14b
+          api_base: http://localai.edge-ai-inference:8080/v1
+          api_key: "not-needed"
+        model_info:
+          tier: local
+          cost_per_1k_tokens: 0
+
+      # Local embedding model
+      - model_name: local-embedding
+        litellm_params:
+          model: openai/embedding
+          api_base: http://localai.edge-ai-inference:8080/v1
+          api_key: "not-needed"
+
+      # ========================================================================
+      # CLOUD MODELS (Priority 2 - Fallback for complex tasks)
+      # ========================================================================
+
+      # OpenAI GPT-4o (fallback)
+      - model_name: gpt-4o
+        litellm_params:
+          model: gpt-4o
+          api_key: os.environ/OPENAI_API_KEY
+        model_info:
+          tier: cloud
+          cost_per_1k_tokens: 0.005
+
+      # Claude 3.5 Sonnet (fallback)
+      - model_name: claude-3.5-sonnet
+        litellm_params:
+          model: claude-3-5-sonnet-20241022
+          api_key: os.environ/ANTHROPIC_API_KEY
+        model_info:
+          tier: cloud
+          cost_per_1k_tokens: 0.003
+
+    # ==========================================================================
+    # ROUTING CONFIGURATION
+    # ==========================================================================
+
+    router_settings:
+      # Route to local models first
+      routing_strategy: "cost-based-routing"
+      # Fallback to cloud if local is unavailable
+      fallbacks:
+        - qwen-coder: [qwen-coder-14b, gpt-4o]
+      # Retry configuration
+      num_retries: 3
+      timeout: 120
+      # Enable caching
+      cache: true
+      cache_params:
+        type: redis
+        host: redis.edge-ai-data
+        port: 6379
+
+    # ==========================================================================
+    # BUDGET AND LIMITS
+    # ==========================================================================
+
+    general_settings:
+      # Maximum budget per user per month
+      max_budget: 100.0
+      # Default budget
+      budget_duration: monthly
+      # Enable detailed logging
+      alerting:
+        - slack
+        - email
+
+    litellm_settings:
+      # Request timeouts
+      request_timeout: 120
+      # Enable streaming
+      stream: true
+      # Enable function calling
+      drop_params: false
+      # Success callback for tracking
+      success_callback: ["langfuse"]

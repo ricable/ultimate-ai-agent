@@ -1,0 +1,364 @@
+{
+  "id": "121 3051",
+  "name": "Enhanced PDCCH Link Adaptation",
+  "cxc_code": "CXC4011482",
+  "value_package": "High Load Handling",
+  "value_package_id": "FAJ 801 0415",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature improves system capacity and introduces an independent control on the",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.pdcchTargetBler",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pdcchTargetBler",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pdcchOuterLoopUpStep",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pdcchOuterLoopUpStep",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pdcchOuterLoopInitialAdj",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pdcchOuterLoopInitialAdj",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pdcchTargetBlerVolte",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pdcchTargetBlerVolte",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pdcchOuterLoopUpStepVolte",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pdcchOuterLoopUpStepVolte",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pdcchOuterLoopInitialAdjVolte",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pdcchOuterLoopInitialAdjVolte",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pdcchTargetBlerPCell",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pdcchTargetBlerPCell",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pdcchOuterLoopUpStepPCell",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pdcchOuterLoopUpStepPCell",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pdcchOuterLoopInitialAdjPCell",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pdcchOuterLoopInitialAdjPCell",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "Uen.AY",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "CarrierAggregationFunction.pdcchEnhancedLaForVolte",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "CarrierAggregationFunction"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmDlAssigsDetHarqMcPttNDO",
+      "description": "Performance counter pmDlAssigsDetHarqMcPttNDO",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsDetHarqNonMcPttNDO",
+      "description": "Performance counter pmDlAssigsDetHarqNonMcPttNDO",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsTrans",
+      "description": "Performance counter pmDlAssigsTrans",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsTransMcPtt",
+      "description": "Performance counter pmDlAssigsTransMcPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsTransMcPttNDO",
+      "description": "Performance counter pmDlAssigsTransMcPttNDO",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsTransNonMcPtt",
+      "description": "Performance counter pmDlAssigsTransNonMcPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsTransNonMcPttNDO",
+      "description": "Performance counter pmDlAssigsTransNonMcPttNDO",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsTransPCell",
+      "description": "Performance counter pmDlAssigsTransPCell",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsTransSCell",
+      "description": "Performance counter pmDlAssigsTransSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsTransVolte",
+      "description": "Performance counter pmDlAssigsTransVolte",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsWithDetHarqAckMcPtt",
+      "description": "Performance counter pmDlAssigsWithDetHarqAckMcPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsWithDetHarqAckNonMcPtt",
+      "description": "Performance counter pmDlAssigsWithDetHarqAckNonMcPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsWithDetectedHarqAck",
+      "description": "Performance counter pmDlAssigsWithDetectedHarqAck",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsWithDetectedHarqAckPCell",
+      "description": "Performance counter pmDlAssigsWithDetectedHarqAckPCell",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsWithDetectedHarqAckSCell",
+      "description": "Performance counter pmDlAssigsWithDetectedHarqAckSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsWithDetectedHarqAckVolte",
+      "description": "Performance counter pmDlAssigsWithDetectedHarqAckVolte",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsWithUnknownRecMcPtt",
+      "description": "Performance counter pmDlAssigsWithUnknownRecMcPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsWithUnknownRecNonMcPtt",
+      "description": "Performance counter pmDlAssigsWithUnknownRecNonMcPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsWithUnknownReception",
+      "description": "Performance counter pmDlAssigsWithUnknownReception",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsWithUnknownReceptionPCell",
+      "description": "Performance counter pmDlAssigsWithUnknownReceptionPCell",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsWithUnknownReceptionSCell",
+      "description": "Performance counter pmDlAssigsWithUnknownReceptionSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsWithUnknownReceptionVolte",
+      "description": "Performance counter pmDlAssigsWithUnknownReceptionVolte",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcchTxAggressive",
+      "description": "Performance counter pmPdcchTxAggressive",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcchTxConservative",
+      "description": "Performance counter pmPdcchTxConservative",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsDetPuschMcPttNDO",
+      "description": "Performance counter pmUlGrantsDetPuschMcPttNDO",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsDetPuschNonMcPttNDO",
+      "description": "Performance counter pmUlGrantsDetPuschNonMcPttNDO",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsTrans",
+      "description": "Performance counter pmUlGrantsTrans",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsTransMcPtt",
+      "description": "Performance counter pmUlGrantsTransMcPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsTransMcPttNDO",
+      "description": "Performance counter pmUlGrantsTransMcPttNDO",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsTransMcPttNoAck",
+      "description": "Performance counter pmUlGrantsTransMcPttNoAck",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsTransNoAck",
+      "description": "Performance counter pmUlGrantsTransNoAck",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsTransNonMcPtt",
+      "description": "Performance counter pmUlGrantsTransNonMcPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsTransNonMcPttNDO",
+      "description": "Performance counter pmUlGrantsTransNonMcPttNDO",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsTransNonMcPttNoAck",
+      "description": "Performance counter pmUlGrantsTransNonMcPttNoAck",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsTransPCell",
+      "description": "Performance counter pmUlGrantsTransPCell",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsTransPCellNoAck",
+      "description": "Performance counter pmUlGrantsTransPCellNoAck",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsTransVolte",
+      "description": "Performance counter pmUlGrantsTransVolte",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsTransVolteNoAck",
+      "description": "Performance counter pmUlGrantsTransVolteNoAck",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsWithDetPuschMcPtt",
+      "description": "Performance counter pmUlGrantsWithDetPuschMcPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsWithDetPuschNonMcPtt",
+      "description": "Performance counter pmUlGrantsWithDetPuschNonMcPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsWithDetectedPusch",
+      "description": "Performance counter pmUlGrantsWithDetectedPusch",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsWithDetectedPuschPCell",
+      "description": "Performance counter pmUlGrantsWithDetectedPuschPCell",
+      "category": "General"
+    },
+    {
+      "name": "pmUlGrantsWithDetectedPuschVolte",
+      "description": "Performance counter pmUlGrantsWithDetectedPuschVolte",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011482 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011482 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/102_22104-LZA7016014_1Uen.AY.md",
+  "file_hash": "31665fa781741d92948806026e816aeb",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

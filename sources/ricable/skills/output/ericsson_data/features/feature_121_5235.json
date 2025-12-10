@@ -1,0 +1,185 @@
+{
+  "id": "121 5235",
+  "name": "Zero Interference VoLTE Operation",
+  "cxc_code": "CXC4012494",
+  "value_package": "VoLTE Performance",
+  "value_package_id": "FAJ 801 0444",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature increases the probability for voice to be scheduled in PRBs with low",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.ulHarqTxNoThresToRegion",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.ulHarqTxNoThresToRegion",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "SubscriberGroupProfile.ulCandidateToRegion",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.ulPlThresToRegion",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.ulSinrThresToRegion",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "EUtranCellFDD.minInterfSchedEnabled",
+      "type": "Affecting",
+      "description": "The Zero Interference VoLTE Operation feature is only applicable if                                 the EUtranCellFDD.minInterfSchedEnable or the                                     EUtranCellTDD.minInterfSchedEnabled is set to                                     true and the                                     EUtranCellFDD.minInterfUlRegionSize or the                                     EUtranCellTDD.minInterfUlRegionSize attribute                                 is equal to or greater than 3.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.minInterfSchedEnabled",
+      "type": "Affecting",
+      "description": "The Zero Interference VoLTE Operation feature is only applicable if                                 the EUtranCellFDD.minInterfSchedEnable or the                                     EUtranCellTDD.minInterfSchedEnabled is set to                                     true and the                                     EUtranCellFDD.minInterfUlRegionSize or the                                     EUtranCellTDD.minInterfUlRegionSize attribute                                 is equal to or greater than 3.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.minInterfUlRegionSize",
+      "type": "Affecting",
+      "description": "The Zero Interference VoLTE Operation feature is only applicable if                                 the EUtranCellFDD.minInterfSchedEnable or the                                     EUtranCellTDD.minInterfSchedEnabled is set to                                     true and the                                     EUtranCellFDD.minInterfUlRegionSize or the                                     EUtranCellTDD.minInterfUlRegionSize attribute                                 is equal to or greater than 3.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.minInterfUlRegionSize",
+      "type": "Affecting",
+      "description": "The Zero Interference VoLTE Operation feature is only applicable if                                 the EUtranCellFDD.minInterfSchedEnable or the                                     EUtranCellTDD.minInterfSchedEnabled is set to                                     true and the                                     EUtranCellFDD.minInterfUlRegionSize or the                                     EUtranCellTDD.minInterfUlRegionSize attribute                                 is equal to or greater than 3.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "Uen.AF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.minInterfSchedEnable",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmFlexMacHarqUlFail",
+      "description": "Performance counter pmFlexMacHarqUlFail",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqUlFail16qam",
+      "description": "Performance counter pmFlexMacHarqUlFail16qam",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqUlFail256qam",
+      "description": "Performance counter pmFlexMacHarqUlFail256qam",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqUlFail64qam",
+      "description": "Performance counter pmFlexMacHarqUlFail64qam",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqUlFailQpsk",
+      "description": "Performance counter pmFlexMacHarqUlFailQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqUlSucc",
+      "description": "Performance counter pmFlexMacHarqUlSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqUlSucc16qam",
+      "description": "Performance counter pmFlexMacHarqUlSucc16qam",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqUlSucc256qam",
+      "description": "Performance counter pmFlexMacHarqUlSucc256qam",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqUlSucc64qam",
+      "description": "Performance counter pmFlexMacHarqUlSucc64qam",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqUlSuccQpsk",
+      "description": "Performance counter pmFlexMacHarqUlSuccQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktLostUlQci",
+      "description": "Performance counter pmPdcpPktLostUlQci",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktReceivedUlQci",
+      "description": "Performance counter pmPdcpPktReceivedUlQci",
+      "category": "General"
+    },
+    {
+      "name": "pmSchedAdpReTxUlRsvdRegion",
+      "description": "Performance counter pmSchedAdpReTxUlRsvdRegion",
+      "category": "General"
+    },
+    {
+      "name": "pmSchedNewTxUlRsvdRegion",
+      "description": "Performance counter pmSchedNewTxUlRsvdRegion",
+      "category": "General"
+    },
+    {
+      "name": "pmVoipQualityRbUlNok",
+      "description": "Performance counter pmVoipQualityRbUlNok",
+      "category": "General"
+    },
+    {
+      "name": "pmVoipQualityRbUlOk",
+      "description": "Performance counter pmVoipQualityRbUlOk",
+      "category": "General"
+    },
+    {
+      "name": "pmVoipQualityUeUlNok",
+      "description": "Performance counter pmVoipQualityUeUlNok",
+      "category": "General"
+    },
+    {
+      "name": "pmVoipQualityUeUlOk",
+      "description": "Performance counter pmVoipQualityUeUlOk",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012494 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012494 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/502_22104-LZA7016014_1Uen.AF.md",
+  "file_hash": "ae225d0d4bbb655e44dd80d7ea63428c",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

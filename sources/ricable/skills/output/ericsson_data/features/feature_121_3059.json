@@ -1,0 +1,253 @@
+{
+  "id": "121 3059",
+  "name": "Internal MCE",
+  "cxc_code": "CXC4011555",
+  "value_package": "LTE Broadcast",
+  "value_package_id": "FAJ 801 0420",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Internal MCE feature increases the efficiency of file download and streaming",
+  "parameters": [
+    {
+      "name": "Mbms.tMbmsAuditTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Mbms"
+    },
+    {
+      "name": "TermPointToMmeM3.termPointToMmeM3Id",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMmeM3"
+    },
+    {
+      "name": "TermPointToMmeM3.administrativeState",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMmeM3"
+    },
+    {
+      "name": "TermPointToMmeM3.availabilityStatus",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMmeM3"
+    },
+    {
+      "name": "TermPointToMmeM3.domainName",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMmeM3"
+    },
+    {
+      "name": "TermPointToMmeM3.ipAddress1",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMmeM3"
+    },
+    {
+      "name": "TermPointToMmeM3.ipAddress2",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMmeM3"
+    },
+    {
+      "name": "TermPointToMmeM3.ipv6Address1",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMmeM3"
+    },
+    {
+      "name": "TermPointToMmeM3.ipv6Address2",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMmeM3"
+    },
+    {
+      "name": "TermPointToMmeM3.operationalState",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMmeM3"
+    },
+    {
+      "name": "TermPointToMmeM3.usedIpAddress",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMmeM3"
+    },
+    {
+      "name": "MceFunction.mceFunctionId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "MceFunction"
+    },
+    {
+      "name": "MceFunction.useM3dnsFormat",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "MceFunction"
+    },
+    {
+      "name": "Uen.AF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "MbsfnArea.administrativeState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "MbsfnArea"
+    },
+    {
+      "name": "MceFunction.pmMbmsSessionEstabSucc",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "MceFunction"
+    },
+    {
+      "name": "MceFunction.pmMbmsSessionEstabAtt",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "MceFunction"
+    },
+    {
+      "name": "MceFunction.pmMbmsSessionStopMme",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "MceFunction"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmMbmsSessionEnd",
+      "description": "Performance counter pmMbmsSessionEnd",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionEstabAtt",
+      "description": "Performance counter pmMbmsSessionEstabAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionEstabFailNotSupp",
+      "description": "Performance counter pmMbmsSessionEstabFailNotSupp",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionEstabFailUpdate",
+      "description": "Performance counter pmMbmsSessionEstabFailUpdate",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionEstabSucc",
+      "description": "Performance counter pmMbmsSessionEstabSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionStopAuditTimer",
+      "description": "Performance counter pmMbmsSessionStopAuditTimer",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionStopMme",
+      "description": "Performance counter pmMbmsSessionStopMme",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsSessionStopMmeNoSession",
+      "description": "Performance counter pmMbmsSessionStopMmeNoSession",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "M3_M3_SETUP_REQUEST",
+      "type": "External PM event for M3AP: M3 SETUP REQUEST",
+      "description": ""
+    },
+    {
+      "name": "M3_M3_SETUP_RESPONSE",
+      "type": "External PM event for M3AP: M3 SETUP RESPONSE",
+      "description": ""
+    },
+    {
+      "name": "M3_M3_SETUP_FAILURE",
+      "type": "External PM event for M3AP: M3 SETUP FAILURE",
+      "description": ""
+    },
+    {
+      "name": "M3_MBMS_SESSION_START_REQUEST",
+      "type": "External PM event for M3AP: MBMS SESSION START REQUEST",
+      "description": ""
+    },
+    {
+      "name": "M3_MBMS_SESSION_START_RESONSE",
+      "type": "External PM event for M3AP: MBMS SESSION START RESPONSE",
+      "description": ""
+    },
+    {
+      "name": "M3_MBMS_SESSION_START_FAILURE",
+      "type": "External PM event for M3AP: MBMS SESSION START FAILURE",
+      "description": ""
+    },
+    {
+      "name": "M3_MBMS_SESSION_STOP_REQUEST",
+      "type": "External PM event for M3AP: MBMS SESSION STOP REQUEST",
+      "description": ""
+    },
+    {
+      "name": "M3_MBMS_SESSION_STOP_RESPONSE",
+      "type": "External PM event for M3AP: MBMS SESSION STOP RESPONSE",
+      "description": ""
+    },
+    {
+      "name": "M3_RESET",
+      "type": "External PM event for M3AP: RESET",
+      "description": ""
+    },
+    {
+      "name": "M3_MCE_CONFIGURATION_UPDATE_REQUEST",
+      "type": "External PM event for M3AP: MCE CONFIGURATION UPDATE REQUEST",
+      "description": ""
+    },
+    {
+      "name": "M3_MCE_CONFIGURATION_UPDATE_RESPONSE",
+      "type": "External PM event for M3AP: MCE CONFIGURATION UPDATE RESPONSE",
+      "description": ""
+    },
+    {
+      "name": "MCE_CONFIGURATION_UPDATE_FAILURE",
+      "type": "External PM event for M3AP: MCE CONFIGURATION UPDATE FAILURE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_M3_SETUP",
+      "type": "Internal event for the M3 setup procedure.",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_MBMS_SESSION_START",
+      "type": "Internal Event for the MBMS Session Start Procedure.",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011555 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011555 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/245_22104-LZA7016014_1Uen.AF.md",
+  "file_hash": "67c8db3d201259f1befc0e9d8f630df5",
+  "processed_at": "2025-10-19 15:50:05",
+  "network_impact": {},
+  "performance_impact": {}
+}

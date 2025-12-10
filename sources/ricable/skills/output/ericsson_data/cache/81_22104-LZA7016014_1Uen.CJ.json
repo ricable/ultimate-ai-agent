@@ -1,0 +1,402 @@
+{
+  "file_hash": "126823d4595d30bf74942c5f885687fd",
+  "feature": {
+    "id": "121 1787",
+    "name": "Differentiated Admission Control",
+    "cxc_code": "CXC4011062",
+    "value_package": "Differentiated Mobile Broadband",
+    "value_package_id": "FAJ 801 0409",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Differentiated Admission Control feature provides higher accessibility for UEs",
+    "parameters": [
+      {
+        "name": "AdmissionControl.admNrRrcDifferentiationThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "AdmissionControl.arpBasedPreEmptionState",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "AdmissionControl.diffAdmCtrlFilteringEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "AdmissionControl.dlAdmDifferentiationThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "AdmissionControl.dlAdmOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "AdmissionControl.nrOfPaConnReservationsPerCell",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "AdmissionControl.preemptInactTimerMin",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "AdmissionControl.ulAdmDifferentiationThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "AdmissionControl.ulAdmOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "DiffAdmCtrlFilteringProfile.firstPreEmptionSpidSet",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DiffAdmCtrlFilteringProfile"
+      },
+      {
+        "name": "EUtranCellFDD.diffAdmCtrlFilteringProfRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.diffAdmCtrlFilteringProfRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "Rcs.tInactivityTimer",
+        "type": "Affecting",
+        "description": "UEs inactive for longer than the smallest possible value of                                     Rcs.tInactivityTimer are eligible for early                                 UE pre-emption. Therefore, if                                     Rcs.tInactivityTimer is set to the smallest                                 possible value, no UEs are eligible for early UE pre-emption.",
+        "mo_class": "Rcs"
+      },
+      {
+        "name": "AdmissionControl.enhPttAdmCtrlRejPaReqOvlGbr",
+        "type": "Affecting",
+        "description": "See MoM description.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "INTERNAL_PROC_ERAB_SETUP    INTERNAL_PROC_ERAB_RELEASE    INTERNAL_PROC_HO_PREP_S1_IN    INTERNAL_PROC_HO_PREP_X2_IN    INTERNAL_PROC_UE_CTXT_RELEASE    INTERNAL_PROC_INITIAL_CTXT_SETUP",
+        "type": "EVENT_ARRAY_ERAB_SETUP_REQ_ARP",
+        "description": "ARP priority level for each E-RAB in the request.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_ERAB_SETUP    INTERNAL_PROC_ERAB_RELEASE    INTERNAL_PROC_HO_PREP_S1_IN    INTERNAL_PROC_HO_PREP_X2_IN    INTERNAL_PROC_UE_CTXT_RELEASE    INTERNAL_PROC_INITIAL_CTXT_SETUP",
+        "type": "EVENT_ARRAY_ERAB_SETUP_REQ_PCI",
+        "description": "ARP PCI for each E-RAB in the request.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_ERAB_SETUP    INTERNAL_PROC_ERAB_RELEASE    INTERNAL_PROC_HO_PREP_S1_IN    INTERNAL_PROC_HO_PREP_X2_IN    INTERNAL_PROC_UE_CTXT_RELEASE    INTERNAL_PROC_INITIAL_CTXT_SETUP",
+        "type": "EVENT_ARRAY_ERAB_SETUP_REQ_PVI",
+        "description": "ARP PVI for each E-RAB in the request.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_ERAB_RELEASE",
+        "type": "EVENT_PARAM_INTERNAL_RELEASE_CAUSE",
+        "description": "Bearer pre-emption triggered by admission control.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_UE_CTXT_RELEASE",
+        "type": "EVENT_PARAM_INTERNAL_RELEASE_CAUSE",
+        "description": "UE pre-emption triggered by admission control.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "S1_ERAB_RELEASE_INDICATION",
+        "type": "N/A",
+        "description": "An E-RAB Release Indication message is sent by the RBS.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+        "type": "EVENT_PARAM_UE_ADM_CTRL_BLOCKING_ARP",
+        "description": "Blocking ARP level or resource overload indication at admission                                     control reject for UE Context resources. The ARP blocking level                                     is applicable when an MSR has rejected, both when pre-emption                                     was attempted and not attempted.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+        "type": "EVENT_PARAM_UE_HIGHEST_REQ_ARP",
+        "description": "Highest priority ARP over all received E-RAB requests for the                                     UE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.CJ",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "QciProfilePredefined.serviceType",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfilePredefined"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCounters",
+        "description": "Performance counter pmCounters",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttAddedArp",
+        "description": "Performance counter pmErabEstabAttAddedArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttAddedGbrArp",
+        "description": "Performance counter pmErabEstabAttAddedGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttInitArp",
+        "description": "Performance counter pmErabEstabAttInitArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttInitGbrArp",
+        "description": "Performance counter pmErabEstabAttInitGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttRejAdmMsrAddedArp",
+        "description": "Performance counter pmErabEstabAttRejAdmMsrAddedArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttRejAdmMsrAddedRpid",
+        "description": "Performance counter pmErabEstabAttRejAdmMsrAddedRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttRejAdmMsrInitArp",
+        "description": "Performance counter pmErabEstabAttRejAdmMsrInitArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttRejAdmMsrInitRpid",
+        "description": "Performance counter pmErabEstabAttRejAdmMsrInitRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabFailUeAdmLicRejArp",
+        "description": "Performance counter pmErabEstabFailUeAdmLicRejArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabSuccAddedArp",
+        "description": "Performance counter pmErabEstabSuccAddedArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabSuccAddedGbrArp",
+        "description": "Performance counter pmErabEstabSuccAddedGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabSuccInitArp",
+        "description": "Performance counter pmErabEstabSuccInitArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabSuccInitGbrArp",
+        "description": "Performance counter pmErabEstabSuccInitGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnb",
+        "description": "Performance counter pmErabRelAbnormalEnb",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbAct",
+        "description": "Performance counter pmErabRelAbnormalEnbAct",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActArp",
+        "description": "Performance counter pmErabRelAbnormalEnbActArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActGbrArp",
+        "description": "Performance counter pmErabRelAbnormalEnbActGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActPe",
+        "description": "Performance counter pmErabRelAbnormalEnbActPe",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActPeRpid",
+        "description": "Performance counter pmErabRelAbnormalEnbActPeRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbArp",
+        "description": "Performance counter pmErabRelAbnormalEnbArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbGbrArp",
+        "description": "Performance counter pmErabRelAbnormalEnbGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbPe",
+        "description": "Performance counter pmErabRelAbnormalEnbPe",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbPeRpid",
+        "description": "Performance counter pmErabRelAbnormalEnbPeRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexErabRelAbnormalEnbActPe",
+        "description": "Performance counter pmFlexErabRelAbnormalEnbActPe",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexErabRelAbnormalEnbPe",
+        "description": "Performance counter pmFlexErabRelAbnormalEnbPe",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexErabRelAbnormalEnbPeGbr",
+        "description": "Performance counter pmFlexErabRelAbnormalEnbPeGbr",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexUeCtxtRelAbnormalEnbActPe",
+        "description": "Performance counter pmFlexUeCtxtRelAbnormalEnbActPe",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexUeCtxtRelAbnormalEnbPe",
+        "description": "Performance counter pmFlexUeCtxtRelAbnormalEnbPe",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInAdmMsrRpid",
+        "description": "Performance counter pmHoPrepRejInAdmMsrRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReestFailInAdmMsrRpid",
+        "description": "Performance counter pmRrcConnReestFailInAdmMsrRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmUeAdmCtrlPreventivePe",
+        "description": "Performance counter pmUeAdmCtrlPreventivePe",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelAbnormalEnb",
+        "description": "Performance counter pmUeCtxtRelAbnormalEnb",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelAbnormalEnbAct",
+        "description": "Performance counter pmUeCtxtRelAbnormalEnbAct",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelAbnormalEnbActPe",
+        "description": "Performance counter pmUeCtxtRelAbnormalEnbActPe",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelAbnormalEnbPe",
+        "description": "Performance counter pmUeCtxtRelAbnormalEnbPe",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PROC_ERAB_SETUP    INTERNAL_PROC_ERAB_RELEASE    INTERNAL_PROC_HO_PREP_S1_IN    INTERNAL_PROC_HO_PREP_X2_IN    INTERNAL_PROC_UE_CTXT_RELEASE    INTERNAL_PROC_INITIAL_CTXT_SETUP",
+        "type": "EVENT_ARRAY_ERAB_SETUP_REQ_ARP",
+        "description": "ARP priority level for each E-RAB in the request."
+      },
+      {
+        "name": "INTERNAL_PROC_ERAB_SETUP    INTERNAL_PROC_ERAB_RELEASE    INTERNAL_PROC_HO_PREP_S1_IN    INTERNAL_PROC_HO_PREP_X2_IN    INTERNAL_PROC_UE_CTXT_RELEASE    INTERNAL_PROC_INITIAL_CTXT_SETUP",
+        "type": "EVENT_ARRAY_ERAB_SETUP_REQ_PCI",
+        "description": "ARP PCI for each E-RAB in the request."
+      },
+      {
+        "name": "INTERNAL_PROC_ERAB_SETUP    INTERNAL_PROC_ERAB_RELEASE    INTERNAL_PROC_HO_PREP_S1_IN    INTERNAL_PROC_HO_PREP_X2_IN    INTERNAL_PROC_UE_CTXT_RELEASE    INTERNAL_PROC_INITIAL_CTXT_SETUP",
+        "type": "EVENT_ARRAY_ERAB_SETUP_REQ_PVI",
+        "description": "ARP PVI for each E-RAB in the request."
+      },
+      {
+        "name": "INTERNAL_PROC_ERAB_RELEASE",
+        "type": "EVENT_PARAM_INTERNAL_RELEASE_CAUSE",
+        "description": "Bearer pre-emption triggered by admission control."
+      },
+      {
+        "name": "INTERNAL_PROC_UE_CTXT_RELEASE",
+        "type": "EVENT_PARAM_INTERNAL_RELEASE_CAUSE",
+        "description": "UE pre-emption triggered by admission control."
+      },
+      {
+        "name": "S1_ERAB_RELEASE_INDICATION",
+        "type": "N/A",
+        "description": "An E-RAB Release Indication message is sent by the RBS."
+      },
+      {
+        "name": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+        "type": "EVENT_PARAM_UE_ADM_CTRL_BLOCKING_ARP",
+        "description": "Blocking ARP level or resource overload indication at admission                                     control reject for UE Context resources. The ARP blocking level                                     is applicable when an MSR has rejected, both when pre-emption                                     was attempted and not attempted."
+      },
+      {
+        "name": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+        "type": "EVENT_PARAM_UE_HIGHEST_REQ_ARP",
+        "description": "Highest priority ARP over all received E-RAB requests for the                                     UE."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011062 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011062 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/81_22104-LZA7016014_1Uen.CJ.md",
+    "file_hash": "126823d4595d30bf74942c5f885687fd",
+    "processed_at": "2025-10-19 15:50:06",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

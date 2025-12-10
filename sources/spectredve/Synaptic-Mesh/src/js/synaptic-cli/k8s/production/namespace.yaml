@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: synaptic-mesh
+  labels:
+    name: synaptic-mesh
+    version: v1.0.0-alpha.1
+    component: neural-mesh
+    tier: production
+  annotations:
+    description: "Synaptic Neural Mesh - Self-evolving distributed neural fabric"
+    maintainer: "rUv"
+    support: "https://github.com/ruvnet/Synaptic-Neural-Mesh/issues"
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: synaptic-mesh-quota
+  namespace: synaptic-mesh
+spec:
+  hard:
+    requests.cpu: "2"
+    requests.memory: 4Gi
+    limits.cpu: "8"
+    limits.memory: 16Gi
+    persistentvolumeclaims: "4"
+    services: "10"
+    pods: "20"
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: synaptic-mesh-limits
+  namespace: synaptic-mesh
+spec:
+  limits:
+  - default:
+      cpu: "1"
+      memory: 2Gi
+    defaultRequest:
+      cpu: "100m"
+      memory: 256Mi
+    type: Container

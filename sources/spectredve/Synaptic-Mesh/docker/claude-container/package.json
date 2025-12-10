@@ -1,0 +1,42 @@
+{
+  "name": "@synaptic-neural-mesh/claude-container",
+  "version": "1.0.0",
+  "description": "Minimal, secure Claude container for task execution",
+  "main": "claude-task-executor.js",
+  "scripts": {
+    "start": "node claude-task-executor.js",
+    "test": "node test-container.js",
+    "security-scan": "npm audit --audit-level=moderate"
+  },
+  "keywords": [
+    "claude",
+    "ai",
+    "container",
+    "security",
+    "sandbox",
+    "synaptic-neural-mesh"
+  ],
+  "author": "Synaptic Neural Mesh Security Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.20.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/synaptic-neural-mesh"
+  },
+  "bugs": {
+    "url": "https://github.com/ruvnet/synaptic-neural-mesh/issues"
+  },
+  "homepage": "https://github.com/ruvnet/synaptic-neural-mesh#readme",
+  "security": {
+    "sandboxed": true,
+    "networkRestricted": true,
+    "readOnlyFilesystem": true,
+    "noPrivilegedAccess": true
+  }
+}

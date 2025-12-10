@@ -1,0 +1,81 @@
+{
+  "id": "121 5399",
+  "name": "User- and Service-Specific Mobility",
+  "cxc_code": "CXC4012591",
+  "value_package": "Intelligent Traffic Management and Mobility",
+  "value_package_id": "FAJ 801 4022",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The User- and Service-Specific Mobility feature enables differentiated configuration of",
+  "parameters": [
+    {
+      "name": "Uen.BA",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "TrStPSCellProfileUeCfg.hiPrioAllowedForDistUeEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TrStPSCellProfileUeCfg"
+    },
+    {
+      "name": "A.a",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "A"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.freqPrioListEUtran",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.freqPrioListNR",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.actionAtRelease",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "A.b",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "A"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsUeCtxtSetupFailUeCapFail",
+      "description": "Performance counter pmEbsUeCtxtSetupFailUeCapFail",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012591 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012591 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/126_22104-LZA7016017_1Uen.BA.md",
+  "file_hash": "b7d2a8b132ea025045d029a99bc181d4",
+  "processed_at": "2025-10-19 15:50:03",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,77 @@
+{
+  "file_hash": "7dd0bc6c2d62e326fc7f746a5ce96cd0",
+  "feature": {
+    "id": "121 5769",
+    "name": "Uplink Angle of Arrival for Macro Positioning",
+    "cxc_code": "CXC4012770",
+    "value_package": "5G Advanced Macro Positioning",
+    "value_package_id": "FAJ 801 4028",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature allows for uplink AoA measurements in the NRPPa E-CID positioning",
+    "parameters": [
+      {
+        "name": "NRSectorCarrier.lcsToGcsTranslation",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.nrppaCellPortionId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRCellCU.advUePosMode",
+        "type": "Affecting",
+        "description": "The feature can only be used if the value of this attribute is                                     set to ALL.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "Uen.N33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "NONE.Note",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NONE"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsEcidMeasInitReqOnDemand",
+        "description": "Performance counter pmEbsEcidMeasInitReqOnDemand",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEcidMeasInitRespOnDemand",
+        "description": "Performance counter pmEbsEcidMeasInitRespOnDemand",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012770 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012770 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/213_22104-LZA7016017_1Uen.N33B.md",
+    "file_hash": "7dd0bc6c2d62e326fc7f746a5ce96cd0",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

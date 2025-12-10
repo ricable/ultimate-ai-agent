@@ -1,0 +1,292 @@
+# mise.toml - Rust Agent Category Configuration
+# For native WASM, system-level, and high-performance agents
+# https://mise.jdx.dev/
+
+[env]
+# Rust-specific environment
+AGENT_CATEGORY = "rust"
+CARGO_TERM_COLOR = "always"
+CARGO_NET_GIT_FETCH_WITH_CLI = "true"
+
+# WASM compilation targets
+RUSTFLAGS = "-C target-feature=+simd128"
+
+# Cargo directories
+CARGO_HOME = "{{env.HOME}}/.cargo"
+RUSTUP_HOME = "{{env.HOME}}/.rustup"
+
+# Build optimization
+CARGO_PROFILE_RELEASE_LTO = "true"
+CARGO_PROFILE_RELEASE_OPT_LEVEL = "3"
+
+_.path = [
+  "{{env.HOME}}/.cargo/bin",
+  "{{config_root}}/target/release"
+]
+
+[tools]
+# Rust toolchain
+rust = { version = "stable", targets = "wasm32-unknown-unknown,wasm32-wasi,wasm32-wasip1,x86_64-unknown-linux-musl,aarch64-unknown-linux-musl" }
+
+# Rust development tools
+"cargo:cargo-watch" = "latest"
+"cargo:cargo-edit" = "latest"
+"cargo:cargo-audit" = "latest"
+"cargo:cargo-outdated" = "latest"
+"cargo:cargo-deny" = "latest"
+
+# WASM tools
+"cargo:wasm-pack" = "latest"
+"cargo:cargo-component" = "latest"
+"cargo:wasm-bindgen-cli" = "latest"
+"cargo:wasm-opt" = "latest"
+"cargo:wit-bindgen-cli" = "latest"
+
+# Cross-compilation
+"cargo:cross" = "latest"
+
+[settings]
+# Rust settings
+rust.cargo_home = "{{env.HOME}}/.cargo"
+rust.rustup_home = "{{env.HOME}}/.rustup"
+
+jobs = 4
+
+# =============================================================================
+# RUST AGENT TASKS
+# =============================================================================
+
+[tasks.build]
+description = "Build Rust agent"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🦀 Building Rust agent..."
+
+# Standard build
+cargo build --release
+
+echo "✅ Rust agent built"
+"""
+
+[tasks.build-wasm]
+description = "Build WASM target"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🦀 Building Rust WASM..."
+
+# Ensure target is installed
+rustup target add wasm32-wasi
+
+# Build for WASM
+cargo build --target wasm32-wasi --release
+
+# Optimize WASM
+if command -v wasm-opt &> /dev/null; then
+  wasm-opt -O3 target/wasm32-wasi/release/*.wasm -o target/wasm32-wasi/release/optimized.wasm
+fi
+
+echo "✅ WASM build complete"
+"""
+
+[tasks.build-component]
+description = "Build WASM Component (wit-bindgen)"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🦀 Building WASM Component..."
+
+cargo component build --release
+
+echo "✅ WASM Component built"
+"""
+
+[tasks.test]
+description = "Run Rust tests"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🧪 Running Rust tests..."
+cargo test
+
+echo "✅ Tests complete"
+"""
+
+[tasks.test-wasm]
+description = "Run WASM tests"
+run = """
+#!/usr/bin/env bash
+cargo test --target wasm32-wasi
+"""
+
+[tasks.lint]
+description = "Lint Rust code"
+run = """
+#!/usr/bin/env bash
+echo "🔍 Linting Rust..."
+cargo fmt --check
+cargo clippy -- -D warnings
+echo "✅ Linting complete"
+"""
+
+[tasks.fmt]
+description = "Format Rust code"
+run = "cargo fmt"
+
+[tasks.audit]
+description = "Security audit dependencies"
+run = "cargo audit"
+
+[tasks.watch]
+description = "Watch and rebuild on changes"
+run = "cargo watch -x build"
+
+[tasks.run]
+description = "Run Rust agent"
+run = "cargo run --release"
+
+[tasks.run-wasm]
+description = "Run WASM agent with WasmEdge"
+run = """
+#!/usr/bin/env bash
+WASM_FILE=$(find target/wasm32-wasi/release -name "*.wasm" | head -1)
+wasmedge "$WASM_FILE" "$@"
+"""
+
+[tasks.deploy]
+description = "Deploy Rust agent to Kubernetes"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+NAMESPACE=${NAMESPACE:-"default"}
+
+echo "🚀 Deploying Rust agent..."
+kubectl apply -f k8s/ -n "$NAMESPACE"
+
+echo "✅ Agent deployed"
+"""
+
+[tasks.docker-build]
+description = "Build Docker image"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+REGISTRY=${REGISTRY:-"ghcr.io/ruvnet"}
+AGENT_NAME=${AGENT_NAME:-$(basename $(pwd))}
+VERSION=${VERSION:-"latest"}
+
+# Multi-stage build for minimal image
+cat > Dockerfile.generated << 'EOF'
+FROM rust:1.75-alpine AS builder
+
+WORKDIR /app
+RUN apk add --no-cache musl-dev
+
+COPY Cargo.toml Cargo.lock ./
+COPY src ./src
+
+RUN cargo build --release --target x86_64-unknown-linux-musl
+
+FROM alpine:3.19
+COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/agent /usr/local/bin/
+CMD ["agent"]
+EOF
+
+docker build -f Dockerfile.generated -t "$REGISTRY/$AGENT_NAME:$VERSION" .
+
+echo "✅ Docker image built: $REGISTRY/$AGENT_NAME:$VERSION"
+"""
+
+[tasks.cross-build]
+description = "Cross-compile for multiple targets"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🔨 Cross-compiling..."
+
+# ARM64 (Apple Silicon, RPi)
+cross build --target aarch64-unknown-linux-musl --release
+
+# x86_64
+cross build --target x86_64-unknown-linux-musl --release
+
+# WASM
+cargo build --target wasm32-wasi --release
+
+echo "✅ Cross-compilation complete"
+"""
+
+[tasks.template]
+description = "Create new Rust agent from template"
+run = """
+#!/usr/bin/env bash
+AGENT_NAME=${1:?"Usage: mise run template <agent-name>"}
+
+echo "🦀 Creating Rust agent: $AGENT_NAME"
+
+cargo new "$AGENT_NAME" --name "zgents-$AGENT_NAME"
+cd "$AGENT_NAME"
+
+# Update Cargo.toml
+cat > Cargo.toml << EOF
+[package]
+name = "zgents-$AGENT_NAME"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+
+[profile.release]
+lto = true
+opt-level = 3
+strip = true
+EOF
+
+mkdir -p k8s
+
+# Create mise.toml
+cat > mise.toml << EOF
+# Inherits from parent agents/rust/mise.toml
+[env]
+AGENT_NAME = "$AGENT_NAME"
+EOF
+
+echo "✅ Agent created at $AGENT_NAME/"
+"""
+
+# =============================================================================
+# WASM COMPONENT MODEL TASKS
+# =============================================================================
+
+[tasks.wit-generate]
+description = "Generate WIT bindings"
+run = """
+#!/usr/bin/env bash
+wit-bindgen rust wit/
+echo "✅ WIT bindings generated"
+"""
+
+[tasks.component-publish]
+description = "Publish WASM component to registry"
+run = """
+#!/usr/bin/env bash
+REGISTRY=${REGISTRY:-"ghcr.io/ruvnet"}
+COMPONENT_NAME=${1:?"Usage: mise run component-publish <name>"}
+
+wasm-tools component new target/wasm32-wasi/release/*.wasm -o component.wasm
+oras push "$REGISTRY/$COMPONENT_NAME:latest" component.wasm
+
+echo "✅ Component published to $REGISTRY/$COMPONENT_NAME"
+"""

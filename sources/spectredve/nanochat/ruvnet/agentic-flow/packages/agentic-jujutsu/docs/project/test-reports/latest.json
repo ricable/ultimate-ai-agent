@@ -1,0 +1,234 @@
+{
+  "testReport": {
+    "timestamp": "2025-11-10T04:37:00.000Z",
+    "testEngineer": "N-API Testing Agent",
+    "buildType": "N-API (Node.js Native Addons)",
+    "status": "PARTIAL_SUCCESS",
+    "summary": {
+      "testFilesCreated": 5,
+      "totalLinesOfCode": 2267,
+      "testsPassed": 11,
+      "testsFailed": 0,
+      "testsSkipped": 4,
+      "buildStatus": "COMPILATION_ERRORS"
+    },
+    "testSuites": [
+      {
+        "name": "CLI Integration Tests",
+        "file": "tests/integration/cli.test.js",
+        "status": "PASSED",
+        "results": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 4,
+          "coverage": "73%"
+        },
+        "passedTests": [
+          "CLI executable exists and is accessible",
+          "CLI shows help message",
+          "CLI shows version",
+          "CLI handles missing repository",
+          "CLI handles permission errors gracefully",
+          "CLI outputs valid UTF-8",
+          "CLI respects quiet mode",
+          "CLI respects JJ_PATH environment variable",
+          "CLI starts quickly (29ms)",
+          "CLI can load WASM module",
+          "CLI bin is properly configured"
+        ],
+        "skippedTests": [
+          "jj status test (jj not installed)",
+          "jj init test (jj not installed)",
+          "invalid command test (jj not installed)",
+          "Multiple CLI calls test (jj not installed)"
+        ]
+      },
+      {
+        "name": "Comprehensive WASM Tests",
+        "file": "tests/wasm/comprehensive.test.js",
+        "status": "PENDING",
+        "reason": "Requires successful N-API build",
+        "testCases": 20,
+        "categories": [
+          "Module Structure",
+          "Core Functionality",
+          "Type Definitions",
+          "Performance",
+          "Memory Management",
+          "Error Handling",
+          "Integration Points"
+        ]
+      },
+      {
+        "name": "Error Handling Tests",
+        "file": "tests/wasm/error.test.js",
+        "status": "PENDING",
+        "reason": "Requires successful N-API build",
+        "testCases": 30,
+        "categories": [
+          "Module Loading Errors",
+          "Invalid Input Handling",
+          "Boundary Conditions",
+          "Memory Errors",
+          "Type Errors",
+          "Async Errors",
+          "Edge Cases",
+          "Error Recovery"
+        ]
+      },
+      {
+        "name": "Memory Tests",
+        "file": "tests/wasm/memory.test.js",
+        "status": "PENDING",
+        "reason": "Requires successful N-API build",
+        "features": [
+          "Memory snapshot system",
+          "Leak detection",
+          "GC efficiency testing",
+          "Long-running stability",
+          "Buffer management",
+          "Health grading"
+        ]
+      },
+      {
+        "name": "Advanced Benchmarks",
+        "file": "tests/benchmarks/advanced.bench.js",
+        "status": "PENDING",
+        "reason": "Requires successful N-API build",
+        "benchmarks": [
+          "Module load time",
+          "Memory overhead",
+          "Function call overhead",
+          "Object creation",
+          "String operations",
+          "Array operations",
+          "JSON serialization",
+          "Throughput",
+          "Concurrent operations",
+          "Memory leak detection"
+        ]
+      }
+    ],
+    "buildIssues": {
+      "severity": "ERROR",
+      "type": "COMPILATION_ERROR",
+      "description": "wasm_bindgen dependencies in N-API mode",
+      "affectedFiles": [
+        "src/config.rs:4",
+        "src/operations.rs:30",
+        "src/types.rs"
+      ],
+      "solution": "Add conditional compilation (#[cfg(target_arch = \"wasm32\")]) for WASM-specific imports"
+    },
+    "filesCreated": [
+      {
+        "path": "tests/wasm/comprehensive.test.js",
+        "lines": 515,
+        "purpose": "Comprehensive module and functionality tests"
+      },
+      {
+        "path": "tests/integration/cli.test.js",
+        "lines": 373,
+        "purpose": "CLI integration and command tests"
+      },
+      {
+        "path": "tests/benchmarks/advanced.bench.js",
+        "lines": 418,
+        "purpose": "Advanced performance benchmarking"
+      },
+      {
+        "path": "tests/wasm/error.test.js",
+        "lines": 421,
+        "purpose": "Error handling and edge cases"
+      },
+      {
+        "path": "tests/wasm/memory.test.js",
+        "lines": 540,
+        "purpose": "Memory management and leak detection"
+      },
+      {
+        "path": "docs/TEST_REPORT.md",
+        "lines": 350,
+        "purpose": "Comprehensive test documentation"
+      }
+    ],
+    "packageJsonUpdates": {
+      "scriptsAdded": [
+        "test:basic",
+        "test:all",
+        "test:comprehensive",
+        "test:error",
+        "test:memory",
+        "test:cli",
+        "test:integration",
+        "bench:advanced",
+        "bench:all"
+      ]
+    },
+    "testInfrastructure": {
+      "features": [
+        "Color-coded console output",
+        "Structured test runners",
+        "Detailed error reporting",
+        "JSON result export",
+        "Memory usage tracking",
+        "Performance metrics",
+        "Graceful failure handling",
+        "Platform compatibility checks"
+      ],
+      "runnerCapabilities": [
+        "Custom assertion methods",
+        "Async test support",
+        "Setup/teardown hooks",
+        "Result aggregation",
+        "Coverage calculation",
+        "Performance grading"
+      ]
+    },
+    "recommendations": {
+      "immediate": [
+        "Fix N-API build errors with conditional compilation",
+        "Separate N-API and WASM implementations",
+        "Install Jujutsu CLI for full integration test coverage",
+        "Run complete test suite after build fixes"
+      ],
+      "future": [
+        "Integrate nyc/c8 for code coverage",
+        "Add GitHub Actions CI/CD workflow",
+        "Create AgentDB integration tests",
+        "Add MCP protocol tests",
+        "Generate test data fixtures",
+        "Implement stress tests for concurrent operations"
+      ]
+    },
+    "performanceTargets": {
+      "moduleLoadTime": "< 100ms",
+      "cliStartup": "< 5s",
+      "memoryGrowth": "< 50MB",
+      "testCoverage": "> 80%",
+      "gcEfficiency": "> 80%"
+    },
+    "nextSteps": [
+      "1. Fix conditional compilation for wasm_bindgen",
+      "2. Complete N-API build successfully",
+      "3. Run full test suite (npm run test:all)",
+      "4. Run benchmarks (npm run bench:all)",
+      "5. Document final results",
+      "6. Establish CI/CD pipeline"
+    ],
+    "agentCoordination": {
+      "memoryKeys": [
+        "swarm/tester/status",
+        "swarm/tester/package-update",
+        "swarm/shared/test-results"
+      ],
+      "hooksUsed": [
+        "pre-task",
+        "post-edit",
+        "notify",
+        "post-task"
+      ],
+      "sessionId": "swarm-napi-testing"
+    }
+  }
+}

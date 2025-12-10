@@ -1,0 +1,82 @@
+{
+  "file_hash": "d251aacc9f6080114fba2efad3714312",
+  "feature": {
+    "id": "121 5315",
+    "name": "",
+    "cxc_code": "CXC4012546",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "The feature interacts with features associated with spectral efficiency related",
+    "parameters": [
+      {
+        "name": "SubscriberGroupProfile.lastSchedLinkAdaptMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "SubscriberGroupProfile.sCellScheduleSinrThresOffset",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "Uen.H",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.lastSchedLinkAdaptEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.lastSchedLinkAdaptEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCaScheduledDlSum",
+        "description": "Performance counter pmCaScheduledDlSum",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbUsedDlDtchSCell",
+        "description": "Performance counter pmPrbUsedDlDtchSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbUsedDlDtchSCellEran",
+        "description": "Performance counter pmPrbUsedDlDtchSCellEran",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbUsedDlDtchSCellExt",
+        "description": "Performance counter pmPrbUsedDlDtchSCellExt",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012546 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012546 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/523_22104-LZA7016014_1Uen.H.md",
+    "file_hash": "d251aacc9f6080114fba2efad3714312",
+    "processed_at": "2025-10-19 15:50:06",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,105 @@
+[package]
+name = "crispr-cas13-pipeline"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+authors = ["rUv <contact@ruv.io>", "Agentic Flow Contributors"]
+description = "High-performance Rust pipeline for CRISPR-Cas13 off-target analysis & immune response profiling in primate models"
+documentation = "https://docs.rs/crispr-cas13-pipeline"
+homepage = "https://ruv.io"
+repository = "https://github.com/ruvnet/agentic-flow"
+license = "MIT"
+keywords = ["crispr", "cas13", "bioinformatics", "genomics", "rna-editing"]
+categories = ["science", "command-line-utilities", "web-programming"]
+readme = "README.md"
+exclude = [
+    ".github/",
+    ".swarm/",
+    ".claude-flow/",
+    "target/",
+    "benchmarks/",
+]
+
+[workspace]
+members = [
+    "crates/data-models",
+    "crates/alignment-engine",
+    "crates/offtarget-predictor",
+    "crates/immune-analyzer",
+    "crates/api-service",
+    "crates/processing-orchestrator",
+]
+
+[dependencies]
+tokio = { version = "1.40", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1.10", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Database
+sqlx = { version = "0.8", features = ["runtime-tokio-native-tls", "postgres", "uuid", "chrono"] }
+mongodb = "3.1"
+
+# API
+axum = "0.7"
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors", "trace"] }
+
+# Distributed computing
+rdkafka = "0.36"
+redis = { version = "0.27", features = ["tokio-comp", "cluster"] }
+
+# Scientific computing
+ndarray = "0.16"
+bio = "2.0"
+rust-htslib = "0.47"
+
+# Configuration
+config = "0.14"
+dotenv = "0.15"
+
+# Privacy and Cryptography
+rand = "0.8"
+rand_distr = "0.4"
+sha2 = "0.10"
+hex = "0.4"
+
+# Workspace dependencies (will be published separately)
+data-models = { version = "0.1.0", path = "crates/data-models" }
+offtarget-predictor = { version = "0.1.0", path = "crates/offtarget-predictor" }
+immune-analyzer = { version = "0.1.0", path = "crates/immune-analyzer" }
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+proptest = "1.5"
+mockall = "0.13"
+wiremock = "0.6"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+
+[profile.bench]
+inherits = "release"
+
+[[bench]]
+name = "alignment_benchmark"
+harness = false
+
+[[bench]]
+name = "offtarget_prediction_benchmark"
+harness = false
+
+[[bench]]
+name = "immune_analysis_benchmark"
+harness = false
+
+[[bench]]
+name = "comprehensive_benchmarks"
+harness = false

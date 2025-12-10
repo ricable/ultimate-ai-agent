@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  v1-7-1-validation:
+    build:
+      context: .
+      dockerfile: Dockerfile.v1.7.1-validation
+    container_name: agentic-flow-v1.7.1-validation
+    environment:
+      - NODE_ENV=test
+      - AGENTDB_VERSION=1.3.9
+    volumes:
+      - ./validation-results:/app/results
+    networks:
+      - validation-network
+
+  # Additional validation service for runtime testing
+  runtime-validation:
+    build:
+      context: .
+      dockerfile: Dockerfile.v1.7.1-validation
+    container_name: agentic-flow-runtime-validation
+    environment:
+      - NODE_ENV=production
+      - AGENTDB_VERSION=1.3.9
+    command: >
+      sh -c "
+        echo '🔍 Runtime Validation for v1.7.1' &&
+        node -e \"
+          import('./dist/reasoningbank/HybridBackend.js').then(async (m) => {
+            console.log('✅ Module loaded');
+            const rb = new m.HybridReasoningBank({ preferWasm: false });
+            console.log('✅ HybridReasoningBank instantiated');
+            const stats = rb.getStats();
+            console.log('✅ Stats:', JSON.stringify(stats, null, 2));
+            console.log('\\n🎉 Runtime validation successful!');
+          }).catch(e => {
+            console.error('❌ Runtime validation failed:', e.message);
+            process.exit(1);
+          });
+        \"
+      "
+    networks:
+      - validation-network
+
+networks:
+  validation-network:
+    driver: bridge
+
+volumes:
+  validation-results:

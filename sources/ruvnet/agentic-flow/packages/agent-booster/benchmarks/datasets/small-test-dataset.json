@@ -1,0 +1,86 @@
+[
+  {
+    "id": "test-001",
+    "description": "Add type annotations to function",
+    "input": "function add(a, b) {\n  return a + b;\n}",
+    "expected_output": "function add(a: number, b: number): number {\n  return a + b;\n}",
+    "category": "typescript-conversion"
+  },
+  {
+    "id": "test-002",
+    "description": "Add error handling to async function",
+    "input": "async function fetchData(url) {\n  const response = await fetch(url);\n  return response.json();\n}",
+    "expected_output": "async function fetchData(url: string): Promise<any> {\n  try {\n    const response = await fetch(url);\n    if (!response.ok) {\n      throw new Error(`HTTP error! status: ${response.status}`);\n    }\n    return await response.json();\n  } catch (error) {\n    console.error('Error fetching data:', error);\n    throw error;\n  }\n}",
+    "category": "error-handling"
+  },
+  {
+    "id": "test-003",
+    "description": "Convert var to const/let",
+    "input": "var count = 0;\nvar name = 'John';\nfor (var i = 0; i < 10; i++) {\n  count++;\n}",
+    "expected_output": "let count = 0;\nconst name = 'John';\nfor (let i = 0; i < 10; i++) {\n  count++;\n}",
+    "category": "modernization"
+  },
+  {
+    "id": "test-004",
+    "description": "Add JSDoc comments",
+    "input": "function multiply(x, y) {\n  return x * y;\n}",
+    "expected_output": "/**\n * Multiplies two numbers\n * @param {number} x - First number\n * @param {number} y - Second number\n * @returns {number} The product of x and y\n */\nfunction multiply(x: number, y: number): number {\n  return x * y;\n}",
+    "category": "documentation"
+  },
+  {
+    "id": "test-005",
+    "description": "Convert callback to Promise",
+    "input": "function readFile(path, callback) {\n  fs.readFile(path, 'utf8', (err, data) => {\n    if (err) callback(err, null);\n    else callback(null, data);\n  });\n}",
+    "expected_output": "function readFile(path: string): Promise<string> {\n  return new Promise((resolve, reject) => {\n    fs.readFile(path, 'utf8', (err, data) => {\n      if (err) reject(err);\n      else resolve(data);\n    });\n  });\n}",
+    "category": "async-conversion"
+  },
+  {
+    "id": "test-006",
+    "description": "Add null checks",
+    "input": "function getUserName(user) {\n  return user.profile.name;\n}",
+    "expected_output": "function getUserName(user: any): string | null {\n  if (!user || !user.profile || !user.profile.name) {\n    return null;\n  }\n  return user.profile.name;\n}",
+    "category": "safety"
+  },
+  {
+    "id": "test-007",
+    "description": "Convert to arrow function",
+    "input": "const numbers = [1, 2, 3, 4, 5];\nconst doubled = numbers.map(function(n) {\n  return n * 2;\n});",
+    "expected_output": "const numbers: number[] = [1, 2, 3, 4, 5];\nconst doubled = numbers.map((n) => n * 2);",
+    "category": "modernization"
+  },
+  {
+    "id": "test-008",
+    "description": "Add input validation",
+    "input": "function divide(a, b) {\n  return a / b;\n}",
+    "expected_output": "function divide(a: number, b: number): number {\n  if (typeof a !== 'number' || typeof b !== 'number') {\n    throw new TypeError('Both arguments must be numbers');\n  }\n  if (b === 0) {\n    throw new Error('Cannot divide by zero');\n  }\n  return a / b;\n}",
+    "category": "validation"
+  },
+  {
+    "id": "test-009",
+    "description": "Convert class to TypeScript",
+    "input": "class Calculator {\n  constructor() {\n    this.result = 0;\n  }\n  add(value) {\n    this.result += value;\n  }\n}",
+    "expected_output": "class Calculator {\n  private result: number;\n\n  constructor() {\n    this.result = 0;\n  }\n\n  public add(value: number): void {\n    this.result += value;\n  }\n\n  public getResult(): number {\n    return this.result;\n  }\n}",
+    "category": "typescript-conversion"
+  },
+  {
+    "id": "test-010",
+    "description": "Add destructuring",
+    "input": "function formatUser(user) {\n  const name = user.name;\n  const email = user.email;\n  const age = user.age;\n  return `${name} (${email}) - ${age} years old`;\n}",
+    "expected_output": "function formatUser(user: { name: string; email: string; age: number }): string {\n  const { name, email, age } = user;\n  return `${name} (${email}) - ${age} years old`;\n}",
+    "category": "modernization"
+  },
+  {
+    "id": "test-011",
+    "description": "Add try-catch wrapper",
+    "input": "function parseJSON(str) {\n  return JSON.parse(str);\n}",
+    "expected_output": "function parseJSON(str: string): any {\n  try {\n    return JSON.parse(str);\n  } catch (error) {\n    console.error('Failed to parse JSON:', error);\n    return null;\n  }\n}",
+    "category": "error-handling"
+  },
+  {
+    "id": "test-012",
+    "description": "Add async/await",
+    "input": "function getData() {\n  return fetch('/api/data')\n    .then(res => res.json())\n    .then(data => data);\n}",
+    "expected_output": "async function getData(): Promise<any> {\n  try {\n    const res = await fetch('/api/data');\n    if (!res.ok) throw new Error('Request failed');\n    const data = await res.json();\n    return data;\n  } catch (error) {\n    console.error('Error fetching data:', error);\n    throw error;\n  }\n}",
+    "category": "async-conversion"
+  }
+]

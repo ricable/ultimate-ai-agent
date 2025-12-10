@@ -1,0 +1,32 @@
+{
+  "name": "agentic-jujutsu",
+  "type": "module",
+  "collaborators": [
+    "Agentic Flow Team <team@ruv.io>"
+  ],
+  "description": "AI-powered Jujutsu VCS wrapper for multi-agent collaboration - 10-100x faster than Git with MCP protocol support",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/agentic-flow"
+  },
+  "files": [
+    "agentic_jujutsu_bg.wasm",
+    "agentic_jujutsu.js",
+    "agentic_jujutsu.d.ts"
+  ],
+  "main": "agentic_jujutsu.js",
+  "homepage": "https://ruv.io",
+  "types": "agentic_jujutsu.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ],
+  "keywords": [
+    "jujutsu",
+    "vcs",
+    "ai-agents",
+    "wasm",
+    "mcp"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "id": "121 3040",
+  "name": "Antenna System Monitoring",
+  "cxc_code": "CXC4011422",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "With the Antenna System Monitoring feature, failing or incorrectly placed antennas can",
+  "parameters": [
+    {
+      "name": "ENodeBFunction.rxBranchImbalanceThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ENodeBFunction.rxDiversityLostThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ENodeBFunction.antSysMonitoringAlarmHandling",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "Uen.AG",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmBranchDeltaSinrDistr0",
+      "description": "Performance counter pmBranchDeltaSinrDistr0",
+      "category": "General"
+    },
+    {
+      "name": "pmBranchDeltaSinrDistr1",
+      "description": "Performance counter pmBranchDeltaSinrDistr1",
+      "category": "General"
+    },
+    {
+      "name": "pmBranchDeltaSinrDistr2",
+      "description": "Performance counter pmBranchDeltaSinrDistr2",
+      "category": "General"
+    },
+    {
+      "name": "pmBranchDeltaSinrDistr3",
+      "description": "Performance counter pmBranchDeltaSinrDistr3",
+      "category": "General"
+    },
+    {
+      "name": "pmBranchDeltaSinrDistr4",
+      "description": "Performance counter pmBranchDeltaSinrDistr4",
+      "category": "General"
+    },
+    {
+      "name": "pmBranchDeltaSinrDistr5",
+      "description": "Performance counter pmBranchDeltaSinrDistr5",
+      "category": "General"
+    },
+    {
+      "name": "pmBranchDeltaSinrDistr6",
+      "description": "Performance counter pmBranchDeltaSinrDistr6",
+      "category": "General"
+    },
+    {
+      "name": "pmBranchDeltaSinrDistrX",
+      "description": "Performance counter pmBranchDeltaSinrDistrX",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011422 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011422 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/13_22104-LZA7016014_1Uen.AG.md",
+  "file_hash": "cd90121c17db0e8ef0c66a68d596bf50",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,141 @@
+{
+  "id": "121 4833",
+  "name": "FAJ Number",
+  "cxc_code": "CXC4012211",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "The Radio Dot System (RDS) Location Support feature enables location-based services (LBS)",
+  "parameters": [
+    {
+      "name": "altitude",
+      "type": "Transmitter antenna altitude.  Positive value for height and                                 negative value for depth. {-8388608..8388607}  Unit: 0.1 m",
+      "description": "int32  readOnly",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "cellPortionRdId",
+      "type": "The value component of the RDN.   [0..40]",
+      "description": "string  key  mandatory  noNotification  restricted",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "floorInformation",
+      "type": "Floor number and height above floor level.",
+      "description": "struct FloorInfoRO  readOnly",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "latitude",
+      "type": "Transmitter antenna latitude position.  {-90000000..90000000}",
+      "description": "int32  readOnly",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "longitude",
+      "type": "Transmitter antenna longitude position.   {-180000000..180000000}",
+      "description": "int32  readOnly",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "lppaCellPortionId",
+      "type": "LPPa Cell Portion ID IE{0..32767}   Specification: 3GPP                                     36.455",
+      "description": "int32  readOnly",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "radioDotCoverage",
+      "type": "Coverage area used for UE positioning. Cell portion coverage is                                     defined by bearing, opening angle, and radius.",
+      "description": "EutranCellArea  readOnly",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "rdDataId",
+      "type": "The value component of the RDN.",
+      "description": "string",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "actualRelativeOutputPower",
+      "type": "Transceiver output power relative to output power set                                     forSectorCarrier. It can differ from requested output power if                                     another node requested it.  {1..100}  Unit: 1 %",
+      "description": "uint32 [0..1]  readOnly",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "minimumRelativeOutputPower",
+      "type": "Minimum requested relative output power that given transceiver                                     iscapable of.   {1..100}  Unit: 1 %",
+      "description": "uint32 [0..1]  readOnly",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "requestedRelativeOutputPower",
+      "type": "Requested transceiver output power relative to the output power                                     setfor SectorCarrier. Requested output power is rounded to                                     closest possible value due to power setting granularity. If                                     changes of requested relative output power are too small, they                                     do not affect result of output power from transceiver.   100{1..100}  Unit: 1 %  Disturbances: Changing this attribute can cause loss of                                     traffic.",
+      "description": "uint32",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "radioDotCoverage",
+      "type": "Coverage area used for UE positioning.    Cell portion coverage area is defined by bearing, opening angle,                                     and radius.  EutranCellArea",
+      "description": "EutranCellArea  readOnly",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "floorInformation",
+      "type": "Floor number and height above floor level.   Takes effect: Next unlock of cell.",
+      "description": "FloorInfo  [0..1]",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "positionCoordinates",
+      "type": "The position of the FieldReplaceableUnit expressed as                                     coordinates.",
+      "description": "PositionStruct  [0..1]",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "positionInformation",
+      "type": "The position of a FieldReplaceableUnit.   It can be:    On a shelf     On a wall     In a building     On a pole     Close to Cabinet or Shelf     Not on a shelf, but inside or outside the cabinet     Part of a HW group     At a remote site     If the unit is located in a building, the attribute                                     floorInformation gives more details about position. The                                     attribute positionCoordinates can give more details about                                     geographical position.  Otherwise, this attribute can be used, for example, to provide                                     the address of a remote site, or to indicate that the unit is                                     installed in connection to a specific shelf.",
+      "description": "string [0..255]  nonUnique",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.E2B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "ENL.The",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ENL"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmeasured",
+      "description": "Performance counter pmeasured",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": null,
+  "deactivation_step": null,
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/5_22104-FGB1010308_1Uen.E2B.md",
+  "file_hash": "cd346f6b27f1ae3c2852ba98c387755f",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

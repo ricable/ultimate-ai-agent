@@ -1,0 +1,55 @@
+{
+  "mlp": {
+    "name": "Multi-Layer Perceptron",
+    "architecture": {
+      "layers": [
+        784,
+        128,
+        64,
+        10
+      ],
+      "activation": "relu",
+      "outputActivation": "softmax"
+    }
+  },
+  "lstm": {
+    "name": "Long Short-Term Memory",
+    "architecture": {
+      "inputSize": 128,
+      "hiddenSize": 256,
+      "numLayers": 2,
+      "dropout": 0.2
+    }
+  },
+  "cnn": {
+    "name": "Convolutional Neural Network",
+    "architecture": {
+      "conv_layers": [
+        {
+          "filters": 32,
+          "kernel": 3,
+          "activation": "relu"
+        },
+        {
+          "filters": 64,
+          "kernel": 3,
+          "activation": "relu"
+        }
+      ],
+      "dense_layers": [
+        128,
+        10
+      ]
+    }
+  },
+  "particle": {
+    "name": "Particle Swarm Network",
+    "architecture": {
+      "particles": 100,
+      "dimensions": 50,
+      "inertia": 0.9,
+      "cognitive": 2,
+      "social": 2
+    }
+  }
+}

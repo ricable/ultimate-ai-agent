@@ -1,0 +1,67 @@
+# =============================================================================
+# Edge-Native AI - Storage Classes and Persistent Volumes
+# =============================================================================
+
+# Local path storage class for edge deployments
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: edge-ai-local
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: rancher.io/local-path
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Retain
+---
+# High-performance SSD storage class
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: edge-ai-ssd
+provisioner: rancher.io/local-path
+parameters:
+  nodePath: /opt/edge-ai/ssd-storage
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Retain
+---
+# PVC for AI models
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ai-models-pvc
+  namespace: edge-ai-inference
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: edge-ai-local
+  resources:
+    requests:
+      storage: 100Gi
+---
+# PVC for AgentDB
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: agentdb-pvc
+  namespace: edge-ai-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: edge-ai-ssd
+  resources:
+    requests:
+      storage: 50Gi
+---
+# PVC for vector embeddings (ruvector)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ruvector-pvc
+  namespace: edge-ai-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: edge-ai-ssd
+  resources:
+    requests:
+      storage: 100Gi

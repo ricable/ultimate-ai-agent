@@ -1,0 +1,429 @@
+{
+  "id": "121 3035",
+  "name": "Automated Mobility Optimization",
+  "cxc_code": "CXC4011376",
+  "value_package": "Self-Organizing Networks",
+  "value_package_id": "FAJ 801 0435 R7",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node, DU Radio Node",
+  "description": "",
+  "summary": "The Automated Mobility Optimization feature provides an RBS with the capacity to",
+  "parameters": [
+    {
+      "name": "EUtranCellRelation.amoAllowed",
+      "type": "T(1)",
+      "description": "T",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranFreqRelation.amoAllowed",
+      "type": "T",
+      "description": "T",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "AmoFunction.amoAllowedInterVendor",
+      "type": "T",
+      "description": "F and EeNB(3)",
+      "mo_class": "AmoFunction"
+    },
+    {
+      "name": "EUtranCellRelation.amoState",
+      "type": "ENABLED",
+      "description": "ENABLED",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellTDD.hoOptStatTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.hoOptStatNum",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.hoOptAdjThresholdAbs",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.hoOptAdjThresholdPerc",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.cioUpperLimitAdjBySon",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.cioLowerLimitAdjBySon",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.hoOptStatNumQci1",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.hoOptAdjThresholdPercQci1",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.hoOptAdjThresholdAbsQci1",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellRelation.amoAllowed",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellRelation.cellIndividualOffsetEUtranQci1",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranFreqRelation.amoAllowed",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranFreqRelation.cioQci1Enabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "AmoFunction.amoAllowedInterVendor",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AmoFunction"
+    },
+    {
+      "name": "AmoFunction.allowInterVendorX2Signal",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AmoFunction"
+    },
+    {
+      "name": "EUtranCellRelation.cellIndividualOffsetEUtran",
+      "type": "Affected",
+      "description": "Offset value for the neighbor cell. Used when the UE is in connected                                 mode. This attribute can be modified by SON functions.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellRelation.qOffsetCellEUtran",
+      "type": "Affected",
+      "description": "Offset value applied to a specific cell in idle mode mobility                                 state.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellRelation.cellIndividualOffsetEUtranQci1",
+      "type": "Affected",
+      "description": "Cell Individual Offset for QCI1. Used when UE with QCI1 bearer is in                                 connected mode. This attribute can be modified by SON functions.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "ENodeBFunction.rrcConnReestActive",
+      "type": "Affecting",
+      "description": "This feature needs the RRC re-establishment function to be                                 available.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "INTERNAL_EVENT_TOO_EARLY_HO",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Inter-frequency or intra-frequency HO",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_TOO_EARLY_HO",
+      "type": "EVENT_PARAM_HO_COMPLETED",
+      "description": "Was the HO completed before RLF?",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_TOO_EARLY_HO",
+      "type": "EVENT_PARAM_ERAB_QCI1_IND",
+      "description": "QCI1 indication information.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_TOO_LATE_HO",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Inter-frequency or intra-frequency HO",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_TOO_LATE_HO",
+      "type": "EVENT_PARAM_HO_INITIATED",
+      "description": "Was HO initiated before RLF?",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_TOO_LATE_HO",
+      "type": "EVENT_PARAM_ERAB_QCI1_IND",
+      "description": "QCI1 indication information.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_HO_WRONG_CELL",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Inter-frequency or intra-frequency HO",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_HO_WRONG_CELL",
+      "type": "EVENT_PARAM_HO_COMPLETED",
+      "description": "Was the HO completed before RLF?",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_HO_WRONG_CELL",
+      "type": "EVENT_PARAM_ERAB_QCI1_IND",
+      "description": "QCI1 indication information.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_HO_WRONG_CELL_REEST",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Inter-frequency or intra-frequency HO.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_HO_WRONG_CELL_REEST",
+      "type": "EVENT_PARAM_HO_COMPLETED",
+      "description": "Was the HO completed before RLF?",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_HO_WRONG_CELL_REEST",
+      "type": "EVENT_PARAM_ERAB_QCI1_IND",
+      "description": "QCI1 indication information.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_RLF_INDICATION",
+      "type": "",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_HANDOVER_REPORT",
+      "type": "",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.BH",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.hoOptStatTime",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCounters",
+      "description": "Performance counter pmCounters",
+      "category": "General"
+    },
+    {
+      "name": "pmEvents",
+      "description": "Performance counter pmEvents",
+      "category": "General"
+    },
+    {
+      "name": "pmHoOscInterF",
+      "description": "Performance counter pmHoOscInterF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoOscIntraF",
+      "description": "Performance counter pmHoOscIntraF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoOscQci1",
+      "description": "Performance counter pmHoOscQci1",
+      "category": "General"
+    },
+    {
+      "name": "pmHoTooEarlyHoInterF",
+      "description": "Performance counter pmHoTooEarlyHoInterF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoTooEarlyHoIntraF",
+      "description": "Performance counter pmHoTooEarlyHoIntraF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoTooEarlyHoQci1",
+      "description": "Performance counter pmHoTooEarlyHoQci1",
+      "category": "General"
+    },
+    {
+      "name": "pmHoTooLateHoInterF",
+      "description": "Performance counter pmHoTooLateHoInterF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoTooLateHoIntraF",
+      "description": "Performance counter pmHoTooLateHoIntraF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoTooLateHoQci1",
+      "description": "Performance counter pmHoTooLateHoQci1",
+      "category": "General"
+    },
+    {
+      "name": "pmHoWrongCellInterF",
+      "description": "Performance counter pmHoWrongCellInterF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoWrongCellIntraF",
+      "description": "Performance counter pmHoWrongCellIntraF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoWrongCellQci1",
+      "description": "Performance counter pmHoWrongCellQci1",
+      "category": "General"
+    },
+    {
+      "name": "pmHoWrongCellReestInterF",
+      "description": "Performance counter pmHoWrongCellReestInterF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoWrongCellReestIntraF",
+      "description": "Performance counter pmHoWrongCellReestIntraF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoWrongCellReestQci1",
+      "description": "Performance counter pmHoWrongCellReestQci1",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_EVENT_TOO_EARLY_HO",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Inter-frequency or intra-frequency HO"
+    },
+    {
+      "name": "INTERNAL_EVENT_TOO_EARLY_HO",
+      "type": "EVENT_PARAM_HO_COMPLETED",
+      "description": "Was the HO completed before RLF?"
+    },
+    {
+      "name": "INTERNAL_EVENT_TOO_EARLY_HO",
+      "type": "EVENT_PARAM_ERAB_QCI1_IND",
+      "description": "QCI1 indication information."
+    },
+    {
+      "name": "INTERNAL_EVENT_TOO_LATE_HO",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Inter-frequency or intra-frequency HO"
+    },
+    {
+      "name": "INTERNAL_EVENT_TOO_LATE_HO",
+      "type": "EVENT_PARAM_HO_INITIATED",
+      "description": "Was HO initiated before RLF?"
+    },
+    {
+      "name": "INTERNAL_EVENT_TOO_LATE_HO",
+      "type": "EVENT_PARAM_ERAB_QCI1_IND",
+      "description": "QCI1 indication information."
+    },
+    {
+      "name": "INTERNAL_EVENT_HO_WRONG_CELL",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Inter-frequency or intra-frequency HO"
+    },
+    {
+      "name": "INTERNAL_EVENT_HO_WRONG_CELL",
+      "type": "EVENT_PARAM_HO_COMPLETED",
+      "description": "Was the HO completed before RLF?"
+    },
+    {
+      "name": "INTERNAL_EVENT_HO_WRONG_CELL",
+      "type": "EVENT_PARAM_ERAB_QCI1_IND",
+      "description": "QCI1 indication information."
+    },
+    {
+      "name": "INTERNAL_EVENT_HO_WRONG_CELL_REEST",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Inter-frequency or intra-frequency HO."
+    },
+    {
+      "name": "INTERNAL_EVENT_HO_WRONG_CELL_REEST",
+      "type": "EVENT_PARAM_HO_COMPLETED",
+      "description": "Was the HO completed before RLF?"
+    },
+    {
+      "name": "INTERNAL_EVENT_HO_WRONG_CELL_REEST",
+      "type": "EVENT_PARAM_ERAB_QCI1_IND",
+      "description": "QCI1 indication information."
+    },
+    {
+      "name": "X2_RLF_INDICATION",
+      "type": "",
+      "description": ""
+    },
+    {
+      "name": "X2_HANDOVER_REPORT",
+      "type": "",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011376 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011376 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/78_22104-LZA7016014_1Uen.BH.md",
+  "file_hash": "d8894f0243b2c04265f5fad27554d730",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

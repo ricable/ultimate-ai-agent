@@ -1,0 +1,171 @@
+{
+  "file_hash": "37f00bdbc9008bfb3f7ad633713c887a",
+  "feature": {
+    "id": "121 1447",
+    "name": "System Improvements in LTE RAN L19.Q3",
+    "cxc_code": "CXC4011913",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "DU Radio Node, Baseband Radio Node",
+    "description": "",
+    "summary": "The Downlink Coordinated Multi-Point feature provides higher data throughput for UEs",
+    "parameters": [
+      {
+        "name": "DlComp.dlCompMeasRprtMaxSinr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DlComp"
+      },
+      {
+        "name": "DlComp.dlCompMeasRprtMinSinr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DlComp"
+      },
+      {
+        "name": "ReportConfigA5DlComp.a5Threshold1Rsrq",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5DlComp"
+      },
+      {
+        "name": "ReportConfigA5DlComp.a5Threshold2Rsrq",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5DlComp"
+      },
+      {
+        "name": "INTERNAL_EVENT_DL_COMP_MEAS_CONFIG_REJECT",
+        "type": "EVENT_PARAM_RRC_CONFIG_REJECT_CAUSE",
+        "description": "The reason why Radio Access Control (RAC) rejects Baseband                                     request for Downlink Coordinated Multi-Point measurement                                     configuration.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_DL_COMP_MEAS_REP_DISCARD",
+        "type": "EVENT_PARAM_MEAS_REP_DISCARD_CAUSE",
+        "description": "The reason why RAC discards Downlink Coordinated Multi-Point                                     measurement reports from the UE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.BE",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "DlComp.a5Threshold1Rsrq",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "DlComp"
+      },
+      {
+        "name": "DlComp.a5Threshold2Rsrq",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "DlComp"
+      },
+      {
+        "name": "EUtranCellFDD.pmRrcConnReconfAttNoMobDlComp",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmRrcConnReconfAttNoMobDlComp",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmRrcConnReconfSuccNoMobDlComp",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmRrcConnReconfSuccNoMobDlComp",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmConfigRejDlComp",
+        "description": "Performance counter pmConfigRejDlComp",
+        "category": "General"
+      },
+      {
+        "name": "pmDeltaSinrDlComp",
+        "description": "Performance counter pmDeltaSinrDlComp",
+        "category": "General"
+      },
+      {
+        "name": "pmMaxDeltaSinrDlComp",
+        "description": "Performance counter pmMaxDeltaSinrDlComp",
+        "category": "General"
+      },
+      {
+        "name": "pmMeasRep",
+        "description": "Performance counter pmMeasRep",
+        "category": "General"
+      },
+      {
+        "name": "pmMeasRepDiscDlComp",
+        "description": "Performance counter pmMeasRepDiscDlComp",
+        "category": "General"
+      },
+      {
+        "name": "pmMeasRepDlComp",
+        "description": "Performance counter pmMeasRepDlComp",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAttNoMobDlComp",
+        "description": "Performance counter pmRrcConnReconfAttNoMobDlComp",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfSuccNoMobDlComp",
+        "description": "Performance counter pmRrcConnReconfSuccNoMobDlComp",
+        "category": "General"
+      },
+      {
+        "name": "pmeasRprtMaxSinr",
+        "description": "Performance counter pmeasRprtMaxSinr",
+        "category": "General"
+      },
+      {
+        "name": "pmeasRprtMinSinr",
+        "description": "Performance counter pmeasRprtMinSinr",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_DL_COMP_MEAS_CONFIG_REJECT",
+        "type": "EVENT_PARAM_RRC_CONFIG_REJECT_CAUSE",
+        "description": "The reason why Radio Access Control (RAC) rejects Baseband                                     request for Downlink Coordinated Multi-Point measurement                                     configuration."
+      },
+      {
+        "name": "INTERNAL_EVENT_DL_COMP_MEAS_REP_DISCARD",
+        "type": "EVENT_PARAM_MEAS_REP_DISCARD_CAUSE",
+        "description": "The reason why RAC discards Downlink Coordinated Multi-Point                                     measurement reports from the UE."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011913 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011913 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/25_22104-LZA7016014_1Uen.BE.md",
+    "file_hash": "37f00bdbc9008bfb3f7ad633713c887a",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

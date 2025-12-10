@@ -1,0 +1,274 @@
+{
+  "id": "121 5595",
+  "name": "NR Service-Adaptive SR Periodicity",
+  "cxc_code": "CXC4012680",
+  "value_package": "Performance Boost",
+  "value_package_id": "FAJ 801 4021",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables Scheduling Request (SR) periodicity to be configured according to",
+  "parameters": [
+    {
+      "name": "NRCellDU.srPeriodicityRef",
+      "type": "Affecting",
+      "description": "This attribute is also applicable to Low-Band and Mid-Band.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.srPeriodicityPoolSetRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.fddTddUlDlPattern",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.srPeriodicityPool1",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.srPeriodicityPool2",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.srPeriodicityPool3",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.srPeriodicityPool4",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.srPeriodicityPool5",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.subCarrierSpacing",
+      "type": "Affecting",
+      "description": "This attribute is also applicable to Low-Band and Mid-Band.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.noOfSrResourcesPool1",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.noOfSrResourcesPool2",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.noOfSrResourcesPool3",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.noOfSrResourcesPool4",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.noOfSrResourcesPool5",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.noOfSrResourcesHsPool1",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.noOfSrResourcesHsPool2",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.noOfSrResourcesHsPool3",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.noOfSrResourcesHsPool4",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicityPoolSet.noOfSrResourcesHsPool5",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityPoolSet"
+    },
+    {
+      "name": "SrPeriodicity.ueConfGroupType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicity"
+    },
+    {
+      "name": "SrPeriodicityUeCfg.prefUeGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityUeCfg"
+    },
+    {
+      "name": "SrPeriodicityUeCfg.prefUeSrPeriodicityPool",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityUeCfg"
+    },
+    {
+      "name": "SrPeriodicityUeCfg.ueConfGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityUeCfg"
+    },
+    {
+      "name": "SrPeriodicityUeCfg.ueGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SrPeriodicityUeCfg"
+    },
+    {
+      "name": "Uen.V",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmActiveUeDlMax",
+      "description": "Performance counter pmActiveUeDlMax",
+      "category": "General"
+    },
+    {
+      "name": "pmActiveUeDlSamp",
+      "description": "Performance counter pmActiveUeDlSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmActiveUeDlSum",
+      "description": "Performance counter pmActiveUeDlSum",
+      "category": "General"
+    },
+    {
+      "name": "pmActiveUeUlMax",
+      "description": "Performance counter pmActiveUeUlMax",
+      "category": "General"
+    },
+    {
+      "name": "pmActiveUeUlSamp",
+      "description": "Performance counter pmActiveUeUlSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmActiveUeUlSum",
+      "description": "Performance counter pmActiveUeUlSum",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbLevelMaxEnDc",
+      "description": "Performance counter pmDrbLevelMaxEnDc",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbLevelMaxSa",
+      "description": "Performance counter pmDrbLevelMaxSa",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUeCtxtSrPerCfgDistr",
+      "description": "Performance counter pmEbsUeCtxtSrPerCfgDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUeCtxtSrPerPoolCfgDistr",
+      "description": "Performance counter pmEbsUeCtxtSrPerPoolCfgDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUeCtxtSrPerPoolPrefDistr",
+      "description": "Performance counter pmEbsUeCtxtSrPerPoolPrefDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUeCtxtSrPerPrefDistr",
+      "description": "Performance counter pmEbsUeCtxtSrPerPrefDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabSucc",
+      "description": "Performance counter pmRrcConnEstabSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnLevelMaxEnDc",
+      "description": "Performance counter pmRrcConnLevelMaxEnDc",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnLevelMaxSa",
+      "description": "Performance counter pmRrcConnLevelMaxSa",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012680 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012680 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/175_22104-LZA7016017_1Uen.V.md",
+  "file_hash": "aa2eac1b0ab920ed9751626c173a07bb",
+  "processed_at": "2025-10-19 15:50:04",
+  "network_impact": {},
+  "performance_impact": {}
+}

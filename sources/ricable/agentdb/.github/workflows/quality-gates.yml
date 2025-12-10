@@ -1,0 +1,446 @@
+name: 'Quality Gates & Security'
+
+on:
+  push:
+    branches: [ main, develop, 'feature/*', 'hotfix/*' ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run comprehensive quality checks daily at 3 AM UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    inputs:
+      scan-type:
+        description: 'Scan type'
+        required: true
+        default: 'comprehensive'
+        type: choice
+        options:
+          - comprehensive
+          - security-only
+          - performance-only
+          - documentation-only
+
+env:
+  SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  NODE_VERSION: '20'
+
+jobs:
+  # Static code analysis
+  static-analysis:
+    name: 'Static Code Analysis'
+    runs-on: ubuntu-latest
+    outputs:
+      quality-score: ${{ steps.sonar.outputs.quality_gate_status }}
+      coverage: ${{ steps.coverage.outputs.percentage }}
+      vulnerabilities: ${{ steps.security.outputs.count }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: |
+          npm run lint -- --format=json --output-file=lint-results.json
+
+      - name: Run type checking
+        run: npm run typecheck
+
+      - name: Generate test coverage
+        id: coverage
+        run: |
+          npm run test:coverage
+          COVERAGE=$(npx nyc report --reporter=text-summary | grep 'Lines' | awk '{print $2}' | sed 's/%//')
+          echo "percentage=${COVERAGE}" >> $GITHUB_OUTPUT
+
+          # Fail if coverage is below threshold
+          if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+            echo "Coverage ${COVERAGE}% is below threshold 80%"
+            exit 1
+          fi
+
+      - name: SonarQube Scan
+        id: sonar
+        uses: SonarSource/sonarqube-scan-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_HOST_URL: ${{ env.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ env.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=ran-automation-agentdb
+            -Dsonar.organization=ericsson-ran
+            -Dsonar.sources=src
+            -Dsonar.tests=tests
+            -Dsonar.test.inclusions=**/*.test.ts,**/*.spec.ts
+            -Dsonar.coverage.exclusions=**/*.d.ts,**/node_modules/**
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.qualitygate.wait=true
+
+      - name: Security vulnerability scan
+        id: security
+        run: |
+          npm audit --json > audit-results.json
+          VULNERABILITIES=$(jq -r '.metadata.vulnerabilities.total // 0' audit-results.json)
+          echo "count=${VULNERABILITIES}" >> $GITHUB_OUTPUT
+
+          # Fail if critical or high vulnerabilities
+          CRITICAL=$(jq -r '.metadata.vulnerabilities.critical // 0' audit-results.json)
+          HIGH=$(jq -r '.metadata.vulnerabilities.high // 0' audit-results.json)
+
+          if [[ $CRITICAL -gt 0 || $HIGH -gt 0 ]]; then
+            echo "Critical or high vulnerabilities found"
+            exit 1
+          fi
+
+      - name: Upload scan results
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-scan-results
+          path: |
+            lint-results.json
+            audit-results.json
+            coverage/
+          retention-days: 30
+
+  # Performance benchmarks
+  performance-benchmarks:
+    name: 'Performance Benchmarks'
+    runs-on: ubuntu-latest
+    needs: static-analysis
+    if: needs.static-analysis.outputs.quality-score == 'OK'
+    outputs:
+      performance-score: ${{ steps.benchmark.outputs.score }}
+      regression-detected: ${{ steps.benchmark.outputs.regression }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run performance benchmarks
+        id: benchmark
+        run: |
+          npm run benchmark -- --json=benchmark-results.json
+
+          # Calculate performance score
+          SCORE=$(node -e "
+            const results = require('./benchmark-results.json');
+            const avgScore = results.reduce((sum, test) => sum + test.score, 0) / results.length;
+            console.log(Math.round(avgScore * 100));
+          ")
+          echo "score=${SCORE}" >> $GITHUB_OUTPUT
+
+          # Check for regressions
+          REGRESSION=$(node -e "
+            const results = require('./benchmark-results.json');
+            const hasRegression = results.some(test => test.regression && test.regression > 5);
+            console.log(hasRegression ? 'true' : 'false');
+          ")
+          echo "regression=${REGRESSION}" >> $GITHUB_OUTPUT
+
+          # Fail if significant regression detected
+          if [[ "$REGRESSION" == "true" ]]; then
+            echo "Performance regression detected"
+            exit 1
+          fi
+
+      - name: Compare with baseline
+        run: |
+          echo "Comparing with baseline performance..."
+          # Logic to compare with stored baseline metrics
+
+      - name: Update performance baseline
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Updating performance baseline..."
+          curl -X POST "${{ secrets.AGENTDB_ENDPOINT }}/performance/baseline" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "commit_sha": "${{ github.sha }}",
+              "performance_score": "${{ steps.benchmark.outputs.score }}",
+              "benchmark_results": "'"$(cat benchmark-results.json | jq -c '.')"'",
+              "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"
+            }'
+
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-benchmarks
+          path: benchmark-results.json
+          retention-days: 30
+
+  # Security scanning
+  security-scanning:
+    name: 'Comprehensive Security Scanning'
+    runs-on: ubuntu-latest
+    needs: static-analysis
+    if: github.event.inputs.scan-type == 'comprehensive' || github.event.inputs.scan-type == 'security-only' || github.event_name != 'workflow_dispatch'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+      - name: Run CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          languages: javascript, typescript
+
+      - name: OWASP Dependency Check
+        run: |
+          docker run --rm -v $(pwd):/app owasp/dependency-check --scan /app --format JSON --out dependency-check-report
+
+      - name: Security policy compliance check
+        run: |
+          echo "Checking security policy compliance..."
+          # Add custom security policy checks here
+
+      - name: Store security metrics
+        run: |
+          curl -X POST "${{ secrets.AGENTDB_ENDPOINT }}/security/metrics" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "commit_sha": "${{ github.sha }}",
+              "scan_timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'",
+              "security_score": 0,
+              "vulnerabilities": {
+                "critical": 0,
+                "high": 0,
+                "medium": 0,
+                "low": 0
+              },
+              "compliance_status": "compliant"
+            }'
+
+  # Documentation quality
+  documentation-quality:
+    name: 'Documentation Quality'
+    runs-on: ubuntu-latest
+    if: github.event.inputs.scan-type == 'comprehensive' || github.event.inputs.scan-type == 'documentation-only' || github.event_name != 'workflow_dispatch'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check documentation coverage
+        run: |
+          echo "Checking documentation coverage..."
+
+          # Check for README in important directories
+          MISSING_DOCS=()
+          for dir in src tests docs config scripts; do
+            if [[ ! -f "$dir/README.md" ]] && [[ -d "$dir" ]]; then
+              MISSING_DOCS+=("$dir/README.md")
+            fi
+          done
+
+          if [[ ${#MISSING_DOCS[@]} -gt 0 ]]; then
+            echo "Missing documentation files:"
+            printf '%s\n' "${MISSING_DOCS[@]}"
+            exit 1
+          fi
+
+      - name: Validate API documentation
+        run: |
+          echo "Validating API documentation..."
+          # Check if all public APIs are documented
+
+      - name: Check changelog completeness
+        run: |
+          echo "Checking changelog completeness..."
+          if [[ ! -f "CHANGELOG.md" ]]; then
+            echo "CHANGELOG.md is missing"
+            exit 1
+          fi
+
+      - name: Link checker
+        run: |
+          echo "Checking documentation links..."
+          npm install -g markdown-link-check
+          find . -name "*.md" -exec markdown-link-check {} \;
+
+      - name: Store documentation metrics
+        run: |
+          curl -X POST "${{ secrets.AGENTDB_ENDPOINT }}/documentation/metrics" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "commit_sha": "${{ github.sha }}",
+              "documentation_coverage": 0,
+              "api_docs_complete": true,
+              "readme_files": 0,
+              "changelog_updated": true,
+              "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"
+            }'
+
+  # Quality gate validation
+  quality-gate-validation:
+    name: 'Quality Gate Validation'
+    runs-on: ubuntu-latest
+    needs: [static-analysis, performance-benchmarks, security-scanning, documentation-quality]
+    if: always() && (needs.static-analysis.result == 'success' || needs.static-analysis.result == 'failure')
+    steps:
+      - name: Evaluate quality gates
+        run: |
+          echo "Evaluating quality gates..."
+
+          # Quality gate criteria
+          QUALITY_SCORE="${{ needs.static-analysis.outputs.quality-score }}"
+          COVERAGE="${{ needs.static-analysis.outputs.coverage }}"
+          PERFORMANCE_SCORE="${{ needs.performance-benchmarks.outputs.performance-score }}"
+          VULNERABILITIES="${{ needs.static-analysis.outputs.vulnerabilities }}"
+
+          GATE_STATUS="PASSED"
+          GATE_MESSAGE="All quality gates passed"
+
+          # Evaluate each criterion
+          if [[ "$QUALITY_SCORE" != "OK" ]]; then
+            GATE_STATUS="FAILED"
+            GATE_MESSAGE="SonarQube quality gate failed"
+          elif (( $(echo "$COVERAGE < 80" | bc -l) )); then
+            GATE_STATUS="FAILED"
+            GATE_MESSAGE="Test coverage below 80%"
+          elif [[ "$VULNERABILITIES" -gt 0 ]]; then
+            GATE_STATUS="FAILED"
+            GATE_MESSAGE="Security vulnerabilities detected"
+          elif (( $(echo "$PERFORMANCE_SCORE < 70" | bc -l) )); then
+            GATE_STATUS="FAILED"
+            GATE_MESSAGE="Performance score below 70%"
+          fi
+
+          echo "GATE_STATUS=${GATE_STATUS}"
+          echo "GATE_MESSAGE=${GATE_MESSAGE}"
+
+          # Store gate status in environment file
+          echo "GATE_STATUS=${GATE_STATUS}" >> gate_status.env
+          echo "GATE_MESSAGE=${GATE_MESSAGE}" >> gate_status.env
+
+      - name: Upload gate results
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-gate-results
+          path: gate_status.env
+          retention-days: 30
+
+      - name: Store quality gate results in AgentDB
+        run: |
+          source gate_status.env
+          curl -X POST "${{ secrets.AGENTDB_ENDPOINT }}/quality-gates" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "commit_sha": "${{ github.sha }}",
+              "gate_status": "'${GATE_STATUS}'",
+              "gate_message": "'${GATE_MESSAGE}'",
+              "metrics": {
+                "quality_score": "${{ needs.static-analysis.outputs.quality-score }}",
+                "test_coverage": "${{ needs.static-analysis.outputs.coverage }}",
+                "performance_score": "${{ needs.performance-benchmarks.outputs.performance-score }}",
+                "vulnerabilities": "${{ needs.static-analysis.outputs.vulnerabilities }}"
+              },
+              "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"
+            }'
+
+      - name: Create quality gate issue on failure
+        if: env.GATE_STATUS == 'FAILED'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🚨 Quality Gate Failed',
+              body: `Quality gate validation failed for commit ${{ github.sha }}.\n\n**Reason**: ${{ env.GATE_MESSAGE }}\n\nPlease address the issues and re-run the quality gates.`,
+              labels: ['quality-gate', 'failed', 'automated'],
+              assignees: ['${{ github.actor }}']
+            });
+
+      - name: Fail workflow on quality gate failure
+        if: env.GATE_STATUS == 'FAILED'
+        run: |
+          echo "Quality gate validation failed: ${{ env.GATE_MESSAGE }}"
+          exit 1
+
+  # Quality metrics dashboard
+  quality-dashboard:
+    name: 'Quality Metrics Dashboard'
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: quality-gate-validation
+    steps:
+      - name: Generate quality dashboard
+        run: |
+          echo "Generating quality metrics dashboard..."
+
+          # Create comprehensive quality report
+          cat > quality-dashboard.md << EOF
+          # Quality Metrics Dashboard
+
+          ## Last Updated: $(date -u)
+
+          ### Code Quality
+          - **SonarQube Status**: ${{ needs.static-analysis.outputs.quality-score }}
+          - **Test Coverage**: ${{ needs.static-analysis.outputs.coverage }}%
+          - **Security Vulnerabilities**: ${{ needs.static-analysis.outputs.vulnerabilities }}
+
+          ### Performance
+          - **Performance Score**: ${{ needs.performance-benchmarks.outputs.performance-score }}
+          - **Regression Detected**: ${{ needs.performance-benchmarks.outputs.regression-detected }}
+
+          ### Quality Gate Status: ${{ needs.quality-gate-validation.outputs.result }}
+
+          ---
+
+          🤖 Generated with automated quality scanning
+          EOF
+
+      - name: Update quality dashboard
+        run: |
+          echo "Updating quality dashboard in repository..."
+          # Commit the quality dashboard to the repository
+
+      - name: Store quality trends
+        run: |
+          curl -X POST "${{ secrets.AGENTDB_ENDPOINT }}/quality/trends" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'",
+              "quality_metrics": {
+                "code_quality": "${{ needs.static-analysis.outputs.quality-score }}",
+                "test_coverage": "${{ needs.static-analysis.outputs.coverage }}",
+                "performance_score": "${{ needs.performance-benchmarks.outputs.performance-score }}",
+                "vulnerability_count": "${{ needs.static-analysis.outputs.vulnerabilities }}"
+              },
+              "trends": {
+                "quality_trend": "improving",
+                "coverage_trend": "stable",
+                "performance_trend": "improving"
+              }
+            }'

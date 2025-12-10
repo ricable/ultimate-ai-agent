@@ -1,0 +1,398 @@
+{
+  "id": "121 4940",
+  "name": "Machine Intelligence Enabled Mobility",
+  "cxc_code": "CXC4012297",
+  "value_package": "Self-Organizing Networks",
+  "value_package_id": "FAJ 801 0435",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Machine Intelligence Enabled Mobility feature improves the functionality of the",
+  "parameters": [
+    {
+      "name": "EVENT_PARAM_UE_ACTIVITY_STATUS",
+      "type": "UE activity status, for example UE active, UE inactive, or UE inactive-extended",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_ML_RSC_DECISION",
+      "type": "This parameter includes information whether report strongest cell should be activated or not, used for machine intelligence purposes",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MOBILITY_TRIGGER",
+      "type": "Indicates the trigger for performing a mobility evaluation",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SERVING_PHYSICAL_CELLID",
+      "type": "The physical cell identity for the serving cell that UE measurement is for",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_RSRPSERVING",
+      "type": "The RSRP measurement result for the first cell in the report. See 3GPP 36.331",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_RSRQSERVING",
+      "type": "The RSRQ measurement result for the first cell in the report. See 3GPP 36.331",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_PHYSICAL_CELLIDn",
+      "type": "The                                     physical cell identity for the cell that the UE measurement is                                     for.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_RSRPRESULTn",
+      "type": "The                                     RSRP measurement result for the nth cell in the                                     report.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_RSRQRESULTn",
+      "type": "The                                     RSRQ measurement result for the nth cell in the                                     report.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_FREQ",
+      "type": "The EARFCN identity for an other frequency than the serving one",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_ML_SERVING_PHYSICAL_CELLID",
+      "type": "The physical cell identity for the serving cell that the UE measurement is for",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_RSRPSERVING",
+      "type": "The RSRP measurement result for machine intelligence purposes, for the serving cell at the entry point of the search zone",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_RSRQSERVING",
+      "type": "The RSRQ measurement result for machine intelligence purposes, for the serving cell at the entry point of the search zone",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_ML_PHYSICAL_CELLIDn",
+      "type": "The physical cell identity for the cell that                                     the UE measurement is                                     for.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_ML_RSRPRESULTn",
+      "type": "The                                     RSRP measurement result, for the nth cell in the report.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_ML_RSRQRESULTn",
+      "type": "The                                     RSRQ measurement result, for the nth cell in the                                     report.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_ML_PROC_RESULT",
+      "type": "This                                     parameter includes information whether report strongest cell was                                     received or there was another stop event result, used for                                     machine intelligence purposes.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_SELECTIONn",
+      "type": "Whether                                     this frequency is a candidate to be used or                                     not.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_RSRP_MINn",
+      "type": "Estimated minimum RSRP for EARFCN.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_RSRP_MAXn",
+      "type": "Estimated                                     maximum RSRP for EARFCN.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SERVING_EFCN",
+      "type": "The                                     EARFCN for the cell that the UE measurement is for, serving cell                                     in report.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_RESULT",
+      "type": "Machine                                     intelligence prediction result.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_EARFCN0n",
+      "type": "Machine                                     intelligence prediction for EARFCN.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_WITHIN_COVERAGEn",
+      "type": "Prediction                                     result of within-coverage model for                                     EARFCN.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_OUTSIDE_COVERAGEn",
+      "type": "Prediction                                     result of outside-coverage model for                                     EARFCN.",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AN",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.mobCtrlAtPoorCovActive",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.mobCtrlAtPoorCovActive",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "UnsupportedFreqProfile.unsupportedFreqList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UnsupportedFreqProfile"
+    },
+    {
+      "name": "ReportConfigSearch.inhibitA2SearchConfig",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ReportConfigSearch"
+    },
+    {
+      "name": "EUtranFreqRelation.pmBadCovMiFreqSel",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranFreqRelation.pmBadCovMiFreqSucc",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranFreqRelation.pmBadCovMiFreqTo",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranFreqRelation"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmBadCovMeasTimeActDistr",
+      "description": "Performance counter pmBadCovMeasTimeActDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmBadCovMeasTimeDistr",
+      "description": "Performance counter pmBadCovMeasTimeDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmBadCovMiFreqSel",
+      "description": "Performance counter pmBadCovMiFreqSel",
+      "category": "General"
+    },
+    {
+      "name": "pmBadCovMiFreqSucc",
+      "description": "Performance counter pmBadCovMiFreqSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmBadCovMiFreqTo",
+      "description": "Performance counter pmBadCovMiFreqTo",
+      "category": "General"
+    },
+    {
+      "name": "pmBadCovMiMultiFreqSel",
+      "description": "Performance counter pmBadCovMiMultiFreqSel",
+      "category": "General"
+    },
+    {
+      "name": "pmBadCovMiMultiFreqSucc",
+      "description": "Performance counter pmBadCovMiMultiFreqSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmBadCovMiMultiFreqTo",
+      "description": "Performance counter pmBadCovMiMultiFreqTo",
+      "category": "General"
+    },
+    {
+      "name": "pmCriticalBorderEvalReportAct",
+      "description": "Performance counter pmCriticalBorderEvalReportAct",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "EVENT_PARAM_UE_ACTIVITY_STATUS",
+      "type": "UE activity status, for example UE active, UE inactive, or UE inactive-extended",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_ML_RSC_DECISION",
+      "type": "This parameter includes information whether report strongest cell should be activated or not, used for machine intelligence purposes",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MOBILITY_TRIGGER",
+      "type": "Indicates the trigger for performing a mobility evaluation",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SERVING_PHYSICAL_CELLID",
+      "type": "The physical cell identity for the serving cell that UE measurement is for",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_RSRPSERVING",
+      "type": "The RSRP measurement result for the first cell in the report. See 3GPP 36.331",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_RSRQSERVING",
+      "type": "The RSRQ measurement result for the first cell in the report. See 3GPP 36.331",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_PHYSICAL_CELLIDn",
+      "type": "The                                     physical cell identity for the cell that the UE measurement is                                     for.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_RSRPRESULTn",
+      "type": "The                                     RSRP measurement result for the nth cell in the                                     report.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_RSRQRESULTn",
+      "type": "The                                     RSRQ measurement result for the nth cell in the                                     report.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_FREQ",
+      "type": "The EARFCN identity for an other frequency than the serving one",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_ML_SERVING_PHYSICAL_CELLID",
+      "type": "The physical cell identity for the serving cell that the UE measurement is for",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_RSRPSERVING",
+      "type": "The RSRP measurement result for machine intelligence purposes, for the serving cell at the entry point of the search zone",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_RSRQSERVING",
+      "type": "The RSRQ measurement result for machine intelligence purposes, for the serving cell at the entry point of the search zone",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_ML_PHYSICAL_CELLIDn",
+      "type": "The physical cell identity for the cell that                                     the UE measurement is                                     for.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_ML_RSRPRESULTn",
+      "type": "The                                     RSRP measurement result, for the nth cell in the report.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_ML_RSRQRESULTn",
+      "type": "The                                     RSRQ measurement result, for the nth cell in the                                     report.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_ML_PROC_RESULT",
+      "type": "This                                     parameter includes information whether report strongest cell was                                     received or there was another stop event result, used for                                     machine intelligence purposes.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_SELECTIONn",
+      "type": "Whether                                     this frequency is a candidate to be used or                                     not.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_RSRP_MINn",
+      "type": "Estimated minimum RSRP for EARFCN.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_RSRP_MAXn",
+      "type": "Estimated                                     maximum RSRP for EARFCN.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SERVING_EFCN",
+      "type": "The                                     EARFCN for the cell that the UE measurement is for, serving cell                                     in report.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_RESULT",
+      "type": "Machine                                     intelligence prediction result.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_EARFCN0n",
+      "type": "Machine                                     intelligence prediction for EARFCN.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_WITHIN_COVERAGEn",
+      "type": "Prediction                                     result of within-coverage model for                                     EARFCN.",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_ML_PREDICT_OUTSIDE_COVERAGEn",
+      "type": "Prediction                                     result of outside-coverage model for                                     EARFCN.",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012297 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012297 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/409_22104-LZA7016014_1Uen.AN.md",
+  "file_hash": "32eddd76ce1da08f193a16cd38df5881",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

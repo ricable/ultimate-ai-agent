@@ -1,0 +1,213 @@
+{
+  "file_hash": "1c73ee71ecca6e4ae2ae1b5d310529eb",
+  "feature": {
+    "id": "121 5850",
+    "name": "LTE Delayed Mobility for Robust Call Setup",
+    "cxc_code": "CXC4012835",
+    "value_package": "VoLTE Performance",
+    "value_package_id": "FAJ 801 0444",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature prioritizes the establishment of a QCI1 bearer for a VoLTE call over UE",
+    "parameters": [
+      {
+        "name": "RobustCallSetup.imsSignalingDetectionEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.moVoiceDetectionEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.poorCoverageEnhEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.endcSetupDelayEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.geranUtranMobilityDelayEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.intraLteMobilityDelayEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.nrMobilityDelayEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.guardTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "ReportConfigB1GUtra.reportIntervalB1",
+        "type": "Affected",
+        "description": "The value of the attribute is recommended to be set to                                         MS_480 or higher.",
+        "mo_class": "ReportConfigB1GUtra"
+      },
+      {
+        "name": "ENodeBFunction.endcS1OverlapMode",
+        "type": "Affecting",
+        "description": "If the value of this attribute is set to true,                                     QCI1 establishment requests are delayed until the ongoing EN-DC                                     procedure is completed.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "RobustCallSetup.geranUtranMobilityDelayEnabled",
+        "type": "true",
+        "description": "B1, B2",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.geranUtranMobilityDelayEnabled",
+        "type": "true",
+        "description": "A2",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.geranUtranMobilityDelayEnabled",
+        "type": "true",
+        "description": "A2 Critical  A2 UL Critical Coverage",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.nrMobilityDelayEnabled",
+        "type": "true",
+        "description": "B1, B2",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.nrMobilityDelayEnabled",
+        "type": "true",
+        "description": "A2",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.nrMobilityDelayEnabled",
+        "type": "true",
+        "description": "A2 Critical  A2 UL Critical Coverage",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.intraLteMobilityDelayEnabled",
+        "type": "true",
+        "description": "A3, A5",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.intraLteMobilityDelayEnabled",
+        "type": "true",
+        "description": "A2",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.intraLteMobilityDelayEnabled",
+        "type": "true",
+        "description": "A2 Critical  A2 UL Critical Coverage",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "RobustCallSetup.endcSetupDelayEnabled",
+        "type": "true",
+        "description": "B1",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "Uen.B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmRobustCallSetupDelayedEndc",
+        "description": "Performance counter pmRobustCallSetupDelayedEndc",
+        "category": "General"
+      },
+      {
+        "name": "pmRobustCallSetupDelayedIntraLte",
+        "description": "Performance counter pmRobustCallSetupDelayedIntraLte",
+        "category": "General"
+      },
+      {
+        "name": "pmRobustCallSetupDelayedNr",
+        "description": "Performance counter pmRobustCallSetupDelayedNr",
+        "category": "General"
+      },
+      {
+        "name": "pmRobustCallSetupDelayedUtGeran",
+        "description": "Performance counter pmRobustCallSetupDelayedUtGeran",
+        "category": "General"
+      },
+      {
+        "name": "pmRobustCallSetupGuardTimeDistr",
+        "description": "Performance counter pmRobustCallSetupGuardTimeDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmRobustCallSetupGuardTimeDistrmax",
+        "description": "Performance counter pmRobustCallSetupGuardTimeDistrmax",
+        "category": "General"
+      },
+      {
+        "name": "pmRobustCallSetupTimerExp",
+        "description": "Performance counter pmRobustCallSetupTimerExp",
+        "category": "General"
+      },
+      {
+        "name": "pmRobustCallSetupTimerQci1",
+        "description": "Performance counter pmRobustCallSetupTimerQci1",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmode",
+        "description": "Performance counter pmode",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012835 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012835 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/601_22104-LZA7016014_1Uen.B.md",
+    "file_hash": "1c73ee71ecca6e4ae2ae1b5d310529eb",
+    "processed_at": "2025-10-19 15:50:06",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

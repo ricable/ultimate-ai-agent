@@ -1,0 +1,157 @@
+{
+  "file_hash": "6f60396c95c6903a554ace152f936616",
+  "feature": {
+    "id": "121 5271",
+    "name": "Advanced RAN Coordination",
+    "cxc_code": "CXC4012519",
+    "value_package": "NR Base Package",
+    "value_package_id": "FAJ 801 4002",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Advanced RAN Coordination feature enables inter-Baseband coordination between",
+    "parameters": [
+      {
+        "name": "ExtGNBDUPartnerFunction.extGNBDUPartnerFunctionId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExtGNBDUPartnerFunction"
+      },
+      {
+        "name": "ExtGNBDUPartnerFunction.gNBDUId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExtGNBDUPartnerFunction"
+      },
+      {
+        "name": "ExtGNBDUPartnerFunction.gNBDUName",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExtGNBDUPartnerFunction"
+      },
+      {
+        "name": "ExtGNBDUPartnerFunction.gNBId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExtGNBDUPartnerFunction"
+      },
+      {
+        "name": "ExtGNBDUPartnerFunction.gNBIdLength",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExtGNBDUPartnerFunction"
+      },
+      {
+        "name": "InterMeLink.availabilityStatus",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InterMeLink"
+      },
+      {
+        "name": "InterMeLink.interMeLinkId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InterMeLink"
+      },
+      {
+        "name": "InterMeLink.linkLatency15minHWM",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InterMeLink"
+      },
+      {
+        "name": "InterMeLink.linkLatency1minAvg",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InterMeLink"
+      },
+      {
+        "name": "InterMeLink.linkLatency24hrsHWM",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InterMeLink"
+      },
+      {
+        "name": "InterMeLink.localEndpointIdentity",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InterMeLink"
+      },
+      {
+        "name": "InterMeLink.operationalState",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InterMeLink"
+      },
+      {
+        "name": "InterMeLink.remoteEndpointIdentity",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InterMeLink"
+      },
+      {
+        "name": "InterMeLink.vlanId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InterMeLink"
+      },
+      {
+        "name": "NRCellRelation.coordinationType",
+        "type": "Affected",
+        "description": "For a neighbor NR Cell connected through Advanced RAN Coordination,                                 the attribute value is EXT_CM.",
+        "mo_class": "NRCellRelation"
+      },
+      {
+        "name": "NRCellRelation.caStatusActive",
+        "type": "Affecting",
+        "description": "This attribute indicates if the ESCell is operable for carrier                                 aggregation in case of each carrier aggregation candidate relation                                 of an E5 tunnel. This information is used by the SCell selection                                 algorithm in gNodeB.",
+        "mo_class": "NRCellRelation"
+      },
+      {
+        "name": "NRCellRelation.caStatusInfo",
+        "type": "Affecting",
+        "description": "This attribute provides additional status information on the status                                 of carrier aggregation supplementing the                                     NRCellRelation.caStatusActive attribute.",
+        "mo_class": "NRCellRelation"
+      },
+      {
+        "name": "Uen.CY33C",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ExtGNBDUPartnerFunction.caVlanPortRef",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ExtGNBDUPartnerFunction"
+      },
+      {
+        "name": "ExternalNRCellCU.serviceState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ExternalNRCellCU"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": null,
+    "deactivation_step": null,
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch4/81_22104-LZA7016017_1Uen.CY33C.md",
+    "file_hash": "6f60396c95c6903a554ace152f936616",
+    "processed_at": "2025-10-19 15:50:09",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "file_hash": "f4d1113fdd0df27797fae0d745375c6b",
+  "feature": {
+    "id": "121 5387",
+    "name": "Coverage-Optimized Uplink Scheduling High-Band",
+    "cxc_code": "CXC4012586",
+    "value_package": "Advanced Coverage Extension",
+    "value_package_id": "FAJ 801 4006",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature enables coverage-optimized PRB allocation for the link adaptation CSI",
+    "parameters": [
+      {
+        "name": "NRCellDU.covOptUlSchedFr2Enabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "Uen.Z",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "NRCellDU.pmRadioSinrPucchDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmRadioRaCbPreambles",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmRadioRaCbFailMsg2Disc",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmRadioRaCbSuccMsg3",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmRadioRaCbFailMsg3Crnti",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacHarqUlAckQpsk",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacHarqUlDtxQpsk",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMacHarqUlAckQpsk",
+        "description": "Performance counter pmMacHarqUlAckQpsk",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlDtxQpsk",
+        "description": "Performance counter pmMacHarqUlDtxQpsk",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlNackQpsk",
+        "description": "Performance counter pmMacHarqUlNackQpsk",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioPucchFailSr",
+        "description": "Performance counter pmRadioPucchFailSr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg2Disc",
+        "description": "Performance counter pmRadioRaCbFailMsg2Disc",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg3Crnti",
+        "description": "Performance counter pmRadioRaCbFailMsg3Crnti",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbPreambles",
+        "description": "Performance counter pmRadioRaCbPreambles",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbSuccMsg3",
+        "description": "Performance counter pmRadioRaCbSuccMsg3",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioSinrPucchDistr",
+        "description": "Performance counter pmRadioSinrPucchDistr",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012586 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012586 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/111_22104-LZA7016017_1Uen.Z.md",
+    "file_hash": "f4d1113fdd0df27797fae0d745375c6b",
+    "processed_at": "2025-10-19 15:48:55",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

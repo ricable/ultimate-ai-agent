@@ -1,0 +1,360 @@
+# Comprehensive Benchmarking System Architecture Diagram
+# Version: 1.0.0
+# Date: 2025-11-09
+
+================================================================================
+                    AGENTIC-JUJUTSU BENCHMARKING SYSTEM
+                         ARCHITECTURE OVERVIEW
+================================================================================
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                           USER INTERFACE LAYER                               │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────┐  │
+│  │   CLI Tool   │    │  Config File │    │  CI/CD Hook  │    │ Web UI   │  │
+│  │   (main)     │    │   (JSON)     │    │  (GitHub)    │    │ (future) │  │
+│  └──────┬───────┘    └──────┬───────┘    └──────┬───────┘    └────┬─────┘  │
+│         │                   │                   │                  │        │
+│         └───────────────────┼───────────────────┼──────────────────┘        │
+│                             │                   │                           │
+└─────────────────────────────┼───────────────────┼───────────────────────────┘
+                              │                   │
+                              ▼                   ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                       ORCHESTRATION LAYER                                    │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  ┌────────────────────────────────────────────────────────────────────────┐ │
+│  │                    Benchmark Orchestrator                              │ │
+│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌───────────┐ │ │
+│  │  │ Test Planner │→ │Data Generator│→ │Test Executor │→ │  Results  │ │ │
+│  │  │  • Load      │  │  • Repos     │  │  • Schedule  │  │  Merger   │ │ │
+│  │  │  • Validate  │  │  • Commits   │  │  • Execute   │  │  • Agg    │ │ │
+│  │  │  • Schedule  │  │  • Branches  │  │  • Monitor   │  │  • Store  │ │ │
+│  │  └──────────────┘  └──────────────┘  └──────────────┘  └───────────┘ │ │
+│  └────────────────────────────────────────────────────────────────────────┘ │
+│                                                                              │
+│  ┌────────────────────────────────────────────────────────────────────────┐ │
+│  │                    Hooks Integration Layer                             │ │
+│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌───────────┐ │ │
+│  │  │  Pre-Task    │  │  Post-Edit   │  │  Post-Task   │  │  Session  │ │ │
+│  │  │    Hook      │  │     Hook     │  │     Hook     │  │   Mgmt    │ │ │
+│  │  └──────────────┘  └──────────────┘  └──────────────┘  └───────────┘ │ │
+│  └────────────────────────────────────────────────────────────────────────┘ │
+│                                                                              │
+└─────────────────────────────┬────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                      DOCKER EXECUTION LAYER                                  │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  ┌──────────────────────┐  ┌──────────────────────┐  ┌───────────────────┐ │
+│  │   Jujutsu Container  │  │    Git Container     │  │ Git-WT Container  │ │
+│  │                      │  │                      │  │                   │ │
+│  │  ┌────────────────┐  │  │  ┌────────────────┐ │  │  ┌──────────────┐ │ │
+│  │  │  jj CLI        │  │  │  │  git CLI       │ │  │  │  git CLI     │ │ │
+│  │  │  + WASM        │  │  │  │  + scripts     │ │  │  │  + worktrees │ │ │
+│  │  └────────────────┘  │  │  └────────────────┘ │  │  └──────────────┘ │ │
+│  │                      │  │                      │  │                   │ │
+│  │  ┌────────────────┐  │  │  ┌────────────────┐ │  │  ┌──────────────┐ │ │
+│  │  │  CPU Monitor   │  │  │  │  CPU Monitor   │ │  │  │  CPU Monitor │ │ │
+│  │  │  Memory Track  │  │  │  │  Memory Track  │ │  │  │  Memory Track│ │ │
+│  │  │  I/O Profiler  │  │  │  │  I/O Profiler  │ │  │  │  I/O Profiler│ │ │
+│  │  └────────────────┘  │  │  └────────────────┘ │  │  └──────────────┘ │ │
+│  │                      │  │                      │  │                   │ │
+│  │  Resources:          │  │  Resources:          │  │  Resources:       │ │
+│  │  • 2 CPU cores       │  │  • 2 CPU cores       │  │  • 2 CPU cores    │ │
+│  │  • 2GB RAM           │  │  • 2GB RAM           │  │  • 2GB RAM        │ │
+│  │  • Isolated FS       │  │  • Isolated FS       │  │  • Isolated FS    │ │
+│  │  • No network        │  │  • No network        │  │  • No network     │ │
+│  └──────────┬───────────┘  └──────────┬───────────┘  └─────────┬─────────┘ │
+│             │                         │                        │           │
+└─────────────┼─────────────────────────┼────────────────────────┼───────────┘
+              │                         │                        │
+              └─────────────────────────┼────────────────────────┘
+                                        │
+                                        ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                      METRICS COLLECTION LAYER                                │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  ┌────────────────────────────────────────────────────────────────────────┐ │
+│  │                    Metrics Collector Hub                               │ │
+│  │  • Aggregate from all containers                                       │ │
+│  │  • Normalize timestamps                                                │ │
+│  │  • Validate data integrity                                             │ │
+│  └────────────────────────────────────────────────────────────────────────┘ │
+│                                                                              │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌────────────────┐ │
+│  │ Performance  │  │ Code Quality │  │   Security   │  │   Resource     │ │
+│  │  Collector   │  │   Analyzer   │  │   Scanner    │  │   Monitor      │ │
+│  ├──────────────┤  ├──────────────┤  ├──────────────┤  ├────────────────┤ │
+│  │ • CPU time   │  │ • Complexity │  │ • Vulns      │  │ • Memory RSS   │ │
+│  │ • Latency    │  │ • Coverage   │  │ • Secrets    │  │ • I/O ops      │ │
+│  │ • Throughput │  │ • Tech debt  │  │ • Best prac  │  │ • Disk usage   │ │
+│  └──────────────┘  └──────────────┘  └──────────────┘  └────────────────┘ │
+│                                                                              │
+│  Output: RawMetric[] (JSON)                                                 │
+│                                                                              │
+└─────────────────────────────┬────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                      ANALYSIS PIPELINE LAYER                                 │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  ┌────────────────────────────────────────────────────────────────────────┐ │
+│  │  Step 1: Data Cleaning & Normalization                                │ │
+│  │  • Remove outliers                                                     │ │
+│  │  • Handle missing data                                                 │ │
+│  │  • Normalize units                                                     │ │
+│  └────────────────────────────────────────────────────────────────────────┘ │
+│                              ▼                                               │
+│  ┌────────────────────────────────────────────────────────────────────────┐ │
+│  │  Step 2: Statistical Analysis                                         │ │
+│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐                │ │
+│  │  │ Descriptive  │  │ Inferential  │  │ Time Series  │                │ │
+│  │  │ Statistics   │  │  T-tests     │  │   Analysis   │                │ │
+│  │  │ • Mean       │  │ • p-values   │  │ • Trends     │                │ │
+│  │  │ • Median     │  │ • Effect size│  │ • Forecasts  │                │ │
+│  │  │ • Std Dev    │  │ • CI         │  │ • Anomalies  │                │ │
+│  │  └──────────────┘  └──────────────┘  └──────────────┘                │ │
+│  └────────────────────────────────────────────────────────────────────────┘ │
+│                              ▼                                               │
+│  ┌────────────────────────────────────────────────────────────────────────┐ │
+│  │  Step 3: Comparative Analysis                                         │ │
+│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐                │ │
+│  │  │  JJ vs Git   │  │ JJ vs Git-WT │  │ Git vs Git-WT│                │ │
+│  │  │  • Speedup   │  │  • Speedup   │  │  • Speedup   │                │ │
+│  │  │  • Memory    │  │  • Memory    │  │  • Memory    │                │ │
+│  │  │  • Efficiency│  │  • Efficiency│  │  • Efficiency│                │ │
+│  │  └──────────────┘  └──────────────┘  └──────────────┘                │ │
+│  └────────────────────────────────────────────────────────────────────────┘ │
+│                              ▼                                               │
+│  ┌────────────────────────────────────────────────────────────────────────┐ │
+│  │  Step 4: Pattern Detection                                            │ │
+│  │  • Performance patterns                                                │ │
+│  │  • Error patterns                                                      │ │
+│  │  • Usage patterns                                                      │ │
+│  └────────────────────────────────────────────────────────────────────────┘ │
+│                              ▼                                               │
+│  ┌────────────────────────────────────────────────────────────────────────┐ │
+│  │  Step 5: Optimization Recommendations                                 │ │
+│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐                │ │
+│  │  │  Bottleneck  │  │   Hot Path   │  │  Algorithm   │                │ │
+│  │  │  Detection   │  │   Analysis   │  │  Suggestions │                │ │
+│  │  └──────────────┘  └──────────────┘  └──────────────┘                │ │
+│  └────────────────────────────────────────────────────────────────────────┘ │
+│                                                                              │
+│  Output: ProcessedResult[] (with insights)                                  │
+│                                                                              │
+└─────────────────────────────┬────────────────────────────────────────────────┘
+                              │
+              ┌───────────────┼───────────────┐
+              │               │               │
+              ▼               ▼               ▼
+┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐
+│   AgentDB        │  │  Report          │  │  Dashboard       │
+│   Learning       │  │  Generation      │  │  (Future)        │
+├──────────────────┤  ├──────────────────┤  ├──────────────────┤
+│ ┌──────────────┐ │  │ ┌──────────────┐ │  │ ┌──────────────┐ │
+│ │ Pattern      │ │  │ │  Markdown    │ │  │ │  Real-time   │ │
+│ │ Storage      │ │  │ │   Report     │ │  │ │   Charts     │ │
+│ ├──────────────┤ │  │ ├──────────────┤ │  │ ├──────────────┤ │
+│ │ Similarity   │ │  │ │   JSON       │ │  │ │  WebSocket   │ │
+│ │ Search       │ │  │ │   Export     │ │  │ │   Updates    │ │
+│ ├──────────────┤ │  │ ├──────────────┤ │  │ ├──────────────┤ │
+│ │ Historical   │ │  │ │   HTML       │ │  │ │  Interactive │ │
+│ │ Trends       │ │  │ │  Dashboard   │ │  │ │   Filters    │ │
+│ ├──────────────┤ │  │ ├──────────────┤ │  │ └──────────────┘ │
+│ │ Reward       │ │  │ │   Charts     │ │  │                  │
+│ │ Calculation  │ │  │ │  (Plotly)    │ │  │                  │
+│ ├──────────────┤ │  │ └──────────────┘ │  │                  │
+│ │ Prediction   │ │  │                  │  │                  │
+│ │ Engine       │ │  │                  │  │                  │
+│ └──────────────┘ │  │                  │  │                  │
+└──────────────────┘  └──────────────────┘  └──────────────────┘
+       │                      │                      │
+       │                      │                      │
+       ▼                      ▼                      ▼
+┌──────────────────────────────────────────────────────────────┐
+│                  STORAGE LAYER                               │
+├──────────────────────────────────────────────────────────────┤
+│                                                              │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │  Hot Storage │  │ Warm Storage │  │ Cold Storage │      │
+│  │   (SQLite)   │  │  (Compressed)│  │   (Archive)  │      │
+│  ├──────────────┤  ├──────────────┤  ├──────────────┤      │
+│  │ • Raw results│  │ • 7-90 days  │  │ • > 90 days  │      │
+│  │ • < 7 days   │  │ • gzip       │  │ • xz compress│      │
+│  │ • Fast query │  │ • Aggregated │  │ • Read-only  │      │
+│  │ • 10GB       │  │ • 50GB       │  │ • 500GB      │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘      │
+│                                                              │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  AgentDB SQLite Database                            │   │
+│  │  • benchmark_results                                │   │
+│  │  • benchmark_patterns                               │   │
+│  │  • performance_trends                               │   │
+│  │  • recommendations                                  │   │
+│  └──────────────────────────────────────────────────────┘   │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+
+================================================================================
+                        DATA FLOW SEQUENCE
+================================================================================
+
+1. USER SUBMITS CONFIG
+   └─> Orchestrator validates and creates execution plan
+
+2. DATA GENERATION
+   └─> Generate repository fixtures (small/medium/large)
+   └─> Create commit history, branches, files
+
+3. TEST EXECUTION (Parallel)
+   ├─> Jujutsu Container
+   │   └─> Execute command + collect metrics
+   ├─> Git Container
+   │   └─> Execute command + collect metrics
+   └─> Git-Worktrees Container
+       └─> Execute command + collect metrics
+
+4. METRICS COLLECTION
+   └─> Aggregate from all containers
+   └─> Normalize and validate
+   └─> Store as RawMetric[]
+
+5. ANALYSIS PIPELINE
+   ├─> Clean and normalize data
+   ├─> Statistical analysis (t-tests, effect sizes)
+   ├─> Comparative analysis (speedup factors)
+   ├─> Pattern detection
+   └─> Generate recommendations
+
+6. LEARNING & STORAGE
+   ├─> Store patterns in AgentDB
+   ├─> Calculate rewards (0-1)
+   ├─> Query historical patterns
+   └─> Detect trends
+
+7. REPORT GENERATION
+   ├─> Markdown report (human-readable)
+   ├─> JSON export (machine-parseable)
+   ├─> HTML dashboard (interactive)
+   └─> Archive previous reports
+
+8. FEEDBACK LOOP
+   └─> Use insights for next benchmark run
+   └─> Optimize test selection
+   └─> Improve accuracy
+
+================================================================================
+                        SCALING ARCHITECTURE
+================================================================================
+
+HORIZONTAL SCALING:
+┌─────────────────────────────────────────────────────┐
+│  Load Balancer                                      │
+│  ├─> Node 1: 4 containers (JJ, Git, Git-WT, Metrics)│
+│  ├─> Node 2: 4 containers                           │
+│  ├─> Node 3: 4 containers                           │
+│  └─> Node 4: 4 containers                           │
+│       Total: 16 concurrent benchmarks               │
+└─────────────────────────────────────────────────────┘
+
+VERTICAL SCALING:
+┌─────────────────────────────────────────────────────┐
+│  Resource Profiles:                                 │
+│  • Micro:   0.5 CPU, 512MB  (basic tests)          │
+│  • Small:   1 CPU,   1GB    (standard ops)         │
+│  • Medium:  2 CPU,   2GB    (moderate workloads)   │
+│  • Large:   4 CPU,   4GB    (heavy workloads)      │
+│  • X-Large: 8 CPU,   8GB    (enterprise repos)     │
+└─────────────────────────────────────────────────────┘
+
+AUTO-SCALING TRIGGERS:
+• CPU > 80% sustained for 5 min → Scale up
+• Queue > 100 pending tests      → Scale up
+• CPU < 30% for 10 min + empty queue → Scale down
+
+================================================================================
+                        INTEGRATION POINTS
+================================================================================
+
+1. HOOKS SYSTEM
+   • pre-task    → Initialize benchmark session
+   • post-edit   → Save results to memory
+   • post-task   → Finalize and export metrics
+   • session-end → Clean up resources
+
+2. AGENTDB
+   • pattern-store  → Save benchmark patterns
+   • pattern-search → Query historical data
+   • pattern-stats  → Trend analysis
+
+3. CLAUDE FLOW
+   • swarm_init          → Initialize coordination
+   • agent_spawn         → Spawn analyzer agents
+   • task_orchestrate    → Distribute work
+   • swarm_status        → Monitor progress
+
+4. EXISTING CODE
+   • src/wrapper.rs      → JJ operations
+   • src/hooks.rs        → Hook integration
+   • src/agentdb_sync.rs → Pattern storage
+   • src/wasm.rs         → Browser benchmarks
+
+5. CI/CD
+   • GitHub Actions → Automated daily runs
+   • Pull Request   → Performance regression checks
+   • Release        → Comprehensive benchmarks
+
+================================================================================
+                        KEY METRICS
+================================================================================
+
+PERFORMANCE TARGETS:
+• Single test:    < 5s
+• Full suite:     < 30min (40 tests)
+• Analysis:       < 30s
+• Report gen:     < 1min
+
+QUALITY TARGETS:
+• Reliability:    > 95% reproducible
+• Significance:   p < 0.05
+• Variance:       < 5% coefficient of variation
+• Coverage:       50+ operations
+
+RESOURCE EFFICIENCY:
+• CPU utilization:    > 80%
+• Memory efficiency:  > 70%
+• Storage overhead:   < 20%
+• Cache hit rate:     > 60%
+
+================================================================================
+                        DELIVERABLES
+================================================================================
+
+DOCUMENTATION (4,822 lines):
+✅ ARCHITECTURE.md        (1,112 lines) - System overview
+✅ COMPONENT_DESIGN.md    (874 lines)   - Detailed component specs
+✅ DATA_MODELS.md         (978 lines)   - Data structures
+✅ SCALABILITY.md         (803 lines)   - Scaling strategies
+✅ INTEGRATION_GUIDE.md   (719 lines)   - Integration examples
+✅ README.md              (336 lines)   - Documentation index
+
+IMPLEMENTATION ROADMAP:
+□ Phase 1: Foundation (2 weeks)
+□ Phase 2: Core Benchmarks (2 weeks)
+□ Phase 3: Analysis Pipeline (2 weeks)
+□ Phase 4: Learning & Optimization (2 weeks)
+□ Phase 5: Scalability & Production (2 weeks)
+
+Total: 10 weeks to production-ready system
+
+================================================================================
+End of Architecture Diagram
+================================================================================

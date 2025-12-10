@@ -1,0 +1,134 @@
+{
+  "hardware": {
+    "type": "mac-studio",
+    "chip": "m1-ultra",
+    "architecture": "arm64",
+    "capabilities": {
+      "compute": "very-high",
+      "memory": "very-high",
+      "storage": "high",
+      "power": "moderate",
+      "network": "very-high",
+      "gpu": "apple-silicon-unified",
+      "neuralEngine": true
+    },
+    "specs": {
+      "cpuCores": 20,
+      "gpuCores": 64,
+      "neuralCores": 32,
+      "ram": "64GB",
+      "unifiedMemory": true
+    }
+  },
+
+  "inference": {
+    "provider": "llamaedge",
+    "runtime": "wasmedge",
+    "backend": "wasi-nn-mlx",
+
+    "models": {
+      "recommended": [
+        {
+          "name": "Qwen2.5-Coder-32B-Instruct",
+          "format": "gguf",
+          "quantization": "Q5_K_M",
+          "ram": "28GB",
+          "speed": "35-50 tokens/sec",
+          "useGPU": true,
+          "useNeuralEngine": true
+        },
+        {
+          "name": "Qwen2.5-Coder-32B-Instruct",
+          "format": "mlx",
+          "quantization": "4bit",
+          "ram": "24GB",
+          "speed": "45-60 tokens/sec",
+          "useGPU": true,
+          "preferred": true
+        }
+      ],
+      "maxContextSize": 131072,
+      "parallelInference": {
+        "enabled": true,
+        "maxInstances": 2
+      }
+    },
+
+    "optimization": {
+      "threads": 16,
+      "batchSize": 2048,
+      "enableMmap": false,
+      "useUnifiedMemory": true,
+      "mlxOptimizations": {
+        "useFlashAttention": true,
+        "quantizeKVCache": true,
+        "memoryFraction": 0.8
+      }
+    }
+  },
+
+  "orchestration": {
+    "role": "coordinator",
+    "capabilities": [
+      "heavy-inference",
+      "large-model-hosting",
+      "swarm-coordination",
+      "high-throughput-processing",
+      "multi-modal-processing"
+    ],
+
+    "limits": {
+      "maxConcurrentTasks": 12,
+      "maxMemoryPerTask": "16GB",
+      "taskTimeout": 1800000
+    },
+
+    "priority": "highest"
+  },
+
+  "gaianet": {
+    "enabled": true,
+    "nodeType": "premium",
+    "publicEndpoint": true,
+    "domains": ["developer-tools", "web3-dev", "ai-research"],
+    "pricing": {
+      "tier": "premium",
+      "multiplier": 2.0
+    }
+  },
+
+  "quad": {
+    "enabled": true,
+    "nodeRole": "coordinator",
+    "canCoordinate": true,
+    "acceptTaskTypes": [
+      "all"
+    ],
+    "scheduling": {
+      "strategy": "capability-aware",
+      "prioritize": ["heavy-inference", "large-context"]
+    }
+  },
+
+  "agentDB": {
+    "primary": true,
+    "replication": {
+      "enabled": true,
+      "replicateTo": ["intel-nuc-1", "intel-nuc-2"]
+    }
+  },
+
+  "environment": {
+    "NODE_ENV": "production",
+    "LLM_PROVIDER": "local",
+    "GAIANET_ENDPOINT": "http://localhost:8080/v1",
+    "GAIANET_MODEL": "Qwen2.5-Coder-32B-Instruct",
+    "SANDBOX_MEMORY_LIMIT": "8g",
+    "SANDBOX_CPU_LIMIT": "8",
+    "CONTEXT_WINDOW": "131072",
+    "ENABLE_AGENT_BOOSTER": "true",
+    "MLX_ENABLE_GPU": "true",
+    "MLX_MEMORY_FRACTION": "0.8",
+    "WASI_NN_BACKEND": "mlx"
+  }
+}

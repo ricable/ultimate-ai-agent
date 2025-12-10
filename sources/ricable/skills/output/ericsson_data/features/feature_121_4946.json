@@ -1,0 +1,96 @@
+{
+  "id": "121 4946",
+  "name": "",
+  "cxc_code": "CXC4012308",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "The Inter-Vendor Load Balancing feature enables traffic load balancing between nodes of",
+  "parameters": [
+    {
+      "name": "LOCAL_PER_BB_CELL_TRAFFIC_LOAD_DATA_EVENT",
+      "type": "EVENT_PARAM_PER_PRB_AVG_USED_DL_SUM  EVENT_PARAM_PER_PRB_AVG_USED_DL_SAMP  EVENT_PARAM_PER_PRB_AVG_USED_UL_SUM  EVENT_PARAM_PER_PRB_AVG_USED_UL_SAMP",
+      "description": "Data regarding cell traffic load.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "LOCAL_X2_RESOURCE_STATUS_REQUEST",
+      "type": "-",
+      "description": "X2_RESOURCE_STATUS_REQUEST message received or sent.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "LOCAL_X2_RESOURCE_STATUS_RESPONSE",
+      "type": "-",
+      "description": "X2_RESOURCE_STATUS_RESPONSE message received or sent.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "LOCAL_X2_RESOURCE_STATUS_FAILURE",
+      "type": "-",
+      "description": "X2_RESOURCE_STATUS_FAILURE message received or sent.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "LOCAL_X2_RESOURCE_STATUS_UPDATE",
+      "type": "-",
+      "description": "X2_RESOURCE_STATUS_UPDATE message received or sent.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AA",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellRelation.loadBalancing",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellRelation"
+    }
+  ],
+  "counters": [],
+  "events": [
+    {
+      "name": "LOCAL_PER_BB_CELL_TRAFFIC_LOAD_DATA_EVENT",
+      "type": "EVENT_PARAM_PER_PRB_AVG_USED_DL_SUM  EVENT_PARAM_PER_PRB_AVG_USED_DL_SAMP  EVENT_PARAM_PER_PRB_AVG_USED_UL_SUM  EVENT_PARAM_PER_PRB_AVG_USED_UL_SAMP",
+      "description": "Data regarding cell traffic load."
+    },
+    {
+      "name": "LOCAL_X2_RESOURCE_STATUS_REQUEST",
+      "type": "-",
+      "description": "X2_RESOURCE_STATUS_REQUEST message received or sent."
+    },
+    {
+      "name": "LOCAL_X2_RESOURCE_STATUS_RESPONSE",
+      "type": "-",
+      "description": "X2_RESOURCE_STATUS_RESPONSE message received or sent."
+    },
+    {
+      "name": "LOCAL_X2_RESOURCE_STATUS_FAILURE",
+      "type": "-",
+      "description": "X2_RESOURCE_STATUS_FAILURE message received or sent."
+    },
+    {
+      "name": "LOCAL_X2_RESOURCE_STATUS_UPDATE",
+      "type": "-",
+      "description": "X2_RESOURCE_STATUS_UPDATE message received or sent."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012308 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012308 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/420_22104-LZA7016014_1Uen.AA.md",
+  "file_hash": "ce91452dfa76772f9a68640dff8c7f73",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

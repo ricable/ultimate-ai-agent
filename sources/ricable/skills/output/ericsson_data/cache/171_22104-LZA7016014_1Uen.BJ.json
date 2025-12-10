@@ -1,0 +1,78 @@
+{
+  "file_hash": "052c539c67b7cabbf077710227f57b92",
+  "feature": {
+    "id": "121 4426",
+    "name": "19-24 Cell Support  13-18 Cell Support  7-12 Cell Support",
+    "cxc_code": "CXC4011356",
+    "value_package": "Large eNodeB",
+    "value_package_id": "FAJ 801 0403",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The 7-12 Cell Support feature enables the configuration of up to 12",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.pdcchCfiMode",
+        "type": "Affected",
+        "description": "Unlocking of cells can be rejected because of shortage of PUCCH                                 resources. This results in a Resource Configuration Failure                                 alarm.  Required and available PUCCH resources for a cell in FDD depend on                                 the following:    Number of cells per node     Cell bandwidths     The setting of the parameters                                             EUtranCellFDD.pdcchCfiMode,                                             EUtranCellFDD.noOfPucchCqiUsers and                                             EUtranCellFDD.noOfPucchSrUsers     For more information about dependencies between the parameters, see                                     Control Channel Dimensioning.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.noOfPucchCqiUsers",
+        "type": "Affected",
+        "description": "Unlocking of cells can be rejected because of shortage of PUCCH                                 resources. This results in a Resource Configuration Failure                                 alarm.  Required and available PUCCH resources for a cell in FDD depend on                                 the following:    Number of cells per node     Cell bandwidths     The setting of the parameters                                             EUtranCellFDD.pdcchCfiMode,                                             EUtranCellFDD.noOfPucchCqiUsers and                                             EUtranCellFDD.noOfPucchSrUsers     For more information about dependencies between the parameters, see                                     Control Channel Dimensioning.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.noOfPucchSrUsers",
+        "type": "Affected",
+        "description": "Unlocking of cells can be rejected because of shortage of PUCCH                                 resources. This results in a Resource Configuration Failure                                 alarm.  Required and available PUCCH resources for a cell in FDD depend on                                 the following:    Number of cells per node     Cell bandwidths     The setting of the parameters                                             EUtranCellFDD.pdcchCfiMode,                                             EUtranCellFDD.noOfPucchCqiUsers and                                             EUtranCellFDD.noOfPucchSrUsers     For more information about dependencies between the parameters, see                                     Control Channel Dimensioning.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.dlChannelBandwidth",
+        "type": "Affected",
+        "description": "Downlink channel bandwidth in the cell.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.ulChannelBandwidth",
+        "type": "Affected",
+        "description": "Uplink channel bandwidth in the cell.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "Uen.BJ",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMoFootprintMax",
+        "description": "Performance counter pmMoFootprintMax",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011356 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011356 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/171_22104-LZA7016014_1Uen.BJ.md",
+    "file_hash": "052c539c67b7cabbf077710227f57b92",
+    "processed_at": "2025-10-19 15:48:55",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

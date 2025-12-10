@@ -1,0 +1,87 @@
+{
+  "file_hash": "299bdeb8e4c35de413d8c9ecd28b4ce7",
+  "feature": {
+    "id": "121 5242",
+    "name": "NR UE Throughput Booster",
+    "cxc_code": "CXC4012503",
+    "value_package": "Differentiated Mobile Broadband",
+    "value_package_id": "FAJ 801 0409",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature introduces an ASGH group for NR UEs and subscriptions and improves the",
+    "parameters": [
+      {
+        "name": "SubscriberGroupProfile.customTriggerType",
+        "type": "Affecting",
+        "description": "The SubscriberGroupProfile.customTriggerType                                 attribute must be set to TRIGGER_TYPE_2.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "Uen.N",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "SubscriberGroupProfile.customTriggerList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "SubscriberGroupProfile.qciOffsetForQCI6",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "SubscriberGroupProfile.qciOffsetForQCI7",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "SubscriberGroupProfile"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmFlexPdcpVolDlDrb",
+        "description": "Performance counter pmFlexPdcpVolDlDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexPdcpVolDlDrbLastTTI",
+        "description": "Performance counter pmFlexPdcpVolDlDrbLastTTI",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexUeThpTimeDl",
+        "description": "Performance counter pmFlexUeThpTimeDl",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexUeThpTimeUl",
+        "description": "Performance counter pmFlexUeThpTimeUl",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexUeThpVolUl",
+        "description": "Performance counter pmFlexUeThpVolUl",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012503 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012503 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/499_22104-LZA7016014_1Uen.N.md",
+    "file_hash": "299bdeb8e4c35de413d8c9ecd28b4ce7",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

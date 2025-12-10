@@ -1,0 +1,22 @@
+name: 'Project Board Automation'
+description: 'Automated project board management for Phase 1 RAN development'
+author: 'Ericsson RAN Team'
+inputs:
+  action:
+    description: 'Action to perform (create, update, sync)'
+    required: true
+    default: 'create'
+  project-name:
+    description: 'Project board name'
+    required: true
+    default: 'Phase 1 RAN Development'
+  sprint-number:
+    description: 'Sprint number for tracking'
+    required: false
+    default: '1'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+branding:
+  icon: 'columns'
+  color: 'blue'

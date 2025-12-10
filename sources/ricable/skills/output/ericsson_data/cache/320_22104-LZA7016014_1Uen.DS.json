@@ -1,0 +1,211 @@
+{
+  "file_hash": "1fed869567a8bb185b5cae880768a4df",
+  "feature": {
+    "id": "121 4467",
+    "name": "5CC DL Carrier Aggregation Extension",
+    "cxc_code": "CXC4011981",
+    "value_package": "Carrier Aggregation",
+    "value_package_id": "FAJ 801 0405",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The 5CC DL Carrier Aggregation Extension feature supports the capability to transmit",
+    "parameters": [
+      {
+        "name": "CarrierAggregationFunction.caPreference",
+        "type": "Affecting",
+        "description": "If the Uplink Carrier Aggregation feature is enabled, the parameter                                 is recommended to be set to DL. If it is set to                                     NONE, it is possible that some UEs are not                                 configured with the optimal number of downlink component                                 carriers.",
+        "mo_class": "CarrierAggregationFunction"
+      },
+      {
+        "name": "CarrierAggregationFunction.sCellDeactOutOfCoverageTimer",
+        "type": "Affecting",
+        "description": "To avoid unnecessary SCell deactivation in poor PCell uplink channel                                 condition, one of the following settings is recommended:  sCellDeactOutOfCoverageTimer \u2265                                             MAX(240, 3 *                                                 CarrierAggregationFunction.sCellDeactProhibitTimer                                             + 100)     sCellDeactOutOfCoverageTimer =                                             -1",
+        "mo_class": "CarrierAggregationFunction"
+      },
+      {
+        "name": "CarrierAggregationFunction.sCellSelectionMode",
+        "type": "Affecting",
+        "description": "The recommended setting is                                     UN_ACK_SIMULTANEOUS_SCELL_SELECTION or                                     ACK_SIMULTANEOUS_SCELL_SELECTION. If the                                 PCell has good coverage overlap with the SCells, these settings                                 reduce latency on initial SCell selection.",
+        "mo_class": "CarrierAggregationFunction"
+      },
+      {
+        "name": "EUtranCellFDD.noOfPucchFormat3PrbPairs",
+        "type": "Affecting",
+        "description": "The attribute must be set to 1 in cells to be used as PCell. Only                                 values 0 and 1 are supported.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.noOfPucchFormat3PrbPairs",
+        "type": "Affecting",
+        "description": "The attribute must be set to 1 in cells to be used as PCell. Only                                 values 0 and 1 are supported.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellRelation.sCellCandidate",
+        "type": "Affecting",
+        "description": "It can be avoided that a cell relation is configured for unsupported                                 uplink carrier aggregation by setting                                     EUtranCellRelation.sCellCandidate to                                     ONLY_ALLOWED_FOR_DL.",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "QciProfileOperatorDefined.pdcpSNLength  QciProfilePredefined.pdcpSNLength",
+        "type": "Affecting",
+        "description": "The attribute is recommended to be set to 15.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfileOperatorDefined.rlcSNLength  QciProfilePredefined.rlcSNLength",
+        "type": "Affecting",
+        "description": "The attribute is recommended to be set to 16 when the                                     rlcMode attribute for the same QCI is set                                 to AM.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "INTERNAL_EVENT_UETR_RRC_SCELL_DECONFIGURED",
+        "type": "EVENT_PARAM_GLOBAL_SCELL_ID  EVENT_PARAM_DESELECTION_REASON  EVENT_PARAM_SERVING_RSRP  EVENT_PARAM_SERVING_RSRQ  EVENT_PARAM_SCELL_IS_EXTERNAL",
+        "description": "Identity of the cell used as SCell, defined in MOM, where                                         eNodeB ID (20 bits) + Cell ID (8 bits).  Reason for deconfiguring SCell.  Reported RSRP of the serving cell.  Reported RSRQ of the serving cell.  True if the SCell is on another eNB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UETR_RRC_SCELL_CONFIGURED",
+        "type": "EVENT_PARAM_GLOBAL_SCELL_ID  EVENT_PARAM_SCELL_SELECTION_METHOD  EVENT_PARAM_SERVING_RSRP  EVENT_PARAM_SERVING_RSRQ  EVENT_PARAM_SCELL_CONFIG_RESULT  EVENT_PARAM_SCELL_IS_EXTERNAL",
+        "description": "Identity of the cell used as SCell, defined in MOM, where                                         eNodeB ID (20 bits) + Cell ID (8 bits) .  Method used to select SCell.  Reported RSRP of the serving cell.  Reported RSRQ of the serving cell.  Result code for SCell configuration attempt.  True if the SCell is on another eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UETR_MEASUREMENT_REPORT_RECEIVED",
+        "type": "EVENT_PARAM_MEASUREMENT_ID  EVENT_PARAM_MEAS_REQUESTER  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_AFFECTED_MEAS_TYPE  EVENT_PARAM_RAT_TYPE  EVENT_PARAM_MEAS_CAUSE",
+        "description": "The measurement ID for this UE measurement.  The function that requested the measurement (e.g.:                                             EVENT_VALUE_CA for Carrier                                         Aggregation).  Global Cell ID of the neighbor cell.  The measurement type triggering the report (e.g.:                                             EVENT_VALUE_EVENT_A1,                                             EVENT_VALUE_EVENT_A2,                                             EVENT_VALUE_EVENT_A6).  The RAT type triggering the report.  The purpose of the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.DS",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellRelation.asmStatus",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCaActivatedDl5ccSumDistr",
+        "description": "Performance counter pmCaActivatedDl5ccSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaScheduledDl5ccSumDistr",
+        "description": "Performance counter pmCaScheduledDl5ccSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaScheduledDlEranSumDistr",
+        "description": "Performance counter pmCaScheduledDlEranSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaScheduledDlIeNbSum",
+        "description": "Performance counter pmCaScheduledDlIeNbSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCounter",
+        "description": "Performance counter pmCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmCounters",
+        "description": "Performance counter pmCounters",
+        "category": "General"
+      },
+      {
+        "name": "pmEvents",
+        "description": "Performance counter pmEvents",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDl5ccPCell",
+        "description": "Performance counter pmRadioThpVolDl5ccPCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDlSCellExt",
+        "description": "Performance counter pmRadioThpVolDlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDlScellEran",
+        "description": "Performance counter pmRadioThpVolDlScellEran",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDl5ccSCell",
+        "description": "Performance counter pmRadioThpVolTxDl5ccSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCellEran",
+        "description": "Performance counter pmRadioThpVolTxDlSCellEran",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCellExt",
+        "description": "Performance counter pmRadioThpVolTxDlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCategoryDlUlCombDistr",
+        "description": "Performance counter pmUeCategoryDlUlCombDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThp2DlDistr",
+        "description": "Performance counter pmUeThp2DlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThpDlDistr",
+        "description": "Performance counter pmUeThpDlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_UETR_RRC_SCELL_DECONFIGURED",
+        "type": "EVENT_PARAM_GLOBAL_SCELL_ID  EVENT_PARAM_DESELECTION_REASON  EVENT_PARAM_SERVING_RSRP  EVENT_PARAM_SERVING_RSRQ  EVENT_PARAM_SCELL_IS_EXTERNAL",
+        "description": "Identity of the cell used as SCell, defined in MOM, where                                         eNodeB ID (20 bits) + Cell ID (8 bits).  Reason for deconfiguring SCell.  Reported RSRP of the serving cell.  Reported RSRQ of the serving cell.  True if the SCell is on another eNB."
+      },
+      {
+        "name": "INTERNAL_EVENT_UETR_RRC_SCELL_CONFIGURED",
+        "type": "EVENT_PARAM_GLOBAL_SCELL_ID  EVENT_PARAM_SCELL_SELECTION_METHOD  EVENT_PARAM_SERVING_RSRP  EVENT_PARAM_SERVING_RSRQ  EVENT_PARAM_SCELL_CONFIG_RESULT  EVENT_PARAM_SCELL_IS_EXTERNAL",
+        "description": "Identity of the cell used as SCell, defined in MOM, where                                         eNodeB ID (20 bits) + Cell ID (8 bits) .  Method used to select SCell.  Reported RSRP of the serving cell.  Reported RSRQ of the serving cell.  Result code for SCell configuration attempt.  True if the SCell is on another eNodeB."
+      },
+      {
+        "name": "INTERNAL_EVENT_UETR_MEASUREMENT_REPORT_RECEIVED",
+        "type": "EVENT_PARAM_MEASUREMENT_ID  EVENT_PARAM_MEAS_REQUESTER  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_AFFECTED_MEAS_TYPE  EVENT_PARAM_RAT_TYPE  EVENT_PARAM_MEAS_CAUSE",
+        "description": "The measurement ID for this UE measurement.  The function that requested the measurement (e.g.:                                             EVENT_VALUE_CA for Carrier                                         Aggregation).  Global Cell ID of the neighbor cell.  The measurement type triggering the report (e.g.:                                             EVENT_VALUE_EVENT_A1,                                             EVENT_VALUE_EVENT_A2,                                             EVENT_VALUE_EVENT_A6).  The RAT type triggering the report.  The purpose of the report."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011981 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011981 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/320_22104-LZA7016014_1Uen.DS.md",
+    "file_hash": "1fed869567a8bb185b5cae880768a4df",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

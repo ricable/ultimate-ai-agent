@@ -1,0 +1,208 @@
+{
+  "file_hash": "9d17d4b829188fa7b6a6326b517d5f2a",
+  "feature": {
+    "id": "121 5065",
+    "name": "Atmospheric Duct Interference Reduction",
+    "cxc_code": "CXC4012256",
+    "value_package": "Spectral Efficiency",
+    "value_package_id": "FAJ 801 1015",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Atmospheric Duct Interference Reduction feature reduces the interference between",
+    "parameters": [
+      {
+        "name": "INTERNAL_PER_CELL_DUCT_INTERFERENCE_REPORT",
+        "type": "EVENT_PARAM_DUCT_INTERFERENCE_SLOPE_NUM",
+        "description": "The number of TTIs in which duct interference slope is                                     detected.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_DUCT_INTERFERENCE_REPORT",
+        "type": "EVENT_PARAM_DUCT_INTERFERENCE_CHARSEQ_CORR_PEAK_n(0...31)",
+        "description": "Correlation peak value of characteristic sequence which consists                                     of a sequence of 30 bits, high 15 bits for the first half radio                                     frame, low 15 bits for the second radio frame.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_DUCT_INTERFERENCE_REPORT",
+        "type": "EVENT_PARAM_DUCT_INTERFERENCE_CHAR_SEQ_NUM",
+        "description": "The total accumulated number of characteristic sequence                                     detected.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_DUCT_INTERFERENCE_REPORT",
+        "type": "EVENT_PARAM_DUCT_INTERFERENCE_CHAR_SEQ_n(0...31)",
+        "description": "Content of detected characteristic sequence which consists of a                                     sequence of 31 bits, high 7 bits for sequence power, in dB based                                     on -160 dBm, -160 dBm ~ -33 dBm, middle 4 bits for symbol index,                                     low 20 bits for decoded characteristic information.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.BE",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellTDD.ductIntBgNoiseThr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.ductIntSlopeDetectionStatus",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.ductIntOpMode",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "ENodeBFunction.ductIntCharInfoScheme",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranCellTDD.ductIntCharInfoValue",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmDuctIntCharSeq",
+        "description": "Performance counter pmDuctIntCharSeq",
+        "category": "General"
+      },
+      {
+        "name": "pmDuctIntPdschBlankedTti",
+        "description": "Performance counter pmDuctIntPdschBlankedTti",
+        "category": "General"
+      },
+      {
+        "name": "pmLcgThpTimeUlLcg",
+        "description": "Performance counter pmLcgThpTimeUlLcg",
+        "category": "General"
+      },
+      {
+        "name": "pmLcgThpVolUlLcg",
+        "description": "Performance counter pmLcgThpVolUlLcg",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolUlDrb",
+        "description": "Performance counter pmPdcpVolUlDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRecInterferencePwr",
+        "description": "Performance counter pmRadioRecInterferencePwr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRecInterferencePwrBrPrbn",
+        "description": "Performance counter pmRadioRecInterferencePwrBrPrbn",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRecInterferencePwrSfn",
+        "description": "Performance counter pmRadioRecInterferencePwrSfn",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolUl",
+        "description": "Performance counter pmRadioThpVolUl",
+        "category": "General"
+      },
+      {
+        "name": "pmSchedActivityCellUl",
+        "description": "Performance counter pmSchedActivityCellUl",
+        "category": "General"
+      },
+      {
+        "name": "pmSinrPucchDistr",
+        "description": "Performance counter pmSinrPucchDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmSinrPuschDistr",
+        "description": "Performance counter pmSinrPuschDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThp2UlDistr",
+        "description": "Performance counter pmUeThp2UlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThpTimeUl",
+        "description": "Performance counter pmUeThpTimeUl",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThpVolUl",
+        "description": "Performance counter pmUeThpVolUl",
+        "category": "General"
+      },
+      {
+        "name": "pmUlInterferenceReportId",
+        "description": "Performance counter pmUlInterferenceReportId",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmode",
+        "description": "Performance counter pmode",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_CELL_DUCT_INTERFERENCE_REPORT",
+        "type": "EVENT_PARAM_DUCT_INTERFERENCE_SLOPE_NUM",
+        "description": "The number of TTIs in which duct interference slope is                                     detected."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_DUCT_INTERFERENCE_REPORT",
+        "type": "EVENT_PARAM_DUCT_INTERFERENCE_CHARSEQ_CORR_PEAK_n(0...31)",
+        "description": "Correlation peak value of characteristic sequence which consists                                     of a sequence of 30 bits, high 15 bits for the first half radio                                     frame, low 15 bits for the second radio frame."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_DUCT_INTERFERENCE_REPORT",
+        "type": "EVENT_PARAM_DUCT_INTERFERENCE_CHAR_SEQ_NUM",
+        "description": "The total accumulated number of characteristic sequence                                     detected."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_DUCT_INTERFERENCE_REPORT",
+        "type": "EVENT_PARAM_DUCT_INTERFERENCE_CHAR_SEQ_n(0...31)",
+        "description": "Content of detected characteristic sequence which consists of a                                     sequence of 31 bits, high 7 bits for sequence power, in dB based                                     on -160 dBm, -160 dBm ~ -33 dBm, middle 4 bits for symbol index,                                     low 20 bits for decoded characteristic information."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": null,
+    "deactivation_step": null,
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/448_22104-LZA7016014_1Uen.BE.md",
+    "file_hash": "9d17d4b829188fa7b6a6326b517d5f2a",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

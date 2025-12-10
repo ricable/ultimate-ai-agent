@@ -1,0 +1,128 @@
+{
+  "file_hash": "7dc296c64c17bb930e440bcd316cdecf",
+  "feature": {
+    "id": "121 5699",
+    "name": "Robust Uplink Link Adaptation for VoLTE",
+    "cxc_code": "CXC4012721",
+    "value_package": "VoLTE Performance",
+    "value_package_id": "FAJ 801 0444",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature uses a conservative uplink link adaptation to improve uplink VoLTE",
+    "parameters": [
+      {
+        "name": "SubscriberGroupProfile.volteCodecRateForUlSinrEst",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "SubscriberGroupProfile.ulOuterloopStepSizeFactor",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "SubscriberGroupProfile.ulMcsUpperLimit",
+        "type": "Affecting",
+        "description": "The SubscriberGroupProfile.ulMcsUpperLimit                                 attribute must be set to a value other                                 than                                     -1. If the value is set to                                     -1, the function of estimating uplink SINR in                                 uplink link adaptation in good radio condition is not operable.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "Uen.L",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "QciProfileOperatorDefined.rohcEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfilePredefined.rohcEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfilePredefined"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmPuschMcsSubsGroup0Distr",
+        "description": "Performance counter pmPuschMcsSubsGroup0Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmPuschMcsSubsGroup1Distr",
+        "description": "Performance counter pmPuschMcsSubsGroup1Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmPuschMcsSubsGroup2Distr",
+        "description": "Performance counter pmPuschMcsSubsGroup2Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmPuschMcsSubsGroup3Distr",
+        "description": "Performance counter pmPuschMcsSubsGroup3Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmPuschMcsSubsGroup4Distr",
+        "description": "Performance counter pmPuschMcsSubsGroup4Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmPuschMcsSubsGroup5Distr",
+        "description": "Performance counter pmPuschMcsSubsGroup5Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmPuschMcsSubsGroup6Distr",
+        "description": "Performance counter pmPuschMcsSubsGroup6Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmPuschMcsSubsGroup7Distr",
+        "description": "Performance counter pmPuschMcsSubsGroup7Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmPuschMcsSubsGroup8Distr",
+        "description": "Performance counter pmPuschMcsSubsGroup8Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmPuschMcsSubsGroup9Distr",
+        "description": "Performance counter pmPuschMcsSubsGroup9Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRecInterferencePwr",
+        "description": "Performance counter pmRadioRecInterferencePwr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012721 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012721 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/586_22104-LZA7016014_1Uen.L.md",
+    "file_hash": "7dc296c64c17bb930e440bcd316cdecf",
+    "processed_at": "2025-10-19 15:50:06",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

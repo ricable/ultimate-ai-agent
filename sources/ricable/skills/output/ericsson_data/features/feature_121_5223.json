@@ -1,0 +1,146 @@
+{
+  "id": "121 5223",
+  "name": "",
+  "cxc_code": "CXC4012485",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "The feature supports the optimization of the RRC Connection Release",
+  "parameters": [
+    {
+      "name": "EUtranCellTDD.dlMaxRetxRrcReleaseThr",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.dlMaxRetxRrcReleaseThr",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.tPollRetxRrcReleaseDl",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.tPollRetxRrcReleaseDl",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "SignalingRadioBearer.dlMaxRetxThreshold",
+      "type": "Affected",
+      "description": "If the Optimized RRC Connection Release Control feature is activated,                                 this parameter can be replaced by the following parameters:  EUtranCellTDD.dlMaxRetxRrcReleaseThr     EUtranCellFDD.dlMaxRetxRrcReleaseThr",
+      "mo_class": "SignalingRadioBearer"
+    },
+    {
+      "name": "SignalingRadioBearer.tPollRetransmitDl",
+      "type": "Affected",
+      "description": "If the Optimized RRC Connection Release Control feature is activated,                                 this parameter can be replaced by the following parameters:  EUtranCellTDD.tPollRetxRrcReleaseDl     EUtranCellFDD.tPollRetxRrcReleaseDl",
+      "mo_class": "SignalingRadioBearer"
+    },
+    {
+      "name": "Uen.J",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmMacHarqDlAck16qam",
+      "description": "Performance counter pmMacHarqDlAck16qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAck256qam",
+      "description": "Performance counter pmMacHarqDlAck256qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAck64qam",
+      "description": "Performance counter pmMacHarqDlAck64qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAckQpsk",
+      "description": "Performance counter pmMacHarqDlAckQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlDtx16qam",
+      "description": "Performance counter pmMacHarqDlDtx16qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlDtx256qam",
+      "description": "Performance counter pmMacHarqDlDtx256qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlDtx64qam",
+      "description": "Performance counter pmMacHarqDlDtx64qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlDtxQpsk",
+      "description": "Performance counter pmMacHarqDlDtxQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack16qam",
+      "description": "Performance counter pmMacHarqDlNack16qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack256qam",
+      "description": "Performance counter pmMacHarqDlNack256qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack64qam",
+      "description": "Performance counter pmMacHarqDlNack64qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNackQpsk",
+      "description": "Performance counter pmMacHarqDlNackQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmPrbUsedDlDtch",
+      "description": "Performance counter pmPrbUsedDlDtch",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolDl",
+      "description": "Performance counter pmRadioThpVolDl",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcArqRetxDl",
+      "description": "Performance counter pmRlcArqRetxDl",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012485 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012485 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/488_22104-LZA7016014_1Uen.J.md",
+  "file_hash": "e57cb97256b615d8146c2ad823881eab",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

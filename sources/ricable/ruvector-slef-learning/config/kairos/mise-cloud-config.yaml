@@ -1,0 +1,263 @@
+#cloud-config
+# Kairos Cloud Config with mise for reproducible agent environments
+# Deploy on immutable Kairos nodes with K3s for edge-native AI workloads
+#
+# This configuration:
+# - Installs mise on each node
+# - Configures shims for non-interactive environments
+# - Sets up containerd WASM shims (Spin, WasmEdge)
+# - Integrates with K3s cluster
+# - Supports both x86_64 and ARM64 (Mac Silicon, Raspberry Pi)
+
+hostname: "zgents-node-{{.MACHINE_ID}}"
+
+users:
+  - name: "zgents"
+    passwd: "$6$rounds=4096$..."  # Replace with hashed password
+    groups:
+      - "admin"
+      - "docker"
+      - "wheel"
+    ssh_authorized_keys:
+      - "ssh-ed25519 AAAA..."  # Replace with your SSH key
+    shell: /bin/bash
+
+timezone: UTC
+locale: en_US.UTF-8
+
+stages:
+  # =============================================================================
+  # MISE INSTALLATION STAGE
+  # =============================================================================
+  initramfs:
+    - name: "Install mise"
+      commands:
+        - |
+          # Install mise package manager
+          curl https://mise.run | sh
+
+          # Add mise to system PATH
+          echo 'export PATH="$HOME/.local/bin:$PATH"' >> /etc/profile.d/mise.sh
+          echo 'eval "$(mise activate bash)"' >> /etc/profile.d/mise.sh
+
+          # Setup mise shims for non-interactive environments
+          mkdir -p /etc/mise
+          cat > /etc/mise/config.toml << 'EOF'
+          [settings]
+          experimental = true
+          shims_dir = "/usr/local/share/mise/shims"
+
+          [tools]
+          node = "22"
+          bun = "latest"
+          python = "3.12"
+          rust = "stable"
+          kubectl = "latest"
+          helm = "latest"
+          EOF
+
+          # Install tools system-wide
+          mise install -g
+          mise reshim
+
+  # =============================================================================
+  # NETWORK CONFIGURATION
+  # =============================================================================
+  network:
+    - name: "Configure P2P Mesh Network"
+      commands:
+        - |
+          cat > /etc/edgevpn/config.yaml << EOF
+          network_token: "{{.NETWORK_TOKEN}}"
+          interface: "edgevpn0"
+          mtu: 1420
+          address: "{{.VPN_ADDRESS}}/24"
+          enable_dht: true
+          enable_mdns: true
+          libp2p:
+            enable_relay: true
+            enable_autonat: true
+          EOF
+
+  # =============================================================================
+  # BOOT STAGE - K3S AND SHIMS
+  # =============================================================================
+  boot:
+    - name: "Configure K3s with WASM support"
+      commands:
+        - |
+          mkdir -p /etc/rancher/k3s
+
+          cat > /etc/rancher/k3s/config.yaml << EOF
+          cluster-init: {{.IS_FIRST_NODE}}
+          flannel-backend: wireguard-native
+          disable:
+            - traefik
+            - servicelb
+          node-label:
+            - "topology.kubernetes.io/zone={{.ZONE}}"
+            - "node.kubernetes.io/instance-type={{.INSTANCE_TYPE}}"
+            - "kairos.io/arch={{.ARCH}}"
+            - "zgents.io/mise-enabled=true"
+          write-kubeconfig-mode: "0644"
+          server: "https://{{.CONTROL_PLANE_VIP}}:6443"
+          token: "{{.K3S_TOKEN}}"
+          embedded-registry: true
+          EOF
+
+    - name: "Install containerd WASM shims"
+      commands:
+        - |
+          ARCH=$(uname -m)
+
+          # Install Spin shim
+          if [ "$ARCH" = "aarch64" ]; then
+            SPIN_URL="https://github.com/spinkube/containerd-shim-spin/releases/latest/download/containerd-shim-spin-v2-linux-aarch64.tar.gz"
+            WASMEDGE_URL="https://github.com/WasmEdge/WasmEdge/releases/latest/download/WasmEdge-0.14.0-manylinux_2_28_aarch64.tar.gz"
+          else
+            SPIN_URL="https://github.com/spinkube/containerd-shim-spin/releases/latest/download/containerd-shim-spin-v2-linux-x86_64.tar.gz"
+            WASMEDGE_URL="https://github.com/WasmEdge/WasmEdge/releases/latest/download/WasmEdge-0.14.0-manylinux_2_28_x86_64.tar.gz"
+          fi
+
+          # Download and install Spin shim
+          curl -L "$SPIN_URL" | tar xz -C /usr/local/bin
+          chmod +x /usr/local/bin/containerd-shim-spin-v2
+
+          # Download and install WasmEdge
+          curl -L "$WASMEDGE_URL" | tar xz -C /usr/local
+          ln -sf /usr/local/WasmEdge-*/bin/* /usr/local/bin/
+
+    - name: "Configure containerd for WASM runtimes"
+      commands:
+        - |
+          mkdir -p /etc/containerd
+
+          cat >> /etc/containerd/config.toml << 'EOF'
+
+          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.spin]
+            runtime_type = "io.containerd.spin.v2"
+            [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.spin.options]
+              BinaryName = "/usr/local/bin/containerd-shim-spin-v2"
+
+          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.wasmedge]
+            runtime_type = "io.containerd.wasmedge.v1"
+            [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.wasmedge.options]
+              BinaryName = "/usr/local/bin/wasmedge"
+          EOF
+
+    - name: "Setup mise environment for agents"
+      commands:
+        - |
+          # Create zgents work directory
+          mkdir -p /var/lib/zgents
+
+          # Copy mise configuration for agents
+          cat > /var/lib/zgents/mise.toml << 'EOF'
+          [env]
+          NODE_ENV = "production"
+          ZGENTS_ROOT = "/var/lib/zgents"
+
+          [tools]
+          node = "22"
+          bun = "latest"
+
+          [settings]
+          shims_dir = "/usr/local/share/mise/shims"
+          EOF
+
+          # Activate mise environment
+          cd /var/lib/zgents
+          mise trust mise.toml
+          mise install
+
+# =============================================================================
+# K3S CONFIGURATION
+# =============================================================================
+k3s:
+  enabled: true
+  args:
+    - --disable=traefik
+    - --disable=servicelb
+    - --flannel-backend=wireguard-native
+    - --kube-proxy-arg=proxy-mode=ipvs
+
+# =============================================================================
+# P2P MESH NETWORKING
+# =============================================================================
+p2p:
+  enabled: true
+  network_token: "{{.NETWORK_TOKEN}}"
+  dns: true
+  vpn:
+    enabled: true
+    use_dht: true
+
+# =============================================================================
+# BUNDLES
+# =============================================================================
+bundles:
+  - targets:
+      - run://quay.io/kairos/community-bundles:nvidia_latest
+      - run://quay.io/kairos/community-bundles:cert-manager_latest
+
+# =============================================================================
+# CONTAINERD CONFIGURATION
+# =============================================================================
+containerd:
+  config:
+    plugins:
+      io.containerd.grpc.v1.cri:
+        containerd:
+          runtimes:
+            spin:
+              runtime_type: "io.containerd.spin.v2"
+              options:
+                BinaryName: "/usr/local/bin/containerd-shim-spin-v2"
+            wasmedge:
+              runtime_type: "io.containerd.wasmedge.v1"
+              options:
+                BinaryName: "/usr/local/bin/wasmedge"
+            runc:
+              runtime_type: "io.containerd.runc.v2"
+
+# =============================================================================
+# POST-INSTALL COMMANDS
+# =============================================================================
+runcmd:
+  # Label nodes with mise capability
+  - |
+    kubectl label node $(hostname) \
+      zgents.io/mise-enabled=true \
+      zgents.io/wasm-runtime=spin,wasmedge \
+      hardware.kairos.io/architecture=$(uname -m) \
+      --overwrite || true
+
+  # Create RuntimeClasses for WASM
+  - |
+    cat << 'EOF' | kubectl apply -f -
+    apiVersion: node.k8s.io/v1
+    kind: RuntimeClass
+    metadata:
+      name: wasmtime-spin
+    handler: spin
+    scheduling:
+      nodeSelector:
+        zgents.io/wasm-runtime: spin
+    ---
+    apiVersion: node.k8s.io/v1
+    kind: RuntimeClass
+    metadata:
+      name: wasmedge
+    handler: wasmedge
+    scheduling:
+      nodeSelector:
+        zgents.io/wasm-runtime: wasmedge
+    EOF
+
+  # Verify mise shims
+  - |
+    echo "Verifying mise shims..."
+    export PATH="/usr/local/share/mise/shims:$PATH"
+    node --version
+    python --version
+    kubectl version --client

@@ -1,0 +1,255 @@
+{
+  "name": "DeepSeek Chat Configuration",
+  "description": "Optimized configuration for using DeepSeek Chat with agentic-flow agents",
+  "version": "1.0.0",
+
+  "provider": {
+    "name": "openrouter",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "proxyUrl": "http://localhost:8080",
+    "apiKeyEnv": "OPENROUTER_API_KEY"
+  },
+
+  "model": {
+    "id": "deepseek/deepseek-chat",
+    "name": "DeepSeek Chat",
+    "maxTokens": 64000,
+    "costPer1M": {
+      "input": 0.14,
+      "output": 0.28
+    },
+    "strengths": [
+      "Code generation",
+      "Problem solving",
+      "Algorithm design",
+      "Technical writing",
+      "Code review"
+    ]
+  },
+
+  "agents": {
+    "coder": {
+      "description": "General purpose code generation",
+      "recommendedTokens": 1000,
+      "temperature": 0.7,
+      "useCases": [
+        "Function implementations",
+        "Algorithm development",
+        "Quick prototypes",
+        "Code refactoring"
+      ]
+    },
+
+    "backend-dev": {
+      "description": "Backend API development specialist",
+      "recommendedTokens": 1500,
+      "temperature": 0.7,
+      "useCases": [
+        "REST APIs",
+        "GraphQL APIs",
+        "Database integration",
+        "Authentication systems"
+      ]
+    },
+
+    "system-architect": {
+      "description": "System architecture and design",
+      "recommendedTokens": 1200,
+      "temperature": 0.8,
+      "useCases": [
+        "Architecture design",
+        "System planning",
+        "Component design",
+        "Technical decisions"
+      ]
+    },
+
+    "reviewer": {
+      "description": "Code review and quality analysis",
+      "recommendedTokens": 1000,
+      "temperature": 0.6,
+      "useCases": [
+        "Code reviews",
+        "Best practices",
+        "Performance optimization",
+        "Security analysis"
+      ]
+    },
+
+    "tester": {
+      "description": "Test generation and quality assurance",
+      "recommendedTokens": 1500,
+      "temperature": 0.7,
+      "useCases": [
+        "Unit tests",
+        "Integration tests",
+        "Test scenarios",
+        "Coverage analysis"
+      ]
+    },
+
+    "ml-developer": {
+      "description": "Machine learning development",
+      "recommendedTokens": 1500,
+      "temperature": 0.7,
+      "useCases": [
+        "Model development",
+        "Data preprocessing",
+        "Feature engineering",
+        "Model evaluation"
+      ]
+    },
+
+    "mobile-dev": {
+      "description": "Mobile application development",
+      "recommendedTokens": 1200,
+      "temperature": 0.7,
+      "useCases": [
+        "React Native",
+        "iOS/Android",
+        "Mobile UI",
+        "Cross-platform"
+      ]
+    },
+
+    "api-docs": {
+      "description": "API documentation generation",
+      "recommendedTokens": 1000,
+      "temperature": 0.6,
+      "useCases": [
+        "OpenAPI specs",
+        "API documentation",
+        "Endpoint descriptions",
+        "Schema definitions"
+      ]
+    }
+  },
+
+  "workflows": {
+    "fullStack": {
+      "description": "Complete full-stack development workflow",
+      "steps": [
+        {
+          "agent": "system-architect",
+          "task": "Design system architecture",
+          "tokens": 1000
+        },
+        {
+          "agent": "backend-dev",
+          "task": "Implement backend API",
+          "tokens": 1500
+        },
+        {
+          "agent": "coder",
+          "task": "Implement frontend",
+          "tokens": 1500
+        },
+        {
+          "agent": "tester",
+          "task": "Generate tests",
+          "tokens": 1200
+        },
+        {
+          "agent": "reviewer",
+          "task": "Review code quality",
+          "tokens": 1000
+        }
+      ],
+      "estimatedCost": 0.00252,
+      "estimatedTime": "5-10 minutes"
+    },
+
+    "apiDevelopment": {
+      "description": "REST API development workflow",
+      "steps": [
+        {
+          "agent": "system-architect",
+          "task": "Design API architecture",
+          "tokens": 800
+        },
+        {
+          "agent": "backend-dev",
+          "task": "Implement endpoints",
+          "tokens": 1500
+        },
+        {
+          "agent": "tester",
+          "task": "Generate API tests",
+          "tokens": 1000
+        },
+        {
+          "agent": "api-docs",
+          "task": "Generate OpenAPI spec",
+          "tokens": 800
+        }
+      ],
+      "estimatedCost": 0.00168,
+      "estimatedTime": "3-5 minutes"
+    },
+
+    "codeReview": {
+      "description": "Comprehensive code review workflow",
+      "steps": [
+        {
+          "agent": "reviewer",
+          "task": "Review code quality",
+          "tokens": 1000
+        },
+        {
+          "agent": "tester",
+          "task": "Suggest test improvements",
+          "tokens": 800
+        },
+        {
+          "agent": "coder",
+          "task": "Implement suggested fixes",
+          "tokens": 1200
+        }
+      ],
+      "estimatedCost": 0.00126,
+      "estimatedTime": "2-4 minutes"
+    }
+  },
+
+  "bestPractices": {
+    "tokenManagement": {
+      "small": 500,
+      "medium": 1000,
+      "large": 1500,
+      "xlarge": 2000
+    },
+
+    "temperature": {
+      "creative": 0.9,
+      "balanced": 0.7,
+      "precise": 0.5,
+      "deterministic": 0.3
+    },
+
+    "promptEngineering": [
+      "Be specific about requirements",
+      "Include examples when possible",
+      "Specify output format",
+      "Break complex tasks into steps",
+      "Provide context and constraints"
+    ]
+  },
+
+  "costOptimization": {
+    "tips": [
+      "Use appropriate token limits",
+      "Leverage proxy caching",
+      "Batch similar requests",
+      "Use lower temperature for deterministic tasks",
+      "Prefer DeepSeek for code generation",
+      "Monitor usage with built-in tracking"
+    ],
+
+    "savings": {
+      "vsClaudeDirect": "97.7%",
+      "monthlyFor100Tasks": "$0.35",
+      "annualFor100Tasks": "$4.20",
+      "teamOf10Annual": "$42.00"
+    }
+  }
+}

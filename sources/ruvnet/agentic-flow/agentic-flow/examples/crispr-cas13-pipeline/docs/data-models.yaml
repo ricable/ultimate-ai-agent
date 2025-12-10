@@ -1,0 +1,1639 @@
+# CRISPR-Cas13 Pipeline - Data Models
+# Version: 1.0.0
+# Date: 2025-10-12
+# Compliance: GA4GH, NCBI, ISO 8601
+
+---
+# Core Data Models
+
+Experiment:
+  description: "Top-level experimental metadata container"
+  type: object
+  required:
+    - experiment_id
+    - title
+    - species
+    - cas13_variant
+    - guide_rna
+    - date_performed
+  properties:
+    experiment_id:
+      type: string
+      format: uuid
+      description: "Unique experiment identifier (UUID v4)"
+      example: "550e8400-e29b-41d4-a716-446655440000"
+
+    title:
+      type: string
+      minLength: 10
+      maxLength: 200
+      description: "Human-readable experiment title"
+      example: "Cas13d-mediated STAT1 knockdown in rhesus macaque liver"
+
+    description:
+      type: string
+      maxLength: 2000
+      description: "Detailed experimental description"
+      example: "Evaluation of Cas13d off-target effects and interferon response..."
+
+    species:
+      type: string
+      enum:
+        - rhesus_macaque
+        - cynomolgus_macaque
+        - human_cell_line
+        - mouse
+        - custom
+      description: "Species (NCBI Taxonomy-aligned)"
+      taxonomy_id:
+        rhesus_macaque: 9544
+        cynomolgus_macaque: 9541
+        human_cell_line: 9606
+        mouse: 10090
+
+    tissue_type:
+      type: string
+      enum:
+        - liver
+        - kidney
+        - brain
+        - blood
+        - spleen
+        - lung
+        - heart
+        - cultured_cells
+        - organoid
+        - other
+      description: "Tissue or cell type (BRENDA Tissue Ontology)"
+
+    cas13_variant:
+      type: string
+      enum:
+        - Cas13a  # LwaCas13a (Leptotrichia wadei)
+        - Cas13b  # PspCas13b (Prevotella sp.)
+        - Cas13c  # BzCas13c (Bacteroides zoohelcus)
+        - Cas13d  # EsCas13d (Eubacterium siraeum)
+      description: "Cas13 ortholog used in experiment"
+
+    guide_rna:
+      $ref: '#/GuideRNA'
+
+    delivery_method:
+      type: string
+      enum:
+        - AAV  # Adeno-Associated Virus
+        - LNP  # Lipid Nanoparticle
+        - electroporation
+        - transfection
+        - microinjection
+        - other
+      description: "Delivery vehicle for Cas13 + gRNA"
+
+    timepoint_hours:
+      type: integer
+      minimum: 0
+      maximum: 8760  # 1 year
+      description: "Time post-treatment (hours)"
+      example: 72
+
+    replicate_number:
+      type: integer
+      minimum: 1
+      maximum: 100
+      description: "Biological replicate number"
+
+    control_type:
+      type: string
+      enum:
+        - mock_treated
+        - non_targeting_grna
+        - untreated
+        - positive_control
+      nullable: true
+      description: "Control experiment type (null if experimental condition)"
+
+    experimenter:
+      type: string
+      maxLength: 100
+      description: "Person who performed experiment"
+      example: "Dr. Jane Smith"
+
+    institution:
+      type: string
+      maxLength: 200
+      description: "Research institution"
+      example: "University of California, San Francisco"
+
+    iacuc_protocol:
+      type: string
+      pattern: "^[A-Z0-9-]+$"
+      description: "IACUC protocol number (if animal study)"
+      example: "IACUC-2024-12345"
+
+    date_performed:
+      type: string
+      format: date-time
+      description: "Experiment execution date (ISO 8601)"
+      example: "2025-10-12T14:30:00Z"
+
+    created_at:
+      type: string
+      format: date-time
+      readOnly: true
+
+    updated_at:
+      type: string
+      format: date-time
+      readOnly: true
+
+    metadata:
+      type: object
+      additionalProperties: true
+      description: "Flexible metadata field for custom annotations"
+
+---
+
+GuideRNA:
+  description: "Guide RNA sequence and target information"
+  type: object
+  required:
+    - sequence
+    - target_gene
+  properties:
+    sequence:
+      type: string
+      pattern: "^[ACGTU]{22,30}$"
+      description: "Guide RNA sequence (22-30nt, RNA format with U)"
+      example: "GUCAUGCACUGUACUGACUACU"
+
+    sequence_dna:
+      type: string
+      pattern: "^[ACGT]{22,30}$"
+      description: "DNA equivalent of gRNA (auto-generated)"
+      example: "GTCATGCACTGTACTGACTACT"
+
+    length:
+      type: integer
+      minimum: 22
+      maximum: 30
+      description: "Guide RNA length (nt)"
+
+    target_gene:
+      type: string
+      pattern: "^[A-Z0-9-]+$"
+      description: "Target gene symbol (HGNC/MGI nomenclature)"
+      example: "STAT1"
+
+    target_transcript_id:
+      type: string
+      description: "Ensembl or RefSeq transcript ID"
+      examples:
+        - "ENST00000361099"
+        - "NM_007315.4"
+
+    target_transcript_biotype:
+      type: string
+      enum:
+        - protein_coding
+        - lncRNA
+        - miRNA
+        - snoRNA
+        - snRNA
+        - misc_RNA
+      description: "Transcript biotype (Ensembl classification)"
+
+    protospacer_coordinates:
+      type: object
+      description: "Genomic coordinates of target site"
+      properties:
+        chromosome:
+          type: string
+          pattern: "^(chr)?([1-9]|1[0-9]|2[0-2]|X|Y|MT?)$"
+          example: "chr2"
+        start:
+          type: integer
+          minimum: 1
+          example: 191854689
+        end:
+          type: integer
+          minimum: 1
+          example: 191854711
+        strand:
+          type: string
+          enum: ["+", "-"]
+
+    pfs_sequence:
+      type: string
+      pattern: "^[ACGTU]{1,6}$"
+      description: "Protospacer Flanking Site (Cas13 PAM equivalent)"
+      example: "A"  # Cas13d prefers 3' A
+
+    gc_content:
+      type: number
+      minimum: 0.0
+      maximum: 1.0
+      description: "GC content fraction"
+
+    predicted_structure:
+      type: object
+      description: "Secondary structure prediction (Vienna format)"
+      properties:
+        dot_bracket:
+          type: string
+          example: "((((....))))"
+        mfe:
+          type: number
+          description: "Minimum free energy (kcal/mol)"
+          example: -3.4
+
+    off_target_potential:
+      type: string
+      enum: [low, medium, high]
+      description: "Predicted off-target risk (preliminary)"
+
+    design_tool:
+      type: string
+      description: "Tool used for gRNA design"
+      examples:
+        - "CHOPCHOP"
+        - "Cas13design"
+        - "custom"
+
+---
+
+SequencingRun:
+  description: "Raw sequencing data (FASTQ) metadata"
+  type: object
+  required:
+    - run_id
+    - experiment_id
+    - sample_id
+    - sequencing_platform
+    - read_files
+  properties:
+    run_id:
+      type: string
+      format: uuid
+      description: "Unique sequencing run identifier"
+
+    experiment_id:
+      type: string
+      format: uuid
+      description: "Parent experiment ID (foreign key)"
+
+    sample_id:
+      type: string
+      description: "Sample identifier"
+      example: "Sample_001_liver_72h_rep1"
+
+    sequencing_platform:
+      type: string
+      enum:
+        - Illumina_NovaSeq_6000
+        - Illumina_NextSeq_2000
+        - Illumina_MiSeq
+        - Oxford_Nanopore_MinION
+        - Oxford_Nanopore_PromethION
+        - PacBio_Sequel_II
+        - BGI_DNBSEQ
+      description: "Sequencing platform"
+
+    library_prep:
+      type: string
+      enum:
+        - TruSeq_Stranded_mRNA
+        - NEBNext_Ultra_II
+        - SMARTer_Stranded_Total_RNA
+        - QuantSeq_3prime
+        - custom
+      description: "Library preparation kit"
+
+    read_type:
+      type: string
+      enum:
+        - single_end
+        - paired_end
+      description: "Read type"
+
+    read_length:
+      type: integer
+      minimum: 50
+      maximum: 300
+      description: "Read length (nt)"
+      example: 150
+
+    read_files:
+      type: array
+      minItems: 1
+      maxItems: 2
+      items:
+        $ref: '#/FastqFile'
+
+    total_reads:
+      type: integer
+      minimum: 0
+      description: "Total read count"
+      example: 45000000
+
+    flowcell_id:
+      type: string
+      description: "Sequencing flowcell ID"
+      example: "H3TVJDRXY"
+
+    lane:
+      type: integer
+      minimum: 1
+      maximum: 8
+      description: "Flowcell lane number"
+
+    barcode_index:
+      type: string
+      pattern: "^[ACGT]{6,12}$"
+      description: "Sample barcode/index sequence"
+      example: "ATCACG"
+
+    sequencing_date:
+      type: string
+      format: date-time
+      description: "Sequencing run date"
+
+    sequencing_facility:
+      type: string
+      maxLength: 200
+      description: "Sequencing facility name"
+
+    created_at:
+      type: string
+      format: date-time
+      readOnly: true
+
+---
+
+FastqFile:
+  description: "Individual FASTQ file record"
+  type: object
+  required:
+    - file_id
+    - file_path
+    - file_size
+    - md5_checksum
+  properties:
+    file_id:
+      type: string
+      format: uuid
+
+    file_path:
+      type: string
+      format: uri
+      description: "S3 URI or file path"
+      example: "s3://sequencing-data/exp123/sample001_R1.fastq.gz"
+
+    file_name:
+      type: string
+      description: "Original filename"
+      example: "Sample_001_S1_L001_R1_001.fastq.gz"
+
+    read_pair:
+      type: string
+      enum: ["R1", "R2", "single"]
+      description: "Read pair designation"
+
+    file_size:
+      type: integer
+      minimum: 0
+      description: "File size in bytes"
+      example: 3458765432
+
+    file_size_human:
+      type: string
+      description: "Human-readable file size"
+      example: "3.2 GB"
+
+    compression:
+      type: string
+      enum: ["gzip", "bzip2", "uncompressed"]
+      description: "Compression format"
+
+    md5_checksum:
+      type: string
+      pattern: "^[a-f0-9]{32}$"
+      description: "MD5 hash for integrity verification"
+      example: "5d41402abc4b2a76b9719d911017c592"
+
+    sha256_checksum:
+      type: string
+      pattern: "^[a-f0-9]{64}$"
+      description: "SHA-256 hash (optional, more secure)"
+
+    quality_encoding:
+      type: string
+      enum: ["Phred33", "Phred64"]
+      default: "Phred33"
+      description: "Quality score encoding"
+
+    upload_date:
+      type: string
+      format: date-time
+
+    uploaded_by:
+      type: string
+      description: "User who uploaded file"
+
+---
+
+QualityControl:
+  description: "FastQC quality control metrics"
+  type: object
+  required:
+    - qc_id
+    - sequencing_run_id
+    - status
+  properties:
+    qc_id:
+      type: string
+      format: uuid
+
+    sequencing_run_id:
+      type: string
+      format: uuid
+      description: "Parent sequencing run (foreign key)"
+
+    status:
+      type: string
+      enum: [pass, warn, fail]
+      description: "Overall QC status"
+
+    total_sequences:
+      type: integer
+      minimum: 0
+
+    poor_quality_sequences:
+      type: integer
+      minimum: 0
+
+    sequence_length:
+      type: object
+      properties:
+        min: integer
+        max: integer
+        mean: number
+
+    mean_quality_score:
+      type: number
+      minimum: 0
+      maximum: 42
+      description: "Mean Phred quality score across all bases"
+
+    per_base_quality:
+      type: array
+      items:
+        type: object
+        properties:
+          position:
+            type: integer
+          mean_quality:
+            type: number
+          q25:
+            type: number
+          q75:
+            type: number
+
+    per_sequence_quality:
+      type: object
+      properties:
+        mean_quality_distribution:
+          type: array
+          items:
+            quality_bin: integer
+            count: integer
+
+    gc_content:
+      type: number
+      minimum: 0
+      maximum: 100
+      description: "GC content percentage"
+
+    adapter_content:
+      type: object
+      properties:
+        illumina_universal_adapter:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: "% sequences with adapter"
+        illumina_small_rna_adapter:
+          type: number
+        nextera_transposase:
+          type: number
+
+    duplication_rate:
+      type: number
+      minimum: 0
+      maximum: 100
+      description: "% duplicate reads"
+
+    overrepresented_sequences:
+      type: array
+      maxItems: 20
+      items:
+        type: object
+        properties:
+          sequence:
+            type: string
+          count:
+            type: integer
+          percentage:
+            type: number
+          source:
+            type: string
+            description: "Predicted source (e.g., 'Illumina Adapter')"
+
+    report_html:
+      type: string
+      format: uri
+      description: "URL to HTML QC report"
+
+    report_json:
+      type: string
+      format: uri
+      description: "URL to JSON QC data"
+
+    fastqc_version:
+      type: string
+      example: "v0.12.1"
+
+    created_at:
+      type: string
+      format: date-time
+
+---
+
+Alignment:
+  description: "Read alignment results (BAM/SAM)"
+  type: object
+  required:
+    - alignment_id
+    - sequencing_run_id
+    - reference_genome
+    - aligner
+  properties:
+    alignment_id:
+      type: string
+      format: uuid
+
+    sequencing_run_id:
+      type: string
+      format: uuid
+      description: "Parent sequencing run"
+
+    reference_genome:
+      $ref: '#/ReferenceGenome'
+
+    aligner:
+      type: string
+      enum:
+        - STAR
+        - HISAT2
+        - Bowtie2
+        - BWA-MEM
+        - minimap2
+      description: "Alignment tool used"
+
+    aligner_version:
+      type: string
+      example: "2.7.10b"
+
+    alignment_parameters:
+      type: object
+      additionalProperties: true
+      description: "Aligner-specific parameters"
+      example:
+        outSAMtype: "BAM SortedByCoordinate"
+        alignIntronMax: 1000000
+        outFilterMismatchNmax: 2
+
+    bam_file:
+      type: string
+      format: uri
+      description: "S3 URI to BAM file"
+      example: "s3://alignments/exp123/sample001.bam"
+
+    bai_file:
+      type: string
+      format: uri
+      description: "BAM index file (.bai)"
+
+    total_reads:
+      type: integer
+      description: "Total input reads"
+
+    mapped_reads:
+      type: integer
+      description: "Successfully mapped reads"
+
+    uniquely_mapped_reads:
+      type: integer
+      description: "Uniquely mapped reads (MAPQ >= 10)"
+
+    multi_mapped_reads:
+      type: integer
+      description: "Multi-mapping reads"
+
+    unmapped_reads:
+      type: integer
+      description: "Unmapped reads"
+
+    alignment_rate:
+      type: number
+      minimum: 0
+      maximum: 1
+      description: "Fraction of mapped reads"
+      example: 0.94
+
+    mean_mapping_quality:
+      type: number
+      minimum: 0
+      maximum: 60
+      description: "Mean MAPQ score"
+
+    insert_size_metrics:
+      type: object
+      description: "Paired-end insert size statistics"
+      properties:
+        mean:
+          type: number
+        median:
+          type: number
+        standard_deviation:
+          type: number
+
+    coverage_metrics:
+      type: object
+      properties:
+        mean_coverage:
+          type: number
+        median_coverage:
+          type: number
+        covered_bases:
+          type: integer
+          description: "Number of bases with >=1 read"
+
+    execution_time_seconds:
+      type: integer
+      description: "Alignment runtime"
+
+    peak_memory_gb:
+      type: number
+      description: "Peak memory usage (GB)"
+
+    created_at:
+      type: string
+      format: date-time
+
+---
+
+ReferenceGenome:
+  description: "Reference genome/transcriptome metadata"
+  type: object
+  required:
+    - genome_id
+    - species
+    - assembly_name
+    - source
+  properties:
+    genome_id:
+      type: string
+      format: uuid
+
+    species:
+      type: string
+      example: "Macaca mulatta"
+
+    assembly_name:
+      type: string
+      description: "Genome assembly name"
+      examples:
+        - "rheMac10"
+        - "GRCh38"
+        - "macFas5"
+
+    assembly_accession:
+      type: string
+      description: "GenBank/RefSeq assembly accession"
+      example: "GCF_003339765.1"
+
+    source:
+      type: string
+      enum:
+        - NCBI
+        - Ensembl
+        - UCSC
+        - custom
+
+    ensembl_version:
+      type: integer
+      description: "Ensembl release version"
+      example: 110
+
+    genome_fasta:
+      type: string
+      format: uri
+      description: "FASTA file location"
+
+    annotation_gtf:
+      type: string
+      format: uri
+      description: "Gene annotation GTF/GFF3 file"
+
+    transcriptome_fasta:
+      type: string
+      format: uri
+      description: "Transcriptome FASTA (for RNA-seq)"
+
+    aligner_index:
+      type: object
+      properties:
+        star_index:
+          type: string
+          format: uri
+        hisat2_index:
+          type: string
+          format: uri
+        bowtie2_index:
+          type: string
+          format: uri
+
+    chromosome_sizes:
+      type: array
+      items:
+        type: object
+        properties:
+          name:
+            type: string
+            example: "chr1"
+          length:
+            type: integer
+            example: 228864388
+
+    total_genome_size:
+      type: integer
+      description: "Total genome size in bp"
+
+    gene_count:
+      type: integer
+      description: "Number of annotated genes"
+
+    created_at:
+      type: string
+      format: date-time
+
+---
+
+TargetAnalysis:
+  description: "On-target CRISPR activity analysis"
+  type: object
+  required:
+    - analysis_id
+    - experiment_id
+    - target_gene
+  properties:
+    analysis_id:
+      type: string
+      format: uuid
+
+    experiment_id:
+      type: string
+      format: uuid
+
+    target_gene:
+      type: string
+      description: "Target gene symbol"
+
+    target_transcript_id:
+      type: string
+      description: "Specific transcript targeted"
+
+    control_expression_tpm:
+      type: number
+      minimum: 0
+      description: "Control sample TPM (Transcripts Per Million)"
+      example: 125.3
+
+    treated_expression_tpm:
+      type: number
+      minimum: 0
+      description: "Treated sample TPM"
+      example: 16.2
+
+    fold_change:
+      type: number
+      description: "Log2 fold change (treated vs control)"
+      example: -2.95
+
+    knockdown_efficiency:
+      type: number
+      minimum: 0
+      maximum: 1
+      description: "Knockdown efficiency (1 - treated/control)"
+      example: 0.871
+
+    p_value:
+      type: number
+      minimum: 0
+      maximum: 1
+      description: "Statistical significance (DESeq2/edgeR)"
+      example: 1.2e-15
+
+    adjusted_p_value:
+      type: number
+      minimum: 0
+      maximum: 1
+      description: "FDR-adjusted p-value (Benjamini-Hochberg)"
+
+    read_counts:
+      type: object
+      properties:
+        control_reads:
+          type: integer
+        treated_reads:
+          type: integer
+        total_library_size_control:
+          type: integer
+        total_library_size_treated:
+          type: integer
+
+    transcript_abundance:
+      type: array
+      description: "Isoform-level expression"
+      items:
+        type: object
+        properties:
+          transcript_id:
+            type: string
+          tpm:
+            type: number
+          fold_change:
+            type: number
+
+    confidence_level:
+      type: string
+      enum: [high, medium, low]
+      description: "Confidence in knockdown measurement"
+
+    statistical_method:
+      type: string
+      enum: [DESeq2, edgeR, limma-voom, NOISeq]
+
+    created_at:
+      type: string
+      format: date-time
+
+---
+
+OffTargetSite:
+  description: "Predicted off-target RNA cleavage site"
+  type: object
+  required:
+    - offtarget_id
+    - experiment_id
+    - rank
+    - confidence_score
+  properties:
+    offtarget_id:
+      type: string
+      format: uuid
+
+    experiment_id:
+      type: string
+      format: uuid
+
+    rank:
+      type: integer
+      minimum: 1
+      description: "Rank by confidence score (1 = highest risk)"
+
+    confidence_score:
+      type: number
+      minimum: 0.0
+      maximum: 1.0
+      description: "Off-target likelihood score"
+      example: 0.82
+
+    gene_symbol:
+      type: string
+      description: "Off-target gene symbol"
+      example: "GAPDH"
+
+    gene_id:
+      type: string
+      description: "Ensembl/RefSeq gene ID"
+      example: "ENSG00000111640"
+
+    transcript_id:
+      type: string
+      description: "Specific transcript"
+      example: "ENST00000229239"
+
+    genomic_coordinates:
+      type: object
+      required: [chromosome, start, end, strand]
+      properties:
+        chromosome:
+          type: string
+          example: "chr12"
+        start:
+          type: integer
+          example: 6646711
+        end:
+          type: integer
+          example: 6646733
+        strand:
+          type: string
+          enum: ["+", "-"]
+
+    aligned_sequence:
+      type: string
+      pattern: "^[ACGTU]{22,30}$"
+      description: "Aligned off-target sequence"
+
+    alignment:
+      type: object
+      properties:
+        guide_rna:
+          type: string
+          example: "GUCAUGCACUGUACUGACUACU"
+        off_target:
+          type: string
+          example: "GUCAUGCACUGUA-UGACUACU"
+        alignment_visual:
+          type: string
+          example: "|||||||||||| |||||||||"
+
+    mismatch_count:
+      type: integer
+      minimum: 0
+      maximum: 10
+      description: "Total mismatches + gaps"
+
+    mismatch_positions:
+      type: array
+      items:
+        type: integer
+      description: "0-indexed mismatch positions"
+      example: [13]
+
+    seed_mismatches:
+      type: integer
+      minimum: 0
+      description: "Mismatches in seed region (positions 1-12)"
+
+    pam_flanking_sequence:
+      type: string
+      pattern: "^[ACGTU]{1,6}$"
+      description: "PFS/PAM sequence"
+
+    sequence_context:
+      type: string
+      description: "±50nt context around off-target site"
+
+    accessibility_score:
+      type: number
+      minimum: 0
+      maximum: 1
+      description: "RNA accessibility prediction (0=inaccessible, 1=accessible)"
+
+    secondary_structure:
+      type: object
+      properties:
+        dot_bracket:
+          type: string
+        mfe:
+          type: number
+          description: "Minimum free energy"
+
+    expression_level:
+      type: number
+      minimum: 0
+      description: "Off-target transcript expression (TPM)"
+
+    observed_cleavage:
+      type: boolean
+      description: "Whether cleavage was observed in RNA-seq data"
+
+    fold_change:
+      type: number
+      nullable: true
+      description: "Expression change (if observed)"
+
+    prediction_method:
+      type: string
+      description: "Algorithm used for prediction"
+      examples:
+        - "BLAST"
+        - "Bowtie"
+        - "Cas-OFFinder"
+        - "custom_scoring"
+
+    created_at:
+      type: string
+      format: date-time
+
+---
+
+ImmuneResponse:
+  description: "Innate immune pathway activation analysis"
+  type: object
+  required:
+    - immune_id
+    - experiment_id
+  properties:
+    immune_id:
+      type: string
+      format: uuid
+
+    experiment_id:
+      type: string
+      format: uuid
+
+    overall_immune_score:
+      type: number
+      description: "Composite immune activation score (normalized)"
+      example: 2.35
+
+    interferon_score:
+      type: number
+      description: "Interferon pathway activation score"
+
+    activated_pathways:
+      type: array
+      items:
+        type: string
+        enum:
+          - Type_I_IFN
+          - Type_III_IFN
+          - RIG-I_pathway
+          - MDA5_pathway
+          - OAS_RNase_L
+          - PKR_pathway
+          - inflammasome
+          - NF-kB
+      example: ["Type_I_IFN", "RIG-I_pathway"]
+
+    differential_genes:
+      type: array
+      description: "Differentially expressed immune genes"
+      items:
+        type: object
+        properties:
+          gene_symbol:
+            type: string
+            example: "IFNB1"
+          gene_name:
+            type: string
+            example: "Interferon Beta 1"
+          fold_change:
+            type: number
+            example: 12.5
+          p_value:
+            type: number
+            example: 3.2e-10
+          adjusted_p_value:
+            type: number
+          pathway:
+            type: string
+            example: "Type_I_IFN"
+          role:
+            type: string
+            description: "Gene function"
+            example: "Cytokine signaling"
+
+    gene_set_enrichment:
+      type: array
+      description: "GSEA results for immune pathways"
+      items:
+        type: object
+        properties:
+          pathway_name:
+            type: string
+            example: "HALLMARK_INTERFERON_ALPHA_RESPONSE"
+          enrichment_score:
+            type: number
+          normalized_enrichment_score:
+            type: number
+          p_value:
+            type: number
+          fdr_q_value:
+            type: number
+          leading_edge_genes:
+            type: array
+            items:
+              type: string
+
+    key_cytokines:
+      type: object
+      description: "Expression of key cytokines"
+      properties:
+        IFNB1:
+          type: number
+          description: "Type I IFN-beta"
+        IFNL1:
+          type: number
+          description: "Type III IFN-lambda 1"
+        IL6:
+          type: number
+        TNF:
+          type: number
+        CXCL10:
+          type: number
+          description: "IP-10"
+
+    pattern_recognition_receptors:
+      type: object
+      properties:
+        DDX58:
+          type: number
+          description: "RIG-I"
+        IFIH1:
+          type: number
+          description: "MDA5"
+        TLR3:
+          type: number
+        TLR7:
+          type: number
+        ZBP1:
+          type: number
+          description: "Z-DNA binding protein 1"
+
+    interferon_stimulated_genes:
+      type: object
+      properties:
+        ISG15:
+          type: number
+        MX1:
+          type: number
+        OAS1:
+          type: number
+        OAS2:
+          type: number
+        RSAD2:
+          type: number
+          description: "Viperin"
+        IFIT1:
+          type: number
+
+    heatmap_url:
+      type: string
+      format: uri
+      description: "URL to immune gene expression heatmap"
+
+    created_at:
+      type: string
+      format: date-time
+
+---
+
+ProcessingJob:
+  description: "Asynchronous processing job"
+  type: object
+  required:
+    - job_id
+    - job_type
+    - status
+  properties:
+    job_id:
+      type: string
+      format: uuid
+
+    job_type:
+      type: string
+      enum:
+        - qc_only
+        - alignment
+        - full_pipeline
+        - off_target_prediction
+        - immune_analysis
+        - custom
+
+    status:
+      type: string
+      enum:
+        - queued
+        - running
+        - completed
+        - failed
+        - cancelled
+
+    priority:
+      type: string
+      enum: [low, normal, high, urgent]
+      default: normal
+
+    experiment_id:
+      type: string
+      format: uuid
+      nullable: true
+
+    sequencing_run_id:
+      type: string
+      format: uuid
+      nullable: true
+
+    input_files:
+      type: array
+      items:
+        type: string
+        format: uri
+
+    output_files:
+      type: array
+      items:
+        type: string
+        format: uri
+
+    parameters:
+      type: object
+      additionalProperties: true
+      description: "Job-specific parameters"
+
+    reference_genome:
+      type: string
+      description: "Reference genome ID"
+
+    progress:
+      type: number
+      minimum: 0
+      maximum: 1
+      description: "Job progress (0.0-1.0)"
+      example: 0.65
+
+    current_stage:
+      type: string
+      description: "Current processing stage"
+      examples:
+        - "quality_control"
+        - "alignment"
+        - "quantification"
+        - "off_target_prediction"
+
+    eta_seconds:
+      type: integer
+      nullable: true
+      description: "Estimated time to completion (seconds)"
+
+    started_at:
+      type: string
+      format: date-time
+      nullable: true
+
+    completed_at:
+      type: string
+      format: date-time
+      nullable: true
+
+    execution_time_seconds:
+      type: integer
+      nullable: true
+      description: "Total execution time"
+
+    error_message:
+      type: string
+      nullable: true
+      description: "Error details if status=failed"
+
+    error_code:
+      type: string
+      nullable: true
+      examples:
+        - "ALIGNMENT_FAILED"
+        - "INSUFFICIENT_MEMORY"
+        - "FILE_NOT_FOUND"
+
+    retry_count:
+      type: integer
+      default: 0
+      description: "Number of retry attempts"
+
+    max_retries:
+      type: integer
+      default: 3
+
+    resource_usage:
+      type: object
+      properties:
+        cpu_hours:
+          type: number
+        peak_memory_gb:
+          type: number
+        disk_io_gb:
+          type: number
+        gpu_hours:
+          type: number
+          nullable: true
+
+    worker_node:
+      type: string
+      description: "Compute node that executed job"
+
+    container_image:
+      type: string
+      description: "Docker image used"
+      example: "quay.io/biocontainers/star:2.7.10b"
+
+    notification_email:
+      type: string
+      format: email
+      nullable: true
+
+    created_by:
+      type: string
+      description: "User who submitted job"
+
+    created_at:
+      type: string
+      format: date-time
+
+---
+
+Provenance:
+  description: "W3C PROV-O compatible provenance record"
+  type: object
+  required:
+    - provenance_id
+    - entity_id
+    - activity_id
+  properties:
+    provenance_id:
+      type: string
+      format: uuid
+
+    entity_id:
+      type: string
+      description: "ID of the data entity (file, dataset)"
+
+    entity_type:
+      type: string
+      enum:
+        - fastq_file
+        - bam_file
+        - vcf_file
+        - expression_matrix
+        - qc_report
+        - analysis_result
+
+    activity_id:
+      type: string
+      description: "Processing activity ID"
+
+    activity_type:
+      type: string
+      enum:
+        - quality_control
+        - trimming
+        - alignment
+        - quantification
+        - differential_expression
+        - off_target_prediction
+
+    agent_id:
+      type: string
+      description: "Agent (tool/user) that performed activity"
+
+    agent_type:
+      type: string
+      enum:
+        - software_tool
+        - user
+        - automated_pipeline
+
+    tool_name:
+      type: string
+      example: "STAR"
+
+    tool_version:
+      type: string
+      example: "2.7.10b"
+
+    tool_parameters:
+      type: object
+      additionalProperties: true
+
+    input_entities:
+      type: array
+      items:
+        type: string
+      description: "IDs of input entities (wasDerivedFrom)"
+
+    output_entities:
+      type: array
+      items:
+        type: string
+      description: "IDs of generated entities (wasGeneratedBy)"
+
+    started_at:
+      type: string
+      format: date-time
+
+    ended_at:
+      type: string
+      format: date-time
+
+    execution_environment:
+      type: object
+      properties:
+        os:
+          type: string
+          example: "Ubuntu 22.04"
+        container_image:
+          type: string
+        resource_allocation:
+          type: object
+          properties:
+            cpus:
+              type: integer
+            memory_gb:
+              type: number
+
+    provenance_graph:
+      type: string
+      description: "RDF serialization (Turtle/JSON-LD)"
+
+    created_at:
+      type: string
+      format: date-time
+
+---
+
+User:
+  description: "System user account"
+  type: object
+  required:
+    - user_id
+    - email
+    - role
+  properties:
+    user_id:
+      type: string
+      format: uuid
+
+    email:
+      type: string
+      format: email
+
+    username:
+      type: string
+      pattern: "^[a-z0-9_-]{3,20}$"
+
+    full_name:
+      type: string
+      maxLength: 100
+
+    institution:
+      type: string
+      maxLength: 200
+
+    role:
+      type: string
+      enum:
+        - admin
+        - researcher
+        - analyst
+        - guest
+
+    permissions:
+      type: array
+      items:
+        type: string
+        enum:
+          - submit_jobs
+          - view_all_experiments
+          - delete_data
+          - manage_users
+          - modify_settings
+
+    api_key:
+      type: string
+      writeOnly: true
+      description: "API authentication key (hashed)"
+
+    api_key_created_at:
+      type: string
+      format: date-time
+
+    last_login:
+      type: string
+      format: date-time
+
+    account_status:
+      type: string
+      enum: [active, suspended, deleted]
+      default: active
+
+    storage_quota_gb:
+      type: integer
+      default: 1000
+      description: "Storage quota (GB)"
+
+    storage_used_gb:
+      type: number
+      description: "Current storage usage"
+
+    created_at:
+      type: string
+      format: date-time
+
+    updated_at:
+      type: string
+      format: date-time
+
+---
+
+AuditLog:
+  description: "System audit log entry"
+  type: object
+  required:
+    - log_id
+    - event_type
+    - user_id
+    - timestamp
+  properties:
+    log_id:
+      type: string
+      format: uuid
+
+    event_type:
+      type: string
+      enum:
+        - user_login
+        - user_logout
+        - job_submitted
+        - job_cancelled
+        - data_uploaded
+        - data_downloaded
+        - data_deleted
+        - settings_changed
+        - api_access
+        - authentication_failed
+
+    user_id:
+      type: string
+      format: uuid
+
+    resource_type:
+      type: string
+      nullable: true
+      enum:
+        - experiment
+        - sequencing_run
+        - job
+        - file
+        - user
+
+    resource_id:
+      type: string
+      nullable: true
+
+    action:
+      type: string
+      description: "Action performed"
+      examples:
+        - "CREATE"
+        - "READ"
+        - "UPDATE"
+        - "DELETE"
+
+    ip_address:
+      type: string
+      format: ipv4
+
+    user_agent:
+      type: string
+      description: "Browser/client user agent"
+
+    request_method:
+      type: string
+      enum: [GET, POST, PUT, DELETE, PATCH]
+      nullable: true
+
+    request_path:
+      type: string
+      nullable: true
+      example: "/api/v1/jobs"
+
+    response_status:
+      type: integer
+      nullable: true
+      example: 201
+
+    details:
+      type: object
+      additionalProperties: true
+      description: "Additional event details"
+
+    timestamp:
+      type: string
+      format: date-time
+
+    severity:
+      type: string
+      enum: [info, warning, error, critical]
+      default: info

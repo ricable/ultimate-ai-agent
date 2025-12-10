@@ -1,0 +1,94 @@
+# Kustomization for WasmEdge, SpinKube, and Talos Deployment
+# Deploy all Wasm runtime components with: kubectl apply -k infrastructure/
+#
+# Supports:
+# - Talos Linux with Sidero Omni
+# - WasmEdge runtime for JavaScript/TypeScript
+# - LlamaEdge for LLM inference
+# - Spin/SpinKube for serverless Wasm
+# - Kairos immutable OS
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: wasm-runtime-stack
+  annotations:
+    description: "Complete Wasm runtime stack for running npm packages on Kubernetes"
+    ruvector.io/platforms: "talos,kairos,k3s"
+    ruvector.io/runtimes: "wasmedge,spin,llamaedge"
+
+namespace: agents
+
+resources:
+  # Runtime Class Manager - manages containerd shims
+  - runtime-class-manager/runtime-class-manager.yaml
+  - runtime-class-manager/shims.yaml
+
+  # WasmEdge Runtime configuration
+  - wasmedge/wasmedge-runtime.yaml
+
+  # LlamaEdge LLM inference runtime
+  - wasmedge/llamaedge-runtime.yaml
+
+  # SpinKube Operator and RuntimeClass
+  - spinkube/spin-operator.yaml
+
+  # SpinApp Examples (optional - comment out for minimal install)
+  - spinkube/spinapp-examples.yaml
+
+  # Kairos-specific configuration (for Kairos deployments)
+  # - kairos/cloud-config.yaml
+
+# Common labels for all resources
+commonLabels:
+  app.kubernetes.io/part-of: wasm-runtime-stack
+  app.kubernetes.io/managed-by: kustomize
+
+# Config generation (create configmaps from files)
+configMapGenerator:
+  - name: wasm-runtime-config
+    namespace: agents
+    literals:
+      - LITELLM_ENDPOINT=http://litellm.default.svc.cluster.local:4000
+      - RUVECTOR_ENDPOINT=http://ruvector.default.svc.cluster.local:8765
+      - AGENTDB_ENDPOINT=http://agentdb.default.svc.cluster.local:8766
+      - AGENT_MODEL=claude-3-5-sonnet-20241022
+      - EMBEDDING_MODEL=text-embedding-3-small
+
+# Secret generator (for development only - use external secrets in production)
+# secretGenerator:
+#   - name: agent-secrets
+#     namespace: agents
+#     literals:
+#       - ANTHROPIC_API_KEY=sk-ant-xxx
+#       - OPENAI_API_KEY=sk-xxx
+
+# Patches for environment-specific customization
+patches:
+  # Reduce replicas for development
+  - patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+    target:
+      kind: Deployment
+      name: spin-operator
+  - patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+    target:
+      kind: Deployment
+      name: runtime-class-manager
+
+# Images - override for different registries
+images:
+  - name: ghcr.io/spinkube/spin-operator
+    newTag: latest
+  - name: ghcr.io/spinkube/runtime-class-manager
+    newTag: v0.3.0
+  - name: ghcr.io/ruvnet/wasmedge-agent
+    newTag: latest
+  - name: ghcr.io/ruvnet/spin-agent
+    newTag: latest

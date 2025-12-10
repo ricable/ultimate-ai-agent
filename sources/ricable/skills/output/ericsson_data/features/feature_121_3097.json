@@ -1,0 +1,115 @@
+{
+  "id": "121 3097",
+  "name": "",
+  "cxc_code": "CXC4011811",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "The feature introduces support for the MME Overload Control procedure specified in 3GPP TS 23.401.",
+  "parameters": [
+    {
+      "name": "S1_OVERLOAD_START",
+      "type": "N/A",
+      "description": "The eNodeB triggers at reception of the S1 OVERLOAD                                         START message.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_OVERLOAD_STOP",
+      "type": "N/A",
+      "description": "The eNodeB triggers at reception of the S1 OVERLOAD                                         STOP message.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AJ",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.pmRrcConnEstabFailMmeOvlMod",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmRrcConnEstabFailMmeOvlMod",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmRrcConnEstabFailMmeOvlMos",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmRrcConnEstabFailMmeOvlMos",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmS1SigConnEstabFailMmeOvlMos",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmS1SigConnEstabFailMmeOvlMos",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmRrcConnEstabFailMmeOvlMod",
+      "description": "Performance counter pmRrcConnEstabFailMmeOvlMod",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabFailMmeOvlMos",
+      "description": "Performance counter pmRrcConnEstabFailMmeOvlMos",
+      "category": "General"
+    },
+    {
+      "name": "pmS1SigConnEstabFailMmeOvlMos",
+      "description": "Performance counter pmS1SigConnEstabFailMmeOvlMos",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "S1_OVERLOAD_START",
+      "type": "N/A",
+      "description": "The eNodeB triggers at reception of the S1 OVERLOAD                                         START message."
+    },
+    {
+      "name": "S1_OVERLOAD_STOP",
+      "type": "N/A",
+      "description": "The eNodeB triggers at reception of the S1 OVERLOAD                                         STOP message."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011811 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011811 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/140_22104-LZA7016014_1Uen.AJ.md",
+  "file_hash": "30e0ed010db960dc47d66b335da2ed70",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

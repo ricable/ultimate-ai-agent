@@ -1,0 +1,350 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  namespace: ran-monitoring
+  labels:
+    app: prometheus
+    component: monitoring
+    version: v2.40.0
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9090"
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: prometheus
+      component: monitoring
+  template:
+    metadata:
+      labels:
+        app: prometheus
+        component: monitoring
+        version: v2.40.0
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+    spec:
+      serviceAccountName: prometheus-sa
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        fsGroup: 65534
+      containers:
+      - name: prometheus
+        image: prom/prometheus:v2.40.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: web
+          containerPort: 9090
+          protocol: TCP
+        args:
+        - '--config.file=/etc/prometheus/prometheus.yml'
+        - '--storage.tsdb.path=/prometheus'
+        - '--storage.tsdb.retention.time=30d'
+        - '--storage.tsdb.retention.size=50GB'
+        - '--web.console.libraries=/etc/prometheus/console_libraries'
+        - '--web.console.templates=/etc/prometheus/consoles'
+        - '--web.enable-lifecycle'
+        - '--web.external-url=https://prometheus.ran-automation.example.com'
+        - '--web.enable-admin-api'
+        - '--query.max-concurrency=25'
+        - '--query.timeout=5m'
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 2Gi
+          limits:
+            cpu: 4000m
+            memory: 8Gi
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/prometheus
+          readOnly: true
+        - name: storage-volume
+          mountPath: /prometheus
+        - name: rules-volume
+          mountPath: /etc/prometheus/rules
+          readOnly: true
+        livenessProbe:
+          httpGet:
+            path: /-/healthy
+            port: web
+          initialDelaySeconds: 45
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /-/ready
+            port: web
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+      volumes:
+      - name: config-volume
+        configMap:
+          name: prometheus-config
+      - name: storage-volume
+        persistentVolumeClaim:
+          claimName: prometheus-pvc
+      - name: rules-volume
+        configMap:
+          name: prometheus-rules
+      nodeSelector:
+        node-type: worker
+        workload-type: monitoring
+      tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "monitoring"
+        effect: "NoSchedule"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-rules
+  namespace: ran-monitoring
+  labels:
+    app: prometheus
+    component: rules
+data:
+  ran-automation.yml: |
+    groups:
+    - name: ran-automation.rules
+      rules:
+      - record: ran_automation:up:count
+        expr: count(up{job="ran-automation-services"})
+      - record: ran_automation:request_rate:5m
+        expr: rate(http_requests_total{job="ran-automation-services"}[5m])
+      - record: ran_automation:error_rate:5m
+        expr: rate(http_requests_total{job="ran-automation-services",status=~"5.."}[5m]) / rate(http_requests_total{job="ran-automation-services"}[5m])
+      - record: ran_automation:response_time:p95:5m
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job="ran-automation-services"}[5m]))
+      - record: cognitive_consciousness_level
+        expr: cognitive_performance_consciousness_level
+      - record: temporal_analysis_depth_factor
+        expr: cognitive_performance_temporal_expansion_factor
+      - record: swarm_active_agents
+        expr: swarm_coordination_active_agents
+      - record: swarm_task_queue_length
+        expr: swarm_coordination_queue_length
+
+    - name: ran-automation.alerts
+      rules:
+      - alert: RANAutomationDown
+        expr: up{job="ran-automation-services"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          service: ran-automation
+        annotations:
+          summary: "RAN Automation service is down"
+          description: "RAN Automation service {{ $labels.instance }} has been down for more than 2 minutes."
+
+      - alert: HighErrorRate
+        expr: ran_automation:error_rate:5m > 0.05
+        for: 5m
+        labels:
+          severity: warning
+          service: ran-automation
+        annotations:
+          summary: "High error rate detected"
+          description: "Error rate is {{ $value | humanizePercentage }} for {{ $labels.job }}."
+
+      - alert: HighResponseTime
+        expr: ran_automation:response_time:p95:5m > 2
+        for: 10m
+        labels:
+          severity: warning
+          service: ran-automation
+        annotations:
+          summary: "High response time detected"
+          description: "95th percentile response time is {{ $value }}s for {{ $labels.job }}."
+
+      - alert: CognitiveConsciousnessDegraded
+        expr: cognitive_consciousness_level < 70
+        for: 5m
+        labels:
+          severity: warning
+          service: cognitive-performance
+        annotations:
+          summary: "Cognitive consciousness level degraded"
+          description: "Cognitive consciousness level is {{ $value }}%, below threshold of 70%."
+
+      - alert: TemporalAnalysisFailure
+        expr: temporal_analysis_depth_factor < 500
+        for: 3m
+        labels:
+          severity: critical
+          service: cognitive-performance
+        annotations:
+          summary: "Temporal analysis depth insufficient"
+          description: "Temporal analysis depth factor is {{ $value }}, expected minimum 500."
+
+      - alert: SwarmCoordinationFailure
+        expr: swarm_active_agents < 5
+        for: 2m
+        labels:
+          severity: critical
+          service: swarm-coordination
+        annotations:
+          summary: "Swarm coordination failure"
+          description: "Only {{ $value }} active agents, minimum 5 required."
+
+      - alert: AgentDBConnectionFailure
+        expr: up{job="agentdb"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: agentdb
+        annotations:
+          summary: "AgentDB connection failure"
+          description: "Cannot connect to AgentDB service."
+
+      - alert: RedisConnectionFailure
+        expr: up{job="redis"} == 0
+        for: 1m
+        labels:
+          severity: warning
+          service: redis
+        annotations:
+          summary: "Redis connection failure"
+          description: "Cannot connect to Redis cache service."
+
+      - alert: HighMemoryUsage
+        expr: container_memory_usage_bytes{namespace="ran-automation"} / container_spec_memory_limit_bytes > 0.9
+        for: 15m
+        labels:
+          severity: warning
+          service: ran-automation
+        annotations:
+          summary: "High memory usage"
+          description: "Memory usage is {{ $value | humanizePercentage }} for {{ $labels.pod }}."
+
+      - alert: HighCPUUsage
+        expr: rate(container_cpu_usage_seconds_total{namespace="ran-automation"}[5m]) / container_spec_cpu_quota * 100 > 80
+        for: 10m
+        labels:
+          severity: warning
+          service: ran-automation
+        annotations:
+          summary: "High CPU usage"
+          description: "CPU usage is {{ $value }}% for {{ $labels.pod }}."
+
+      - alert: DiskSpaceRunningLow
+        expr: (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) * 100 < 10
+        for: 5m
+        labels:
+          severity: critical
+          service: node
+        annotations:
+          summary: "Disk space running low"
+          description: "Disk space is {{ $value }}% full on {{ $labels.instance }}."
+
+      - alert: PodCrashLooping
+        expr: rate(kube_pod_container_status_restarts_total[15m]) > 0
+        for: 5m
+        labels:
+          severity: warning
+          service: kubernetes
+        annotations:
+          summary: "Pod is crash looping"
+          description: "Pod {{ $labels.pod }} in namespace {{ $labels.namespace }} is crash looping."
+
+    - name: kubernetes.rules
+      rules:
+      - record: kube_pod_container_status_ready:count
+        expr: kube_pod_container_status_ready{condition="true"}
+      - record: kube_deployment_status_replicas:unavailable
+        expr: kube_deployment_status_replicas_unavailable
+      - record: kube_node_status_condition:condition_ready:condition_true:count
+        expr: kube_node_status_condition{condition="Ready",status="true"}
+
+    - name: node.rules
+      rules:
+      - record: node_cpu_usage:rate5m
+        expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
+      - record: node_memory_usage:percentage
+        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100
+      - record: node_disk_usage:percentage
+        expr: (1 - (node_filesystem_avail_bytes{fstype!="tmpfs"} / node_filesystem_size_bytes{fstype!="tmpfs"})) * 100
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-pvc
+  namespace: ran-monitoring
+  labels:
+    app: prometheus
+    component: storage
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: fast-ssd
+  resources:
+    requests:
+      storage: 100Gi
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus-sa
+  namespace: ran-monitoring
+  labels:
+    app: prometheus
+    component: service-account
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheus-cr
+  labels:
+    app: prometheus
+    component: rbac
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - nodes/metrics
+  - services
+  - endpoints
+  - pods
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["extensions"]
+  resources:
+  - ingresses
+  verbs: ["get", "list", "watch"]
+- nonResourceURLs: ["/metrics"]
+  verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus-crb
+  labels:
+    app: prometheus
+    component: rbac
+subjects:
+- kind: ServiceAccount
+  name: prometheus-sa
+  namespace: ran-monitoring
+roleRef:
+  kind: ClusterRole
+  name: prometheus-cr
+  apiGroup: rbac.authorization.k8s.io

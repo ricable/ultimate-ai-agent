@@ -1,0 +1,133 @@
+{
+  "id": "121 2051",
+  "name": "TTI Bundling",
+  "cxc_code": "CXC4011253",
+  "value_package": "VoLTE Performance",
+  "value_package_id": "FAJ 801 0444",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The TTI Bundling feature provides uplink coverage for VoIP services.",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.ttiBundlingSwitchThres",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.ttiBundlingSwitchThresHyst",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.ttiBundlingAfterHo",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.ttiBundlingAfterReest",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "MACConfiguration.ulTtiBundlingMaxHARQTx",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "MACConfiguration"
+    },
+    {
+      "name": "QciProfileOperatorDefined.serviceType",
+      "type": "Affecting",
+      "description": "TTI Bundling is only used on a bearer with the                                     QciProfileOperatorDefined.serviceType                                 attribute set to VoIP or PTT.",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "QciProfilePredefined.serviceType",
+      "type": "Affecting",
+      "description": "TTI Bundling is only used on a bearer with the                                     QciProfilePredefined.serviceType attribute                                 set to VoIP or PTT.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_CONN_RECONF_NO_MOB",
+      "type": "EVENT_PARAM_RRC_RECONFIG_CAUSE",
+      "description": "Cause of triggering RRC Connection Reconfiguration not including                                         mobilityControlInfo.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.BF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "SubscriberGroupProfile.ulMcsLowerLimit",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "QciProfilePredefined.ulMaxHARQTxQci",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "DrxProfile.drxState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "DrxProfile"
+    },
+    {
+      "name": "PreschedProfile.preschedulingSinrThreshold",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "PreschedProfile"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmTtiBundlingUeMax",
+      "description": "Performance counter pmTtiBundlingUeMax",
+      "category": "General"
+    },
+    {
+      "name": "pmTtiBundlingUeSamp",
+      "description": "Performance counter pmTtiBundlingUeSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmTtiBundlingUeSum",
+      "description": "Performance counter pmTtiBundlingUeSum",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_RRC_CONN_RECONF_NO_MOB",
+      "type": "EVENT_PARAM_RRC_RECONFIG_CAUSE",
+      "description": "Cause of triggering RRC Connection Reconfiguration not including                                         mobilityControlInfo."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011253 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011253 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/100_22104-LZA7016014_1Uen.BF.md",
+  "file_hash": "77c56cdf74664d122d9c29c4de016e4d",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

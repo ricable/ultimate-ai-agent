@@ -1,0 +1,71 @@
+# Talos Machine Patch: LlamaEdge LLM Inference Support
+# Apply with: talosctl apply-config --patch @patches/llamaedge-patch.yaml
+#
+# This patch optimizes Talos nodes for running LlamaEdge
+# LLM inference workloads with WasmEdge.
+
+machine:
+  install:
+    extensions:
+      # WasmEdge with GGML plugin for LLM inference
+      - image: ghcr.io/siderolabs/wasmedge:0.11.2
+      # NVIDIA GPU support (optional, for GPU acceleration)
+      - image: ghcr.io/siderolabs/nvidia-open-gpu-kernel-modules:latest
+      - image: ghcr.io/siderolabs/nvidia-container-toolkit:latest
+
+  # Kernel modules for GPU
+  kernel:
+    modules:
+      - name: nvidia
+      - name: nvidia_uvm
+      - name: nvidia_drm
+        parameters:
+          - modeset=1
+
+  # System optimizations for LLM inference
+  sysctls:
+    # Large memory mapping for model files
+    vm.max_map_count: "1048576"
+    # Disable swap (models should fit in RAM)
+    vm.swappiness: "0"
+    # Increase dirty ratio for large writes
+    vm.dirty_ratio: "40"
+    vm.dirty_background_ratio: "10"
+    # File limits
+    fs.file-max: "2097152"
+    fs.nr_open: "1048576"
+    # Network for API serving
+    net.core.somaxconn: "65535"
+    net.ipv4.tcp_max_syn_backlog: "65535"
+    # Increase socket buffer sizes
+    net.core.rmem_max: "134217728"
+    net.core.wmem_max: "134217728"
+
+  # Kubelet configuration
+  kubelet:
+    extraArgs:
+      feature-gates: "GracefulNodeShutdown=true"
+      rotate-server-certificates: "true"
+      # Reserve resources for system
+      system-reserved: "cpu=2,memory=4Gi"
+      kube-reserved: "cpu=1,memory=2Gi"
+    nodeLabels:
+      ruvector.io/llamaedge-enabled: "true"
+      ruvector.io/llm-inference: "true"
+      node.kubernetes.io/workload-type: llm
+    # Optional: taint for dedicated LLM nodes
+    nodeTaints:
+      - key: ruvector.io/llm
+        value: "true"
+        effect: PreferNoSchedule
+
+  # Files for LlamaEdge configuration
+  files:
+    - content: |
+        # LlamaEdge WasmEdge configuration
+        [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.llamaedge]
+          runtime_type = "io.containerd.wasmedge.v1"
+          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.llamaedge.options]
+            BinaryName = "/usr/local/bin/containerd-shim-wasmedge-v1"
+      path: /etc/cri/conf.d/llamaedge-runtime.toml
+      permissions: 0644

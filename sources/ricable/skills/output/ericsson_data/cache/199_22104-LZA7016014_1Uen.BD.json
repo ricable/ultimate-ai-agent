@@ -1,0 +1,66 @@
+{
+  "file_hash": "8e4bf83acd3723a96330f51c924ce2ae",
+  "feature": {
+    "id": "121 0804",
+    "name": "IPsec",
+    "cxc_code": "CXC4040009",
+    "value_package": "NR Base Package  IPsec",
+    "value_package_id": "FAJ 801 4002  FAJ 801 0417",
+    "access_type": "NR  LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature enables measuring the performance of the transport network, without external",
+    "parameters": [
+      {
+        "name": "TwampResponder.ipAddress",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TwampResponder"
+      },
+      {
+        "name": "TwampResponder.udpPort",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TwampResponder"
+      },
+      {
+        "name": "Uen.BD",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "A.a",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "A"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4040009 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4040009 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/199_22104-LZA7016014_1Uen.BD.md",
+    "file_hash": "8e4bf83acd3723a96330f51c924ce2ae",
+    "processed_at": "2025-10-19 17:07:27",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "@ruvector/spin-agent",
+  "version": "0.1.0",
+  "description": "Spin JS SDK agent for running ruvnet npm packages on Kubernetes with WasmEdge/Wasmtime",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run build:ts && npm run build:wasm",
+    "build:ts": "tsc",
+    "build:wasm": "spin build",
+    "dev": "spin up --build",
+    "test": "node --test src/**/*.test.ts",
+    "deploy": "spin deploy",
+    "registry:push": "spin registry push"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.27.0",
+    "@fermyon/spin-sdk": "^2.0.0",
+    "claude-flow": "^2.7.41",
+    "ruvector": "^0.1.31"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^0.27.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "spin",
+    "wasm",
+    "webassembly",
+    "kubernetes",
+    "spinkube",
+    "ruvector",
+    "ai-agent"
+  ],
+  "author": "ruvnet",
+  "license": "MIT"
+}

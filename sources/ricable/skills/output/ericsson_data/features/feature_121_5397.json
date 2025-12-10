@@ -1,0 +1,234 @@
+{
+  "id": "121 5397",
+  "name": "Coverage- and Capacity-Optimized PDCCH Beamforming",
+  "cxc_code": "CXC4012589",
+  "value_package": "Performance Boost",
+  "value_package_id": "FAJ 801 4021",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature introduces codebook-based beamforming for PDCCH for UEs in connected mode",
+  "parameters": [
+    {
+      "name": "NRCellDU.pdcchLaSinrOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pdcchLaBfGainFraction",
+      "type": "Introduced",
+      "description": "With this attribute, the feature can be optimized to give higher                                 capacity or higher robustness gain. Higher robustness can help                                 achieve better coverage. The attribute reflects the gain difference                                 between common channel beamforming and codebook-based beamforming,                                 improving PDCCH resource utilization.   See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "Uen.AZ33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "DlBeamOptProfileUeCfg.pdcchBeamOptMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "DlBeamOptProfileUeCfg"
+    },
+    {
+      "name": "ResourceAllocationPolicy.shareAdjustmentModeDl",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ResourceAllocationPolicy"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmI",
+      "description": "Performance counter pmI",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAck16Qam",
+      "description": "Performance counter pmMacHarqDlAck16Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAck256Qam",
+      "description": "Performance counter pmMacHarqDlAck256Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAck64Qam",
+      "description": "Performance counter pmMacHarqDlAck64Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAckQpsk",
+      "description": "Performance counter pmMacHarqDlAckQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlDtx16Qam",
+      "description": "Performance counter pmMacHarqDlDtx16Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlDtx256Qam",
+      "description": "Performance counter pmMacHarqDlDtx256Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlDtx64Qam",
+      "description": "Performance counter pmMacHarqDlDtx64Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlDtxQpsk",
+      "description": "Performance counter pmMacHarqDlDtxQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack16Qam",
+      "description": "Performance counter pmMacHarqDlNack16Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack256Qam",
+      "description": "Performance counter pmMacHarqDlNack256Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack64Qam",
+      "description": "Performance counter pmMacHarqDlNack64Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNackQpsk",
+      "description": "Performance counter pmMacHarqDlNackQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlAck16Qam",
+      "description": "Performance counter pmMacHarqUlAck16Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlAck256Qam",
+      "description": "Performance counter pmMacHarqUlAck256Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlAck64Qam",
+      "description": "Performance counter pmMacHarqUlAck64Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlAckQpsk",
+      "description": "Performance counter pmMacHarqUlAckQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlDtx16Qam",
+      "description": "Performance counter pmMacHarqUlDtx16Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlDtx256Qam",
+      "description": "Performance counter pmMacHarqUlDtx256Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlDtx64Qam",
+      "description": "Performance counter pmMacHarqUlDtx64Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlDtxQpsk",
+      "description": "Performance counter pmMacHarqUlDtxQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlNack16Qam",
+      "description": "Performance counter pmMacHarqUlNack16Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlNack256Qam",
+      "description": "Performance counter pmMacHarqUlNack256Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlNack64Qam",
+      "description": "Performance counter pmMacHarqUlNack64Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlNackQpsk",
+      "description": "Performance counter pmMacHarqUlNackQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacPdcchBlockingPdschOccasions",
+      "description": "Performance counter pmMacPdcchBlockingPdschOccasions",
+      "category": "General"
+    },
+    {
+      "name": "pmMacPdcchBlockingPuschOccasions",
+      "description": "Performance counter pmMacPdcchBlockingPuschOccasions",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdcchTypeA",
+      "description": "Performance counter pmMacRBSymUsedPdcchTypeA",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdcchTypeAAggrLvl1",
+      "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl1",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdcchTypeAAggrLvl16",
+      "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl16",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdcchTypeAAggrLvl2",
+      "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl2",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdcchTypeAAggrLvl4",
+      "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl4",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdcchTypeAAggrLvl8",
+      "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl8",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdcchTypeB",
+      "description": "Performance counter pmMacRBSymUsedPdcchTypeB",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012589 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012589 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/119_22104-LZA7016017_1Uen.AZ33B.md",
+  "file_hash": "78cab9a0a16f134c5e4dfb8f8882c48b",
+  "processed_at": "2025-10-19 15:50:03",
+  "network_impact": {},
+  "performance_impact": {}
+}

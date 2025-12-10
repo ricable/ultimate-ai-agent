@@ -1,0 +1,24 @@
+{
+  "compression": {
+    "enabled": true,
+    "threshold": 1024,
+    "algorithm": "gzip",
+    "level": 6
+  },
+  "multiplexing": {
+    "enabled": true,
+    "maxStreams": 16,
+    "windowSize": 65536
+  },
+  "serialization": {
+    "format": "messagepack",
+    "compression": true,
+    "schemaValidation": true
+  },
+  "batching": {
+    "enabled": true,
+    "maxBatchSize": 100,
+    "maxLatency": 10,
+    "adaptive": true
+  }
+}

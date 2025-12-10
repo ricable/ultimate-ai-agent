@@ -1,0 +1,66 @@
+{
+  "file_hash": "9fa9f9ca479b87101fe3dde8529aee6f",
+  "feature": {
+    "id": "121 5683",
+    "name": "NR Carrier Aggregation Data Steering",
+    "cxc_code": "CXC4012703",
+    "value_package": "Peak Rate Evolution",
+    "value_package_id": "FAJ 801 4005",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature supports PCell downlink data offload and the configuration of the buffer",
+    "parameters": [
+      {
+        "name": "NRCellDU.pCellDlDataOffload",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.caBufferSplitThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "Uen.T",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ExtCaPriority.adjustedPriorityMode",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ExtCaPriority"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMacOffloadVolDlSCell",
+        "description": "Performance counter pmMacOffloadVolDlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacOffloadVolDlSCellExt",
+        "description": "Performance counter pmMacOffloadVolDlSCellExt",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012703 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012703 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/182_22104-LZA7016017_1Uen.T.md",
+    "file_hash": "9fa9f9ca479b87101fe3dde8529aee6f",
+    "processed_at": "2025-10-19 15:48:56",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

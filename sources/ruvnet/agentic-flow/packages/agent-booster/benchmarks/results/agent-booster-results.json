@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "timestamp": "2025-10-07T21:37:30.120Z",
+    "runtime": "simulated",
+    "parser": "typescript-simulation",
+    "dataset": "small-test-dataset.json",
+    "samples": 12
+  },
+  "samples": [
+    {
+      "id": "test-001",
+      "description": "Add type annotations to function",
+      "latency_ms": 93,
+      "success": true,
+      "confidence": 0.9449822564157511,
+      "strategy": "fuzzy_replace"
+    },
+    {
+      "id": "test-002",
+      "description": "Add error handling to async function",
+      "latency_ms": 84,
+      "success": true,
+      "confidence": 0.9339389891105419,
+      "strategy": "fuzzy_replace"
+    },
+    {
+      "id": "test-003",
+      "description": "Convert var to const/let",
+      "latency_ms": 93,
+      "success": true,
+      "confidence": 0.9101958963966182,
+      "strategy": "fuzzy_replace"
+    },
+    {
+      "id": "test-004",
+      "description": "Add JSDoc comments",
+      "latency_ms": 83,
+      "success": true,
+      "confidence": 0.9381150179825795,
+      "strategy": "fuzzy_replace"
+    },
+    {
+      "id": "test-005",
+      "description": "Convert callback to Promise",
+      "latency_ms": 89,
+      "success": true,
+      "confidence": 0.9229781191229839,
+      "strategy": "fuzzy_replace"
+    },
+    {
+      "id": "test-006",
+      "description": "Add null checks",
+      "latency_ms": 96,
+      "success": true,
+      "confidence": 0.8724959526639541,
+      "strategy": "fuzzy_replace"
+    },
+    {
+      "id": "test-007",
+      "description": "Convert to arrow function",
+      "latency_ms": 114,
+      "success": true,
+      "confidence": 0.8741935557077134,
+      "strategy": "fuzzy_replace"
+    },
+    {
+      "id": "test-008",
+      "description": "Add input validation",
+      "latency_ms": 116,
+      "success": true,
+      "confidence": 0.9069102302845496,
+      "strategy": "fuzzy_replace"
+    },
+    {
+      "id": "test-009",
+      "description": "Convert class to TypeScript",
+      "latency_ms": 115,
+      "success": true,
+      "confidence": 0.908663172419369,
+      "strategy": "fuzzy_replace"
+    },
+    {
+      "id": "test-010",
+      "description": "Add destructuring",
+      "latency_ms": 93,
+      "success": true,
+      "confidence": 0.8741994099440088,
+      "strategy": "fuzzy_replace"
+    },
+    {
+      "id": "test-011",
+      "description": "Add try-catch wrapper",
+      "latency_ms": 92,
+      "success": true,
+      "confidence": 0.9131141055251639,
+      "strategy": "fuzzy_replace"
+    },
+    {
+      "id": "test-012",
+      "description": "Add async/await",
+      "latency_ms": 118,
+      "success": true,
+      "confidence": 0.9356269250648608,
+      "strategy": "fuzzy_replace"
+    }
+  ],
+  "aggregate": {
+    "totalLatency": 1186,
+    "avgLatency": 98.83333333333333,
+    "p50Latency": 93,
+    "p95Latency": 118,
+    "p99Latency": 118,
+    "successRate": 100,
+    "totalCost": 0
+  }
+}

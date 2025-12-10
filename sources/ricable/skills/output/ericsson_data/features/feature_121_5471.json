@@ -1,0 +1,324 @@
+{
+  "id": "121 5471",
+  "name": "NR Dynamic Slot Aggregation for VoNR",
+  "cxc_code": "CXC4012621",
+  "value_package": "Voice over NR",
+  "value_package_id": "FAJ 801 4017",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature introduces support for PUSCH Repetition Type A.",
+  "parameters": [
+    {
+      "name": "DU5qi.puschRepRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DU5qi"
+    },
+    {
+      "name": "PuschRep.puschRepId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRep"
+    },
+    {
+      "name": "PuschRep.ueConfGroupType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRep"
+    },
+    {
+      "name": "PuschRep.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRep"
+    },
+    {
+      "name": "PuschRepUeCfg.puschRepUeCfgId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRepUeCfg"
+    },
+    {
+      "name": "PuschRepUeCfg.ueConfGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRepUeCfg"
+    },
+    {
+      "name": "PuschRepUeCfg.ueGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRepUeCfg"
+    },
+    {
+      "name": "PuschRepUeCfg.prefUeGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRepUeCfg"
+    },
+    {
+      "name": "PuschRepUeCfg.puschRepMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRepUeCfg"
+    },
+    {
+      "name": "PuschRepUeCfg.userLabel",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRepUeCfg"
+    },
+    {
+      "name": "PuschRepRel16Drx.puschRepDrxInactTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRepRel16Drx"
+    },
+    {
+      "name": "PuschRepRel16Drx.puschRepDrxMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRepRel16Drx"
+    },
+    {
+      "name": "PuschRepRel16Drx.puschRepDrxRetxTimerUl",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRepRel16Drx"
+    },
+    {
+      "name": "PuschRepRel16Drx.puschRepRel16DrxId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRepRel16Drx"
+    },
+    {
+      "name": "PuschRepRel16Drx.userLabel",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PuschRepRel16Drx"
+    },
+    {
+      "name": "DrxProfileUeCfg.drxRetransmissionTimerUl",
+      "type": "Affected",
+      "description": "The value of the                                     PuschRepRel16Drx.puschRepDrxRetxTimerUl                                 attribute is used instead of this attribute if a UE is configured                                 with PUSCH Repetition Type A.",
+      "mo_class": "DrxProfileUeCfg"
+    },
+    {
+      "name": "DrxProfileUeCfg.drxInactivityTimer",
+      "type": "Affected",
+      "description": "The value of the                                     PuschRepRel16Drx.puschRepDrxInactTimer                                 attribute is used instead of this attribute if a UE is configured                                 with PUSCH Repetition Type A.",
+      "mo_class": "DrxProfileUeCfg"
+    },
+    {
+      "name": "Uen.AK",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRCellDU.puschStartPrbStrategy",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "Drx.puschRepDrxMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Drx"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsDrbEstabSuccDynSlotAggrAllowed5qi",
+      "description": "Performance counter pmEbsDrbEstabSuccDynSlotAggrAllowed5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbEstabSuccDynSlotAggrNotCapable5qi",
+      "description": "Performance counter pmEbsDrbEstabSuccDynSlotAggrNotCapable5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsMacHarqUlAckDynSlotAggrPathLossDistr",
+      "description": "Performance counter pmEbsMacHarqUlAckDynSlotAggrPathLossDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsMacHarqUlDtxDynSlotAggrPathLossDistr",
+      "description": "Performance counter pmEbsMacHarqUlDtxDynSlotAggrPathLossDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsMacHarqUlFailDynSlotAggrPathLossDistr",
+      "description": "Performance counter pmEbsMacHarqUlFailDynSlotAggrPathLossDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsMacHarqUlNackDynSlotAggrPathLossDistr",
+      "description": "Performance counter pmEbsMacHarqUlNackDynSlotAggrPathLossDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPuschSchedActivityDynSlotAggrSum",
+      "description": "Performance counter pmEbsPuschSchedActivityDynSlotAggrSum",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPuschSchedEntityDynSlotAggrDistr",
+      "description": "Performance counter pmEbsPuschSchedEntityDynSlotAggrDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsnMacUeHarqUlAckDynSlotAggr",
+      "description": "Performance counter pmEbsnMacUeHarqUlAckDynSlotAggr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsnMacUeHarqUlDtxDynSlotAggr",
+      "description": "Performance counter pmEbsnMacUeHarqUlDtxDynSlotAggr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsnMacUeHarqUlFailDynSlotAggr",
+      "description": "Performance counter pmEbsnMacUeHarqUlFailDynSlotAggr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsnMacUeHarqUlNackDynSlotAggr",
+      "description": "Performance counter pmEbsnMacUeHarqUlNackDynSlotAggr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacOffloadVolDlSCell",
+      "description": "Performance counter pmMacOffloadVolDlSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmMacOffloadVolDlSCellExt",
+      "description": "Performance counter pmMacOffloadVolDlSCellExt",
+      "category": "General"
+    },
+    {
+      "name": "pmMacPdcchBlockingPdschOccasions",
+      "description": "Performance counter pmMacPdcchBlockingPdschOccasions",
+      "category": "General"
+    },
+    {
+      "name": "pmMacPdcchBlockingPuschOccasions",
+      "description": "Performance counter pmMacPdcchBlockingPuschOccasions",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdcchTypeA",
+      "description": "Performance counter pmMacRBSymUsedPdcchTypeA",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdcchTypeAAggrLvl16",
+      "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl16",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdcchTypeAAggrLvl2",
+      "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl2",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdcchTypeAAggrLvl4",
+      "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl4",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdcchTypeAAggrLvl8",
+      "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl8",
+      "category": "General"
+    },
+    {
+      "name": "pmMacTimeDlDrb",
+      "description": "Performance counter pmMacTimeDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmMacTimeDlDrbQos",
+      "description": "Performance counter pmMacTimeDlDrbQos",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDl",
+      "description": "Performance counter pmMacVolDl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrb",
+      "description": "Performance counter pmMacVolDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrbQos",
+      "description": "Performance counter pmMacVolDlDrbQos",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlSCell",
+      "description": "Performance counter pmMacVolDlSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlSCellExt",
+      "description": "Performance counter pmMacVolDlSCellExt",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktLossUlQos",
+      "description": "Performance counter pmPdcpPktLossUlQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPuschSchedActivityDynSlotAggr",
+      "description": "Performance counter pmPuschSchedActivityDynSlotAggr",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    },
+    {
+      "name": "pmode",
+      "description": "Performance counter pmode",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012621 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012621 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/160_22104-LZA7016017_1Uen.AK.md",
+  "file_hash": "19ac4bcc64a29eb8779927040ddbc167",
+  "processed_at": "2025-10-19 15:50:03",
+  "network_impact": {},
+  "performance_impact": {}
+}

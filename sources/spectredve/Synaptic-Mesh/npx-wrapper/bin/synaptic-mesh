@@ -1,0 +1,113 @@
+#!/usr/bin/env node
+
+const { program } = require('commander');
+const chalk = require('chalk');
+const { spawn } = require('child_process');
+const path = require('path');
+const fs = require('fs');
+
+// ASCII art logo
+const logo = chalk.cyan(`
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║   ███████╗██╗   ██╗███╗   ██╗ █████╗ ██████╗ ████████╗██╗   ║
+║   ██╔════╝╚██╗ ██╔╝████╗  ██║██╔══██╗██╔══██╗╚══██╔══╝██║   ║
+║   ███████╗ ╚████╔╝ ██╔██╗ ██║███████║██████╔╝   ██║   ██║   ║
+║   ╚════██║  ╚██╔╝  ██║╚██╗██║██╔══██║██╔═══╝    ██║   ██║   ║
+║   ███████║   ██║   ██║ ╚████║██║  ██║██║        ██║   ██║   ║
+║   ╚══════╝   ╚═╝   ╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝        ╚═╝   ╚═╝   ║
+║                                                               ║
+║              🧠 Neural Mesh - Distributed Intelligence 🧠      ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+`);
+
+program
+  .name('synaptic-mesh')
+  .description('Synaptic Neural Mesh - Distributed Intelligence Network')
+  .version('0.1.0');
+
+// Market commands
+program
+  .command('market')
+  .description('🏪 Access the decentralized Claude-Max marketplace')
+  .option('--terms', 'Display usage terms and compliance information')
+  .option('--status', 'Show market status')
+  .action((options) => {
+    if (options.terms) {
+      console.log(chalk.yellow('\n⚖️  SYNAPTIC MARKET TERMS & COMPLIANCE\n'));
+      console.log('Synaptic Market does not proxy or resell access to Claude Max.');
+      console.log('All compute is run locally by consenting nodes with individual Claude subscriptions.');
+      console.log('Participation is voluntary. API keys are never shared or transmitted.\n');
+      console.log('This is a peer compute federation, not a resale service.\n');
+      console.log(chalk.green('✅ Each node uses their own Claude credentials'));
+      console.log(chalk.green('✅ Tasks run only on local machines'));
+      console.log(chalk.green('✅ Full user control and transparency'));
+      console.log(chalk.green('✅ Privacy-preserving encrypted payloads'));
+      return;
+    }
+    
+    execRustBinary('market', process.argv.slice(3));
+  });
+
+// Wallet commands
+program
+  .command('wallet')
+  .description('💰 Manage ruv tokens and transactions')
+  .action(() => {
+    execRustBinary('wallet', process.argv.slice(3));
+  });
+
+// Initialize command
+program
+  .command('init')
+  .description('🚀 Initialize a new neural mesh node')
+  .option('--market-enabled', 'Enable market participation')
+  .option('--force', 'Force initialization')
+  .action((options) => {
+    console.log(logo);
+    console.log(chalk.green('🚀 Initializing Synaptic Neural Mesh...\n'));
+    
+    if (options.marketEnabled) {
+      console.log(chalk.yellow('📋 Market participation enabled'));
+      console.log(chalk.yellow('⚠️  Ensure you have Claude credentials: claude login\n'));
+    }
+    
+    execRustBinary('init', process.argv.slice(3));
+  });
+
+// Start command
+program
+  .command('start')
+  .description('▶️  Start the neural mesh node')
+  .option('--port <port>', 'P2P port (default: 8080)')
+  .option('--ui', 'Enable web UI')
+  .action(() => {
+    execRustBinary('start', process.argv.slice(3));
+  });
+
+// Other commands
+['status', 'stop', 'neural', 'mesh', 'peer', 'dag', 'config'].forEach(cmd => {
+  program
+    .command(cmd)
+    .description(`Manage ${cmd}`)
+    .allowUnknownOption()
+    .action(() => {
+      execRustBinary(cmd, process.argv.slice(3));
+    });
+});
+
+function execRustBinary(command, args) {
+  // In a real deployment, this would call the actual Rust binary
+  // For now, we'll show a placeholder
+  console.log(chalk.blue(`🔧 Executing: ${command} ${args.join(' ')}`));
+  console.log(chalk.yellow('📋 This is a deployment preview. Rust binary integration pending.'));
+}
+
+// Show logo and help if no command provided
+if (process.argv.length <= 2) {
+  console.log(logo);
+  program.help();
+}
+
+program.parse();

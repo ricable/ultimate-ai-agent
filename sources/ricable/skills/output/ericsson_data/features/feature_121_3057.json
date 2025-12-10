@@ -1,0 +1,223 @@
+{
+  "id": "121 3057",
+  "name": "PDCCH Power Boost",
+  "cxc_code": "CXC4011515",
+  "value_package": "High Load Handling",
+  "value_package_id": "FAJ 801 0415",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The PDCCH Power Boost feature improves system capacity and increases cell",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.pdcchPowerBoostMax",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pdcchPowerBoostMax",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_PDCCH_CCE_REQUESTED_DISTR_[0..11]",
+      "description": "Counts the number of times each PDCCH requested CCEs range is used during the                   PDCCH allocation phase in the current TTI.    This PDF counter is instantiated per Cell.  [0]: PDCCH required number of CCEs100 in the range of (0,50].  [1]: PDCCH required number of CCEs100 in the range of (50,75].  [2]: PDCCH required number of CCEs100 in the range of (75,100].  [3]: PDCCH required number of CCEs100 in the range of (100,150].  [4]: PDCCH required number of CCEs100 in the range of (150,200].  [5]: PDCCH required number of CCEs100 in the range of (200,300].  [6]: PDCCH required number of CCEs100 in the range of (300,400].  [7]: PDCCH required number of CCEs100 in the range of (400,600].  [8]: PDCCH required number of CCEs100 in the range of (600,800].  [9]: PDCCH required number of CCEs100 in the range of (800,1200].  [10]: PDCCH required number of CCEs100 in the range of (1200,1600].  [11]: PDCCH required number of CCEs100 in the range of (1600,MAX).",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_PDCCH_CCE_AGGREGATION_LEVEL1_DISTR",
+      "description": "Counts the number of times the PDCCH CCE aggregation level 1 is used during the                   PDCCH allocation phase in the current TTI.  This PDF counter is instantiated for each cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_PDCCH_CCE_AGGREGATION_LEVEL2_DISTR",
+      "description": "Counts the number of times the PDCCH CCE aggregation level 2 is used during the                   PDCCH allocation phase in the current TTI.  This PDF counter is instantiated for each cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_PDCCH_CCE_AGGREGATION_LEVEL4_DISTR",
+      "description": "Counts the number of times the PDCCH CCE aggregation level 4 is used during the                   PDCCH allocation phase in the current TTI.  This PDF counter is instantiated for each cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_PDCCH_CCE_AGGREGATION_LEVEL8_DISTR",
+      "description": "Counts the number of times the PDCCH CCE aggregation level 8 used during the                   PDCCH allocation phase in the current TTI.  This PDF counter is instantiated for each cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_RADIO_UTILIZATION",
+      "type": "EVENT_PARAM_PER_PDCCH_SYM0_PWR_UTIL_[0..9]",
+      "description": "Incremented with one, depending on the percentage of used PDCCH power referenced                   to the available PDCCH power in the current TTI and symbol.   Each bin corresponds to a 10% usage, that is, bin 0 indicates 0%~9%, bin 1                   indicates 10%~19% and so on.   The percentage shall be calculated based on used versus available power for PDCCH                   for each symbol.   This PDF counter is instantiated for each cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_RADIO_UTILIZATION",
+      "type": "EVENT_PARAM_PER_PDCCH_SYM1_PWR_UTIL_[0..9]",
+      "description": "Incremented with one, depending on the percentage of used PDCCH power referenced                   to the available PDCCH power in the current TTI and symbol.   Each bin corresponds to a 10% usage, that is,, bin 0 indicates 0%~9%, bin 1                   indicates 10%~19% and so on.   The percentage shall be calculated based on used versus available power for PDCCH                   for each symbol.   This PDF counter is instantiated for each cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_RADIO_UTILIZATION",
+      "type": "EVENT_PARAM_PER_PDCCH_SYM2_PWR_UTIL_[0..9]",
+      "description": "Incremented with one, depending on the percentage of used PDCCH power referenced                   to the available PDCCH power in the current TTI and symbol.   Each bin corresponds to a 10% usage, that is, bin 0 indicates 0%~9%, bin 1                   indicates 10%~19% and so on.   The percentage shall be calculated based on used versus available power for PDCCH                   for each symbol.   This PDF counter is instantiated for each cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_RADIO_UTILIZATION",
+      "type": "EVENT_PARAM_PER_PDCCH_SYM3_PWR_UTIL_[0..9]",
+      "description": "Incremented with one, depending on the percentage of used PDCCH power referenced                   to the available PDCCH power in the current TTI and symbol.   Each bin corresponds to a 10% usage, that is, bin 0 indicates 0%~9%, bin 1                   indicates 10%~19% and so on.   The percentage shall be calculated based on used versus available power for PDCCH                   for each symbol.   This PDF counter is instantiated for each cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AU",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.diffPdcchMaxTargetBlerThres",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.diffPdcchMaxTargetBlerThres",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pdcchPowerBoostMaxCong",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pdcchPowerBoostMaxCong",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pdcchCongCtrlParamEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pdcchCongCtrlParamEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmPdcchCceAggregationDistr",
+      "description": "Performance counter pmPdcchCceAggregationDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcchSym0PwrUtil",
+      "description": "Performance counter pmPdcchSym0PwrUtil",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcchSym1PwrUtil",
+      "description": "Performance counter pmPdcchSym1PwrUtil",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcchSym2PwrUtil",
+      "description": "Performance counter pmPdcchSym2PwrUtil",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcchSym3PwrUtil",
+      "description": "Performance counter pmPdcchSym3PwrUtil",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcchTxAggressive",
+      "description": "Performance counter pmPdcchTxAggressive",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcchTxConservative",
+      "description": "Performance counter pmPdcchTxConservative",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_PDCCH_CCE_REQUESTED_DISTR_[0..11]",
+      "description": "Counts the number of times each PDCCH requested CCEs range is used during the                   PDCCH allocation phase in the current TTI.    This PDF counter is instantiated per Cell.  [0]: PDCCH required number of CCEs100 in the range of (0,50].  [1]: PDCCH required number of CCEs100 in the range of (50,75].  [2]: PDCCH required number of CCEs100 in the range of (75,100].  [3]: PDCCH required number of CCEs100 in the range of (100,150].  [4]: PDCCH required number of CCEs100 in the range of (150,200].  [5]: PDCCH required number of CCEs100 in the range of (200,300].  [6]: PDCCH required number of CCEs100 in the range of (300,400].  [7]: PDCCH required number of CCEs100 in the range of (400,600].  [8]: PDCCH required number of CCEs100 in the range of (600,800].  [9]: PDCCH required number of CCEs100 in the range of (800,1200].  [10]: PDCCH required number of CCEs100 in the range of (1200,1600].  [11]: PDCCH required number of CCEs100 in the range of (1600,MAX)."
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_PDCCH_CCE_AGGREGATION_LEVEL1_DISTR",
+      "description": "Counts the number of times the PDCCH CCE aggregation level 1 is used during the                   PDCCH allocation phase in the current TTI.  This PDF counter is instantiated for each cell."
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_PDCCH_CCE_AGGREGATION_LEVEL2_DISTR",
+      "description": "Counts the number of times the PDCCH CCE aggregation level 2 is used during the                   PDCCH allocation phase in the current TTI.  This PDF counter is instantiated for each cell."
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_PDCCH_CCE_AGGREGATION_LEVEL4_DISTR",
+      "description": "Counts the number of times the PDCCH CCE aggregation level 4 is used during the                   PDCCH allocation phase in the current TTI.  This PDF counter is instantiated for each cell."
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_PDCCH_CCE_AGGREGATION_LEVEL8_DISTR",
+      "description": "Counts the number of times the PDCCH CCE aggregation level 8 used during the                   PDCCH allocation phase in the current TTI.  This PDF counter is instantiated for each cell."
+    },
+    {
+      "name": "INTERNAL_PER_RADIO_UTILIZATION",
+      "type": "EVENT_PARAM_PER_PDCCH_SYM0_PWR_UTIL_[0..9]",
+      "description": "Incremented with one, depending on the percentage of used PDCCH power referenced                   to the available PDCCH power in the current TTI and symbol.   Each bin corresponds to a 10% usage, that is, bin 0 indicates 0%~9%, bin 1                   indicates 10%~19% and so on.   The percentage shall be calculated based on used versus available power for PDCCH                   for each symbol.   This PDF counter is instantiated for each cell."
+    },
+    {
+      "name": "INTERNAL_PER_RADIO_UTILIZATION",
+      "type": "EVENT_PARAM_PER_PDCCH_SYM1_PWR_UTIL_[0..9]",
+      "description": "Incremented with one, depending on the percentage of used PDCCH power referenced                   to the available PDCCH power in the current TTI and symbol.   Each bin corresponds to a 10% usage, that is,, bin 0 indicates 0%~9%, bin 1                   indicates 10%~19% and so on.   The percentage shall be calculated based on used versus available power for PDCCH                   for each symbol.   This PDF counter is instantiated for each cell."
+    },
+    {
+      "name": "INTERNAL_PER_RADIO_UTILIZATION",
+      "type": "EVENT_PARAM_PER_PDCCH_SYM2_PWR_UTIL_[0..9]",
+      "description": "Incremented with one, depending on the percentage of used PDCCH power referenced                   to the available PDCCH power in the current TTI and symbol.   Each bin corresponds to a 10% usage, that is, bin 0 indicates 0%~9%, bin 1                   indicates 10%~19% and so on.   The percentage shall be calculated based on used versus available power for PDCCH                   for each symbol.   This PDF counter is instantiated for each cell."
+    },
+    {
+      "name": "INTERNAL_PER_RADIO_UTILIZATION",
+      "type": "EVENT_PARAM_PER_PDCCH_SYM3_PWR_UTIL_[0..9]",
+      "description": "Incremented with one, depending on the percentage of used PDCCH power referenced                   to the available PDCCH power in the current TTI and symbol.   Each bin corresponds to a 10% usage, that is, bin 0 indicates 0%~9%, bin 1                   indicates 10%~19% and so on.   The percentage shall be calculated based on used versus available power for PDCCH                   for each symbol.   This PDF counter is instantiated for each cell."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011515 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011515 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/127_22104-LZA7016014_1Uen.AU.md",
+  "file_hash": "6d269aa2a56983c47ecd21a93f16a7c7",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

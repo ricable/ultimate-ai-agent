@@ -1,0 +1,142 @@
+{
+  "file_hash": "ab23636b6f07c703922c0a5093963718",
+  "feature": {
+    "id": "121 5072",
+    "name": "",
+    "cxc_code": "CXC4012370",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "The Uplink Robust Header Compression for Data feature allows header",
+    "parameters": [
+      {
+        "name": "QciProfileOperatorDefined.rohcForUlDataEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfilePredefined.rohcForUlDataEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "pmRohcUlDataFailMaxCid",
+        "type": "EVENT_PARAM_ERAB_ROHC_UL_DATA_FAIL_MAX_CID",
+        "description": "The                                     raw                                     count of ERABs that requested uplink robust header compression                                     for data but failed to use it                                     because                                     of  more                                     CIDs                                     available on eNB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "pmRohcUlDataDeconfiguredCid",
+        "type": "EVENT_PARAM_ERAB_ROHC_UL_DATA_DECONFIG_CID",
+        "description": "The                                     completed                                     UE deconfigurations that disabled uplink robust header                                     compression for data after too many reject messages have been                                     sent using Robust Header Compression feedback.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.S",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellTDD.pmPdcpVolUlHdrQci",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmPdcpVolUlHdrQci",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmPdcpPktLostUlRohcFail2Qci",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmPdcpPktLostUlRohcFail2Qci",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmOocStateEntries",
+        "description": "Performance counter pmOocStateEntries",
+        "category": "General"
+      },
+      {
+        "name": "pmOocStateExits",
+        "description": "Performance counter pmOocStateExits",
+        "category": "General"
+      },
+      {
+        "name": "pmOocUesLevSum",
+        "description": "Performance counter pmOocUesLevSum",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktLostUlRohcFail2Qci",
+        "description": "Performance counter pmPdcpPktLostUlRohcFail2Qci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolUlCmpHdrQci",
+        "description": "Performance counter pmPdcpVolUlCmpHdrQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolUlHdrQci",
+        "description": "Performance counter pmPdcpVolUlHdrQci",
+        "category": "General"
+      },
+      {
+        "name": "pmRohcUlDataDeconfiguredCid",
+        "description": "Performance counter pmRohcUlDataDeconfiguredCid",
+        "category": "General"
+      },
+      {
+        "name": "pmRohcUlDataFailMaxCid",
+        "description": "Performance counter pmRohcUlDataFailMaxCid",
+        "category": "General"
+      },
+      {
+        "name": "pmobservability",
+        "description": "Performance counter pmobservability",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "pmRohcUlDataFailMaxCid",
+        "type": "EVENT_PARAM_ERAB_ROHC_UL_DATA_FAIL_MAX_CID",
+        "description": "The                                     raw                                     count of ERABs that requested uplink robust header compression                                     for data but failed to use it                                     because                                     of  more                                     CIDs                                     available on eNB."
+      },
+      {
+        "name": "pmRohcUlDataDeconfiguredCid",
+        "type": "EVENT_PARAM_ERAB_ROHC_UL_DATA_DECONFIG_CID",
+        "description": "The                                     completed                                     UE deconfigurations that disabled uplink robust header                                     compression for data after too many reject messages have been                                     sent using Robust Header Compression feedback."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012370 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012370 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/464_22104-LZA7016014_1Uen.S.md",
+    "file_hash": "ab23636b6f07c703922c0a5093963718",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

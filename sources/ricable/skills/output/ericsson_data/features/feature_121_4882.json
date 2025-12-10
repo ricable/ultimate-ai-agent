@@ -1,0 +1,190 @@
+{
+  "id": "121 4882",
+  "name": "N/A",
+  "cxc_code": "CXC4011969",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node  DU Radio Node",
+  "description": "",
+  "summary": "The feature provides support for 256-QAM in downlink.",
+  "parameters": [
+    {
+      "name": "INTERNAL_PER_UE_TRAFFIC_REP  INTERNAL_PER_UETR_UE_TRAFFIC_REP",
+      "type": "EVENT_PARAM_UE_HARQ_DL_ACK_256QAM",
+      "description": "The total number of successful HARQ transmissions in the downlink                                     direction using a 256-QAM modulation. Success is based on the                                     HARQ ACK from the UE. Only the Primary Component Carrier traffic                                     contribution (PCell) is included.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_UE_TRAFFIC_REP  INTERNAL_PER_UETR_UE_TRAFFIC_REP",
+      "type": "EVENT_PARAM_UE_HARQ_DL_NACK_256QAM",
+      "description": "The total number of unsuccessful HARQ transmissions in the                                     downlink direction using a 256-QAM modulation. Failure is based                                     on the HARQ NACK from the UE. Only the Primary Component Carrier                                     traffic contribution (PCell) is included.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_UE_TRAFFIC_REP  INTERNAL_PER_UETR_UE_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_UE_MAC_DTX_DL_256QAM",
+      "description": "The total number of occasions when an uplink grant is for HARQ                                     transmission in the uplink direction with 256-QAM, where DTX is                                     the reason for no reception of HARQ in uplink in the eNodeB.                                     Only the Primary Component Carrier traffic contribution (PCell)                                     is included.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT  INTERNAL_PER_UETR_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_SCELL_HARQ_DL_ACK_256QAM",
+      "description": "The total number of successful HARQ transmissions in the downlink                                     direction using a 256-QAM modulation. Success is based on the                                     HARQ ACK from the UE. Only the Secondary Component Carrier                                     traffic (SCell) is included, that is, the UE has another cell as                                     its Primary Component Carrier (PCell).",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT  INTERNAL_PER_UETR_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_SCELL_HARQ_DL_NACK_256QAM",
+      "description": "The total number of unsuccessful HARQ transmissions in the                                     downlink direction using a 256-QAM modulation. Failure is based                                     on the HARQ NACK from the UE. Only the Secondary Component                                     Carrier traffic (SCell) is included, that is, the UE has another                                     cell as its Primary Component Carrier (PCell).",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT  INTERNAL_PER_UETR_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_PER_SCELL_MAC_DTX_DL_256QAM",
+      "description": "The total number of occasions when an uplink grant is for HARQ                                     transmission in the uplink direction with 256-QAM, where DTX is                                     the reason for no reception of HARQ in uplink in the eNodeB.                                     Only the Secondary Component Carrier traffic (SCell) is                                     included, that is, the UE has another cell as its Primary                                     Component Carrier (PCell). They are marked as Exclude from CPI =                                     N.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.CB",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "SectorCarrier.configuredMaxTxPower",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "SectorCarrier"
+    },
+    {
+      "name": "EUtranCellTDD.pmMacHarqDlAck256qam",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmMacHarqDlAck256qam",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmMacHarqDlNack256qam",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmMacHarqDlNack256qam",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmMacHarqDlDtx256qam",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmMacHarqDlDtx256qam",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmRadioHomUeRepCqiDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmMacHarqDlAck256qam",
+      "description": "Performance counter pmMacHarqDlAck256qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlDtx256qam",
+      "description": "Performance counter pmMacHarqDlDtx256qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack256qam",
+      "description": "Performance counter pmMacHarqDlNack256qam",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioHomUeRepCqi2Distr",
+      "description": "Performance counter pmRadioHomUeRepCqi2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioHomUeRepCqiDistr",
+      "description": "Performance counter pmRadioHomUeRepCqiDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioHomUeRepRankDistr",
+      "description": "Performance counter pmRadioHomUeRepRankDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCategoryDistr",
+      "description": "Performance counter pmUeCategoryDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmentFunction",
+      "description": "Performance counter pmentFunction",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PER_UE_TRAFFIC_REP  INTERNAL_PER_UETR_UE_TRAFFIC_REP",
+      "type": "EVENT_PARAM_UE_HARQ_DL_ACK_256QAM",
+      "description": "The total number of successful HARQ transmissions in the downlink                                     direction using a 256-QAM modulation. Success is based on the                                     HARQ ACK from the UE. Only the Primary Component Carrier traffic                                     contribution (PCell) is included."
+    },
+    {
+      "name": "INTERNAL_PER_UE_TRAFFIC_REP  INTERNAL_PER_UETR_UE_TRAFFIC_REP",
+      "type": "EVENT_PARAM_UE_HARQ_DL_NACK_256QAM",
+      "description": "The total number of unsuccessful HARQ transmissions in the                                     downlink direction using a 256-QAM modulation. Failure is based                                     on the HARQ NACK from the UE. Only the Primary Component Carrier                                     traffic contribution (PCell) is included."
+    },
+    {
+      "name": "INTERNAL_PER_UE_TRAFFIC_REP  INTERNAL_PER_UETR_UE_TRAFFIC_REP",
+      "type": "EVENT_PARAM_PER_UE_MAC_DTX_DL_256QAM",
+      "description": "The total number of occasions when an uplink grant is for HARQ                                     transmission in the uplink direction with 256-QAM, where DTX is                                     the reason for no reception of HARQ in uplink in the eNodeB.                                     Only the Primary Component Carrier traffic contribution (PCell)                                     is included."
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT  INTERNAL_PER_UETR_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_SCELL_HARQ_DL_ACK_256QAM",
+      "description": "The total number of successful HARQ transmissions in the downlink                                     direction using a 256-QAM modulation. Success is based on the                                     HARQ ACK from the UE. Only the Secondary Component Carrier                                     traffic (SCell) is included, that is, the UE has another cell as                                     its Primary Component Carrier (PCell)."
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT  INTERNAL_PER_UETR_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_SCELL_HARQ_DL_NACK_256QAM",
+      "description": "The total number of unsuccessful HARQ transmissions in the                                     downlink direction using a 256-QAM modulation. Failure is based                                     on the HARQ NACK from the UE. Only the Secondary Component                                     Carrier traffic (SCell) is included, that is, the UE has another                                     cell as its Primary Component Carrier (PCell)."
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT  INTERNAL_PER_UETR_CELL_TRAFFIC_REPORT",
+      "type": "EVENT_PARAM_PER_SCELL_MAC_DTX_DL_256QAM",
+      "description": "The total number of occasions when an uplink grant is for HARQ                                     transmission in the uplink direction with 256-QAM, where DTX is                                     the reason for no reception of HARQ in uplink in the eNodeB.                                     Only the Secondary Component Carrier traffic (SCell) is                                     included, that is, the UE has another cell as its Primary                                     Component Carrier (PCell). They are marked as Exclude from CPI =                                     N."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011969 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011969 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/163_22104-LZA7016014_1Uen.CB.md",
+  "file_hash": "0bd2c87df5d4e3239838bb4b53d7ba4a",
+  "processed_at": "2025-10-19 15:48:54",
+  "network_impact": {},
+  "performance_impact": {}
+}

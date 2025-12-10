@@ -1,0 +1,296 @@
+{
+  "id": "121 5803",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4012790",
+  "value_package": "Massive MIMO Performance",
+  "value_package_id": "FAJ 801 4008",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature increases SRS (Sounding Reference Signal) capacity from 16 to 32 SRS ports",
+  "parameters": [
+    {
+      "name": "NRCellDU.srsCapacityBoostEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.advancedDlSuMimoEnabled",
+      "type": "Affecting",
+      "description": "This attribute is used to enable the Advanced Downlink                                     Single-User MIMO Mid-Band feature, which is a prerequisite for                                     this feature.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "DlMimoUeCfg.reservedBy",
+      "type": "Affecting",
+      "description": "This attribute contains a list of MO instances that reserve this                                     MO instance.",
+      "mo_class": "DlMimoUeCfg"
+    },
+    {
+      "name": "DlMimoUeCfg.srsImpactHandling",
+      "type": "Affecting",
+      "description": "This attribute handles the effect of SRS transmission.",
+      "mo_class": "DlMimoUeCfg"
+    },
+    {
+      "name": "GNBDUFunction.mixedSrsModeEnabled",
+      "type": "Affecting",
+      "description": "This attribute is used to enable simultaneous support for both                                     periodic and aperiodic SRS mode in a cell.",
+      "mo_class": "GNBDUFunction"
+    },
+    {
+      "name": "NRCellDU.advancedDlSuMimoEnabled",
+      "type": "Affecting",
+      "description": "This attribute is used to enable the Advanced Downlink                                     Single-User MIMO Mid-Band feature.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.advDlBfWhenAllSrsPortsUsable",
+      "type": "Affecting",
+      "description": "This attribute controls whether advanced downlink beamforming is                                     allowed only when all SRS ports can be used.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.aperiodicSrsEnabled",
+      "type": "Affecting",
+      "description": "This attribute is used to enable the NR Aperiodic SRS Mid-Band                                     feature.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.nrSrsDlBufferVolThr",
+      "type": "Affecting",
+      "description": "This attribute is a data size threshold used by the gNodeB to                                     label a user session as being in heavy traffic.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.nrSrsDlPacketAgeThr",
+      "type": "Affecting",
+      "description": "This attribute is a threshold for packet age used by the gNodeB                                     to label a user session as being in heavy traffic.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pairwiseSrsCorrelationThresh",
+      "type": "Affecting",
+      "description": "This attribute is used to determine which SRS ports can be used                                     for reciprocity-based PDSCH beamforming.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pZeroNomSrs",
+      "type": "Affecting",
+      "description": "This attribute is the power control parameter P0 nominal for SRS                                     transmissions.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.speedAdvMuThresh",
+      "type": "Affecting",
+      "description": "This attribute is used to decide if reciprocity-based MU-MIMO is                                     used.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.speedAdvSuThresh",
+      "type": "Affecting",
+      "description": "This attribute is used to decide if reciprocity-based SU-MIMO is                                     used.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.srsHoppingBandwidth",
+      "type": "Affecting",
+      "description": "This attribute allows the configuration of full-band or half-band                                     SRS. If the attribute is set to HALF, half-band                                     SRS is used, which allows the UE to transmit SRS with increased                                     coverage. Full-band SRS uses one uplink OFDM symbol in a special                                     slot, while half-band SRS uses two. The SRS capacity of the cell                                     is the same with both the half-band and the fullband                                     configurations.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.srsPeriodicity",
+      "type": "Affecting",
+      "description": "The value of the NRCellDU.srsPeriodicity                                     attribute must be set to a value based on the selected TDD                                     pattern and the antenna switching capability. The value needs to                                     be high enough that enough slots are available to transmit SRS.                                     For example, UEs with 1TX/4RX capability and a DDDSUUDDDD TDD                                     pattern require that the                                         NRCellDU.srsPeriodicity attribute is set                                     to at least 40 to transmit SRS from all antennas.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.maxUeSpeed",
+      "type": "Affecting",
+      "description": "This attribute determines the maximum speed of a moving UE.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRSectorCarrier.nullSteeringMode",
+      "type": "Affecting",
+      "description": "This attribute determines impacted downlink channels.",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRCellDU.subCarrierSpacing",
+      "type": "Affecting",
+      "description": "This attribute determines sub-carrier spacing for common elements                                     at cell level.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.tddSpecialSlotPattern",
+      "type": "Affecting",
+      "description": "This attribute determines the TDD special slot pattern.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.tddUlDlPattern",
+      "type": "Affecting",
+      "description": "This attribute determines the TDD uplink-downlink pattern                                     configuration.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "Uen.C33C",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRCellDU.maxNoOfAdvancedDlMuMimoLayers",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pZeroNomPuschGrant",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.puschModeOnFddSCell",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pmMacRBSymUsedPdschAdvSuMimoTxRankDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.pmRadioRecInterferencePwrSpecialSlot2Distr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmMacActiveSRSUe",
+      "description": "Performance counter pmMacActiveSRSUe",
+      "category": "General"
+    },
+    {
+      "name": "pmMacActiveSrsUe",
+      "description": "Performance counter pmMacActiveSrsUe",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymAvailDl",
+      "description": "Performance counter pmMacRBSymAvailDl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschAdvMimoUserDistr",
+      "description": "Performance counter pmMacRBSymUsedPdschAdvMimoUserDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschAdvMuMimoLayerDistrNRCellDU",
+      "description": "Performance counter pmMacRBSymUsedPdschAdvMuMimoLayerDistrNRCellDU",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschAdvMuMimoLayersDistr",
+      "description": "Performance counter pmMacRBSymUsedPdschAdvMuMimoLayersDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschAdvMuMimoTxRankDistr",
+      "description": "Performance counter pmMacRBSymUsedPdschAdvMuMimoTxRankDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschAdvSuMimoLayerDistr",
+      "description": "Performance counter pmMacRBSymUsedPdschAdvSuMimoLayerDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschAdvSuMimoLayerDistrNRCellDU",
+      "description": "Performance counter pmMacRBSymUsedPdschAdvSuMimoLayerDistrNRCellDU",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschAdvSuMimoTxRankDistr",
+      "description": "Performance counter pmMacRBSymUsedPdschAdvSuMimoTxRankDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschMimoLayerDistrNRCellDU",
+      "description": "Performance counter pmMacRBSymUsedPdschMimoLayerDistrNRCellDU",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschTypeA",
+      "description": "Performance counter pmMacRBSymUsedPdschTypeA",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRbsymUsedPdschCbRatDistr",
+      "description": "Performance counter pmMacRbsymUsedPdschCbRatDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacSrsPdschAgeDistr",
+      "description": "Performance counter pmMacSrsPdschAgeDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlRat",
+      "description": "Performance counter pmMacVolDlRat",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRecInterferencePwrSpecialSlot2Distr",
+      "description": "Performance counter pmRadioRecInterferencePwrSpecialSlot2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRecInterferencePwrSpecialSlot2DistrNote",
+      "description": "Performance counter pmRadioRecInterferencePwrSpecialSlot2DistrNote",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioSrsResAvailAntSwitching",
+      "description": "Performance counter pmRadioSrsResAvailAntSwitching",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioSrsResUsedAntSwitching",
+      "description": "Performance counter pmRadioSrsResUsedAntSwitching",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012790 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012790 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/251_22104-LZA7016017_1Uen.C33C.md",
+  "file_hash": "d60c26b1c9c1cf6d1995edaf7c0cce93",
+  "processed_at": "2025-10-19 15:50:11",
+  "network_impact": {},
+  "performance_impact": {}
+}

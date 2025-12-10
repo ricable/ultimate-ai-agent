@@ -1,0 +1,71 @@
+{
+  "database": {
+    "name": "maternal-tradeoff-analysis",
+    "path": "/home/user/agentic-flow/analysis/data/agentdb.db",
+    "vectorDimension": 1536,
+    "quantization": "8bit",
+    "indexType": "hnsw",
+    "reasoningBank": {
+      "enabled": true,
+      "algorithms": [
+        "decision_transformer",
+        "q_learning",
+        "actor_critic",
+        "sarsa",
+        "ppo",
+        "dqn",
+        "a3c",
+        "td3",
+        "sac"
+      ],
+      "memoryPatterns": true,
+      "sessionPersistence": true,
+      "learningRate": 0.001,
+      "discountFactor": 0.99,
+      "explorationRate": 0.1
+    }
+  },
+  "learning": {
+    "autoTrain": true,
+    "patternRecognition": true,
+    "causalInference": true,
+    "noveltyDetection": true,
+    "continuousLearning": true,
+    "memoryReplay": true,
+    "experienceBuffer": 10000
+  },
+  "analysis": {
+    "datasets": [
+      "finnish_famine_1866_1868",
+      "quebec_population_1621_1800",
+      "dutch_hunger_winter_1944_1945",
+      "siege_of_leningrad_1941_1944",
+      "bangladesh_famines_1974_1975",
+      "cross_cultural_validation"
+    ],
+    "metrics": [
+      "maternal_longevity",
+      "offspring_count",
+      "environmental_stress",
+      "physiological_markers",
+      "telomere_dynamics",
+      "epigenetic_markers",
+      "immune_markers",
+      "reproductive_cessation_age",
+      "interbirth_intervals"
+    ]
+  },
+  "vectorSearch": {
+    "enabled": true,
+    "hnswM": 16,
+    "hnswEfConstruction": 200,
+    "hnswEfSearch": 50,
+    "similarityThreshold": 0.7
+  },
+  "performance": {
+    "cacheEnabled": true,
+    "batchSize": 1000,
+    "parallelQueries": 4,
+    "indexOptimization": true
+  }
+}

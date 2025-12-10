@@ -1,0 +1,1033 @@
+{
+  "file_hash": "508108c64b22ee7080afd5b99e06f9d2",
+  "feature": {
+    "id": "801 0415",
+    "name": "Dynamic UE Admission Control  Dynamic GBR Admission Control  Load-Based CA SCell Handling  Enhanced PTT Admission Control",
+    "cxc_code": "CXC4011940",
+    "value_package": "High Load Handling  VoLTE Performance  Mission Critical High Load Handling  Mission-Critical Services",
+    "value_package_id": "FAJ 801 0415  FAJ 801 0444  FAJ 801 1016  FAJ 801 1017",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Dynamic UE Admission Control feature greatly improves retainability, UE",
+    "parameters": [
+      {
+        "name": "DynamicUeAdmCtrl",
+        "type": "Introduced",
+        "description": "The licensing MO instance name.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "EUtranCellFDD.cceDynUeAdmCtrlOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.cceDynUeAdmCtrlOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.ulDynUeAdmCtrlOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.ulDynUeAdmCtrlOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.dlDynUeAdmCtrlOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.dlDynUeAdmCtrlOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.cceDynUeAdmCtrlRetDiffThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.cceDynUeAdmCtrlRetDiffThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.ulDynUeAdmCtrlRetDiffThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.ulDynUeAdmCtrlRetDiffThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.dlDynUeAdmCtrlRetDiffThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.dlDynUeAdmCtrlRetDiffThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.dynUeAdmCtrlFilterConst",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.dynUeAdmCtrlFilterConst",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.dynUeAdmCtrlEnabled",
+        "type": "Introduced",
+        "description": "Enable the Dynamic UE Admission Control feature at cell level.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.dynUeAdmCtrlEnabled",
+        "type": "Introduced",
+        "description": "Enable the Dynamic UE Admission Control feature at cell level.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.cceDynUeAdmCtrlPaOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.cceDynUeAdmCtrlPaOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.ulDynUeAdmCtrlPaOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.ulDynUeAdmCtrlPaOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.dlDynUeAdmCtrlPaOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.dlDynUeAdmCtrlPaOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.includeDynPttMsrReservations",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.includeDynPttMsrReservations",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "ENodeBFunction.ulMaxWaitingTimeGlobal",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.dlMaxWaitingTimeGlobal",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranCellFDD.pagingPriorityOverloadThr",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pagingPriorityOverloadThr",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pagingPriorityDiffThr",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pagingPriorityDiffThr",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "INTERNAL_EVENT_DYNAMIC_UE_ADMISSION_BLOCKING_STARTED",
+        "type": "EVENT_PARAM_DYNAMIC_UE_ADMISSION_STATE",
+        "description": "The current rejection state of Dynamic UE Admission Control.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_DYNAMIC_UE_ADMISSION_BLOCKING_STOPPED",
+        "type": "",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_DYNAMIC_UE_ADMISSION_BLOCKING_UPDATED",
+        "type": "EVENT_PARAM_DYNAMIC_UE_ADMISSION_STATE",
+        "description": "The current rejection state of Dynamic UE Admission Control.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_RRC_RESULT",
+        "description": "RRC result. The cause value                                     EVENT_VALUE_REJECT_DUE_TO_UE_ADMISSION_CONTROL indicates that                                     the feature has blocked the connection setup.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_CCE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell CCE utilization MSR in admission control is                                     in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_UL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_DL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_REESTAB_RESULT",
+        "description": "RRC Reestablishment result for each ERAB in the request. The                                     cause value EVENT_VALUE_REJECT_DUE_TO_UE_ADMISSION_CONTROL                                     indicates that the feature has blocked the reestablishment.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_CCE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell CCE utilization MSR in admission control is                                     in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_UL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_DL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_PROC_HO_PREP_IN_RESULT",
+        "description": "Array, where element position indicates UE E-RAB Id and element                                     value indicates the result. The cause value                                     EVENT_VALUE_REJECT_DUE_TO_UE_ADMISSION_CONTROL indicates that                                     the feature has blocked the incoming handover.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_CCE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell CCE utilization MSR in admission control is                                     in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_UL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_DL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_PROC_HO_PREP_IN_RESULT",
+        "description": "The result of the HO Preparation Procedure. The cause value                                     EVENT_VALUE_REJECT_DUE_TO_UE_ADMISSION_CONTROL indicates that                                     the feature has blocked the incoming handover.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_CCE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell CCE utilization MSR in admission control is                                     in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_UL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_DL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_CCE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell CCE utilization MSR in admission control is                                     in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_UL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_DL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.CD",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.pmRrcConnMax",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmRrcConnMax",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "ResourcePartitionGroupMember.resourcePartitionMaxShare",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ResourcePartitionGroupMember"
+      },
+      {
+        "name": "AdmissionControl.paArpOverride",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "AdmissionControl"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmBbmDlBbCapacityPttReservation",
+        "description": "Performance counter pmBbmDlBbCapacityPttReservation",
+        "category": "General"
+      },
+      {
+        "name": "pmBbmDlPrbPttReservation",
+        "description": "Performance counter pmBbmDlPrbPttReservation",
+        "category": "General"
+      },
+      {
+        "name": "pmBbmDlSePttReservation",
+        "description": "Performance counter pmBbmDlSePttReservation",
+        "category": "General"
+      },
+      {
+        "name": "pmCellCcePttReservation",
+        "description": "Performance counter pmCellCcePttReservation",
+        "category": "General"
+      },
+      {
+        "name": "pmCellCceUtilization",
+        "description": "Performance counter pmCellCceUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmCellDlPrbPttReservation",
+        "description": "Performance counter pmCellDlPrbPttReservation",
+        "category": "General"
+      },
+      {
+        "name": "pmCellDlPrbUtilization",
+        "description": "Performance counter pmCellDlPrbUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmCellDlSePttReservation",
+        "description": "Performance counter pmCellDlSePttReservation",
+        "category": "General"
+      },
+      {
+        "name": "pmCellDlSeUtilization",
+        "description": "Performance counter pmCellDlSeUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmCellUlPrbUtilization",
+        "description": "Performance counter pmCellUlPrbUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmCellUlSeUtilization",
+        "description": "Performance counter pmCellUlSeUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAtt",
+        "description": "Performance counter pmHoPrepAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAtt1xRttSrvcc",
+        "description": "Performance counter pmHoPrepAtt1xRttSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLb",
+        "description": "Performance counter pmHoPrepAttLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteInterF",
+        "description": "Performance counter pmHoPrepAttLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteIntraF",
+        "description": "Performance counter pmHoPrepAttLteIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInCellIntensDLC",
+        "description": "Performance counter pmHoPrepRejInCellIntensDLC",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInCellIntensStat",
+        "description": "Performance counter pmHoPrepRejInCellIntensStat",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInCellLatency",
+        "description": "Performance counter pmHoPrepRejInCellLatency",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInDynUeAdmCtrl",
+        "description": "Performance counter pmHoPrepRejInDynUeAdmCtrl",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInDynUeAdmCtrlPtt",
+        "description": "Performance counter pmHoPrepRejInDynUeAdmCtrlPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabAtt",
+        "description": "Performance counter pmRrcConnEstabAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailCellIntensDLC",
+        "description": "Performance counter pmRrcConnEstabFailCellIntensDLC",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailCellIntensStat",
+        "description": "Performance counter pmRrcConnEstabFailCellIntensStat",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailCellLatency",
+        "description": "Performance counter pmRrcConnEstabFailCellLatency",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailDynUeAdmCtrl",
+        "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrl",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailDynUeAdmCtrlCe",
+        "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlCe",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailDynUeAdmCtrlMoVoicePtt",
+        "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlMoVoicePtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailDynUeAdmCtrlPtt",
+        "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailDynUeAdmCtrlPttCe",
+        "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlPttCe",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnMax",
+        "description": "Performance counter pmRrcConnMax",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReestAtt",
+        "description": "Performance counter pmRrcConnReestAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReestFailDynUeAdmCtrl",
+        "description": "Performance counter pmRrcConnReestFailDynUeAdmCtrl",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReestFailDynUeAdmCtrlCe",
+        "description": "Performance counter pmRrcConnReestFailDynUeAdmCtrlCe",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReestFailDynUeAdmCtrlPtt",
+        "description": "Performance counter pmRrcConnReestFailDynUeAdmCtrlPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReestFailDynUeAdmCtrlPttCe",
+        "description": "Performance counter pmRrcConnReestFailDynUeAdmCtrlPttCe",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmember",
+        "description": "Performance counter pmember",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_DYNAMIC_UE_ADMISSION_BLOCKING_STARTED",
+        "type": "EVENT_PARAM_DYNAMIC_UE_ADMISSION_STATE",
+        "description": "The current rejection state of Dynamic UE Admission Control."
+      },
+      {
+        "name": "INTERNAL_EVENT_DYNAMIC_UE_ADMISSION_BLOCKING_STOPPED",
+        "type": "",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_DYNAMIC_UE_ADMISSION_BLOCKING_UPDATED",
+        "type": "EVENT_PARAM_DYNAMIC_UE_ADMISSION_STATE",
+        "description": "The current rejection state of Dynamic UE Admission Control."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_RRC_RESULT",
+        "description": "RRC result. The cause value                                     EVENT_VALUE_REJECT_DUE_TO_UE_ADMISSION_CONTROL indicates that                                     the feature has blocked the connection setup."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_CCE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell CCE utilization MSR in admission control is                                     in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_UL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_SETUP",
+        "type": "EVENT_PARAM_MSR_DL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_REESTAB_RESULT",
+        "description": "RRC Reestablishment result for each ERAB in the request. The                                     cause value EVENT_VALUE_REJECT_DUE_TO_UE_ADMISSION_CONTROL                                     indicates that the feature has blocked the reestablishment."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_CCE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell CCE utilization MSR in admission control is                                     in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_UL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+        "type": "EVENT_PARAM_MSR_DL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_PROC_HO_PREP_IN_RESULT",
+        "description": "Array, where element position indicates UE E-RAB Id and element                                     value indicates the result. The cause value                                     EVENT_VALUE_REJECT_DUE_TO_UE_ADMISSION_CONTROL indicates that                                     the feature has blocked the incoming handover."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_CCE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell CCE utilization MSR in admission control is                                     in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_UL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+        "type": "EVENT_PARAM_MSR_DL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_PROC_HO_PREP_IN_RESULT",
+        "description": "The result of the HO Preparation Procedure. The cause value                                     EVENT_VALUE_REJECT_DUE_TO_UE_ADMISSION_CONTROL indicates that                                     the feature has blocked the incoming handover."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_UL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_DL_PRB_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink PRB utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_UL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_DL_SE_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink SE utilization MSR in admission                                     control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_CCE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell CCE utilization MSR in admission control is                                     in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_UL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_DL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_CCE_UTIL_CELL_STATE",
+        "description": "Indicates if the cell CCE utilization MSR in admission control is                                     in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_UL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM uplink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_MSR_DL_BB_CAP_UTIL_BBM_STATE",
+        "description": "Indicates if the BBM downlink BB capacity utilization MSR in                                     admission control is in rejecting or not rejecting state."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011940 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011940 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/116_22104-LZA7016014_1Uen.CD.md",
+    "file_hash": "508108c64b22ee7080afd5b99e06f9d2",
+    "processed_at": "2025-10-19 15:48:54",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

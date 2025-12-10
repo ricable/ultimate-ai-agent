@@ -1,0 +1,281 @@
+{
+  "file_hash": "c74ba83a5a92b67b4ec0b9045b72b0c6",
+  "feature": {
+    "id": "121 5724",
+    "name": "NR Massive MIMO Eco Mode",
+    "cxc_code": "CXC4012378",
+    "value_package": "Massive MIMO Enabler",
+    "value_package_id": "FAJ 801 4004",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature allows the deactivation of TX antenna branches for NR Massive MIMO",
+    "parameters": [
+      {
+        "name": "NRSectorCarrier.massiveMimoSleepEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.massiveMimoSleepState",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.mMimoSleepTimeGroupRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "MassiveMimoSleep.massiveMimoSleepId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MassiveMimoSleep"
+      },
+      {
+        "name": "MMimoSleepProfile.mMimoSleepProfileId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.sleepMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchDownMonitorDurTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchDownPrbThreshDl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchDownRrcConnThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchUpMonitorDurTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchUpPrbThreshDl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepProfile.switchUpRrcConnThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepProfile"
+      },
+      {
+        "name": "MMimoSleepTimeGroup.mMimoSleepTimeGroupId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepTimeGroup"
+      },
+      {
+        "name": "MMimoSleepTimeGroup.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepTimeGroup"
+      },
+      {
+        "name": "MMimoSleepTimeWindow.daylightTimeOffsetApplied",
+        "type": "Introduced",
+        "description": "See MOM                                     description.",
+        "mo_class": "MMimoSleepTimeWindow"
+      },
+      {
+        "name": "MMimoSleepTimeWindow.dayOfWeek",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepTimeWindow"
+      },
+      {
+        "name": "MMimoSleepTimeWindow.mMimoSleepProfileRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepTimeWindow"
+      },
+      {
+        "name": "MMimoSleepTimeWindow.mMimoSleepTimeWindowId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepTimeWindow"
+      },
+      {
+        "name": "MMimoSleepTimeWindow.startTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepTimeWindow"
+      },
+      {
+        "name": "MMimoSleepTimeWindow.stopTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MMimoSleepTimeWindow"
+      },
+      {
+        "name": "NRCellDU.ssbPowerBoostMMimoSleep",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.ssbPowerBoost",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "Uen.BE33C",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmDrbEstabSucc5qi",
+        "description": "Performance counter pmDrbEstabSucc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUtilDlDistr",
+        "description": "Performance counter pmMacRBSymUtilDlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBsymUsedPdschTypeA",
+        "description": "Performance counter pmMacRBsymUsedPdschTypeA",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlSCell",
+        "description": "Performance counter pmMacVolDlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMassiveMimoSleepOppTimeTxMute",
+        "description": "Performance counter pmMassiveMimoSleepOppTimeTxMute",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMassiveMimoSleepTimeTxMute",
+        "description": "Performance counter pmMassiveMimoSleepTimeTxMute",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmPdschSchedEntityDistr",
+        "description": "Performance counter pmPdschSchedEntityDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffRatio",
+        "description": "Performance counter pmTxOffRatio",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffRatio1",
+        "description": "Performance counter pmTxOffRatio1",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffRatio2",
+        "description": "Performance counter pmTxOffRatio2",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffRatio3",
+        "description": "Performance counter pmTxOffRatio3",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffRatio4",
+        "description": "Performance counter pmTxOffRatio4",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffTime",
+        "description": "Performance counter pmTxOffTime",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffTime1",
+        "description": "Performance counter pmTxOffTime1",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffTime2",
+        "description": "Performance counter pmTxOffTime2",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffTime3",
+        "description": "Performance counter pmTxOffTime3",
+        "category": "General"
+      },
+      {
+        "name": "pmTxOffTime4",
+        "description": "Performance counter pmTxOffTime4",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmode",
+        "description": "Performance counter pmode",
+        "category": "General"
+      },
+      {
+        "name": "pmonitorDurTimer",
+        "description": "Performance counter pmonitorDurTimer",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012378 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012378 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/188_22104-LZA7016017_1Uen.BE33C.md",
+    "file_hash": "c74ba83a5a92b67b4ec0b9045b72b0c6",
+    "processed_at": "2025-10-19 15:50:03",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

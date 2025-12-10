@@ -1,0 +1,54 @@
+{
+  "name": "@ruvector/wasmedge-agent",
+  "version": "0.1.0",
+  "description": "WasmEdge QuickJS agent for running ruvnet npm packages on Kubernetes",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "npm run build:bundle && npm run build:wasm",
+    "build:bundle": "esbuild src/index.js --bundle --outfile=dist/agent.js --format=esm --platform=neutral --target=es2022",
+    "build:wasm": "wasmedge compile --enable-all dist/agent.js dist/agent.wasm",
+    "dev": "wasmedge --dir .:. dist/agent.js",
+    "test": "node --test src/**/*.test.js",
+    "docker:build": "docker build -t ghcr.io/ruvnet/wasmedge-agent:latest .",
+    "docker:push": "docker push ghcr.io/ruvnet/wasmedge-agent:latest",
+    "k8s:deploy": "kubectl apply -f k8s/"
+  },
+  "dependencies": {
+    "claude-flow": "^2.7.41",
+    "ruvector": "^0.1.31",
+    "agentdb": "^1.6.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.0"
+  },
+  "wasmedge": {
+    "runtime": "quickjs",
+    "plugins": [
+      "wasi_nn",
+      "wasi_crypto",
+      "wasmedge_tensorflow"
+    ],
+    "modules": [
+      "buffer",
+      "http",
+      "https",
+      "encoding",
+      "crypto"
+    ]
+  },
+  "engines": {
+    "wasmedge": ">=0.13.0"
+  },
+  "keywords": [
+    "wasmedge",
+    "wasm",
+    "webassembly",
+    "kubernetes",
+    "quickjs",
+    "ruvector",
+    "ai-agent"
+  ],
+  "author": "ruvnet",
+  "license": "MIT"
+}

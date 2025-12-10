@@ -1,0 +1,47 @@
+# Cloud Run Jobs Dockerfile - Auto-terminates after completion
+# Optimized for ephemeral execution
+
+FROM node:20-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    ca-certificates \
+    python3 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy package files
+COPY agentic-flow/package*.json ./
+
+# Install production dependencies
+RUN npm ci --only=production && npm cache clean --force
+
+# Copy built application
+COPY agentic-flow/dist ./dist
+COPY agentic-flow/.claude ./.claude
+COPY agentic-flow/README.md ./
+
+# Create runtime directories
+RUN mkdir -p /app/.claude-flow/memory \
+    /app/.claude-flow/metrics \
+    && chmod -R 755 /app/.claude-flow
+
+# Non-root user for security
+RUN useradd -m -u 1001 agenticflow && \
+    chown -R agenticflow:agenticflow /app
+USER agenticflow
+
+# Environment variables for Cloud Run Jobs
+ENV NODE_ENV=production \
+    AGENTS_DIR=/app/.claude/agents \
+    MEMORY_DIR=/app/.claude-flow/memory \
+    CLOUD_RUN_JOB=true
+
+# Job entrypoint - executes task and exits
+ENTRYPOINT ["node", "dist/cli-proxy.js"]
+
+# Default args can be overridden
+CMD ["--help"]

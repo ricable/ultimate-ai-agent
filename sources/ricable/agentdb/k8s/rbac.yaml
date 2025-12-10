@@ -1,0 +1,351 @@
+# RBAC Configuration for RAN Automation System
+# Phase 5: Pydantic Schema Generation & Production Integration
+
+---
+# Service Account for RAN Automation System
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ran-automation-sa
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: rbac
+    phase: "5"
+  annotations:
+    description: "Service account for RAN Automation System with cognitive consciousness"
+    iam.amazonaws.com/role: "arn:aws:iam::ACCOUNT:role/ran-automation-sdk-role"
+
+---
+# Role for RAN Automation System
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ran-automation-role
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: rbac
+    phase: "5"
+  annotations:
+    description: "Role for RAN Automation System operations within its namespace"
+rules:
+# Pod operations for self-management
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+# ConfigMap operations
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["get", "list", "watch"]
+# Secret operations (limited)
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "list"]
+# Service operations
+- apiGroups: [""]
+  resources: ["services"]
+  verbs: ["get", "list", "watch"]
+# Event operations
+- apiGroups: [""]
+  resources: ["events"]
+  verbs: ["create", "patch"]
+# LimitRange operations
+- apiGroups: [""]
+  resources: ["limitranges"]
+  verbs: ["get", "list"]
+# ResourceQuota operations
+- apiGroups: [""]
+  resources: ["resourcequotas"]
+  verbs: ["get", "list"]
+# HorizontalPodAutoscaler operations
+- apiGroups: ["autoscaling"]
+  resources: ["horizontalpodautoscalers"]
+  verbs: ["get", "list", "watch"]
+# Deployment operations for self-management
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["get", "list", "watch"]
+# StatefulSet operations for AgentDB coordination
+- apiGroups: ["apps"]
+  resources: ["statefulsets"]
+  verbs: ["get", "list", "watch"]
+# DaemonSet operations
+- apiGroups: ["apps"]
+  resources: ["daemonsets"]
+  verbs: ["get", "list", "watch"]
+# ReplicaSet operations
+- apiGroups: ["apps"]
+  resources: ["replicasets"]
+  verbs: ["get", "list", "watch"]
+# Custom Resource Definitions for RAN-specific resources
+- apiGroups: ["ran.ericsson.com"]
+  resources: ["*"]
+  verbs: ["*"]
+# Batch operations for job management
+- apiGroups: ["batch"]
+  resources: ["jobs", "cronjobs"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+# Coordination operations for leader election
+- apiGroups: ["coordination.k8s.io"]
+  resources: ["leases"]
+  verbs: ["*"]
+# Metrics operations
+- apiGroups: ["metrics.k8s.io"]
+  resources: ["pods", "nodes"]
+  verbs: ["get", "list"]
+# Networking operations
+- apiGroups: ["networking.k8s.io"]
+  resources: ["networkpolicies"]
+  verbs: ["get", "list", "watch"]
+# Policy operations
+- apiGroups: ["policy"]
+  resources: ["poddisruptionbudgets"]
+  verbs: ["get", "list", "watch"]
+
+---
+# ClusterRole for RAN Automation System
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: ran-automation-clusterrole
+  labels:
+    app: ran-automation-sdk
+    component: rbac
+    phase: "5"
+  annotations:
+    description: "Cluster role for RAN Automation System cluster-wide operations"
+rules:
+# Node operations for monitoring and resource awareness
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get", "list", "watch"]
+# Namespace operations for multi-namespace awareness
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["get", "list", "watch"]
+# PersistentVolume operations for AgentDB storage
+- apiGroups: [""]
+  resources: ["persistentvolumes", "persistentvolumeclaims"]
+  verbs: ["get", "list", "watch"]
+# StorageClass operations
+- apiGroups: ["storage.k8s.io"]
+  resources: ["storageclasses"]
+  verbs: ["get", "list", "watch"]
+# Custom Resource Definitions for system-wide resources
+- apiGroups: ["apiextensions.k8s.io"]
+  resources: ["customresourcedefinitions"]
+  verbs: ["get", "list", "watch"]
+# Metrics server operations
+- apiGroups: ["metrics.k8s.io"]
+  resources: ["nodes", "pods"]
+  verbs: ["get", "list"]
+# Pod metrics operations
+- apiGroups: ["custom.metrics.k8s.io"]
+  resources: ["*"]
+  verbs: ["get", "list"]
+# HorizontalPodAutoscaler operations
+- apiGroups: ["autoscaling"]
+  resources: ["horizontalpodautoscalers"]
+  verbs: ["get", "list", "watch"]
+# PriorityClass operations
+- apiGroups: ["scheduling.k8s.io"]
+  resources: ["priorityclasses"]
+  verbs: ["get", "list", "watch"]
+# PodSecurityPolicy operations (if enabled)
+- apiGroups: ["policy"]
+  resources: ["podsecuritypolicies"]
+  verbs: ["use"]
+# RuntimeClass operations
+- apiGroups: ["node.k8s.io"]
+  resources: ["runtimeclasses"]
+  verbs: ["get", "list", "watch"]
+# Endpoint operations for service discovery
+- apiGroups: [""]
+  resources: ["endpoints", "endpointslices"]
+  verbs: ["get", "list", "watch"]
+# Event operations for cluster-wide monitoring
+- apiGroups: [""]
+  resources: ["events"]
+  verbs: ["get", "list", "watch"]
+# Certificate operations for TLS management
+- apiGroups: ["cert-manager.io"]
+  resources: ["certificates", "issuers"]
+  verbs: ["get", "list", "watch"]
+# Ingress operations
+- apiGroups: ["networking.k8s.io", "extensions"]
+  resources: ["ingresses"]
+  verbs: ["get", "list", "watch"]
+
+---
+# RoleBinding for RAN Automation System
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ran-automation-rolebinding
+  namespace: ran-automation
+  labels:
+    app: ran-automation-sdk
+    component: rbac
+    phase: "5"
+  annotations:
+    description: "Role binding for RAN Automation System namespace operations"
+subjects:
+- kind: ServiceAccount
+  name: ran-automation-sa
+  namespace: ran-automation
+roleRef:
+  kind: Role
+  name: ran-automation-role
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# ClusterRoleBinding for RAN Automation System
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: ran-automation-clusterrolebinding
+  labels:
+    app: ran-automation-sdk
+    component: rbac
+    phase: "5"
+  annotations:
+    description: "Cluster role binding for RAN Automation System cluster-wide operations"
+subjects:
+- kind: ServiceAccount
+  name: ran-automation-sa
+  namespace: ran-automation
+roleRef:
+  kind: ClusterRole
+  name: ran-automation-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# Additional Role for monitoring system access
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ran-automation-monitoring-role
+  namespace: monitoring
+  labels:
+    app: ran-automation-sdk
+    component: rbac
+    phase: "5"
+  annotations:
+    description: "Role for RAN Automation System to access monitoring resources"
+rules:
+# Prometheus operations
+- apiGroups: [""]
+  resources: ["services", "endpoints", "pods"]
+  verbs: ["get", "list", "watch"]
+# Prometheus ConfigMap operations
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["get", "list", "watch"]
+# Prometheus Rule operations
+- apiGroups: ["monitoring.coreos.com"]
+  resources: ["prometheusrules", "servicemonitors"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+
+---
+# RoleBinding for monitoring access
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ran-automation-monitoring-binding
+  namespace: monitoring
+  labels:
+    app: ran-automation-sdk
+    component: rbac
+    phase: "5"
+  annotations:
+    description: "Role binding for RAN Automation System monitoring access"
+subjects:
+- kind: ServiceAccount
+  name: ran-automation-sa
+  namespace: ran-automation
+roleRef:
+  kind: Role
+  name: ran-automation-monitoring-role
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# Role for system namespace access (for AgentDB coordination)
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ran-automation-system-role
+  namespace: kube-system
+  labels:
+    app: ran-automation-sdk
+    component: rbac
+    phase: "5"
+  annotations:
+    description: "Role for RAN Automation System system namespace access"
+rules:
+# ConfigMap access for system coordination
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["get", "list", "watch"]
+# Service access for coordination
+- apiGroups: [""]
+  resources: ["services", "endpoints"]
+  verbs: ["get", "list", "watch"]
+
+---
+# RoleBinding for system namespace access
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ran-automation-system-binding
+  namespace: kube-system
+  labels:
+    app: ran-automation-sdk
+    component: rbac
+    phase: "5"
+  annotations:
+    description: "Role binding for RAN Automation System system namespace access"
+subjects:
+- kind: ServiceAccount
+  name: ran-automation-sa
+  namespace: ran-automation
+roleRef:
+  kind: Role
+  name: ran-automation-system-role
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# Pod Security Policy (if using older Kubernetes versions)
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: ran-automation-psp
+  labels:
+    app: ran-automation-sdk
+    component: security
+    phase: "5"
+  annotations:
+    description: "Pod Security Policy for RAN Automation System"
+spec:
+  privileged: false
+  allowPrivilegeEscalation: false
+  requiredDropCapabilities:
+    - ALL
+  volumes:
+    - 'configMap'
+    - 'emptyDir'
+    - 'projected'
+    - 'secret'
+    - 'downwardAPI'
+    - 'persistentVolumeClaim'
+  runAsUser:
+    rule: 'MustRunAsNonRoot'
+  seLinux:
+    rule: 'RunAsAny'
+  fsGroup:
+    rule: 'RunAsAny'
+  readOnlyRootFilesystem: false
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1001
+    fsGroup: 1001

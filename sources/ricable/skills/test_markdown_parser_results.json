@@ -1,0 +1,234 @@
+{
+  "timestamp": "1760880407.4733768",
+  "file_tests": [
+    {
+      "file": "/Users/cedric/dev/skills/elex_features_only/en_lzn7931040_r50f_batch1/15_22104-LZA7016014_1Uen.EC33B.md",
+      "success": true,
+      "error": null,
+      "validation": {
+        "has_faj_id": true,
+        "has_name": true,
+        "has_description": true,
+        "has_parameters": true,
+        "has_counters": true,
+        "has_dependencies": false,
+        "has_activation": false,
+        "parameter_count": 44,
+        "counter_count": 21,
+        "dependency_count": 0
+      },
+      "feature_data": {
+        "id": "121 3094",
+        "name": "MIMO Sleep Mode",
+        "cxc_code": "CXC401180",
+        "parameter_count": 44,
+        "counter_count": 21
+      }
+    },
+    {
+      "file": "/Users/cedric/dev/skills/elex_features_only/en_lzn7931040_r50f_batch1/142_22104-LZA7016014_1Uen.AY.md",
+      "success": true,
+      "error": null,
+      "validation": {
+        "has_faj_id": true,
+        "has_name": true,
+        "has_description": true,
+        "has_parameters": true,
+        "has_counters": true,
+        "has_dependencies": true,
+        "has_activation": false,
+        "parameter_count": 12,
+        "counter_count": 7,
+        "dependency_count": 7
+      },
+      "feature_data": {
+        "id": "121 3085",
+        "name": "Prescheduling",
+        "cxc_code": "CXC401171",
+        "parameter_count": 12,
+        "counter_count": 7
+      }
+    },
+    {
+      "file": "/Users/cedric/dev/skills/elex_features_only/en_lzn7931040_r50f_batch1/167_22104-LZA7016014_1Uen.BC.md",
+      "success": true,
+      "error": null,
+      "validation": {
+        "has_faj_id": true,
+        "has_name": true,
+        "has_description": true,
+        "has_parameters": true,
+        "has_counters": true,
+        "has_dependencies": true,
+        "has_activation": false,
+        "parameter_count": 13,
+        "counter_count": 8,
+        "dependency_count": 5
+      },
+      "feature_data": {
+        "id": "121 4377",
+        "name": "Dynamic PUCCH",
+        "cxc_code": "CXC401195",
+        "parameter_count": 13,
+        "counter_count": 8
+      }
+    },
+    {
+      "file": "/Users/cedric/dev/skills/elex_features_only/en_lzn7931040_r50f_batch1/101_22104-LZA7016014_1Uen.AS.md",
+      "success": true,
+      "error": null,
+      "validation": {
+        "has_faj_id": true,
+        "has_name": true,
+        "has_description": true,
+        "has_parameters": true,
+        "has_counters": true,
+        "has_dependencies": true,
+        "has_activation": false,
+        "parameter_count": 4,
+        "counter_count": 1,
+        "dependency_count": 2
+      },
+      "feature_data": {
+        "id": "121 0735",
+        "name": "Cell ID-Based Location Support",
+        "cxc_code": "CXC401084",
+        "parameter_count": 4,
+        "counter_count": 1
+      }
+    },
+    {
+      "file": "/Users/cedric/dev/skills/elex_features_only/en_lzn7931040_r50f_batch1/162_22104-LZA7016014_1Uen.AC.md",
+      "success": true,
+      "error": null,
+      "validation": {
+        "has_faj_id": true,
+        "has_name": true,
+        "has_description": true,
+        "has_parameters": true,
+        "has_counters": false,
+        "has_dependencies": true,
+        "has_activation": false,
+        "parameter_count": 3,
+        "counter_count": 0,
+        "dependency_count": 2
+      },
+      "feature_data": {
+        "id": "121 4508",
+        "name": "TM8 Mode Switching",
+        "cxc_code": "CXC401199",
+        "parameter_count": 3,
+        "counter_count": 0
+      }
+    }
+  ],
+  "pattern_tests": {
+    "faj_extraction": {
+      "passed": 6,
+      "failed": 0,
+      "cases": [
+        {
+          "input": "FAJ 121 4219",
+          "expected": "121 4219",
+          "actual": "121 4219",
+          "success": true
+        },
+        {
+          "input": "FAJ1214219",
+          "expected": "121 4219",
+          "actual": "121 4219",
+          "success": true
+        },
+        {
+          "input": "Feature Identity | FAJ 121 3094",
+          "expected": "121 3094",
+          "actual": "121 3094",
+          "success": true
+        },
+        {
+          "input": "Value Package Identity: FAJ 801 0427",
+          "expected": "801 0427",
+          "actual": "801 0427",
+          "success": true
+        },
+        {
+          "input": "No FAJ here",
+          "expected": null,
+          "actual": null,
+          "success": true
+        },
+        {
+          "input": "FAJ 1234567",
+          "expected": "123 4567",
+          "actual": "123 4567",
+          "success": true
+        }
+      ]
+    },
+    "parameter_extraction": {
+      "table_parameters": 2,
+      "text_parameters": 3,
+      "mo_classes": {
+        "EUtranCellFDD.lbThreshold": "EUtranCellFDD",
+        "FeatureState.featureState": "FeatureState",
+        "standaloneParam": "Unknown"
+      }
+    },
+    "counter_extraction": {
+      "counters_found": 11,
+      "counters": [
+        {
+          "name": "pmTHROUGHPUTHIGH",
+          "category": "Throughput"
+        },
+        {
+          "name": "pmMIMOTHROUGHPUT",
+          "category": "MIMO"
+        },
+        {
+          "name": "pmHANDOVERSUCCESS",
+          "category": "Mobility"
+        },
+        {
+          "name": "pmSLEEPMODEENERGY",
+          "category": "Energy Efficiency"
+        },
+        {
+          "name": "pmCELLLOAD",
+          "category": "Load Management"
+        },
+        {
+          "name": "pmCOUNTERS",
+          "category": "General"
+        },
+        {
+          "name": "pmTHROUGHPUTHIGH",
+          "category": "Throughput"
+        },
+        {
+          "name": "pmMIMOTHROUGHPUT",
+          "category": "MIMO"
+        },
+        {
+          "name": "pmHANDOVERSUCCESS",
+          "category": "Mobility"
+        },
+        {
+          "name": "pmSLEEPMODEENERGY",
+          "category": "Energy Efficiency"
+        },
+        {
+          "name": "pmCELLLOAD",
+          "category": "Load Management"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "files_tested": 5,
+    "successful_parses": 5,
+    "total_parameters": 76,
+    "total_counters": 37,
+    "total_dependencies": 16
+  }
+}

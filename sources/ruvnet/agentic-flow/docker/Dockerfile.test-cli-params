@@ -1,0 +1,20 @@
+FROM node:22-slim
+WORKDIR /app
+
+# Copy package files
+COPY agentic-flow/package.json ./
+COPY agentic-flow/dist ./dist
+COPY agentic-flow/.claude ./.claude
+COPY docker/test-cli-params.sh /test-cli-params.sh
+
+# Install dependencies and link
+RUN npm install --omit=dev && npm link
+
+# Set up test environment
+ENV ANTHROPIC_API_KEY=sk-ant-test-key-12345
+ENV OPENROUTER_API_KEY=sk-or-test-key-67890
+ENV NODE_ENV=test
+
+RUN chmod +x /test-cli-params.sh
+
+CMD ["/test-cli-params.sh"]

@@ -1,0 +1,65 @@
+[package]
+name = "daa-benchmarks"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "Comprehensive performance benchmarks comparing native vs WASM implementations"
+
+[dependencies]
+# Benchmark framework
+criterion = { version = "0.5", features = ["html_reports", "async_tokio"] }
+tokio = { version = "1.0", features = ["full"] }
+
+# Crypto dependencies (native)
+qudag-crypto = { path = "../qudag/core/crypto" }
+blake3 = "1.5"
+
+# Orchestrator dependencies
+daa-orchestrator = { path = "../daa-orchestrator" }
+daa-rules = { path = "../daa-rules", optional = true }
+daa-economy = { path = "../daa-economy", optional = true }
+
+# Prime ML dependencies
+daa-prime-core = { path = "../prime-rust/crates/prime-core" }
+daa-prime-trainer = { path = "../prime-rust/crates/prime-trainer", optional = true }
+
+# Utilities
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+rand = "0.8"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Statistics
+statistical = "1.0"
+
+[dev-dependencies]
+tokio-test = "0.4"
+
+[features]
+default = ["crypto", "orchestrator", "prime"]
+crypto = []
+orchestrator = ["daa-rules", "daa-economy"]
+prime = ["daa-prime-trainer"]
+all = ["crypto", "orchestrator", "prime"]
+
+[[bench]]
+name = "crypto_native"
+harness = false
+path = "crypto/crypto_native.rs"
+
+[[bench]]
+name = "orchestrator_benchmarks"
+harness = false
+path = "orchestrator/orchestrator_benchmarks.rs"
+
+[[bench]]
+name = "prime_ml_benchmarks"
+harness = false
+path = "prime/prime_ml_benchmarks.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3

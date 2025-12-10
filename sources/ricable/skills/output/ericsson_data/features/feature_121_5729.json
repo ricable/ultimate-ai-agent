@@ -1,0 +1,209 @@
+{
+  "id": "121 5729",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4012745",
+  "value_package": "Performance Boost",
+  "value_package_id": "FAJ 801 4021",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature reduces latency by allowing larger uplink grants with more efficient use of",
+  "parameters": [
+    {
+      "name": "BsrUeCfg.srGrantSizeOpt",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BsrUeCfg"
+    },
+    {
+      "name": "BsrUeCfg.srGrantSizeMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "BsrUeCfg"
+    },
+    {
+      "name": "BsrUeCfg.srGrantSize",
+      "type": "Affected",
+      "description": "The BsrUeCfg.srGrantSizeMode attribute affects                                     the BsrUeCfg.srGrantSize attribute based on                                     the estimated uplink PRB usage.",
+      "mo_class": "BsrUeCfg"
+    },
+    {
+      "name": "Uen.G",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "TheBsrUeCfg.srGrantSizeMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TheBsrUeCfg"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmActiveUeUlMax",
+      "description": "Performance counter pmActiveUeUlMax",
+      "category": "General"
+    },
+    {
+      "name": "pmActiveUeUlSum",
+      "description": "Performance counter pmActiveUeUlSum",
+      "category": "General"
+    },
+    {
+      "name": "pmActiveUeUlTrueSamp",
+      "description": "Performance counter pmActiveUeUlTrueSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlAck16Qam",
+      "description": "Performance counter pmMacHarqUlAck16Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlAck256Qam",
+      "description": "Performance counter pmMacHarqUlAck256Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlAck64Qam",
+      "description": "Performance counter pmMacHarqUlAck64Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlAckQpsk",
+      "description": "Performance counter pmMacHarqUlAckQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlDtx16Qam",
+      "description": "Performance counter pmMacHarqUlDtx16Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlDtx256Qam",
+      "description": "Performance counter pmMacHarqUlDtx256Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlDtx64Qam",
+      "description": "Performance counter pmMacHarqUlDtx64Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlDtxQpsk",
+      "description": "Performance counter pmMacHarqUlDtxQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlNack16Qam",
+      "description": "Performance counter pmMacHarqUlNack16Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlNack256Qam",
+      "description": "Performance counter pmMacHarqUlNack256Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlNack64Qam",
+      "description": "Performance counter pmMacHarqUlNack64Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlNackQpsk",
+      "description": "Performance counter pmMacHarqUlNackQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacPucchSrPuschGrantLatDistr",
+      "description": "Performance counter pmMacPucchSrPuschGrantLatDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymAvailUl",
+      "description": "Performance counter pmMacRBSymAvailUl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPuschTypeA",
+      "description": "Performance counter pmMacRBSymUsedPuschTypeA",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPuschTypeB",
+      "description": "Performance counter pmMacRBSymUsedPuschTypeB",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUI",
+      "description": "Performance counter pmMacVolUI",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlResUe",
+      "description": "Performance counter pmMacVolUlResUe",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlResUeLate",
+      "description": "Performance counter pmMacVolUlResUeLate",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlUnresUe",
+      "description": "Performance counter pmMacVolUlUnresUe",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlUnresUeBsrGrant",
+      "description": "Performance counter pmMacVolUlUnresUeBsrGrant",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlUnresUePreemptGrant",
+      "description": "Performance counter pmMacVolUlUnresUePreemptGrant",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlUnresUePucchSrGrant",
+      "description": "Performance counter pmMacVolUlUnresUePucchSrGrant",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioPuschPhrDistr",
+      "description": "Performance counter pmRadioPuschPhrDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioPuschTable1McsDistr",
+      "description": "Performance counter pmRadioPuschTable1McsDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioPuschTable2McsDistr",
+      "description": "Performance counter pmRadioPuschTable2McsDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012745 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012745 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/219_22104-LZA7016017_1Uen.G.md",
+  "file_hash": "a6fe36598dfb193d8cae1746b4e24775",
+  "processed_at": "2025-10-19 15:50:10",
+  "network_impact": {},
+  "performance_impact": {}
+}

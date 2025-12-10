@@ -1,0 +1,142 @@
+# Docker Compose for local development with mise
+# Designed for Mac (including Apple Silicon) and Linux
+#
+# Usage:
+#   docker compose -f config/docker/docker-compose.mise.yaml up -d
+#
+# Services include mise-powered development environment with:
+# - Node.js/Bun for JavaScript agents
+# - Python for ML/AI agents
+# - Rust for WASM compilation
+# - Kubernetes tooling (kubectl, helm)
+
+version: "3.9"
+
+services:
+  # =============================================================================
+  # Development Environment
+  # =============================================================================
+  mise-dev:
+    build:
+      context: ../..
+      dockerfile: config/docker/mise-dev.Dockerfile
+      target: development
+    container_name: zgents-dev
+    volumes:
+      - ../..:/workspace
+      - mise-cache:/root/.local/share/mise
+      - cargo-cache:/root/.cargo
+      - npm-cache:/root/.npm
+      - pip-cache:/root/.cache/pip
+    environment:
+      - NODE_ENV=development
+      - MISE_EXPERIMENTAL=1
+    ports:
+      - "3000:3000"   # Node.js
+      - "8000:8000"   # FastAPI
+      - "8080:8080"   # WASM agents
+    networks:
+      - zgents-network
+    tty: true
+    stdin_open: true
+    command: ["tail", "-f", "/dev/null"]
+
+  # =============================================================================
+  # WASM Agent Development
+  # =============================================================================
+  wasm-agent:
+    build:
+      context: ../../apps/wasmedge-js
+      dockerfile: Dockerfile
+    container_name: zgents-wasm-agent
+    volumes:
+      - ../../apps/wasmedge-js:/app
+      - mise-cache:/root/.local/share/mise
+    environment:
+      - MISE_CONFIG_FILE=/app/../../agents/wasm/mise.toml
+    ports:
+      - "8081:8080"
+    networks:
+      - zgents-network
+    depends_on:
+      - redis
+      - ruvector
+
+  # =============================================================================
+  # Python Agent Development
+  # =============================================================================
+  python-agent:
+    build:
+      context: ../../apps/fastapi
+      dockerfile: Dockerfile
+    container_name: zgents-python-agent
+    volumes:
+      - ../../apps/fastapi:/app
+      - pip-cache:/root/.cache/pip
+    environment:
+      - MISE_CONFIG_FILE=/app/../../agents/python/mise.toml
+      - FASTAPI_ENV=development
+      - UVICORN_RELOAD=true
+    ports:
+      - "8001:8000"
+    networks:
+      - zgents-network
+    depends_on:
+      - redis
+      - ruvector
+
+  # =============================================================================
+  # Supporting Services
+  # =============================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: zgents-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - zgents-network
+
+  ruvector:
+    image: ghcr.io/ruvnet/ruvector:latest
+    container_name: zgents-ruvector
+    ports:
+      - "8765:8765"
+    volumes:
+      - ruvector-data:/data
+    networks:
+      - zgents-network
+
+  # =============================================================================
+  # Local Kubernetes (K3d)
+  # =============================================================================
+  k3d-registry:
+    image: registry:2
+    container_name: zgents-registry
+    ports:
+      - "5000:5000"
+    volumes:
+      - registry-data:/var/lib/registry
+    networks:
+      - zgents-network
+
+networks:
+  zgents-network:
+    driver: bridge
+
+volumes:
+  mise-cache:
+    name: zgents-mise-cache
+  cargo-cache:
+    name: zgents-cargo-cache
+  npm-cache:
+    name: zgents-npm-cache
+  pip-cache:
+    name: zgents-pip-cache
+  redis-data:
+    name: zgents-redis-data
+  ruvector-data:
+    name: zgents-ruvector-data
+  registry-data:
+    name: zgents-registry-data

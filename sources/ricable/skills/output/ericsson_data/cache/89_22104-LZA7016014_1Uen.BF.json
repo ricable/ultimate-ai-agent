@@ -1,0 +1,320 @@
+{
+  "file_hash": "340be6fe10605a98854956ac20a2a537",
+  "feature": {
+    "id": "121 0781",
+    "name": "Advanced Cell Supervision",
+    "cxc_code": "CXC4010320",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "With the Advanced Cell Supervision feature, the operator can get information",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.advCellSupSensitivity  EUtranCellTDD.advCellSupSensitivity",
+        "type": "Introduced",
+        "description": "The value depends on the traffic load in the supervised cell. Engineering Guidelines for Advanced Cell Supervision provides guidelines on how to set this parameter.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.advCellSupAction  EUtranCellTDD.advCellSupAction",
+        "type": "Introduced",
+        "description": "See AdvCellSupActions for the values of the                 enum.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "INTERNAL_EVENT_ADV_CELL_SUP_DETECTION",
+        "type": "EVENT_PARAM_ADV_CELL_SUP_RULE",
+        "description": "The event is generated when Advanced Cell Supervision suspects a sleeping cell.                   The parameter shows which detectors have been triggered.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_ADV_CELL_SUP_RECOVERY_ATTEMPT",
+        "type": "EVENT_PARAM_ADV_CELL_SUP_RECOVERY_METHOD",
+        "description": "The event is generated when Advanced Cell Supervision attempts to recover from a                   suspected sleeping cell using the cell lock and unlock recovery action.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_ADV_CELL_SUP_RECOVERY_RESULT",
+        "type": "EVENT_PARAM_ADV_CELL_SUP_RECOVERY_RESULT",
+        "description": "The event is generated after Advanced Cell Supervision has attempted to recover                   from a suspected sleeping cell using a cell lock and unlock recovery action. The                   parameter shows whether or not the recovery was regarded successful.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_AI_ACS_REPORT",
+        "type": "EVENT_PARAM_RA_ATT_CBRA",
+        "description": "If cell trace is activated (including profile), RRC/S1 bigram data set and RACH                   data for AI Powered ACS are reported by cell trace.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_AI_ACS_REPORT",
+        "type": "EVENT_PARAM_RA_ATT_CFRA",
+        "description": "If cell trace is activated (including profile), RRC/S1 bigram data set and RACH                   data for AI Powered ACS are reported by cell trace.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_AI_ACS_REPORT",
+        "type": "EVENT_PARAM_RA_SUCC_CBRA",
+        "description": "If cell trace is activated (including profile), RRC/S1 bigram data set and RACH                   data for AI Powered ACS are reported by cell trace.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_AI_ACS_REPORT",
+        "type": "EVENT_PARAM_RA_SUCC_CFRA",
+        "description": "If cell trace is activated (including profile), RRC/S1 bigram data set and RACH                   data for AI Powered ACS are reported by cell trace.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_AI_ACS_CONCEPT_DRIFT_DETECTION",
+        "type": "",
+        "description": "Indicates whether AI Powered ACS detects concept drift.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "0",
+        "type": "N/A",
+        "description": "5 in 15 min",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "25",
+        "type": "N/A",
+        "description": "5 in 15 min",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "50",
+        "type": "2 in 15 min",
+        "description": "5 in 15 min",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "75",
+        "type": "5 in 10 min",
+        "description": "4 in 10 min",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "100",
+        "type": "7 in 5 min",
+        "description": "2 in 5 min",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.BF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.advCellSupSensitivity",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.advCellSupSensitivity",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.advCellSupAction",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.advCellSupAction",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      },
+      {
+        "name": "A.a",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "A"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmAdvCellSupDetection",
+        "description": "Performance counter pmAdvCellSupDetection",
+        "category": "General"
+      },
+      {
+        "name": "pmAdvCellSupRecoveryCellAtt",
+        "description": "Performance counter pmAdvCellSupRecoveryCellAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmAdvCellSupRecoveryCellSucc",
+        "description": "Performance counter pmAdvCellSupRecoveryCellSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabFailAddedLic",
+        "description": "Performance counter pmErabEstabFailAddedLic",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabFailInitLic",
+        "description": "Performance counter pmErabEstabFailInitLic",
+        "category": "General"
+      },
+      {
+        "name": "pmEvents",
+        "description": "Performance counter pmEvents",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInLicConnUsers",
+        "description": "Performance counter pmHoPrepRejInLicConnUsers",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInLicMob",
+        "description": "Performance counter pmHoPrepRejInLicMob",
+        "category": "General"
+      },
+      {
+        "name": "pmRaAllocCfra",
+        "description": "Performance counter pmRaAllocCfra",
+        "category": "General"
+      },
+      {
+        "name": "pmRaAttCbra",
+        "description": "Performance counter pmRaAttCbra",
+        "category": "General"
+      },
+      {
+        "name": "pmRaAttCfra",
+        "description": "Performance counter pmRaAttCfra",
+        "category": "General"
+      },
+      {
+        "name": "pmRaFailCbraMsg2Disc",
+        "description": "Performance counter pmRaFailCbraMsg2Disc",
+        "category": "General"
+      },
+      {
+        "name": "pmRaFailCfraMsg2Disc",
+        "description": "Performance counter pmRaFailCfraMsg2Disc",
+        "category": "General"
+      },
+      {
+        "name": "pmRaSuccCbra",
+        "description": "Performance counter pmRaSuccCbra",
+        "category": "General"
+      },
+      {
+        "name": "pmRaSuccCfra",
+        "description": "Performance counter pmRaSuccCfra",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabAtt",
+        "description": "Performance counter pmRrcConnEstabAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailLic",
+        "description": "Performance counter pmRrcConnEstabFailLic",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabSucc",
+        "description": "Performance counter pmRrcConnEstabSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmS",
+        "description": "Performance counter pmS",
+        "category": "General"
+      },
+      {
+        "name": "pmStatistics",
+        "description": "Performance counter pmStatistics",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      },
+      {
+        "name": "pmode",
+        "description": "Performance counter pmode",
+        "category": "General"
+      },
+      {
+        "name": "pmstatistics",
+        "description": "Performance counter pmstatistics",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_ADV_CELL_SUP_DETECTION",
+        "type": "EVENT_PARAM_ADV_CELL_SUP_RULE",
+        "description": "The event is generated when Advanced Cell Supervision suspects a sleeping cell.                   The parameter shows which detectors have been triggered."
+      },
+      {
+        "name": "INTERNAL_EVENT_ADV_CELL_SUP_RECOVERY_ATTEMPT",
+        "type": "EVENT_PARAM_ADV_CELL_SUP_RECOVERY_METHOD",
+        "description": "The event is generated when Advanced Cell Supervision attempts to recover from a                   suspected sleeping cell using the cell lock and unlock recovery action."
+      },
+      {
+        "name": "INTERNAL_EVENT_ADV_CELL_SUP_RECOVERY_RESULT",
+        "type": "EVENT_PARAM_ADV_CELL_SUP_RECOVERY_RESULT",
+        "description": "The event is generated after Advanced Cell Supervision has attempted to recover                   from a suspected sleeping cell using a cell lock and unlock recovery action. The                   parameter shows whether or not the recovery was regarded successful."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_AI_ACS_REPORT",
+        "type": "EVENT_PARAM_RA_ATT_CBRA",
+        "description": "If cell trace is activated (including profile), RRC/S1 bigram data set and RACH                   data for AI Powered ACS are reported by cell trace."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_AI_ACS_REPORT",
+        "type": "EVENT_PARAM_RA_ATT_CFRA",
+        "description": "If cell trace is activated (including profile), RRC/S1 bigram data set and RACH                   data for AI Powered ACS are reported by cell trace."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_AI_ACS_REPORT",
+        "type": "EVENT_PARAM_RA_SUCC_CBRA",
+        "description": "If cell trace is activated (including profile), RRC/S1 bigram data set and RACH                   data for AI Powered ACS are reported by cell trace."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_AI_ACS_REPORT",
+        "type": "EVENT_PARAM_RA_SUCC_CFRA",
+        "description": "If cell trace is activated (including profile), RRC/S1 bigram data set and RACH                   data for AI Powered ACS are reported by cell trace."
+      },
+      {
+        "name": "INTERNAL_EVENT_AI_ACS_CONCEPT_DRIFT_DETECTION",
+        "type": "",
+        "description": "Indicates whether AI Powered ACS detects concept drift."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010320 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010320 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/89_22104-LZA7016014_1Uen.BF.md",
+    "file_hash": "340be6fe10605a98854956ac20a2a537",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

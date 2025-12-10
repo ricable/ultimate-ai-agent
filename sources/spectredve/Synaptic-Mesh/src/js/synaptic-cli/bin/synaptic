@@ -1,0 +1,68 @@
+#!/usr/bin/env node
+/**
+ * Synaptic Neural Mesh CLI - Distributed AI orchestration platform
+ * Smart dispatcher that detects and uses the best available runtime
+ */
+
+const VERSION = "1.0.0-alpha.1";
+const path = require('path');
+const fs = require('fs');
+const { spawn } = require('child_process');
+
+// Determine script directory
+const scriptPath = fs.realpathSync(process.argv[1]);
+const scriptDir = path.dirname(scriptPath);
+const rootDir = path.resolve(scriptDir, '..');
+
+// Show help if no arguments provided
+if (process.argv.length === 2) {
+  process.argv.push('--help');
+}
+
+// Quick version check
+if (process.argv.includes('--version') || process.argv.includes('-v')) {
+  console.log(`v${VERSION}`);
+  process.exit(0);
+}
+
+// Main CLI entry point
+const cliPath = path.join(rootDir, 'lib', 'cli-simple.js');
+const srcPath = path.join(rootDir, 'src', 'cli-simple.js');
+
+let targetPath = null;
+if (fs.existsSync(cliPath)) {
+  targetPath = cliPath;
+} else if (fs.existsSync(srcPath)) {
+  targetPath = srcPath;
+} else {
+  console.error(`
+🧠 Synaptic Neural Mesh v${VERSION} - Distributed AI Orchestration
+
+⚠️  CLI module not found. Please ensure the package is properly installed.
+
+To install and run:
+  npm install -g synaptic-mesh
+  synaptic <command>
+
+Or use npx directly:
+  npx synaptic-mesh <command>
+
+Documentation: https://github.com/synaptic-neural-mesh/synaptic-cli
+`);
+  process.exit(1);
+}
+
+// Execute the CLI
+const child = spawn(process.execPath, [targetPath, ...process.argv.slice(2)], {
+  stdio: 'inherit',
+  env: process.env
+});
+
+child.on('exit', (code) => {
+  process.exit(code || 0);
+});
+
+child.on('error', (err) => {
+  console.error('Failed to start CLI:', err);
+  process.exit(1);
+});

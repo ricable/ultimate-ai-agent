@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: crispr-production
+  labels:
+    name: crispr-production
+    environment: production
+    project: crispr-cas13-pipeline
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: crispr-staging
+  labels:
+    name: crispr-staging
+    environment: staging
+    project: crispr-cas13-pipeline
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: crispr-dev
+  labels:
+    name: crispr-dev
+    environment: development
+    project: crispr-cas13-pipeline

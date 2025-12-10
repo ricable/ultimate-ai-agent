@@ -1,0 +1,44 @@
+{
+  "mcpServers": {
+    "docker-sandbox": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@alfonsograziano/node-code-sandbox-mcp"
+      ],
+      "env": {
+        "SANDBOX_TYPE": "docker",
+        "SANDBOX_MEMORY_LIMIT": "2g",
+        "SANDBOX_CPU_LIMIT": "2",
+        "SANDBOX_TIMEOUT": "300000",
+        "SANDBOX_NETWORK": "none",
+        "ALLOWED_LANGUAGES": "javascript,typescript,python",
+        "SANDBOX_VOLUMES": "./sandbox-volumes"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "execute_code",
+        "list_files"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "./src",
+        "./docs"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "read_file",
+        "list_directory"
+      ]
+    }
+  },
+  "globalSettings": {
+    "timeout": 30000,
+    "retries": 3,
+    "logLevel": "info"
+  }
+}

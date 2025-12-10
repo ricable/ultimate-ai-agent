@@ -1,0 +1,77 @@
+{
+  "file_hash": "2bf88900181c5128975a6979e1d18eb4",
+  "feature": {
+    "id": "121 5130",
+    "name": "Downlink Multi-User MIMO Low/Mid-Band",
+    "cxc_code": "CXC4012330",
+    "value_package": "Massive MIMO Performance",
+    "value_package_id": "FAJ 801 4008",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature increases uplink cell throughput by coscheduling multiple users, allowing",
+    "parameters": [
+      {
+        "name": "NRCellDU.ulMaxMuMimoLayers",
+        "type": "Affected",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "Uen.BB",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "NRCellDU.pmMacRBSymUsedPuschMimoLayerDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacRBSymUsedPuschMimoUserDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "A.a",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "A"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMacRBSymUsedPuschMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPuschMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPuschMimoUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPuschMimoUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacVolUl",
+        "description": "Performance counter pmMacVolUl",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012330 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012330 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/36_22104-LZA7016017_1Uen.BB.md",
+    "file_hash": "2bf88900181c5128975a6979e1d18eb4",
+    "processed_at": "2025-10-19 15:50:09",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

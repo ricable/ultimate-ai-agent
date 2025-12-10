@@ -1,0 +1,79 @@
+{
+  "file_hash": "e67d5b1cf34614a41a316ab0e1da1107",
+  "feature": {
+    "id": "121 4780",
+    "name": "Multiple GNSS Support",
+    "cxc_code": "CXC4040019",
+    "value_package": "NR Base Package",
+    "value_package_id": "FAJ 801 4002",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature enables the use of multiple satellite systems as a time synchronization",
+    "parameters": [
+      {
+        "name": "GnssInfo.gnssRecControlPath",
+        "type": "Affected",
+        "description": "The                                 attribute                                 shows whether a control path exists.",
+        "mo_class": "GnssInfo"
+      },
+      {
+        "name": "GnssInfo.gnssReceiverControl",
+        "type": "Affected",
+        "description": "The                                 attribute                                 shows whether a Baseband Radio Node is in control of the GNSS                                 receiver unit.",
+        "mo_class": "GnssInfo"
+      },
+      {
+        "name": "GnssInfo.satelliteInformation",
+        "type": "Affected",
+        "description": "The attribute shows the satellites in view.",
+        "mo_class": "GnssInfo"
+      },
+      {
+        "name": "GnssInfo.multipleGnssActual",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GnssInfo"
+      },
+      {
+        "name": "GnssInfo.multipleGnssBackup",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GnssInfo"
+      },
+      {
+        "name": "GnssInfo.multipleGnssStatus",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GnssInfo"
+      },
+      {
+        "name": "GnssInfo.multipleGnssWanted",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GnssInfo"
+      },
+      {
+        "name": "Uen.BT",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4040019 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4040019 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/370_22104-LZA7016014_1Uen.BT.md",
+    "file_hash": "e67d5b1cf34614a41a316ab0e1da1107",
+    "processed_at": "2025-10-19 17:07:27",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

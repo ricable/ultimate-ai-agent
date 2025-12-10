@@ -1,0 +1,35 @@
+{
+  "name": "daa-benchmarks",
+  "version": "0.1.0",
+  "description": "Comprehensive performance benchmarks comparing native NAPI-rs vs WASM implementations",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bench:crypto": "node crypto/crypto_wasm.js",
+    "bench:crypto-compare": "node crypto/crypto_compare.js",
+    "bench:orchestrator": "node orchestrator/orchestrator_wasm.js",
+    "bench:prime": "node prime/prime_wasm.js",
+    "bench:all": "npm run bench:crypto && npm run bench:orchestrator && npm run bench:prime",
+    "bench:native": "cargo bench --features all",
+    "bench:compare": "node scripts/compare_runner.js",
+    "report:generate": "node scripts/generate_report.js",
+    "report:visualize": "node scripts/visualize.js",
+    "report:html": "npm run bench:compare && npm run report:generate && npm run report:visualize",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@daa/qudag-native": "file:../qudag/qudag-napi",
+    "qudag-wasm": "file:../qudag/qudag-wasm/pkg-node",
+    "benchmark": "^2.1.4",
+    "chalk": "^5.3.0",
+    "chart.js": "^4.4.0",
+    "chartjs-node-canvas": "^4.1.6"
+  },
+  "devDependencies": {
+    "@types/benchmark": "^2.1.5",
+    "@types/node": "^20.11.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

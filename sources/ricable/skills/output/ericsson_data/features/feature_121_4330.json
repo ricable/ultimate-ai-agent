@@ -1,0 +1,69 @@
+{
+  "id": "121 4330",
+  "name": "Uplink Multiuser MIMO",
+  "cxc_code": "CXC4011943",
+  "value_package": "8-Way Receive Diversity",
+  "value_package_id": "FAJ 801 0561",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Uplink Multiuser MIMO feature increases uplink cell throughput.",
+  "parameters": [
+    {
+      "name": "Uen.AK",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellTDD.pmMultiUserMimoUlUePairsDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmMultiUserMimoUlPrbUtil",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.subframeAssignment",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmMultiUserMimoUlPrbUtil",
+      "description": "Performance counter pmMultiUserMimoUlPrbUtil",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMultiUserMimoUlUePairsDistr",
+      "description": "Performance counter pmMultiUserMimoUlUePairsDistr",
+      "category": "MIMO"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011943 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011943 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/157_22104-LZA7016014_1Uen.AK.md",
+  "file_hash": "d2d24ace873801c4d73c847ef25b3da7",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

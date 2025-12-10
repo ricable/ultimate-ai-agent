@@ -1,0 +1,99 @@
+{
+  "id": "121 1821",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4011317",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The 6 Cell Support feature offers reduced equipment cost by controlling six cells with a",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.dlChannelBandwidth",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.ulChannelBandwidth",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.channelBandwidth",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pdcchCfiMode",
+      "type": "Affected",
+      "description": "Unlocking of cells can be rejected because of shortage of PUCCH                                 resources. This results in a Resource Configuration Failure                                 alarm.  The required and available PUCCH resources for a cell depend on the                                 following:    Number of cells per node     Cell bandwidths     The setting of the following parameters  EUtranCellFDD.pdcchCfiMode     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers     EUtranCellTDD.pdcchCfiMode     EUtranCellTDD.noOfPucchCqiUsers     EUtranCellTDD.noOfPucchSrUsers         More information about dependencies between the parameters can be                                 found in Control Channel Dimensioning.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pdcchCfiMode",
+      "type": "Affected",
+      "description": "Unlocking of cells can be rejected because of shortage of PUCCH                                 resources. This results in a Resource Configuration Failure                                 alarm.  The required and available PUCCH resources for a cell depend on the                                 following:    Number of cells per node     Cell bandwidths     The setting of the following parameters  EUtranCellFDD.pdcchCfiMode     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers     EUtranCellTDD.pdcchCfiMode     EUtranCellTDD.noOfPucchCqiUsers     EUtranCellTDD.noOfPucchSrUsers         More information about dependencies between the parameters can be                                 found in Control Channel Dimensioning.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.noOfPucchCqiUsers",
+      "type": "Affected",
+      "description": "Unlocking of cells can be rejected because of shortage of PUCCH                                 resources. This results in a Resource Configuration Failure                                 alarm.  The required and available PUCCH resources for a cell depend on the                                 following:    Number of cells per node     Cell bandwidths     The setting of the following parameters  EUtranCellFDD.pdcchCfiMode     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers     EUtranCellTDD.pdcchCfiMode     EUtranCellTDD.noOfPucchCqiUsers     EUtranCellTDD.noOfPucchSrUsers         More information about dependencies between the parameters can be                                 found in Control Channel Dimensioning.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.noOfPucchCqiUsers",
+      "type": "Affected",
+      "description": "Unlocking of cells can be rejected because of shortage of PUCCH                                 resources. This results in a Resource Configuration Failure                                 alarm.  The required and available PUCCH resources for a cell depend on the                                 following:    Number of cells per node     Cell bandwidths     The setting of the following parameters  EUtranCellFDD.pdcchCfiMode     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers     EUtranCellTDD.pdcchCfiMode     EUtranCellTDD.noOfPucchCqiUsers     EUtranCellTDD.noOfPucchSrUsers         More information about dependencies between the parameters can be                                 found in Control Channel Dimensioning.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.noOfPucchSrUsers",
+      "type": "Affected",
+      "description": "Unlocking of cells can be rejected because of shortage of PUCCH                                 resources. This results in a Resource Configuration Failure                                 alarm.  The required and available PUCCH resources for a cell depend on the                                 following:    Number of cells per node     Cell bandwidths     The setting of the following parameters  EUtranCellFDD.pdcchCfiMode     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers     EUtranCellTDD.pdcchCfiMode     EUtranCellTDD.noOfPucchCqiUsers     EUtranCellTDD.noOfPucchSrUsers         More information about dependencies between the parameters can be                                 found in Control Channel Dimensioning.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.noOfPucchSrUsers",
+      "type": "Affected",
+      "description": "Unlocking of cells can be rejected because of shortage of PUCCH                                 resources. This results in a Resource Configuration Failure                                 alarm.  The required and available PUCCH resources for a cell depend on the                                 following:    Number of cells per node     Cell bandwidths     The setting of the following parameters  EUtranCellFDD.pdcchCfiMode     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers     EUtranCellTDD.pdcchCfiMode     EUtranCellTDD.noOfPucchCqiUsers     EUtranCellTDD.noOfPucchSrUsers         More information about dependencies between the parameters can be                                 found in Control Channel Dimensioning.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "Uen.AN",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmentFunction",
+      "description": "Performance counter pmentFunction",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011317 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011317 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/53_22104-LZA7016014_1Uen.AN.md",
+  "file_hash": "f66dd00b546a1be0b8d3fe12bb9bad42",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

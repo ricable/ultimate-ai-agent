@@ -1,0 +1,270 @@
+name: NAPI Publish
+
+on:
+  push:
+    tags:
+      - 'qudag-napi-v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 0.1.0)'
+        required: true
+        type: string
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+  MACOSX_DEPLOYMENT_TARGET: '10.13'
+
+jobs:
+  build-and-test:
+    name: Build - ${{ matrix.settings.target }}
+    runs-on: ${{ matrix.settings.host }}
+    timeout-minutes: 60
+
+    strategy:
+      fail-fast: false
+      matrix:
+        settings:
+          # Linux x64 GNU
+          - host: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            build: npm run build -- --release
+
+          # Linux x64 MUSL (static linking)
+          - host: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+            build: |
+              set -e &&
+              rustup target add x86_64-unknown-linux-musl &&
+              npm run build -- --release --target x86_64-unknown-linux-musl
+
+          # Linux ARM64 GNU
+          - host: ubuntu-latest
+            target: aarch64-unknown-linux-gnu
+            build: |
+              set -e &&
+              export CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER=aarch64-linux-gnu-gcc &&
+              rustup target add aarch64-unknown-linux-gnu &&
+              npm run build -- --release --target aarch64-unknown-linux-gnu
+
+          # Linux ARM64 MUSL
+          - host: ubuntu-latest
+            target: aarch64-unknown-linux-musl
+            build: |
+              set -e &&
+              rustup target add aarch64-unknown-linux-musl &&
+              npm run build -- --release --target aarch64-unknown-linux-musl
+
+          # macOS x64
+          - host: macos-latest
+            target: x86_64-apple-darwin
+            build: npm run build -- --release
+
+          # macOS ARM64 (Apple Silicon)
+          - host: macos-latest
+            target: aarch64-apple-darwin
+            build: |
+              set -e &&
+              sudo rm -Rf /Library/Developer/CommandLineTools/SDKs/* &&
+              export CC=$(xcrun -f clang) &&
+              export CXX=$(xcrun -f clang++) &&
+              SYSROOT=$(xcrun --sdk macosx --show-sdk-path) &&
+              export CFLAGS="-isysroot $SYSROOT -isystem $SYSROOT" &&
+              rustup target add aarch64-apple-darwin &&
+              npm run build -- --release --target aarch64-apple-darwin
+
+          # Windows x64 MSVC
+          - host: windows-latest
+            target: x86_64-pc-windows-msvc
+            build: npm run build -- --release
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Setup Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'npm'
+        cache-dependency-path: qudag/qudag-napi/package-lock.json
+
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        targets: ${{ matrix.settings.target }}
+
+    - name: Setup Rust cache
+      uses: Swatinem/rust-cache@v2
+      with:
+        key: napi-release-${{ matrix.settings.target }}
+        workspaces: qudag/qudag-napi
+
+    # Linux-specific setup
+    - name: Install Linux dependencies
+      if: contains(matrix.settings.host, 'ubuntu')
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential
+
+        # Install cross-compilation tools for ARM64
+        if [[ "${{ matrix.settings.target }}" == *"aarch64"* ]]; then
+          sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+        fi
+
+        # Install musl tools for static linking
+        if [[ "${{ matrix.settings.target }}" == *"musl"* ]]; then
+          sudo apt-get install -y musl-tools
+        fi
+
+    - name: Install dependencies
+      working-directory: qudag/qudag-napi
+      run: npm ci
+
+    - name: Build release bindings
+      working-directory: qudag/qudag-napi
+      run: ${{ matrix.settings.build }}
+      shell: bash
+
+    - name: Run full test suite
+      if: matrix.settings.target == 'x86_64-unknown-linux-gnu' || matrix.settings.target == 'x86_64-apple-darwin' || matrix.settings.target == 'x86_64-pc-windows-msvc'
+      working-directory: qudag/qudag-napi
+      run: npm test
+
+    - name: Strip debug symbols (Linux/macOS)
+      if: |
+        !contains(matrix.settings.host, 'windows') &&
+        (matrix.settings.target == 'x86_64-unknown-linux-gnu' ||
+         matrix.settings.target == 'x86_64-apple-darwin' ||
+         matrix.settings.target == 'aarch64-apple-darwin')
+      working-directory: qudag/qudag-napi
+      run: |
+        strip *.node || true
+      shell: bash
+
+    - name: Upload release artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: bindings-${{ matrix.settings.target }}
+        path: qudag/qudag-napi/*.node
+        if-no-files-found: error
+        retention-days: 30
+
+  publish:
+    name: Publish to npm
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Download all artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: artifacts
+
+    - name: Move bindings to package directory
+      run: |
+        mkdir -p qudag/qudag-napi/npm
+
+        # Copy all .node files to the package directory
+        find artifacts -name "*.node" -exec cp {} qudag/qudag-napi/ \;
+
+        ls -la qudag/qudag-napi/*.node || echo "No .node files found"
+
+    - name: Install dependencies
+      working-directory: qudag/qudag-napi
+      run: npm ci
+
+    - name: Create artifacts
+      working-directory: qudag/qudag-napi
+      run: npm run artifacts
+
+    - name: Publish to npm
+      working-directory: qudag/qudag-napi
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: |
+        # Set version from tag or input
+        if [[ "${{ github.event_name }}" == "push" ]]; then
+          VERSION=${GITHUB_REF#refs/tags/qudag-napi-v}
+        else
+          VERSION=${{ inputs.version }}
+        fi
+
+        npm version $VERSION --no-git-tag-version
+        npm publish --access public
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      if: github.event_name == 'push'
+      with:
+        tag_name: ${{ github.ref_name }}
+        name: QuDAG NAPI ${{ github.ref_name }}
+        body: |
+          ## QuDAG NAPI Bindings Release
+
+          ### Features
+          - Native Node.js bindings for QuDAG quantum-resistant cryptography
+          - ML-DSA signatures, ML-KEM key exchange, BLAKE3 hashing
+          - Support for Linux (x64, ARM64), macOS (Intel, Apple Silicon), Windows (x64)
+          - Static linking with musl for maximum portability
+
+          ### Installation
+          ```bash
+          npm install @daa/qudag-native
+          ```
+
+          ### Supported Platforms
+          - Linux: x86_64 (glibc, musl), aarch64 (glibc, musl)
+          - macOS: x86_64, aarch64 (Apple Silicon)
+          - Windows: x86_64
+
+          ### Node.js Versions
+          - Node.js 18.x
+          - Node.js 20.x
+          - Node.js 22.x
+
+          Full changelog: https://github.com/ruvnet/daa/blob/main/qudag/qudag-napi/CHANGELOG.md
+        files: |
+          artifacts/**/*.node
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-summary:
+    name: Publish Summary
+    needs: [build-and-test, publish]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+    - name: Check publish results
+      run: |
+        echo "Build status: ${{ needs.build-and-test.result }}"
+        echo "Publish status: ${{ needs.publish.result }}"
+
+        if [[ "${{ needs.build-and-test.result }}" != "success" ]]; then
+          echo "❌ Build failed"
+          exit 1
+        fi
+
+        if [[ "${{ needs.publish.result }}" != "success" ]]; then
+          echo "❌ Publish failed"
+          exit 1
+        fi
+
+        echo "✅ NAPI package published successfully"

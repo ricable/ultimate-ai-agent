@@ -1,0 +1,74 @@
+# CUDA 12.1 + PyTorch 2.2 base for NVIDIA L4 GPU
+FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
+
+# Prevent interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install Python 3.11 and essential tools
+RUN apt-get update && apt-get install -y \
+    python3.11 \
+    python3.11-dev \
+    python3-pip \
+    git \
+    wget \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set Python 3.11 as default
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
+RUN update-alternatives --install /usr/bin/pip3 pip3 /usr/bin/pip3 1
+
+# Upgrade pip
+RUN pip3 install --no-cache-dir --upgrade pip setuptools wheel
+
+# Install PyTorch 2.2 with CUDA 12.1 support
+RUN pip3 install --no-cache-dir \
+    torch==2.2.0 \
+    torchvision==0.17.0 \
+    torchaudio==2.2.0 \
+    --index-url https://download.pytorch.org/whl/cu121
+
+# Install core ML/DL dependencies
+RUN pip3 install --no-cache-dir \
+    transformers==4.38.0 \
+    datasets==2.17.0 \
+    peft==0.9.0 \
+    bitsandbytes==0.42.0 \
+    accelerate==0.27.0 \
+    sentencepiece==0.1.99 \
+    protobuf==4.25.2 \
+    scipy==1.12.0 \
+    scikit-learn==1.4.0
+
+# Install utilities
+RUN pip3 install --no-cache-dir \
+    flask==3.0.2 \
+    resend==0.8.0 \
+    tqdm==4.66.1 \
+    wandb==0.16.3 \
+    tensorboard==2.16.2
+
+# Set working directory
+WORKDIR /app
+
+# Copy application code
+COPY . /app/
+
+# Create necessary directories
+RUN mkdir -p /app/logs /app/checkpoints /app/benchmarks/results /app/status
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV TRANSFORMERS_CACHE=/app/cache
+ENV HF_HOME=/app/cache
+ENV CUDA_VISIBLE_DEVICES=0
+
+# Cloud Run requires listening on $PORT (default 8080)
+ENV PORT=8080
+
+# Copy and make entrypoint executable
+COPY cloudrun/entrypoint.sh /app/cloudrun/entrypoint.sh
+RUN chmod +x /app/cloudrun/entrypoint.sh
+
+# Start via entrypoint - health server first, then training
+CMD ["/app/cloudrun/entrypoint.sh"]

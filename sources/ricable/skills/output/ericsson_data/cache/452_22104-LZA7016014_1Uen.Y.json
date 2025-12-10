@@ -1,0 +1,67 @@
+{
+  "file_hash": "d3d52fc4336cc138ec3c5a5f8a5d8e1c",
+  "feature": {
+    "id": "121 5098",
+    "name": "DSCP Mapping Based on ARP and QCI",
+    "cxc_code": "CXC4012382",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature introduces support for DSCP configuration in the transport network QoS",
+    "parameters": [
+      {
+        "name": "QciProfilePredefined.dscpArpMap",
+        "type": "Introduced",
+        "description": "See MOM description.  The attributes reference struct DscpArpMap. The struct has                                 the following members:  dscpArp1     dscpArp2     dscpArp3     dscpArp4     dscpArp5     dscpArp6     dscpArp7     dscpArp8     dscpArp9     dscpArp10     dscpArp11     dscpArp12     dscpArp13     dscpArp14     dscpArp15",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfileOperatorDefined.dscpArpMap",
+        "type": "Introduced",
+        "description": "See MOM description.  The attributes reference struct DscpArpMap. The struct has                                 the following members:  dscpArp1     dscpArp2     dscpArp3     dscpArp4     dscpArp5     dscpArp6     dscpArp7     dscpArp8     dscpArp9     dscpArp10     dscpArp11     dscpArp12     dscpArp13     dscpArp14     dscpArp15",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfilePredefined.dscp",
+        "type": "Affected",
+        "description": "If the QciProfilePredefined.dscpArpMap is set to                                 the default values, the QciProfilePredefined.dscp                                 is used. Otherwise, the values of                                     QciProfilePredefined.dscpArpMap are used.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfileOperatorDefined.dscp",
+        "type": "Affected",
+        "description": "If the QciProfileOperatorDefined.dscpArpMap is                                 set to the default values, the                                     QciProfileOperatorDefined.dscp is used.                                 Otherwise, the values of                                     QciProfileOperatorDefined.dscpArpMap are                                 used.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "Uen.Y",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmap",
+        "description": "Performance counter pmap",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012382 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012382 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/452_22104-LZA7016014_1Uen.Y.md",
+    "file_hash": "d3d52fc4336cc138ec3c5a5f8a5d8e1c",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

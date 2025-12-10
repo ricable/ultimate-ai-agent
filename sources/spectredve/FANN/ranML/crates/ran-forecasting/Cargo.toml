@@ -1,0 +1,50 @@
+[package]
+name = "ran-forecasting"
+version = "0.1.0"
+edition = "2021"
+description = "RAN time series forecasting using neuro-divergent models"
+license = "MIT OR Apache-2.0"
+authors = ["ranML Contributors"]
+
+[dependencies]
+# Core dependencies
+ran-core = { path = "../ran-core" }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+serde = { version = "1.0", features = ["derive"], optional = true }
+serde_json = { version = "1.0", optional = true }
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+
+# Neural forecasting (optional for now - can be enabled when neuro-divergent is ready)
+# neuro-divergent = { path = "../../../neuro-divergent", optional = true }
+# neuro-divergent-core = { path = "../../../neuro-divergent/neuro-divergent-core", optional = true }
+# neuro-divergent-models = { path = "../../../neuro-divergent/neuro-divergent-models", optional = true }
+
+# Math and statistics
+num-traits = "0.2"
+ndarray = "0.15"
+approx = "0.5"
+
+# Async support
+tokio = { version = "1.0", features = ["full"], optional = true }
+futures = { version = "0.3", optional = true }
+
+# Performance
+rayon = "1.7"
+
+[dev-dependencies]
+tempfile = "3.0"
+criterion = "0.5"
+
+[features]
+default = ["std", "serde_support"]
+std = []
+async = ["tokio", "futures"]
+gpu = []
+serde_support = ["serde", "serde_json"]
+
+# [[bench]]
+# name = "forecasting_benchmarks"  
+# harness = false

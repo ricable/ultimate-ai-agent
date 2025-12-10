@@ -1,0 +1,293 @@
+{
+  "file_hash": "39de7fe0e357f2da6f41a2f534743f39",
+  "feature": {
+    "id": "121 0804",
+    "name": "IPsec",
+    "cxc_code": "CXC4040004",
+    "value_package": "NR Base Package",
+    "value_package_id": "FAJ 801 4002",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The IPsec feature uses IPsec ESP to provide security functionality for the IP",
+    "parameters": [
+      {
+        "name": "AdditionalCoreNetwork.ipsecEndcEpAddressRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AdditionalCoreNetwork"
+      },
+      {
+        "name": "AdditionalCoreNetwork.ipsecEpAddressRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AdditionalCoreNetwork"
+      },
+      {
+        "name": "ENodeBFunction.ipsecEndcEpAddressRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.ipsecEpAddress2Ref",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.ipsecEpAddressRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "Ikev2PolicyProfile.credential",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Ikev2PolicyProfile"
+      },
+      {
+        "name": "Ikev2PolicyProfile.dpdTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Ikev2PolicyProfile"
+      },
+      {
+        "name": "Ikev2PolicyProfile.ikeDscp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Ikev2PolicyProfile"
+      },
+      {
+        "name": "Ikev2PolicyProfile.ikeSaLifetime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Ikev2PolicyProfile"
+      },
+      {
+        "name": "Ikev2PolicyProfile.ikev2Proposal",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Ikev2PolicyProfile"
+      },
+      {
+        "name": "Ikev2PolicyProfile.trustCategory",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Ikev2PolicyProfile"
+      },
+      {
+        "name": "Ikev2PolicyProfile.ikev2Fragmentation",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Ikev2PolicyProfile"
+      },
+      {
+        "name": "IpsecProposalProfile.childSaLifetime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "IpsecProposalProfile"
+      },
+      {
+        "name": "IpsecProposalProfile.ipsecProposal",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "IpsecProposalProfile"
+      },
+      {
+        "name": "IpsecProposalProfile.pfs",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "IpsecProposalProfile"
+      },
+      {
+        "name": "IpsecPolicy.antiReplayProtection",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "IpsecPolicy"
+      },
+      {
+        "name": "IpsecPolicy.ipsecProposalProfile",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "IpsecPolicy"
+      },
+      {
+        "name": "IpsecPolicy.localTrafficSelector",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "IpsecPolicy"
+      },
+      {
+        "name": "IpsecPolicy.remoteTrafficSelector",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "IpsecPolicy"
+      },
+      {
+        "name": "Ikev2Session.ikev2PolicyProfile",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Ikev2Session"
+      },
+      {
+        "name": "Ikev2Session.localIdentityOrigin",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Ikev2Session"
+      },
+      {
+        "name": "IpsecTunnel.localAddress",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "IpsecTunnel"
+      },
+      {
+        "name": "IpsecTunnel.remoteAddress",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "IpsecTunnel"
+      },
+      {
+        "name": "IpsecTunnel.remoteAddressSecondary",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "IpsecTunnel"
+      },
+      {
+        "name": "LocalIPsecEndpoint.interfaceList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LocalIPsecEndpoint"
+      },
+      {
+        "name": "LocalIPsecEndpoint.outerIpAddressRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LocalIPsecEndpoint"
+      },
+      {
+        "name": "PeerIpsecProfile.antiReplayProtection",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PeerIpsecProfile"
+      },
+      {
+        "name": "PeerIpsecProfile.ikev2PolicyProfile",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PeerIpsecProfile"
+      },
+      {
+        "name": "PeerIpsecProfile.ipsecProposalProfile",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PeerIpsecProfile"
+      },
+      {
+        "name": "InterfaceIPv4.trackedInterface",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InterfaceIPv4"
+      },
+      {
+        "name": "InterfaceIPv6.trackedInterface",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InterfaceIPv6"
+      },
+      {
+        "name": "Ikev2PolicyProfile.dpdInterval",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Ikev2PolicyProfile"
+      },
+      {
+        "name": "Ikev2PolicyProfile.randomDelay",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Ikev2PolicyProfile"
+      },
+      {
+        "name": "Ikev2PolicyProfile.retransmissionScheme",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Ikev2PolicyProfile"
+      },
+      {
+        "name": "Uen.FY",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "PolicyProfile.credential",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PolicyProfile"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmChildSaRekey",
+        "description": "Performance counter pmChildSaRekey",
+        "category": "General"
+      },
+      {
+        "name": "pmCounter",
+        "description": "Performance counter pmCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmCounters",
+        "description": "Performance counter pmCounters",
+        "category": "General"
+      },
+      {
+        "name": "pmIkeFailures",
+        "description": "Performance counter pmIkeFailures",
+        "category": "General"
+      },
+      {
+        "name": "pmInErrors",
+        "description": "Performance counter pmInErrors",
+        "category": "General"
+      },
+      {
+        "name": "pmOutDiscards",
+        "description": "Performance counter pmOutDiscards",
+        "category": "General"
+      },
+      {
+        "name": "pmTU",
+        "description": "Performance counter pmTU",
+        "category": "General"
+      },
+      {
+        "name": "pmUnavailableSeconds",
+        "description": "Performance counter pmUnavailableSeconds",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": null,
+    "deactivation_step": null,
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/170_22104-LZA7016014_1Uen.FY.md",
+    "file_hash": "39de7fe0e357f2da6f41a2f534743f39",
+    "processed_at": "2025-10-19 17:07:26",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

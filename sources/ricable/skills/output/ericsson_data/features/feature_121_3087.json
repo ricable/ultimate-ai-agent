@@ -1,0 +1,377 @@
+{
+  "id": "121 3087",
+  "name": "Service or Priority-Triggered Inter-Frequency Handover",
+  "cxc_code": "CXC4011736",
+  "value_package": "Service-Based Mobility",
+  "value_package_id": "FAJ 801 0433",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Service or Priority-Triggered Inter-Frequency Handover feature provides the",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.servOrPrioTriggeredIFHo",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.servOrPrioTriggeredIFHo",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.otdoaCheckEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.otdoaCheckEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.servOrPrioIFHoSetupBearer",
+      "type": "Introduced",
+      "description": "Controls the behavior of the eNodeB when the Service or                                 Priority-Triggered Inter-Frequency Handover feature is triggered by                                 a bearer with QCI=1. It gives the possibility to configure for                                 handover to target cell before allowing QCI=1 bearer setup.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.servOrPrioIFHoSetupBearer",
+      "type": "Introduced",
+      "description": "Controls the behavior of the eNodeB when the Service or                                 Priority-Triggered Inter-Frequency Handover feature is triggered by                                 a bearer with QCI=1. It gives the possibility to configure for                                 handover to target cell before allowing QCI=1 bearer setup.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.spifhoSetupBearerAtInitialCtxtSetup",
+      "type": "Introduced",
+      "description": "Controls if a bearer with QCI=1, handled by the Service or                                 Priority-Triggered Inter-Frequency Handover feature, will be set up                                 at Initial Context Setup even when the attribute                                     servOrPrioIFHoSetupBearer is false.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.spifhoSetupBearerAtInitialCtxtSetup",
+      "type": "Introduced",
+      "description": "Controls if a bearer with QCI=1, handled by the Service or                                 Priority-Triggered Inter-Frequency Handover feature, will be set up                                 at Initial Context Setup even when the attribute                                     servOrPrioIFHoSetupBearer is false.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.servOrPrioRedirectEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.servOrPrioRedirectEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranFreqRelation.arpPrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "UeMeasControl.servOrPrioIFHoTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "EUtranCellFDD.servOrPrioTriggeredErabAction",
+      "type": "Introduced",
+      "description": "Controls the behavior of the eNodeB when the Service or                                 Priority-Triggered Inter-Frequency Handover feature is triggered by                                 a bearer with QCI=1, and there are no frequency candidates where the                                 UE can find a suitable target cell for handover.  If the value is SETUP, all bearers in the request                                 are set up in the regular way.  If the value is REJECT, the bearer or bearers with                                 QCI=1 are rejected with the cause value Not allowed QCI                                     value.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.servOrPrioTriggeredErabAction",
+      "type": "Introduced",
+      "description": "Controls the behavior of the eNodeB when the Service or                                 Priority-Triggered Inter-Frequency Handover feature is triggered by                                 a bearer with QCI=1, and there are no frequency candidates where the                                 UE can find a suitable target cell for handover.  If the value is SETUP, all bearers in the request                                 are set up in the regular way.  If the value is REJECT, the bearer or bearers with                                 QCI=1 are rejected with the cause value Not allowed QCI                                     value.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "ReportConfigA5Spifho.a5Threshold1Rsrp",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5Spifho"
+    },
+    {
+      "name": "ReportConfigA5Spifho.a5Threshold1Rsrq",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5Spifho"
+    },
+    {
+      "name": "ReportConfigA5Spifho.a5Threshold2Rsrp",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5Spifho"
+    },
+    {
+      "name": "ReportConfigA5Spifho.a5Threshold2Rsrq",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5Spifho"
+    },
+    {
+      "name": "ReportConfigA5Spifho.hysteresisA5",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5Spifho"
+    },
+    {
+      "name": "ReportConfigA5Spifho.reportConfigA5SpifhoId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5Spifho"
+    },
+    {
+      "name": "ReportConfigA5Spifho.timeToTriggerA5",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5Spifho"
+    },
+    {
+      "name": "ReportConfigA5Spifho.triggerQuantityA5",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5Spifho"
+    },
+    {
+      "name": "EUtranCellFDD.spifhoDedicatedReportConfig",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.spifhoDedicatedReportConfig",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "UeMeasControl.bothA5RsrpRsrqCheckSpifho",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "EUtranFreqRelation.voicePrio",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "ReportConfigA5.a5Threshold2Rsrp",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5"
+    },
+    {
+      "name": "ReportConfigA5.hysteresisA5",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5"
+    },
+    {
+      "name": "ReportConfigA5.timeToTriggerA5",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+      "description": "The cause of the procedure for handover preparation. Circuit                                     Switched, Carrier Aggregation, Service or Priority-triggered                                     Inter-frequency Handover.  When the handover is triggered by the Service or                                     Priority-Triggered Inter-Frequency Handover feature, the value                                     is EVENT_VALUE_SPIFHO.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+      "description": "The cause of the procedure for handover preparation. Circuit                                     Switched, Carrier Aggregation, Service or Priority-triggered                                     Inter-frequency Handover.  When the handover is triggered by the Service or                                     Priority-Triggered Inter-Frequency Handover feature, the value                                     is EVENT_VALUE_SPIFHO.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": "The cause of the procedure for handover preparation. Circuit                                     Switched, Carrier Aggregation, Service or Priority-triggered                                     Inter-frequency Handover.  When the handover is triggered by the Service or                                     Priority-Triggered Inter-Frequency Handover feature, the value                                     is EVENT_VALUE_SPIFHO.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": "The cause of the procedure for handover preparation. Circuit                                     Switched, Carrier Aggregation, Service or Priority-triggered                                     Inter-frequency Handover.  When the handover is triggered by the Service or                                     Priority-Triggered Inter-Frequency Handover feature, the value                                     is EVENT_VALUE_SPIFHO.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "type": "EVENT_PARAM_MOBILITY_TRIGGER",
+      "description": "Indicates the trigger for performing a mobility evaluation.  EVENT_VALUE_MEAS_REPORT_A5_SPIFHO,                                         EVENT_VALUE_SPIFHO",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "type": "EVENT_PARAM_MOBILITY_DECISION",
+      "description": "Indicates the decision that the mobility evaluation has taken.                                     Service or Priority-Triggered Inter-Frequency Handover.  EVENT_VALUE_RECONFIGURE_MEASUREMENTS_SPIFHO",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.CD33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "UnsupportedFreqProfile.unsupportedFreqList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UnsupportedFreqProfile"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmErabEstabAttAddedQci",
+      "description": "Performance counter pmErabEstabAttAddedQci",
+      "category": "General"
+    },
+    {
+      "name": "pmErabEstabAttInitQci",
+      "description": "Performance counter pmErabEstabAttInitQci",
+      "category": "General"
+    },
+    {
+      "name": "pmErabEstabSuccAddedQci",
+      "description": "Performance counter pmErabEstabSuccAddedQci",
+      "category": "General"
+    },
+    {
+      "name": "pmErabEstabSuccInitQci",
+      "description": "Performance counter pmErabEstabSuccInitQci",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexUeCtxtRelSCEutra",
+      "description": "Performance counter pmFlexUeCtxtRelSCEutra",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeAttLteInterF",
+      "description": "Performance counter pmHoExeAttLteInterF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeAttLteSpifho",
+      "description": "Performance counter pmHoExeAttLteSpifho",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeAttNonMob",
+      "description": "Performance counter pmHoExeAttNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccLteInterF",
+      "description": "Performance counter pmHoExeSuccLteInterF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccLteSpifho",
+      "description": "Performance counter pmHoExeSuccLteSpifho",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccNonMob",
+      "description": "Performance counter pmHoExeSuccNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttLteInterF",
+      "description": "Performance counter pmHoPrepAttLteInterF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttLteSpifho",
+      "description": "Performance counter pmHoPrepAttLteSpifho",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttNonMob",
+      "description": "Performance counter pmHoPrepAttNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccLteInterF",
+      "description": "Performance counter pmHoPrepSuccLteInterF",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccLteSpifho",
+      "description": "Performance counter pmHoPrepSuccLteSpifho",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccNonMob",
+      "description": "Performance counter pmHoPrepSuccNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmSpifhoMeasuredUe",
+      "description": "Performance counter pmSpifhoMeasuredUe",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+      "description": "The cause of the procedure for handover preparation. Circuit                                     Switched, Carrier Aggregation, Service or Priority-triggered                                     Inter-frequency Handover.  When the handover is triggered by the Service or                                     Priority-Triggered Inter-Frequency Handover feature, the value                                     is EVENT_VALUE_SPIFHO."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+      "description": "The cause of the procedure for handover preparation. Circuit                                     Switched, Carrier Aggregation, Service or Priority-triggered                                     Inter-frequency Handover.  When the handover is triggered by the Service or                                     Priority-Triggered Inter-Frequency Handover feature, the value                                     is EVENT_VALUE_SPIFHO."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": "The cause of the procedure for handover preparation. Circuit                                     Switched, Carrier Aggregation, Service or Priority-triggered                                     Inter-frequency Handover.  When the handover is triggered by the Service or                                     Priority-Triggered Inter-Frequency Handover feature, the value                                     is EVENT_VALUE_SPIFHO."
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": "The cause of the procedure for handover preparation. Circuit                                     Switched, Carrier Aggregation, Service or Priority-triggered                                     Inter-frequency Handover.  When the handover is triggered by the Service or                                     Priority-Triggered Inter-Frequency Handover feature, the value                                     is EVENT_VALUE_SPIFHO."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "type": "EVENT_PARAM_MOBILITY_TRIGGER",
+      "description": "Indicates the trigger for performing a mobility evaluation.  EVENT_VALUE_MEAS_REPORT_A5_SPIFHO,                                         EVENT_VALUE_SPIFHO"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "type": "EVENT_PARAM_MOBILITY_DECISION",
+      "description": "Indicates the decision that the mobility evaluation has taken.                                     Service or Priority-Triggered Inter-Frequency Handover.  EVENT_VALUE_RECONFIGURE_MEASUREMENTS_SPIFHO"
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011736 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011736 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/225_22104-LZA7016014_1Uen.CD33B.md",
+  "file_hash": "e9a6086923a6ce2e27f743c152caf0ba",
+  "processed_at": "2025-10-19 15:50:05",
+  "network_impact": {},
+  "performance_impact": {}
+}

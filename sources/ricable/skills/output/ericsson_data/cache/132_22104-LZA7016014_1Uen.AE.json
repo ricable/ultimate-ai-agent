@@ -1,0 +1,71 @@
+{
+  "file_hash": "20ec59f72e705b2193bc6b37e2116e62",
+  "feature": {
+    "id": "121 4246",
+    "name": "",
+    "cxc_code": "CXC4011918",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "The Service Specific Inactivity Timer feature enables the extension of the UE",
+    "parameters": [
+      {
+        "name": "QciProfileOperatorDefined.inactivityTimerOffset",
+        "type": "Introduced",
+        "description": "See MOM description.  A value of 0 means that this parameter is not used.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfilePredefined.inactivityTimerOffset",
+        "type": "Introduced",
+        "description": "See MOM description.  A value of 0 means that this parameter is not used.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "Uen.AE",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "Rcs.tInactivityTimer",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Rcs"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmErabRelAbnormalEnbExtIat",
+        "description": "Performance counter pmErabRelAbnormalEnbExtIat",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalMmeExtIat",
+        "description": "Performance counter pmErabRelAbnormalMmeExtIat",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttSrvccExtIat",
+        "description": "Performance counter pmHoPrepAttSrvccExtIat",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011918 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011918 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/132_22104-LZA7016014_1Uen.AE.md",
+    "file_hash": "20ec59f72e705b2193bc6b37e2116e62",
+    "processed_at": "2025-10-19 15:48:55",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

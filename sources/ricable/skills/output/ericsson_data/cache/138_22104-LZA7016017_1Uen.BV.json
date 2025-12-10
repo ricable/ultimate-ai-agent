@@ -1,0 +1,500 @@
+{
+  "file_hash": "5f29b3e51aede1cc299628957f7650ae",
+  "feature": {
+    "id": "121 5089",
+    "name": "DFTS-OFDM Waveform in Uplink",
+    "cxc_code": "CXC4012607",
+    "value_package": "Advanced Coverage Extension",
+    "value_package_id": "FAJ 801 4006",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature improves battery life for UEs with intermittent traffic by introducing the",
+    "parameters": [
+      {
+        "name": "BWP.bwpContext",
+        "type": "Introduced",
+        "description": "The attribute can only be modified, when it is referenced or used by                                 a locked cell.",
+        "mo_class": "BWP"
+      },
+      {
+        "name": "BWP.bWPId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "BWP"
+      },
+      {
+        "name": "BWP.isInitialBwp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "BWP"
+      },
+      {
+        "name": "BWP.numberOfRBs",
+        "type": "Introduced",
+        "description": "The attribute can only be modified, when it is referenced or used by                                 a locked cell.",
+        "mo_class": "BWP"
+      },
+      {
+        "name": "BWP.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "BWP"
+      },
+      {
+        "name": "BWP.startRB",
+        "type": "Introduced",
+        "description": "The attribute can only be modified, when it is referenced or used by                                 a locked cell.",
+        "mo_class": "BWP"
+      },
+      {
+        "name": "BWP.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "BWP"
+      },
+      {
+        "name": "BWPSet.allBWPRegularRef",
+        "type": "Introduced",
+        "description": "The attribute can only be modified, when it is referenced or used by                                 a locked cell.",
+        "mo_class": "BWPSet"
+      },
+      {
+        "name": "BWPSet.bWPSetId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "BWPSet"
+      },
+      {
+        "name": "BWPSet.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "BWPSet"
+      },
+      {
+        "name": "BWPSet.startBWPDlRef",
+        "type": "Introduced",
+        "description": "The attribute can only be modified, when it is referenced or used by                                 a locked cell.",
+        "mo_class": "BWPSet"
+      },
+      {
+        "name": "BWPSet.startBWPUlRef",
+        "type": "Introduced",
+        "description": "The attribute can only be modified, when it is referenced or used by                                 a locked cell.",
+        "mo_class": "BWPSet"
+      },
+      {
+        "name": "BWPSet.ueConfGroupType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "BWPSet"
+      },
+      {
+        "name": "BWPSet.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "BWPSet"
+      },
+      {
+        "name": "BWPSetCfg.bWPDlRef",
+        "type": "Introduced",
+        "description": "The attribute can only be modified, when it is referenced or used by                                 a locked cell.",
+        "mo_class": "BWPSetCfg"
+      },
+      {
+        "name": "BWPSetCfg.bWPSetCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "BWPSetCfg"
+      },
+      {
+        "name": "BWPSetCfg.bWPUlRef",
+        "type": "Introduced",
+        "description": "The attribute can only be modified, when it is referenced or used by                                 a locked cell.",
+        "mo_class": "BWPSetCfg"
+      },
+      {
+        "name": "BWPSetCfg.dynPowerOptRef",
+        "type": "Introduced",
+        "description": "The attribute can only be modified, when it is referenced or used by                                 a locked cell.",
+        "mo_class": "BWPSetCfg"
+      },
+      {
+        "name": "BWPSetCfg.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "BWPSetCfg"
+      },
+      {
+        "name": "BWPSetUeCfg.bWPSetUeCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "BWPSetUeCfg"
+      },
+      {
+        "name": "BWPSetUeCfg.bwpSwitchingFilterRelaxation",
+        "type": "Introduced",
+        "description": "The BWPSetUeCfg=Base MO instance                                 can only have the attribute modified, when it is referenced or used                                 by a locked cell.",
+        "mo_class": "BWPSetUeCfg"
+      },
+      {
+        "name": "BWPSetUeCfg.prefUeGroupList",
+        "type": "Introduced",
+        "description": "The BWPSetUeCfg=Base MO instance                             can only have the attribute modified, when it is referenced or used by a                             locked cell.",
+        "mo_class": "BWPSetUeCfg"
+      },
+      {
+        "name": "BWPSetUeCfg.ueConfGroupList",
+        "type": "Introduced",
+        "description": "The BWPSetUeCfg=Base MO instance                                 can only have the attribute modified, when it is referenced or used                                 by a locked cell.",
+        "mo_class": "BWPSetUeCfg"
+      },
+      {
+        "name": "BWPSetUeCfg.ueGroupList",
+        "type": "Introduced",
+        "description": "The BWPSetUeCfg=Base MO instance                                 can only have the attribute modified, when it is referenced or used                                 by a locked cell.",
+        "mo_class": "BWPSetUeCfg"
+      },
+      {
+        "name": "BWPSetUeCfg.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "BWPSetUeCfg"
+      },
+      {
+        "name": "DynPowerOpt.downDlThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DynPowerOpt"
+      },
+      {
+        "name": "DynPowerOpt.downUlThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DynPowerOpt"
+      },
+      {
+        "name": "DynPowerOpt.dynPowerOptId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DynPowerOpt"
+      },
+      {
+        "name": "DynPowerOpt.lowDlActivityTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DynPowerOpt"
+      },
+      {
+        "name": "DynPowerOpt.lowUlActivityTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DynPowerOpt"
+      },
+      {
+        "name": "DynPowerOpt.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DynPowerOpt"
+      },
+      {
+        "name": "DynPowerOpt.upDlThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DynPowerOpt"
+      },
+      {
+        "name": "DynPowerOpt.upUlThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DynPowerOpt"
+      },
+      {
+        "name": "DynPowerOpt.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DynPowerOpt"
+      },
+      {
+        "name": "NRCellDU.bWPRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.bWPSetRef",
+        "type": "Introduced",
+        "description": "The attribute can only be modified, when it is referenced or used by                                 a locked cell.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.improvedUlInSparseBwp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.maxNoOfUeInSparseBwp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.poorRadioQualDciBwpSwitchThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.qualHystDciBwpSwitch",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "DrxProfileUeCfg.drxRetransmissionTimerUl",
+        "type": "Affected",
+        "description": "The attribute is recommended to be set to 16 when                                 the NR Dynamic Power Optimizer feature is                                 activated.",
+        "mo_class": "DrxProfileUeCfg"
+      },
+      {
+        "name": "Downlink",
+        "type": "Uplink",
+        "description": "Configured Threshold Parameter Value",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "1,500",
+        "type": "100",
+        "description": "100",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "1,500",
+        "type": "100",
+        "description": "10",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "150",
+        "type": "10",
+        "description": "100",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "150",
+        "type": "10",
+        "description": "10",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "15",
+        "type": "1",
+        "description": "100",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "15",
+        "type": "1",
+        "description": "10",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Downlink",
+        "type": "Uplink",
+        "description": "Configured Threshold Parameter Value",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "1,500",
+        "type": "100",
+        "description": "100",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "1,500",
+        "type": "100",
+        "description": "10",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "150",
+        "type": "10",
+        "description": "100",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "150",
+        "type": "10",
+        "description": "10",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "15",
+        "type": "1",
+        "description": "100",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "15",
+        "type": "1",
+        "description": "10",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Downlink",
+        "type": "Uplink",
+        "description": "Configured Threshold Parameter Value",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "1,500",
+        "type": "100",
+        "description": "100",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "1,500",
+        "type": "100",
+        "description": "10",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "150",
+        "type": "10",
+        "description": "100",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "150",
+        "type": "10",
+        "description": "10",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "15",
+        "type": "1",
+        "description": "100",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "15",
+        "type": "1",
+        "description": "10",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.BV",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmBwpSwitchDciDropped",
+        "description": "Performance counter pmBwpSwitchDciDropped",
+        "category": "General"
+      },
+      {
+        "name": "pmCounter",
+        "description": "Performance counter pmCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmMacPucchSrPuschGrantLatDistr",
+        "description": "Performance counter pmMacPucchSrPuschGrantLatDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdcchTypeAAggrLvl16Bwp",
+        "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl16Bwp",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdcchTypeAAggrLvl1Bwp",
+        "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl1Bwp",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdcchTypeAAggrLvl2Bwp",
+        "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl2Bwp",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdcchTypeAAggrLvl4Bwp",
+        "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl4Bwp",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdcchTypeAAggrLvl8Bwp",
+        "description": "Performance counter pmMacRBSymUsedPdcchTypeAAggrLvl8Bwp",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdcchTypeADciSwitchBwp",
+        "description": "Performance counter pmMacRBSymUsedPdcchTypeADciSwitchBwp",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlBwp",
+        "description": "Performance counter pmMacVolDlBwp",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlBwp",
+        "description": "Performance counter pmMacVolUlBwp",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcchDciSwitchBwp",
+        "description": "Performance counter pmPdcchDciSwitchBwp",
+        "category": "General"
+      },
+      {
+        "name": "pmPdschSchedActivityBwp",
+        "description": "Performance counter pmPdschSchedActivityBwp",
+        "category": "General"
+      },
+      {
+        "name": "pmPuschSchedActivityBwp",
+        "description": "Performance counter pmPuschSchedActivityBwp",
+        "category": "General"
+      },
+      {
+        "name": "pmSessionTimeUeBwpSamp",
+        "description": "Performance counter pmSessionTimeUeBwpSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmSessionTimeUeBwpSumDistr",
+        "description": "Performance counter pmSessionTimeUeBwpSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012607 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012607 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/138_22104-LZA7016017_1Uen.BV.md",
+    "file_hash": "5f29b3e51aede1cc299628957f7650ae",
+    "processed_at": "2025-10-19 15:48:56",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

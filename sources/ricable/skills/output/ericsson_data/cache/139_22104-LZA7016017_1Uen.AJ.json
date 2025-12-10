@@ -1,0 +1,301 @@
+{
+  "file_hash": "25fe734ba971c9dbd60449fba30756ce",
+  "feature": {
+    "id": "121 5400",
+    "name": "NR Robust Header Compression for Voice",
+    "cxc_code": "CXC4012592",
+    "value_package": "Voice over NR",
+    "value_package_id": "FAJ 801 4017",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature provides header compression and decompression by using the ROHC protocol",
+    "parameters": [
+      {
+        "name": "Rohc.rohcId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Rohc"
+      },
+      {
+        "name": "Rohc.ueConfGroupType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Rohc"
+      },
+      {
+        "name": "RohcUeCfg.prefUeGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RohcUeCfg"
+      },
+      {
+        "name": "RohcUeCfg.rohc5qiList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RohcUeCfg"
+      },
+      {
+        "name": "RohcUeCfg.rohcUeCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RohcUeCfg"
+      },
+      {
+        "name": "RohcUeCfg.ueConfGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RohcUeCfg"
+      },
+      {
+        "name": "RohcUeCfg.ueGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RohcUeCfg"
+      },
+      {
+        "name": "RohcUeCfg.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RohcUeCfg"
+      },
+      {
+        "name": "Uen.AJ",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsPdcpIpFlowDlProf1RohcDistr",
+        "description": "Performance counter pmEbsPdcpIpFlowDlProf1RohcDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsPdcpIpFlowDlProf2RohcDistr",
+        "description": "Performance counter pmEbsPdcpIpFlowDlProf2RohcDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRohcEstabAtt5qi",
+        "description": "Performance counter pmEbsRohcEstabAtt5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRohcEstabFailCid5qi",
+        "description": "Performance counter pmEbsRohcEstabFailCid5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRohcEstabFailUeCap5qi",
+        "description": "Performance counter pmEbsRohcEstabFailUeCap5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRohcEstabFailUeMaxCid5qi",
+        "description": "Performance counter pmEbsRohcEstabFailUeMaxCid5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpPktLossUlProf1RohcDecmpFail5qi",
+        "description": "Performance counter pmEbsnPdcpPktLossUlProf1RohcDecmpFail5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpPktLossUlProf2RohcDecmpFail5qi",
+        "description": "Performance counter pmEbsnPdcpPktLossUlProf2RohcDecmpFail5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpPktRecUlProf0Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpPktRecUlProf0Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpPktRecUlProf1Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpPktRecUlProf1Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpPktRecUlProf2Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpPktRecUlProf2Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpPktTransDlDiscRohc5qi",
+        "description": "Performance counter pmEbsnPdcpPktTransDlDiscRohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpPktTransDlProf0Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpPktTransDlProf0Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpPktTransDlProf1Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpPktTransDlProf1Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpPktTransDlProf2Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpPktTransDlProf2Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpPktTransDlUncmpProf1Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpPktTransDlUncmpProf1Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpPktTransDlUncmpProf2Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpPktTransDlUncmpProf2Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpVolDlCmpHdrProf1Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpVolDlCmpHdrProf1Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpVolDlCmpHdrProf2Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpVolDlCmpHdrProf2Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpVolDlHdrProf1Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpVolDlHdrProf1Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpVolDlHdrProf2Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpVolDlHdrProf2Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpVolUlCmpHdrProf1Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpVolUlCmpHdrProf1Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpVolUlCmpHdrProf2Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpVolUlCmpHdrProf2Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpVolUlHdrProf1Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpVolUlHdrProf1Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnPdcpVolUlHdrProf2Rohc5qi",
+        "description": "Performance counter pmEbsnPdcpVolUlHdrProf2Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolDlCmpHdrProf1Rohc5qi",
+        "description": "Performance counter pmPdcpVolDlCmpHdrProf1Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolDlCmpHdrProf2Rohc5qi",
+        "description": "Performance counter pmPdcpVolDlCmpHdrProf2Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolDlHdrProf1Rohc5qi",
+        "description": "Performance counter pmPdcpVolDlHdrProf1Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolDlHdrProf2Rohc5qi",
+        "description": "Performance counter pmPdcpVolDlHdrProf2Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolUlCmpHdrProf1Rohc5qi",
+        "description": "Performance counter pmPdcpVolUlCmpHdrProf1Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolUlCmpHdrProf2Rohc5qi",
+        "description": "Performance counter pmPdcpVolUlCmpHdrProf2Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolUlHdrProf1Rohc5qi",
+        "description": "Performance counter pmPdcpVolUlHdrProf1Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolUlHdrProf2Rohc5qi",
+        "description": "Performance counter pmPdcpVolUlHdrProf2Rohc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmRohcCidDlMax",
+        "description": "Performance counter pmRohcCidDlMax",
+        "category": "General"
+      },
+      {
+        "name": "pmRohcCidDlSamp",
+        "description": "Performance counter pmRohcCidDlSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmRohcCidDlSum",
+        "description": "Performance counter pmRohcCidDlSum",
+        "category": "General"
+      },
+      {
+        "name": "pmRohcCidUlMax",
+        "description": "Performance counter pmRohcCidUlMax",
+        "category": "General"
+      },
+      {
+        "name": "pmRohcCidUlSamp",
+        "description": "Performance counter pmRohcCidUlSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmRohcCidUlSum",
+        "description": "Performance counter pmRohcCidUlSum",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012592 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012592 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/139_22104-LZA7016017_1Uen.AJ.md",
+    "file_hash": "25fe734ba971c9dbd60449fba30756ce",
+    "processed_at": "2025-10-19 15:48:56",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

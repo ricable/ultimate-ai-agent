@@ -1,0 +1,144 @@
+{
+  "file_hash": "9848021429a15202f262a4efeb72bc76",
+  "feature": {
+    "id": "121 3085",
+    "name": "Prescheduling",
+    "cxc_code": "CXC4011715",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400 R11",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node, DU Radio Node",
+    "description": "",
+    "summary": "The Prescheduling feature minimizes the round-trip time. It gives PUSCH grants to UEs in",
+    "parameters": [
+      {
+        "name": "ENodeBFunction.initPreschedulingEnable",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "PreschedProfile.preschedulingDataSize  PreschedulingProfile.preschedulingDataSize",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "PreschedProfile.preschedulingPeriod  PreschedulingProfile.preschedulingPeriod",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "PreschedProfile.preschedulingDuration  PreschedulingProfile.preschedulingDuration",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "EUtranCellFDD.prescheduling  EUtranCellTDD.prescheduling",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "Uen.AY",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "PreschedProfile.preschedulingDataSize",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "PreschedulingProfile.preschedulingDataSize",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PreschedulingProfile"
+      },
+      {
+        "name": "PreschedProfile.preschedulingPeriod",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "PreschedulingProfile.preschedulingPeriod",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PreschedulingProfile"
+      },
+      {
+        "name": "PreschedProfile.preschedulingDuration",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "PreschedulingProfile.preschedulingDuration",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PreschedulingProfile"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmActiveUeUlPresched",
+        "description": "Performance counter pmActiveUeUlPresched",
+        "category": "General"
+      },
+      {
+        "name": "pmActiveUeUlPreschedData",
+        "description": "Performance counter pmActiveUeUlPreschedData",
+        "category": "General"
+      },
+      {
+        "name": "pmCounter",
+        "description": "Performance counter pmCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmCounters",
+        "description": "Performance counter pmCounters",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcchCceUsedUlPresched",
+        "description": "Performance counter pmPdcchCceUsedUlPresched",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbUsedUlPresched",
+        "description": "Performance counter pmPrbUsedUlPresched",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011715 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011715 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/142_22104-LZA7016014_1Uen.AY.md",
+    "file_hash": "9848021429a15202f262a4efeb72bc76",
+    "processed_at": "2025-10-19 15:30:38",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

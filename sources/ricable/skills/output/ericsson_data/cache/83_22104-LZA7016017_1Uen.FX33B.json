@@ -1,0 +1,450 @@
+{
+  "file_hash": "4e2b0a589e0767adf6f2e26a3978d5c3",
+  "feature": {
+    "id": "121 5130",
+    "name": "Downlink Multi-User MIMO Low/Mid-Band",
+    "cxc_code": "CXC4012510",
+    "value_package": "Massive MIMO Performance",
+    "value_package_id": "FAJ 801 4008",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature uses advanced beamforming to increase downlink throughput. Advanced",
+    "parameters": [
+      {
+        "name": "DlMimo.dlMimoId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DlMimo"
+      },
+      {
+        "name": "DlMimoUeCfg.dlMimoUeCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DlMimoUeCfg"
+      },
+      {
+        "name": "DlMimoUeCfg.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DlMimoUeCfg"
+      },
+      {
+        "name": "DlMimoUeCfg.srsImpactHandling",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DlMimoUeCfg"
+      },
+      {
+        "name": "GNBDUFunction.mixedSrsModeEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GNBDUFunction"
+      },
+      {
+        "name": "GNBDUFunction.mixedSrsModeEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GNBDUFunction"
+      },
+      {
+        "name": "NRCellDU.advancedDlSuMimoEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.advDlBfWhenAllSrsPortsUsable",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.aperiodicSrsEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.nrSrsDlBufferVolThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.nrSrsDlPacketAgeThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pairwiseSrsCorrelationThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pZeroNomSrs",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.speedAdvMuThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.speedAdvSuThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.srsHoppingBandwidth",
+        "type": "Introduced",
+        "description": "See MOM description.  This attribute allows the configuration of full-band or             half-band SRS. If the attribute is set to HALF, half-band SRS is used,             which allows the UE to transmit SRS with increased coverage. Full-band SRS uses one             uplink OFDM symbol in a special slot, while half-band SRS uses two. The SRS capacity of             the cell is the same with both the half-band and the fullband configurations.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.srsPeriodicity",
+        "type": "Introduced",
+        "description": "See MOM description.  The value of the NRCellDU.srsPeriodicity attribute                                 must be set to a value based on the selected TDD pattern and the                                 antenna switching capability. The value needs to be high enough that                                 enough slots are available to transmit SRS. For example, UEs with                                 1TX/4RX capability and a DDDSUUDDDD TDD pattern require that the                                     NRCellDU.srsPeriodicity attribute is set to                                 at least 40 to transmit SRS from all antennas.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "UeBbProfileUeCfg.dlMimoUeCfgRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeBbProfileUeCfg"
+      },
+      {
+        "name": "NRCellDU.maxUeSpeed",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRSectorCarrier.nullSteeringMode",
+        "type": "Affecting",
+        "description": "See the MO dependencies with the                                     NRCellDU.advancedDlSuMimoEnabled                                 attribute.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRCellDU.subCarrierSpacing",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.tddSpecialSlotPattern",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.tddUlDlPattern",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "Uen.FX33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "NRCellDU.pZeroNomPuschGrant",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacRBSymUsedPdschAdvSuMimoTxRankDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.puschModeOnFddSCell",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "ResourceSet.usage",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ResourceSet"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMacActiveSRSUe",
+        "description": "Performance counter pmMacActiveSRSUe",
+        "category": "General"
+      },
+      {
+        "name": "pmMacActiveSrsUe",
+        "description": "Performance counter pmMacActiveSrsUe",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqDlAck16QamNRCellDU",
+        "description": "Performance counter pmMacHarqDlAck16QamNRCellDU",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqDlAck256Qam",
+        "description": "Performance counter pmMacHarqDlAck256Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqDlAck64QamNRCellDU",
+        "description": "Performance counter pmMacHarqDlAck64QamNRCellDU",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqDlAckQpskNRCellDU",
+        "description": "Performance counter pmMacHarqDlAckQpskNRCellDU",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqDlNack16QamNRCellDU",
+        "description": "Performance counter pmMacHarqDlNack16QamNRCellDU",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqDlNack256QamNRCellDU",
+        "description": "Performance counter pmMacHarqDlNack256QamNRCellDU",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqDlNack64QamNRCellDU",
+        "description": "Performance counter pmMacHarqDlNack64QamNRCellDU",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqDlNackQpskNRCellDU",
+        "description": "Performance counter pmMacHarqDlNackQpskNRCellDU",
+        "category": "General"
+      },
+      {
+        "name": "pmMacPduVolDlUeSCell",
+        "description": "Performance counter pmMacPduVolDlUeSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymAvailDl",
+        "description": "Performance counter pmMacRBSymAvailDl",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMimoSinrThresUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMimoSinrThresUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMimoUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMimoUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMimoUserDistrNRCellDU",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMimoUserDistrNRCellDU",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMuMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMuMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMuMimoLayerDistrNRCellDU",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMuMimoLayerDistrNRCellDU",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMuMimoLayersDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMuMimoLayersDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvMuMimoTxRankDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvMuMimoTxRankDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvSuMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvSuMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvSuMimoLayerDistrNRCellDU",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvSuMimoLayerDistrNRCellDU",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvSuMimoLayerDistrNote",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvSuMimoLayerDistrNote",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschAdvSuMimoTxRankDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschAdvSuMimoTxRankDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschCbRatDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschCbRatDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMimoLayerDistrNRCellDU",
+        "description": "Performance counter pmMacRBSymUsedPdschMimoLayerDistrNRCellDU",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMimoSinrThresUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschMimoSinrThresUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMimoUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschMimoUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMimoUserDistrNRCellDU",
+        "description": "Performance counter pmMacRBSymUsedPdschMimoUserDistrNRCellDU",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschMuMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschMuMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschSuMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPdschSuMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschTypeA",
+        "description": "Performance counter pmMacRBSymUsedPdschTypeA",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRbSymUsedPdschCbRatDistr",
+        "description": "Performance counter pmMacRbSymUsedPdschCbRatDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacSrsPdschAgeDistr",
+        "description": "Performance counter pmMacSrsPdschAgeDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlRat",
+        "description": "Performance counter pmMacVolDlRat",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlSCell",
+        "description": "Performance counter pmMacVolDlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlSCellExt",
+        "description": "Performance counter pmMacVolDlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolPdschAdvMimoSinrThresUserDistr",
+        "description": "Performance counter pmMacVolPdschAdvMimoSinrThresUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacVolPdschMimoSinrThresUserDistr",
+        "description": "Performance counter pmMacVolPdschMimoSinrThresUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmRadioPdschTable1McsDistr",
+        "description": "Performance counter pmRadioPdschTable1McsDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioPdschTable2McsDistr",
+        "description": "Performance counter pmRadioPdschTable2McsDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioSrsResAvailAntSwitching",
+        "description": "Performance counter pmRadioSrsResAvailAntSwitching",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioSrsResAvailAntSwitchingThe",
+        "description": "Performance counter pmRadioSrsResAvailAntSwitchingThe",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioSrsResUsedAntSwitching",
+        "description": "Performance counter pmRadioSrsResUsedAntSwitching",
+        "category": "General"
+      },
+      {
+        "name": "pmUeEffDopplerSpeedDistr",
+        "description": "Performance counter pmUeEffDopplerSpeedDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012510 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012510 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch4/83_22104-LZA7016017_1Uen.FX33B.md",
+    "file_hash": "4e2b0a589e0767adf6f2e26a3978d5c3",
+    "processed_at": "2025-10-19 15:50:09",
+    "network_impact": {
+      "performance": "Performance impact during reconfiguration"
+    },
+    "performance_impact": {
+      "kpi": "Affects KPI monitoring",
+      "counters": "New counters introduced"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+# Docker MCP Gateway - Server Registry
+# Enabled servers whitelist for the Edge-Native AI SaaS
+# Location: ~/.docker/mcp/registry.yaml
+
+# Core Infrastructure Servers
+enabled_servers:
+  # Vector and Memory Infrastructure
+  - ruvector
+  - agentdb
+
+  # Agent Orchestration
+  - claude-flow
+  - agentic-flow
+
+  # LLM and Inference
+  - litellm
+  - localai
+
+  # Code Execution
+  - e2b-sandbox
+
+  # Databases
+  - postgres
+  - redis
+
+  # Advanced AI Capabilities
+  - ruvector-gnn
+  - ruvector-graph
+
+# Server Groups for Quick Enable/Disable
+groups:
+  core:
+    - ruvector
+    - agentdb
+    - litellm
+    - postgres
+    - redis
+
+  agents:
+    - claude-flow
+    - agentic-flow
+
+  ai-extended:
+    - localai
+    - ruvector-gnn
+    - ruvector-graph
+    - e2b-sandbox
+
+  minimal:
+    - ruvector
+    - litellm
+    - postgres
+
+# Default startup group
+default_group: core

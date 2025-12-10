@@ -1,0 +1,83 @@
+{
+  "file_hash": "39a016187541347e637bb9445fc61a40",
+  "feature": {
+    "id": "121 3046",
+    "name": "Carrier Aggregation",
+    "cxc_code": "CXC4012599",
+    "value_package": "Carrier Aggregation",
+    "value_package_id": "FAJ 801 0405",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature provides an enhancement to the NR network slicing framework to support",
+    "parameters": [
+      {
+        "name": "ResourcePartitionMember.spidRfspList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourcePartitionMember"
+      },
+      {
+        "name": "ResourcePartitionMember.trafficCategory",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourcePartitionMember"
+      },
+      {
+        "name": "ResourcePartitionMember.cellIdList",
+        "type": "Affecting",
+        "description": "This attribute is used to map PDU sessions to resource                                 partitions.",
+        "mo_class": "ResourcePartitionMember"
+      },
+      {
+        "name": "ResourcePartitionMember.pLMNIdList",
+        "type": "Affecting",
+        "description": "This attribute is used to map PDU sessions to resource                                 partitions.",
+        "mo_class": "ResourcePartitionMember"
+      },
+      {
+        "name": "Uen.N",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ResourcePartitionMember.pLMNList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ResourcePartitionMember"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsMacRBSymUtilDlPartitionDistr",
+        "description": "Performance counter pmEbsMacRBSymUtilDlPartitionDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacRBSymUtilUlPartitionDistr",
+        "description": "Performance counter pmEbsMacRBSymUtilUlPartitionDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012599 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012599 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/131_22104-LZA7016017_1Uen.N.md",
+    "file_hash": "39a016187541347e637bb9445fc61a40",
+    "processed_at": "2025-10-19 15:48:56",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

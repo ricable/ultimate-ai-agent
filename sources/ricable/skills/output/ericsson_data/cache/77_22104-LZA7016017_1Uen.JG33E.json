@@ -1,0 +1,714 @@
+{
+  "file_hash": "5a8d59876e19831e41cc148650607433",
+  "feature": {
+    "id": "121 5201",
+    "name": "NR DL Carrier Aggregation",
+    "cxc_code": "CXC4012477",
+    "value_package": "Peak Rate Evolution",
+    "value_package_id": "FAJ 801 4005",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature allows downlink carrier aggregation with two component carriers that have",
+    "parameters": [
+      {
+        "name": "CaCellMeasProfileUeCfg.maxReportCells",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellMeasProfileUeCfg"
+      },
+      {
+        "name": "CaCellMeasProfileUeCfg.prefUeGroupList",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellMeasProfileUeCfg"
+      },
+      {
+        "name": "CaCellMeasProfileUeCfg.rsrpBetterSCell",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellMeasProfileUeCfg"
+      },
+      {
+        "name": "CaCellMeasProfileUeCfg.rsrpSCellCoverage",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellMeasProfileUeCfg"
+      },
+      {
+        "name": "CaCellMeasProfileUeCfg.rsrqSCellCoverage",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellMeasProfileUeCfg"
+      },
+      {
+        "name": "CaCellMeasProfileUeCfg.sCellCoverageTriggerQuantity",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellMeasProfileUeCfg"
+      },
+      {
+        "name": "CaCellMeasProfileUeCfg.ueConfGroupList",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellMeasProfileUeCfg"
+      },
+      {
+        "name": "CaCellMeasProfileUeCfg.ueGroupList",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellMeasProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfileUeCfg.servingCellSelectionPolicy",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaFreqRelMeasProfileUeCfg.waitForBetterSCellRep",
+        "type": "Affecting",
+        "description": "If this attribute is set to a value other than                                         -1, NR SCells that have poor coverage can                                     be deconfigured. SCell deconfiguration is performed through the                                     NR Intelligent SCell Management feature. This feature only                                     applies to EN-DC carrier aggregation.  A higher value means that the gNodeB waits longer when poor NR SCell coverage is reported before the SCell is deconfigured.",
+        "mo_class": "CaFreqRelMeasProfileUeCfg"
+      },
+      {
+        "name": "GNBCUCPFunction.caDepHEnabled",
+        "type": "Affecting",
+        "description": "The GNBCUCPFunction.caDepHEnabled attribute                                     must be set to false to enable managing the                                     nodes with the MOM structure introduced by the NR 5CC DL Carrier                                     Aggregation feature, which contains the new classes and                                     attributes available. Otherwise, there is a risk of the                                     deprecated attributes overwriting the values configured for the                                     introduced attributes.",
+        "mo_class": "GNBCUCPFunction"
+      },
+      {
+        "name": "CaCellMeasProfileUeCfg.betterSCellTriggerQuantity",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellMeasProfileUeCfg"
+      },
+      {
+        "name": "CaCellMeasProfileUeCfg.rsrqBetterSCell",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellMeasProfileUeCfg"
+      },
+      {
+        "name": "CaCellMeasProfileUeCfg.sinrBetterSCell",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellMeasProfileUeCfg"
+      },
+      {
+        "name": "CaCellMeasProfileUeCfg.sinrSCellCoverage",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellMeasProfileUeCfg"
+      },
+      {
+        "name": "CaFreqRelMeasProfileUeCfg.sinrSCellCoverageThrOffset",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaFreqRelMeasProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfile.reservedBy",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfile"
+      },
+      {
+        "name": "CaCellProfile.ueConfGroupType",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfile"
+      },
+      {
+        "name": "CaCellProfileUeCfg.blockedSCellFreqList",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfileUeCfg.maxDlCcAllowed",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfileUeCfg.maxUlCcAllowed",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfileUeCfg.prefUeGroupList",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfileUeCfg.ueConfGroupList",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfileUeCfg.ueGroupList",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "ExternalGNBCUCPFunction.sameUeGroupSelection",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGNBCUCPFunction"
+      },
+      {
+        "name": "NRCellCU.caCellProfileRef",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "SchedulingProfile.dlCaSchedulingMode",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "SchedulingProfile"
+      },
+      {
+        "name": "NRCellCU.caCellMeasProfileRef",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "NRCellDU.additionalPucchForCaEnabled",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.caBufferSplitThresh",
+        "type": "Affecting",
+        "description": "This attribute can be used to configure the buffer splitting                                     threshold if the NR Carrier Aggregation Data Steering feature is                                     enabled.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.caPerCcFairnessWeightEnabled",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellRelation.coordinationType",
+        "type": "Affected",
+        "description": "An SCell candidate for the NR DL Carrier Aggregation feature can                                     have the attribute value set to one of the following options:  INTRA_CM     INTER_CM     EXT_CM",
+        "mo_class": "NRCellRelation"
+      },
+      {
+        "name": "NRCellRelation.sCellCandidate",
+        "type": "Affected",
+        "description": "The NRCellRelation.sCellCandidate attribute                                     must not be set to ALLOWED or                                         ONLY_ALLOWED_FOR_DL if the related cells                                     are on same frequency, because SCells need to be on a different                                     frequency than the SpCell.",
+        "mo_class": "NRCellRelation"
+      },
+      {
+        "name": "CuCpProcEndcSetup",
+        "type": "scells_after_setup_list",
+        "description": "List of NR cell identities of SCells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcEndcRelease",
+        "type": "scells_before_release_list",
+        "description": "List of NR cell identities of SCells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcX2SnInitiatedSgnbModification",
+        "type": "scells_before_modification_list",
+        "description": "List of NR cell identities of SCells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcX2SnInitiatedSgnbModification",
+        "type": "scells_after_modification_list",
+        "description": "List of NR cell identities of SCells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcX2SgnbChange",
+        "type": "scells_before_sn_change_list",
+        "description": "List of NR cell identities of SCells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcInitialCtxtEstab",
+        "type": "scells_after_ctxt_estab_list",
+        "description": "List of NR cell identities of SCells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcNrScellUpdate",
+        "type": "scells_after_setup_list",
+        "description": "List of NR cell identities of SCells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcUeCtxtMod",
+        "type": "scells_before_ctxt_mod_list",
+        "description": "List of NR cell identities of SCells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcUeCtxtRel",
+        "type": "scells_before_ctxt_rel_list",
+        "description": "List of NR cell identities of SCells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcPduSessionResourceSetup",
+        "type": "scells_after_session_setup_list",
+        "description": "List of NR cell identities of SCells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcPduSessionResourceModify",
+        "type": "scells_before_session_mod_list",
+        "description": "List of NR cell identities of SCells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcPduSessionResourceRelease",
+        "type": "scells_before_session_rel_list",
+        "description": "List of NR cell identities of SCells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcNrHoExeOut",
+        "type": "scells_before_ho_list",
+        "description": "List of NR cell identities of SCells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "GUtranSyncSignalFrequency",
+        "type": "",
+        "description": "Not present",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.JG33E",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "NRCellDU.improvedUlInSparseBwp",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.tddUlDlPattern",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.tddSpecialSlotPattern",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCaConfigAtt",
+        "description": "Performance counter pmCaConfigAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigDelaySamp",
+        "description": "Performance counter pmCaConfigDelaySamp",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigDelaySum",
+        "description": "Performance counter pmCaConfigDelaySum",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigDelaySumpmCaConfigDelaySamp",
+        "description": "Performance counter pmCaConfigDelaySumpmCaConfigDelaySamp",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigDlSamp",
+        "description": "Performance counter pmCaConfigDlSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigDlSumEndcDistr",
+        "description": "Performance counter pmCaConfigDlSumEndcDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigDlSumSaDistr",
+        "description": "Performance counter pmCaConfigDlSumSaDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigDlSumSaDistrpmCaConfigDlSamp",
+        "description": "Performance counter pmCaConfigDlSumSaDistrpmCaConfigDlSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigMaxSa",
+        "description": "Performance counter pmCaConfigMaxSa",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigSucc",
+        "description": "Performance counter pmCaConfigSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmCaDeconfigAtt",
+        "description": "Performance counter pmCaDeconfigAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmCaDeconfigSucc",
+        "description": "Performance counter pmCaDeconfigSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacRBSymUtilUlCaSCellPartitionDistr",
+        "description": "Performance counter pmEbsMacRBSymUtilUlCaSCellPartitionDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacPduVolDlUePCell",
+        "description": "Performance counter pmEbsnMacPduVolDlUePCell",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacPduVolDlUeSCell",
+        "description": "Performance counter pmEbsnMacPduVolDlUeSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacScellDeactivationAttUe",
+        "description": "Performance counter pmEbsnMacScellDeactivationAttUe",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacScellDeactivationUepmEbsnMacScellDeactivationAttUe",
+        "description": "Performance counter pmEbsnMacScellDeactivationUepmEbsnMacScellDeactivationAttUe",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacScellScheduleReadyUeDl",
+        "description": "Performance counter pmEbsnMacScellScheduleReadyUeDl",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacScellScheduleReadyUeDlpmEbsnMacScellActivationUeDl",
+        "description": "Performance counter pmEbsnMacScellScheduleReadyUeDlpmEbsnMacScellActivationUeDl",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacTimeDlDrbSingleSlotShortBurst",
+        "description": "Performance counter pmEbsnMacTimeDlDrbSingleSlotShortBurst",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacTimeDlDrbSingleSlotShortBurstQoS",
+        "description": "Performance counter pmEbsnMacTimeDlDrbSingleSlotShortBurstQoS",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacVolDlDrbSingleSlotShortBurst",
+        "description": "Performance counter pmEbsnMacVolDlDrbSingleSlotShortBurst",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacVolDlDrbSingleSlotShortBurstQoS",
+        "description": "Performance counter pmEbsnMacVolDlDrbSingleSlotShortBurstQoS",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcCaConfigAtt",
+        "description": "Performance counter pmEndcCaConfigAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcCaConfigSucc",
+        "description": "Performance counter pmEndcCaConfigSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcCaDeconfigAtt",
+        "description": "Performance counter pmEndcCaDeconfigAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmEndcCaDeconfigSucc",
+        "description": "Performance counter pmEndcCaDeconfigSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmMacContentionDelayDlDistr",
+        "description": "Performance counter pmMacContentionDelayDlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacOffloadVolDlSCell",
+        "description": "Performance counter pmMacOffloadVolDlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacOffloadVolDlSCellExt",
+        "description": "Performance counter pmMacOffloadVolDlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmMacPduVolDlUePCell",
+        "description": "Performance counter pmMacPduVolDlUePCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacPduVolDlUeSCell",
+        "description": "Performance counter pmMacPduVolDlUeSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymAvailPucch",
+        "description": "Performance counter pmMacRBSymAvailPucch",
+        "category": "General"
+      },
+      {
+        "name": "pmMacThpDlDrbMax",
+        "description": "Performance counter pmMacThpDlDrbMax",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeDlCaConfigDrbActivity",
+        "description": "Performance counter pmMacTimeDlCaConfigDrbActivity",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeDlCaDrb",
+        "description": "Performance counter pmMacTimeDlCaDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeDlCaDrbActivity",
+        "description": "Performance counter pmMacTimeDlCaDrbActivity",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeDlCaDrbActivitypmMacTimeDlCaConfigDrbActivity",
+        "description": "Performance counter pmMacTimeDlCaDrbActivitypmMacTimeDlCaConfigDrbActivity",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeDlDrbSingleSlotShortBurst",
+        "description": "Performance counter pmMacTimeDlDrbSingleSlotShortBurst",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeDlDrbSingleSlotShortBurstQoS",
+        "description": "Performance counter pmMacTimeDlDrbSingleSlotShortBurstQoS",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeUlResCaUe",
+        "description": "Performance counter pmMacTimeUlResCaUe",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDl",
+        "description": "Performance counter pmMacVolDl",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlCaDrb",
+        "description": "Performance counter pmMacVolDlCaDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlCaDrbpmMacVolDlDrbOverlapLastSlotpmMacTimeDlCaDrbpmMacOverlapTimeDlDrbExtSCell",
+        "description": "Performance counter pmMacVolDlCaDrbpmMacVolDlDrbOverlapLastSlotpmMacTimeDlCaDrbpmMacOverlapTimeDlDrbExtSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrb",
+        "description": "Performance counter pmMacVolDlDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrbLastSlot",
+        "description": "Performance counter pmMacVolDlDrbLastSlot",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrbLastSlotQos",
+        "description": "Performance counter pmMacVolDlDrbLastSlotQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrbQos",
+        "description": "Performance counter pmMacVolDlDrbQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrbSingleBurst",
+        "description": "Performance counter pmMacVolDlDrbSingleBurst",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrbSingleBurstSamp",
+        "description": "Performance counter pmMacVolDlDrbSingleBurstSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrbSingleSlotShortBurst",
+        "description": "Performance counter pmMacVolDlDrbSingleSlotShortBurst",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrbSingleSlotShortBurstQoS",
+        "description": "Performance counter pmMacVolDlDrbSingleSlotShortBurstQoS",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlPCellCa",
+        "description": "Performance counter pmMacVolDlPCellCa",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlSCell",
+        "description": "Performance counter pmMacVolDlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlSCellExt",
+        "description": "Performance counter pmMacVolDlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlResCaUe",
+        "description": "Performance counter pmMacVolUlResCaUe",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlResCaUepmMacTimeUlResCaUe",
+        "description": "Performance counter pmMacVolUlResCaUepmMacTimeUlResCaUe",
+        "category": "General"
+      },
+      {
+        "name": "pmPdschAvailTime",
+        "description": "Performance counter pmPdschAvailTime",
+        "category": "General"
+      },
+      {
+        "name": "pmPdschSchedActivity",
+        "description": "Performance counter pmPdschSchedActivity",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "CuCpProcEndcSetup",
+        "type": "scells_after_setup_list",
+        "description": "List of NR cell identities of SCells."
+      },
+      {
+        "name": "CuCpProcEndcRelease",
+        "type": "scells_before_release_list",
+        "description": "List of NR cell identities of SCells."
+      },
+      {
+        "name": "CuCpProcX2SnInitiatedSgnbModification",
+        "type": "scells_before_modification_list",
+        "description": "List of NR cell identities of SCells."
+      },
+      {
+        "name": "CuCpProcX2SnInitiatedSgnbModification",
+        "type": "scells_after_modification_list",
+        "description": "List of NR cell identities of SCells."
+      },
+      {
+        "name": "CuCpProcX2SgnbChange",
+        "type": "scells_before_sn_change_list",
+        "description": "List of NR cell identities of SCells."
+      },
+      {
+        "name": "CuCpProcInitialCtxtEstab",
+        "type": "scells_after_ctxt_estab_list",
+        "description": "List of NR cell identities of SCells."
+      },
+      {
+        "name": "CuCpProcNrScellUpdate",
+        "type": "scells_after_setup_list",
+        "description": "List of NR cell identities of SCells."
+      },
+      {
+        "name": "CuCpProcUeCtxtMod",
+        "type": "scells_before_ctxt_mod_list",
+        "description": "List of NR cell identities of SCells."
+      },
+      {
+        "name": "CuCpProcUeCtxtRel",
+        "type": "scells_before_ctxt_rel_list",
+        "description": "List of NR cell identities of SCells."
+      },
+      {
+        "name": "CuCpProcPduSessionResourceSetup",
+        "type": "scells_after_session_setup_list",
+        "description": "List of NR cell identities of SCells."
+      },
+      {
+        "name": "CuCpProcPduSessionResourceModify",
+        "type": "scells_before_session_mod_list",
+        "description": "List of NR cell identities of SCells."
+      },
+      {
+        "name": "CuCpProcPduSessionResourceRelease",
+        "type": "scells_before_session_rel_list",
+        "description": "List of NR cell identities of SCells."
+      },
+      {
+        "name": "CuCpProcNrHoExeOut",
+        "type": "scells_before_ho_list",
+        "description": "List of NR cell identities of SCells."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012477 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012477 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch4/77_22104-LZA7016017_1Uen.JG33E.md",
+    "file_hash": "5a8d59876e19831e41cc148650607433",
+    "processed_at": "2025-10-19 15:50:09",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

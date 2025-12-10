@@ -1,0 +1,103 @@
+# Machine Class: GPU Worker Node
+# For LLM inference, ML training, and GPU-accelerated workloads
+# Deploy: omnictl apply -f infrastructure/talos/machine-classes/
+
+apiVersion: omni.siderolabs.io/v1alpha1
+kind: MachineClass
+metadata:
+  name: gpu-worker
+  namespace: default
+  labels:
+    ruvector.io/role: gpu-worker
+    ruvector.io/platform: talos
+    ruvector.io/accelerator: nvidia
+spec:
+  matchLabels:
+    role: gpu-worker
+    hardware.gpu: nvidia
+  resources:
+    cpu: 8
+    memory: 32768  # 32GB
+    disk: 200
+  patches:
+    - |
+      machine:
+        install:
+          disk: /dev/sda
+          extensions:
+            # Wasm runtimes
+            - image: ghcr.io/siderolabs/wasmedge:0.11.2
+            - image: ghcr.io/siderolabs/spin:2.0.0
+            # NVIDIA GPU support
+            - image: ghcr.io/siderolabs/nvidia-open-gpu-kernel-modules:latest
+            - image: ghcr.io/siderolabs/nvidia-container-toolkit:latest
+        kernel:
+          modules:
+            - name: nvidia
+            - name: nvidia_uvm
+            - name: nvidia_drm
+              parameters:
+                - modeset=1
+        kubelet:
+          registerWithFQDN: true
+          extraArgs:
+            rotate-server-certificates: "true"
+            feature-gates: "DevicePlugins=true"
+        sysctls:
+          vm.max_map_count: "524288"
+          net.core.somaxconn: "65535"
+        nodeLabels:
+          ruvector.io/wasm-enabled: "true"
+          ruvector.io/gpu-enabled: "true"
+          nvidia.com/gpu.present: "true"
+          node.kubernetes.io/workload-type: gpu
+        nodeTaints:
+          - key: nvidia.com/gpu
+            value: "true"
+            effect: NoSchedule
+
+---
+# Machine Class: LlamaEdge Worker
+# Optimized for LlamaEdge LLM inference with WasmEdge
+apiVersion: omni.siderolabs.io/v1alpha1
+kind: MachineClass
+metadata:
+  name: llamaedge-worker
+  namespace: default
+  labels:
+    ruvector.io/role: llamaedge-worker
+    ruvector.io/runtime: llamaedge
+spec:
+  matchLabels:
+    role: llamaedge-worker
+  resources:
+    cpu: 8
+    memory: 65536  # 64GB for large models
+    disk: 500      # Space for model files
+  patches:
+    - |
+      machine:
+        install:
+          disk: /dev/sda
+          extensions:
+            - image: ghcr.io/siderolabs/wasmedge:0.11.2
+            # NVIDIA for CUDA-accelerated inference (optional)
+            - image: ghcr.io/siderolabs/nvidia-open-gpu-kernel-modules:latest
+            - image: ghcr.io/siderolabs/nvidia-container-toolkit:latest
+        kernel:
+          modules:
+            - name: nvidia
+            - name: nvidia_uvm
+        kubelet:
+          registerWithFQDN: true
+          extraArgs:
+            rotate-server-certificates: "true"
+            system-reserved: "cpu=2,memory=4Gi"
+        sysctls:
+          # Large context windows require more memory mapping
+          vm.max_map_count: "1048576"
+          net.core.somaxconn: "65535"
+        nodeLabels:
+          ruvector.io/llamaedge-enabled: "true"
+          ruvector.io/llm-inference: "true"
+          node.kubernetes.io/workload-type: llm

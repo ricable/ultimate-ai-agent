@@ -1,0 +1,59 @@
+# Llama 3.1 Model Configuration for Cloud Run
+# Cost-effective, open-source model via OpenRouter
+
+name: llama-3.1-8b
+provider: openrouter
+description: "Meta Llama 3.1 8B - 99% cost savings vs Claude"
+
+# Model settings
+model:
+  id: meta-llama/llama-3.1-8b-instruct
+  temperature: 0.7
+  max_tokens: 4096
+  top_p: 0.9
+
+# Cloud Run Job Configuration
+cloudrun:
+  memory: 2Gi
+  cpu: 2
+  timeout: 3600  # 1 hour
+  max_instances: 50  # Can scale higher due to lower costs
+  min_instances: 0  # Scale to zero when idle
+
+# Environment variables
+env:
+  PROVIDER: openrouter
+  USE_OPENROUTER: "true"
+  COMPLETION_MODEL: meta-llama/llama-3.1-8b-instruct
+  ENABLE_STREAMING: "true"
+  PROXY_PORT: "3000"
+
+# Secrets (from Google Secret Manager)
+secrets:
+  - name: OPENROUTER_API_KEY
+    key: openrouter-api-key
+    version: latest
+  - name: ANTHROPIC_API_KEY  # Fallback
+    key: anthropic-api-key
+    version: latest
+
+# Agent configuration
+agents:
+  enabled: true
+  agents_dir: /app/.claude/agents
+  auto_load: true
+
+# MCP Servers
+mcp:
+  enabled: true
+  servers:
+    - claude-flow
+    - flow-nexus
+    - agentic-payments
+
+# Cost tracking
+cost:
+  input_cost_per_1k: 0.00003
+  output_cost_per_1k: 0.00003
+  estimated_monthly: 1  # USD estimate for moderate usage (99% savings)
+  savings_vs_claude: 99.7%

@@ -1,0 +1,329 @@
+# =============================================================================
+# HyperScale Kairos Immutable OS Configuration
+# Self-healing, auto-scaling edge-native AI infrastructure
+# =============================================================================
+
+#cloud-config
+hostname: "edge-ai-{{ .Random }}"
+
+# =============================================================================
+# USER CONFIGURATION
+# =============================================================================
+users:
+  - name: kairos
+    passwd: kairos
+    ssh_authorized_keys:
+      - github:ricable
+    groups:
+      - admin
+      - docker
+      - wheel
+    shell: /bin/bash
+
+# =============================================================================
+# NETWORK CONFIGURATION
+# =============================================================================
+stages:
+  network:
+    - name: "Configure EdgeVPN P2P Mesh"
+      if: '[ ! -f /etc/edgevpn/config.yaml ]'
+      files:
+        - path: /etc/edgevpn/config.yaml
+          permissions: 0600
+          content: |
+            # EdgeVPN configuration for P2P mesh networking
+            network_token: "{{ .EdgeVPNToken }}"
+            address: "{{ .EdgeVPNAddress }}"
+            interface: edge0
+            mtu: 1420
+            # Enable mDNS for service discovery
+            mdns:
+              enabled: true
+              domain: edge-ai.local
+            # DNS configuration
+            dns:
+              enabled: true
+              forwarders:
+                - 1.1.1.1
+                - 8.8.8.8
+
+  boot:
+    - name: "Ensure EdgeVPN is running"
+      commands:
+        - systemctl enable --now edgevpn
+
+    - name: "Configure K3s with GPU support"
+      if: '[ "{{ .Role }}" = "server" ]'
+      files:
+        - path: /etc/rancher/k3s/config.yaml
+          content: |
+            cluster-init: true
+            tls-san:
+              - "{{ .Hostname }}"
+              - "{{ .EdgeVPNAddress }}"
+            disable:
+              - traefik
+              - servicelb
+            kubelet-arg:
+              - "max-pods=500"
+              - "feature-gates=DevicePlugins=true"
+            kube-controller-manager-arg:
+              - "node-cidr-mask-size=20"
+            # GPU support for Mac Silicon
+            kube-apiserver-arg:
+              - "feature-gates=DevicePlugins=true"
+            write-kubeconfig-mode: "0644"
+            # Enable containerd for SpinKube
+            container-runtime-endpoint: unix:///run/containerd/containerd.sock
+
+    - name: "Configure K3s Agent"
+      if: '[ "{{ .Role }}" = "agent" ]'
+      files:
+        - path: /etc/rancher/k3s/config.yaml
+          content: |
+            server: https://{{ .ServerAddress }}:6443
+            token: "{{ .K3sToken }}"
+            node-label:
+              - "node.kubernetes.io/instance-type={{ .InstanceType }}"
+              - "topology.kubernetes.io/zone={{ .Zone }}"
+            kubelet-arg:
+              - "max-pods=500"
+              - "feature-gates=DevicePlugins=true"
+
+# =============================================================================
+# K3S DEPLOYMENT
+# =============================================================================
+k3s:
+  enabled: true
+  args:
+    - --disable=traefik
+    - --disable=servicelb
+    - --flannel-backend=wireguard-native
+    - --write-kubeconfig-mode=644
+  env:
+    K3S_KUBECONFIG_MODE: "644"
+
+# =============================================================================
+# CONTAINERD CONFIGURATION FOR SPINKUBE
+# =============================================================================
+write_files:
+  - path: /etc/containerd/config.toml
+    content: |
+      version = 2
+
+      [plugins."io.containerd.grpc.v1.cri"]
+        [plugins."io.containerd.grpc.v1.cri".containerd]
+          default_runtime_name = "runc"
+
+          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+            runtime_type = "io.containerd.runc.v2"
+            [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+              SystemdCgroup = true
+
+          # Spin runtime for WebAssembly workloads
+          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.spin]
+            runtime_type = "io.containerd.spin.v2"
+            [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.spin.options]
+              BinaryName = "/usr/bin/containerd-shim-spin-v2"
+
+          # WasmEdge runtime for LlamaEdge
+          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.wasmedge]
+            runtime_type = "io.containerd.wasmedge.v1"
+            [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.wasmedge.options]
+              BinaryName = "/usr/bin/containerd-shim-wasmedge-v1"
+
+  # SpinKube RuntimeClass
+  - path: /var/lib/rancher/k3s/server/manifests/runtime-classes.yaml
+    content: |
+      apiVersion: node.k8s.io/v1
+      kind: RuntimeClass
+      metadata:
+        name: wasmtime-spin
+      handler: spin
+      scheduling:
+        nodeSelector:
+          kubernetes.io/arch: amd64
+      ---
+      apiVersion: node.k8s.io/v1
+      kind: RuntimeClass
+      metadata:
+        name: wasmedge
+      handler: wasmedge
+      scheduling:
+        nodeSelector:
+          kubernetes.io/arch: amd64
+
+  # Core AI Platform Namespace
+  - path: /var/lib/rancher/k3s/server/manifests/edge-ai-platform.yaml
+    content: |
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: edge-ai-system
+        labels:
+          app.kubernetes.io/part-of: edge-ai-platform
+      ---
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: edge-ai-agents
+        labels:
+          app.kubernetes.io/part-of: edge-ai-platform
+      ---
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: edge-ai-inference
+        labels:
+          app.kubernetes.io/part-of: edge-ai-platform
+
+  # Auto-healing configuration
+  - path: /var/lib/rancher/k3s/server/manifests/auto-healing.yaml
+    content: |
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: self-healing-config
+        namespace: edge-ai-system
+      data:
+        health-check-interval: "30s"
+        failure-threshold: "3"
+        recovery-action: "restart"
+        escalation-threshold: "5"
+        cooldown-period: "300s"
+
+# =============================================================================
+# GPU SUPPORT FOR MAC SILICON
+# =============================================================================
+runcmd:
+  # Install Metal GPU plugin for Mac Silicon (if applicable)
+  - |
+    if [ "$(uname -m)" = "arm64" ] && [ -f /Library/Apple/usr/lib/libMetal.dylib ]; then
+      echo "Configuring Metal GPU support..."
+      kubectl apply -f - <<EOF
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: metal-gpu-config
+        namespace: edge-ai-inference
+      data:
+        gpu-type: "apple-silicon"
+        enable-mlx: "true"
+        enable-neural-engine: "true"
+    EOF
+    fi
+
+  # Install Spin shim for SpinKube
+  - |
+    SPIN_VERSION="v2.0.0"
+    if [ ! -f /usr/bin/containerd-shim-spin-v2 ]; then
+      curl -fsSL https://github.com/fermyon/spin/releases/download/${SPIN_VERSION}/containerd-shim-spin-linux-$(uname -m).tar.gz | tar -xz -C /usr/bin
+      chmod +x /usr/bin/containerd-shim-spin-v2
+    fi
+
+  # Install WasmEdge runtime
+  - |
+    if [ ! -f /usr/bin/containerd-shim-wasmedge-v1 ]; then
+      curl -fsSL https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -p /usr
+    fi
+
+  # Configure system limits for high agent density
+  - |
+    cat >> /etc/sysctl.d/99-edge-ai.conf <<EOF
+    # Increase max open files
+    fs.file-max = 2097152
+    fs.nr_open = 2097152
+
+    # Network tuning for agent mesh
+    net.core.somaxconn = 65535
+    net.ipv4.tcp_max_syn_backlog = 65535
+    net.core.netdev_max_backlog = 65535
+
+    # Memory management
+    vm.max_map_count = 262144
+    vm.swappiness = 10
+
+    # IPC limits for inter-agent communication
+    kernel.msgmax = 65536
+    kernel.msgmnb = 65536
+    EOF
+    sysctl -p /etc/sysctl.d/99-edge-ai.conf
+
+  # Set ulimits for containers
+  - |
+    cat >> /etc/security/limits.d/99-edge-ai.conf <<EOF
+    * soft nofile 1048576
+    * hard nofile 1048576
+    * soft nproc 65535
+    * hard nproc 65535
+    root soft nofile 1048576
+    root hard nofile 1048576
+    EOF
+
+# =============================================================================
+# BUNDLES - ADDITIONAL SOFTWARE
+# =============================================================================
+bundles:
+  - targets:
+      - run://quay.io/kairos/packages:edgevpn-latest
+
+# =============================================================================
+# AUTO-UPDATE CONFIGURATION
+# =============================================================================
+upgrade:
+  automatic: true
+  schedule: "0 3 * * 0"  # Weekly at 3 AM on Sunday
+  pre-upgrade-commands:
+    - kubectl drain {{ .Hostname }} --ignore-daemonsets --delete-emptydir-data || true
+  post-upgrade-commands:
+    - kubectl uncordon {{ .Hostname }} || true
+
+# =============================================================================
+# RESET/RECOVERY CONFIGURATION
+# =============================================================================
+reset:
+  reboot: true
+  reset-oem: true
+  reset-persistent: false
+
+# =============================================================================
+# SELF-HEALING CONFIGURATION
+# =============================================================================
+sentinel:
+  # Watchdog for system health
+  enabled: true
+  period: 30
+  actions:
+    # Restart K3s if unhealthy
+    - name: k3s-health
+      command: "systemctl is-active k3s"
+      recover: "systemctl restart k3s"
+      threshold: 3
+
+    # Check EdgeVPN connectivity
+    - name: edgevpn-health
+      command: "ping -c 1 -W 5 edge0"
+      recover: "systemctl restart edgevpn"
+      threshold: 3
+
+    # Check containerd
+    - name: containerd-health
+      command: "ctr version"
+      recover: "systemctl restart containerd"
+      threshold: 2
+
+# =============================================================================
+# NODE PROFILES
+# =============================================================================
+# Control Plane (Mac Studio / High-end Mac)
+# Use with: role=server instance-type=mac-studio zone=local
+#
+# Worker ARM64 (Raspberry Pi 4/5)
+# Use with: role=agent instance-type=rpi zone=edge
+#
+# Worker x86 (Intel NUC)
+# Use with: role=agent instance-type=nuc zone=edge
+#
+# GPU Worker (Mac with M1/M2/M3)
+# Use with: role=agent instance-type=mac-gpu zone=local
+# =============================================================================

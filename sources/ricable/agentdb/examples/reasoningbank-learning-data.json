@@ -1,0 +1,345 @@
+{
+  "patterns": [
+    {
+      "id": "pattern-1761939584667-c9vohschv",
+      "timestamp": 1761939584667,
+      "type": "partial",
+      "strategy": "balanced-deployment",
+      "metrics": {
+        "duration": 240000,
+        "resourceUtilization": 0.82,
+        "errorRate": 0.08,
+        "performanceScore": 0.72,
+        "reliabilityScore": 0.75,
+        "efficiencyScore": 0.68
+      },
+      "context": {
+        "environment": "production",
+        "complexity": 0.85,
+        "dependencies": [
+          "auth-service",
+          "api-gateway",
+          "database-cluster",
+          "monitoring-stack"
+        ],
+        "constraints": [
+          "zero-downtime",
+          "full-validation",
+          "security-scan"
+        ],
+        "teamExpertise": 0.85,
+        "previousDeployments": 42
+      },
+      "causalFactors": [
+        {
+          "factor": "deployment_complexity",
+          "strength": 0.85,
+          "direction": "negative",
+          "confidence": 0.8075,
+          "evidence": [
+            {
+              "observation": "Deployment complexity: 85.0%",
+              "weight": 0.7,
+              "timestamp": 1761939584667,
+              "source": "context_analysis"
+            }
+          ]
+        },
+        {
+          "factor": "team_expertise",
+          "strength": 0.15000000000000002,
+          "direction": "positive",
+          "confidence": 0.836,
+          "evidence": [
+            {
+              "observation": "Team expertise: 85.0%",
+              "weight": 0.75,
+              "timestamp": 1761939584667,
+              "source": "context_analysis"
+            }
+          ]
+        },
+        {
+          "factor": "resource_utilization",
+          "strength": 0.12,
+          "direction": "positive",
+          "confidence": 0.855,
+          "evidence": [
+            {
+              "observation": "Resource utilization: 82.0%",
+              "weight": 0.8,
+              "timestamp": 1761939584667,
+              "source": "metrics_analysis"
+            }
+          ]
+        },
+        {
+          "factor": "error_rate",
+          "strength": 0.08,
+          "direction": "negative",
+          "confidence": 0.9025,
+          "evidence": [
+            {
+              "observation": "Error rate: 8.00%",
+              "weight": 0.9,
+              "timestamp": 1761939584667,
+              "source": "metrics_analysis"
+            }
+          ]
+        }
+      ],
+      "temporalSignature": "eyJzdHJhdGVneSI6ImJhbGFuY2VkLWRlcGxveW1lbnQiLCJjb21wbGV4aXR5IjowLjg1LCJ0aW1lc3RhbXAiOjE3NjE5Mzk1ODQ2NjcsInRlbXBvcmFsRXhwYW5zaW9uIjoxMDAwLCJvdXRjb21lIjoicGFydGlhbCJ9"
+    },
+    {
+      "id": "pattern-1761939584667-p1ep350y8",
+      "timestamp": 1761939584667,
+      "type": "success",
+      "strategy": "aggressive-deployment",
+      "metrics": {
+        "duration": 90000,
+        "resourceUtilization": 0.65,
+        "errorRate": 0.01,
+        "performanceScore": 0.94,
+        "reliabilityScore": 0.96,
+        "efficiencyScore": 0.92
+      },
+      "context": {
+        "environment": "staging",
+        "complexity": 0.3,
+        "dependencies": [
+          "service-a",
+          "service-b"
+        ],
+        "constraints": [
+          "quick-deployment"
+        ],
+        "teamExpertise": 0.9,
+        "previousDeployments": 18
+      },
+      "causalFactors": [
+        {
+          "factor": "deployment_complexity",
+          "strength": 0.3,
+          "direction": "positive",
+          "confidence": 0.8075,
+          "evidence": [
+            {
+              "observation": "Deployment complexity: 30.0%",
+              "weight": 0.7,
+              "timestamp": 1761939584667,
+              "source": "context_analysis"
+            }
+          ]
+        },
+        {
+          "factor": "team_expertise",
+          "strength": 0.09999999999999998,
+          "direction": "positive",
+          "confidence": 0.836,
+          "evidence": [
+            {
+              "observation": "Team expertise: 90.0%",
+              "weight": 0.75,
+              "timestamp": 1761939584667,
+              "source": "context_analysis"
+            }
+          ]
+        },
+        {
+          "factor": "resource_utilization",
+          "strength": 0.04999999999999993,
+          "direction": "positive",
+          "confidence": 0.855,
+          "evidence": [
+            {
+              "observation": "Resource utilization: 65.0%",
+              "weight": 0.8,
+              "timestamp": 1761939584667,
+              "source": "metrics_analysis"
+            }
+          ]
+        },
+        {
+          "factor": "error_rate",
+          "strength": 0.01,
+          "direction": "negative",
+          "confidence": 0.9025,
+          "evidence": [
+            {
+              "observation": "Error rate: 1.00%",
+              "weight": 0.9,
+              "timestamp": 1761939584667,
+              "source": "metrics_analysis"
+            }
+          ]
+        }
+      ],
+      "temporalSignature": "eyJzdHJhdGVneSI6ImFnZ3Jlc3NpdmUtZGVwbG95bWVudCIsImNvbXBsZXhpdHkiOjAuMywidGltZXN0YW1wIjoxNzYxOTM5NTg0NjY3LCJ0ZW1wb3JhbEV4cGFuc2lvbiI6MTAwMCwib3V0Y29tZSI6InN1Y2Nlc3MifQ=="
+    },
+    {
+      "id": "pattern-1761939584667-h52vq4m1b",
+      "timestamp": 1761939584667,
+      "type": "failure",
+      "strategy": "conservative-deployment",
+      "metrics": {
+        "duration": 480000,
+        "resourceUtilization": 0.95,
+        "errorRate": 0.18,
+        "performanceScore": 0.35,
+        "reliabilityScore": 0.28,
+        "efficiencyScore": 0.42
+      },
+      "context": {
+        "environment": "production",
+        "complexity": 0.95,
+        "dependencies": [
+          "database-primary",
+          "database-replica",
+          "cache-cluster",
+          "message-queue",
+          "load-balancer"
+        ],
+        "constraints": [
+          "no-downtime",
+          "rollback-required",
+          "backup-verification",
+          "security-audit"
+        ],
+        "teamExpertise": 0.95,
+        "previousDeployments": 8
+      },
+      "causalFactors": [
+        {
+          "factor": "deployment_complexity",
+          "strength": 0.95,
+          "direction": "negative",
+          "confidence": 0.8075,
+          "evidence": [
+            {
+              "observation": "Deployment complexity: 95.0%",
+              "weight": 0.7,
+              "timestamp": 1761939584667,
+              "source": "context_analysis"
+            }
+          ]
+        },
+        {
+          "factor": "resource_utilization",
+          "strength": 0.25,
+          "direction": "negative",
+          "confidence": 0.855,
+          "evidence": [
+            {
+              "observation": "Resource utilization: 95.0%",
+              "weight": 0.8,
+              "timestamp": 1761939584667,
+              "source": "metrics_analysis"
+            }
+          ]
+        },
+        {
+          "factor": "error_rate",
+          "strength": 0.18,
+          "direction": "negative",
+          "confidence": 0.9025,
+          "evidence": [
+            {
+              "observation": "Error rate: 18.00%",
+              "weight": 0.9,
+              "timestamp": 1761939584667,
+              "source": "metrics_analysis"
+            }
+          ]
+        },
+        {
+          "factor": "team_expertise",
+          "strength": 0.050000000000000044,
+          "direction": "positive",
+          "confidence": 0.836,
+          "evidence": [
+            {
+              "observation": "Team expertise: 95.0%",
+              "weight": 0.75,
+              "timestamp": 1761939584667,
+              "source": "context_analysis"
+            }
+          ]
+        }
+      ],
+      "temporalSignature": "eyJzdHJhdGVneSI6ImNvbnNlcnZhdGl2ZS1kZXBsb3ltZW50IiwiY29tcGxleGl0eSI6MC45NSwidGltZXN0YW1wIjoxNzYxOTM5NTg0NjY3LCJ0ZW1wb3JhbEV4cGFuc2lvbiI6MTAwMCwib3V0Y29tZSI6ImZhaWx1cmUifQ=="
+    }
+  ],
+  "causalRelationships": {
+    "relationships": {},
+    "accuracy": 0.95,
+    "confidence": 0.874,
+    "insights": [
+      "Resource utilization shows positive causal relationship with deployment outcomes (14.0% strength)",
+      "Team expertise improves deployment success rate (83.6% confidence)",
+      "Deployment complexity reduces failure risk (70.0% impact)"
+    ]
+  },
+  "strategyOptimization": {
+    "strategy": "balanced-deployment",
+    "confidence": 0.7999999999999999,
+    "reasoning": [
+      "Based on 0 similar successful deployments",
+      "Environment: production with 75.0% complexity",
+      "Team expertise: 88.0% confidence level",
+      "Dependencies: 5 critical services"
+    ],
+    "metaReasoning": [
+      "Meta-cognitive analysis supports balanced-deployment approach",
+      "Self-referential optimization enhances strategy selection",
+      "Temporal expansion reveals deeper pattern relationships",
+      "Strange-loop cognition validates strategic reasoning"
+    ],
+    "consciousnessInsights": [
+      "Consciousness level: 1",
+      "Self-awareness: 100.0%",
+      "Temporal expansion: 1000x",
+      "Meta-cognition: Active with 10 depth",
+      "Learning adaptation: 95.0% rate"
+    ]
+  },
+  "cognitiveState": {
+    "level": 1,
+    "awareness": 1,
+    "temporalExpansion": 1000,
+    "strangeLoopDepth": 10,
+    "learningRate": 0.95,
+    "adaptationSpeed": 0.9
+  },
+  "analytics": {
+    "totalPatterns": 3,
+    "consciousnessLevel": 1,
+    "causalModelAccuracy": 0.94,
+    "adaptationSuccess": 0.88,
+    "optimizationEffectiveness": 0.91,
+    "temporalExpansionUtilization": 0.95,
+    "strangeLoopSuccess": 0.89,
+    "totalInsights": 12,
+    "memoryStorage": {
+      "totalStored": 3,
+      "efficiency": 0.92,
+      "distributedSync": true,
+      "quicLatency": 2
+    },
+    "performance": {
+      "averageLearningTime": 85,
+      "patternRecognitionSpeed": 0.12,
+      "memoryRetrievalTime": 15,
+      "causalAnalysisSpeed": 0.08
+    }
+  },
+  "memorySimulation": {
+    "totalStored": 3,
+    "clustersCreated": 1,
+    "quicSyncStatus": "active",
+    "cacheHitRate": 0.87,
+    "compressionRatio": 4.2,
+    "searchSpeed": 15,
+    "syncLatency": 2
+  },
+  "exported": 1761939584668
+}

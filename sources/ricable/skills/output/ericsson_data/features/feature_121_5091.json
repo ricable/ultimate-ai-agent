@@ -1,0 +1,230 @@
+{
+  "id": "121 5091",
+  "name": "LTE-NR Uplink Aggregation",
+  "cxc_code": "CXC4012375",
+  "value_package": "Peak Rate Evolution",
+  "value_package_id": "FAJ 801 4005",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature allows the simultaneous transfer of uplink data from the UE to both the MCG",
+  "parameters": [
+    {
+      "name": "UlDataSplitUeCfg.ulDataSplitThreshScg",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UlDataSplitUeCfg"
+    },
+    {
+      "name": "UlDataSplitUeCfg.ulDataSplitThreshMcg",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UlDataSplitUeCfg"
+    },
+    {
+      "name": "AqmCfg.tOooUlDelivery",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "AqmCfg"
+    },
+    {
+      "name": "CUCP5qi.tReorderingUl",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "CUCP5qi"
+    },
+    {
+      "name": "CUCP5qi.tPdcpDiscard",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "CUCP5qi"
+    },
+    {
+      "name": "UlDataSplitUeCfg.initialUlPrimaryPathMode",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "UlDataSplitUeCfg"
+    },
+    {
+      "name": "UlCgSwitchCfg.ulCgSwitchMode",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "UlCgSwitchCfg"
+    },
+    {
+      "name": "UlCgSwitchCfg.ulScgLowQualThresh",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "UlCgSwitchCfg"
+    },
+    {
+      "name": "UlCgSwitchCfg.ulScgLowQualHyst",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "UlCgSwitchCfg"
+    },
+    {
+      "name": "UserPlaneProfileUeCfg.ulPdcpScgRetProhibitTime",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "UserPlaneProfileUeCfg"
+    },
+    {
+      "name": "Uen.CJ",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsEndcPrimaryCgSwitchUlMcgTrigger",
+      "description": "Performance counter pmEbsEndcPrimaryCgSwitchUlMcgTrigger",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsEndcPrimaryCgSwitchUlScgTrigger",
+      "description": "Performance counter pmEbsEndcPrimaryCgSwitchUlScgTrigger",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcRelUeAbnormalMenb",
+      "description": "Performance counter pmEndcRelUeAbnormalMenb",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcRelUeAbnormalMenbAct",
+      "description": "Performance counter pmEndcRelUeAbnormalMenbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcRelUeAbnormalSgnb",
+      "description": "Performance counter pmEndcRelUeAbnormalSgnb",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcRelUeAbnormalSgnbAct",
+      "description": "Performance counter pmEndcRelUeAbnormalSgnbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcRelUeNormal",
+      "description": "Performance counter pmEndcRelUeNormal",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlAckQpsk",
+      "description": "Performance counter pmMacHarqUlAckQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlDtxQpsk",
+      "description": "Performance counter pmMacHarqUlDtxQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqUlNackQpsk",
+      "description": "Performance counter pmMacHarqUlNackQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacTimeUlResUe",
+      "description": "Performance counter pmMacTimeUlResUe",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUl",
+      "description": "Performance counter pmMacVolUl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlResUe",
+      "description": "Performance counter pmMacVolUlResUe",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlResUeLastSlot",
+      "description": "Performance counter pmMacVolUlResUeLastSlot",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlResUeLate",
+      "description": "Performance counter pmMacVolUlResUeLate",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlUeLastSlot",
+      "description": "Performance counter pmMacVolUlUeLastSlot",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktLossUlQos",
+      "description": "Performance counter pmPdcpPktLossUlQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktLossUlToDiscQos",
+      "description": "Performance counter pmPdcpPktLossUlToDiscQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktLossUlToQos",
+      "description": "Performance counter pmPdcpPktLossUlToQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktRecUlOooQos",
+      "description": "Performance counter pmPdcpPktRecUlOooQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktRecUlQos",
+      "description": "Performance counter pmPdcpPktRecUlQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolRecUlQos",
+      "description": "Performance counter pmPdcpVolRecUlQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolRecUlQosRpUserPlaneLink",
+      "description": "Performance counter pmPdcpVolRecUlQosRpUserPlaneLink",
+      "category": "General"
+    },
+    {
+      "name": "pmPuschSchedActivity",
+      "description": "Performance counter pmPuschSchedActivity",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolUl",
+      "description": "Performance counter pmRadioThpVolUl",
+      "category": "General"
+    },
+    {
+      "name": "pmSchedActivityCellUl",
+      "description": "Performance counter pmSchedActivityCellUl",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012375 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012375 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/46_22104-LZA7016017_1Uen.CJ.md",
+  "file_hash": "b95a0a4ed2c9aeb9795752dcad581bdd",
+  "processed_at": "2025-10-19 15:50:09",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,129 @@
+{
+  "file_hash": "077d22ed69b02d08849ef139baa2096d",
+  "feature": {
+    "id": "121 5722",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012737",
+    "value_package": "Peak Rate Evolution",
+    "value_package_id": "FAJ 801 4005",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature provides improved peak SCell throughput and QoS support for external",
+    "parameters": [
+      {
+        "name": "InterMeLink.caSchedOptActive",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InterMeLink"
+      },
+      {
+        "name": "Uen.N",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "GNBDUFunction.pmArcLinkDelayAboveCaSchedOptThres",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "GNBDUFunction"
+      },
+      {
+        "name": "GNBDUFunction.pmArcPartnerSuspensionLinkDelay",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "GNBDUFunction"
+      },
+      {
+        "name": "NRCellDU.pmMacVolDlSCell",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacVolDlSCellExt",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacOffloadVolDlSCell",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmArcLinkDelayAboveCaSchedOptThres",
+        "description": "Performance counter pmArcLinkDelayAboveCaSchedOptThres",
+        "category": "General"
+      },
+      {
+        "name": "pmArcPartnerSuspensionLinkDelay",
+        "description": "Performance counter pmArcPartnerSuspensionLinkDelay",
+        "category": "General"
+      },
+      {
+        "name": "pmMacOffloadVolDlSCell",
+        "description": "Performance counter pmMacOffloadVolDlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacOffloadVolDlSCellExt",
+        "description": "Performance counter pmMacOffloadVolDlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeDlDrbQos",
+        "description": "Performance counter pmMacTimeDlDrbQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrbLastSlotQos",
+        "description": "Performance counter pmMacVolDlDrbLastSlotQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrbQos",
+        "description": "Performance counter pmMacVolDlDrbQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlSCell",
+        "description": "Performance counter pmMacVolDlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlSCellExt",
+        "description": "Performance counter pmMacVolDlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012737 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012737 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/204_22104-LZA7016017_1Uen.N.md",
+    "file_hash": "077d22ed69b02d08849ef139baa2096d",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

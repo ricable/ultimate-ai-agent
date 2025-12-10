@@ -1,0 +1,9 @@
+services:
+  agents:
+    build: .
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      TOPIC: "upgrade checkout flow"
+    deploy:
+      replicas: 1
+    restart: unless-stopped

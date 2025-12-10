@@ -1,0 +1,452 @@
+{
+  "file_hash": "c8701e4562ac6e326c9bf6fb8eb48e10",
+  "feature": {
+    "id": "121                                 4762",
+    "name": "High Power                                 UE",
+    "cxc_code": "CXC4012157",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400                                 R17",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node, DU Radio Node",
+    "description": "",
+    "summary": "The feature introduces support for 3GPP-defined high power UEs.",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.prioHpueCapability",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.prioHpueCapability",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.hpueCaSwitchThres",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.hpueCaSwitchThres",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.hpueCaSwitchHyst",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.hpueCaSwitchHyst",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.hpueCaSwitchTimeToTrigger",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.hpueCaSwitchTimeToTrigger",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.additionalMultipleNSPmax",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.additionalMultipleNSPmax",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.multipleNSPmaxReqMapping",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.multipleNSPmaxReqMapping",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranFreqRelation.a5OffsetPerPC",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "GeranFreqGroupRelation.b2GeranOffsetPerPC",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GeranFreqGroupRelation"
+      },
+      {
+        "name": "UtranFreqRelation.b2UtranOffsetPerPC",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UtranFreqRelation"
+      },
+      {
+        "name": "Cdma2000FreqRelation.b2Cdma2000OffsetPerPC",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Cdma2000FreqRelation"
+      },
+      {
+        "name": "ReportConfigSearch.a2CriticalOffsetPerPC",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "PmFlexCounterFilter.uePowerClassFilterEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PmFlexCounterFilter"
+      },
+      {
+        "name": "PmFlexCounterFilter.uePowerClassFilterMin",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PmFlexCounterFilter"
+      },
+      {
+        "name": "PmFlexCounterFilter.uePowerClassFilterMax",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PmFlexCounterFilter"
+      },
+      {
+        "name": "EUtranCellTDD.pMaxServingCell",
+        "type": "Affecting",
+        "description": "To enable high power UEs capable of UE power class 2 on band 41, the                                 MOM attribute EUtranCellTDD.pMaxServingCell must                                 be set to a value higher than the value 23, representing the default                                 output power 23 dBm of UE power class 3.  Cells on the same frequency are recommended to have the same                                     EUtranCellTDD.pMaxServingCell value, because                                     EUtranFreqRelation.pMax is set per frequency                                 relation, not per each cell relation.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pMaxServingCell",
+        "type": "Affecting",
+        "description": "To enable High Power UEs of Power Class 1 the MOM attribute                                     EUtranCellFDD.pMaxServingCellmust be set to a                                 value other than the default value of 1000.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranFreqRelation.pMax",
+        "type": "Affecting",
+        "description": "The value of this attribute is used to determine the power capability                                 of the frequency relation. If the value is higher than 23 dBm, it is                                 considered high power.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "Uen.BY",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellTDD.subframeAssignment",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEvent",
+        "description": "Performance counter pmEvent",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeAttGeran",
+        "description": "Performance counter pmFlexCellHoExeAttGeran",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeAttLteInterF",
+        "description": "Performance counter pmFlexCellHoExeAttLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeAttLteIntraF",
+        "description": "Performance counter pmFlexCellHoExeAttLteIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeAttNonMobIrat",
+        "description": "Performance counter pmFlexCellHoExeAttNonMobIrat",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeAttNonMobLte",
+        "description": "Performance counter pmFlexCellHoExeAttNonMobLte",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeAttUtran",
+        "description": "Performance counter pmFlexCellHoExeAttUtran",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeAttUtranSrvcc",
+        "description": "Performance counter pmFlexCellHoExeAttUtranSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeSuccGeran",
+        "description": "Performance counter pmFlexCellHoExeSuccGeran",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeSuccLteInterF",
+        "description": "Performance counter pmFlexCellHoExeSuccLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeSuccLteIntraF",
+        "description": "Performance counter pmFlexCellHoExeSuccLteIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeSuccNonMobIrat",
+        "description": "Performance counter pmFlexCellHoExeSuccNonMobIrat",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeSuccNonMobLte",
+        "description": "Performance counter pmFlexCellHoExeSuccNonMobLte",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeSuccUtran",
+        "description": "Performance counter pmFlexCellHoExeSuccUtran",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeSuccUtranSrvcc",
+        "description": "Performance counter pmFlexCellHoExeSuccUtranSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepAtt1xRttSrvcc",
+        "description": "Performance counter pmFlexCellHoPrepAtt1xRttSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepAttGeran",
+        "description": "Performance counter pmFlexCellHoPrepAttGeran",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepAttLteInterF",
+        "description": "Performance counter pmFlexCellHoPrepAttLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepAttLteIntraF",
+        "description": "Performance counter pmFlexCellHoPrepAttLteIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepAttNonMobIrat",
+        "description": "Performance counter pmFlexCellHoPrepAttNonMobIrat",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepAttNonMobLte",
+        "description": "Performance counter pmFlexCellHoPrepAttNonMobLte",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepAttUtran",
+        "description": "Performance counter pmFlexCellHoPrepAttUtran",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepAttUtranSrvcc",
+        "description": "Performance counter pmFlexCellHoPrepAttUtranSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepSucc1xRttSrvcc",
+        "description": "Performance counter pmFlexCellHoPrepSucc1xRttSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepSuccGeran",
+        "description": "Performance counter pmFlexCellHoPrepSuccGeran",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepSuccLteInterF",
+        "description": "Performance counter pmFlexCellHoPrepSuccLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepSuccLteIntraF",
+        "description": "Performance counter pmFlexCellHoPrepSuccLteIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepSuccNonMobIrat",
+        "description": "Performance counter pmFlexCellHoPrepSuccNonMobIrat",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepSuccNonMobLte",
+        "description": "Performance counter pmFlexCellHoPrepSuccNonMobLte",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepSuccUtran",
+        "description": "Performance counter pmFlexCellHoPrepSuccUtran",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepSuccUtranSrvcc",
+        "description": "Performance counter pmFlexCellHoPrepSuccUtranSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCounterFilter",
+        "description": "Performance counter pmFlexCounterFilter",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexErabRelMmeActEutra",
+        "description": "Performance counter pmFlexErabRelMmeActEutra",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexHoPrepRejOutUlThres",
+        "description": "Performance counter pmFlexHoPrepRejOutUlThres",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexRrcConnReestAtt",
+        "description": "Performance counter pmFlexRrcConnReestAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexUeCtxtEstabAtt",
+        "description": "Performance counter pmFlexUeCtxtEstabAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexUeCtxtEstabSucc",
+        "description": "Performance counter pmFlexUeCtxtEstabSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlDtx16qam",
+        "description": "Performance counter pmMacHarqUlDtx16qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlDtx64Qam",
+        "description": "Performance counter pmMacHarqUlDtx64Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlDtxQpsk",
+        "description": "Performance counter pmMacHarqUlDtxQpsk",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlFail16qam",
+        "description": "Performance counter pmMacHarqUlFail16qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlFail64Qam",
+        "description": "Performance counter pmMacHarqUlFail64Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlFailQpsk",
+        "description": "Performance counter pmMacHarqUlFailQpsk",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlSucc16qam",
+        "description": "Performance counter pmMacHarqUlSucc16qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlSucc64Qam",
+        "description": "Performance counter pmMacHarqUlSucc64Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlSuccQpsk",
+        "description": "Performance counter pmMacHarqUlSuccQpsk",
+        "category": "General"
+      },
+      {
+        "name": "pmax",
+        "description": "Performance counter pmax",
+        "category": "General"
+      },
+      {
+        "name": "pmaxEUtranCellTDD",
+        "description": "Performance counter pmaxEUtranCellTDD",
+        "category": "General"
+      },
+      {
+        "name": "pmaxReqMapping",
+        "description": "Performance counter pmaxReqMapping",
+        "category": "General"
+      },
+      {
+        "name": "pmaxServingCell",
+        "description": "Performance counter pmaxServingCell",
+        "category": "General"
+      },
+      {
+        "name": "pmaxServingCellmust",
+        "description": "Performance counter pmaxServingCellmust",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012157 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012157 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/346_22104-LZA7016014_1Uen.BY.md",
+    "file_hash": "c8701e4562ac6e326c9bf6fb8eb48e10",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

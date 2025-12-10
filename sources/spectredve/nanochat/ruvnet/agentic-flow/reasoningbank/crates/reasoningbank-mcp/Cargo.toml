@@ -1,0 +1,29 @@
+[package]
+name = "reasoningbank-mcp"
+description = "MCP server implementation with reasoning tools and resources"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+documentation.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[dependencies]
+reasoningbank-core = { path = "../reasoningbank-core" }
+reasoningbank-storage = { path = "../reasoningbank-storage" }
+reasoningbank-learning = { path = "../reasoningbank-learning" }
+reasoningbank-network = { path = "../reasoningbank-network" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+uuid = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }

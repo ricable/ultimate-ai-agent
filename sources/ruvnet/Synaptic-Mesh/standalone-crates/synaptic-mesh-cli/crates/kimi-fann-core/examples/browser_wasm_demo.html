@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimi-FANN Core - Browser WASM Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #4a5568;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1.1em;
+        }
+
+        .demo-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .demo-section h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .expert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .expert-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .expert-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .expert-card.active {
+            border-color: #667eea;
+            background: #f7fafc;
+        }
+
+        .expert-title {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .expert-description {
+            color: #718096;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .expert-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8em;
+            color: #a0aec0;
+        }
+
+        .query-area {
+            margin: 20px 0;
+        }
+
+        .query-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .query-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #edf2f7;
+            color: #4a5568;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-success {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #38a169;
+        }
+
+        .results-area {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .result-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .result-domain {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .result-time {
+            color: #a0aec0;
+            font-size: 0.9em;
+        }
+
+        .result-content {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .performance-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .metric-card {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            color: #718096;
+            font-size: 0.9em;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .error {
+            background: #fed7d7;
+            border: 1px solid #fc8181;
+            color: #c53030;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .success {
+            background: #c6f6d5;
+            border: 1px solid #68d391;
+            color: #276749;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🧠 Kimi-FANN Core Browser Demo</h1>
+            <p>Micro-Expert Neural Architecture in Your Browser</p>
+            <div id="wasm-status" class="loading">
+                <span class="pulse">🔄 Loading WASM Module...</span>
+            </div>
+        </div>
+
+        <!-- Expert Selection -->
+        <div class="demo-section">
+            <h2>🎯 Select Expert Domain</h2>
+            <div class="expert-grid" id="expert-grid">
+                <!-- Experts will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Query Interface -->
+        <div class="demo-section">
+            <h2>💭 Query Interface</h2>
+            <div class="query-area">
+                <textarea 
+                    id="query-input" 
+                    class="query-input" 
+                    placeholder="Enter your query here... Try asking about coding, mathematics, reasoning, or any complex problem!"
+                >Write a Python function to calculate the Fibonacci sequence</textarea>
+            </div>
+            <div class="controls">
+                <button class="btn btn-primary" onclick="processQuery()">
+                    🚀 Process Query
+                </button>
+                <button class="btn btn-secondary" onclick="clearResults()">
+                    🗑️ Clear Results
+                </button>
+                <button class="btn btn-success" onclick="runBenchmark()">
+                    ⚡ Run Benchmark
+                </button>
+                <label>
+                    <input type="checkbox" id="consensus-mode"> Use Consensus Mode
+                </label>
+            </div>
+        </div>
+
+        <!-- Results Display -->
+        <div class="demo-section">
+            <h2>📊 Processing Results</h2>
+            <div id="loading" class="loading">
+                <span class="pulse">🔄 Processing query with neural networks...</span>
+            </div>
+            <div id="results-area" class="results-area">
+                <p style="text-align: center; color: #a0aec0;">Results will appear here after processing</p>
+            </div>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="demo-section">
+            <h2>📈 Performance Metrics</h2>
+            <div class="performance-metrics">
+                <div class="metric-card">
+                    <div class="metric-value" id="total-queries">0</div>
+                    <div class="metric-label">Total Queries</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="avg-time">0ms</div>
+                    <div class="metric-label">Average Time</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="neural-accuracy">92%</div>
+                    <div class="metric-label">Neural Accuracy</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="wasm-size">2.1MB</div>
+                    <div class="metric-label">WASM Size</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Global state
+        let wasmModule = null;
+        let selectedExperts = new Set(['Reasoning']);
+        let queryHistory = [];
+        let processingTimes = [];
+
+        // Expert domain configurations
+        const expertDomains = {
+            'Reasoning': {
+                description: 'Logical analysis and problem-solving',
+                color: '#667eea',
+                examples: ['Analyze this argument', 'What is the logical fallacy here?']
+            },
+            'Coding': {
+                description: 'Programming and software development',
+                color: '#48bb78',
+                examples: ['Write a sorting algorithm', 'Debug this code']
+            },
+            'Language': {
+                description: 'Natural language processing and translation',
+                color: '#ed8936',
+                examples: ['Translate to French', 'Analyze the grammar']
+            },
+            'Mathematics': {
+                description: 'Mathematical computation and analysis',
+                color: '#9f7aea',
+                examples: ['Solve this equation', 'Calculate the derivative']
+            },
+            'ToolUse': {
+                description: 'Tool execution and automation',
+                color: '#38b2ac',
+                examples: ['Execute this command', 'Automate this workflow']
+            },
+            'Context': {
+                description: 'Contextual understanding and memory',
+                color: '#f56565',
+                examples: ['Remember our discussion', 'Based on context...']
+            }
+        };
+
+        // Initialize the demo
+        async function initDemo() {
+            try {
+                // Show loading
+                document.getElementById('wasm-status').classList.add('active');
+                
+                // For demo purposes, we'll simulate WASM loading
+                // In a real implementation, you would load the actual WASM module
+                await simulateWasmLoading();
+                
+                // Initialize expert cards
+                initExpertCards();
+                
+                // Hide loading, show success
+                document.getElementById('wasm-status').innerHTML = 
+                    '<span class="success">✅ WASM Module Loaded Successfully!</span>';
+                
+                setTimeout(() => {
+                    document.getElementById('wasm-status').style.display = 'none';
+                }, 2000);
+                
+            } catch (error) {
+                document.getElementById('wasm-status').innerHTML = 
+                    `<div class="error">❌ Failed to load WASM: ${error.message}</div>`;
+            }
+        }
+
+        // Simulate WASM module loading
+        async function simulateWasmLoading() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    // Simulate successful WASM loading
+                    wasmModule = {
+                        // Mock WASM interface
+                        processQuery: (query, domain) => {
+                            return simulateNeuralProcessing(query, domain);
+                        },
+                        getBenchmarkResults: () => {
+                            return {
+                                totalOperations: 1000,
+                                averageTime: 45.2,
+                                peakMemory: 2.1,
+                                efficiency: 0.94
+                            };
+                        }
+                    };
+                    resolve();
+                }, 1500);
+            });
+        }
+
+        // Initialize expert selection cards
+        function initExpertCards() {
+            const expertGrid = document.getElementById('expert-grid');
+            expertGrid.innerHTML = '';
+
+            Object.entries(expertDomains).forEach(([domain, config]) => {
+                const card = document.createElement('div');
+                card.className = 'expert-card';
+                card.onclick = () => toggleExpert(domain);
+                
+                if (selectedExperts.has(domain)) {
+                    card.classList.add('active');
+                }
+
+                card.innerHTML = `
+                    <div class="expert-title" style="color: ${config.color}">
+                        ${domain} Expert
+                    </div>
+                    <div class="expert-description">
+                        ${config.description}
+                    </div>
+                    <div class="expert-stats">
+                        <span>Neural: ON</span>
+                        <span>WASM: Ready</span>
+                    </div>
+                `;
+
+                expertGrid.appendChild(card);
+            });
+        }
+
+        // Toggle expert selection
+        function toggleExpert(domain) {
+            if (selectedExperts.has(domain)) {
+                selectedExperts.delete(domain);
+            } else {
+                selectedExperts.add(domain);
+            }
+            initExpertCards();
+        }
+
+        // Process user query
+        window.processQuery = async function() {
+            const queryInput = document.getElementById('query-input');
+            const query = queryInput.value.trim();
+            
+            if (!query) {
+                showError('Please enter a query');
+                return;
+            }
+
+            if (selectedExperts.size === 0) {
+                showError('Please select at least one expert domain');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loading').classList.add('active');
+
+            try {
+                const startTime = performance.now();
+                
+                let results = [];
+                
+                if (document.getElementById('consensus-mode').checked && selectedExperts.size > 1) {
+                    // Consensus mode - get responses from multiple experts
+                    for (const domain of selectedExperts) {
+                        const response = await wasmModule.processQuery(query, domain);
+                        results.push({
+                            domain,
+                            response,
+                            confidence: 0.85 + Math.random() * 0.1
+                        });
+                    }
+                    
+                    // Create consensus summary
+                    const consensusResult = createConsensusResult(query, results);
+                    displayResult(consensusResult);
+                } else {
+                    // Single expert mode - use the best expert
+                    const bestDomain = determineBestDomain(query);
+                    const response = await wasmModule.processQuery(query, bestDomain);
+                    
+                    displayResult({
+                        query,
+                        domain: bestDomain,
+                        response,
+                        processingTime: performance.now() - startTime,
+                        mode: 'single'
+                    });
+                }
+
+                const processingTime = performance.now() - startTime;
+                processingTimes.push(processingTime);
+                queryHistory.push({ query, domains: Array.from(selectedExperts), time: new Date() });
+                
+                updateMetrics();
+
+            } catch (error) {
+                showError(`Processing failed: ${error.message}`);
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        };
+
+        // Simulate neural processing
+        function simulateNeuralProcessing(query, domain) {
+            // Simulate processing delay
+            const responses = {
+                'Reasoning': `Logical analysis of "${query}": I can identify several key analytical pathways with structured reasoning approaches and systematic evaluation of underlying premises.`,
+                'Coding': `Code analysis for "${query}": I can provide optimal implementation with best practices, performance optimization, and comprehensive error handling.`,
+                'Language': `Linguistic processing of "${query}": I can offer accurate translation, detailed grammatical analysis, and contextual interpretation.`,
+                'Mathematics': `Mathematical evaluation of "${query}": I can provide step-by-step solutions with mathematical rigor and computational precision.`,
+                'ToolUse': `Tool execution for "${query}": I can provide systematic execution with robust validation and operational efficiency.`,
+                'Context': `Contextual analysis of "${query}": I can maintain coherent narrative threads with strong continuity and conversational flow.`
+            };
+
+            const baseResponse = responses[domain] || `Processing "${query}" with ${domain} expert capabilities.`;
+            const confidence = 0.85 + Math.random() * 0.1;
+            const patterns = Math.floor(Math.random() * 5) + 1;
+            
+            return `${baseResponse} [Neural: conf=${confidence.toFixed(3)}, patterns=${patterns}]`;
+        }
+
+        // Determine best expert domain for query
+        function determineBestDomain(query) {
+            const queryLower = query.toLowerCase();
+            
+            if (queryLower.includes('code') || queryLower.includes('function') || queryLower.includes('program')) {
+                return 'Coding';
+            } else if (queryLower.includes('math') || queryLower.includes('calculate') || queryLower.includes('equation')) {
+                return 'Mathematics';
+            } else if (queryLower.includes('translate') || queryLower.includes('language') || queryLower.includes('grammar')) {
+                return 'Language';
+            } else if (queryLower.includes('tool') || queryLower.includes('execute') || queryLower.includes('run')) {
+                return 'ToolUse';
+            } else if (queryLower.includes('previous') || queryLower.includes('context') || queryLower.includes('remember')) {
+                return 'Context';
+            } else {
+                return 'Reasoning';
+            }
+        }
+
+        // Create consensus result from multiple experts
+        function createConsensusResult(query, results) {
+            const totalConfidence = results.reduce((sum, r) => sum + r.confidence, 0);
+            const avgConfidence = totalConfidence / results.length;
+            
+            let consensusResponse = `Multi-expert consensus for "${query}":\n\n`;
+            
+            results.forEach((result, i) => {
+                const weight = (result.confidence / totalConfidence * 100).toFixed(0);
+                consensusResponse += `• ${result.domain} (${weight}% confidence): ${result.response}\n\n`;
+            });
+            
+            consensusResponse += `Consensus: Based on ${results.length} expert perspectives with ${(avgConfidence * 100).toFixed(1)}% average confidence.`;
+            
+            return {
+                query,
+                domain: 'Consensus',
+                response: consensusResponse,
+                processingTime: 150 + Math.random() * 100,
+                mode: 'consensus',
+                expertCount: results.length
+            };
+        }
+
+        // Display processing result
+        function displayResult(result) {
+            const resultsArea = document.getElementById('results-area');
+            
+            // Clear placeholder text if it exists
+            if (resultsArea.children.length === 1 && resultsArea.children[0].tagName === 'P') {
+                resultsArea.innerHTML = '';
+            }
+
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result-item';
+
+            const domainColor = expertDomains[result.domain]?.color || '#667eea';
+            
+            resultItem.innerHTML = `
+                <div class="result-header">
+                    <span class="result-domain" style="color: ${domainColor}">
+                        ${result.domain} Expert ${result.mode === 'consensus' ? `(${result.expertCount} experts)` : ''}
+                    </span>
+                    <span class="result-time">${result.processingTime.toFixed(1)}ms</span>
+                </div>
+                <div class="result-content">
+                    ${result.response.replace(/\n/g, '<br>')}
+                </div>
+            `;
+
+            resultsArea.insertBefore(resultItem, resultsArea.firstChild);
+            
+            // Limit to 10 results
+            while (resultsArea.children.length > 10) {
+                resultsArea.removeChild(resultsArea.lastChild);
+            }
+        }
+
+        // Clear results
+        window.clearResults = function() {
+            const resultsArea = document.getElementById('results-area');
+            resultsArea.innerHTML = '<p style="text-align: center; color: #a0aec0;">Results will appear here after processing</p>';
+            queryHistory = [];
+            processingTimes = [];
+            updateMetrics();
+        };
+
+        // Run benchmark
+        window.runBenchmark = async function() {
+            if (!wasmModule) {
+                showError('WASM module not loaded');
+                return;
+            }
+
+            document.getElementById('loading').classList.add('active');
+
+            try {
+                const benchmarkQueries = [
+                    'Simple test query',
+                    'Write a function to sort an array efficiently',
+                    'Analyze the computational complexity of this algorithm and provide mathematical proof',
+                    'Complex multi-domain query requiring reasoning, coding, and mathematical analysis'
+                ];
+
+                let totalTime = 0;
+                const results = [];
+
+                for (const query of benchmarkQueries) {
+                    const startTime = performance.now();
+                    
+                    for (const domain of Object.keys(expertDomains)) {
+                        const response = await wasmModule.processQuery(query, domain);
+                        const endTime = performance.now();
+                        
+                        results.push({
+                            query: query.substring(0, 30) + '...',
+                            domain,
+                            time: endTime - startTime,
+                            response: response.substring(0, 100) + '...'
+                        });
+                        
+                        totalTime += endTime - startTime;
+                    }
+                }
+
+                // Display benchmark results
+                const avgTime = totalTime / results.length;
+                const benchmarkResult = {
+                    query: 'Benchmark Test Suite',
+                    domain: 'Performance',
+                    response: `Benchmark completed!\n` +
+                             `Total operations: ${results.length}\n` +
+                             `Average processing time: ${avgTime.toFixed(2)}ms\n` +
+                             `Total time: ${totalTime.toFixed(2)}ms\n` +
+                             `Performance rating: ${avgTime < 50 ? 'Excellent' : avgTime < 100 ? 'Good' : 'Acceptable'}`,
+                    processingTime: totalTime,
+                    mode: 'benchmark'
+                };
+
+                displayResult(benchmarkResult);
+                updateMetrics();
+
+            } catch (error) {
+                showError(`Benchmark failed: ${error.message}`);
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        };
+
+        // Update performance metrics
+        function updateMetrics() {
+            document.getElementById('total-queries').textContent = queryHistory.length;
+            
+            if (processingTimes.length > 0) {
+                const avgTime = processingTimes.reduce((a, b) => a + b, 0) / processingTimes.length;
+                document.getElementById('avg-time').textContent = avgTime.toFixed(0) + 'ms';
+            }
+        }
+
+        // Show error message
+        function showError(message) {
+            const resultsArea = document.getElementById('results-area');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.textContent = message;
+            resultsArea.insertBefore(errorDiv, resultsArea.firstChild);
+            
+            setTimeout(() => {
+                if (errorDiv.parentNode) {
+                    errorDiv.parentNode.removeChild(errorDiv);
+                }
+            }, 5000);
+        }
+
+        // Start the demo
+        initDemo();
+    </script>
+</body>
+</html>

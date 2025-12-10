@@ -1,0 +1,145 @@
+{
+  "id": "121 5062",
+  "name": "Optimized VoLTE Access at High Load",
+  "cxc_code": "CXC4012368",
+  "value_package": "High Load Handling",
+  "value_package_id": "FAJ 801 0415",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Optimized VoLTE Access at High Load feature focuses on improving the",
+  "parameters": [
+    {
+      "name": "moVoiceDynUeAdmCtrlPrio",
+      "type": "Introduced",
+      "description": "See MOM description.  Enables or Disables prioritization of MO                             voice related RRC connection requests in Dynamic UE Admission Control.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "zzzTemporary60",
+      "type": "Introduced",
+      "description": "Used to disable sending                                     voiceServiceCauseIndication-r12 in SIB2                                 message.   Default value: -2000000000(disabling                             is OFF)When the value is 1, the disabling of                                     voiceServiceCauseIndication-r12 in SIB2 is                                 turned on.  Values other than 1 turn off the                                 disabling of  voiceServiceCauseIndication-r12 in                                 SIB2.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.pmRrcConnEstabFailDynUeAdmCtrlMoVoice",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmRrcConnEstabFailDynUeAdmCtrlMoVoice",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmRrcConnEstabAttMoVoice",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmRrcConnEstabSuccMoVoice",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmRrcConnEstabFailDynUeAdmCtrlMoVoicePtt",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmRrcConnEstabFailLicMoVoice",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmS1SigConnEstabAttMoVoice",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmPrbUsedDlBcch",
+      "description": "Performance counter pmPrbUsedDlBcch",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttMoVoice",
+      "description": "Performance counter pmRrcConnEstabAttMoVoice",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttReattMoVoice",
+      "description": "Performance counter pmRrcConnEstabAttReattMoVoice",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabFailDynUeAdmCtrlMoVoice",
+      "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlMoVoice",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabFailDynUeAdmCtrlMoVoicePtt",
+      "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlMoVoicePtt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabFailLicMoVoice",
+      "description": "Performance counter pmRrcConnEstabFailLicMoVoice",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabSuccMoVoice",
+      "description": "Performance counter pmRrcConnEstabSuccMoVoice",
+      "category": "General"
+    },
+    {
+      "name": "pmS1SigConnEstabAttMoVoice",
+      "description": "Performance counter pmS1SigConnEstabAttMoVoice",
+      "category": "General"
+    },
+    {
+      "name": "pmS1SigConnEstabSuccMoVoice",
+      "description": "Performance counter pmS1SigConnEstabSuccMoVoice",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "LOCAL_PROC_RRC_CONN_SETUP",
+      "type": "The new value, EVENT_VALUE_MO_VOICE, is added to                                     event parameter EVENT_PARAM_RRC_ESTABL_CAUSE",
+      "description": ""
+    },
+    {
+      "name": "LOCAL_MC_RRC_CONNECTION_REJECT",
+      "type": "The new value, EVENT_VALUE_MO_VOICE, is added to                                     event parameter EVENT_PARAM_RRC_ESTABL_CAUSE",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012368 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012368 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/446_22104-LZA7016014_1Uen.AF.md",
+  "file_hash": "3d6d07f12e1a9fea8b9fabb14bddabf6",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,119 @@
+{
+  "file_hash": "8feae8e1d460543307840febaf7fd10a",
+  "feature": {
+    "id": "121 5830",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012813",
+    "value_package": "Voice over NR",
+    "value_package_id": "FAJ 801 4017",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature allows the transmission of downlink data when handover is",
+    "parameters": [
+      {
+        "name": "CUCP5qi.drbDataRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CUCP5qi"
+      },
+      {
+        "name": "DrbData.drbDataId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbData"
+      },
+      {
+        "name": "DrbData.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbData"
+      },
+      {
+        "name": "DrbData.ueConfGroupType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbData"
+      },
+      {
+        "name": "DrbData.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbData"
+      },
+      {
+        "name": "DrbDataUeCfg.drbDataUeCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbDataUeCfg"
+      },
+      {
+        "name": "DrbDataUeCfg.drbDlDataDuringHoEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbDataUeCfg"
+      },
+      {
+        "name": "DrbDataUeCfg.prefUeGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbDataUeCfg"
+      },
+      {
+        "name": "DrbDataUeCfg.ueConfGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbDataUeCfg"
+      },
+      {
+        "name": "DrbDataUeCfg.ueGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbDataUeCfg"
+      },
+      {
+        "name": "DrbDataUeCfg.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrbDataUeCfg"
+      },
+      {
+        "name": "Uen.A",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsHoPrepSuccOutDataHoCmd",
+        "description": "Performance counter pmEbsHoPrepSuccOutDataHoCmd",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacDrbSchedHoCmd",
+        "description": "Performance counter pmEbsMacDrbSchedHoCmd",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012813 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012813 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/253_22104-LZA7016017_1Uen.A.md",
+    "file_hash": "8feae8e1d460543307840febaf7fd10a",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

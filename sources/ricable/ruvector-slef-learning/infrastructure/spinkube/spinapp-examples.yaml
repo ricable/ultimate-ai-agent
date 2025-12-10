@@ -1,0 +1,257 @@
+# SpinApp Examples for ruvnet npm packages on Kubernetes
+# These CRs deploy Wasm agents using the SpinKube operator
+
+---
+# Example 1: Basic AI Agent with RuVector integration
+apiVersion: core.spinoperator.dev/v1alpha1
+kind: SpinApp
+metadata:
+  name: ruvector-agent
+  namespace: agents
+  labels:
+    app: ruvector-agent
+    tier: ai
+spec:
+  image: ghcr.io/ruvnet/spin-agent:latest
+  replicas: 3
+  executor: containerd-shim-spin
+  resources:
+    limits:
+      cpu: 200m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 32Mi
+  variables:
+    - name: anthropic_api_key
+      valueFrom:
+        secretKeyRef:
+          name: agent-secrets
+          key: ANTHROPIC_API_KEY
+    - name: litellm_endpoint
+      valueFrom:
+        configMapKeyRef:
+          name: agent-config
+          key: LITELLM_ENDPOINT
+    - name: ruvector_endpoint
+      valueFrom:
+        configMapKeyRef:
+          name: agent-config
+          key: RUVECTOR_ENDPOINT
+    - name: agent_id
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.name
+    - name: agent_model
+      valueFrom:
+        configMapKeyRef:
+          name: agent-config
+          key: AGENT_MODEL
+  runtimeConfig:
+    allowedHosts:
+      - "https://*.anthropic.com"
+      - "https://*.openai.com"
+      - "http://litellm.default.svc.cluster.local:4000"
+      - "http://ruvector.default.svc.cluster.local:8765"
+      - "http://agentdb.default.svc.cluster.local:8766"
+    keyValueStores:
+      - agent-state
+---
+# Example 2: Claude-Flow Orchestration Agent
+apiVersion: core.spinoperator.dev/v1alpha1
+kind: SpinApp
+metadata:
+  name: claude-flow-orchestrator
+  namespace: agents
+  labels:
+    app: claude-flow
+    tier: orchestration
+spec:
+  image: ghcr.io/ruvnet/spin-claude-flow:latest
+  replicas: 2
+  executor: containerd-shim-spin
+  resources:
+    limits:
+      cpu: 500m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 64Mi
+  variables:
+    - name: anthropic_api_key
+      valueFrom:
+        secretKeyRef:
+          name: agent-secrets
+          key: ANTHROPIC_API_KEY
+    - name: orchestration_mode
+      valueFrom:
+        configMapKeyRef:
+          name: claude-flow-config
+          key: MODE
+  runtimeConfig:
+    allowedHosts:
+      - "https://*.anthropic.com"
+      - "http://*.agents.svc.cluster.local"
+      - "http://litellm.default.svc.cluster.local:4000"
+    keyValueStores:
+      - orchestration-state
+      - agent-registry
+---
+# Example 3: Agentic-Flow Multi-Agent Swarm
+apiVersion: core.spinoperator.dev/v1alpha1
+kind: SpinApp
+metadata:
+  name: agentic-flow-swarm
+  namespace: agents
+  labels:
+    app: agentic-flow
+    tier: swarm
+spec:
+  image: ghcr.io/ruvnet/spin-agentic-flow:latest
+  replicas: 5
+  executor: containerd-shim-spin
+  resources:
+    limits:
+      cpu: 300m
+      memory: 192Mi
+    requests:
+      cpu: 75m
+      memory: 48Mi
+  variables:
+    - name: swarm_topology
+      valueFrom:
+        configMapKeyRef:
+          name: agentic-flow-config
+          key: TOPOLOGY
+    - name: max_agents
+      valueFrom:
+        configMapKeyRef:
+          name: agentic-flow-config
+          key: MAX_AGENTS
+  runtimeConfig:
+    allowedHosts:
+      - "http://*.agents.svc.cluster.local"
+      - "redis://redis.default.svc.cluster.local:6379"
+    keyValueStores:
+      - swarm-state
+      - agent-coordination
+---
+# Example 4: Vector Database Agent (RuVector interface)
+apiVersion: core.spinoperator.dev/v1alpha1
+kind: SpinApp
+metadata:
+  name: ruvector-interface
+  namespace: agents
+  labels:
+    app: ruvector-interface
+    tier: data
+spec:
+  image: ghcr.io/ruvnet/spin-ruvector:latest
+  replicas: 2
+  executor: containerd-shim-spin
+  resources:
+    limits:
+      cpu: 150m
+      memory: 96Mi
+    requests:
+      cpu: 50m
+      memory: 32Mi
+  variables:
+    - name: ruvector_endpoint
+      valueFrom:
+        configMapKeyRef:
+          name: agent-config
+          key: RUVECTOR_ENDPOINT
+    - name: embedding_model
+      valueFrom:
+        configMapKeyRef:
+          name: agent-config
+          key: EMBEDDING_MODEL
+  runtimeConfig:
+    allowedHosts:
+      - "http://ruvector.default.svc.cluster.local:8765"
+      - "https://*.openai.com"
+    keyValueStores:
+      - vector-cache
+---
+# Example 5: AgentDB Memory Agent
+apiVersion: core.spinoperator.dev/v1alpha1
+kind: SpinApp
+metadata:
+  name: agentdb-interface
+  namespace: agents
+  labels:
+    app: agentdb-interface
+    tier: memory
+spec:
+  image: ghcr.io/ruvnet/spin-agentdb:latest
+  replicas: 2
+  executor: containerd-shim-spin
+  resources:
+    limits:
+      cpu: 150m
+      memory: 96Mi
+    requests:
+      cpu: 50m
+      memory: 32Mi
+  variables:
+    - name: agentdb_endpoint
+      valueFrom:
+        configMapKeyRef:
+          name: agent-config
+          key: AGENTDB_ENDPOINT
+    - name: memory_ttl
+      valueFrom:
+        configMapKeyRef:
+          name: agent-config
+          key: MEMORY_TTL
+  runtimeConfig:
+    allowedHosts:
+      - "http://agentdb.default.svc.cluster.local:8766"
+    keyValueStores:
+      - memory-cache
+---
+# Supporting ConfigMaps
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: agent-config
+  namespace: agents
+data:
+  AGENT_MODEL: "claude-3-5-sonnet-20241022"
+  LITELLM_ENDPOINT: "http://litellm.default.svc.cluster.local:4000"
+  RUVECTOR_ENDPOINT: "http://ruvector.default.svc.cluster.local:8765"
+  AGENTDB_ENDPOINT: "http://agentdb.default.svc.cluster.local:8766"
+  EMBEDDING_MODEL: "text-embedding-3-small"
+  MEMORY_TTL: "86400"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: claude-flow-config
+  namespace: agents
+data:
+  MODE: "hierarchical"
+  MAX_DEPTH: "3"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: agentic-flow-config
+  namespace: agents
+data:
+  TOPOLOGY: "mesh"
+  MAX_AGENTS: "10"
+  CONSENSUS: "raft"
+---
+# Secrets for API keys (values to be provided at deployment)
+apiVersion: v1
+kind: Secret
+metadata:
+  name: agent-secrets
+  namespace: agents
+type: Opaque
+stringData:
+  ANTHROPIC_API_KEY: "${ANTHROPIC_API_KEY}"
+  OPENAI_API_KEY: "${OPENAI_API_KEY}"
+  LITELLM_MASTER_KEY: "${LITELLM_MASTER_KEY}"

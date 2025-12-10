@@ -1,0 +1,193 @@
+{
+  "id": "121 3025",
+  "name": "Combined Cell",
+  "cxc_code": "CXC4011368",
+  "value_package": "Combined Cell",
+  "value_package_id": "FAJ 801 0407",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Combined Cell feature allows two or more sector carriers to be operated as a single",
+  "parameters": [
+    {
+      "name": "ENodeBFunction.combCellSectorSelectThreshRx",
+      "type": "Introduced",
+      "description": "See MOM description.  Sectors that are close to the UE contribute to the quality of the call if they are                 selected. Sectors that are selected but cannot hear the UE, do not affect the                 quality of the call, but contribute to unnecessary interference in downlink.  At the sector selection evaluation, sectors that cannot hear the UE, have a power                 related to the noise floor. The best sector normally has a power similar to the                 PUCCH nominal power.  The thresholds are used to select only the sectors that are contributing to the                 quality of the call.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ENodeBFunction.combCellSectorSelectThreshTx",
+      "type": "Introduced",
+      "description": "See MOM description.  Sectors that are close to the UE contribute to the quality of the call if they are                 selected. Sectors that are selected but cannot hear the UE, do not affect the                 quality of the call, but contribute to unnecessary interference in downlink.  At the sector selection evaluation, sectors that cannot hear the UE, have a power                 related to the noise floor. The best sector normally has a power similar to the                 PUCCH nominal power.  The thresholds are used to select only the sectors that are contributing to the                 quality of the call.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "EUtranCellFDD.altitude",
+      "type": "Affected",
+      "description": "If all sector carriers in a combined cell have the same output power, for example                 in indoor scenario or 3-sector site scenario, it is assumed that the antennas of                 different sector carriers are located close to each other. Therefore, the position                 parameter is set using any of the antennas position. If there is one macro sector                 that has the highest power, the position parameter is set using the antenna position                 of the macro sector.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.latitude",
+      "type": "Affected",
+      "description": "If all sector carriers in a combined cell have the same output power, for example                 in indoor scenario or 3-sector site scenario, it is assumed that the antennas of                 different sector carriers are located close to each other. Therefore, the position                 parameter is set using any of the antennas position. If there is one macro sector                 that has the highest power, the position parameter is set using the antenna position                 of the macro sector.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.longitude",
+      "type": "Affected",
+      "description": "If all sector carriers in a combined cell have the same output power, for example                 in indoor scenario or 3-sector site scenario, it is assumed that the antennas of                 different sector carriers are located close to each other. Therefore, the position                 parameter is set using any of the antennas position. If there is one macro sector                 that has the highest power, the position parameter is set using the antenna position                 of the macro sector.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.altitude",
+      "type": "Affected",
+      "description": "If all sector carriers in a combined cell have the same output power, for example                 in indoor scenario or 3-sector site scenario, it is assumed that the antennas of                 different sector carriers are located close to each other. Therefore, the position                 parameter is set using any of the antennas position. If there is one macro sector                 that has the highest power, the position parameter is set using the antenna position                 of the macro sector.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.latitude",
+      "type": "Affected",
+      "description": "If all sector carriers in a combined cell have the same output power, for example                 in indoor scenario or 3-sector site scenario, it is assumed that the antennas of                 different sector carriers are located close to each other. Therefore, the position                 parameter is set using any of the antennas position. If there is one macro sector                 that has the highest power, the position parameter is set using the antenna position                 of the macro sector.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.longitude",
+      "type": "Affected",
+      "description": "If all sector carriers in a combined cell have the same output power, for example                 in indoor scenario or 3-sector site scenario, it is assumed that the antennas of                 different sector carriers are located close to each other. Therefore, the position                 parameter is set using any of the antennas position. If there is one macro sector                 that has the highest power, the position parameter is set using the antenna position                 of the macro sector.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.sectorCarrierRef",
+      "type": "Affected",
+      "description": "Combined cell is configured by setting the sectorCarrierRef to                 more than one SectorCarrier.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.sectorCarrierRef",
+      "type": "Affected",
+      "description": "Combined cell is configured by setting the sectorCarrierRef to                 more than one SectorCarrier.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "SectorCarrier.noOfRxAntennas",
+      "type": "Affected",
+      "description": "For the Combined Cell feature this parameter can be set to 0, 1, 2, or 4.",
+      "mo_class": "SectorCarrier"
+    },
+    {
+      "name": "SectorCarrier.noOfTxAntennas",
+      "type": "Affected",
+      "description": "For the Combined Cell feature this parameter can be set to 0, 1, 2, or 4.",
+      "mo_class": "SectorCarrier"
+    },
+    {
+      "name": "SectorCarrier.prsEnabled",
+      "type": "Affecting",
+      "description": "For combined cells consisting of macro sector carriers and small sector carriers,                 set SectorCarrier.prsEnabled to true for the                 macro sector carrier only. The other sector carrier or sector carriers have                   SectorCarrier.prsEnabled = false. Transmission                 of PDSCH is still not scheduled on the same subframe in any of the sector carriers                 to prevent undesirable interferences.",
+      "mo_class": "SectorCarrier"
+    },
+    {
+      "name": "EUtranCellFDD.commonSrPeriodicity",
+      "type": "Affecting",
+      "description": "Unlocking combined cells can be rejected because of PUCCH resource shortage. This                 results in a Resource Configuration Failure alarm.  Required and available PUCCH resources for a combined cell depends on the                 following:    Number of combined cells per node, and the number of                       SectorCarrier configured per combined cell.     Cell bandwidth.     Setting of the following parameters:  EUtranCellFDD.commonSrPeriodicity     EUtranCellTDD.commonSrPeriodicity     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellTDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers     EUtranCellTDD.noOfPucchSrUsers         It is recommended that the EUtranCellFDD.noOfPucchCqiUsers and                 the EUtranCellTDD.noOfPucchCqiUsers value are not lower than the                   EUtranCellFDD.noOfPucchSrUsers and the                   EUtranCellTDD.noOfPucchSrUsers value.  For more information about dependencies between the parameters, see Control Channel Dimensioning.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.noOfPucchCqiUsers",
+      "type": "Affecting",
+      "description": "Unlocking combined cells can be rejected because of PUCCH resource shortage. This                 results in a Resource Configuration Failure alarm.  Required and available PUCCH resources for a combined cell depends on the                 following:    Number of combined cells per node, and the number of                       SectorCarrier configured per combined cell.     Cell bandwidth.     Setting of the following parameters:  EUtranCellFDD.commonSrPeriodicity     EUtranCellTDD.commonSrPeriodicity     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellTDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers     EUtranCellTDD.noOfPucchSrUsers         It is recommended that the EUtranCellFDD.noOfPucchCqiUsers and                 the EUtranCellTDD.noOfPucchCqiUsers value are not lower than the                   EUtranCellFDD.noOfPucchSrUsers and the                   EUtranCellTDD.noOfPucchSrUsers value.  For more information about dependencies between the parameters, see Control Channel Dimensioning.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.noOfPucchSrUsers",
+      "type": "Affecting",
+      "description": "Unlocking combined cells can be rejected because of PUCCH resource shortage. This                 results in a Resource Configuration Failure alarm.  Required and available PUCCH resources for a combined cell depends on the                 following:    Number of combined cells per node, and the number of                       SectorCarrier configured per combined cell.     Cell bandwidth.     Setting of the following parameters:  EUtranCellFDD.commonSrPeriodicity     EUtranCellTDD.commonSrPeriodicity     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellTDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers     EUtranCellTDD.noOfPucchSrUsers         It is recommended that the EUtranCellFDD.noOfPucchCqiUsers and                 the EUtranCellTDD.noOfPucchCqiUsers value are not lower than the                   EUtranCellFDD.noOfPucchSrUsers and the                   EUtranCellTDD.noOfPucchSrUsers value.  For more information about dependencies between the parameters, see Control Channel Dimensioning.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.commonSrPeriodicity",
+      "type": "Affecting",
+      "description": "Unlocking combined cells can be rejected because of PUCCH resource shortage. This                 results in a Resource Configuration Failure alarm.  Required and available PUCCH resources for a combined cell depends on the                 following:    Number of combined cells per node, and the number of                       SectorCarrier configured per combined cell.     Cell bandwidth.     Setting of the following parameters:  EUtranCellFDD.commonSrPeriodicity     EUtranCellTDD.commonSrPeriodicity     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellTDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers     EUtranCellTDD.noOfPucchSrUsers         It is recommended that the EUtranCellFDD.noOfPucchCqiUsers and                 the EUtranCellTDD.noOfPucchCqiUsers value are not lower than the                   EUtranCellFDD.noOfPucchSrUsers and the                   EUtranCellTDD.noOfPucchSrUsers value.  For more information about dependencies between the parameters, see Control Channel Dimensioning.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.noOfPucchCqiUsers",
+      "type": "Affecting",
+      "description": "Unlocking combined cells can be rejected because of PUCCH resource shortage. This                 results in a Resource Configuration Failure alarm.  Required and available PUCCH resources for a combined cell depends on the                 following:    Number of combined cells per node, and the number of                       SectorCarrier configured per combined cell.     Cell bandwidth.     Setting of the following parameters:  EUtranCellFDD.commonSrPeriodicity     EUtranCellTDD.commonSrPeriodicity     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellTDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers     EUtranCellTDD.noOfPucchSrUsers         It is recommended that the EUtranCellFDD.noOfPucchCqiUsers and                 the EUtranCellTDD.noOfPucchCqiUsers value are not lower than the                   EUtranCellFDD.noOfPucchSrUsers and the                   EUtranCellTDD.noOfPucchSrUsers value.  For more information about dependencies between the parameters, see Control Channel Dimensioning.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.noOfPucchSrUsers",
+      "type": "Affecting",
+      "description": "Unlocking combined cells can be rejected because of PUCCH resource shortage. This                 results in a Resource Configuration Failure alarm.  Required and available PUCCH resources for a combined cell depends on the                 following:    Number of combined cells per node, and the number of                       SectorCarrier configured per combined cell.     Cell bandwidth.     Setting of the following parameters:  EUtranCellFDD.commonSrPeriodicity     EUtranCellTDD.commonSrPeriodicity     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellTDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers     EUtranCellTDD.noOfPucchSrUsers         It is recommended that the EUtranCellFDD.noOfPucchCqiUsers and                 the EUtranCellTDD.noOfPucchCqiUsers value are not lower than the                   EUtranCellFDD.noOfPucchSrUsers and the                   EUtranCellTDD.noOfPucchSrUsers value.  For more information about dependencies between the parameters, see Control Channel Dimensioning.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "Uen.DF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "SectorCarrier.ltePowerBackoffMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "SectorCarrier"
+    },
+    {
+      "name": "RfBranch.dlTrafficDelay",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RfBranch"
+    },
+    {
+      "name": "RfBranch.ulTrafficDelay",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RfBranch"
+    },
+    {
+      "name": "NbIotCell.sectorCarrierRef",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NbIotCell"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmActiveUeDlSectorCarrierDistr",
+      "description": "Performance counter pmActiveUeDlSectorCarrierDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmActiveUeDlSumSectorCarrier",
+      "description": "Performance counter pmActiveUeDlSumSectorCarrier",
+      "category": "General"
+    },
+    {
+      "name": "pmActiveUeUlSectorCarrierDistr",
+      "description": "Performance counter pmActiveUeUlSectorCarrierDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmActiveUeUlSumSectorCarrier",
+      "description": "Performance counter pmActiveUeUlSumSectorCarrier",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011368 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011368 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/85_22104-LZA7016014_1Uen.DF.md",
+  "file_hash": "a8cebbf2664aac012f0670fd5b59d161",
+  "processed_at": "2025-10-19 15:50:05",
+  "network_impact": {},
+  "performance_impact": {}
+}

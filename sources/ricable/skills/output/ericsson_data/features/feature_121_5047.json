@@ -1,0 +1,81 @@
+{
+  "id": "121 5047",
+  "name": "Split Mode Radio for Massive MIMO",
+  "cxc_code": "CXC4012355",
+  "value_package": "Basic Massive MIMO",
+  "value_package_id": "FAJ 801 1010",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature allows a split-mode-capable TDD Massive MIMO",
+  "parameters": [
+    {
+      "name": "AasData.antSegmentation",
+      "type": "Affecting",
+      "description": "The AasData.antSegmentation attribute is             applied to configure split-mode or mixed-mode radio configuration, with the following                 values:  If the attribute is set to WHOLE_100 on both radio nodes,                         mixed mode radio configuration is applied.     If the attribute is set to AUTO_SPLIT on both radio nodes,                         split mode radio configuration is applied.     If the attribute is set to AUTO on either of the radio nodes                         and the AAS hardware resources can handle the carrier demands, mixed mode                         radio is selected. Otherwise, split mode radio is selected.",
+      "mo_class": "AasData"
+    },
+    {
+      "name": "Uen.BV33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "FieldReplaceableUnit.isSharedWithExternalMe",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FieldReplaceableUnit"
+    },
+    {
+      "name": "RadioEquipmentClock.bfnOffset",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RadioEquipmentClock"
+    },
+    {
+      "name": "ENodeBFunction.timeAndPhaseSynchAlignment",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "QciProfilePredefined.schedulingAlgorithm",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "NRCellDU.nrLteCoexistence",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pm919",
+      "description": "Performance counter pm919",
+      "category": "General"
+    },
+    {
+      "name": "pmentClock",
+      "description": "Performance counter pmentClock",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": null,
+  "deactivation_step": null,
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/450_22104-LZA7016014_1Uen.BV33B.md",
+  "file_hash": "5f4eafbb989484f4e78b11cd0cf89a68",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

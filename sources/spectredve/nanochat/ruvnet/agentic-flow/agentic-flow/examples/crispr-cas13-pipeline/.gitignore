@@ -1,0 +1,54 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+*.pdb
+
+# Cargo lock file (commit for binaries, ignore for libraries)
+# Cargo.lock
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# Test and benchmark artifacts
+*.profraw
+*.profdata
+/criterion/
+/benchmarks/output/
+
+# Documentation build
+/target/doc/
+
+# Temporary files
+*.tmp
+*.bak
+/tmp/
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+.swarm/
+
+# Claude Flow files
+.claude-flow/
+
+# Log files
+*.log
+
+# Coverage reports
+/coverage/
+tarpaulin-report.html
+cobertura.xml
+
+# Package artifacts
+*.crate

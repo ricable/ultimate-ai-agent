@@ -1,0 +1,131 @@
+{
+  "file_hash": "f2301fda1392fe01d6c3837f7df7fcdc",
+  "feature": {
+    "id": "121 5045",
+    "name": "Dynamic Component Carrier Management",
+    "cxc_code": "CXC4012353",
+    "value_package": "Peak Rate Evolution",
+    "value_package_id": "FAJ 801 4005",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Dynamic Component Carrier Management feature enables the automatic deactivation and",
+    "parameters": [
+      {
+        "name": "Uen.AU",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "NRCellDU.pmMacUaiOhIndSCellDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacSchedSlotDlSCellSchedDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacSchedSlotUlSCellSchedDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacSchedSlotDlSCellActivatedDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacSchedSlotUlSCellActivatedDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacSchedSlotDlTempAlarmSCellDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacSchedSlotUlTempAlarmSCellDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacTempAlarmSCellDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMacSchedSlotDlSCellActivatedDistr",
+        "description": "Performance counter pmMacSchedSlotDlSCellActivatedDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacSchedSlotDlSCellSchedDistr",
+        "description": "Performance counter pmMacSchedSlotDlSCellSchedDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacSchedSlotDlTempAlarmSCellDistr",
+        "description": "Performance counter pmMacSchedSlotDlTempAlarmSCellDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacSchedSlotUlSCellActivatedDistr",
+        "description": "Performance counter pmMacSchedSlotUlSCellActivatedDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacSchedSlotUlSCellSchedDistr",
+        "description": "Performance counter pmMacSchedSlotUlSCellSchedDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacSchedSlotUlTempAlarmSCellDistr",
+        "description": "Performance counter pmMacSchedSlotUlTempAlarmSCellDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTempAlarmSCellDistr",
+        "description": "Performance counter pmMacTempAlarmSCellDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacUaiOhIndSCellDistr",
+        "description": "Performance counter pmMacUaiOhIndSCellDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012353 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012353 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/26_22104-LZA7016017_1Uen.AU.md",
+    "file_hash": "f2301fda1392fe01d6c3837f7df7fcdc",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

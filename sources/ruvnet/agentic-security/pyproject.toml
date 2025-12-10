@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentic-security"
+version = "1.0.0"
+authors = [
+    { name="rUv", email="your.email@example.com" },
+]
+description = "AI-powered security scanning and fixing pipeline"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "pytest>=7.4.3",
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0.1",
+    "openai>=1.53.0",
+    "anthropic>=0.38.0",
+    "click>=8.1.7",
+    "anyio>=4.6.2"
+]
+
+[project.optional-dependencies]
+slack = [
+    "slack-sdk>=3.26.1"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/ruvnet/agentic-security"
+"Bug Tracker" = "https://github.com/ruvnet/agentic-security/issues"
+
+[project.scripts]
+agentic-security = "agentic_security.security_cli:cli"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary Colors - Purple/Blue Tech Gradient */
+  --primary: 262 83% 58%;
+  --primary-glow: 262 90% 70%;
+  --primary-dark: 262 83% 40%;
+  
+  /* Secondary - Orange/Amber Accent */
+  --secondary: 32 95% 59%;
+  --secondary-glow: 32 100% 70%;
+  
+  /* Background */
+  --background: 224 71% 4%;
+  --background-light: 224 50% 8%;
+  --background-lighter: 224 40% 12%;
+  
+  /* Foreground/Text */
+  --foreground: 213 31% 96%;
+  --muted-foreground: 215 20% 65%;
+  
+  /* Accents */
+  --accent: 216 87% 55%;
+  --accent-foreground: 213 31% 96%;
+  
+  /* Borders */
+  --border: 215 28% 17%;
+  --border-light: 215 20% 25%;
+  
+  /* Card */
+  --card: 224 50% 8%;
+  --card-foreground: 213 31% 96%;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(262, 83%, 58%), hsl(216, 87%, 55%));
+  --gradient-secondary: linear-gradient(135deg, hsl(32, 95%, 59%), hsl(32, 100%, 70%));
+  --gradient-hero: linear-gradient(180deg, hsl(224, 71%, 4%) 0%, hsl(224, 50%, 8%) 100%);
+  
+  /* Shadows */
+  --shadow-primary: 0 10px 40px -10px hsl(262, 83%, 58% / 0.4);
+  --shadow-secondary: 0 10px 40px -10px hsl(32, 95%, 59% / 0.4);
+  --shadow-glow: 0 0 60px hsl(262, 90%, 70% / 0.3);
+  
+  /* Animations */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  line-height: 1.6;
+}
+
+code {
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+}

@@ -1,0 +1,102 @@
+# =============================================================================
+# SpinKube Agent Configuration
+# WebAssembly-based AI Agent for Edge-Native deployment
+# =============================================================================
+
+spin_manifest_version = 2
+
+[application]
+name = "edge-ai-agent"
+version = "1.0.0"
+description = "Edge-Native AI Agent with A2A Protocol Support"
+authors = ["Edge AI Team"]
+
+# =============================================================================
+# TRIGGER CONFIGURATION
+# =============================================================================
+
+# HTTP Trigger for agent endpoints
+[[trigger.http]]
+route = "/..."
+component = "agent-controller"
+
+# =============================================================================
+# AGENT CONTROLLER COMPONENT
+# =============================================================================
+
+[component.agent-controller]
+source = "target/wasm32-wasi/release/agent_controller.wasm"
+allowed_outbound_hosts = [
+    # Local LiteLLM gateway
+    "http://litellm.edge-ai-gateway:4000",
+    # Local Redis for state
+    "redis://redis.edge-ai-data:6379",
+    # Local AgentDB
+    "http://agentdb.edge-ai-data:8080",
+    # A2A discovery (local cluster)
+    "http://*.edge-ai-agents.svc.cluster.local",
+    # E2B sandbox (optional cloud)
+    "https://api.e2b.dev",
+]
+
+# Key-Value store for agent state
+[component.agent-controller.key_value_stores]
+default = "redis"
+
+# Variables from environment/secrets
+[component.agent-controller.variables]
+litellm_url = "{{ LITELLM_URL }}"
+agentdb_url = "{{ AGENTDB_URL }}"
+redis_url = "{{ REDIS_URL }}"
+e2b_api_key = "{{ E2B_API_KEY }}"
+agent_id = "{{ AGENT_ID }}"
+
+# =============================================================================
+# A2A PROTOCOL COMPONENT
+# =============================================================================
+
+[component.a2a-handler]
+source = "target/wasm32-wasi/release/a2a_handler.wasm"
+allowed_outbound_hosts = [
+    "http://*.edge-ai-agents.svc.cluster.local",
+    "https://*.edge-ai.local",
+]
+
+[[trigger.http]]
+route = "/.well-known/agent.json"
+component = "a2a-handler"
+
+[[trigger.http]]
+route = "/a2a/..."
+component = "a2a-handler"
+
+# =============================================================================
+# MCP SERVER COMPONENT
+# =============================================================================
+
+[component.mcp-server]
+source = "target/wasm32-wasi/release/mcp_server.wasm"
+allowed_outbound_hosts = [
+    "http://postgres.edge-ai-data:5432",
+    "http://redis.edge-ai-data:6379",
+]
+
+[[trigger.http]]
+route = "/mcp/..."
+component = "mcp-server"
+
+# =============================================================================
+# BUILD CONFIGURATION
+# =============================================================================
+
+[component.agent-controller.build]
+command = "cargo build --target wasm32-wasi --release"
+watch = ["src/**/*.rs", "Cargo.toml"]
+
+[component.a2a-handler.build]
+command = "cargo build --target wasm32-wasi --release"
+watch = ["src/**/*.rs"]
+
+[component.mcp-server.build]
+command = "cargo build --target wasm32-wasi --release"
+watch = ["src/**/*.rs"]

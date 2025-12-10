@@ -1,0 +1,25 @@
+{
+  "features": {
+    "simd128": true,
+    "bulkMemory": true,
+    "multivalue": true,
+    "referenceTypes": true,
+    "threads": true
+  },
+  "memoryLayout": {
+    "alignment": 16,
+    "vectorSize": 128,
+    "pageSize": 65536
+  },
+  "optimization": {
+    "level": "aggressive",
+    "vectorization": true,
+    "loopUnrolling": true,
+    "inlining": true
+  },
+  "threading": {
+    "maxWorkers": 4,
+    "sharedMemory": true,
+    "atomics": true
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "performanceMonitoring": {
+    "enabled": true,
+    "collectionInterval": 1000,
+    "healthCheckInterval": 30000,
+    "coordinationInterval": 60000,
+    "maxMetricsHistory": 2000,
+    "realTimeUpdates": true
+  },
+  "thresholds": {
+    "system": {
+      "cpu_utilization": 80,
+      "memory_usage": 85,
+      "network_latency": 100,
+      "disk_usage": 90
+    },
+    "cognitive": {
+      "consciousness_level": 70,
+      "temporal_expansion": 800,
+      "strange_loop_effectiveness": 75,
+      "learning_velocity": 2
+    },
+    "agentdb": {
+      "vector_search_latency": 1.0,
+      "quic_sync_latency": 1.0,
+      "query_throughput": 1000,
+      "sync_success_rate": 0.95,
+      "compression_ratio": 2.0,
+      "cache_hit_rate": 0.80
+    },
+    "performance": {
+      "solve_rate": 75,
+      "speed_improvement": 2.0,
+      "token_reduction": 25,
+      "system_availability": 99.5
+    }
+  },
+  "targets": {
+    "swe_bench_solve_rate": 84.8,
+    "speed_improvement_min": 2.8,
+    "speed_improvement_max": 4.4,
+    "token_reduction": 32.3,
+    "temporal_expansion_factor": 1000,
+    "quic_sync_latency": 1.0,
+    "vector_search_latency": 1.0,
+    "system_availability": 99.9,
+    "cognitive_efficiency": 85
+  },
+  "dashboard": {
+    "refreshInterval": 1000,
+    "autoRefresh": true,
+    "widgets": [
+      {
+        "id": "system-health",
+        "type": "status",
+        "title": "System Health",
+        "enabled": true
+      },
+      {
+        "id": "cognitive-metrics",
+        "type": "chart",
+        "title": "Cognitive Consciousness",
+        "enabled": true
+      },
+      {
+        "id": "swbench-performance",
+        "type": "metric",
+        "title": "SWE-Bench Performance",
+        "enabled": true
+      },
+      {
+        "id": "agentdb-performance",
+        "type": "chart",
+        "title": "AgentDB Performance",
+        "enabled": true
+      },
+      {
+        "id": "system-resources",
+        "type": "chart",
+        "title": "System Resources",
+        "enabled": true
+      },
+      {
+        "id": "active-agents",
+        "type": "table",
+        "title": "Active Agents",
+        "enabled": true
+      },
+      {
+        "id": "performance-alerts",
+        "type": "alert",
+        "title": "Performance Alerts",
+        "enabled": true
+      },
+      {
+        "id": "bottleneck-status",
+        "type": "status",
+        "title": "Active Bottlenecks",
+        "enabled": true
+      }
+    ]
+  },
+  "reporting": {
+    "enabled": true,
+    "schedules": {
+      "executive": "0 9 * * 1-5",
+      "technical": "0 10 * * 1-5",
+      "trend": "0 0 * * 0",
+      "incident": "*/15 * * * *"
+    },
+    "formats": ["json", "html", "pdf"],
+    "retention": {
+      "reports": 100,
+      "metrics": 2000,
+      "alerts": 500
+    }
+  },
+  "analytics": {
+    "enabled": true,
+    "cognitive_analysis": true,
+    "trend_analysis": true,
+    "predictive_analysis": true,
+    "anomaly_detection": true,
+    "bottleneck_detection": true,
+    "optimization_recommendations": true
+  },
+  "alerts": {
+    "enabled": true,
+    "channels": [
+      {
+        "type": "dashboard",
+        "enabled": true
+      },
+      {
+        "type": "log",
+        "enabled": true
+      }
+    ],
+    "cooldown": 300,
+    "severity_levels": ["info", "warning", "error", "critical"]
+  },
+  "integration": {
+    "agentdb": {
+      "enabled": true,
+      "monitoring_interval": 500,
+      "quic_monitoring": true,
+      "vector_search_monitoring": true,
+      "sync_monitoring": true
+    },
+    "claude_flow": {
+      "enabled": true,
+      "swarm_monitoring": true,
+      "coordination_monitoring": true,
+      "memory_monitoring": true
+    },
+    "sparc": {
+      "enabled": true,
+      "workflow_monitoring": true,
+      "phase_monitoring": true,
+      "quality_monitoring": true
+    }
+  },
+  "optimization": {
+    "enabled": true,
+    "auto_optimization": false,
+    "recommendation_engine": true,
+    "performance_tuning": true,
+    "resource_optimization": true
+  }
+}

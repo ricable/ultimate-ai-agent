@@ -1,0 +1,68 @@
+FROM node:22-slim
+WORKDIR /app
+
+# Copy local built package
+COPY agentic-flow/package.json ./
+COPY agentic-flow/dist ./dist
+COPY agentic-flow/.claude ./.claude
+
+# Install dependencies and link globally
+RUN npm install --omit=dev && npm link
+
+ENV NODE_ENV=production
+
+# Comprehensive test: Config wizard + Provider configuration
+CMD ["sh", "-c", "\
+echo '🧪 Comprehensive Test Suite - agentic-flow' && echo '' && \
+\
+echo '═══════════════════════════════════════' && \
+echo '  Part 1: Config Wizard Tests' && \
+echo '═══════════════════════════════════════' && echo '' && \
+\
+echo '1️⃣ Setting up configuration with wizard...' && \
+agentic-flow config set ANTHROPIC_API_KEY sk-ant-test-key-12345 && \
+agentic-flow config set PROVIDER anthropic && \
+agentic-flow config set COMPLETION_MODEL claude-sonnet-4-5-20250929 && \
+echo '✅ Configuration set' && echo '' && \
+\
+echo '2️⃣ Listing configuration...' && \
+agentic-flow config list && echo '' && \
+\
+echo '3️⃣ Verifying .env file...' && \
+test -f .env && echo '✅ .env exists' && \
+grep -q ANTHROPIC_API_KEY .env && echo '✅ API key in .env' && \
+grep -q PROVIDER .env && echo '✅ Provider in .env' && \
+echo '' && \
+\
+echo '═══════════════════════════════════════' && \
+echo '  Part 2: CLI Commands' && \
+echo '═══════════════════════════════════════' && echo '' && \
+\
+echo '4️⃣ Testing --help...' && \
+agentic-flow --help | grep -q 'config' && \
+echo '✅ Help shows config commands' && echo '' && \
+\
+echo '5️⃣ Testing --list...' && \
+agentic-flow --list | grep -q 'coder' && \
+echo '✅ Agent list works' && echo '' && \
+\
+echo '6️⃣ Testing config modification...' && \
+agentic-flow config set PROVIDER openrouter && \
+agentic-flow config get PROVIDER | grep -q openrouter && \
+echo '✅ Config modification works' && echo '' && \
+\
+echo '7️⃣ Testing config delete...' && \
+agentic-flow config delete ANTHROPIC_API_KEY && \
+agentic-flow config get ANTHROPIC_API_KEY | grep -q 'not set' && \
+echo '✅ Config delete works' && echo '' && \
+\
+echo '═══════════════════════════════════════' && \
+echo '  Summary' && \
+echo '═══════════════════════════════════════' && echo '' && \
+\
+echo '✅ Config Wizard: Fully functional' && \
+echo '✅ CLI Commands: All working' && \
+echo '✅ .env Management: Verified' && echo '' && \
+\
+echo '🎉 All tests passed!' \
+"]

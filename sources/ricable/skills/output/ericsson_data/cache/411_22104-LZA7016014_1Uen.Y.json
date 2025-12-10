@@ -1,0 +1,75 @@
+{
+  "file_hash": "7d0bf9ea4116227daf3fa56a31493c56",
+  "feature": {
+    "id": "121 4888",
+    "name": "",
+    "cxc_code": "CXC4012261",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "The Resource-Optimized Uplink Scheduling feature provides a new way of baseband uplink",
+    "parameters": [
+      {
+        "name": "Uen.Y",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.feaureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmBbmUlPrbUtilization",
+        "description": "Performance counter pmBbmUlPrbUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmCellUlPrbUtilization",
+        "description": "Performance counter pmCellUlPrbUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmCounters",
+        "description": "Performance counter pmCounters",
+        "category": "General"
+      },
+      {
+        "name": "pmLcgThpTimeUlLcg",
+        "description": "Performance counter pmLcgThpTimeUlLcg",
+        "category": "General"
+      },
+      {
+        "name": "pmLcgThpVolUlLcg",
+        "description": "Performance counter pmLcgThpVolUlLcg",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012261 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012261 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/411_22104-LZA7016014_1Uen.Y.md",
+    "file_hash": "7d0bf9ea4116227daf3fa56a31493c56",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

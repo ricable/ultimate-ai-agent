@@ -1,0 +1,224 @@
+{
+  "version": "1.0",
+  "defaultProvider": "anthropic",
+  "fallbackChain": ["anthropic", "onnx", "openrouter"],
+  "providers": {
+    "anthropic": {
+      "apiKey": "${ANTHROPIC_API_KEY}",
+      "baseUrl": "https://api.anthropic.com",
+      "models": {
+        "default": "claude-3-5-sonnet-20241022",
+        "fast": "claude-3-5-haiku-20241022",
+        "advanced": "claude-3-opus-20240229"
+      },
+      "timeout": 120000,
+      "maxRetries": 3,
+      "retryDelay": 1000
+    },
+    "openai": {
+      "apiKey": "${OPENAI_API_KEY}",
+      "organization": "${OPENAI_ORG_ID}",
+      "baseUrl": "https://api.openai.com/v1",
+      "models": {
+        "default": "gpt-4-turbo-preview",
+        "fast": "gpt-3.5-turbo",
+        "advanced": "gpt-4"
+      },
+      "timeout": 120000,
+      "maxRetries": 3
+    },
+    "openrouter": {
+      "apiKey": "${OPENROUTER_API_KEY}",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "models": {
+        "default": "anthropic/claude-3.5-sonnet",
+        "fast": "anthropic/claude-3-haiku",
+        "advanced": "anthropic/claude-3-opus",
+        "openai": "openai/gpt-4-turbo-preview",
+        "openai-fast": "openai/gpt-3.5-turbo",
+        "google": "google/gemini-pro",
+        "meta": "meta-llama/llama-3-70b-instruct",
+        "mistral": "mistralai/mixtral-8x7b-instruct"
+      },
+      "preferences": {
+        "requireParameters": true,
+        "dataCollection": "deny",
+        "order": ["anthropic", "openai", "google", "meta", "mistral"]
+      },
+      "timeout": 180000,
+      "maxRetries": 3
+    },
+    "ollama": {
+      "baseUrl": "${OLLAMA_BASE_URL:-http://localhost:11434}",
+      "models": {
+        "default": "llama3:8b",
+        "fast": "phi3:mini",
+        "advanced": "llama3:70b",
+        "code": "codellama:13b"
+      },
+      "gpuLayers": 35,
+      "contextWindow": 8192,
+      "numPredict": 2048
+    },
+    "litellm": {
+      "enabled": true,
+      "proxyUrl": "${LITELLM_PROXY_URL:-http://localhost:8000}",
+      "fallbackModels": [
+        "gpt-4-turbo-preview",
+        "claude-3-opus-20240229",
+        "command-r-plus",
+        "gemini-pro"
+      ],
+      "timeout": 180000,
+      "loadBalancing": true
+    },
+    "onnx": {
+      "modelId": "Xenova/Phi-3-mini-4k-instruct",
+      "executionProviders": ["cpu"],
+      "models": {
+        "default": "Xenova/Phi-3-mini-4k-instruct",
+        "fast": "Xenova/Phi-3-mini-4k-instruct",
+        "advanced": "Xenova/Phi-3-medium-128k-instruct"
+      },
+      "maxTokens": 512,
+      "temperature": 0.7,
+      "localInference": true,
+      "gpuAcceleration": false
+    }
+  },
+  "routing": {
+    "mode": "cost-optimized",
+    "rules": [
+      {
+        "condition": {
+          "agentType": ["researcher", "planner"],
+          "complexity": "low"
+        },
+        "action": {
+          "provider": "openrouter",
+          "model": "anthropic/claude-3-haiku",
+          "temperature": 0.7
+        },
+        "reason": "Simple research tasks use cheaper models via OpenRouter"
+      },
+      {
+        "condition": {
+          "agentType": ["coder", "reviewer"],
+          "requiresTools": true
+        },
+        "action": {
+          "provider": "anthropic",
+          "model": "claude-3-5-sonnet-20241022",
+          "temperature": 0.7
+        },
+        "reason": "Tool calling tasks need Claude with native tool support"
+      },
+      {
+        "condition": {
+          "agentType": ["tester"],
+          "complexity": "medium"
+        },
+        "action": {
+          "provider": "openrouter",
+          "model": "openai/gpt-3.5-turbo",
+          "temperature": 0.5
+        },
+        "reason": "Testing tasks can use cheaper GPT models"
+      },
+      {
+        "condition": {
+          "privacy": "high",
+          "localOnly": true
+        },
+        "action": {
+          "provider": "onnx",
+          "model": "Xenova/Phi-3-mini-4k-instruct",
+          "temperature": 0.7
+        },
+        "reason": "Privacy-sensitive tasks use ONNX local models (free CPU inference)"
+      },
+      {
+        "condition": {
+          "offline": true,
+          "requiresPrivacy": true
+        },
+        "action": {
+          "provider": "ollama",
+          "model": "llama3:70b",
+          "temperature": 0.7
+        },
+        "reason": "Offline tasks use Ollama for fully local inference"
+      },
+      {
+        "condition": {
+          "complexity": "high",
+          "requiresReasoning": true
+        },
+        "action": {
+          "provider": "openrouter",
+          "model": "anthropic/claude-3-opus",
+          "temperature": 0.8
+        },
+        "reason": "Complex reasoning uses advanced models via OpenRouter"
+      }
+    ],
+    "costOptimization": {
+      "enabled": true,
+      "maxCostPerRequest": 0.50,
+      "budgetAlerts": {
+        "daily": 10.00,
+        "monthly": 250.00
+      },
+      "preferCheaper": true,
+      "costThreshold": 0.10
+    },
+    "performance": {
+      "timeout": 120000,
+      "concurrentRequests": 5,
+      "circuitBreaker": {
+        "enabled": true,
+        "threshold": 5,
+        "timeout": 60000,
+        "resetTimeout": 30000
+      }
+    }
+  },
+  "toolCalling": {
+    "translationEnabled": true,
+    "defaultFormat": "anthropic",
+    "formatMapping": {
+      "openai": "openai-functions",
+      "anthropic": "anthropic-tools",
+      "openrouter": "auto-detect",
+      "ollama": "manual"
+    },
+    "fallbackStrategy": "disable-tools"
+  },
+  "monitoring": {
+    "enabled": true,
+    "logLevel": "info",
+    "metrics": {
+      "trackCost": true,
+      "trackLatency": true,
+      "trackTokens": true,
+      "trackErrors": true
+    },
+    "alerts": {
+      "costThreshold": 5.00,
+      "errorRate": 0.1,
+      "latencyThreshold": 30000
+    }
+  },
+  "cache": {
+    "enabled": true,
+    "ttl": 3600,
+    "maxSize": 1000,
+    "strategy": "lru",
+    "providers": {
+      "anthropic": { "ttl": 7200 },
+      "openai": { "ttl": 3600 },
+      "openrouter": { "ttl": 3600 },
+      "ollama": { "ttl": 1800 }
+    }
+  }
+}

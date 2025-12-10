@@ -1,0 +1,214 @@
+{
+  "file_hash": "de794410b5bf66fafa85b9fd1816e200",
+  "feature": {
+    "id": "121 3036",
+    "name": "CS Fallback to CDMA 1X  CS Fallback to GERAN and UTRAN",
+    "cxc_code": "CXC4011034",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Emergency Call Handling for CS Fallback feature offers the operator the possibility",
+    "parameters": [
+      {
+        "name": "UtranFreqRelation.csFallbackPrioEc",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UtranFreqRelation"
+      },
+      {
+        "name": "UtranTDDFreqRelation.csFallbackPrioEc",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UtranTDDFreqRelation"
+      },
+      {
+        "name": "GeranFreqGroupRelation.csFallbackPrioEc",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GeranFreqGroupRelation"
+      },
+      {
+        "name": "Cdma20001xRttFreqRelation.csFallbackPrioEc",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Cdma20001xRttFreqRelation"
+      },
+      {
+        "name": "GeranFreqGroupRelation.altCsfbTargetPrioEc",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GeranFreqGroupRelation"
+      },
+      {
+        "name": "UtranFreqRelation.altCsfbTargetPrioEc",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UtranFreqRelation"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_MOBILITY_DECISION",
+        "description": "Indicates the decision the mobility evaluation takes.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_MOBILITY_TRIGGER",
+        "description": "Indicates the trigger for performing a mobility evaluation.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_REDIRECT_RELEASE_INFO",
+        "description": "Information about what RAT the UE is redirected to with                                     release.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_RELEASE_WITH_REDIRECT_REASON",
+        "description": "If the mobility decision is Release with Redirect, this parameter                                     indicates the reason. Otherwise, unavailable.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+        "description": "Indicates the cause of the procedure for HO execution.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+        "description": "Indicates the cause of the procedure for HO preparation.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AJ",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UeMeasControl.allowReleaseQci1",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "RttFreqRelation.csFallbackPrioEc",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "RttFreqRelation"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmHoExeAttCsfbEm",
+        "description": "Performance counter pmHoExeAttCsfbEm",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccCsfbEm",
+        "description": "Performance counter pmHoExeSuccCsfbEm",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttCsfbEm",
+        "description": "Performance counter pmHoPrepAttCsfbEm",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccCsfbEm",
+        "description": "Performance counter pmHoPrepSuccCsfbEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbCdma1xRttEm",
+        "description": "Performance counter pmUeCtxtRelCsfbCdma1xRttEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbGsmEm",
+        "description": "Performance counter pmUeCtxtRelCsfbGsmEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbHoPrepFail1xRttEm",
+        "description": "Performance counter pmUeCtxtRelCsfbHoPrepFail1xRttEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbMeasTO1xRttEm",
+        "description": "Performance counter pmUeCtxtRelCsfbMeasTO1xRttEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbTdScdmaEm",
+        "description": "Performance counter pmUeCtxtRelCsfbTdScdmaEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbWcdmaEm",
+        "description": "Performance counter pmUeCtxtRelCsfbWcdmaEm",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_MOBILITY_DECISION",
+        "description": "Indicates the decision the mobility evaluation takes."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_MOBILITY_TRIGGER",
+        "description": "Indicates the trigger for performing a mobility evaluation."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_REDIRECT_RELEASE_INFO",
+        "description": "Information about what RAT the UE is redirected to with                                     release."
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_RELEASE_WITH_REDIRECT_REASON",
+        "description": "If the mobility decision is Release with Redirect, this parameter                                     indicates the reason. Otherwise, unavailable."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+        "description": "Indicates the cause of the procedure for HO execution."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+        "description": "Indicates the cause of the procedure for HO preparation."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011034 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011034 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/41_22104-LZA7016014_1Uen.AJ.md",
+    "file_hash": "de794410b5bf66fafa85b9fd1816e200",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

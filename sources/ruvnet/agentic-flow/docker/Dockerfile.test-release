@@ -1,0 +1,33 @@
+FROM node:22-slim
+
+WORKDIR /app
+
+# Install required dependencies for ONNX
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the package tarball
+COPY agentic-flow/agentic-flow-1.1.3.tgz .
+
+# Install from tarball
+RUN npm install -g ./agentic-flow-1.1.3.tgz
+
+# Set environment variables (use build args)
+ARG ANTHROPIC_API_KEY
+ARG OPENROUTER_API_KEY
+ARG GOOGLE_GEMINI_API_KEY
+
+ENV ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+ENV OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+ENV GOOGLE_GEMINI_API_KEY=${GOOGLE_GEMINI_API_KEY}
+
+# Test commands
+CMD echo "Testing agentic-flow installation..." && \
+    npx agentic-flow --list && \
+    echo "\nTesting with Gemini provider:" && \
+    npx agentic-flow --agent coder --task "Say hello" --provider gemini && \
+    echo "\nTesting with OpenRouter provider:" && \
+    npx agentic-flow --agent coder --task "Say hello" --provider openrouter

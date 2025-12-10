@@ -1,0 +1,64 @@
+{
+  "id": "121 4300",
+  "name": "Prioritized SR Scheduling",
+  "cxc_code": "CXC4011938",
+  "value_package": "High Load Handling",
+  "value_package_id": "FAJ 801 0415",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Prioritized SR Scheduling feature improves retainability and scheduler",
+  "parameters": [
+    {
+      "name": "AdmissionControl.ulAdmDifferentiationThr",
+      "type": "Affected",
+      "description": "The Prioritized SR Scheduling feature increases uplink use of MSR because the high                 priority given to SRs. Because of the increased uplink MSR use, the Dynamic GBR                 Admission Control feature to reject more GBR bearers unless the Differentiation                 Threshold is raised.  The Differentiated Admission Control feature uses the lowest ARP level when                 considering resources scheduled in response to SRs with high priority.  The Prioritized SR Scheduling feature can lower the ARP blocking level in the                 Differentiated Admission Control feature. This can result in more rejections of GBR                 bearers with lower ARP level unless the Differentiation Threshold is raised.  The amount to add to the threshold to keep the same behavior depends on the SR load                 which depends on the traffic pattern.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.ulAdmOverloadThr",
+      "type": "Affected",
+      "description": "The Prioritized SR Scheduling feature increases uplink use of MSR because the high                 priority given to SRs. Because of the increased uplink MSR use,  the Differentiated                 Admission Control feature to reject more GBR bearers with lower ARP level unless the                 Overall Threshold is raised.   A similar differentiation behavior is reached after enabling the feature by                 raising the Differentiation and Overall Thresholds with the same amount. The amount                 to add to the thresholds to keep the same behavior depends on the SR load which                 depends on the traffic pattern.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "Uen.AE",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellTDD.pmSrGrantLatDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmSrGrantLatDistr",
+      "description": "Performance counter pmSrGrantLatDistr",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011938 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011938 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/16_22104-LZA7016014_1Uen.AE.md",
+  "file_hash": "2d7343ee7b3ecbbbd5faae619bec73d1",
+  "processed_at": "2025-10-19 15:48:54",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,126 @@
+{
+  "file_hash": "2647ab03e8a7186c00bd6ccacc1314b2",
+  "feature": {
+    "id": "121 4575",
+    "name": "Transport Path Characteristics Monitoring",
+    "cxc_code": "CXC4012022",
+    "value_package": "TN Performance Monitoring",
+    "value_package_id": "FAJ 801 0441 R6",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature offers high accuracy round-trip delay measurements for each remote GTP-U",
+    "parameters": [
+      {
+        "name": "ENodeBFunction.x2GtpuEchoEnable",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.x2GtpuEchoDscp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "Uen.BE",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "GtpPath.pmPDVFwd99p",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "GtpPath"
+      },
+      {
+        "name": "GtpPath.pmPDVFwdAvg",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "GtpPath"
+      },
+      {
+        "name": "GtpPath.pmPDVFwdMax",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "GtpPath"
+      },
+      {
+        "name": "GtpPath.pmRTDAvg",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "GtpPath"
+      },
+      {
+        "name": "GtpPath.pmRTD99p",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "GtpPath"
+      },
+      {
+        "name": "GtpPath.pmRTDMax",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "GtpPath"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmPDVFwd99p",
+        "description": "Performance counter pmPDVFwd99p",
+        "category": "General"
+      },
+      {
+        "name": "pmPDVFwdAvg",
+        "description": "Performance counter pmPDVFwdAvg",
+        "category": "General"
+      },
+      {
+        "name": "pmPDVFwdMax",
+        "description": "Performance counter pmPDVFwdMax",
+        "category": "General"
+      },
+      {
+        "name": "pmRTD99p",
+        "description": "Performance counter pmRTD99p",
+        "category": "General"
+      },
+      {
+        "name": "pmRTDAvg",
+        "description": "Performance counter pmRTDAvg",
+        "category": "General"
+      },
+      {
+        "name": "pmRTDMax",
+        "description": "Performance counter pmRTDMax",
+        "category": "General"
+      },
+      {
+        "name": "pmRTDMin",
+        "description": "Performance counter pmRTDMin",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012022 MO instance.",
+    "deactivation_step": null,
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/218_22104-LZA7016014_1Uen.BE.md",
+    "file_hash": "2647ab03e8a7186c00bd6ccacc1314b2",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

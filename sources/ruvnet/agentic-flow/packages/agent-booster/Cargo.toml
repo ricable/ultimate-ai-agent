@@ -1,0 +1,41 @@
+[workspace]
+members = [
+    "crates/agent-booster",
+    "crates/agent-booster-native",
+    "crates/agent-booster-wasm",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.77"
+authors = ["Agent Booster Team"]
+license = "MIT"
+
+[workspace.dependencies]
+# Core parsing
+tree-sitter = "0.22"
+tree-sitter-javascript = "0.21"
+tree-sitter-typescript = "0.21"
+
+# Text similarity
+strsim = "0.11"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Testing
+proptest = "1.4"
+criterion = "0.5"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true

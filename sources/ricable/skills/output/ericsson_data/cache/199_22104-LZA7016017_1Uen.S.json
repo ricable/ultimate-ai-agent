@@ -1,0 +1,123 @@
+{
+  "file_hash": "1260ab03f3628ae1fecdf32f40ddfde7",
+  "feature": {
+    "id": "121 5717",
+    "name": "NR Enhanced Slicing Observability",
+    "cxc_code": "CXC4012731",
+    "value_package": "Advanced RAN Slicing",
+    "value_package_id": "FAJ 801 4019",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature allows to observe the maximum packet delay times.",
+    "parameters": [
+      {
+        "name": "Uen.S",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "DRB.Note",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "DRB"
+      },
+      {
+        "name": "NRCellDU.pmMacTimeUlResDrbMaxQos",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmMacInitSchedDelayUlMaxQos",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      },
+      {
+        "name": "A.a",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "A"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsnMacInitSchedDelayUlMax",
+        "description": "Performance counter pmEbsnMacInitSchedDelayUlMax",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacInitSchedDelayUlMaxDistr",
+        "description": "Performance counter pmEbsnMacInitSchedDelayUlMaxDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacPucchSrPuschGrantLatMaxDistr",
+        "description": "Performance counter pmEbsnMacPucchSrPuschGrantLatMaxDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacTimeUlResDrbMax",
+        "description": "Performance counter pmEbsnMacTimeUlResDrbMax",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacTimeUlResDrbMaxDistr",
+        "description": "Performance counter pmEbsnMacTimeUlResDrbMaxDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnRlcDelayTimeDlMax",
+        "description": "Performance counter pmEbsnRlcDelayTimeDlMax",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnRlcDelayTimeDlMaxDistr",
+        "description": "Performance counter pmEbsnRlcDelayTimeDlMaxDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacInitSchedDelayUlMaxQos",
+        "description": "Performance counter pmMacInitSchedDelayUlMaxQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeUlResDrbMaxQos",
+        "description": "Performance counter pmMacTimeUlResDrbMaxQos",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012731 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012731 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/199_22104-LZA7016017_1Uen.S.md",
+    "file_hash": "1260ab03f3628ae1fecdf32f40ddfde7",
+    "processed_at": "2025-10-19 15:50:11",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

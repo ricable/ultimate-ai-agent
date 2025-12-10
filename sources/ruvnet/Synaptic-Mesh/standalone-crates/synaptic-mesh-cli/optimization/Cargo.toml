@@ -1,0 +1,134 @@
+[package]
+name = "kimi-k2-optimization"
+version = "0.1.0"
+edition = "2021"
+authors = ["Synaptic Neural Mesh Team"]
+description = "Deep optimization suite for Kimi-K2 Rust-WASM conversion with real neural networks"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/ruvnet/Synaptic-Neural-Mesh"
+keywords = ["neural-networks", "wasm", "optimization", "performance", "ruv-fann"]
+categories = ["algorithms", "science", "wasm", "development-tools"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Core neural network engine - using ruv-FANN for real implementations
+ruv-fann = "0.1.6"
+
+# WebAssembly bindings and optimization
+wasm-bindgen = { version = "0.2", features = ["serde-serialize"] }
+js-sys = "0.3"
+web-sys = { version = "0.3", features = [
+    "console",
+    "Performance",
+    "PerformanceEntry",
+    "PerformanceObserver",
+    "Memory",
+    "Navigator",
+    "Window",
+    "Document",
+    "Element",
+    "CanvasRenderingContext2d",
+    "HtmlCanvasElement",
+    "WebGlRenderingContext",
+    "WorkerGlobalScope",
+    "DedicatedWorkerGlobalScope"
+]}
+
+# Core crate dependency
+kimi-fann-core = { path = "../crates/kimi-fann-core" }
+
+# Serialization and data handling
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde-wasm-bindgen = "0.4"
+
+# Performance and memory optimization
+lru = "0.12"
+hashbrown = "0.14"
+smallvec = "1.11"
+parking_lot = "0.12"
+
+# Async support for WASM
+futures = "0.3"
+wasm-bindgen-futures = "0.4"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Mathematical operations for optimization
+num-traits = "0.2"
+ndarray = { version = "0.15", features = ["serde"] }
+rand = { version = "0.8", features = ["small_rng"] }
+
+# Benchmarking and profiling
+criterion = { version = "0.5", features = ["html_reports"] }
+
+# Logging and debugging
+log = "0.4"
+console_log = "1.0"
+console_error_panic_hook = "0.1"
+
+# Time measurement
+instant = { version = "0.1", features = ["wasm-bindgen"] }
+
+# Memory usage tracking
+wee_alloc = "0.4"
+
+[dependencies.getrandom]
+version = "0.2"
+features = ["js"]
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"
+tokio = { version = "1.0", features = ["macros", "rt"] }
+
+[features]
+default = ["optimization", "benchmarking", "profiling"]
+
+# Core optimization features
+optimization = []
+benchmarking = []
+profiling = []
+memory-tracking = []
+
+# Performance features
+simd = []
+parallel = []
+gpu-compute = []
+
+# Browser compatibility
+browser-compat = []
+worker-support = []
+
+# Development and debugging
+debug-info = ["log/max_level_debug"]
+detailed-metrics = []
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = ["-Oz", "--enable-mutable-globals", "--enable-bulk-memory"]
+
+[package.metadata.wasm-pack.profile.profiling]
+wasm-opt = ["-O", "--debuginfo"]
+
+[[bench]]
+name = "neural_performance"
+harness = false
+
+[[bench]]
+name = "wasm_optimization"
+harness = false
+
+[[bench]]
+name = "memory_usage"
+harness = false
+
+[[example]]
+name = "optimization_demo"
+required-features = ["optimization"]
+
+[[example]]
+name = "browser_benchmark"
+required-features = ["browser-compat"]

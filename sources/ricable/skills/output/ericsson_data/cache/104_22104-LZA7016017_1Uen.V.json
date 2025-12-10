@@ -1,0 +1,101 @@
+{
+  "file_hash": "89cba1c660e0c7ec8c462d497af390ed",
+  "feature": {
+    "id": "121 5270",
+    "name": "Over-the-Air Assisted Time Holdover",
+    "cxc_code": "CXC4012104",
+    "value_package": "Over-the-Air Value Package",
+    "value_package_id": "FAJ 801 4016",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature prolongs the time holdover period if the primary time synchronization",
+    "parameters": [
+      {
+        "name": "OverTheAirSync.overTheAirSyncId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "OverTheAirSync"
+      },
+      {
+        "name": "OverTheAirSync.overTheAirSyncStatus",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "OverTheAirSync"
+      },
+      {
+        "name": "OverTheAirSync.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "OverTheAirSync"
+      },
+      {
+        "name": "AssistingReference.assistedReferenceStatus",
+        "type": "Affected",
+        "description": "The parameter shows if the OverTheAirSync MO, that                                 it encapsulates, is faulty.",
+        "mo_class": "AssistingReference"
+      },
+      {
+        "name": "AssistingReference.receivedQualityLevel",
+        "type": "Affected",
+        "description": "The MO parameter shows the quality level of the encapsulated                                     OverTheAirSync MO.",
+        "mo_class": "AssistingReference"
+      },
+      {
+        "name": "Uen.V",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "RadioEquipmentClock.timeAssistedHoldoverSec",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "RadioEquipmentClock"
+      },
+      {
+        "name": "NRCellDU.pmCellDowntimeAuto",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "RadioEquipmentClock.selectionProcessMode",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "RadioEquipmentClock"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCellDowntimeAuto",
+        "description": "Performance counter pmCellDowntimeAuto",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmentClock",
+        "description": "Performance counter pmentClock",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012518 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012518 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/104_22104-LZA7016017_1Uen.V.md",
+    "file_hash": "89cba1c660e0c7ec8c462d497af390ed",
+    "processed_at": "2025-10-19 15:48:56",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

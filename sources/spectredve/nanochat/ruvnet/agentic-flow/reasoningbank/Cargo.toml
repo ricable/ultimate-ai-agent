@@ -1,0 +1,76 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/reasoningbank-core",
+    "crates/reasoningbank-storage",
+    "crates/reasoningbank-learning",
+    "crates/reasoningbank-network",
+    "crates/reasoningbank-mcp",
+    "crates/reasoningbank-wasm",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["ReasoningBank Contributors"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/ruvnet/agentic-flow"
+homepage = "https://github.com/ruvnet/agentic-flow/tree/main/reasoningbank"
+documentation = "https://docs.rs/reasoningbank"
+keywords = ["reasoning", "ai", "mcp", "quic", "learning"]
+categories = ["algorithms", "database", "network-programming", "wasm"]
+
+[workspace.dependencies]
+# Core dependencies
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tokio = { version = "1.35", features = ["full"] }
+
+# Storage
+rusqlite = { version = "0.31", features = ["bundled", "backup", "blob", "chrono", "functions"] }
+parking_lot = "0.12"
+
+# Networking
+quinn = "0.10"
+rustls = { version = "0.21", features = ["dangerous_configuration"] }
+rcgen = "0.12"
+ed25519-dalek = { version = "2", features = ["rand_core", "serde"] }
+prost = "0.13"
+sha2 = "0.10"
+bytes = "1.5"
+futures = "0.3"
+rand = "0.8"
+base64 = "0.22"
+chrono = "0.4"
+serde_bytes = "0.11"
+
+# Learning & Similarity
+ndarray = "0.15"
+ordered-float = "4.2"
+
+# MCP
+async-trait = "0.1"
+uuid = { version = "1.6", features = ["v4", "serde"] }
+
+# WASM
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+js-sys = "0.3"
+web-sys = "0.3"
+
+# Testing
+criterion = { version = "0.5", features = ["html_reports"] }
+tempfile = "3.9"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+strip = true
+
+[profile.bench]
+inherits = "release"

@@ -1,0 +1,305 @@
+{
+  "comparison": [
+    {
+      "id": "test-001",
+      "description": "Add type annotations to function",
+      "category": "typescript-conversion",
+      "morph": {
+        "latency": 466,
+        "success": true,
+        "tokens": {
+          "input": 70,
+          "output": 20
+        }
+      },
+      "agentBooster": {
+        "latency": 13,
+        "success": true,
+        "confidence": 0.5737500190734863,
+        "strategy": "insert_after",
+        "tokens": {
+          "input": 10,
+          "output": 26
+        }
+      },
+      "speedup": "35.8",
+      "winner": "agent"
+    },
+    {
+      "id": "test-002",
+      "description": "Add error handling to async function",
+      "category": "error-handling",
+      "morph": {
+        "latency": 252,
+        "success": true,
+        "tokens": {
+          "input": 77,
+          "output": 21
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": true,
+        "confidence": 0.8500000238418579,
+        "strategy": "exact_replace",
+        "tokens": {
+          "input": 24,
+          "output": 81
+        }
+      },
+      "speedup": "Infinity",
+      "winner": "agent"
+    },
+    {
+      "id": "test-003",
+      "description": "Convert var to const/let",
+      "category": "modernization",
+      "morph": {
+        "latency": 285,
+        "success": true,
+        "tokens": {
+          "input": 90,
+          "output": 34
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": true,
+        "confidence": 0.7955467104911804,
+        "strategy": "fuzzy_replace",
+        "tokens": {
+          "input": 20,
+          "output": 20
+        }
+      },
+      "speedup": "Infinity",
+      "winner": "agent"
+    },
+    {
+      "id": "test-004",
+      "description": "Add JSDoc comments",
+      "category": "documentation",
+      "morph": {
+        "latency": 541,
+        "success": true,
+        "tokens": {
+          "input": 70,
+          "output": 59
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": true,
+        "confidence": 0.5672115683555603,
+        "strategy": "insert_after",
+        "tokens": {
+          "input": 11,
+          "output": 66
+        }
+      },
+      "speedup": "Infinity",
+      "winner": "agent"
+    },
+    {
+      "id": "test-005",
+      "description": "Convert callback to Promise",
+      "category": "async-conversion",
+      "morph": {
+        "latency": 395,
+        "success": true,
+        "tokens": {
+          "input": 98,
+          "output": 51
+        }
+      },
+      "agentBooster": {
+        "latency": 1,
+        "success": true,
+        "confidence": 0.5106883645057678,
+        "strategy": "insert_after",
+        "tokens": {
+          "input": 39,
+          "output": 92
+        }
+      },
+      "speedup": "395.0",
+      "winner": "agent"
+    },
+    {
+      "id": "test-006",
+      "description": "Add null checks",
+      "category": "safety",
+      "morph": {
+        "latency": 298,
+        "success": true,
+        "tokens": {
+          "input": 67,
+          "output": 14
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": true,
+        "confidence": 0.8500000238418579,
+        "strategy": "exact_replace",
+        "tokens": {
+          "input": 15,
+          "output": 39
+        }
+      },
+      "speedup": "Infinity",
+      "winner": "agent"
+    },
+    {
+      "id": "test-007",
+      "description": "Convert to arrow function",
+      "category": "modernization",
+      "morph": {
+        "latency": 292,
+        "success": true,
+        "tokens": {
+          "input": 90,
+          "output": 31
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": true,
+        "confidence": 0.5705881714820862,
+        "strategy": "insert_after",
+        "tokens": {
+          "input": 24,
+          "output": 46
+        }
+      },
+      "speedup": "Infinity",
+      "winner": "agent"
+    },
+    {
+      "id": "test-008",
+      "description": "Add input validation",
+      "category": "validation",
+      "morph": {
+        "latency": 394,
+        "success": true,
+        "tokens": {
+          "input": 68,
+          "output": 45
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": true,
+        "confidence": 0.8999999761581421,
+        "strategy": "exact_replace",
+        "tokens": {
+          "input": 11,
+          "output": 63
+        }
+      },
+      "speedup": "Infinity",
+      "winner": "agent"
+    },
+    {
+      "id": "test-009",
+      "description": "Convert class to TypeScript",
+      "category": "typescript-conversion",
+      "morph": {
+        "latency": 269,
+        "success": true,
+        "tokens": {
+          "input": 85,
+          "output": 31
+        }
+      },
+      "agentBooster": {
+        "latency": 1,
+        "success": true,
+        "confidence": 0.800000011920929,
+        "strategy": "exact_replace",
+        "tokens": {
+          "input": 27,
+          "output": 55
+        }
+      },
+      "speedup": "269.0",
+      "winner": "agent"
+    },
+    {
+      "id": "test-010",
+      "description": "Add destructuring",
+      "category": "modernization",
+      "morph": {
+        "latency": 319,
+        "success": true,
+        "tokens": {
+          "input": 97,
+          "output": 35
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": true,
+        "confidence": 0.5604602098464966,
+        "strategy": "insert_after",
+        "tokens": {
+          "input": 40,
+          "output": 83
+        }
+      },
+      "speedup": "Infinity",
+      "winner": "agent"
+    },
+    {
+      "id": "test-011",
+      "description": "Add try-catch wrapper",
+      "category": "error-handling",
+      "morph": {
+        "latency": 331,
+        "success": true,
+        "tokens": {
+          "input": 69,
+          "output": 30
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": true,
+        "confidence": 0.8999999761581421,
+        "strategy": "exact_replace",
+        "tokens": {
+          "input": 14,
+          "output": 42
+        }
+      },
+      "speedup": "Infinity",
+      "winner": "agent"
+    },
+    {
+      "id": "test-012",
+      "description": "Add async/await",
+      "category": "async-conversion",
+      "morph": {
+        "latency": 377,
+        "success": true,
+        "tokens": {
+          "input": 82,
+          "output": 56
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": true,
+        "confidence": 0.8500000238418579,
+        "strategy": "exact_replace",
+        "tokens": {
+          "input": 26,
+          "output": 72
+        }
+      },
+      "speedup": "Infinity",
+      "winner": "agent"
+    }
+  ],
+  "timestamp": "2025-10-08T00:22:11.506Z"
+}

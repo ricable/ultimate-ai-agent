@@ -1,0 +1,131 @@
+{
+  "id": "121 4302",
+  "name": "Inactivity-Triggered PUCCH Release at High Load",
+  "cxc_code": "CXC4011941",
+  "value_package": "High Load Handling",
+  "value_package_id": "FAJ 801 0415",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature monitors the use of PUCCH resources in a cell and activates out-of-sync",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.noOfPucchSrUsers",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.noOfPucchSrUsers",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.tTimeAlignmentTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.tTimeAlignmentTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "Uen.BF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.pmPucchSr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmPucchFailSr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmPucchFailSr",
+      "description": "Performance counter pmPucchFailSr",
+      "category": "General"
+    },
+    {
+      "name": "pmPucchSr",
+      "description": "Performance counter pmPucchSr",
+      "category": "General"
+    },
+    {
+      "name": "pmPucchSrCqiResAllocAtt",
+      "description": "Performance counter pmPucchSrCqiResAllocAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmPucchSrCqiResCongSr",
+      "description": "Performance counter pmPucchSrCqiResCongSr",
+      "category": "General"
+    },
+    {
+      "name": "pmPucchSrResCongBbm",
+      "description": "Performance counter pmPucchSrResCongBbm",
+      "category": "General"
+    },
+    {
+      "name": "pmPucchSrResLongUtilCell",
+      "description": "Performance counter pmPucchSrResLongUtilCell",
+      "category": "General"
+    },
+    {
+      "name": "pmPucchSrResMediumUtilCell",
+      "description": "Performance counter pmPucchSrResMediumUtilCell",
+      "category": "General"
+    },
+    {
+      "name": "pmPucchSrResShortUtilCell",
+      "description": "Performance counter pmPucchSrResShortUtilCell",
+      "category": "General"
+    },
+    {
+      "name": "pmPucchSrResUtilBbm",
+      "description": "Performance counter pmPucchSrResUtilBbm",
+      "category": "General"
+    },
+    {
+      "name": "pmRaSuccSrInSync",
+      "description": "Performance counter pmRaSuccSrInSync",
+      "category": "General"
+    },
+    {
+      "name": "pmRaSuccSrOutOfSync",
+      "description": "Performance counter pmRaSuccSrOutOfSync",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnLevSumUlOutOfSync",
+      "description": "Performance counter pmRrcConnLevSumUlOutOfSync",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011941 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011941 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/79_22104-LZA7016014_1Uen.BF.md",
+  "file_hash": "4fb7f39ccaa2e5c60643a0f3b9a5d3a2",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

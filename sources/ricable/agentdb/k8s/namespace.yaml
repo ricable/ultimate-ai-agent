@@ -1,0 +1,17 @@
+# Kubernetes Namespace for RAN Automation System
+# Phase 5: Pydantic Schema Generation & Production Integration
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ran-automation
+  labels:
+    name: ran-automation
+    environment: production
+    project: ran-intelligent-multi-agent-system
+    phase: "5"
+    component: infrastructure
+  annotations:
+    description: "Namespace for Ericsson RAN Intelligent Multi-Agent System with Cognitive Consciousness"
+    contact: "ran-research@ericsson.com"
+    created-by: "claude-code-pipeline-automation"

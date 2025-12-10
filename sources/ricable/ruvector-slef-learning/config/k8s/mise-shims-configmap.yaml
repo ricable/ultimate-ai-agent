@@ -1,0 +1,113 @@
+# ConfigMap containing mise shim setup for Kubernetes pods
+# Used by init containers or sidecars to setup reproducible environments
+#
+# Usage: kubectl apply -f config/k8s/mise-shims-configmap.yaml
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mise-shims-setup
+  namespace: zgents
+  labels:
+    app.kubernetes.io/name: mise-shims
+    app.kubernetes.io/component: config
+data:
+  # Script to setup mise shims in a container
+  setup-shims.sh: |
+    #!/bin/sh
+    set -e
+
+    echo "Setting up mise shims..."
+
+    # Install mise if not present
+    if ! command -v mise &> /dev/null; then
+      curl https://mise.run | sh
+      export PATH="$HOME/.local/bin:$PATH"
+    fi
+
+    # Setup shims directory
+    mkdir -p "$HOME/.local/share/mise/shims"
+
+    # Install tools from mise.toml if present
+    if [ -f "/app/mise.toml" ]; then
+      mise trust /app/mise.toml
+      mise install
+    fi
+
+    # Generate shims
+    mise reshim
+
+    echo "Mise shims ready at $HOME/.local/share/mise/shims"
+
+  # Script to activate shims in running container
+  activate-shims.sh: |
+    #!/bin/sh
+    # Source this file to activate mise shims
+    export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:$PATH"
+
+  # mise.toml for minimal agent environment
+  agent-mise.toml: |
+    [env]
+    NODE_ENV = "production"
+
+    [tools]
+    node = "22"
+    bun = "latest"
+
+    [settings]
+    experimental = true
+    shims_dir = "~/.local/share/mise/shims"
+
+---
+# Example Pod using mise shims via init container
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-mise-agent
+  namespace: zgents
+spec:
+  initContainers:
+    - name: setup-mise
+      image: debian:bookworm-slim
+      command:
+        - /bin/sh
+        - -c
+        - |
+          apt-get update && apt-get install -y curl
+          /scripts/setup-shims.sh
+      volumeMounts:
+        - name: mise-scripts
+          mountPath: /scripts
+        - name: mise-data
+          mountPath: /root/.local/share/mise
+        - name: mise-bin
+          mountPath: /root/.local/bin
+
+  containers:
+    - name: agent
+      image: ghcr.io/ruvnet/wasm-agent:latest
+      command: ["/bin/sh", "-c"]
+      args:
+        - |
+          source /scripts/activate-shims.sh
+          node /app/agent.js
+      env:
+        - name: PATH
+          value: "/root/.local/share/mise/shims:/root/.local/bin:/usr/local/bin:/usr/bin:/bin"
+      volumeMounts:
+        - name: mise-scripts
+          mountPath: /scripts
+        - name: mise-data
+          mountPath: /root/.local/share/mise
+        - name: mise-bin
+          mountPath: /root/.local/bin
+
+  volumes:
+    - name: mise-scripts
+      configMap:
+        name: mise-shims-setup
+        defaultMode: 0755
+    - name: mise-data
+      emptyDir: {}
+    - name: mise-bin
+      emptyDir: {}

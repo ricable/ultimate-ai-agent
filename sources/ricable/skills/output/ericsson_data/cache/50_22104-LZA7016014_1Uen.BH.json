@@ -1,0 +1,213 @@
+{
+  "file_hash": "0c3b335e55456e79cb6ab0795ab8c51f",
+  "feature": {
+    "id": "121 1898",
+    "name": "PCI Conflict Reporting",
+    "cxc_code": "CXC4011183",
+    "value_package": "Self-Organizing Networks",
+    "value_package_id": "FAJ 801 0435",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The PCI Conflict Reporting feature detects PCI conflicts and reports them to the",
+    "parameters": [
+      {
+        "name": "ENodeBFunction.pciConflictReportType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.x2SetupTwoWayRelations",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.zzzTemporary39",
+        "type": "Introduced",
+        "description": "Indicates if a relation is created during S1 incoming handover when                                 PCI conflict is identified.  A relation is created when the attribute is set to 1                                 or the default value.  No relation is created when the attribute is set to                                     0.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ExternalGUtranCell.pciConflict",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGUtranCell"
+      },
+      {
+        "name": "ExternalGUtranCell.pciConflictCell",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGUtranCell"
+      },
+      {
+        "name": "ExternalGUtranCell.pciDetectingCell",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGUtranCell"
+      },
+      {
+        "name": "EUtranCellFDD.pciConflict",
+        "type": "Affected",
+        "description": "If a PCI conflict is detected, the attribute is set to                                     YES.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pciConflict",
+        "type": "Affected",
+        "description": "If a PCI conflict is detected, the attribute is set to                                     YES.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "ExternalEUtranCellFDD.pciConflict",
+        "type": "Affected",
+        "description": "If a PCI conflict is detected, the attribute is set to                                     YES.",
+        "mo_class": "ExternalEUtranCellFDD"
+      },
+      {
+        "name": "ExternalEUtranCellTDD.pciConflict",
+        "type": "Affected",
+        "description": "If a PCI conflict is detected, the attribute is set to                                     YES.",
+        "mo_class": "ExternalEUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pciConflictCell",
+        "type": "Affected",
+        "description": "The first cell in the                                     EUtranCellFDD.pciDetectingCellEUtranCellFDD.pciConflictCell list and to the                                 first value of  list                                 corresponds to the first cell in the                                     EUtranCellFDD.pciConflict. The                                 second cell in the EUtranCellFDD.pciDetectingCell                                 list corresponds to the second cell in the                                     EUtranCellFDD.pciConflictCell list and to the                                 first value of EUtranCellFDD.pciConflict.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pciConflictCell",
+        "type": "Affected",
+        "description": "The first cell in the                                     EUtranCellTDD.pciDetectingCell list                                 corresponds to the first cell in the                                     EUtranCellTDD.pciConflictCell list and to the                                 first value of EUtranCellTDD.pciConflict. The                                 second cell in the EUtranCellTDD.pciDetectingCell                                 list corresponds to the second cell in the                                     EUtranCellTDD.pciConflictCell list and to the                                 first value of EUtranCellTDD.pciConflict.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "ExternalEUtranCellFDD.pciConflictCell",
+        "type": "Affected",
+        "description": "The first cell in the                                     ExternalEUtranCellFDD.pciDetectingCell list                                 corresponds to the first cell in the                                     ExternalEUtranCellFDD.pciConflictCell list                                 and to the first value of                                     ExternalEUtranCellFDD.pciConflict. The second                                 cell in the                                     ExternalEUtranCellFDD.pciDetectingCell list                                 corresponds to the second cell in the                                     ExternalEUtranCellFDD.pciConflictCell list                                 and to the first value of                                     ExternalEUtranCellFDD.pciConflict.",
+        "mo_class": "ExternalEUtranCellFDD"
+      },
+      {
+        "name": "ExternalEUtranCellTDD.pciConflictCell",
+        "type": "Affected",
+        "description": "The first cell in the                                     ExternalEUtranCellTDD.pciDetectingCell list                                 corresponds to the first cell in the                                     ExternalEUtranCellTDD.pciConflictCell list                                 and to the first value of                                     ExternalEUtranCellTDD.pciConflict. The second                                 cell in the                                     ExternalEUtranCellTDD.pciDetectingCell list                                 corresponds to the second cell in the                                     ExternalEUtranCellTDD.pciConflictCell list                                 and to the first value of                                     ExternalEUtranCellTDD.pciConflict.",
+        "mo_class": "ExternalEUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pciDetectingCell",
+        "type": "Affected",
+        "description": "The first cell in the                                     EUtranCellFDD.pciDetectingCell list                                 corresponds to the first cell in the                                     EUtranCellFDD.pciConflictCell list and to the                                 first value of EUtranCellFDD.pciConflict. The                                 second cell in the EUtranCellFDD.pciDetectingCell                                 list corresponds to the second cell in the                                     EUtranCellFDD.pciConflictCell list and to the                                 first value of EUtranCellFDD.pciConflict.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pciDetectingCell",
+        "type": "Affected",
+        "description": "The first cell in the                                     EUtranCellTDD.pciDetectingCell list                                 corresponds to the first cell in the                                     EUtranCellTDD.pciConflictCell list and to the                                 first value of EUtranCellTDD.pciConflict. The                                 second cell in the EUtranCellTDD.pciDetectingCell                                 list corresponds to the second cell in the                                     EUtranCellTDD.pciConflictCell list and to the                                 first value of EUtranCellTDD.pciConflict.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "ExternalEUtranCellFDD.pciDetectingCell",
+        "type": "Affected",
+        "description": "The first cell in the                                     ExternalEUtranCellFDD.pciDetectingCell list                                 corresponds to the first cell in the                                     ExternalEUtranCellFDD.pciConflictCell list                                 and to the first value of                                     ExternalEUtranCellFDD.pciConflict. The second                                 cell in the                                     ExternalEUtranCellFDD.pciDetectingCell list                                 corresponds to the second cell in the                                     ExternalEUtranCellFDD.pciConflictCell list                                 and to the first value of                                     ExternalEUtranCellFDD.pciConflict.",
+        "mo_class": "ExternalEUtranCellFDD"
+      },
+      {
+        "name": "ExternalEUtranCellTDD.pciDetectingCell",
+        "type": "Affected",
+        "description": "The first cell in the                                     ExternalEUtranCellTDD.pciDetectingCell list                                 corresponds to the first cell in the                                     ExternalEUtranCellTDD.pciConflictCell list                                 and to the first value of                                     ExternalEUtranCellTDD.pciConflict. The second                                 cell in the                                     ExternalEUtranCellTDD.pciDetectingCell list                                 corresponds to the second cell in the                                     ExternalEUtranCellTDD.pciConflictCell list                                 and to the first value of                                     ExternalEUtranCellTDD.pciConflict.",
+        "mo_class": "ExternalEUtranCellTDD"
+      },
+      {
+        "name": "INTERNAL_EVENT_PCI_CONFLICT_DETECTED",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_NEIGHBOR_CGI2",
+        "description": "PCI conflict is detected.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_PCI_CONFLICT_RESOLVED",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_NEIGHBOR_CGI2",
+        "description": "PCI conflict is resolved.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_NR_PCI_CONFLICT_DETECTED",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_NCGI  EVENT_PARAM_NEIGHBOR_NCGI2",
+        "description": "The LTE source cell has relations to two or more NR cells that                                     have the same PCI and frequency.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_NR_PCI_CONFLICT_RESOLVED",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_NCGI  EVENT_PARAM_NEIGHBOR_NCGI2",
+        "description": "NR PCI conflict is resolved.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.BH",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "AnrFunctionNR.pciConflictDetectionType",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "AnrFunctionNR"
+      },
+      {
+        "name": "AnrFunctionNR.endcRachFailThrPerUe",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "AnrFunctionNR"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_PCI_CONFLICT_DETECTED",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_NEIGHBOR_CGI2",
+        "description": "PCI conflict is detected."
+      },
+      {
+        "name": "INTERNAL_EVENT_PCI_CONFLICT_RESOLVED",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_CGI  EVENT_PARAM_NEIGHBOR_CGI2",
+        "description": "PCI conflict is resolved."
+      },
+      {
+        "name": "INTERNAL_EVENT_NR_PCI_CONFLICT_DETECTED",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_NCGI  EVENT_PARAM_NEIGHBOR_NCGI2",
+        "description": "The LTE source cell has relations to two or more NR cells that                                     have the same PCI and frequency."
+      },
+      {
+        "name": "INTERNAL_EVENT_NR_PCI_CONFLICT_RESOLVED",
+        "type": "EVENT_PARAM_NEIGHBOR_PCI  EVENT_PARAM_NEIGHBOR_NCGI  EVENT_PARAM_NEIGHBOR_NCGI2",
+        "description": "NR PCI conflict is resolved."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011183 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011183 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/50_22104-LZA7016014_1Uen.BH.md",
+    "file_hash": "0c3b335e55456e79cb6ab0795ab8c51f",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

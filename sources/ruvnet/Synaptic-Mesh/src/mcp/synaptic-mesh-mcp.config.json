@@ -1,0 +1,102 @@
+{
+  "name": "synaptic-mesh-mcp",
+  "version": "1.0.0",
+  "transport": "stdio",
+  "port": 3000,
+  "enableAuth": false,
+  "enableEvents": true,
+  "wasmEnabled": true,
+  "logLevel": "info",
+  "rateLimits": {
+    "requests": 100,
+    "window": 60000,
+    "burst": 10
+  },
+  "eventStreaming": {
+    "bufferSize": 1000,
+    "retentionTime": 3600000,
+    "compression": false
+  },
+  "wasmConfig": {
+    "modules": [
+      {
+        "name": "qudag",
+        "path": "../rs/QuDAG/QuDAG-main/qudag-wasm/pkg",
+        "required": true
+      },
+      {
+        "name": "ruv_swarm", 
+        "path": "../rs/ruv-FANN/ruv-swarm/wasm-unified",
+        "required": true
+      },
+      {
+        "name": "daa",
+        "path": "../rs/daa/daa-main/wasm",
+        "required": false
+      },
+      {
+        "name": "cuda_wasm",
+        "path": "../rs/cuda-wasm/pkg",
+        "required": false
+      }
+    ],
+    "enableSIMD": true,
+    "enableThreads": true
+  },
+  "database": {
+    "type": "sqlite",
+    "path": ":memory:",
+    "options": {
+      "enableWAL": true,
+      "busyTimeout": 5000,
+      "cacheSize": 2000
+    }
+  },
+  "security": {
+    "encryption": {
+      "algorithm": "AES-256-GCM",
+      "keyRotationInterval": 86400000
+    },
+    "rateLimit": {
+      "enabled": true,
+      "windowMs": 60000,
+      "maxRequests": 100,
+      "skipSuccessfulRequests": false
+    }
+  },
+  "performance": {
+    "connectionPoolSize": 10,
+    "requestTimeout": 30000,
+    "keepAliveTimeout": 5000,
+    "enableMetricsCollection": true,
+    "metricsInterval": 5000
+  },
+  "monitoring": {
+    "healthCheckInterval": 30000,
+    "performanceThresholds": {
+      "responseTime": 1000,
+      "errorRate": 0.05,
+      "memoryUsage": 0.8
+    }
+  },
+  "apiKeys": [
+    {
+      "key": "snm_development_key_12345",
+      "name": "development",
+      "permissions": ["*"],
+      "rateLimits": {
+        "requests": 1000,
+        "window": 60000,
+        "burst": 50
+      },
+      "enabled": false,
+      "description": "Development API key (disabled by default)"
+    }
+  ],
+  "development": {
+    "enableDebugMode": false,
+    "logRequests": false,
+    "enableHotReload": false,
+    "mockWasm": false
+  }
+}

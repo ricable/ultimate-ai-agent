@@ -1,0 +1,62 @@
+# Edge-Native AI SaaS - Python Dependencies
+
+# Core Framework
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.5.0
+python-multipart>=0.0.6
+
+# Async HTTP Client
+httpx>=0.26.0
+aiohttp>=3.9.0
+
+# Database
+asyncpg>=0.29.0
+sqlalchemy[asyncio]>=2.0.0
+alembic>=1.13.0
+
+# Vector Database - RuVector Python bindings
+# Note: ruvector is primarily Node.js, use alternative for Python
+chromadb>=0.4.22
+sentence-transformers>=2.2.0
+
+# AI/ML
+openai>=1.10.0
+anthropic>=0.18.0
+litellm>=1.20.0
+langchain>=0.1.0
+tiktoken>=0.5.0
+
+# Agent Frameworks
+google-adk>=0.1.0  # Google Agent Development Kit
+# agno>=0.1.0  # Agno framework (optional)
+
+# Code Execution
+e2b>=0.17.0
+e2b-code-interpreter>=0.0.11
+
+# Authentication
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+bcrypt>=4.1.0
+
+# Caching
+redis>=5.0.0
+aiocache>=0.12.0
+
+# Observability
+opentelemetry-api>=1.22.0
+opentelemetry-sdk>=1.22.0
+opentelemetry-instrumentation-fastapi>=0.43b0
+langfuse>=2.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+pyyaml>=6.0.0
+structlog>=24.1.0
+tenacity>=8.2.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+httpx>=0.26.0

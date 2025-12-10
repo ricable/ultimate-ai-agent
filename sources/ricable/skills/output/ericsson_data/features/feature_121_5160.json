@@ -1,0 +1,92 @@
+{
+  "id": "121 5160",
+  "name": "",
+  "cxc_code": "CXC4012422",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "The feature enables EN-DC-capable cells that are deployed on non-Ericsson nodes to be",
+  "parameters": [
+    {
+      "name": "ExternalEUtranCellFDD.endcAllowedPlmnList  ExternalEUtranCellTDD.endcAllowedPlmnList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExternalEUtranCellFDD"
+    },
+    {
+      "name": "EUtranFrequency.extEndcAllowedPlmnListPolicy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFrequency"
+    },
+    {
+      "name": "UePolicyOptimization.coverageAwareImc",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UePolicyOptimization"
+    },
+    {
+      "name": "Uen.AC",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "ExternalEUtranCellFDD.endcAllowedPlmnList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ExternalEUtranCellFDD"
+    },
+    {
+      "name": "ExternalEUtranCellTDD.endcAllowedPlmnList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ExternalEUtranCellTDD"
+    },
+    {
+      "name": "EUtranFreqRelation.lbBnrPolicy",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranFreqRelation.cellSleepCovCellMeasOn",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranFreqRelation"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEndcCapableUe",
+      "description": "Performance counter pmEndcCapableUe",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcPrioritizedUe",
+      "description": "Performance counter pmEndcPrioritizedUe",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012422 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012422 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/474_22104-LZA7016014_1Uen.AC.md",
+  "file_hash": "9eda7459ec8919a935541db220bf7559",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

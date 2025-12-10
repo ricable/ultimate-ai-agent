@@ -1,0 +1,656 @@
+{
+  "id": "121 3009",
+  "name": "Inter-Frequency Load Balancing",
+  "cxc_code": "CXC4011319",
+  "value_package": "Multi-carrier Load Management",
+  "value_package_id": "FAJ 801 0427",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature manages the uneven distribution of traffic load between different",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.cellSubscriptionCapacity",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.cellSubscriptionCapacity",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellRelation.loadBalancing",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranFreqRelation.lbA5Thr1RsrpFreqOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "LoadBalancingFunction.lbCeiling",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbRateOffsetCoefficient",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbRateOffsetLoadThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "QciProfileOperatorDefined.qciSubscriptionQuanta",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "QciProfilePredefined.qciSubscriptionQuanta",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqLb.a5Threshold1Rsrp",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigEUtraInterFreqLb"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqLb.a5Threshold2Rsrp",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigEUtraInterFreqLb"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqLb.a5Threshold2Rsrq",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigEUtraInterFreqLb"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqLb.hysteresisA5",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigEUtraInterFreqLb"
+    },
+    {
+      "name": "UeMeasControl.sMeasure",
+      "type": "Affected",
+      "description": "Serving cell RSRP threshold controlling whether the UE is                                     required to perform                                     measurements  The parameter                                     should                                     be disabled in cells where load balancing is applied.",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "ENodeBFunction.ulHeavyUeDetectTime",
+      "type": "Affecting",
+      "description": "The attribute can be used to configure uplink-heavy UE                                     detection.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ENodeBFunction.ulHeavyUeBsrThresh",
+      "type": "Affecting",
+      "description": "The attribute can be used to configure uplink-heavy UE                                     detection.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ENodeBFunction.ulHeavyUeBsrHyst",
+      "type": "Affecting",
+      "description": "The attribute can be used to configure uplink-heavy UE                                     detection.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "EUtranCellFDD.iflbAbEnabled",
+      "type": "Affecting",
+      "description": "If the EUtranCellFDD.iflbAbEnabled or the                                         EUtranCellTDD.iflbAbEnabled parameter is                                     set to true, the                                     Inter-Fequency                                     Load Balancing feature is enabled during access  class                                     barring.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.iflbAbEnabled",
+      "type": "Affecting",
+      "description": "If the EUtranCellFDD.iflbAbEnabled or the                                         EUtranCellTDD.iflbAbEnabled parameter is                                     set to true, the                                     Inter-Fequency                                     Load Balancing feature is enabled during access  class                                     barring.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "loadBalancingAllowed",
+      "type": "Affecting",
+      "description": "Member of the FreqPrioEUTRA struct. The parameter                                     references from the RATFreqPrio MO.  If the RFPM function of Subscriber Triggered Mobility is             activated and the UE has a SPID value associated with it, the inter-frequency load             balancing is inhibited for that UE. It is inhibited only when the                 loadBalancingAllowed attribute related to the concerned                 RATFreqPrio MO for the concerned target carrier frequency is set             to false.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EUtranCellFDD.lbUlHeavyUeDetectEnabled",
+      "type": "Affecting",
+      "description": "The attribute can be used to enable uplink-heavy UE detection for                                     load-balancing mobility actions.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.lbUlHeavyUeDetectEnabled",
+      "type": "Affecting",
+      "description": "The attribute can be used to enable uplink-heavy UE detection for                                     load-balancing mobility actions.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "PtmFunction.ptmEnabled",
+      "type": "Affecting",
+      "description": "This                                     parameter is used to enable and configure the Preferential                                     Traffic Management solution. With appropriate configuration,                                     inter-frequency load balancing can be stopped for some cell                                     relations to priority cells with high traffic load from                                     non-prioritized cells. For more information, see Preferential Traffic Management                                         Guidelines.",
+      "mo_class": "PtmFunction"
+    },
+    {
+      "name": "PtmIflbConfig.stopIncomingIflbThreshold",
+      "type": "Affecting",
+      "description": "This                                     parameter is used to enable and configure the Preferential                                     Traffic Management solution. With appropriate configuration,                                     inter-frequency load balancing can be stopped for some cell                                     relations to priority cells with high traffic load from                                     non-prioritized cells. For more information, see Preferential Traffic Management                                         Guidelines.",
+      "mo_class": "PtmIflbConfig"
+    },
+    {
+      "name": "PtmCellProfile.cellType",
+      "type": "Affecting",
+      "description": "This                                     parameter is used to enable and configure the Preferential                                     Traffic Management solution. With appropriate configuration,                                     inter-frequency load balancing can be stopped for some cell                                     relations to priority cells with high traffic load from                                     non-prioritized cells. For more information, see Preferential Traffic Management                                         Guidelines.",
+      "mo_class": "PtmCellProfile"
+    },
+    {
+      "name": "PtmIflbConfig.stopOutgoingIflbEnabled",
+      "type": "Affecting",
+      "description": "This                                     parameter is used to enable and configure the Preferential                                     Traffic Management solution. With appropriate configuration,                                     inter-frequency load balancing can be stopped for some cell                                     relations to priority cells with high traffic load from                                     non-prioritized cells. For more information, see Preferential Traffic Management                                         Guidelines.",
+      "mo_class": "PtmIflbConfig"
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_SUB_RATIO",
+      "type": "EVENT_PARAM_SUB_RATIO",
+      "description": "Average subscription ratio for a cell during a load reporting                                     period. Default time is 15                                     sec.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "X2_PRIVATE_MESSAGE",
+      "type": "ASN.1 encoded content is part of the                                         pmEventHeader",
+      "description": "X2 messages used to subscribe and exchange load information                                     between RBSs.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "CGI of target cell that participates in load balancing if it is                                     available.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_DIFF",
+      "description": "Load                                     difference                                     (in subscription ratio) between source and                                     neighbor cells.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_DIFF_INT_SIGN",
+      "description": "Unsigned integer value of                                         EVENT_PARAM_LB_DIFF. The value can be                                     positive or negative.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_AMOUNT",
+      "description": "Load balancing amount                                     (in                                     subscription quanta) to be moved from source                                     to target cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_SOURCE_RATIO",
+      "description": "Subscription ratio of                                     source                                     cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_TARGET_RATIO",
+      "description": "Subscription ratio of                                     target                                     cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_RATE_OFFSET",
+      "description": "Rate offset applied to offset the load balancing towards a cell                                     with higher capacity, if the general traffic load level is                                     low.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_OFFSET_INT_SIGN",
+      "description": "Unsigned integer value of                                         EVENT_PARAM_LB_RATE_OFFSET. The value                                     can be positive or negative.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_FREQ",
+      "description": "Target                                     frequency",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": "Indicates the function that has triggered the UE measurement.  Can be one of the following:    Load Balancing     Carrier Aggregation Triggered Redirection (CATR)     Best Neighbor Relation (BNR) for Load Balancing     Admission-Triggered Offload (ATO)",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_UE_CA_CABABLE",
+      "description": "Indicates                                     whether                                     or not the UE selected for load balancing                                     related measurements is CA-capable.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "CGI of neighbor target cells for which UEs fulfilled A5 measurement                                     criteria.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRAVERSED_UES",
+      "description": "Number of UEs checked and discarded before choosing this UE for                                     load balancing related measurements.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "CGI of neighbor target cells for which UEs fulfilled A5 measurement                                     criteria.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the source for incoming handover and for                                     target for outgoing handover cell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+      "description": "Indicates the reason for not proceeding with a load balancing                                     (LB) or CATR when a measurement report has been received from                                     the                                     UE                                     :    CA criteria not met      Reported cell is not a valid load balancing target     Reported cell is a valid target, but lbAmount is already                                             satisfied for the cell      Service Specific Load Management (SSLM) related                                             restrictions     RSRQ of target cell is lower than configured                                             threshold     UE                                             has                                             signalled interest in Multimedia                                             Broadcast Multicast Service (MBMS) on serving                                             frequency     UE                                             has                                             signalled interest in Multimedia                                             Broadcast Multicast Service (MBMS) and UE is MBMS on                                             SCell capable ( mbms-SCell-r11 = 1, 3GPP 36.331)      UE has an ongoing Voice over IP (VoIP) call and does not                                             support Single Radio Voice Call Continuity (SRVCC)     Admission-Triggered Offload (ATO) related                                             restrictions",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": "Indicates the function that has triggered the UE measurement.  Can be one of the following:    Load Balancing     CATR     BNR for Load Balancing     Admission-Triggered Offload (ATO)",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": "The cause of the procedure for HO Execution.     Circuit Switched (CS)     Carrier Aggregation (CA)     Service or Priority-triggered Inter-Frequency Handover                                             (SPIFHO)     Admission-Triggered Offload (ATO)",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": "The cause of the procedure for HO Execution.     Circuit Switched (CS)     Carrier Aggregation (CA)     Service or Priority-triggered Inter-Frequency Handover                                             (SPIFHO)     Admission-Triggered Offload (ATO)",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "type": "EVENT_PARAM_MOBILITY_TRIGGER",
+      "description": "Indicates the trigger for performing a mobility evaluation.    Circuit Switched (CS)     Carrier Aggregation (CA)     Service or Priority-triggered Inter-Frequency Handover                                             (SPIFHO)     Admission-Triggered Offload                                             (ATO                                             )",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.EJ",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.lbActionForEndcUe",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.lbActionForEndcUe",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.subscriptionRatioHighThresh",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.subscriptionRatioHighThresh",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "UnsupportedFreqProfile.unsupportedFreqList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UnsupportedFreqProfile"
+    },
+    {
+      "name": "RobustCallSetup.intraLteMobilityDelayEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RobustCallSetup"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCellHoExeAttLteInterFUlTraffic",
+      "description": "Performance counter pmCellHoExeAttLteInterFUlTraffic",
+      "category": "General"
+    },
+    {
+      "name": "pmCellHoExeSuccLteInterFUlTraffic",
+      "description": "Performance counter pmCellHoExeSuccLteInterFUlTraffic",
+      "category": "General"
+    },
+    {
+      "name": "pmCellHoPrepAttLteInterFUlTraffic",
+      "description": "Performance counter pmCellHoPrepAttLteInterFUlTraffic",
+      "category": "General"
+    },
+    {
+      "name": "pmCellHoPrepSuccLteInterFUlTraffic",
+      "description": "Performance counter pmCellHoPrepSuccLteInterFUlTraffic",
+      "category": "General"
+    },
+    {
+      "name": "pmEvent",
+      "description": "Performance counter pmEvent",
+      "category": "General"
+    },
+    {
+      "name": "pmEventHeader",
+      "description": "Performance counter pmEventHeader",
+      "category": "General"
+    },
+    {
+      "name": "pmEvents",
+      "description": "Performance counter pmEvents",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeAttLteInterFLb",
+      "description": "Performance counter pmHoExeAttLteInterFLb",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeAttLteInterFUlTraffic",
+      "description": "Performance counter pmHoExeAttLteInterFUlTraffic",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeAttNonMob",
+      "description": "Performance counter pmHoExeAttNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccLteInterFLb",
+      "description": "Performance counter pmHoExeSuccLteInterFLb",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccLteInterFUlTraffic",
+      "description": "Performance counter pmHoExeSuccLteInterFUlTraffic",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccNonMob",
+      "description": "Performance counter pmHoExeSuccNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttLteInterFLb",
+      "description": "Performance counter pmHoPrepAttLteInterFLb",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttLteInterFUlTraffic",
+      "description": "Performance counter pmHoPrepAttLteInterFUlTraffic",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttNonMob",
+      "description": "Performance counter pmHoPrepAttNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccLteInterFLb",
+      "description": "Performance counter pmHoPrepSuccLteInterFLb",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccLteInterFUlTraffic",
+      "description": "Performance counter pmHoPrepSuccLteInterFUlTraffic",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccNonMob",
+      "description": "Performance counter pmHoPrepSuccNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmLbMeasRepUe",
+      "description": "Performance counter pmLbMeasRepUe",
+      "category": "General"
+    },
+    {
+      "name": "pmLbQualifiedUe",
+      "description": "Performance counter pmLbQualifiedUe",
+      "category": "General"
+    },
+    {
+      "name": "pmLbSubRatioSamp",
+      "description": "Performance counter pmLbSubRatioSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmLbSubRatioSum",
+      "description": "Performance counter pmLbSubRatioSum",
+      "category": "General"
+    },
+    {
+      "name": "pmPtmCellReservedMsr",
+      "description": "Performance counter pmPtmCellReservedMsr",
+      "category": "General"
+    },
+    {
+      "name": "pmPtmCellReservedSubRatio",
+      "description": "Performance counter pmPtmCellReservedSubRatio",
+      "category": "General"
+    },
+    {
+      "name": "pmPtmStopIncomingIflb",
+      "description": "Performance counter pmPtmStopIncomingIflb",
+      "category": "General"
+    },
+    {
+      "name": "pmPtmSubRatioSumDistr",
+      "description": "Performance counter pmPtmSubRatioSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmember",
+      "description": "Performance counter pmember",
+      "category": "General"
+    },
+    {
+      "name": "pments",
+      "description": "Performance counter pments",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    },
+    {
+      "name": "pmfunction",
+      "description": "Performance counter pmfunction",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_EVENT_LB_SUB_RATIO",
+      "type": "EVENT_PARAM_SUB_RATIO",
+      "description": "Average subscription ratio for a cell during a load reporting                                     period. Default time is 15                                     sec."
+    },
+    {
+      "name": "X2_PRIVATE_MESSAGE",
+      "type": "ASN.1 encoded content is part of the                                         pmEventHeader",
+      "description": "X2 messages used to subscribe and exchange load information                                     between RBSs."
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "CGI of target cell that participates in load balancing if it is                                     available."
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_DIFF",
+      "description": "Load                                     difference                                     (in subscription ratio) between source and                                     neighbor cells."
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_DIFF_INT_SIGN",
+      "description": "Unsigned integer value of                                         EVENT_PARAM_LB_DIFF. The value can be                                     positive or negative."
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_AMOUNT",
+      "description": "Load balancing amount                                     (in                                     subscription quanta) to be moved from source                                     to target cell."
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_SOURCE_RATIO",
+      "description": "Subscription ratio of                                     source                                     cell."
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_TARGET_RATIO",
+      "description": "Subscription ratio of                                     target                                     cell."
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_RATE_OFFSET",
+      "description": "Rate offset applied to offset the load balancing towards a cell                                     with higher capacity, if the general traffic load level is                                     low."
+    },
+    {
+      "name": "INTERNAL_EVENT_LB_INTER_FREQ",
+      "type": "EVENT_PARAM_LB_OFFSET_INT_SIGN",
+      "description": "Unsigned integer value of                                         EVENT_PARAM_LB_RATE_OFFSET. The value                                     can be positive or negative."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_FREQ",
+      "description": "Target                                     frequency"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": "Indicates the function that has triggered the UE measurement.  Can be one of the following:    Load Balancing     Carrier Aggregation Triggered Redirection (CATR)     Best Neighbor Relation (BNR) for Load Balancing     Admission-Triggered Offload (ATO)"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_UE_CA_CABABLE",
+      "description": "Indicates                                     whether                                     or not the UE selected for load balancing                                     related measurements is CA-capable."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "CGI of neighbor target cells for which UEs fulfilled A5 measurement                                     criteria."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRAVERSED_UES",
+      "description": "Number of UEs checked and discarded before choosing this UE for                                     load balancing related measurements."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "CGI of neighbor target cells for which UEs fulfilled A5 measurement                                     criteria."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the source for incoming handover and for                                     target for outgoing handover cell."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+      "description": "Indicates the reason for not proceeding with a load balancing                                     (LB) or CATR when a measurement report has been received from                                     the                                     UE                                     :    CA criteria not met      Reported cell is not a valid load balancing target     Reported cell is a valid target, but lbAmount is already                                             satisfied for the cell      Service Specific Load Management (SSLM) related                                             restrictions     RSRQ of target cell is lower than configured                                             threshold     UE                                             has                                             signalled interest in Multimedia                                             Broadcast Multicast Service (MBMS) on serving                                             frequency     UE                                             has                                             signalled interest in Multimedia                                             Broadcast Multicast Service (MBMS) and UE is MBMS on                                             SCell capable ( mbms-SCell-r11 = 1, 3GPP 36.331)      UE has an ongoing Voice over IP (VoIP) call and does not                                             support Single Radio Voice Call Continuity (SRVCC)     Admission-Triggered Offload (ATO) related                                             restrictions"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": "Indicates the function that has triggered the UE measurement.  Can be one of the following:    Load Balancing     CATR     BNR for Load Balancing     Admission-Triggered Offload (ATO)"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": "The cause of the procedure for HO Execution.     Circuit Switched (CS)     Carrier Aggregation (CA)     Service or Priority-triggered Inter-Frequency Handover                                             (SPIFHO)     Admission-Triggered Offload (ATO)"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": "The cause of the procedure for HO Execution.     Circuit Switched (CS)     Carrier Aggregation (CA)     Service or Priority-triggered Inter-Frequency Handover                                             (SPIFHO)     Admission-Triggered Offload (ATO)"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "type": "EVENT_PARAM_MOBILITY_TRIGGER",
+      "description": "Indicates the trigger for performing a mobility evaluation.    Circuit Switched (CS)     Carrier Aggregation (CA)     Service or Priority-triggered Inter-Frequency Handover                                             (SPIFHO)     Admission-Triggered Offload                                             (ATO                                             )"
+    },
+    {
+      "name": "INTERNAL_EVENT_PTM_CELL_RESERVED_START",
+      "type": "Triggered when the load is above threshold or the S1-C                                         connection to the priority PLMN is recovered. It indicates                                         that the cell is reserved for operator use.",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_PTM_CELL_RESERVED_STOP",
+      "type": "Triggered when the load is below threshold or the S1-C                                         connection to the priority PLMN failed. It indicates that                                         the cell is no longer reserved for operator use.",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_PTM_CELL_RESERVED_SUSP_START",
+      "type": "Triggered when the load is above threshold or the S1-C                                         connection to the priority PLMN failed. It indicates that                                         the cell reservation for operator use is suspended.",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_PTM_CELL_RESERVED_SUSP_STOP",
+      "type": "Triggered when the load is below threshold or the S1-C                                         connection to the priority PLMN is recovered. It indicates                                         that the suspension of cell reservation for operator use is                                         over.",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011319 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011319 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/83_22104-LZA7016014_1Uen.EJ.md",
+  "file_hash": "d28ca1564a66b3e5832cfccfd91af8ce",
+  "processed_at": "2025-10-19 15:50:05",
+  "network_impact": {},
+  "performance_impact": {}
+}

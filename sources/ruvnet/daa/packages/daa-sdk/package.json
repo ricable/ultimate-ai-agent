@@ -1,0 +1,66 @@
+{
+  "name": "daa-sdk",
+  "version": "0.1.0",
+  "description": "Unified SDK for DAA (Distributed Agentic Architecture) with native NAPI-rs bindings",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "daa-sdk": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "cli": "ts-node cli/index.ts",
+    "test": "node --test ../../tests/unit/sdk-*.test.js",
+    "test:all": "node --test ../../tests/**/*.test.js",
+    "test:unit": "node --test ../../tests/unit/**/*.test.js",
+    "test:integration": "node --test ../../tests/integration/**/*.test.js",
+    "test:e2e": "node --test ../../tests/e2e/full-daa-workflow.test.js",
+    "test:watch": "node --test --watch ../../tests/**/*.test.js",
+    "test:coverage": "c8 --config ../../tests/.c8rc.json node --test ../../tests/**/*.test.js",
+    "benchmark": "node --test ../../tests/benchmarks/**/*.bench.js",
+    "lint": "eslint src/ --ext .ts",
+    "format": "prettier --write 'src/**/*.ts'",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "daa",
+    "distributed-agents",
+    "napi-rs",
+    "quantum-resistant",
+    "machine-learning",
+    "orchestration"
+  ],
+  "author": "rUv",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/daa"
+  },
+  "dependencies": {
+    "@daa/qudag-native": "file:../../qudag/qudag-napi",
+    "commander": "^12.0.0",
+    "chalk": "^5.3.0"
+  },
+  "optionalDependencies": {
+    "qudag-wasm": "^0.4.3",
+    "@daa/orchestrator-native": "^0.1.0",
+    "@daa/prime-native": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.0",
+    "ts-node": "^10.9.2",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.0"
+  },
+  "optionalDependencies": {
+    "@daa/qudag-native-linux-x64": "^0.1.0",
+    "@daa/qudag-native-darwin-x64": "^0.1.0",
+    "@daa/qudag-native-darwin-arm64": "^0.1.0",
+    "@daa/qudag-native-win32-x64": "^0.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

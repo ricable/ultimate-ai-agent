@@ -1,0 +1,74 @@
+#!/usr/bin/env node
+
+/**
+ * Synaptic Neural Mesh CLI
+ * 
+ * Main entry point for the synaptic-mesh command line interface.
+ * This binary provides access to all neural mesh functionality including:
+ * - Node initialization and management
+ * - P2P mesh networking via QuDAG
+ * - Neural agent spawning and coordination
+ * - Distributed learning and evolution
+ * 
+ * Usage: npx synaptic-mesh [command] [options]
+ */
+
+// Ensure we're running in a supported Node.js version
+const nodeVersion = process.versions.node.split('.').map(Number);
+if (nodeVersion[0] < 18) {
+  console.error('Error: Synaptic Neural Mesh requires Node.js 18.0.0 or higher');
+  console.error(`Current version: ${process.version}`);
+  process.exit(1);
+}
+
+// Enable source map support for better debugging
+try {
+  require('source-map-support/register');
+} catch (e) {
+  // Source map support is optional
+}
+
+// Handle uncaught errors gracefully
+process.on('uncaughtException', (error) => {
+  console.error('Fatal error:', error.message);
+  if (process.env.DEBUG) {
+    console.error(error.stack);
+  }
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled promise rejection:', reason);
+  if (process.env.DEBUG) {
+    console.error('Promise:', promise);
+  }
+  process.exit(1);
+});
+
+// Import and run the CLI
+try {
+  // Check if compiled version exists
+  const fs = require('fs');
+  const path = require('path');
+  
+  const compiledPath = path.join(__dirname, '..', 'lib', 'cli.js');
+  const sourcePath = path.join(__dirname, '..', 'src', 'cli.ts');
+  
+  if (fs.existsSync(compiledPath)) {
+    // Use compiled version in production
+    require(compiledPath);
+  } else if (fs.existsSync(sourcePath)) {
+    // Use TypeScript version in development
+    require('ts-node/register');
+    require(sourcePath);
+  } else {
+    console.error('Error: CLI module not found. Please run "npm run build" first.');
+    process.exit(1);
+  }
+} catch (error) {
+  console.error('Failed to start Synaptic Neural Mesh CLI:', error.message);
+  if (process.env.DEBUG) {
+    console.error(error.stack);
+  }
+  process.exit(1);
+}

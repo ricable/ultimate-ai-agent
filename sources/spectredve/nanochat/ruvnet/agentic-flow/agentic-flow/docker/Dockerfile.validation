@@ -1,0 +1,31 @@
+FROM node:20-slim
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl git \
+  && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install agentic-flow globally
+RUN npm install -g agentic-flow@1.1.6
+
+# Set environment variables (will be overridden at runtime)
+ENV PROVIDER=anthropic
+ENV ANTHROPIC_API_KEY=""
+
+# Create validation script
+RUN echo '#!/bin/bash\n\
+echo "╔═══════════════════════════════════════════════════════╗"\n\
+echo "║  Agentic Flow v1.1.6 - Docker Validation              ║"\n\
+echo "║  Claude Agent SDK + Multi-Provider Routing            ║"\n\
+echo "╚═══════════════════════════════════════════════════════╝"\n\
+echo ""\n\
+echo "Provider: $PROVIDER"\n\
+echo "Task: Create a simple hello world function"\n\
+echo ""\n\
+agentic-flow --agent coder --task "Create a simple hello world function in TypeScript that returns Hello, World!" --provider $PROVIDER\n\
+' > /app/validate.sh && chmod +x /app/validate.sh
+
+CMD ["/app/validate.sh"]

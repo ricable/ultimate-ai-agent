@@ -1,0 +1,58 @@
+{
+  "id": "121 0735",
+  "name": "Cell ID-Based Location Support",
+  "cxc_code": "CXC4010841",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature provides an estimate on the UE position with an accuracy depending on the",
+  "parameters": [
+    {
+      "name": "ENodeBFunction.locationReportForPSCell",
+      "type": "Introduced",
+      "description": "See MOM description.(1)",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "Uen.AS",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    },
+    {
+      "name": "A.a",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "A"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010841 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010841 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/101_22104-LZA7016014_1Uen.AS.md",
+  "file_hash": "f95ed01c486c080d681d35090ef481f5",
+  "processed_at": "2025-10-19 15:30:38",
+  "network_impact": {},
+  "performance_impact": {}
+}

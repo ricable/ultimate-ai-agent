@@ -1,0 +1,143 @@
+{
+  "id": "121 5554",
+  "name": "NR Combined Cell",
+  "cxc_code": "CXC4012652",
+  "value_package": "Performance Boost",
+  "value_package_id": "FAJ 801 4021",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables combined cells in NR Low-Band and Mid-Band deployments.",
+  "parameters": [
+    {
+      "name": "NRCellDU.nRSectorCarrierRef",
+      "type": "Affected",
+      "description": "Up to six NRSectorCarrier MO instances can be                                 referenced.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRSectorCarrier.arfcnDL",
+      "type": "Affected",
+      "description": "Must be the same for all sector carriers in the same combined                                 cell.",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.arfcnUL",
+      "type": "Affected",
+      "description": "Must be the same for all sector carriers in the same combined                                 cell.",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.bSChannelBwDL",
+      "type": "Affected",
+      "description": "Must be the same for all sector carriers in the same combined                                 cell.",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.bSChannelBwUL",
+      "type": "Affected",
+      "description": "Must be the same for all sector carriers in the same combined                                 cell.",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.configuredMaxTxPower",
+      "type": "Affected",
+      "description": "Must be the same for all sector carriers in the same combined                                 cell.",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.noOfRxAntennas",
+      "type": "Affected",
+      "description": "Must be the same for all sector carriers in the same combined                                 cell.",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.noOfTxAntennas",
+      "type": "Affected",
+      "description": "Must be the same for all sector carriers in the same combined                                 cell.",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.txPowerRatio",
+      "type": "Affected",
+      "description": "Must be the same for all sector carriers in the same combined                                 cell.",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "Uen.AM",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRSectorCarrier.bbOnlyBackoffAllowed",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.powerBackoffMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.powerBackoffOffset",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "GNBDUFunction.capacityAllocationPolicy",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "GNBDUFunction"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmActiveUeUlMax",
+      "description": "Performance counter pmActiveUeUlMax",
+      "category": "General"
+    },
+    {
+      "name": "pmActiveUeUlSamp",
+      "description": "Performance counter pmActiveUeUlSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmActiveUeUlSum",
+      "description": "Performance counter pmActiveUeUlSum",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccOutInterGnb",
+      "description": "Performance counter pmHoExeSuccOutInterGnb",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccOutIntraGnb",
+      "description": "Performance counter pmHoExeSuccOutIntraGnb",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012652 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012652 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/178_22104-LZA7016017_1Uen.AM.md",
+  "file_hash": "b8baaab143fc7d8caef3ab856135551c",
+  "processed_at": "2025-10-19 15:50:03",
+  "network_impact": {},
+  "performance_impact": {}
+}

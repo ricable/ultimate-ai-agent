@@ -1,0 +1,192 @@
+{
+  "id": "121 3062",
+  "name": "MBMS Multi-Carrier Support",
+  "cxc_code": "CXC4011558",
+  "value_package": "LTE Broadcast",
+  "value_package_id": "FAJ 801 0420",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The MBMS Multi-Carrier Support feature ensures that the UE is on the right carrier to",
+  "parameters": [
+    {
+      "name": "serviceAreaId",
+      "type": "Introduced",
+      "description": "The MBMS Service Area Identity.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "activeServiceAreaId",
+      "type": "Introduced",
+      "description": "The active MBMS Service Area Identity. The content of this attribute                                 is either empty or same asserviceAreaId. The                                 purpose of this attribute is to support OSS SNAD functionality. This                                 attribute is mirrored by OSS to                                     ExternalEutranCellFDD or                                     ExternalEutranCellTDD.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "a5ThresholdRsrp",
+      "type": "Introduced",
+      "description": "The Reference Signal Received Power (RSRP) threshold value for                                 eventA5.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "hysteresisA5",
+      "type": "Introduced",
+      "description": "The hysteresis value for the eventA5 measurement.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqMbmsId",
+      "type": "Introduced",
+      "description": "The value component of the Relative Distinguished Name (RDN).",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "ReportConfigB2NR.mbmsB2ThresholdRsrpOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigB2NR"
+    },
+    {
+      "name": "ReportConfigB2NR.mbmsB2ThresholdRsrqOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigB2NR"
+    },
+    {
+      "name": "RRC_MBMS_INTEREST_INDICATION",
+      "type": "External PM event for RRC: MBMSInterestIndication",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.BD33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "RobustCallSetup.intraLteMobilityDelayEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RobustCallSetup"
+    },
+    {
+      "name": "NR.mbmsB2ThresholdRsrpOffset",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NR"
+    },
+    {
+      "name": "NR.mbmsB2ThresholdRsrqOffset",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NR"
+    },
+    {
+      "name": "MbsfnAreaCellRelation.isReservedCell",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "MbsfnAreaCellRelation"
+    },
+    {
+      "name": "ExternalEUtranCellFDD.activeServiceAreaId",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ExternalEUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.activeServiceAreaId",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqMbms.a5ThresholdRsrp",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ReportConfigEUtraInterFreqMbms"
+    },
+    {
+      "name": "ReportConfigEUtraInterFreqMbms.hysteresisA5",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ReportConfigEUtraInterFreqMbms"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmHoExeAttLteInterFMbms",
+      "description": "Performance counter pmHoExeAttLteInterFMbms",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeAttNonMob",
+      "description": "Performance counter pmHoExeAttNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccLteInterFMbms",
+      "description": "Performance counter pmHoExeSuccLteInterFMbms",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccNonMob",
+      "description": "Performance counter pmHoExeSuccNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttLteInterFMbms",
+      "description": "Performance counter pmHoPrepAttLteInterFMbms",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttNonMob",
+      "description": "Performance counter pmHoPrepAttNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccLteInterFMbms",
+      "description": "Performance counter pmHoPrepSuccLteInterFMbms",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccNonMob",
+      "description": "Performance counter pmHoPrepSuccNonMob",
+      "category": "General"
+    },
+    {
+      "name": "pmMbmsInterestIndication",
+      "description": "Performance counter pmMbmsInterestIndication",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "RRC_MBMS_INTEREST_INDICATION",
+      "type": "External PM event for RRC: MBMSInterestIndication",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011558 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011558 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/248_22104-LZA7016014_1Uen.BD33B.md",
+  "file_hash": "a0f8f4dc32afce818b5c7c3ab19e2a86",
+  "processed_at": "2025-10-19 15:50:04",
+  "network_impact": {},
+  "performance_impact": {}
+}

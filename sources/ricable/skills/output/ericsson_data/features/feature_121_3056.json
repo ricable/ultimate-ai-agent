@@ -1,0 +1,127 @@
+{
+  "id": "121 3056",
+  "name": "",
+  "cxc_code": "CXC4012518",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "The heart of the network synchronization block is the Radio Equipment Clock. In the Baseband,\nit generates to its internal users the following, to generate the Air interface carrier\nfrequency and Radio frames:\nbasic phase\nframe counter\nfrequency\nIf there is one external reference available, the Radio Equipment Clock locks to the selected\nreference. If no reference is available, it uses the holdover capability to keep phase and\nfrequency until a reference becomes available again. When locked to a reference, the holdover\ncapability is trained by the Radio Equipment Clock.\nIf no external references are available for a node in isolated areas, the node cannot start.\nWith the activation of the Node Deployment without External Synchronization Source feature and\nthe connection to backhaul system, the node enters isolated mode and can carry traffic.\nThe Synchronization Protocol Termination terminates Synchronization protocols. For the\nconfigured synchronization references, it forwards information to the synchronization\nReference Monitoring. The synchronization Reference Monitoring decides whether a reference is\nselectable as synchronization reference. Synchronization Reference selection uses the priority\nvalue configured for each reference and selects the selectable reference with the highest\npriority.",
+  "summary": "cannot start. But if the Node Deployment without External Synchronization Source feature is",
+  "parameters": [
+    {
+      "name": "Uen.EN",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "GnssInfo.multipleGnssStatus",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "GnssInfo"
+    },
+    {
+      "name": "GnssInfo.multipleGnssWanted",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "GnssInfo"
+    },
+    {
+      "name": "GnssInfo.multipleGnssBackup",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "GnssInfo"
+    },
+    {
+      "name": "AssistingReference.receivedQualityLevel",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AssistingReference"
+    },
+    {
+      "name": "GnssInfo.getGnssReceiverControl",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "GnssInfo"
+    },
+    {
+      "name": "GnssInfo.gnssReceiverControl",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "GnssInfo"
+    },
+    {
+      "name": "GnssInfo.setGnssRecAntSelection",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "GnssInfo"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmeasurement",
+      "description": "Performance counter pmeasurement",
+      "category": "General"
+    },
+    {
+      "name": "pmeasurements",
+      "description": "Performance counter pmeasurements",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmentClock",
+      "description": "Performance counter pmentClock",
+      "category": "General"
+    },
+    {
+      "name": "pmentClockReference",
+      "description": "Performance counter pmentClockReference",
+      "category": "General"
+    },
+    {
+      "name": "pmtieLimit",
+      "description": "Performance counter pmtieLimit",
+      "category": "General"
+    },
+    {
+      "name": "pmtieValue",
+      "description": "Performance counter pmtieValue",
+      "category": "General"
+    },
+    {
+      "name": "pmulticastAddress",
+      "description": "Performance counter pmulticastAddress",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4040008 MO instance.",
+  "deactivation_step": null,
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931020_r50f_batch2/23_1553-LZA7016014_1Uen.EN.md",
+  "file_hash": "89b2ade825c6309d70143d93782cbb78",
+  "processed_at": "2025-10-19 15:50:10",
+  "network_impact": {},
+  "performance_impact": {}
+}

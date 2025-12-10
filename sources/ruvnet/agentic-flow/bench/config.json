@@ -1,0 +1,79 @@
+{
+  "benchmark": {
+    "name": "ReasoningBank Comprehensive Benchmark",
+    "version": "1.0.0",
+    "description": "Comprehensive benchmark comparing baseline vs ReasoningBank agents"
+  },
+  "execution": {
+    "iterations": 3,
+    "parallelAgents": 1,
+    "enableWarmStart": false,
+    "memorySize": 1000,
+    "randomSeed": null
+  },
+  "scenarios": [
+    {
+      "name": "coding-tasks",
+      "enabled": true,
+      "iterations": 3,
+      "description": "Tests implementation of common programming patterns"
+    },
+    {
+      "name": "debugging-tasks",
+      "enabled": true,
+      "iterations": 3,
+      "description": "Tests ability to identify and fix bugs"
+    },
+    {
+      "name": "api-design-tasks",
+      "enabled": true,
+      "iterations": 3,
+      "description": "Tests API design and best practices"
+    },
+    {
+      "name": "problem-solving-tasks",
+      "enabled": true,
+      "iterations": 3,
+      "description": "Tests algorithmic problem solving"
+    }
+  ],
+  "agents": {
+    "baseline": {
+      "model": "claude-sonnet-4-5-20250929",
+      "maxTokens": 4096,
+      "temperature": 0.7
+    },
+    "reasoningbank": {
+      "model": "claude-sonnet-4-5-20250929",
+      "maxTokens": 4096,
+      "temperature": 0.7,
+      "memoryConfig": {
+        "k": 3,
+        "alpha": 0.65,
+        "beta": 0.15,
+        "gamma": 0.20,
+        "delta": 0.10,
+        "consolidationThreshold": 100
+      }
+    }
+  },
+  "output": {
+    "formats": ["json", "markdown", "csv"],
+    "directories": {
+      "results": "bench/results",
+      "reports": "bench/reports"
+    },
+    "saveTrajectories": false,
+    "verboseLogging": false
+  },
+  "validation": {
+    "confidenceInterval": 0.95,
+    "minIterations": 3,
+    "significanceThreshold": 0.05
+  },
+  "performance": {
+    "maxConcurrentTasks": 5,
+    "taskTimeout": 60000,
+    "retryFailedTasks": false
+  }
+}

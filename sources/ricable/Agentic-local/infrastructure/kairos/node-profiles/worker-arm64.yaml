@@ -1,0 +1,56 @@
+#cloud-config
+# Kairos Worker Node Configuration - ARM64
+# For Raspberry Pi, Apple Silicon (via VM), Rockchip devices
+
+# Inherit from base config
+#!include cloud-config.yaml
+
+hostname: "edge-ai-worker-arm-{{.MachineID | truncate 8}}"
+
+# Enable K3s agent mode
+k3s:
+  enabled: true
+k3s-server:
+  enabled: false
+k3s-agent:
+  enabled: true
+  env:
+    K3S_URL: "${K3S_SERVER_URL}"
+    K3S_TOKEN: "${K3S_TOKEN}"
+  args:
+    # Optimized for ARM64 resource constraints
+    - --kubelet-arg=max-pods=100
+    - --kubelet-arg=eviction-hard=memory.available<100Mi
+
+# ARM64-specific configuration
+stages:
+  boot:
+    - name: "Configure ARM64 worker node"
+      commands:
+        - |
+          # Label as ARM64 worker
+          kubectl label node $(hostname) node-role.kubernetes.io/worker=true --overwrite
+          kubectl label node $(hostname) edge-ai.io/role=edge-worker --overwrite
+          kubectl label node $(hostname) edge-ai.io/arch=arm64 --overwrite
+
+          # Detect device type
+          if cat /proc/device-tree/model 2>/dev/null | grep -q "Raspberry Pi"; then
+            kubectl label node $(hostname) edge-ai.io/device=raspberry-pi --overwrite
+            kubectl label node $(hostname) edge-ai.io/inference-tier=edge --overwrite
+          elif cat /proc/device-tree/model 2>/dev/null | grep -q "Rockchip"; then
+            kubectl label node $(hostname) edge-ai.io/device=rockchip --overwrite
+            # Check for NPU
+            if [ -d /sys/class/misc/npu ]; then
+              kubectl label node $(hostname) edge-ai.io/accelerator=rockchip-npu --overwrite
+              kubectl label node $(hostname) edge-ai.io/inference-tier=medium --overwrite
+            fi
+          fi
+
+          # Memory tier detection
+          MEM_GB=$(free -g | awk '/^Mem:/{print $2}')
+          kubectl label node $(hostname) edge-ai.io/memory-gb=$MEM_GB --overwrite
+
+# Power-efficient settings for edge devices
+bundles:
+  - targets:
+      - run://quay.io/kairos/community-bundles:powertop  # Power optimization

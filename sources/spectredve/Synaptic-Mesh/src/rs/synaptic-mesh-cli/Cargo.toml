@@ -1,0 +1,94 @@
+[package]
+name = "synaptic-mesh-cli"
+version = "0.1.0"
+edition = "2021"
+authors = ["rUv <https://github.com/ruvnet>"]
+description = "Command-line interface for Synaptic Neural Mesh"
+repository = "https://github.com/ruvnet/Synaptic-Neural-Mesh"
+license = "MIT OR Apache-2.0"
+keywords = ["cli", "neural", "mesh", "distributed", "cognition"]
+
+[[bin]]
+name = "synaptic-mesh"
+path = "src/main.rs"
+
+[dependencies]
+# Local crates
+qudag-core = { path = "../qudag-core" }
+neural-mesh = { path = "../neural-mesh" }
+daa-swarm = { path = "../daa-swarm" }
+ruv-fann-wasm = { path = "../ruv-fann-wasm", optional = true }
+
+# QuDAG integration dependencies from QuDAG-main
+qudag-crypto = { path = "../QuDAG/QuDAG-main/core/crypto" }
+qudag-network = { path = "../QuDAG/QuDAG-main/core/network" }
+qudag-dag = { path = "../QuDAG/QuDAG-main/core/dag" }
+qudag-protocol = { path = "../QuDAG/QuDAG-main/core/protocol" }
+
+# P2P networking
+libp2p = { version = "0.53", features = ["tcp", "websocket", "noise", "yamux", "gossipsub", "kad", "identify", "ping", "mdns", "relay", "dcutr", "request-response"] }
+multiaddr = "0.18"
+
+# Database for persistence
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "sqlite", "chrono", "uuid"] }
+
+# CLI framework
+clap = { version = "4.0", features = ["derive", "env"] }
+colored = "2.0"
+indicatif = "0.17"
+dialoguer = "0.11"
+
+# Async runtime
+tokio = { version = "1.0", features = ["full"] }
+futures = "0.3"
+
+# Serialization and config
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# File system and paths
+directories = "5.0"
+
+# Error handling and logging
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Utilities
+uuid = { version = "1.0", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+bincode = "1.3"
+hex = "0.4"
+
+# Crypto
+chacha20poly1305 = "0.10"
+rand = "0.8"
+
+# WASM support (optional)
+wasm-bindgen = { version = "0.2", optional = true }
+wasm-bindgen-futures = { version = "0.4", optional = true }
+serde-wasm-bindgen = { version = "0.6", optional = true }
+web-sys = { version = "0.3", optional = true }
+js-sys = { version = "0.3", optional = true }
+console_error_panic_hook = { version = "0.1", optional = true }
+
+[features]
+default = ["tui", "metrics"]
+tui = []
+metrics = []
+wasm = ["ruv-fann-wasm", "wasm-bindgen", "wasm-bindgen-futures", "serde-wasm-bindgen", "web-sys", "js-sys", "console_error_panic_hook"]
+
+[dev-dependencies]
+tempfile = "3.8"
+assert_cmd = "2.0"
+predicates = "3.0"
+tokio-test = "0.4"
+criterion = { version = "0.5", features = ["html_reports"] }
+proptest = "1.0"
+once_cell = "1.0"
+serial_test = "3.0"
+
+# Additional test dependencies
+futures = "0.3"
+serde_json = "1.0"

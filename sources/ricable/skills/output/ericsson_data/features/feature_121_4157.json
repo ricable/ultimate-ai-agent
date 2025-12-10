@@ -1,0 +1,116 @@
+{
+  "id": "121 4157",
+  "name": "Uplink Interference Reporting",
+  "cxc_code": "CXC4011820",
+  "value_package": "RAN Data Collection",
+  "value_package_id": "FAJ 801 0431",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Uplink Interference Reporting feature is a method for interference",
+  "parameters": [
+    {
+      "name": "PmUlInterferenceReport.pmUlInterferenceReportId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PmUlInterferenceReport"
+    },
+    {
+      "name": "PmUlInterferenceReport.rfBranchRxRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PmUlInterferenceReport"
+    },
+    {
+      "name": "INTERNAL_PER_BRANCH_UL_NOISEINTERF_REPORT",
+      "type": "EVENT_PARAM_NOISEINTERF_SUM_BRANCH_PRBX",
+      "description": "Multiple event parameters exist for this event where X can be any number between                   1 and 100. Each one represents accumulated noise and interference power for its                   corresponding PRB on the antenna branch over the measurement period.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_UETR_BRANCH_UL_NOISEINTERF_REPORT",
+      "type": "EVENT_PARAM_NOISEINTERF_SUM_BRANCH_PRBX",
+      "description": "Multiple event parameters exist for this event where X can be any number between                   1 and 100. Each one represents accumulated noise and interference power for its                   corresponding PRB on the antenna branch over the measurement period.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCounter",
+      "description": "Performance counter pmCounter",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRecInterferencePwrBrPrb1",
+      "description": "Performance counter pmRadioRecInterferencePwrBrPrb1",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRecInterferencePwrBrPrbX",
+      "description": "Performance counter pmRadioRecInterferencePwrBrPrbX",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioRecInterferencePwrPrb1",
+      "description": "Performance counter pmRadioRecInterferencePwrPrb1",
+      "category": "General"
+    },
+    {
+      "name": "pmUlInterferenceReport",
+      "description": "Performance counter pmUlInterferenceReport",
+      "category": "General"
+    },
+    {
+      "name": "pmUlInterferenceReportId",
+      "description": "Performance counter pmUlInterferenceReportId",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PER_BRANCH_UL_NOISEINTERF_REPORT",
+      "type": "EVENT_PARAM_NOISEINTERF_SUM_BRANCH_PRBX",
+      "description": "Multiple event parameters exist for this event where X can be any number between                   1 and 100. Each one represents accumulated noise and interference power for its                   corresponding PRB on the antenna branch over the measurement period."
+    },
+    {
+      "name": "INTERNAL_PER_UETR_BRANCH_UL_NOISEINTERF_REPORT",
+      "type": "EVENT_PARAM_NOISEINTERF_SUM_BRANCH_PRBX",
+      "description": "Multiple event parameters exist for this event where X can be any number between                   1 and 100. Each one represents accumulated noise and interference power for its                   corresponding PRB on the antenna branch over the measurement period."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011820 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011820 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/120_22104-LZA7016014_1Uen.AF.md",
+  "file_hash": "e3b6629c7af2e64ce31f55a988711879",
+  "processed_at": "2025-10-19 15:48:54",
+  "network_impact": {},
+  "performance_impact": {}
+}

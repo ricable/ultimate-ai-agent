@@ -1,0 +1,275 @@
+{
+  "file_hash": "555cb273cd862c07c15bae47863f3064",
+  "feature": {
+    "id": "121 0876",
+    "name": "Redirect with System Information",
+    "cxc_code": "CXC4010973",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature improves outage times when the UE is redirected from LTE.",
+    "parameters": [
+      {
+        "name": "AnrFunctionGeran.rimIntegrationEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionGeran"
+      },
+      {
+        "name": "AnrFunctionUtran.rimIntegrationEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AnrFunctionUtran"
+      },
+      {
+        "name": "ENodeBFunction.forcedSiTunnelingActive",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.maxNoCellsNaccSessionCont",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranCellRelation.coverageIndicator",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "ExternalGeranCell.rimAssociationStatus",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGeranCell"
+      },
+      {
+        "name": "ExternalGeranCell.rimCapable",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGeranCell"
+      },
+      {
+        "name": "ExternalUtranCellFDD.rimAssociationStatus",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalUtranCellFDD"
+      },
+      {
+        "name": "ExternalUtranCellFDD.rimCapable",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalUtranCellFDD"
+      },
+      {
+        "name": "ExternalUtranCellTDD.rimAssociationStatus",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalUtranCellTDD"
+      },
+      {
+        "name": "ExternalUtranCellTDD.rimCapable",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalUtranCellTDD"
+      },
+      {
+        "name": "GeranCellRelation.coverageIndicator",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GeranCellRelation"
+      },
+      {
+        "name": "GeranFreqGroupRelation.mobilityAction",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GeranFreqGroupRelation"
+      },
+      {
+        "name": "GeranFreqGroupRelation.mobilityActionCsfb",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GeranFreqGroupRelation"
+      },
+      {
+        "name": "UtranFreqRelation.mobilityAction",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UtranFreqRelation"
+      },
+      {
+        "name": "UtranFreqRelation.mobilityActionCsfb",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UtranFreqRelation"
+      },
+      {
+        "name": "UtranTDDFreqRelation.mobilityAction",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UtranTDDFreqRelation"
+      },
+      {
+        "name": "UtranTDDFreqRelation.mobilityActionCsfb",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UtranTDDFreqRelation"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_MOBILITY_DECISION",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_RELEASE_WITH_REDIRECT_REASON",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AU",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UtranCellRelation.coverageIndicator",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UtranCellRelation"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmPdcpPktDiscDlNoUeCtxt",
+        "description": "Performance counter pmPdcpPktDiscDlNoUeCtxt",
+        "category": "General"
+      },
+      {
+        "name": "pmRimAssocAtt",
+        "description": "Performance counter pmRimAssocAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRimAssocMax",
+        "description": "Performance counter pmRimAssocMax",
+        "category": "General"
+      },
+      {
+        "name": "pmRimAssocRemoved",
+        "description": "Performance counter pmRimAssocRemoved",
+        "category": "General"
+      },
+      {
+        "name": "pmRimAssocSucc",
+        "description": "Performance counter pmRimAssocSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbGsm",
+        "description": "Performance counter pmUeCtxtRelCsfbGsm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbGsmEm",
+        "description": "Performance counter pmUeCtxtRelCsfbGsmEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbTdScdma",
+        "description": "Performance counter pmUeCtxtRelCsfbTdScdma",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbTdScdmaEm",
+        "description": "Performance counter pmUeCtxtRelCsfbTdScdmaEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbWcdma",
+        "description": "Performance counter pmUeCtxtRelCsfbWcdma",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbWcdmaEm",
+        "description": "Performance counter pmUeCtxtRelCsfbWcdmaEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelNaccCsfbGsm",
+        "description": "Performance counter pmUeCtxtRelNaccCsfbGsm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelNaccCsfbGsmEm",
+        "description": "Performance counter pmUeCtxtRelNaccCsfbGsmEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelNaccCsfbWcdma",
+        "description": "Performance counter pmUeCtxtRelNaccCsfbWcdma",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelNaccCsfbWcdmaEm",
+        "description": "Performance counter pmUeCtxtRelNaccCsfbWcdmaEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelNaccSCGsm",
+        "description": "Performance counter pmUeCtxtRelNaccSCGsm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelNaccSCWcdma",
+        "description": "Performance counter pmUeCtxtRelNaccSCWcdma",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCGsm",
+        "description": "Performance counter pmUeCtxtRelSCGsm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCTdScdma",
+        "description": "Performance counter pmUeCtxtRelSCTdScdma",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCWcdma",
+        "description": "Performance counter pmUeCtxtRelSCWcdma",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_MOBILITY_DECISION",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_RELEASE_WITH_REDIRECT_REASON",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010973 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010973 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/98_22104-LZA7016014_1Uen.AU.md",
+    "file_hash": "555cb273cd862c07c15bae47863f3064",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

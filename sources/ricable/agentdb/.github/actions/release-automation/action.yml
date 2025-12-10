@@ -1,0 +1,22 @@
+name: 'Release Automation'
+description: 'Semantic versioning and automated release management'
+author: 'Ericsson RAN Team'
+inputs:
+  release-type:
+    description: 'Release type (patch, minor, major)'
+    required: false
+    default: 'patch'
+  generate-changelog:
+    description: 'Generate automated changelog'
+    required: false
+    default: 'true'
+  create-release-notes:
+    description: 'Create detailed release notes'
+    required: false
+    default: 'true'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+branding:
+  icon: 'tag'
+  color: 'purple'

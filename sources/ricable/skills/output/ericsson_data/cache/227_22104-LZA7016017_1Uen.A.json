@@ -1,0 +1,85 @@
+{
+  "file_hash": "93b3f2df43af0014cae44ede4c2f1786",
+  "feature": {
+    "id": "121 5800",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012780",
+    "value_package": "5G Advanced High-Load Handling",
+    "value_package_id": "FAJ 801 4032",
+    "access_type": "NR",
+    "node_type": "Baseband",
+    "description": "",
+    "summary": "The feature introduces priority differentiation for SRBs.",
+    "parameters": [
+      {
+        "name": "NRCellDU.srbPriorityRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "SrbPriority.srbPriorityId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SrbPriority"
+      },
+      {
+        "name": "SrbPriority.ueConfGroupType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SrbPriority"
+      },
+      {
+        "name": "SrbPriorityUeCfg.prefUeGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SrbPriorityUeCfg"
+      },
+      {
+        "name": "SrbPriorityUeCfg.srbPriority",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SrbPriorityUeCfg"
+      },
+      {
+        "name": "SrbPriorityUeCfg.srbPriorityUeCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SrbPriorityUeCfg"
+      },
+      {
+        "name": "SrbPriorityUeCfg.ueConfGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SrbPriorityUeCfg"
+      },
+      {
+        "name": "SrbPriorityUeCfg.ueGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SrbPriorityUeCfg"
+      },
+      {
+        "name": "Uen.A",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012780 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012780 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/227_22104-LZA7016017_1Uen.A.md",
+    "file_hash": "93b3f2df43af0014cae44ede4c2f1786",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

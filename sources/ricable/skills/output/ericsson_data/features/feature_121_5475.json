@@ -1,0 +1,114 @@
+{
+  "id": "121 5475",
+  "name": "NR Slot-Specific Downlink Link Adaptation",
+  "cxc_code": "CXC4012619",
+  "value_package": "Performance Boost",
+  "value_package_id": "FAJ 801 4021",
+  "access_type": "NR",
+  "node_type": "",
+  "description": "",
+  "summary": "The feature provides means of observability and configuration to improve downlink",
+  "parameters": [
+    {
+      "name": "NRCellDu.slotSpecificDlLaConfigList",
+      "type": "Introduced",
+      "description": "The attribute is associated with the following members:  sfnPeriodForLaConfig     sfnOffsetForLaConfig     slotForLaConfig     rankEnabledList     modulationEnabledList     outerLoopAdjustDisabled     sinrBackoff      See MOM description.",
+      "mo_class": "NRCellDu"
+    },
+    {
+      "name": "Uen.M",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRCellDU.slotSpecificDlLaConfigList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDu.pmMacHarqDlAckQpskInitSlotDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDu"
+    },
+    {
+      "name": "NRCellDu.pmMacHarqDlNackQpskInitSlotDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDu"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmMacHarqDlAck16QamInitSlotDistr",
+      "description": "Performance counter pmMacHarqDlAck16QamInitSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAck256QamInitSlotDistr",
+      "description": "Performance counter pmMacHarqDlAck256QamInitSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAck64QamInitSlotDist",
+      "description": "Performance counter pmMacHarqDlAck64QamInitSlotDist",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAckQpskInitSlotDistr",
+      "description": "Performance counter pmMacHarqDlAckQpskInitSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack16QamInitSlotDistr",
+      "description": "Performance counter pmMacHarqDlNack16QamInitSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack256QamInitSlotDistr",
+      "description": "Performance counter pmMacHarqDlNack256QamInitSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack64QamInitSlotDistr",
+      "description": "Performance counter pmMacHarqDlNack64QamInitSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNackQpskInitSlotDistr",
+      "description": "Performance counter pmMacHarqDlNackQpskInitSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012619 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012619 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/153_22104-LZA7016017_1Uen.M.md",
+  "file_hash": "687507e4be638f0b8fc6b8d978486a8e",
+  "processed_at": "2025-10-19 15:50:03",
+  "network_impact": {},
+  "performance_impact": {}
+}

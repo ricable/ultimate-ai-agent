@@ -1,0 +1,30 @@
+[package]
+name = "synaptic-daa-swarm"
+version = "0.1.0"
+edition = "2021"
+authors = ["rUv <https://github.com/ruvnet>"]
+description = "Distributed Autonomous Agent swarm intelligence framework for Synaptic Neural Mesh"
+repository = "https://github.com/ruvnet/Synaptic-Mesh"
+license = "MIT OR Apache-2.0"
+homepage = "https://github.com/ruvnet/Synaptic-Mesh"
+documentation = "https://docs.rs/synaptic-daa-swarm"
+readme = "README.md"
+keywords = ["daa", "swarm", "ai", "distributed", "autonomous"]
+categories = ["algorithms", "science", "concurrency"]
+
+[dependencies]
+synaptic-neural-mesh = "0.1"
+synaptic-qudag-core = "0.1"
+tokio = { version = "1.0", features = ["full"] }
+async-trait = "0.1"
+futures = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rand = "0.8"
+uuid = { version = "1.0", features = ["v4", "serde"] }
+dashmap = "5.5"
+parking_lot = "0.12"
+tracing = "0.1"
+
+[dev-dependencies]
+tokio-test = "0.4"

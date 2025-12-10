@@ -1,0 +1,79 @@
+{
+  "file_hash": "1aa4072436f352fd6ce747faadf6e90b",
+  "feature": {
+    "id": "121 5227",
+    "name": "Downlink Throughput Test in gNodeB",
+    "cxc_code": "CXC4012489",
+    "value_package": "NR Base Package",
+    "value_package_id": "FAJ 801 4002",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The main benefits of the feature are the following:",
+    "parameters": [
+      {
+        "name": "Uen.Z",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "DataPacketGenerator.packetRate",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "DataPacketGenerator"
+      },
+      {
+        "name": "DataPacketGenerator.duration",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "DataPacketGenerator"
+      },
+      {
+        "name": "DataPacketGeneratorUeCfg.prefUeGroupList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "DataPacketGeneratorUeCfg"
+      },
+      {
+        "name": "DataPacketGeneratorUeCfg.ueGroupList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "DataPacketGeneratorUeCfg"
+      },
+      {
+        "name": "UeGroupSelectionProfile.selectionCriteria",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeGroupSelectionProfile"
+      },
+      {
+        "name": "PrefUeGroupSelectionProfile.selectionCriteria",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PrefUeGroupSelectionProfile"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmPdcpPktInjected",
+        "description": "Performance counter pmPdcpPktInjected",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012489 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012489 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/526_22104-LZA7016014_1Uen.Z.md",
+    "file_hash": "1aa4072436f352fd6ce747faadf6e90b",
+    "processed_at": "2025-10-19 15:50:09",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

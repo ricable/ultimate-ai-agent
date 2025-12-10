@@ -1,0 +1,112 @@
+{
+  "id": "121 4329",
+  "name": "Prioritization of VoLTE in Access Barring",
+  "cxc_code": "CXC4011942",
+  "value_package": "High Load Handling",
+  "value_package_id": "FAJ 801 0415",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Prioritization of VoLTE in Access Barring feature allows for the prioritization",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.acBarringSkipForMmtelVideo  EUtranCellTDD.acBarringSkipForMmtelVideo",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.acBarringSkipForMmtelVoice  EUtranCellTDD.acBarringSkipForMmtelVoice",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.acBarringSkipForSms  EUtranCellTDD.acBarringSkipForSms",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.acBarringPresence  EUtranCellTDD.acBarringPresence",
+      "type": "Affecting",
+      "description": "The Prioritization of VoLTE in Access Barring indicators (when                                 enabled by operator) are only broadcast when access class barring is                                 enabled and broadcast.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.ssacBarringForMMTELVideo  EUtranCellTDD.ssacBarringForMMTELVideo",
+      "type": "Affecting",
+      "description": "The Prioritization of VoLTE in Access Barring feature is independent                                 of SSAC, but there is some interaction at the UE node. If SSAC is                                 set to be barred for a UE, the IMS layer in the UE stops the                                 connection attempt before it reaches the point where an RRC                                 connection is attempted. In this case, the setting of the Prioritization of VoLTE in Access Barring indication does not matter.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.ssacBarringForMMTELVoice  EUtranCellTDD.ssacBarringForMMTELVoice",
+      "type": "Affecting",
+      "description": "The Prioritization of VoLTE in Access Barring feature is independent                                 of SSAC, but there is some interaction at the UE node. If SSAC is                                 set to be barred for a UE, the IMS layer in the UE stops the                                 connection attempt before it reaches the point where an RRC                                 connection is attempted. In this case, the setting of the Prioritization of VoLTE in Access Barring indication does not matter.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringSkipForMmtelVideo",
+      "type": "Affecting",
+      "description": "With the PLMN-Specific Access Barring feature, skipping the access                                 barring check can be configured for each PLMN, within PLMN-specific                                 access barring configuration profiles.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringSkipForMmtelVoice",
+      "type": "Affecting",
+      "description": "With the PLMN-Specific Access Barring feature, skipping the access                                 barring check can be configured for each PLMN, within PLMN-specific                                 access barring configuration profiles.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringSkipForSms",
+      "type": "Affecting",
+      "description": "With the PLMN-Specific Access Barring feature, skipping the access                                 barring check can be configured for each PLMN, within PLMN-specific                                 access barring configuration profiles.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "Uen.AM",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.acBarringSkipForMmtelVideo",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.acBarringSkipForMmtelVideo",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.acBarringSkipForMmtelVoice",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.acBarringSkipForMmtelVoice",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011942 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011942 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/128_22104-LZA7016014_1Uen.AM.md",
+  "file_hash": "ca79b832e20cb9e583d4e51b066e977d",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

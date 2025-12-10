@@ -1,0 +1,46 @@
+{
+  "id": "121 5834",
+  "name": "Node Deployment without External Synchronization Source",
+  "cxc_code": "CXC4012818",
+  "value_package": "NR Base Package",
+  "value_package_id": "FAJ 801 4002",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables the node to operate within an isolated TDD-unicast area, which allows the",
+  "parameters": [
+    {
+      "name": "Uen.G33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    },
+    {
+      "name": "A.a",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "A"
+    }
+  ],
+  "counters": [],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012818 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012818 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/597_22104-LZA7016014_1Uen.G33B.md",
+  "file_hash": "76fa364b600ce62ec95c77b7cea8429c",
+  "processed_at": "2025-10-19 17:07:27",
+  "network_impact": {},
+  "performance_impact": {}
+}

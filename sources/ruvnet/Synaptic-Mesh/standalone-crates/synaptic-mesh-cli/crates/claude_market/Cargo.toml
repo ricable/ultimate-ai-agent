@@ -1,0 +1,47 @@
+[package]
+name = "claude_market"
+version = "0.1.1"
+edition = "2021"
+authors = ["Synaptic Mesh Contributors"]
+description = "P2P marketplace for trading Claude API tokens with escrow and reputation"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/ruvnet/Synaptic-Mesh"
+keywords = ["p2p", "marketplace", "tokens", "escrow", "libp2p"]
+categories = ["network-programming", "cryptography"]
+
+[dependencies]
+# Core dependencies
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.35", features = ["full"] }
+tracing = "0.1"
+thiserror = "1.0"
+uuid = { version = "1.6", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# P2P networking
+libp2p = { version = "0.53", features = ["kad", "gossipsub", "identify", "noise", "tcp", "yamux", "serde", "macros"] }
+
+# Database
+rusqlite = { version = "0.30", features = ["bundled", "chrono", "serde_json"] }
+
+# Cryptography
+ed25519-dalek = { version = "2.1", features = ["serde"] }
+sha2 = "0.10"
+hex = "0.4"
+rand = "0.8"
+
+# Additional utilities
+async-trait = "0.1"
+futures = "0.3"
+anyhow = "1.0"
+
+[dev-dependencies]
+tempfile = "3.8"
+pretty_assertions = "1.4"
+tokio-test = "0.4"
+
+[features]
+default = ["memory-db"]
+memory-db = []
+test-utils = []

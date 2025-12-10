@@ -1,0 +1,118 @@
+{
+  "file_hash": "45a25e666acc81e223bffd413d86388a",
+  "feature": {
+    "id": "121 2054",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4011256",
+    "value_package": "High Speed UE",
+    "value_package_id": "FAJ 801 0438",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The High Speed UE feature establishes and maintains connections to UEs up to 350 km/h",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.highSpeedUEActive",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.highSpeedUEActive",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "Uen.BB",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ENodeBFunction.combCellSectorSelectThreshRx",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranCellFDD.rachRootSequence",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.rachRootSequence",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.noOfPucchCqiUsers",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.noOfPucchCqiUsers",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmPucchSrCqiResCongCqi",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmPucchSrCqiResCongCqi",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "BbProcessingResource.pmPucchCqiResCongBbm",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "BbProcessingResource"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmPdcpPktLostUlQci",
+        "description": "Performance counter pmPdcpPktLostUlQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktReceivedUlQci",
+        "description": "Performance counter pmPdcpPktReceivedUlQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPucchCqiResCongBbm",
+        "description": "Performance counter pmPucchCqiResCongBbm",
+        "category": "General"
+      },
+      {
+        "name": "pmPucchSrCqiResCongCqi",
+        "description": "Performance counter pmPucchSrCqiResCongCqi",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011256 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011256 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/183_22104-LZA7016014_1Uen.BB.md",
+    "file_hash": "45a25e666acc81e223bffd413d86388a",
+    "processed_at": "2025-10-19 15:48:54",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

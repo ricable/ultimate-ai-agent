@@ -1,0 +1,1395 @@
+{
+  "file_hash": "5d9c7e4c65d8e9049786bfc320f9454d",
+  "feature": {
+    "id": "121 4390",
+    "name": "Cell Sleep Mode",
+    "cxc_code": "CXC4011958",
+    "value_package": "Energy                                 Efficiency",
+    "value_package_id": "FAJ 801 0413",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Cell Sleep Mode feature provides automatic energy savings.",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.hoOptStatTime",
+        "type": "The operational cycle of the handover optimization function. See                                         Automated Mobility Optimization for                                     more details.",
+        "description": "",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.hoOptStatTime",
+        "type": "The operational cycle of the handover optimization function. See                                         Automated Mobility Optimization for                                     more details.",
+        "description": "",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranFreqRelation.lbActivationThreshold",
+        "type": "The minimum target cell load (subscription ratio) the source cell                                     takes into account when determining the amount of load balancing                                     action to a cell using this carrier frequency. See Coverage-Adapted Load Management for                                     more details.",
+        "description": "",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "ENodeBFunction.checkEmergencySoftLock",
+        "type": "Used to turn on and off the function for checking existence of                                     emergency calls.",
+        "description": "",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.pwsSupportInCsmAndMsm",
+        "type": "Used to reactivate the cell in sleep state and to start                                     broadcasting PWS alert.",
+        "description": "",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_ADJUST_DL_PRB_OFFLOAD",
+        "description": "Shows the adjustment value applied to the measured downlink PRB                                     use of the offload traffic.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_ADJUST_RRC_OFFLOAD",
+        "description": "Shows the adjustment value applied to the measured number of RRC                                     connections in the offload traffic.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_HOUR",
+        "description": "Hour when the procedure event started.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_MINUTE",
+        "description": "Minute when the procedure event started.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_SECOND",
+        "description": "Second when the procedure event started.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_MILLISEC",
+        "description": "Millisecond when the procedure event started.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_HOUR",
+        "description": "Hour when the procedure event stopped.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_MINUTE",
+        "description": "Minute when the procedure event stopped.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_SECOND",
+        "description": "Second when the procedure event stopped.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_MILLISEC",
+        "description": "Millisecond when the procedure event stopped.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_CSM_RESULT",
+        "description": "Cell sleep result.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_DETECTION_DL_PRB_USAGE",
+        "description": "Downlink PRB use percentage in capacity cell when capacity cell                                     requests cell sleep.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_DETECTION_DL_PRB_THRESHOLD",
+        "description": "Downlink PRB use percentage threshold to wake the capacity                                     cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_DETECTION_UES",
+        "description": "The number of RRC connections in capacity cell when capacity cell                                     requests cell sleep.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_DETECTION_UES_THRESHOLD",
+        "description": "Minimum number of RRC connections needed to wake the capacity                                     cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_DETECTION_DURATION",
+        "description": "Minimum duration for coverage cell to satisfy configured load                                     thresholds before the capacity cell can wake.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_ARRAY_COVERAGE_CELL_ID",
+        "description": "The array of Cell IDs for the involved coverage cells. Sleep                                     requests have been sent to these coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_TRIGGERED",
+        "type": "EVENT_PARAM_CSM_RESULT",
+        "description": "Cell wake-up result.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_TRIGGERED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID",
+        "description": "When the wakeup is a result of an activation request from a                                     coverage cell, this is the eNodeB ID of the coverage cell.                                     Otherwise, when the wakeup is triggered by the capacity cell                                     itself because of time interval expiry or other fault conditions                                     or neighbor cell, this parameter is set to UNAVAILABLE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_TRIGGERED",
+        "type": "EVENT_PARAM_NEIGHBOUR_ENB_ID",
+        "description": "When the wakeup is a result from an activation request sent from                                     a neighbor cell, this is the eNodeB ID of the neighbor cell.                                     Otherwise, this parameter is set to UNAVAILABLE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_DL_PRB_USAGE",
+        "description": "Downlink PRB use percentage in coverage cell when coverage cell                                     detects cell wakeup. If capacity cell detects cell wakeup, this                                     is set to UNAVAILABLE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_DL_PRB_THRESHOLD",
+        "description": "Downlink PRB use percentage threshold to wake the capacity cell.                                     If capacity cell detects cell wakeup, this is set to                                     UNAVAILABLE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_UES",
+        "description": "The number of RRC connections in coverage cell when coverage cell                                     detects cell wakeup. If capacity cell detects cell wakeup, this                                     is set to UNAVAILABLE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_UES_THRESHOLD",
+        "description": "Minimum number of RRC connections needed to wake the capacity                                     cell. If capacity cell detects cell wakeup, this is set to                                     UNAVAILABLE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_DURATION",
+        "description": "Minimum duration for coverage cell to satisfy configured load                                     thresholds before the capacity cell can wake. If capacity cell                                     detects cell wakeup, this is set to UNAVAILABLE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_CAPACITY_CELL_ID",
+        "description": "Array of the global cell ID of the capacity cells involved.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_WAKEUP_CAUSE",
+        "description": "This indicates the reason for a cell exiting cell sleep                                     state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_UE_LOST",
+        "description": "The number of UE lost.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_RRC_REESTAB",
+        "description": "The number of RRC connection re-establishments.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_UE_CTXT_RELEASE",
+        "description": "The number of UE context releases.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_RRC_CONN_ESTAB_ATT",
+        "description": "The number of RRC connection establishment attempts.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_DL_PRB_THRESHOLD_HIGH",
+        "description": "The downlink PRB high use percentage threshold to wake the                                     capacity cell. If the capacity cell detects cell wakeup, the                                     value of this parameter is set to                                     UNAVAILABLE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_UES_THRESHOLD_HIGH",
+        "description": "The minimum number of RRC connections needed to wake the capacity                                     cell because of high threshold. If the capacity cell detects                                     cell wakeup, the value for this parameter is set to                                         UNAVAILABLE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_DURATION_HIGH",
+        "description": "The Minimum duration for the coverage cell to meet configured                                     high load thresholds before the capacity cell can wake. If the                                     capacity cell detects cell wakeup, the value for this parameter                                     is set to UNAVAILABLE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_REQUEST",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_REQUEST",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_REQUEST",
+        "type": "EVENT_PARAM_SEQ_WAKEUP",
+        "description": "The value of the Sequential Wakeup IE received in                                 the CELL ACTIVATION REQUEST message.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_RESPONSE",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_RESPONSE",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_FAILURE",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_FAILURE",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_START_REQUEST",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_START_REQUEST",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_STOP_REQUEST",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_STOP_REQUEST",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_RESPONSE",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_RESPONSE",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_FAILURE",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_FAILURE",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_WAKEUP_INDICATION",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_WAKEUP_INDICATION",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_WAKEUP_INDICATION",
+        "type": "EVENT_PARAM_IND_TYPE",
+        "description": "Wake-up indication type received in X2 message.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_WAKEUP_INDICATION",
+        "type": "EVENT_PARAM_SEQ_WAKEUP_DETECTION_DL_PRB_LOAD",
+        "description": "Downlink PRB use in the capacity cell when indication is sent to                                     the coverage cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_WAKEUP_INDICATION",
+        "type": "EVENT_PARAM_SEQ_WAKEUP_DETECTION_UES_LOAD",
+        "description": "Number of RRC connections in the capacity cell when indication is                                     sent to the coverage cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_WAKEUP_INDICATION",
+        "type": "EVENT_PARAM_CAPACITY_CELL_ID",
+        "description": "Global cell ID of the capacity cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_COV_CELL_DISCOVERY_START",
+        "type": "",
+        "description": "Triggered when coverage cell discovery starts for a particular                                     capacity cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_COV_CELL_DISCOVERY_END",
+        "type": "",
+        "description": "Triggered when coverage cell discovery is stopped because of                                     feature reconfiguration.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_COV_CELL_DISCOVERY_UPDATE",
+        "type": "EVENT_ARRAY_COVERAGE_CELL_ID",
+        "description": "Array of the global cell ID of the discovered coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_COV_CELL_DISCOVERY_UPDATE",
+        "type": "EVENT_PARAM_CSM_RESULT",
+        "description": "If insufficient coverage is found, result could indicate                                     failure.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_COV_CELL_DISCOVERY_UPDATE",
+        "type": "EVENT_PARAM_FREQ",
+        "description": "Frequency of coverage cell relations.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_CSM_FAILED_CRITERIA",
+        "description": "The failed cell sleep criteria.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_0",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_1",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_2",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_3",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_4",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_5",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_6",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_7",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_8",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_9",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_10",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_11",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_12",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_13",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_14",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_15",
+        "description": "The eNodeB ID of one or more coverage cells.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_0",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_0.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_1",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_1.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_2",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_2.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_3",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_3.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_4",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_4.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_5",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_5.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_6",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_6.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_7",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_7.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_8",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_8.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_9",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_9.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_10",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_10.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_11",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_11.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_12",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_12.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_13",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_13.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_14",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_14.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_15",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_15.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_PROHIBIT_TRIGGERED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID",
+        "description": "The eNodeB ID of the coverage cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_PROHIBIT_TRIGGERED",
+        "type": "EVENT_PARAM_SLEEP_PROHIBIT_TIME",
+        "description": "The interval of prohibiting capacity cell from entering sleep                                     state.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_IND_RECEIVED",
+        "type": "EVENT_PARAM_IND_TYPE",
+        "description": "The wake-up indication type received in coverage cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_IND_RECEIVED",
+        "type": "EVENT_PARAM_SEQ_WAKEUP_DETECTION_DL_PRB_LOAD",
+        "description": "The downlink PRB use in the capacity cell when indication is sent                                     to the coverage cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_IND_RECEIVED",
+        "type": "EVENT_PARAM_SEQ_WAKEUP_DETECTION_UES_LOAD",
+        "description": "The number of RRC connections in the capacity cell when                                     indication is sent to the coverage cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_IND_RECEIVED",
+        "type": "EVENT_PARAM_CAPACITY_CELL_ID",
+        "description": "The array of the global cell ID of the capacity cells                                     involved.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CellSleepFunction",
+        "type": "capCellMobReasNotSleepThr",
+        "description": "Threshold value for number of incoming X2 inter-frequency                                  handovers with cause \"Handover Desirable for Radio Reasons\" from                                    neighbor cells with coverage frequency. If incoming X2                                  inter-frequency handovers exceeds threshold, it is considered                                   related capacity cell is providing basic coverage support and                                   entering sleep state is prevented.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CellSleepFunction",
+        "type": "capCellSleepProhibitInterval",
+        "description": "Time interval when sleep state is prohibited for capacity cell.                                    If set to 0, prohibition is disabled for related cell. When                                     related cell is in prohibition state, only value 0 can be                                   set.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CellSleepFunction",
+        "type": "sleepProhibitStartTime",
+        "description": "Start time for sleep state prohibition. Format: YYYY-MM-DD HH:MM:SS. If empty, related                                     capacity cell is not prohibited from entering sleep state.                                  Otherwise, sleep state is prohibited until                                      capCellSleepProhibitInterval expires or                                     prohibition is disabled.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CellSleepFunction",
+        "type": "isCleanupHitRateTable",
+        "description": "Indicates if hit rate table is cleaned up when related capacity                                    cell wakes up due to suspected coverage hole and automatic                                  coverage cell discovery is enabled.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CellSleepFunction",
+        "type": "covCellUeLostWakeUpThr",
+        "description": "Difference threshold for UE Lost rate between normal and sleep                                     statistics. If the threshold is exceeded, coverage cell wakes up                                    all capacity cells. Value 100 means monitoring for UE Lost is                                   disabled.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CellSleepFunction",
+        "type": "covCellRrcReestWakeUpThr",
+        "description": "Difference threshold for RRC Connection Re-establishment rate                                  between normal and sleep statistics. If the threshold is                                    exceeded, coverage cell wakes up all capacity cells. Value 100                                  means monitoring for RRC Connection Re-establishment is                                     disabled.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CellSleepFunction",
+        "type": "covCellUeCtxtRelMin",
+        "description": "Minimum required samples of UE Context Release to calculate UE                                     Lost rate for normal and sleep statistics.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CellSleepFunction",
+        "type": "covCellRrcConnEstAttMin",
+        "description": "Minimum required samples of RRC Connection Establishment Attempt                                   to calculate RRC Connection Re-establishment rate for normal and                                    sleep statistics.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CellSleepFunction",
+        "type": "covCellLatestStatsAdaRatio",
+        "description": "Ratio indicating weight of latest data for normal statistics                                   calculation.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CellSleepFunction",
+        "type": "isAllowedMsmOnCovCell",
+        "description": "Defines if MIMO sleep with \"SWITCH\" or \"SOFT_SWITCH\" mode is                                   allowed in the coverage cell. The \"ADVANCED_SWITCH\" mode is not                                     dependent on this attribute.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CellSleepNodeFunction",
+        "type": "csmMinHitRateForCovCell",
+        "description": "Minimum required hit rate value for related cell to be assigned                                    as coverage cell. When hit rate of the given cell is higher than                                    value, cell can be selected as coverage cell for capacity                                   cell.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "ENodeBFunction",
+        "type": "csmMinHighHitThreshold",
+        "description": "Minimum required hit rate to qualify a related cell as high hit                                     rate coverage cell by the Cell Sleep Mode feature.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.GN33C",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UePolicyOptimization.coverageAwareImc",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UePolicyOptimization"
+      },
+      {
+        "name": "CellSleepFunction.capCellDlPrbSleepThreshold",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "CellSleepFunction"
+      },
+      {
+        "name": "CellSleepFunction.capCellRrcConnSleepThreshold",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "CellSleepFunction"
+      },
+      {
+        "name": "CellSleepFunction.covCellDlPrbWakeUpThreshold",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "CellSleepFunction"
+      },
+      {
+        "name": "CellSleepFunction.covCellDlPrbWakeUpThresHigh",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "CellSleepFunction"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCellDowntimeAuto",
+        "description": "Performance counter pmCellDowntimeAuto",
+        "category": "General"
+      },
+      {
+        "name": "pmCellSleepFailUeCap",
+        "description": "Performance counter pmCellSleepFailUeCap",
+        "category": "Energy"
+      },
+      {
+        "name": "pmCellSleepTime",
+        "description": "Performance counter pmCellSleepTime",
+        "category": "Energy"
+      },
+      {
+        "name": "pmConsumedEnergy",
+        "description": "Performance counter pmConsumedEnergy",
+        "category": "General"
+      },
+      {
+        "name": "pmConsumedEnergyAccumulated",
+        "description": "Performance counter pmConsumedEnergyAccumulated",
+        "category": "General"
+      },
+      {
+        "name": "pmCounter",
+        "description": "Performance counter pmCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmEvent",
+        "description": "Performance counter pmEvent",
+        "category": "General"
+      },
+      {
+        "name": "pmEvents",
+        "description": "Performance counter pmEvents",
+        "category": "General"
+      },
+      {
+        "name": "pmMimoSleepTime",
+        "description": "Performance counter pmMimoSleepTime",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmPowerConsumption",
+        "description": "Performance counter pmPowerConsumption",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmode",
+        "description": "Performance counter pmode",
+        "category": "General"
+      },
+      {
+        "name": "pmodeCapacityCell",
+        "description": "Performance counter pmodeCapacityCell",
+        "category": "General"
+      },
+      {
+        "name": "pmodeCovCellCandidate",
+        "description": "Performance counter pmodeCovCellCandidate",
+        "category": "General"
+      },
+      {
+        "name": "pmodeCovProfile",
+        "description": "Performance counter pmodeCovProfile",
+        "category": "General"
+      },
+      {
+        "name": "pmodeCovProfileMO",
+        "description": "Performance counter pmodeCovProfileMO",
+        "category": "General"
+      },
+      {
+        "name": "pmodeCoverageCell",
+        "description": "Performance counter pmodeCoverageCell",
+        "category": "General"
+      },
+      {
+        "name": "pmonitorDurTHigh",
+        "description": "Performance counter pmonitorDurTHigh",
+        "category": "General"
+      },
+      {
+        "name": "pmonitorDurTimer",
+        "description": "Performance counter pmonitorDurTimer",
+        "category": "General"
+      },
+      {
+        "name": "pmonitorEnabled",
+        "description": "Performance counter pmonitorEnabled",
+        "category": "General"
+      },
+      {
+        "name": "pmonitorTime",
+        "description": "Performance counter pmonitorTime",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_ADJUST_DL_PRB_OFFLOAD",
+        "description": "Shows the adjustment value applied to the measured downlink PRB                                     use of the offload traffic."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_ADJUST_RRC_OFFLOAD",
+        "description": "Shows the adjustment value applied to the measured number of RRC                                     connections in the offload traffic."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_HOUR",
+        "description": "Hour when the procedure event started."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_MINUTE",
+        "description": "Minute when the procedure event started."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_SECOND",
+        "description": "Second when the procedure event started."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_START_MILLISEC",
+        "description": "Millisecond when the procedure event started."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_HOUR",
+        "description": "Hour when the procedure event stopped."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_MINUTE",
+        "description": "Minute when the procedure event stopped."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_SECOND",
+        "description": "Second when the procedure event stopped."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_TIMESTAMP_STOP_MILLISEC",
+        "description": "Millisecond when the procedure event stopped."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_CSM_RESULT",
+        "description": "Cell sleep result."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_DETECTION_DL_PRB_USAGE",
+        "description": "Downlink PRB use percentage in capacity cell when capacity cell                                     requests cell sleep."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_DETECTION_DL_PRB_THRESHOLD",
+        "description": "Downlink PRB use percentage threshold to wake the capacity                                     cell."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_DETECTION_UES",
+        "description": "The number of RRC connections in capacity cell when capacity cell                                     requests cell sleep."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_DETECTION_UES_THRESHOLD",
+        "description": "Minimum number of RRC connections needed to wake the capacity                                     cell."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_PARAM_DETECTION_DURATION",
+        "description": "Minimum duration for coverage cell to satisfy configured load                                     thresholds before the capacity cell can wake."
+      },
+      {
+        "name": "INTERNAL_PROC_CELL_SLEEP_TRIGGERED",
+        "type": "EVENT_ARRAY_COVERAGE_CELL_ID",
+        "description": "The array of Cell IDs for the involved coverage cells. Sleep                                     requests have been sent to these coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_TRIGGERED",
+        "type": "EVENT_PARAM_CSM_RESULT",
+        "description": "Cell wake-up result."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_TRIGGERED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID",
+        "description": "When the wakeup is a result of an activation request from a                                     coverage cell, this is the eNodeB ID of the coverage cell.                                     Otherwise, when the wakeup is triggered by the capacity cell                                     itself because of time interval expiry or other fault conditions                                     or neighbor cell, this parameter is set to UNAVAILABLE."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_TRIGGERED",
+        "type": "EVENT_PARAM_NEIGHBOUR_ENB_ID",
+        "description": "When the wakeup is a result from an activation request sent from                                     a neighbor cell, this is the eNodeB ID of the neighbor cell.                                     Otherwise, this parameter is set to UNAVAILABLE."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_DL_PRB_USAGE",
+        "description": "Downlink PRB use percentage in coverage cell when coverage cell                                     detects cell wakeup. If capacity cell detects cell wakeup, this                                     is set to UNAVAILABLE."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_DL_PRB_THRESHOLD",
+        "description": "Downlink PRB use percentage threshold to wake the capacity cell.                                     If capacity cell detects cell wakeup, this is set to                                     UNAVAILABLE."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_UES",
+        "description": "The number of RRC connections in coverage cell when coverage cell                                     detects cell wakeup. If capacity cell detects cell wakeup, this                                     is set to UNAVAILABLE."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_UES_THRESHOLD",
+        "description": "Minimum number of RRC connections needed to wake the capacity                                     cell. If capacity cell detects cell wakeup, this is set to                                     UNAVAILABLE."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_DURATION",
+        "description": "Minimum duration for coverage cell to satisfy configured load                                     thresholds before the capacity cell can wake. If capacity cell                                     detects cell wakeup, this is set to UNAVAILABLE."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_CAPACITY_CELL_ID",
+        "description": "Array of the global cell ID of the capacity cells involved."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_WAKEUP_CAUSE",
+        "description": "This indicates the reason for a cell exiting cell sleep                                     state."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_UE_LOST",
+        "description": "The number of UE lost."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_RRC_REESTAB",
+        "description": "The number of RRC connection re-establishments."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_UE_CTXT_RELEASE",
+        "description": "The number of UE context releases."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_RRC_CONN_ESTAB_ATT",
+        "description": "The number of RRC connection establishment attempts."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_DL_PRB_THRESHOLD_HIGH",
+        "description": "The downlink PRB high use percentage threshold to wake the                                     capacity cell. If the capacity cell detects cell wakeup, the                                     value of this parameter is set to                                     UNAVAILABLE."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_UES_THRESHOLD_HIGH",
+        "description": "The minimum number of RRC connections needed to wake the capacity                                     cell because of high threshold. If the capacity cell detects                                     cell wakeup, the value for this parameter is set to                                         UNAVAILABLE."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "EVENT_PARAM_DETECTION_DURATION_HIGH",
+        "description": "The Minimum duration for the coverage cell to meet configured                                     high load thresholds before the capacity cell can wake. If the                                     capacity cell detects cell wakeup, the value for this parameter                                     is set to UNAVAILABLE."
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_REQUEST",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB."
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_REQUEST",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB."
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_REQUEST",
+        "type": "EVENT_PARAM_SEQ_WAKEUP",
+        "description": "The value of the Sequential Wakeup IE received in                                 the CELL ACTIVATION REQUEST message."
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_RESPONSE",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB."
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_RESPONSE",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB."
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_FAILURE",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB."
+      },
+      {
+        "name": "X2_CELL_ACTIVATION_FAILURE",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_START_REQUEST",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_START_REQUEST",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_STOP_REQUEST",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_STOP_REQUEST",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_RESPONSE",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_RESPONSE",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_FAILURE",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_FAILURE",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_WAKEUP_INDICATION",
+        "type": "EVENT_PARAM_SEND_GENBID",
+        "description": "The global ID of the source eNodeB."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_WAKEUP_INDICATION",
+        "type": "EVENT_PARAM_RECV_GENBID",
+        "description": "The global ID of the target eNodeB."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_WAKEUP_INDICATION",
+        "type": "EVENT_PARAM_IND_TYPE",
+        "description": "Wake-up indication type received in X2 message."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_WAKEUP_INDICATION",
+        "type": "EVENT_PARAM_SEQ_WAKEUP_DETECTION_DL_PRB_LOAD",
+        "description": "Downlink PRB use in the capacity cell when indication is sent to                                     the coverage cell."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_WAKEUP_INDICATION",
+        "type": "EVENT_PARAM_SEQ_WAKEUP_DETECTION_UES_LOAD",
+        "description": "Number of RRC connections in the capacity cell when indication is                                     sent to the coverage cell."
+      },
+      {
+        "name": "X2_PROPRIETARY_CELL_SLEEP_WAKEUP_INDICATION",
+        "type": "EVENT_PARAM_CAPACITY_CELL_ID",
+        "description": "Global cell ID of the capacity cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_COV_CELL_DISCOVERY_START",
+        "type": "",
+        "description": "Triggered when coverage cell discovery starts for a particular                                     capacity cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_COV_CELL_DISCOVERY_END",
+        "type": "",
+        "description": "Triggered when coverage cell discovery is stopped because of                                     feature reconfiguration."
+      },
+      {
+        "name": "INTERNAL_EVENT_COV_CELL_DISCOVERY_UPDATE",
+        "type": "EVENT_ARRAY_COVERAGE_CELL_ID",
+        "description": "Array of the global cell ID of the discovered coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_COV_CELL_DISCOVERY_UPDATE",
+        "type": "EVENT_PARAM_CSM_RESULT",
+        "description": "If insufficient coverage is found, result could indicate                                     failure."
+      },
+      {
+        "name": "INTERNAL_EVENT_COV_CELL_DISCOVERY_UPDATE",
+        "type": "EVENT_PARAM_FREQ",
+        "description": "Frequency of coverage cell relations."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_CSM_FAILED_CRITERIA",
+        "description": "The failed cell sleep criteria."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_0",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_1",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_2",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_3",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_4",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_5",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_6",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_7",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_8",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_9",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_10",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_11",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_12",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_13",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_14",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID_15",
+        "description": "The eNodeB ID of one or more coverage cells."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_0",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_0."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_1",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_1."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_2",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_2."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_3",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_3."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_4",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_4."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_5",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_5."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_6",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_6."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_7",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_7."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_8",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_8."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_9",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_9."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_10",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_10."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_11",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_11."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_12",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_12."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_13",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_13."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_14",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_14."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "EVENT_PARAM_INC_X2_IF_MOB_HO_15",
+        "description": "The number of incoming X2 inter-frequency mobility handovers from                                     neighbor cells that have the same frequency as the relevant                                     coverage cells per eNodeB identified by                                         EVENT_PARAM_COVERAGE_ENB_ID_15."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_PROHIBIT_TRIGGERED",
+        "type": "EVENT_PARAM_COVERAGE_ENB_ID",
+        "description": "The eNodeB ID of the coverage cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_PROHIBIT_TRIGGERED",
+        "type": "EVENT_PARAM_SLEEP_PROHIBIT_TIME",
+        "description": "The interval of prohibiting capacity cell from entering sleep                                     state."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_IND_RECEIVED",
+        "type": "EVENT_PARAM_IND_TYPE",
+        "description": "The wake-up indication type received in coverage cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_IND_RECEIVED",
+        "type": "EVENT_PARAM_SEQ_WAKEUP_DETECTION_DL_PRB_LOAD",
+        "description": "The downlink PRB use in the capacity cell when indication is sent                                     to the coverage cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_IND_RECEIVED",
+        "type": "EVENT_PARAM_SEQ_WAKEUP_DETECTION_UES_LOAD",
+        "description": "The number of RRC connections in the capacity cell when                                     indication is sent to the coverage cell."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_IND_RECEIVED",
+        "type": "EVENT_PARAM_CAPACITY_CELL_ID",
+        "description": "The array of the global cell ID of the capacity cells                                     involved."
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_CRITERIA_FAILED",
+        "type": "Indicates that the capacity cell is prevented from entering sleep state due to coverage                                    support. Only one pmEvent is generated between                                      sleepStartTime and                                      sleepEndTime of a day to prevent event                                  flooding.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_SLEEP_PROHIBIT_TRIGGERED",
+        "type": "Indicates that the capacity cell is prohibited from entering                                   sleep state due to a coverage hole.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "A new wake-up cause and information related to retainability KPI have been added.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_DETECTED",
+        "type": "A new wake-up cause value has been added to report the coverage                                     support of non-capable UEs.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_CELL_WAKEUP_TRIGGERED",
+        "type": "The global ENB ID of the neighbor cell is added to report which                                     neighbor triggers the cell activation.",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011958 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011958 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/166_22104-LZA7016014_1Uen.GN33C.md",
+    "file_hash": "5d9c7e4c65d8e9049786bfc320f9454d",
+    "processed_at": "2025-10-19 15:48:54",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

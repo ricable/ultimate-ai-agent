@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2025-11-08T06:00:23.658Z",
+    "description": "Sample maternal life-history trade-off data"
+  },
+  "maternal_health": [
+    {
+      "motherID": "FF_1866_001",
+      "birthYear": 1840,
+      "offspringCount": 8,
+      "longevity": 67,
+      "reproductiveCessationAge": 42,
+      "interbirthIntervals": [
+        1.5,
+        2,
+        1.8,
+        2.2,
+        1.9,
+        2.5,
+        2.1
+      ],
+      "environmentalStress": 8.5,
+      "physiologicalMarkers": {
+        "baseline_health": "fair",
+        "famine_exposure": "severe",
+        "postfamine_recovery": "partial"
+      },
+      "dataset": "finnish_famine_1866_1868",
+      "location": "Finland"
+    },
+    {
+      "motherID": "QC_1700_001",
+      "birthYear": 1680,
+      "offspringCount": 12,
+      "longevity": 62,
+      "reproductiveCessationAge": 45,
+      "interbirthIntervals": [
+        1.2,
+        1.5,
+        1.3,
+        1.8,
+        1.6,
+        2,
+        1.7,
+        1.9,
+        2.2,
+        2.5,
+        2.8
+      ],
+      "environmentalStress": 3,
+      "physiologicalMarkers": {
+        "baseline_health": "good",
+        "environmental_conditions": "stable",
+        "nutritional_status": "adequate"
+      },
+      "dataset": "quebec_population_1621_1800",
+      "location": "Quebec"
+    }
+  ],
+  "environmental_stress": [
+    {
+      "eventID": "FF_1866",
+      "eventName": "Finnish Famine",
+      "location": "Finland",
+      "startYear": 1866,
+      "endYear": 1868,
+      "severity": 8.5,
+      "mortalityRate": 0.15,
+      "affectedPopulation": 300000,
+      "duration": 2,
+      "description": "Severe famine in Finland caused by crop failures and harsh winters. Approximately 15% of the population died."
+    },
+    {
+      "eventID": "DHW_1944",
+      "eventName": "Dutch Hunger Winter",
+      "location": "Netherlands",
+      "startYear": 1944,
+      "endYear": 1945,
+      "severity": 9,
+      "mortalityRate": 0.08,
+      "affectedPopulation": 4500000,
+      "duration": 0.5,
+      "description": "Acute famine during World War II caused by German blockade. Well-documented epigenetic effects on offspring."
+    }
+  ],
+  "causal_relationships": [
+    {
+      "relationshipID": "CR_001",
+      "factor1": "environmental_stress",
+      "factor2": "offspring_count",
+      "correlationStrength": -0.72,
+      "causalDirection": "environmental_stress -> offspring_count",
+      "confidence": 0.95,
+      "pValue": 0.001,
+      "sampleSize": 1247,
+      "evidence": [
+        "Finnish Famine cohort analysis",
+        "Dutch Hunger Winter longitudinal study",
+        "Cross-cultural validation studies"
+      ],
+      "methodology": "Structural Equation Modeling with instrumental variables"
+    }
+  ]
+}

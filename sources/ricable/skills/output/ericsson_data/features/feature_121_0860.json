@@ -1,0 +1,805 @@
+{
+  "id": "121 0860",
+  "name": "Shared LTE RAN",
+  "cxc_code": "CXC4010960",
+  "value_package": "Shared Networks",
+  "value_package_id": "FAJ 801 0434",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature supports sharing of LTE RAN between up to six operators. The 3GPP defined",
+  "parameters": [
+    {
+      "name": "ENodeBFunction.allowMocnCellLevelCommonTac",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ENodeBFunction.moranOnSingleBbEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "EUtranCellFDD.activePlmnList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.activePlmnList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.additionalPlmnAlarmSupprList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.additionalPlmnAlarmSupprList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.additionalPlmnList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.additionalPlmnList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.additionalPlmnReservedList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.additionalPlmnReservedList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.cellDefinedPrimaryPlmnId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.cellDefinedPrimaryPlmnId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.primaryPlmnReserved",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.primaryPlmnReserved",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.primaryPlmnAlarmSuppr",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.primaryPlmnAlarmSuppr",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranFreqRelation.allowedPlmnList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "ExternalEUtranCellFDD.activePlmnList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExternalEUtranCellFDD"
+    },
+    {
+      "name": "ExternalEUtranCellTDD.activePlmnList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExternalEUtranCellTDD"
+    },
+    {
+      "name": "SharedNetworkSupportId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "TermPointToENB.additionalCnRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToENB"
+    },
+    {
+      "name": "TermPointToGNB.additionalCnRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToGNB"
+    },
+    {
+      "name": "TermPointToMme.mmeCodeListLTERelated",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMme"
+    },
+    {
+      "name": "TermPointToMme.mmeCodeListOtherRATs",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMme"
+    },
+    {
+      "name": "TermPointToMme.mmeGIListLTERelated",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMme"
+    },
+    {
+      "name": "TermPointToMme.servedPlmnListLTERelated",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMme"
+    },
+    {
+      "name": "TermPointToMme.servedPlmnListOtherRATs",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TermPointToMme"
+    },
+    {
+      "name": "Cdma2000CellRelation.includeInSystemInformation",
+      "type": "Affected",
+      "description": "States whether the referred cell is included in system                                 information.",
+      "mo_class": "Cdma2000CellRelation"
+    },
+    {
+      "name": "EUtranCellFDD.upperLayerIndication",
+      "type": "Affected",
+      "description": "States whether the attribute is set for PLMNs configured in the                                 cell.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.upperLayerIndication",
+      "type": "Affected",
+      "description": "States whether the attribute is set for PLMNs configured in the                                 cell.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.upperLayerAutoConfIndList",
+      "type": "Affected",
+      "description": "States whether the attribute is set for PLMNs configured in the                                 cell.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.upperLayerAutoConfIndList",
+      "type": "Affected",
+      "description": "States whether the attribute is set for PLMNs configured in the                                 cell.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellRelation.includeInSystemInformation",
+      "type": "Affected",
+      "description": "States whether the referred cell is included in system                                 information.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "ENodeBFunction.zzzTemporary23",
+      "type": "Affecting",
+      "description": "The parameter is used to decide which PLMN is used to fill the PLMN                                 part of the EVENT_PARAM_GUMMEI header field in each PM event.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ExternalGUtranCell.configuredTAC",
+      "type": "Affecting",
+      "description": "Used for configuration based and measurement based EN-DC setup to                                 decide if a neighbor NR cell can be used. Also used for PSCell                                 change to decide if NR cell is allowed. The configured TAC is                                 compared with the Handover Restriction List (HRL) for the UE. The                                 cell must contain at least one TAI that is not forbidden according                                 to HRL.",
+      "mo_class": "ExternalGUtranCell"
+    },
+    {
+      "name": "ExternalGUtranCell.plmnList",
+      "type": "Affecting",
+      "description": "The parameter is used to decide if PSCell change is allowed to a                                 neighbor NR cell.",
+      "mo_class": "ExternalGUtranCell"
+    },
+    {
+      "name": "GUtranFreqRelation.allowedPlmnList",
+      "type": "Affecting",
+      "description": "The parameter is used for measurement based EN-DC cell setup to                                 decide if B1 measurement needs to be started for an NR neighbor cell                                 frequency.",
+      "mo_class": "GUtranFreqRelation"
+    },
+    {
+      "name": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+      "type": "EVENT_PARAM_SERVINGPLMNID",
+      "description": "Serving PLMN of the UE based on the S1AP INITIAL CONTEXT SETUP                                     REQUEST message",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "type": "EVENT_PARAM_SERVINGPLMNID",
+      "description": "Serving PLMN of the UE based on the S1AP HANDOVER REQUEST                                     message",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+      "type": "EVENT_PARAM_SERVINGPLMNID",
+      "description": "Serving PLMN of the UE based on the X2AP HANDOVER REQUEST                                     message",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_S1_SETUP",
+      "type": "EVENT_PARAM_MMENAME",
+      "description": "Serving PLMN of the UE based on the X2AP HANDOVER REQUEST                                     message",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_S1_SETUP",
+      "type": "EVENT_PARAM_S1_SETUP_RESULT",
+      "description": "Remove the following cause values:  EVENT_VALUE_GUGI_MISMATCH_PROTOCOL_ERROR  EVENT_VALUE_PLMN_MISMATCH_PROTOCOL_ERROR  Add the following cause value:   EVENT_VALUE_MAX_GUGI_EXCEEDED",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_X2_SETUP",
+      "type": "EVENT_PARAM_X2_SETUP_RESULT",
+      "description": "Remove the following cause value:  EVENT_VALUE_GUGI_MISMATCH",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_ETWS_TYPE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_REPET_PERIOD",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_ETWS_TYPE",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_ETWS_RESULT",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_REPET_PERIOD",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_MESSAGE_ID",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_CMAS_RESULT",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_MESSAGE_ID",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_ETWS_REPET_COMPL",
+      "type": "One repetition of an ETWS message has been completed or                                     interrupted by replacement of the ongoing ETWS message. A                                     repetition comprises one paging message, with                                         etws-Indication set, sent during one full                                     paging cycle.",
+      "description": "No parameters.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REPET_STOPPED",
+      "type": "The repetitions of an ETWS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by replacement of the ongoing message.",
+      "description": "EVENT_PARAM_NO_OF_REPET_COMPL",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REPET_STOPPED",
+      "type": "The repetitions of an ETWS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by replacement of the ongoing message.",
+      "description": "EVENT_PARAM_ETWS_REPET_RESULT",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_CMAS_REPET_COMPL",
+      "type": "One repetition of a CMAS message has been completed. A repetition                                     comprises a number of SIB12 transmissions with one paging cycle                                     at the start and one paging cycle after stop of                                     transmission.",
+      "description": "EVENT_PARAM_MESSAGE_ID",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_CMAS_REPET_COMPL",
+      "type": "One repetition of a CMAS message has been completed. A repetition                                     comprises a number of SIB12 transmissions with one paging cycle                                     at the start and one paging cycle after stop of                                     transmission.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_MESSAGE_ID",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_CMAS_REPET_RESULT",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_NO_OF_REPET_COMPL",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_PWS_RESTART                                 INDICATION",
+      "type": "The event value is increased for a configured cell on the eNodeB                                     each time when information on this cell is compiled into an S1AP  PWS RESTART INDICATION                                     message.",
+      "description": "No parameters.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "S1_PWS_RESTART_INDICATION",
+      "type": "The event value is increased each time the eNodeB sends an S1AP PWS RESTART INDICATION message to the MME                                     over the S1-C                                     interface.",
+      "description": "No parameters.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.HC",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "AdditionalCoreNetwork.plmnList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AdditionalCoreNetwork"
+    },
+    {
+      "name": "AdditionalCoreNetwork.sctpS1Ref",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AdditionalCoreNetwork"
+    },
+    {
+      "name": "ENodeBFunction.sctpRef",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "AdditionalCoreNetwork.ipsecEpAddressRef",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AdditionalCoreNetwork"
+    },
+    {
+      "name": "AdditionalCoreNetwork.ipsecEndcEpAddressRef",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AdditionalCoreNetwork"
+    },
+    {
+      "name": "AnrFunctionEUtran.acquirePlmnIdListEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AnrFunctionEUtran"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEvents",
+      "description": "Performance counter pmEvents",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexSchedActivityCellDl",
+      "description": "Performance counter pmFlexSchedActivityCellDl",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexSchedActivityCellUl",
+      "description": "Performance counter pmFlexSchedActivityCellUl",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexUeCtxtRelSCEutra",
+      "description": "Performance counter pmFlexUeCtxtRelSCEutra",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolDlDrbTransPlmn0",
+      "description": "Performance counter pmPdcpVolDlDrbTransPlmn0",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolDlDrbTransPlmn1",
+      "description": "Performance counter pmPdcpVolDlDrbTransPlmn1",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolDlDrbTransPlmn2",
+      "description": "Performance counter pmPdcpVolDlDrbTransPlmn2",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolDlDrbTransPlmn3",
+      "description": "Performance counter pmPdcpVolDlDrbTransPlmn3",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolDlDrbTransPlmn4",
+      "description": "Performance counter pmPdcpVolDlDrbTransPlmn4",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolDlDrbTransPlmn5",
+      "description": "Performance counter pmPdcpVolDlDrbTransPlmn5",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolDlDrbTransPlmn6",
+      "description": "Performance counter pmPdcpVolDlDrbTransPlmn6",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolUlDrbPlmn0",
+      "description": "Performance counter pmPdcpVolUlDrbPlmn0",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolUlDrbPlmn1",
+      "description": "Performance counter pmPdcpVolUlDrbPlmn1",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolUlDrbPlmn2",
+      "description": "Performance counter pmPdcpVolUlDrbPlmn2",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolUlDrbPlmn3",
+      "description": "Performance counter pmPdcpVolUlDrbPlmn3",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolUlDrbPlmn4",
+      "description": "Performance counter pmPdcpVolUlDrbPlmn4",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolUlDrbPlmn5",
+      "description": "Performance counter pmPdcpVolUlDrbPlmn5",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolUlDrbPlmn6",
+      "description": "Performance counter pmPdcpVolUlDrbPlmn6",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsCmasRepReq",
+      "description": "Performance counter pmPwsCmasRepReq",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsCmasRepSucc",
+      "description": "Performance counter pmPwsCmasRepSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsCmasReq",
+      "description": "Performance counter pmPwsCmasReq",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsCmasSucc",
+      "description": "Performance counter pmPwsCmasSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsEtwsPrimReq",
+      "description": "Performance counter pmPwsEtwsPrimReq",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsEtwsPrimSucc",
+      "description": "Performance counter pmPwsEtwsPrimSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsEtwsSecReq",
+      "description": "Performance counter pmPwsEtwsSecReq",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsEtwsSecSucc",
+      "description": "Performance counter pmPwsEtwsSecSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmPwsRestartIndicationSent",
+      "description": "Performance counter pmPwsRestartIndicationSent",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmdata",
+      "description": "Performance counter pmdata",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    },
+    {
+      "name": "pmode",
+      "description": "Performance counter pmode",
+      "category": "General"
+    },
+    {
+      "name": "pmodeCovCellCandidate",
+      "description": "Performance counter pmodeCovCellCandidate",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+      "type": "EVENT_PARAM_SERVINGPLMNID",
+      "description": "Serving PLMN of the UE based on the S1AP INITIAL CONTEXT SETUP                                     REQUEST message"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "type": "EVENT_PARAM_SERVINGPLMNID",
+      "description": "Serving PLMN of the UE based on the S1AP HANDOVER REQUEST                                     message"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+      "type": "EVENT_PARAM_SERVINGPLMNID",
+      "description": "Serving PLMN of the UE based on the X2AP HANDOVER REQUEST                                     message"
+    },
+    {
+      "name": "INTERNAL_PROC_S1_SETUP",
+      "type": "EVENT_PARAM_MMENAME",
+      "description": "Serving PLMN of the UE based on the X2AP HANDOVER REQUEST                                     message"
+    },
+    {
+      "name": "INTERNAL_PROC_S1_SETUP",
+      "type": "EVENT_PARAM_S1_SETUP_RESULT",
+      "description": "Remove the following cause values:  EVENT_VALUE_GUGI_MISMATCH_PROTOCOL_ERROR  EVENT_VALUE_PLMN_MISMATCH_PROTOCOL_ERROR  Add the following cause value:   EVENT_VALUE_MAX_GUGI_EXCEEDED"
+    },
+    {
+      "name": "INTERNAL_PROC_X2_SETUP",
+      "type": "EVENT_PARAM_X2_SETUP_RESULT",
+      "description": "Remove the following cause value:  EVENT_VALUE_GUGI_MISMATCH"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_ETWS_TYPE"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REQ",
+      "type": "An Earthquake and Tsunami Warning System (ETWS) broadcast request                                     has been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_REPET_PERIOD"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_ETWS_TYPE"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_ETWS_RESULT"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_RESP",
+      "type": "An ETWS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_REPET_PERIOD"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_MESSAGE_ID"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REQ",
+      "type": "A Commercial Mobile Alert System (CMAS) broadcast request has                                     been received, see 3GPP 36.413.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_CMAS_RESULT"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_MESSAGE_ID"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_RESP",
+      "type": "A CMAS response message has been sent, see 3GPP                                         36.413.",
+      "description": "EVENT_PARAM_NO_OF_REPET_REQ"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_ETWS_REPET_COMPL",
+      "type": "One repetition of an ETWS message has been completed or                                     interrupted by replacement of the ongoing ETWS message. A                                     repetition comprises one paging message, with                                         etws-Indication set, sent during one full                                     paging cycle.",
+      "description": "No parameters."
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REPET_STOPPED",
+      "type": "The repetitions of an ETWS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by replacement of the ongoing message.",
+      "description": "EVENT_PARAM_NO_OF_REPET_COMPL"
+    },
+    {
+      "name": "INTERNAL_EVENT_ETWS_REPET_STOPPED",
+      "type": "The repetitions of an ETWS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by replacement of the ongoing message.",
+      "description": "EVENT_PARAM_ETWS_REPET_RESULT"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_CMAS_REPET_COMPL",
+      "type": "One repetition of a CMAS message has been completed. A repetition                                     comprises a number of SIB12 transmissions with one paging cycle                                     at the start and one paging cycle after stop of                                     transmission.",
+      "description": "EVENT_PARAM_MESSAGE_ID"
+    },
+    {
+      "name": "INTERNAL_PER_EVENT_CMAS_REPET_COMPL",
+      "type": "One repetition of a CMAS message has been completed. A repetition                                     comprises a number of SIB12 transmissions with one paging cycle                                     at the start and one paging cycle after stop of                                     transmission.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_MESSAGE_ID"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_SERIAL_NUMBER"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_CMAS_REPET_RESULT"
+    },
+    {
+      "name": "INTERNAL_EVENT_CMAS_REPET_STOPPED",
+      "type": "The repetitions of a CMAS message have been stopped. The normal                                     reason is that requested number of repetitions have been                                     performed. Other reason can be that repetition has been                                     interrupted by a KILL request.",
+      "description": "EVENT_PARAM_NO_OF_REPET_COMPL"
+    },
+    {
+      "name": "INTERNAL_EVENT_PWS_RESTART                                 INDICATION",
+      "type": "The event value is increased for a configured cell on the eNodeB                                     each time when information on this cell is compiled into an S1AP  PWS RESTART INDICATION                                     message.",
+      "description": "No parameters."
+    },
+    {
+      "name": "S1_PWS_RESTART_INDICATION",
+      "type": "The event value is increased each time the eNodeB sends an S1AP PWS RESTART INDICATION message to the MME                                     over the S1-C                                     interface.",
+      "description": "No parameters."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010960 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010960 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/133_22104-LZA7016014_1Uen.HC.md",
+  "file_hash": "5c9c8dadff7aa3a357364a2522e37936",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

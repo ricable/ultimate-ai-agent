@@ -1,0 +1,55 @@
+{
+  "file_hash": "4ef0eeff6211592164a2b1e2f61de228",
+  "feature": {
+    "id": "121 0549",
+    "name": "Multiple Radio Bearers per User",
+    "cxc_code": "CXC4010723",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Multiple Radio Bearers per User feature permits UEs to establish eight simultaneous",
+    "parameters": [
+      {
+        "name": "Uen.AE",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "Rcs.rlcDlDeliveryFailureAction",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Rcs"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010723 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010723 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/42_22104-LZA7016014_1Uen.AE.md",
+    "file_hash": "4ef0eeff6211592164a2b1e2f61de228",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "agent-booster-wasm",
+  "version": "0.1.0",
+  "description": "WebAssembly bindings for Agent Booster - Fast code editing with tree-sitter",
+  "main": "agent_booster_wasm.js",
+  "types": "agent_booster_wasm.d.ts",
+  "files": [
+    "agent_booster_wasm_bg.wasm",
+    "agent_booster_wasm.js",
+    "agent_booster_wasm.d.ts"
+  ],
+  "scripts": {
+    "build": "wasm-pack build --target nodejs --release",
+    "build:web": "wasm-pack build --target web --release",
+    "build:bundler": "wasm-pack build --target bundler --release",
+    "test": "wasm-pack test --node",
+    "test:browser": "wasm-pack test --headless --chrome",
+    "clean": "cargo clean"
+  },
+  "keywords": [
+    "wasm",
+    "webassembly",
+    "code-editing",
+    "tree-sitter",
+    "similarity-matching",
+    "code-merge",
+    "agent",
+    "ai"
+  ],
+  "author": "Agent Booster Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/agent-booster.git",
+    "directory": "crates/agent-booster-wasm"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "wasm-pack": "^0.12.0"
+  }
+}

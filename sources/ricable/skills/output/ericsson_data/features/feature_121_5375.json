@@ -1,0 +1,96 @@
+{
+  "id": "121 5375",
+  "name": "",
+  "cxc_code": "CXC4012578",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "This feature keeps an NR SA-capable UE in the LTE network for a configurable time period",
+  "parameters": [
+    {
+      "name": "Rcs.extendInactEmergency",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Rcs"
+    },
+    {
+      "name": "Rcs.extendInactEmMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Rcs"
+    },
+    {
+      "name": "Uen.N",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "UeMeasControl.nrB1MeasEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "EUtranCellFDD.pmErabRelQci1EmInactTimer",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmErabRelQci1EmInactTimer",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmErabModQci5EmInactTimer",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmErabActQci5EmInactTimer",
+      "description": "Performance counter pmErabActQci5EmInactTimer",
+      "category": "General"
+    },
+    {
+      "name": "pmErabEstabQci5EmInactTimer",
+      "description": "Performance counter pmErabEstabQci5EmInactTimer",
+      "category": "General"
+    },
+    {
+      "name": "pmErabModQci5EmInactTimer",
+      "description": "Performance counter pmErabModQci5EmInactTimer",
+      "category": "General"
+    },
+    {
+      "name": "pmErabRelQci1EmInactTimer",
+      "description": "Performance counter pmErabRelQci1EmInactTimer",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012578 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012578 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/540_22104-LZA7016014_1Uen.N.md",
+  "file_hash": "80318a9bc12171048dc3b99dc97286c2",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

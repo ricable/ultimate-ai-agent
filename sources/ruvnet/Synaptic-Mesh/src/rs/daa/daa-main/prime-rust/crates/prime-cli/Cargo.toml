@@ -1,0 +1,22 @@
+[package]
+name = "daa-prime-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+documentation.workspace = true
+readme = "README.md"
+description = "Command-line interface for Prime distributed ML operations"
+
+[[bin]]
+name = "prime"
+path = "src/main.rs"
+
+[dependencies]
+clap.workspace = true
+uuid = { version = "1.6", features = ["v4"] }
+
+# Minimal CLI - dev dependencies removed for publishing compatibility

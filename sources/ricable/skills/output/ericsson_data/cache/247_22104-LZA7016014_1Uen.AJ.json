@@ -1,0 +1,78 @@
+{
+  "file_hash": "9c94979a6812836dcb96c279e83ad698",
+  "feature": {
+    "id": "121 3050",
+    "name": "",
+    "cxc_code": "CXC4011481",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "The LPPa-based OTDOA Support feature provides a signaling path over the control plane",
+    "parameters": [
+      {
+        "name": "ENodeBFunction.timeAndPhaseSynchAlignment",
+        "type": "Affecting",
+        "description": "If set to true, any time and phase synchronization                 accuracy-dependent feature is deactivated or degraded if its time and phase                 synchronization accuracy is not fulfilled.  For more information, see Manage LTE RAN Synchronization",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.timePhaseMaxDeviationOtdoa",
+        "type": "Affecting",
+        "description": "The maximum allowed time and phase deviation for time and phase synchronization of                 the eNodeB. It is the deviation that is allowed for LPPa-based OTDOA Support feature                 to function. When the limit is exceeded, the service is deactivated.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.timePhaseSynchStateOtdoa",
+        "type": "Affecting",
+        "description": "It is set to true when time and phase synchronization accuracy                 fulfills requirements for OTDOA, otherwise it is set to false.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "Uen.AJ",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "S1_DOWNLINK_NON_UE_ASSOCIATED_LPPA_TRANSPORT",
+        "type": "S1_DOWNLINK_NON_UE_ASSOCIATED_LPPA_TRANSPORT received. See                     3GPP 36.413.",
+        "description": ""
+      },
+      {
+        "name": "S1_UPLINK_NON_UE_ASSOCIATED_LPPA_TRANSPORT",
+        "type": "S1_UPLINK_NON_UE_ASSOCIATED_LPPA_TRANSPORT sent. See 3GPP                     36.413.",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011481 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011481 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/247_22104-LZA7016014_1Uen.AJ.md",
+    "file_hash": "9c94979a6812836dcb96c279e83ad698",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

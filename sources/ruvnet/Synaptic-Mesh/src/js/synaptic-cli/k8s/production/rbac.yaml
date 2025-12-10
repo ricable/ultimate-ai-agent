@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: synaptic-mesh
+  namespace: synaptic-mesh
+  labels:
+    app: synaptic-mesh
+    component: rbac
+automountServiceAccountToken: true
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: synaptic-mesh
+  name: synaptic-mesh-role
+  labels:
+    app: synaptic-mesh
+    component: rbac
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "configmaps", "secrets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods/exec", "pods/log"]
+  verbs: ["create", "get"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "replicasets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["metrics.k8s.io"]
+  resources: ["pods", "nodes"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: synaptic-mesh-rolebinding
+  namespace: synaptic-mesh
+  labels:
+    app: synaptic-mesh
+    component: rbac
+subjects:
+- kind: ServiceAccount
+  name: synaptic-mesh
+  namespace: synaptic-mesh
+roleRef:
+  kind: Role
+  name: synaptic-mesh-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: synaptic-mesh-cluster-role
+  labels:
+    app: synaptic-mesh
+    component: rbac
+rules:
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["metrics.k8s.io"]
+  resources: ["nodes", "pods"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: synaptic-mesh-cluster-rolebinding
+  labels:
+    app: synaptic-mesh
+    component: rbac
+subjects:
+- kind: ServiceAccount
+  name: synaptic-mesh
+  namespace: synaptic-mesh
+roleRef:
+  kind: ClusterRole
+  name: synaptic-mesh-cluster-role
+  apiGroup: rbac.authorization.k8s.io

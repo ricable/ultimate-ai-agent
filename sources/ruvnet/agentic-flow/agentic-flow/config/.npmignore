@@ -1,0 +1,46 @@
+# Source files
+src/
+tsconfig.json
+*.ts
+!*.d.ts
+
+# Tests and validation
+validation/
+test-*.js
+test-*.log
+*.test.ts
+*.spec.ts
+
+# Development files
+.env
+.env.*
+*.log
+node_modules/
+.git/
+.github/
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Build artifacts
+*.tsbuildinfo
+coverage/
+.nyc_output/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temp files
+tmp/
+temp/
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,371 @@
+{
+  "file_hash": "c1e5e25a7a17d4582c57f1c107eadcf8",
+  "feature": {
+    "id": "121 1797",
+    "name": "Uplink-Triggered Inter-Frequency Mobility",
+    "cxc_code": "CXC4011072",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400 R9",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node, DU Radio Node",
+    "description": "",
+    "summary": "This feature enhances mobility by introducing the measurement of uplink channel",
+    "parameters": [
+      {
+        "name": "ReportConfigSearch.a1a2UlSearchThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "ReportConfigSearch.hysteresisA1A2UlSearch",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "ReportConfigSearch.timeToTriggerA1UlSearch",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "ReportConfigSearch.timeToTriggerA2UlSearch",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "ReportConfigSearch.qciA1A2UlThrOffsets",
+        "type": "Introduced",
+        "description": "See MOM description.  This struct contains the following members:  a1a2UlThrQciOffset     qciProfileRef",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "ReportConfigSearch.a2UlCriticalThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "ReportConfigSearch.hysteresisA2UlCritical",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "ReportConfigSearch.timeToTriggerA2UlCritical",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "ExternalENodeBFunction.ulTrigSupport",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalENodeBFunction"
+      },
+      {
+        "name": "EUtranCellFDD.ulTrigActive",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.ulTrigActive",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "ENodeBFunction.enabledUlTrigMeas",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "UeMeasControl.targetA2UlSearchOffset",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.ulSinrOffset",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "EUtranFreqRelation.interFreqMeasTypeUlSinr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "ExternalENodeBFunction.ulTrigHoSupport",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalENodeBFunction"
+      },
+      {
+        "name": "ReportConfigA5UlTrig.a5Threshold1Rsrp",
+        "type": "Introduced",
+        "description": "See MOM description.  It is recommended to set this attribute to the highest possible                                 value, which equals the default value, to ensure that the downlink                                 source cell signal strength does not affect the Uplink-Triggered                                 Inter-Frequency Mobility.",
+        "mo_class": "ReportConfigA5UlTrig"
+      },
+      {
+        "name": "ReportConfigA5UlTrig.a5Threshold2Rsrp",
+        "type": "Introduced",
+        "description": "See MOM description.  It is recommended to have this threshold set to the same value as                                     ReportConfigA5.a5Threshold2Rsrp.",
+        "mo_class": "ReportConfigA5UlTrig"
+      },
+      {
+        "name": "ReportConfigA5UlTrig.hysteresisA5",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5UlTrig"
+      },
+      {
+        "name": "ReportConfigA5UlTrig.reportIntervalA5",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5UlTrig"
+      },
+      {
+        "name": "ReportConfigA5UlTrig.timeToTriggerA5",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5UlTrig"
+      },
+      {
+        "name": "ReportConfigB2GeranUlTrig.b2Threshold2Geran",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2GeranUlTrig"
+      },
+      {
+        "name": "ReportConfigB2GeranUlTrig.hysteresisB2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2GeranUlTrig"
+      },
+      {
+        "name": "ReportConfigB2GeranUlTrig.reportIntervalB2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2GeranUlTrig"
+      },
+      {
+        "name": "ReportConfigB2GeranUlTrig.timeToTriggerB2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2GeranUlTrig"
+      },
+      {
+        "name": "ReportConfigB2UtraUlTrig.b2Threshold2EcNoUtra",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2UtraUlTrig"
+      },
+      {
+        "name": "ReportConfigB2UtraUlTrig.b2Threshold2RscpUtra",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2UtraUlTrig"
+      },
+      {
+        "name": "ReportConfigB2UtraUlTrig.hysteresisB2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2UtraUlTrig"
+      },
+      {
+        "name": "ReportConfigB2UtraUlTrig.reportIntervalB2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2UtraUlTrig"
+      },
+      {
+        "name": "ReportConfigB2UtraUlTrig.timeToTriggerB2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2UtraUlTrig"
+      },
+      {
+        "name": "UeMeasControl.a5B2MobilityTimer",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.searchEffortTime",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_SINR_MAX_DMRS  EVENT_PARAM_THRESHOLD_RSRP  EVENT_PARAM_THRESHOLD_RSRQ  EVENT_PARAM_THRESHOLD_UL_SINR_MAX  EVENT_PARAM_EST_POWER_HEADROOM  EVENT_PARAM_DL_COV_STATE  EVENT_PARAM_UL_COV_STATE  EVENT_PARAM_FILTERED_EQ_GAIN  EVENT_PARAM_ULCOMP_COMBINING_SECTOR_CELL_ID  EVENT_PARAM_TTI_BUNDLING_MODE",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_OUT",
+        "type": "EVENT_PARAM_UL_EVALUATION  EVENT_PARAM_SINR_MAX_RSRP_SOURCE  EVENT_PARAM_NOISE_INTERFERENCE_SOURCE  EVENT_PARAM_SINR_MAX_RSRP_TARGET  EVENT_PARAM_NOISE_INTERFERENCE_TARGET  EVENT_PARAM_ULTRIG_REJECT_CAUSE",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.BY",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UeMeasControl.ueMeasurementsActiveIF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.ueMeasurementsActiveGERAN",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.ueMeasurementsActiveUTRAN",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeMeasControl"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmA5BestCellEvalReportUl",
+        "description": "Performance counter pmA5BestCellEvalReportUl",
+        "category": "General"
+      },
+      {
+        "name": "pmB2BestCellEvalReportUl",
+        "description": "Performance counter pmB2BestCellEvalReportUl",
+        "category": "General"
+      },
+      {
+        "name": "pmBadCovSearchEvalReportUl",
+        "description": "Performance counter pmBadCovSearchEvalReportUl",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteInterFUl",
+        "description": "Performance counter pmCellHoExeAttLteInterFUl",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteInterFUl",
+        "description": "Performance counter pmCellHoExeSuccLteInterFUl",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteInterFUl",
+        "description": "Performance counter pmCellHoPrepAttLteInterFUl",
+        "category": "General"
+      },
+      {
+        "name": "pmCovGoodZoneSamp",
+        "description": "Performance counter pmCovGoodZoneSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmCovGoodZoneSum",
+        "description": "Performance counter pmCovGoodZoneSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCovSearchZoneSamp",
+        "description": "Performance counter pmCovSearchZoneSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmCovSearchZoneSum",
+        "description": "Performance counter pmCovSearchZoneSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCriticalBorderEvalReportUl",
+        "description": "Performance counter pmCriticalBorderEvalReportUl",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexUeCtxtRelSCEutra",
+        "description": "Performance counter pmFlexUeCtxtRelSCEutra",
+        "category": "General"
+      },
+      {
+        "name": "pmGoodCovSearchEvalReportUl",
+        "description": "Performance counter pmGoodCovSearchEvalReportUl",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteInterFUl",
+        "description": "Performance counter pmHoPrepAttLteInterFUl",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejOutUlThres",
+        "description": "Performance counter pmHoPrepRejOutUlThres",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccLteInterFUl",
+        "description": "Performance counter pmHoPrepSuccLteInterFUl",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCCdmaUlSinr",
+        "description": "Performance counter pmUeCtxtRelSCCdmaUlSinr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCEutraUlSinr",
+        "description": "Performance counter pmUeCtxtRelSCEutraUlSinr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCGsmUlSinr",
+        "description": "Performance counter pmUeCtxtRelSCGsmUlSinr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCUtraUlSinr",
+        "description": "Performance counter pmUeCtxtRelSCUtraUlSinr",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "EVENT_PARAM_SINR_MAX_DMRS  EVENT_PARAM_THRESHOLD_RSRP  EVENT_PARAM_THRESHOLD_RSRQ  EVENT_PARAM_THRESHOLD_UL_SINR_MAX  EVENT_PARAM_EST_POWER_HEADROOM  EVENT_PARAM_DL_COV_STATE  EVENT_PARAM_UL_COV_STATE  EVENT_PARAM_FILTERED_EQ_GAIN  EVENT_PARAM_ULCOMP_COMBINING_SECTOR_CELL_ID  EVENT_PARAM_TTI_BUNDLING_MODE",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_X2_OUT",
+        "type": "EVENT_PARAM_UL_EVALUATION  EVENT_PARAM_SINR_MAX_RSRP_SOURCE  EVENT_PARAM_NOISE_INTERFERENCE_SOURCE  EVENT_PARAM_SINR_MAX_RSRP_TARGET  EVENT_PARAM_NOISE_INTERFERENCE_TARGET  EVENT_PARAM_ULTRIG_REJECT_CAUSE",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011072 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011072 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/214_22104-LZA7016014_1Uen.BY.md",
+    "file_hash": "c1e5e25a7a17d4582c57f1c107eadcf8",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

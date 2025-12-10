@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  synaptic-mesh:
+    image: synaptic-mesh:latest
+    container_name: synaptic-mesh-node
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    volumes:
+      - ./.synaptic:/app/.synaptic
+    environment:
+      - NODE_ENV=production
+      - RUST_LOG=info
+    restart: unless-stopped
+    networks:
+      - synaptic-net
+
+networks:
+  synaptic-net:
+    driver: bridge

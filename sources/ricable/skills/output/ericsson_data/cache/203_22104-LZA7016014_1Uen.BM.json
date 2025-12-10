@@ -1,0 +1,84 @@
+{
+  "file_hash": "926a2a30527c759fd1b925e0f4ca162c",
+  "feature": {
+    "id": "121 3055",
+    "name": "Multi-Operator RAN",
+    "cxc_code": "CXC4011512",
+    "value_package": "Dual-eNodeB Multioperator RAN",
+    "value_package_id": "FAJ 801 0410",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature allows for two Baseband units that belong to different operators to share",
+    "parameters": [
+      {
+        "name": "ENodeBFunction.timeAndPhaseSynchCritical",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "FieldReplaceableUnit.isSharedWithExternalMe",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FieldReplaceableUnit"
+      },
+      {
+        "name": "SectorCarrier.configuredMaxTxPower",
+        "type": "Affected",
+        "description": "See MOM description.  For the Multi-Operator RAN feature, the valid range is limited by the power                 configuration set by the other LTE node.",
+        "mo_class": "SectorCarrier"
+      },
+      {
+        "name": "SectorEquipmentFunction.availableHwOutputPower",
+        "type": "Affected",
+        "description": "See MOM description.  For the Multi-Operator RAN feature, the sector power shown by this attribute is the                 total power available for the different LTE nodes sharing radio.",
+        "mo_class": "SectorEquipmentFunction"
+      },
+      {
+        "name": "Uen.BM",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      },
+      {
+        "name": "EUtranCellTDD.subframeAssignment",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmentFunction",
+        "description": "Performance counter pmentFunction",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011512 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011512 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/203_22104-LZA7016014_1Uen.BM.md",
+    "file_hash": "926a2a30527c759fd1b925e0f4ca162c",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

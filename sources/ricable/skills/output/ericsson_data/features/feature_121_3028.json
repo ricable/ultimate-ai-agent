@@ -1,0 +1,221 @@
+{
+  "id": "121 3028",
+  "name": "Best Neighbor Relations for Intra-LTE Load Management",
+  "cxc_code": "CXC4011370",
+  "value_package": "Multi-Carrier Load Management",
+  "value_package_id": "FAJ 801 0427",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Best Neighbor Relations for Intra-LTE Load Management feature supports the",
+  "parameters": [
+    {
+      "name": "LoadBalancingFunction.lbHitRateEUtranMeasUeThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbHitRateEUtranAddThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbHitRateEUtranRemoveThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbHitRateEUtranMeasUeIntensity",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "EUtranFreqRelation.lbBnrPolicy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranCellRelation.lbBnrAllowed",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellRelation.loadBalancing",
+      "type": "Affected",
+      "description": "Best Neighbor Relations for Intra-LTE Load Management feature updates                                 the EUtranCellRelation.loadBalancing attribute.                                 It indicates if Inter-Frequency Load Balancing or Inter-Frequency                                 Offload is activated from the current cell to the referenced target                                 EUTRAN cell.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellRelation.lastModification",
+      "type": "Affected",
+      "description": "Best Neighbor Relations for Intra-LTE Load Management feature updates                                 the EUtranCellRelation.lastModification                                 attribute. It indicates whether the Automated Neighbor Relations                                 function, operator, X2 Configuration, or Load Management Function                                 modified the MO last and if the MO that triggered the deletion is                                 deleted.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "SubscriberGroupProfile.featuresToDisableMeas",
+      "type": "Affecting",
+      "description": "Inter-frequency measurements with measurement gap can be disabled for                                 UEs in a subscriber group if the attribute includes the value                                 corresponding the Best Neighbor Relations for Intra-LTE Load                                 Management feature name.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_FREQ",
+      "description": "Indicates the ARFCN for a carrier frequency of EUTRAN, UTRAN or                                     GERAN as defined in 3GPP TS 36.331. When there is no coverage                                     cell found by coverage cell discovery, it can be set to                                         UNAVAILABLE.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": "Indicates the function that has triggered the UE measurement and                                     so the measurement report:     Load Balancing      Carrier Aggregation-triggered redirection     BNR for load balancing     ATO",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_UE_CA_CAPABLE",
+      "description": "Indicates whether the UE selected for load balancing related                                     measurements is Carrier Aggregation-capable.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "Cell Global Identity of neighbor target cells for which the UE                                     fulfilled the criteria for A5 measurement.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRAVERSED_UES",
+      "description": "Number of UEs checked and discarded before choosing this UE for                                     load balancing-related measurements.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "CGI of neighbor target cells for which UE fulfilled A5 measurement                                     criteria.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the source cell for incoming handover, or                                     target cell for outgoing handover.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+      "description": "Indicates the reason for not proceeding with a Load Balancing or                                     Carrier Aggregation-triggered redirection action when a                                     measurement report is received from the UE:    Carrier Aggregation criteria is not met.     Reported cell is not a valid load balancing target.     Reported cell is a valid target, but                                                 lbAmount has already been                                             satisfied for the cell.     Service-Specific Load Management related                                             restrictions.     RSRQ of target cell is below configured threshold.     UE has signalled interest in MBMS service on serving                                             frequency.     UE has an ongoing VoIP call and does not support                                             SRVCC.     ATO-related restrictions.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": "Indicates the function that has triggered the UE measurement and                                     therefore, the measurement report:     Load balancing      Carrier Aggregation-triggered redirection     BNR for load balancing     ATO",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.CS",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "LoadBalancingFunction.lbHitRateEutranAddThreshold",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbHitRateEutranRemoveThreshold",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "LoadBalancingFunction"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmAtoMeasuredUe",
+      "description": "Performance counter pmAtoMeasuredUe",
+      "category": "General"
+    },
+    {
+      "name": "pmAtoQualifiedUe",
+      "description": "Performance counter pmAtoQualifiedUe",
+      "category": "General"
+    },
+    {
+      "name": "pmLbMeasuredUe",
+      "description": "Performance counter pmLbMeasuredUe",
+      "category": "General"
+    },
+    {
+      "name": "pmLbQualifiedUe",
+      "description": "Performance counter pmLbQualifiedUe",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_FREQ",
+      "description": "Indicates the ARFCN for a carrier frequency of EUTRAN, UTRAN or                                     GERAN as defined in 3GPP TS 36.331. When there is no coverage                                     cell found by coverage cell discovery, it can be set to                                         UNAVAILABLE."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": "Indicates the function that has triggered the UE measurement and                                     so the measurement report:     Load Balancing      Carrier Aggregation-triggered redirection     BNR for load balancing     ATO"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_UE_CA_CAPABLE",
+      "description": "Indicates whether the UE selected for load balancing related                                     measurements is Carrier Aggregation-capable."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "Cell Global Identity of neighbor target cells for which the UE                                     fulfilled the criteria for A5 measurement."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRAVERSED_UES",
+      "description": "Number of UEs checked and discarded before choosing this UE for                                     load balancing-related measurements."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "CGI of neighbor target cells for which UE fulfilled A5 measurement                                     criteria."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "Indicates the RAT of the source cell for incoming handover, or                                     target cell for outgoing handover."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+      "description": "Indicates the reason for not proceeding with a Load Balancing or                                     Carrier Aggregation-triggered redirection action when a                                     measurement report is received from the UE:    Carrier Aggregation criteria is not met.     Reported cell is not a valid load balancing target.     Reported cell is a valid target, but                                                 lbAmount has already been                                             satisfied for the cell.     Service-Specific Load Management related                                             restrictions.     RSRQ of target cell is below configured threshold.     UE has signalled interest in MBMS service on serving                                             frequency.     UE has an ongoing VoIP call and does not support                                             SRVCC.     ATO-related restrictions."
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": "Indicates the function that has triggered the UE measurement and                                     therefore, the measurement report:     Load balancing      Carrier Aggregation-triggered redirection     BNR for load balancing     ATO"
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011370 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011370 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/52_22104-LZA7016014_1Uen.CS.md",
+  "file_hash": "924a7350b82db7cac1cd12602f24f62c",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

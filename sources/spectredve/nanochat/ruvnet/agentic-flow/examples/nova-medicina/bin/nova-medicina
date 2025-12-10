@@ -1,0 +1,173 @@
+#!/usr/bin/env node
+
+/**
+ * Nova Medicina CLI Entry Point
+ *
+ * Medical analysis system with anti-hallucination safeguards
+ *
+ * Created by: ruv (github.com/ruvnet, ruv.io)
+ * License: MIT
+ *
+ * ⚠️  CRITICAL MEDICAL DISCLAIMER ⚠️
+ * This tool is a SUPPLEMENT to professional healthcare, not a replacement.
+ * Always consult qualified healthcare providers for medical decisions.
+ * Call 911 immediately for medical emergencies.
+ */
+
+'use strict';
+
+const { program } = require('commander');
+const chalk = require('chalk');
+const {
+  showMainHelp,
+  showAnalyzeHelp,
+  showVerifyHelp,
+  showProviderHelp,
+  showConfigHelp,
+  runInteractiveTutorial,
+  suggestCommand,
+  displayProviderInfo
+} = require('../dist/cli/help-system');
+
+// Package version
+const packageJson = require('../package.json');
+const VERSION = packageJson.version;
+
+// Configure program
+program
+  .name('nova-medicina')
+  .version(VERSION)
+  .description(chalk.cyan.bold('Nova Medicina') + ' - AI-powered medical analysis with anti-hallucination safeguards')
+  .addHelpText('before', chalk.yellow.bold('\n⚠️  MEDICAL DISCLAIMER: This is a supplement to professional healthcare, not a replacement.\n'))
+  .addHelpText('after', chalk.gray('\nCreated by ruv (github.com/ruvnet, ruv.io)\n'));
+
+// Override help to show custom help
+program.addHelpCommand(false);
+program.option('-h, --help', 'Display help information');
+
+// Analyze command
+program
+  .command('analyze')
+  .description('Analyze medical symptoms with AI verification')
+  .option('-s, --symptoms <symptoms...>', 'List of symptoms')
+  .option('-d, --duration <duration>', 'Duration of symptoms')
+  .option('-a, --age <age>', 'Patient age', parseInt)
+  .option('-g, --gender <gender>', 'Patient gender (M/F/Other)')
+  .option('-i, --interactive', 'Interactive mode')
+  .option('-v, --verification-level <level>', 'Verification level (standard/strict)', 'standard')
+  .option('-o, --output <format>', 'Output format (json/text)', 'text')
+  .addHelpText('before', showAnalyzeHelp())
+  .action(async (options) => {
+    try {
+      const analyzer = require('../dist/services/medical-analyzer');
+      const result = await analyzer.analyze(options);
+      console.log(JSON.stringify(result, null, 2));
+    } catch (error) {
+      console.error(chalk.red('Error:'), error.message);
+      process.exit(1);
+    }
+  });
+
+// Verify command
+program
+  .command('verify')
+  .description('Verify medical information with confidence scoring')
+  .option('-d, --diagnosis <diagnosis>', 'Diagnosis to verify')
+  .option('-t, --treatment <treatment>', 'Treatment to verify')
+  .option('-m, --model <model>', 'AI model to use', 'claude-3.5')
+  .option('-c, --citations', 'Include citations')
+  .addHelpText('before', showVerifyHelp())
+  .action(async (options) => {
+    try {
+      const verifier = require('../dist/services/verification-service');
+      const result = await verifier.verify(options);
+      console.log(JSON.stringify(result, null, 2));
+    } catch (error) {
+      console.error(chalk.red('Error:'), error.message);
+      process.exit(1);
+    }
+  });
+
+// Provider command
+program
+  .command('provider')
+  .description('Healthcare provider operations')
+  .option('-s, --search <specialty>', 'Search providers by specialty')
+  .option('-l, --location <location>', 'Location for search')
+  .option('-n, --notify', 'Send notification to provider')
+  .option('-i, --info <providerId>', 'Display provider information')
+  .addHelpText('before', showProviderHelp())
+  .action(async (options) => {
+    if (options.info) {
+      displayProviderInfo(options.info);
+    } else {
+      try {
+        const providerService = require('../dist/services/provider-service');
+        const result = await providerService.handleProviderCommand(options);
+        console.log(JSON.stringify(result, null, 2));
+      } catch (error) {
+        console.error(chalk.red('Error:'), error.message);
+        process.exit(1);
+      }
+    }
+  });
+
+// Config command
+program
+  .command('config')
+  .description('Configure Nova Medicina settings')
+  .option('-s, --set <key=value>', 'Set configuration value')
+  .option('-g, --get <key>', 'Get configuration value')
+  .option('-l, --list', 'List all configuration')
+  .option('-r, --reset', 'Reset to default configuration')
+  .addHelpText('before', showConfigHelp())
+  .action(async (options) => {
+    try {
+      const configManager = require('../dist/utils/config');
+      await configManager.handleConfigCommand(options);
+    } catch (error) {
+      console.error(chalk.red('Error:'), error.message);
+      process.exit(1);
+    }
+  });
+
+// Tutorial command
+program
+  .command('tutorial')
+  .description('Interactive tutorial for Nova Medicina')
+  .action(() => {
+    runInteractiveTutorial();
+  });
+
+// Handle unknown commands
+program.on('command:*', (operands) => {
+  const unknownCommand = operands[0];
+  console.error(chalk.red(`\n❌ Unknown command: ${unknownCommand}\n`));
+
+  const suggestion = suggestCommand(unknownCommand, [
+    'analyze', 'verify', 'provider', 'config', 'tutorial'
+  ]);
+
+  if (suggestion) {
+    console.log(chalk.yellow(`💡 Did you mean: ${chalk.cyan(suggestion)}?\n`));
+  }
+
+  console.log(chalk.gray('Run "nova-medicina --help" for available commands.\n'));
+  process.exit(1);
+});
+
+// Custom help handling
+if (process.argv.includes('--help') || process.argv.includes('-h')) {
+  if (process.argv.length === 3) {
+    showMainHelp();
+    process.exit(0);
+  }
+}
+
+// Parse arguments
+program.parse(process.argv);
+
+// If no command provided, show help
+if (!process.argv.slice(2).length) {
+  showMainHelp();
+}

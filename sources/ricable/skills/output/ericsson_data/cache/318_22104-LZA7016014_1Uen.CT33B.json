@@ -1,0 +1,67 @@
+{
+  "file_hash": "ec3de396385cf2793f0a97b348b79a3d",
+  "feature": {
+    "id": "121 4759",
+    "name": "Packet Capture",
+    "cxc_code": "CXC4012131",
+    "value_package": "NR Base Package",
+    "value_package_id": "FAJ 801 4002",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature allows manual remote packet capturing at L3 interface level and frame",
+    "parameters": [
+      {
+        "name": "Uen.CT33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "PacketCapture.export",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PacketCapture"
+      },
+      {
+        "name": "PacketCapture.start",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PacketCapture"
+      },
+      {
+        "name": "PacketCapture.status",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PacketCapture"
+      },
+      {
+        "name": "PacketCapture.stop",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PacketCapture"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012131 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012131 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/318_22104-LZA7016014_1Uen.CT33B.md",
+    "file_hash": "ec3de396385cf2793f0a97b348b79a3d",
+    "processed_at": "2025-10-19 17:07:27",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

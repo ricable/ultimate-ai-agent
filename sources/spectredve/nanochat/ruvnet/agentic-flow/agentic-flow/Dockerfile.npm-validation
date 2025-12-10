@@ -1,0 +1,20 @@
+# Docker image for validating published npm package
+FROM node:20-alpine
+
+LABEL description="Validate agentic-flow@1.10.0 npm package"
+LABEL version="1.10.0"
+
+# Install basic tools
+RUN apk add --no-cache bash curl
+
+# Create app directory
+WORKDIR /app
+
+# Copy validation script
+COPY validation/docker-npm-validation.sh /app/
+
+# Set environment variables
+ENV NODE_ENV=production
+
+# Run validation
+CMD ["bash", "/app/docker-npm-validation.sh"]

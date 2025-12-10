@@ -1,0 +1,36 @@
+{
+  "name": "@agentic-flow/reasoningbank-benchmark",
+  "version": "1.0.0",
+  "description": "Comprehensive benchmark suite for ReasoningBank",
+  "type": "module",
+  "scripts": {
+    "bench": "node benchmark.js",
+    "bench:coding": "node benchmark.js --scenarios=coding-tasks",
+    "bench:debugging": "node benchmark.js --scenarios=debugging-tasks",
+    "bench:api": "node benchmark.js --scenarios=api-design-tasks",
+    "bench:problem-solving": "node benchmark.js --scenarios=problem-solving-tasks",
+    "bench:quick": "node benchmark.js --iterations=1",
+    "bench:full": "node benchmark.js --iterations=5",
+    "bench:report": "node scripts/generate-report.js",
+    "bench:clean": "rm -rf results/* reports/*"
+  },
+  "keywords": [
+    "benchmark",
+    "reasoningbank",
+    "ai",
+    "memory",
+    "learning"
+  ],
+  "author": "agentic-flow",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "better-sqlite3": "^11.7.0",
+    "ulid": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

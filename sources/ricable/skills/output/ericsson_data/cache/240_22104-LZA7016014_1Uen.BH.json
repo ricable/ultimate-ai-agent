@@ -1,0 +1,89 @@
+{
+  "file_hash": "932b962f6f7554f3409160e967846893",
+  "feature": {
+    "id": "121 1447",
+    "name": "System Improvements in LTE RAN L19.Q3",
+    "cxc_code": "CXC4011698",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "DU Radio Node, Baseband Radio Node",
+    "description": "",
+    "summary": "The Coverage-Adapted Load Management feature is an add-on feature to other features.",
+    "parameters": [
+      {
+        "name": "Uen.BH",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranFreqRelation.lbActivationThreshold",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "UnsupportedFreqProfile.unsupportedFreqList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UnsupportedFreqProfile"
+      },
+      {
+        "name": "EUtranCellRelation.lbCovIndicated",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "UtranCellRelation.lbCovIndicated",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.loadBalancing",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "UtranCellRelation.loadBalancing",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UtranCellRelation"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmeasRprtMaxSinr",
+        "description": "Performance counter pmeasRprtMaxSinr",
+        "category": "General"
+      },
+      {
+        "name": "pmeasRprtMinSinr",
+        "description": "Performance counter pmeasRprtMinSinr",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011698 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011698 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/240_22104-LZA7016014_1Uen.BH.md",
+    "file_hash": "932b962f6f7554f3409160e967846893",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

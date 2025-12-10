@@ -1,0 +1,77 @@
+FROM node:20-slim
+
+WORKDIR /app
+
+# Install build dependencies for native modules
+RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
+
+# Install the published npm package directly
+RUN npm install -g agentic-flow@1.8.13
+
+# Verify installation
+RUN npx agentic-flow --version
+
+# Create test script that imports from installed package
+RUN echo 'import { FederationHubServer } from "agentic-flow/dist/federation/FederationHubServer.js"; \n\
+import express from "express"; \n\
+\n\
+const PORT = parseInt(process.env.FEDERATION_HUB_PORT || "8443"); \n\
+const DB_PATH = process.env.FEDERATION_DB_PATH || "/data/hub.db"; \n\
+\n\
+async function main() { \n\
+  console.log("\\n🌐 Testing Published Package v1.8.13..."); \n\
+  console.log("═".repeat(60)); \n\
+  console.log(`📍 Port: ${PORT}`); \n\
+  console.log(`💾 Database: ${DB_PATH}`); \n\
+  console.log(""); \n\
+\n\
+  try { \n\
+    const hub = new FederationHubServer({ \n\
+      port: PORT, \n\
+      dbPath: DB_PATH, \n\
+      maxAgents: 100, \n\
+      syncInterval: 5000 \n\
+    }); \n\
+\n\
+    await hub.start(); \n\
+\n\
+    const app = express(); \n\
+    const healthPort = 8444; \n\
+\n\
+    app.get("/health", (req, res) => { \n\
+      const stats = hub.getStats(); \n\
+      res.json({ status: "healthy", ...stats, timestamp: Date.now() }); \n\
+    }); \n\
+\n\
+    app.get("/stats", (req, res) => { \n\
+      res.json(hub.getStats()); \n\
+    }); \n\
+\n\
+    app.listen(healthPort, () => { \n\
+      console.log(`✅ Health check server running on port ${healthPort}`); \n\
+    }); \n\
+\n\
+    console.log("✅ Published package working correctly!"); \n\
+    console.log("═".repeat(60)); \n\
+\n\
+    process.on("SIGTERM", async () => { \n\
+      console.log("\\n🛑 Shutting down..."); \n\
+      await hub.stop(); \n\
+      process.exit(0); \n\
+    }); \n\
+  } catch (error) { \n\
+    console.error("❌ Test failed:", error); \n\
+    process.exit(1); \n\
+  } \n\
+} \n\
+\n\
+main();' > /app/test-hub.js
+
+# Install express for health checks
+RUN npm install express
+
+# Expose ports
+EXPOSE 8443 8444
+
+# Run test script
+CMD ["node", "/app/test-hub.js"]

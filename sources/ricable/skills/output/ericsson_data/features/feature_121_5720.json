@@ -1,0 +1,124 @@
+{
+  "id": "121 5720",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4012797",
+  "value_package": "5G Advanced Differentiated Connectivity",
+  "value_package_id": "FAJ 801 4030",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature supports the configuration of the uplink Logical Channel for each",
+  "parameters": [
+    {
+      "name": "DU5qi.logicalChannelRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DU5qi"
+    },
+    {
+      "name": "DUModified5qiUeCfg.logicalChannelRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DUModified5qiUeCfg"
+    },
+    {
+      "name": "LogicalChannel.logicalChannelId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogicalChannel"
+    },
+    {
+      "name": "LogicalChannel.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogicalChannel"
+    },
+    {
+      "name": "LogicalChannel.ueConfGroupType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogicalChannel"
+    },
+    {
+      "name": "LogicalChannelUeCfg.bucketSizeDuration",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogicalChannelUeCfg"
+    },
+    {
+      "name": "LogicalChannelUeCfg.logicalChannelGroup",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogicalChannelUeCfg"
+    },
+    {
+      "name": "LogicalChannelUeCfg.logicalChannelPriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogicalChannelUeCfg"
+    },
+    {
+      "name": "LogicalChannelUeCfg.logicalChannelUeCfgId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogicalChannelUeCfg"
+    },
+    {
+      "name": "LogicalChannelUeCfg.prefUeGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogicalChannelUeCfg"
+    },
+    {
+      "name": "LogicalChannelUeCfg.prioritisedBitRate",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogicalChannelUeCfg"
+    },
+    {
+      "name": "LogicalChannelUeCfg.prioritisedBitRateFR2",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogicalChannelUeCfg"
+    },
+    {
+      "name": "LogicalChannelUeCfg.ueConfGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogicalChannelUeCfg"
+    },
+    {
+      "name": "LogicalChannelUeCfg.ueGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogicalChannelUeCfg"
+    },
+    {
+      "name": "Uen.E",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "UeCfg.logicalChannelRef",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UeCfg"
+    }
+  ],
+  "counters": [],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012797 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012797 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/206_22104-LZA7016017_1Uen.E.md",
+  "file_hash": "4f5454c9c5eb39cb1b9dde66168a2fc0",
+  "processed_at": "2025-10-19 15:50:10",
+  "network_impact": {},
+  "performance_impact": {}
+}

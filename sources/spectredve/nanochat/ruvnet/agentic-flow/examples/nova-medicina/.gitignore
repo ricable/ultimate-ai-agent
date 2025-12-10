@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+
+# Cache
+.cache/
+.temp/
+*.tmp
+
+# Medical data (sensitive)
+data/patient-data/
+data/medical-records/
+*.health
+*.medical
+
+# Config (may contain API keys)
+config/local.json
+config/production.json
+.nova-medicina-config

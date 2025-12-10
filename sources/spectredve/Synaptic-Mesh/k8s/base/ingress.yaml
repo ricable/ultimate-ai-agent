@@ -1,0 +1,186 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: neural-mesh-ingress
+  labels:
+    component: ingress
+    tier: frontend
+  annotations:
+    # NGINX Ingress Controller
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    
+    # Rate limiting
+    nginx.ingress.kubernetes.io/rate-limit: "100"
+    nginx.ingress.kubernetes.io/rate-limit-window: "1m"
+    
+    # CORS
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization"
+    
+    # Load balancing
+    nginx.ingress.kubernetes.io/upstream-hash-by: "$binary_remote_addr"
+    
+    # Security headers
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-Frame-Options "SAMEORIGIN" always;
+      add_header X-Content-Type-Options "nosniff" always;
+      add_header X-XSS-Protection "1; mode=block" always;
+      add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+      add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'" always;
+      
+    # WebSocket support for P2P connections
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/websocket-services: "neural-mesh-bootstrap,neural-mesh-worker"
+    
+spec:
+  tls:
+  - hosts:
+    - neural-mesh.example.com
+    - api.neural-mesh.example.com
+    - mcp.neural-mesh.example.com
+    secretName: neural-mesh-tls
+  rules:
+  # Main Neural Mesh API
+  - host: neural-mesh.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: neural-mesh-bootstrap
+            port:
+              number: 8080
+      - path: /api/v1
+        pathType: Prefix
+        backend:
+          service:
+            name: neural-mesh-bootstrap
+            port:
+              number: 8081
+      - path: /metrics
+        pathType: Prefix
+        backend:
+          service:
+            name: neural-mesh-bootstrap
+            port:
+              number: 9090
+  
+  # API Gateway
+  - host: api.neural-mesh.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: neural-mesh-worker
+            port:
+              number: 8081
+      - path: /health
+        pathType: Prefix
+        backend:
+          service:
+            name: neural-mesh-worker
+            port:
+              number: 8080
+  
+  # MCP Integration
+  - host: mcp.neural-mesh.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: neural-mesh-mcp
+            port:
+              number: 3000
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: neural-mesh-network-policy
+  labels:
+    component: network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: synaptic-neural-mesh
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  # Allow ingress from NGINX Ingress Controller
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ingress-nginx
+    ports:
+    - protocol: TCP
+      port: 8080
+    - protocol: TCP
+      port: 8081
+    - protocol: TCP
+      port: 3000
+  
+  # Allow inter-mesh communication
+  - from:
+    - podSelector:
+        matchLabels:
+          app: synaptic-neural-mesh
+    ports:
+    - protocol: TCP
+      port: 4001  # P2P
+    - protocol: TCP
+      port: 8080  # RPC
+    - protocol: TCP
+      port: 8081  # API
+    - protocol: TCP
+      port: 9090  # Metrics
+  
+  # Allow monitoring
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: monitoring
+    ports:
+    - protocol: TCP
+      port: 9090
+      
+  egress:
+  # Allow outbound to other mesh nodes
+  - to:
+    - podSelector:
+        matchLabels:
+          app: synaptic-neural-mesh
+    ports:
+    - protocol: TCP
+      port: 4001
+    - protocol: TCP
+      port: 8080
+    - protocol: TCP
+      port: 8081
+  
+  # Allow DNS resolution
+  - to: []
+    ports:
+    - protocol: UDP
+      port: 53
+    - protocol: TCP
+      port: 53
+  
+  # Allow HTTPS outbound (for external dependencies)
+  - to: []
+    ports:
+    - protocol: TCP
+      port: 443
+    - protocol: TCP
+      port: 80

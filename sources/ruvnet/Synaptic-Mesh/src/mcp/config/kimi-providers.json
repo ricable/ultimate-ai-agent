@@ -1,0 +1,143 @@
+{
+  "providers": {
+    "moonshot": {
+      "name": "Moonshot AI",
+      "baseUrl": "https://api.moonshot.cn/v1",
+      "defaultModel": "moonshot-v1-128k",
+      "contextWindow": 128000,
+      "supportedModels": [
+        "moonshot-v1-8k",
+        "moonshot-v1-32k",
+        "moonshot-v1-128k"
+      ],
+      "features": {
+        "toolCalling": true,
+        "streaming": true,
+        "functionCalling": true,
+        "vision": false
+      },
+      "pricing": {
+        "input": 0.012,
+        "output": 0.012,
+        "currency": "USD",
+        "per": "1K tokens"
+      },
+      "rateLimits": {
+        "requestsPerMinute": 60,
+        "tokensPerMinute": 50000
+      }
+    },
+    "openrouter": {
+      "name": "OpenRouter",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "defaultModel": "anthropic/claude-3.5-sonnet",
+      "contextWindow": 200000,
+      "supportedModels": [
+        "anthropic/claude-3.5-sonnet",
+        "anthropic/claude-3-haiku",
+        "openai/gpt-4o",
+        "openai/gpt-4o-mini",
+        "meta-llama/llama-3.1-405b-instruct",
+        "google/gemini-pro-1.5",
+        "cohere/command-r-plus"
+      ],
+      "features": {
+        "toolCalling": true,
+        "streaming": true,
+        "functionCalling": true,
+        "vision": true,
+        "multiProvider": true
+      },
+      "pricing": {
+        "varies": true,
+        "seeModelsApi": true
+      },
+      "rateLimits": {
+        "requestsPerMinute": 200,
+        "tokensPerMinute": 100000
+      }
+    },
+    "local": {
+      "name": "Local LLM (Ollama)",
+      "baseUrl": "http://localhost:11434/v1",
+      "defaultModel": "llama3.2:latest",
+      "contextWindow": 32000,
+      "supportedModels": [
+        "llama3.2:latest",
+        "llama3.2:3b",
+        "llama3.2:1b",
+        "mistral:latest",
+        "codellama:latest",
+        "deepseek-coder:latest",
+        "qwen2.5:latest"
+      ],
+      "features": {
+        "toolCalling": true,
+        "streaming": true,
+        "functionCalling": true,
+        "vision": false,
+        "offline": true,
+        "privacy": true
+      },
+      "pricing": {
+        "free": true,
+        "note": "Requires local setup"
+      },
+      "rateLimits": {
+        "hardwareLimited": true,
+        "note": "Depends on local hardware"
+      }
+    }
+  },
+  "defaults": {
+    "timeout": 60000,
+    "maxRetries": 3,
+    "temperature": 0.7,
+    "maxTokens": 4000,
+    "fallbackProvider": "local",
+    "autoFallback": true
+  },
+  "environment": {
+    "required": {
+      "MOONSHOT_API_KEY": "Required for Moonshot AI provider",
+      "OPENROUTER_API_KEY": "Required for OpenRouter provider"
+    },
+    "optional": {
+      "LOCAL_LLM_URL": "Override default local LLM URL (default: http://localhost:11434/v1)",
+      "KIMI_DEFAULT_PROVIDER": "Set default provider (moonshot, openrouter, local)",
+      "KIMI_TIMEOUT": "Override default timeout in milliseconds",
+      "KIMI_MAX_RETRIES": "Override default max retries"
+    }
+  },
+  "tools": {
+    "availableForProviders": {
+      "moonshot": [
+        "mesh_status",
+        "neuron_spawn",
+        "synapse_create",
+        "mesh_train",
+        "connectivity_analyze",
+        "activity_heatmap",
+        "mesh_query",
+        "thought_inject"
+      ],
+      "openrouter": [
+        "mesh_status",
+        "neuron_spawn",
+        "synapse_create",
+        "mesh_train",
+        "connectivity_analyze",
+        "activity_heatmap",
+        "mesh_query",
+        "thought_inject",
+        "pattern_inject"
+      ],
+      "local": [
+        "mesh_status",
+        "neuron_spawn",
+        "synapse_create",
+        "basic_analysis"
+      ]
+    }
+  }
+}

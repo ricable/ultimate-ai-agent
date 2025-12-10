@@ -1,0 +1,785 @@
+{
+  "file_hash": "8efd7ed98ec7ef3e65f9e6d7e184af7b",
+  "feature": {
+    "id": "121 3013",
+    "name": "Mobility Control at Poor Coverage",
+    "cxc_code": "CXC4011345",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature introduces a search zone along the edge of the cell, where UE",
+    "parameters": [
+      {
+        "name": "a1a2SearchThresholdRsrp                 TOOLTIPFLAG",
+        "type": "The RSRP threshold for the A1 measurement.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "a1a2SearchThresholdRsrq                 TOOLTIPFLAG",
+        "type": "The RSRQ threshold for the A1 measurement.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "hysteresisA1A2SearchRsrp                 TOOLTIPFLAG",
+        "type": "The RSRP hysteresis used by the A1 measurement.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "hysteresisA1A2SearchRsrq                 TOOLTIPFLAG",
+        "type": "The RSRQ hysteresis used by the A1 measurement.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "hysteresisA2OuterSearchRsrp                 TOOLTIPFLAG",
+        "type": "Hysteresis value for RSRP in the A2 measurement.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "hysteresisA2OuterSearchRsrq                 TOOLTIPFLAG",
+        "type": "Hysteresis value for RSRQ in the  A2 measurement.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "searchEffortTime                 TOOLTIPFLAG",
+        "type": "a1a2SearchTThe time used to determine whether the measured frequencies are to be                 excluded for mobility action at critical threshold or not. Special value:                   0 means infinity.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "timeToTriggerA1Search                 TOOLTIPFLAG",
+        "type": "Time-to-trigger value for A1 measurement. Used for both RSRP and RSRQ if                    timeToTriggerA1SearchRsrq                 TOOLTIPFLAG has value -1, otherwise this attribute is used only for                 RSRP.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "timeToTriggerA1SearchRsrq                 TOOLTIPFLAG",
+        "type": "Time-to-trigger value for A1 measurement with trigger quantity RSRQ. The value                   -1 means that this attribute is not used and                    timeToTriggerA1Search                 TOOLTIPFLAG is used also for RSRQ.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "timeToTriggerA2Search                 TOOLTIPFLAG",
+        "type": "Time-to-trigger value for A2 measurement. Used for both RSRP and RSRQ if                    timeToTriggerA2SearchRsrq                 TOOLTIPFLAG has value -1, otherwise this attribute is used only for                 RSRP.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "timeToTriggerA2SearchRsrq                 TOOLTIPFLAG",
+        "type": "Time-to-trigger value for A2 measurement with trigger quantity RSRQ. The value                   -1 means that this attribute is not used and                    timeToTriggerA2Search                 TOOLTIPFLAG is used also for RSRQ.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "timeToTriggerA2OutSearch                 TOOLTIPFLAG",
+        "type": "Time-to-trigger value for A2 measurement. Used for both RSRP and RSRQ if                    timeToTriggerA2OutSearchRsrq                 TOOLTIPFLAG has value -1, otherwise this attribute is used only for                 RSRP.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "timeToTriggerA2OutSearchRsrq                 TOOLTIPFLAG",
+        "type": "Time-to-trigger value for measurement in an A2 measurement with trigger quantity                 RSRQ. The value -1 means that this attribute is not used for                 report configuration.  Time-to-trigger value for A2 measurement with trigger quantity RSRQ. The value                   -1 means that this attribute is not used and                    timeToTriggerA2OutSearch                 TOOLTIPFLAG is used also for RSRQ.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "a2OuterSearchThrRsrpOffset                 TOOLTIPFLAG",
+        "type": "Offset for threshold                    a1a2SearchThresholdRsrp                 TOOLTIPFLAG to configure RSRP threshold value for events A2OuterSearch.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "a2OuterSearchThrRsrqOffset                 TOOLTIPFLAG",
+        "type": "Offset for threshold                    a1a2SearchThresholdRsrq                 TOOLTIPFLAG to configure RSRQ threshold value for events A2OuterSearch.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "a2CriticalThresholdRsrp                 TOOLTIPFLAG",
+        "type": "The RSRP threshold for the A2 measurement.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "a2CriticalThresholdRsrq                 TOOLTIPFLAG",
+        "type": "The RSRQ threshold for the A2 measurement.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "hysteresisA2CriticalRsrp                 TOOLTIPFLAG",
+        "type": "The RSRP hysteresis used by the A2 measurement.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "hysteresisA2CriticalRsrq                 TOOLTIPFLAG",
+        "type": "The RSRQ hysteresis used by the A2 measurement.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "timeToTriggerA2Critical                 TOOLTIPFLAG",
+        "type": "The time-to-trigger value for both the RSRP and RSRQ A2 measurement.  Time-to-trigger value for A2 measurement. Used for both RSRP and RSRQ if                    timeToTriggerA2CriticalRsrq                 TOOLTIPFLAG has value -1, otherwise this attribute is used only for                 RSRP.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "timeToTriggerA2CriticalRsrq                 TOOLTIPFLAG",
+        "type": "Time-to-trigger value for A2 measurement with trigger quantity RSRQ. The value                   -1 means that this attribute is not used and                    timeToTriggerA2Critical                  is used also for RSRQ.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "a2CriticalThrQci1RsrpOffset                 TOOLTIPFLAG",
+        "type": "QCI1 offset (used also for QCIs with serviceType PTT) on cell level for threshold                                      a2CriticalThresholdRsrp                 TOOLTIPFLAG, RSRP threshold value for events A2Critical.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "a2CriticalThrQci1RsrqOffset                 TOOLTIPFLAG",
+        "type": "QCI1 offset (used also for QCIs with serviceType PTT) on cell level for threshold                                      a2CriticalThresholdRsrq                 TOOLTIPFLAG, RSRQ threshold value for events A2Critical.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "ueMeasurementsActiveIF                 TOOLTIPFLAG",
+        "type": "Activates or deactivates E-UTRAN inter-frequency measurements for mobility purposes                 when Mobility Control at Poor Coverage feature is enabled.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "ueMeasurementsActiveUTRAN                 TOOLTIPFLAG",
+        "type": "Activates or deactivates UTRAN measurements for mobility purposes when Mobility                 Control at Poor Coverage feature is enabled.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "ueMeasurementsActiveGERAN                 TOOLTIPFLAG",
+        "type": "Activates or deactivates GERAN measurements for mobility purposes when Mobility                 Control at Poor Coverage feature is enabled.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "ueMeasurementsActiveCDMA2000                 TOOLTIPFLAG",
+        "type": "Activates or deactivates CDMA2000 measurements for mobility purposes when Mobility                 Control at Poor Coverage feature is enabled.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "UeMeasControl.ueMeasurementsActiveNR",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "mobCtrlAtPoorCovActive                 TOOLTIPFLAG",
+        "type": "Specifies if the Mobility Control at Poor Coverage feature is enabled or disabled                 in the cell.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "inhibitA2SearchConfig                 TOOLTIPFLAG",
+        "type": "Makes it possible to inhibit A2Search Report configuration for RSRP or RSRQ.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "bothA5RsrpRsrqCheck                 TOOLTIPFLAG",
+        "type": "Used to activate or deactivate the extended A5 \"Target Good Enough\" check.  This attribute is used to enable or disable functionality for checking the second                 value - RSRP or RSRQ - in an A5 Target Good Enough measurement report triggered by                 RSRQ or RSRP respectively.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "bothB1RscpEcnoCheck",
+        "type": "Used to activate or deactivate the extended B1 \"Good enough target cell IRAT\"                 check. This attribute is used to enable or disable the functionality for checking                 the non-trigger value (RSCP or ECNO) in a B1 \"Good enough target cell IRAT\"                 measurement report triggered by RSCP or ECNO respectively.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "bothB2RscpEcnoCheck",
+        "type": "Used to activate or deactivate the extended B2 \"Good enough target cell IRAT\"                 check. This attribute is used to turn on or off the functionality for checking the                 non-trigger value (RSCP or ECNO) in a B2 \"Good enough target cell IRAT\" measurement                 report triggered by RSCP or ECNO respectively.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "bothIntraA3RsrpRsrqCheck",
+        "type": "Used to activate or deactivate the extended A3 \"Good enough target cell on the same                 LTE frequency\" check. This attribute is used to enable or disable the functionality                 for checking the non-trigger value (RSRP or RSRQ) in an A3 measurement report                 triggered by RSRP or RSRQ respectively.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "bothInterA3RsrpRsrqCheck",
+        "type": "Used to activated or deactivate the extended A3 measurement. This attribute is used                 to enable or disable the functionality for checking the non-trigger value (RSRP or                 RSRQ) in an A3 measurement report triggered by RSRP or RSRQ respectively.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "inhibitB2RsrqConfig                 TOOLTIPFLAG",
+        "type": "Enables or disables the configuration of B2-RSRQ if A2 measurementSearch-RSRQ is                 triggered when the UE enters the search zone.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "lowPrioMeasThresh                 TOOLTIPFLAG",
+        "type": "Frequency priority threshold to specify the low-priority measurement group from                 connectedModeMobilityPrio or voicePrio in search zone. Those less than this                 threshold is put in low-priority measurement group and can be configured after event                 A2OuterSearch is triggered from UE.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "excludeInterFreqAtCritical                 TOOLTIPFLAG",
+        "type": "If set, E-UTRA Inter-frequencies must be excluded when eNodeB selects the highest                 priority frequency at A2Critical.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "timeToTriggerA3Rsrq                 TOOLTIPFLAG",
+        "type": "Time-to-trigger value for inter-frequency A3 measurement with trigger quantity RSRQ. If                 set to -1, this attribute is not used for report configuration                 and instead the attribute                    timeToTriggerA3                 TOOLTIPFLAG is used. Note: This attribute is never used by the feature Coverage-Triggered Inter-Frequency Session Continuity.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "a3RsrqOffset                 TOOLTIPFLAG",
+        "type": "Offset to obtain the A3 Offset for inter-frequency A3 measurement for trigger                 quantity RSRQ. The A3 offset for RSRQ = a3offset +                   a3RsrqOffset. Note: This attribute is never used by the                 feature Coverage-Triggered Inter-Frequency Session Continuity",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "hysteresisA3RsrqOffset                 TOOLTIPFLAG",
+        "type": "Offset to obtain the Hysteresis for inter-frequency A3 measurement for trigger                 quantity RSRQ. The A3 hysteresis for RSRQ = hysteresisA3 +                   hysteresisA3RsrqOffset. Note: This attribute is never used by                 the feature Coverage-Triggered Inter-Frequency Session Continuity",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "hysteresisA5RsrqOffset                 TOOLTIPFLAG",
+        "type": "Offset to obtain the hysteresis for A5 measurement for trigger quantity RSRQ.                   hysteresisA5Rsrq = hysteresisA5 +                   hysteresisA5RsrqOffset. Note: This attribute is never used by                 the feature Coverage-Triggered Inter-Frequency Session Continuity.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "timeToTriggerA5Rsrq                 TOOLTIPFLAG",
+        "type": "Time-to-trigger value for A5 measurement with trigger quantity RSRQ. If set to                   -1, this attribute is not used for report configuration and                 instead the attribute                    timeToTriggerA5                 TOOLTIPFLAG is used. Note: This attribute is never used by the feature Coverage-Triggered Inter-Frequency Session Continuity.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "ReportConfigB2Utra.timeToTriggerB2Rsrq                 TOOLTIPFLAG",
+        "type": "Time-to-trigger value for B2 measurement with trigger quantity RSRQ. If set to                   -1, this attribute is not used for report configuration and                 instead the attribute                    timeToTriggerB2                 TOOLTIPFLAG is used. Note: This attribute is never used by the feature Coverage-Triggered WCDMA Session Continuity or Coverage-Triggered TD-SCDMA Session Continuity.",
+        "description": "",
+        "mo_class": "ReportConfigB2Utra"
+      },
+      {
+        "name": "ReportConfigB2Utra.hysteresisB2RsrqOffset                 TOOLTIPFLAG",
+        "type": "Offset to obtain the hysteresis for B2 measurement for trigger quantity RSRQ.                   hysteresisB2Rsrq = hysteresisB2 +                   hysteresisB2RsrqOffset. Note: This attribute is never used by                 the feature Coverage-Triggered WCDMA Session Continuity or Coverage-Triggered TD-SCDMA Session Continuity.",
+        "description": "",
+        "mo_class": "ReportConfigB2Utra"
+      },
+      {
+        "name": "ReportConfigB2Geran.timeToTriggerB2Rsrq                 TOOLTIPFLAG",
+        "type": "Time-to-trigger value for B2 measurement with trigger quantity RSRQ. If set to                   -1, this attribute is not used for report configuration and                 instead the attribute                    timeToTriggerB2                 TOOLTIPFLAG is used. Note: This attribute is never used by the feature Coverage-Triggered GERAN Session Continuity.",
+        "description": "",
+        "mo_class": "ReportConfigB2Geran"
+      },
+      {
+        "name": "ReportConfigB2Geran.hysteresisB2RsrqOffset                 TOOLTIPFLAG",
+        "type": "Offset to obtain the hysteresis for B2 measurement for trigger quantity RSRQ.                   hysteresisB2Rsrq = hysteresisB2 +                   hysteresisB2RsrqOffset. Note: This attribute is never used by                 the feature Coverage-Triggered GERAN Session Continuity.",
+        "description": "",
+        "mo_class": "ReportConfigB2Geran"
+      },
+      {
+        "name": "ReportConfigB2Cdma2000.timeToTriggerB2Rsrq                 TOOLTIPFLAG",
+        "type": "Time-to-trigger value for B2 measurement with trigger quantity RSRQ. If set to                   -1, this attribute is not used for report configuration and                 instead the attribute                    timeToTriggerB2                  is used. Note: This attribute is never used by the feature Coverage-Triggered CDMA-eHRPD Session Continuity.",
+        "description": "",
+        "mo_class": "ReportConfigB2Cdma2000"
+      },
+      {
+        "name": "ReportConfigB2Cdma2000.hysteresisB2RsrqOffset                 TOOLTIPFLAG",
+        "type": "Offset to obtain the hysteresis for B2 measurement for trigger quantity RSRQ.                   hysteresisB2Rsrq = hysteresisB2 +                   hysteresisB2RsrqOffset. Note: This attribute is never used by                 the feature Coverage-Triggered CDMA-eHRPD Session Continuity.",
+        "description": "",
+        "mo_class": "ReportConfigB2Cdma2000"
+      },
+      {
+        "name": "thresholdEcNo",
+        "type": "Used to obtain threshold value for B1 or B2 extended handover check of CSFB when                 RSCP is the trigger quantity.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "thresholdRscp",
+        "type": "Used to obtain threshold value for B1 or B2 extended handover check of CSFB when                 RSCP is triggered.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "hysteresis",
+        "type": "Used to obtain hysteresis value for B1 or B2 extended handover check of CSFB.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "checkA2SearchLevel",
+        "type": "Disables or enables functionality of Level Based Search Zone Transitions. If                 enabled, eNodeB checks reported RSRP or RSRQ level of A2 Search or A2 Outer Search                 measurement to trigger measurement and mobility action.",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "EUtranCellFDD.rwrSearchZoneAllowed",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.rwrSearchZoneAllowed",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.rwrCriticalZoneAllowed",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.rwrCriticalZoneAllowed",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "Uen.DF33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "Endc.qciA1A2ThrOffsetsEndc",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Endc"
+      },
+      {
+        "name": "Endc.a2OuterSearchThrRsrpOffsetEndc",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Endc"
+      },
+      {
+        "name": "ReportConfigSearch.a2OuterSearchThrRsrpOffset",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "Endc.a2OuterSearchThrRsrqOffsetEndc",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Endc"
+      },
+      {
+        "name": "ReportConfigSearch.a2OuterSearchThrRsrqOffset",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "UnsupportedFreqProfile.unsupportedFreqList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UnsupportedFreqProfile"
+      },
+      {
+        "name": "EUtranFreqRelation.voicePrio",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranFreqRelation"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmA3InterFBestCellEvalReport",
+        "description": "Performance counter pmA3InterFBestCellEvalReport",
+        "category": "General"
+      },
+      {
+        "name": "pmA3InterFBestCellEvalReportRsrp",
+        "description": "Performance counter pmA3InterFBestCellEvalReportRsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmA5BestCellEvalReport",
+        "description": "Performance counter pmA5BestCellEvalReport",
+        "category": "General"
+      },
+      {
+        "name": "pmA5BestCellEvalReportRsrp",
+        "description": "Performance counter pmA5BestCellEvalReportRsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmB2BestCellEvalReport",
+        "description": "Performance counter pmB2BestCellEvalReport",
+        "category": "General"
+      },
+      {
+        "name": "pmB2BestCellEvalReportRsrp",
+        "description": "Performance counter pmB2BestCellEvalReportRsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmBadCovEvalReport",
+        "description": "Performance counter pmBadCovEvalReport",
+        "category": "General"
+      },
+      {
+        "name": "pmBadCovMeasTimeActDistr",
+        "description": "Performance counter pmBadCovMeasTimeActDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmBadCovMeasTimeDistr",
+        "description": "Performance counter pmBadCovMeasTimeDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmBadCovOutSearchEvalReport",
+        "description": "Performance counter pmBadCovOutSearchEvalReport",
+        "category": "General"
+      },
+      {
+        "name": "pmBadCovOutSearchEvalReportRsrp",
+        "description": "Performance counter pmBadCovOutSearchEvalReportRsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmBadCovSearchEvalReport",
+        "description": "Performance counter pmBadCovSearchEvalReport",
+        "category": "General"
+      },
+      {
+        "name": "pmBadCovSearchEvalReportRsrp",
+        "description": "Performance counter pmBadCovSearchEvalReportRsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteInterFUeMeas",
+        "description": "Performance counter pmCellHoExeAttLteInterFUeMeas",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteInterFUeMeasRsrp",
+        "description": "Performance counter pmCellHoExeAttLteInterFUeMeasRsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteInterFUeMeas",
+        "description": "Performance counter pmCellHoExeSuccLteInterFUeMeas",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteInterFUeMeasRsrp",
+        "description": "Performance counter pmCellHoExeSuccLteInterFUeMeasRsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmCovCriticalZoneSamp",
+        "description": "Performance counter pmCovCriticalZoneSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmCovCriticalZoneSum",
+        "description": "Performance counter pmCovCriticalZoneSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCovGoodZoneSamp",
+        "description": "Performance counter pmCovGoodZoneSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmCovGoodZoneSum",
+        "description": "Performance counter pmCovGoodZoneSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCovSearchZoneSamp",
+        "description": "Performance counter pmCovSearchZoneSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmCovSearchZoneSum",
+        "description": "Performance counter pmCovSearchZoneSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCriticalBorderEvalReport",
+        "description": "Performance counter pmCriticalBorderEvalReport",
+        "category": "General"
+      },
+      {
+        "name": "pmCriticalBorderEvalReportAct",
+        "description": "Performance counter pmCriticalBorderEvalReportAct",
+        "category": "General"
+      },
+      {
+        "name": "pmCriticalBorderEvalReportRsrp",
+        "description": "Performance counter pmCriticalBorderEvalReportRsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActCritCov",
+        "description": "Performance counter pmErabRelAbnormalEnbActCritCov",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbCritCov",
+        "description": "Performance counter pmErabRelAbnormalEnbCritCov",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalMmeActCritCov",
+        "description": "Performance counter pmErabRelAbnormalMmeActCritCov",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalMmeCritCov",
+        "description": "Performance counter pmErabRelAbnormalMmeCritCov",
+        "category": "General"
+      },
+      {
+        "name": "pmEvents",
+        "description": "Performance counter pmEvents",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexUeCtxtRelSCEutra",
+        "description": "Performance counter pmFlexUeCtxtRelSCEutra",
+        "category": "General"
+      },
+      {
+        "name": "pmGoodCovSearchEvalReport",
+        "description": "Performance counter pmGoodCovSearchEvalReport",
+        "category": "General"
+      },
+      {
+        "name": "pmGoodCovSearchEvalReportRsrp",
+        "description": "Performance counter pmGoodCovSearchEvalReportRsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeOutAttLteInterFMcPtt",
+        "description": "Performance counter pmHoExeOutAttLteInterFMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeOutAttLteInterFNonMcPtt",
+        "description": "Performance counter pmHoExeOutAttLteInterFNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeOutAttLteInterFQci1",
+        "description": "Performance counter pmHoExeOutAttLteInterFQci1",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeOutSuccLteInterFMcPtt",
+        "description": "Performance counter pmHoExeOutSuccLteInterFMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeOutSuccLteInterFNonMcPtt",
+        "description": "Performance counter pmHoExeOutSuccLteInterFNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeOutSuccLteInterFQci1",
+        "description": "Performance counter pmHoExeOutSuccLteInterFQci1",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelAbnormalEnbActCritCov",
+        "description": "Performance counter pmUeCtxtRelAbnormalEnbActCritCov",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelAbnormalEnbCritCov",
+        "description": "Performance counter pmUeCtxtRelAbnormalEnbCritCov",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelAbnormalMmeActCritCov",
+        "description": "Performance counter pmUeCtxtRelAbnormalMmeActCritCov",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelAbnormalMmeCritCov",
+        "description": "Performance counter pmUeCtxtRelAbnormalMmeCritCov",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCCdmaA2Rsrp",
+        "description": "Performance counter pmUeCtxtRelSCCdmaA2Rsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCCdmaA2Rsrq",
+        "description": "Performance counter pmUeCtxtRelSCCdmaA2Rsrq",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCCdmaB2Rsrp",
+        "description": "Performance counter pmUeCtxtRelSCCdmaB2Rsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCCdmaB2Rsrq",
+        "description": "Performance counter pmUeCtxtRelSCCdmaB2Rsrq",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCEUtraA2Rsrp",
+        "description": "Performance counter pmUeCtxtRelSCEUtraA2Rsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCEUtraA2Rsrq",
+        "description": "Performance counter pmUeCtxtRelSCEUtraA2Rsrq",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCEUtraBestCellRsrp",
+        "description": "Performance counter pmUeCtxtRelSCEUtraBestCellRsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCEUtraBestCellRsrq",
+        "description": "Performance counter pmUeCtxtRelSCEUtraBestCellRsrq",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCGsmA2Rsrp",
+        "description": "Performance counter pmUeCtxtRelSCGsmA2Rsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCGsmA2Rsrq",
+        "description": "Performance counter pmUeCtxtRelSCGsmA2Rsrq",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCGsmB2Rsrp",
+        "description": "Performance counter pmUeCtxtRelSCGsmB2Rsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCGsmB2Rsrq",
+        "description": "Performance counter pmUeCtxtRelSCGsmB2Rsrq",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCUtranA2Rsrp",
+        "description": "Performance counter pmUeCtxtRelSCUtranA2Rsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCUtranA2Rsrq",
+        "description": "Performance counter pmUeCtxtRelSCUtranA2Rsrq",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCUtranB2Rsrp",
+        "description": "Performance counter pmUeCtxtRelSCUtranB2Rsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCUtranB2Rsrq",
+        "description": "Performance counter pmUeCtxtRelSCUtranB2Rsrq",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PROC_UE_CTXT_RELEASE",
+        "type": "Generated for the UE Context Release procedure to release a UE Context. Contains information about the releasing node, cause, and bearer information.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+        "type": "Mobility trigger and decision information has occurred.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_A1",
+        "type": "When a UE is to be configured using RRC Connection Reconfiguration to report measurements on E-UTRA with Report Configuration of type A1 measurement - Serving becomes better than absolute threshold. See 3GPP TS 36.331.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_A2",
+        "type": "When a UE is to be configured using RRC Connection Reconfiguration to report measurements on E-UTRA with Report Configuration of type A2 measurement - Serving becomes worse than absolute threshold. See 3GPP TS 36.331.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_A3",
+        "type": "When a UE is to be configured using RRC Connection Reconfiguration to report measurements on E-UTRA with Report Configuration of type A3 measurement - Neighbour becomes amount of offset better than serving. See 3GPP TS 36.331.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_A5",
+        "type": "When a UE is to be configured using RRC Connection Reconfiguration to report measurements on E-UTRA with Report Configuration of type A5 measurement - Serving becomes worse than absolute threshold1 AND Neighbour becomes better than another absolute threshold2. See 3GPP TS 36.331.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_B2_CDMA2000",
+        "type": "When a UE is to be configured using RRC Connection Reconfiguration to report measurements on CDMA2000 with Report Configuration of type B2 measurement - Serving becomes worse than absolute threshold1 AND Neighbour becomes better than another absolute threshold2. See 3GPP TS 36.331.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_B2_GERAN",
+        "type": "When a UE is to be configured using RRC Connection Reconfiguration to report measurements on GERAN with Report Configuration of type B2 measurement - Serving becomes worse than absolute threshold1 AND Neighbour becomes better than another absolute threshold2. See 3GPP TS 36.331.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_B2_UTRA",
+        "type": "When a UE is to be configured using RRC Connection Reconfiguration to report                 measurements on UTRA with Report Configuration of type B2 measurement - Serving                 becomes worse than absolute threshold1 AND Neighbour becomes better than another                 absolute threshold2. See 3GPP TS 36.331.",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011345 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011345 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/40_22104-LZA7016014_1Uen.DF33B.md",
+    "file_hash": "8efd7ed98ec7ef3e65f9e6d7e184af7b",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {
+      "kpi": "Affects KPI monitoring"
+    }
+  }
+}

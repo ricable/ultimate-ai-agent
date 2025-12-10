@@ -1,0 +1,172 @@
+{
+  "file_hash": "f4d54876211f98ae08885e99f36d9fd4",
+  "feature": {
+    "id": "121 5044",
+    "name": "Uplink-Traffic-Triggered Mobility",
+    "cxc_code": "CXC4012352",
+    "value_package": "Differentiated Mobile Broadband",
+    "value_package_id": "FAJ 801 0409",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature detects UEs with high uplink traffic and moves them to cells with higher",
+    "parameters": [
+      {
+        "name": "Uen.AN33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.uttmCtrlForEndcUe",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.uttmCtrlForEndcUe",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "UeMeasControl.a5MobilityTimerUlTraffic",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UnsupportedFreqProfile.unsupportedFreqList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UnsupportedFreqProfile"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCellHoExeAttLteInterFUlTraffic",
+        "description": "Performance counter pmCellHoExeAttLteInterFUlTraffic",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteInterFUlTraffic",
+        "description": "Performance counter pmCellHoExeSuccLteInterFUlTraffic",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteInterFUlTraffic",
+        "description": "Performance counter pmCellHoPrepAttLteInterFUlTraffic",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepSuccLteInterFUlTraffic",
+        "description": "Performance counter pmCellHoPrepSuccLteInterFUlTraffic",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttLteInterF",
+        "description": "Performance counter pmHoExeAttLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttLteInterFUlTraffic",
+        "description": "Performance counter pmHoExeAttLteInterFUlTraffic",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttNonMob",
+        "description": "Performance counter pmHoExeAttNonMob",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccLteInterF",
+        "description": "Performance counter pmHoExeSuccLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccLteInterFUlTraffic",
+        "description": "Performance counter pmHoExeSuccLteInterFUlTraffic",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccNonMob",
+        "description": "Performance counter pmHoExeSuccNonMob",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteInterF",
+        "description": "Performance counter pmHoPrepAttLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteInterFUlTraffic",
+        "description": "Performance counter pmHoPrepAttLteInterFUlTraffic",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttNonMob",
+        "description": "Performance counter pmHoPrepAttNonMob",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccLteInterF",
+        "description": "Performance counter pmHoPrepSuccLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccLteInterFUlTraffic",
+        "description": "Performance counter pmHoPrepSuccLteInterFUlTraffic",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccNonMob",
+        "description": "Performance counter pmHoPrepSuccNonMob",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnMaxEndc0",
+        "description": "Performance counter pmRrcConnMaxEndc0",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnMaxEndc2",
+        "description": "Performance counter pmRrcConnMaxEndc2",
+        "category": "General"
+      },
+      {
+        "name": "pmUlTrafficA5MeasRepUe",
+        "description": "Performance counter pmUlTrafficA5MeasRepUe",
+        "category": "General"
+      },
+      {
+        "name": "pmUlTrafficQualifiedUe",
+        "description": "Performance counter pmUlTrafficQualifiedUe",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmfunction",
+        "description": "Performance counter pmfunction",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012352 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012352 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/461_22104-LZA7016014_1Uen.AN33B.md",
+    "file_hash": "f4d54876211f98ae08885e99f36d9fd4",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "file_hash": "0c7d78f567051327670f30d1de799124",
+  "feature": {
+    "id": "121 4271",
+    "name": "Uplink Spectrum Analyzer",
+    "cxc_code": "CXC4011929",
+    "value_package": "NR Base Package",
+    "value_package_id": "FAJ 801 4002",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature provides the function of viewing the radio frequency environment at any",
+    "parameters": [
+      {
+        "name": "UlSpectrumAnalyzer.info",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UlSpectrumAnalyzer"
+      },
+      {
+        "name": "UlSpectrumAnalyzer.samplingType",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UlSpectrumAnalyzer"
+      },
+      {
+        "name": "UlSpectrumAnalyzer.targetRfPort",
+        "type": "Affecting",
+        "description": "See MOM description. LTE only.",
+        "mo_class": "UlSpectrumAnalyzer"
+      },
+      {
+        "name": "UlSpectrumAnalyzer.targetAiDevice",
+        "type": "Affecting",
+        "description": "See MOM description. WCDMA only.",
+        "mo_class": "UlSpectrumAnalyzer"
+      },
+      {
+        "name": "UlSpectrumAnalyzer.ulSpectrumAnalyzerId",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UlSpectrumAnalyzer"
+      },
+      {
+        "name": "UlSpectrumAnalyzer.ulSpectrumSamplingStatus",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UlSpectrumAnalyzer"
+      },
+      {
+        "name": "UlSpectrumAnalyzer.targetMeasurementPort",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlSpectrumAnalyzer"
+      },
+      {
+        "name": "UlSpectrumAnalyzer.getSamplingCapability",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlSpectrumAnalyzer"
+      },
+      {
+        "name": "UlSpectrumAnalyzer.startSampling",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlSpectrumAnalyzer"
+      },
+      {
+        "name": "UlSpectrumAnalyzer.stopSampling",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlSpectrumAnalyzer"
+      },
+      {
+        "name": "UlSpectrumAnalyzer.filename",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlSpectrumAnalyzer"
+      },
+      {
+        "name": "Uen.CD33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011929 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011929 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/115_22104-LZA7016014_1Uen.CD33B.md",
+    "file_hash": "0c7d78f567051327670f30d1de799124",
+    "processed_at": "2025-10-19 17:07:26",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

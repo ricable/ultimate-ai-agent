@@ -1,0 +1,311 @@
+{
+  "id": "121 5396",
+  "name": "Connected Users Optimization for Carrier Aggregation",
+  "cxc_code": "CXC4012588",
+  "value_package": "Advanced Carrier Aggregation",
+  "value_package_id": "FAJ 801 0564",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature enables the optimization of the resources allocated for carrier",
+  "parameters": [
+    {
+      "name": "CarrierAggregationFunction.caMaxSCellsPreemptionThres",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "CarrierAggregationFunction.caUpswitchPreemptionThres",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "CarrierAggregationFunction.maxNoInitSCells",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "CarrierAggregationFunction.sCellsUpswitchDataThres",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "CarrierAggregationFunction.sCellsUpswitchTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "Uen.S",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "CarrierAggregationFunction.caPreemptionThreshold",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "CarrierAggregationFunction"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmBbmHwResCaPreemptDistr",
+      "description": "Performance counter pmBbmHwResCaPreemptDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmBbmHwResUtilDistr",
+      "description": "Performance counter pmBbmHwResUtilDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaActivatedDl2ccSumDistr",
+      "description": "Performance counter pmCaActivatedDl2ccSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaActivatedDl3ccSumDistr",
+      "description": "Performance counter pmCaActivatedDl3ccSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaActivatedDl4ccSumDistr",
+      "description": "Performance counter pmCaActivatedDl4ccSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaActivatedDl5ccSumDistr",
+      "description": "Performance counter pmCaActivatedDl5ccSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaActivatedDl6ccSumDistr",
+      "description": "Performance counter pmCaActivatedDl6ccSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaActivatedDl7ccSumDistr",
+      "description": "Performance counter pmCaActivatedDl7ccSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaActivatedDlIcmSum",
+      "description": "Performance counter pmCaActivatedDlIcmSum",
+      "category": "General"
+    },
+    {
+      "name": "pmCaActivatedDlSum",
+      "description": "Performance counter pmCaActivatedDlSum",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfDlSCellFddSumDistr",
+      "description": "Performance counter pmCaConfDlSCellFddSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfDlSCellFddTddLaaSumDistr",
+      "description": "Performance counter pmCaConfDlSCellFddTddLaaSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfDlSCellFddTddSumDistr",
+      "description": "Performance counter pmCaConfDlSCellFddTddSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfDlSCellTddSumDistr",
+      "description": "Performance counter pmCaConfDlSCellTddSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfiguredDlSum",
+      "description": "Performance counter pmCaConfiguredDlSum",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfiguredUlSum",
+      "description": "Performance counter pmCaConfiguredUlSum",
+      "category": "General"
+    },
+    {
+      "name": "pmCaSCellUpswitchDistr",
+      "description": "Performance counter pmCaSCellUpswitchDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaScheduledDl2ccSumDistr",
+      "description": "Performance counter pmCaScheduledDl2ccSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaScheduledDl3ccSumDistr",
+      "description": "Performance counter pmCaScheduledDl3ccSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaScheduledDl4ccSumDistr",
+      "description": "Performance counter pmCaScheduledDl4ccSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaScheduledDl5ccSumDistr",
+      "description": "Performance counter pmCaScheduledDl5ccSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaScheduledDl6ccSumDistr",
+      "description": "Performance counter pmCaScheduledDl6ccSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaScheduledDl7ccSumDistr",
+      "description": "Performance counter pmCaScheduledDl7ccSumDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmCaScheduledDlSum",
+      "description": "Performance counter pmCaScheduledDlSum",
+      "category": "General"
+    },
+    {
+      "name": "pmDlAssigsTransSCell",
+      "description": "Performance counter pmDlAssigsTransSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmLicConnectedUsersActual",
+      "description": "Performance counter pmLicConnectedUsersActual",
+      "category": "General"
+    },
+    {
+      "name": "pmLicConnectedUsersDistr",
+      "description": "Performance counter pmLicConnectedUsersDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmLicConnectedUsersLevSamp",
+      "description": "Performance counter pmLicConnectedUsersLevSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmLicConnectedUsersMax",
+      "description": "Performance counter pmLicConnectedUsersMax",
+      "category": "General"
+    },
+    {
+      "name": "pmPrbUsedDlDtchSCell",
+      "description": "Performance counter pmPrbUsedDlDtchSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmPrbUsedDlDtchSCellIcm",
+      "description": "Performance counter pmPrbUsedDlDtchSCellIcm",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolDlSCell",
+      "description": "Performance counter pmRadioThpVolDlSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolDlSCellExt",
+      "description": "Performance counter pmRadioThpVolDlSCellExt",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolDlScellEran",
+      "description": "Performance counter pmRadioThpVolDlScellEran",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolTxDl2ccSCell",
+      "description": "Performance counter pmRadioThpVolTxDl2ccSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolTxDl3ccSCell",
+      "description": "Performance counter pmRadioThpVolTxDl3ccSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolTxDl4ccSCell",
+      "description": "Performance counter pmRadioThpVolTxDl4ccSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolTxDl5ccSCell",
+      "description": "Performance counter pmRadioThpVolTxDl5ccSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolTxDl6ccSCell",
+      "description": "Performance counter pmRadioThpVolTxDl6ccSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolTxDl7ccSCell",
+      "description": "Performance counter pmRadioThpVolTxDl7ccSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolTxDlSCell",
+      "description": "Performance counter pmRadioThpVolTxDlSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolTxDlSCellEran",
+      "description": "Performance counter pmRadioThpVolTxDlSCellEran",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolTxDlSCellExt",
+      "description": "Performance counter pmRadioThpVolTxDlSCellExt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnLevSum",
+      "description": "Performance counter pmRrcConnLevSum",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnMax",
+      "description": "Performance counter pmRrcConnMax",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnReconfAttNoMobUpswitch",
+      "description": "Performance counter pmRrcConnReconfAttNoMobUpswitch",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnReconfSuccNoMobUpswitch",
+      "description": "Performance counter pmRrcConnReconfSuccNoMobUpswitch",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012588 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012588 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/541_22104-LZA7016014_1Uen.S.md",
+  "file_hash": "5310ebd70091d65ce72e08d2df62f7dc",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

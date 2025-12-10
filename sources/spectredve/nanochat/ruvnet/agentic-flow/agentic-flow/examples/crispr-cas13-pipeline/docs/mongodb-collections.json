@@ -1,0 +1,759 @@
+{
+  "_schema_version": "1.0.0",
+  "_description": "MongoDB collections for CRISPR-Cas13 genomic data storage",
+  "_database": "crispr_cas13_genomics",
+
+  "collections": {
+    "genomic_sequences": {
+      "description": "Raw genomic sequences and large sequence data",
+      "validator": {
+        "$jsonSchema": {
+          "bsonType": "object",
+          "required": ["sequence_id", "sequence_type", "sequence", "length", "checksum"],
+          "properties": {
+            "sequence_id": {
+              "bsonType": "string",
+              "description": "Unique sequence identifier (UUID)"
+            },
+            "experiment_id": {
+              "bsonType": "string",
+              "description": "Parent experiment UUID (foreign key to PostgreSQL)"
+            },
+            "sequence_type": {
+              "bsonType": "string",
+              "enum": ["genomic_dna", "transcript", "guide_rna", "amplicon", "custom"],
+              "description": "Type of sequence"
+            },
+            "sequence": {
+              "bsonType": "string",
+              "pattern": "^[ACGTN]+$",
+              "description": "DNA sequence (IUPAC nucleotide codes)"
+            },
+            "length": {
+              "bsonType": "int",
+              "minimum": 1,
+              "description": "Sequence length in bp"
+            },
+            "chromosome": {
+              "bsonType": "string",
+              "description": "Chromosome name (e.g., chr1, chrX)"
+            },
+            "start": {
+              "bsonType": "long",
+              "minimum": 1,
+              "description": "Genomic start coordinate (1-based)"
+            },
+            "end": {
+              "bsonType": "long",
+              "minimum": 1,
+              "description": "Genomic end coordinate (inclusive)"
+            },
+            "strand": {
+              "bsonType": "string",
+              "enum": ["+", "-"],
+              "description": "DNA strand"
+            },
+            "gc_content": {
+              "bsonType": "double",
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "description": "GC content fraction"
+            },
+            "repeat_content": {
+              "bsonType": "double",
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "description": "Repetitive element content"
+            },
+            "quality_scores": {
+              "bsonType": "array",
+              "items": {
+                "bsonType": "int"
+              },
+              "description": "Per-base Phred quality scores (optional)"
+            },
+            "checksum": {
+              "bsonType": "string",
+              "description": "MD5 checksum of sequence"
+            },
+            "metadata": {
+              "bsonType": "object",
+              "description": "Additional metadata"
+            },
+            "created_at": {
+              "bsonType": "date",
+              "description": "Creation timestamp"
+            }
+          }
+        }
+      },
+      "indexes": [
+        {
+          "name": "idx_sequence_id",
+          "keys": {"sequence_id": 1},
+          "options": {"unique": true}
+        },
+        {
+          "name": "idx_experiment_id",
+          "keys": {"experiment_id": 1}
+        },
+        {
+          "name": "idx_sequence_type",
+          "keys": {"sequence_type": 1}
+        },
+        {
+          "name": "idx_genomic_location",
+          "keys": {"chromosome": 1, "start": 1, "end": 1}
+        },
+        {
+          "name": "idx_checksum",
+          "keys": {"checksum": 1}
+        }
+      ]
+    },
+
+    "read_alignments": {
+      "description": "Individual read alignment records (supplement to BAM files)",
+      "validator": {
+        "$jsonSchema": {
+          "bsonType": "object",
+          "required": ["read_id", "query_name", "reference_name", "position", "mapping_quality", "cigar"],
+          "properties": {
+            "read_id": {
+              "bsonType": "string",
+              "description": "Unique read identifier"
+            },
+            "alignment_id": {
+              "bsonType": "string",
+              "description": "Parent alignment UUID (PostgreSQL foreign key)"
+            },
+            "query_name": {
+              "bsonType": "string",
+              "description": "Read name from FASTQ"
+            },
+            "reference_name": {
+              "bsonType": "string",
+              "description": "Reference sequence name (chromosome/transcript)"
+            },
+            "position": {
+              "bsonType": "long",
+              "minimum": 1,
+              "description": "1-based leftmost mapping position"
+            },
+            "mapping_quality": {
+              "bsonType": "int",
+              "minimum": 0,
+              "maximum": 60,
+              "description": "MAPQ score"
+            },
+            "cigar": {
+              "bsonType": "string",
+              "description": "CIGAR string (e.g., 100M)"
+            },
+            "flag": {
+              "bsonType": "int",
+              "description": "SAM flag (bitwise flags)"
+            },
+            "is_reverse": {
+              "bsonType": "bool",
+              "description": "Read is reverse complemented"
+            },
+            "is_secondary": {
+              "bsonType": "bool",
+              "description": "Secondary alignment"
+            },
+            "is_supplementary": {
+              "bsonType": "bool",
+              "description": "Supplementary alignment"
+            },
+            "is_duplicate": {
+              "bsonType": "bool",
+              "description": "PCR or optical duplicate"
+            },
+            "sequence": {
+              "bsonType": "string",
+              "description": "Read sequence"
+            },
+            "quality": {
+              "bsonType": "string",
+              "description": "Base quality string (ASCII Phred+33)"
+            },
+            "tags": {
+              "bsonType": "object",
+              "description": "SAM optional tags (NH, AS, XS, etc.)",
+              "properties": {
+                "NH": {"bsonType": "int", "description": "Number of reported alignments"},
+                "AS": {"bsonType": "int", "description": "Alignment score"},
+                "XS": {"bsonType": "int", "description": "Suboptimal alignment score"},
+                "NM": {"bsonType": "int", "description": "Edit distance"}
+              }
+            },
+            "mate_reference": {
+              "bsonType": "string",
+              "description": "Mate reference name (paired-end)"
+            },
+            "mate_position": {
+              "bsonType": "long",
+              "description": "Mate position (paired-end)"
+            },
+            "insert_size": {
+              "bsonType": "int",
+              "description": "Template length (paired-end)"
+            },
+            "created_at": {
+              "bsonType": "date"
+            }
+          }
+        }
+      },
+      "indexes": [
+        {
+          "name": "idx_read_id",
+          "keys": {"read_id": 1},
+          "options": {"unique": true}
+        },
+        {
+          "name": "idx_alignment_id",
+          "keys": {"alignment_id": 1}
+        },
+        {
+          "name": "idx_query_name",
+          "keys": {"query_name": 1}
+        },
+        {
+          "name": "idx_reference_position",
+          "keys": {"reference_name": 1, "position": 1}
+        },
+        {
+          "name": "idx_mapping_quality",
+          "keys": {"mapping_quality": -1}
+        }
+      ],
+      "sharding": {
+        "enabled": true,
+        "shard_key": {"reference_name": 1, "position": 1},
+        "description": "Shard by genomic location for horizontal scaling"
+      }
+    },
+
+    "expression_matrices": {
+      "description": "Gene/transcript expression quantification",
+      "validator": {
+        "$jsonSchema": {
+          "bsonType": "object",
+          "required": ["matrix_id", "experiment_id", "gene_id", "sample_id", "expression_values"],
+          "properties": {
+            "matrix_id": {
+              "bsonType": "string",
+              "description": "Unique matrix entry ID"
+            },
+            "experiment_id": {
+              "bsonType": "string",
+              "description": "Experiment UUID"
+            },
+            "gene_id": {
+              "bsonType": "string",
+              "description": "Gene identifier (Ensembl/RefSeq)"
+            },
+            "gene_symbol": {
+              "bsonType": "string",
+              "description": "Gene symbol (HGNC/MGI)"
+            },
+            "gene_name": {
+              "bsonType": "string",
+              "description": "Full gene name"
+            },
+            "gene_biotype": {
+              "bsonType": "string",
+              "description": "Gene biotype (protein_coding, lncRNA, etc.)"
+            },
+            "sample_id": {
+              "bsonType": "string",
+              "description": "Sample identifier"
+            },
+            "condition": {
+              "bsonType": "string",
+              "enum": ["control", "treated"],
+              "description": "Experimental condition"
+            },
+            "expression_values": {
+              "bsonType": "object",
+              "required": ["tpm", "read_count"],
+              "properties": {
+                "tpm": {
+                  "bsonType": "double",
+                  "minimum": 0.0,
+                  "description": "Transcripts Per Million"
+                },
+                "fpkm": {
+                  "bsonType": "double",
+                  "minimum": 0.0,
+                  "description": "Fragments Per Kilobase per Million"
+                },
+                "rpkm": {
+                  "bsonType": "double",
+                  "minimum": 0.0,
+                  "description": "Reads Per Kilobase per Million"
+                },
+                "read_count": {
+                  "bsonType": "long",
+                  "minimum": 0,
+                  "description": "Raw read count"
+                },
+                "normalized_count": {
+                  "bsonType": "double",
+                  "description": "Normalized count (DESeq2/edgeR)"
+                }
+              }
+            },
+            "transcript_abundance": {
+              "bsonType": "array",
+              "items": {
+                "bsonType": "object",
+                "properties": {
+                  "transcript_id": {"bsonType": "string"},
+                  "tpm": {"bsonType": "double"},
+                  "read_count": {"bsonType": "long"}
+                }
+              },
+              "description": "Isoform-level expression"
+            },
+            "chromosome": {
+              "bsonType": "string"
+            },
+            "start": {
+              "bsonType": "long"
+            },
+            "end": {
+              "bsonType": "long"
+            },
+            "strand": {
+              "bsonType": "string",
+              "enum": ["+", "-"]
+            },
+            "effective_length": {
+              "bsonType": "int",
+              "description": "Effective transcript length (bp)"
+            },
+            "gc_content": {
+              "bsonType": "double"
+            },
+            "created_at": {
+              "bsonType": "date"
+            }
+          }
+        }
+      },
+      "indexes": [
+        {
+          "name": "idx_matrix_id",
+          "keys": {"matrix_id": 1},
+          "options": {"unique": true}
+        },
+        {
+          "name": "idx_experiment_sample",
+          "keys": {"experiment_id": 1, "sample_id": 1}
+        },
+        {
+          "name": "idx_gene_id",
+          "keys": {"gene_id": 1}
+        },
+        {
+          "name": "idx_gene_symbol",
+          "keys": {"gene_symbol": 1}
+        },
+        {
+          "name": "idx_condition",
+          "keys": {"condition": 1}
+        },
+        {
+          "name": "idx_expression_tpm",
+          "keys": {"expression_values.tpm": -1}
+        },
+        {
+          "name": "idx_genomic_location",
+          "keys": {"chromosome": 1, "start": 1}
+        }
+      ]
+    },
+
+    "variant_calls": {
+      "description": "Genetic variants (SNPs, indels) from RNA-seq data",
+      "validator": {
+        "$jsonSchema": {
+          "bsonType": "object",
+          "required": ["variant_id", "experiment_id", "chromosome", "position", "reference", "alternate"],
+          "properties": {
+            "variant_id": {
+              "bsonType": "string",
+              "description": "Unique variant ID"
+            },
+            "experiment_id": {
+              "bsonType": "string"
+            },
+            "chromosome": {
+              "bsonType": "string"
+            },
+            "position": {
+              "bsonType": "long",
+              "minimum": 1,
+              "description": "1-based position"
+            },
+            "reference": {
+              "bsonType": "string",
+              "pattern": "^[ACGTN]+$",
+              "description": "Reference allele"
+            },
+            "alternate": {
+              "bsonType": "array",
+              "items": {
+                "bsonType": "string",
+                "pattern": "^[ACGTN]+$"
+              },
+              "description": "Alternate allele(s)"
+            },
+            "variant_type": {
+              "bsonType": "string",
+              "enum": ["SNP", "insertion", "deletion", "MNP", "complex"],
+              "description": "Variant type"
+            },
+            "quality_score": {
+              "bsonType": "double",
+              "minimum": 0.0,
+              "description": "Phred-scaled quality score"
+            },
+            "filter": {
+              "bsonType": "array",
+              "items": {"bsonType": "string"},
+              "description": "Filter flags (PASS, low_qual, etc.)"
+            },
+            "info": {
+              "bsonType": "object",
+              "description": "VCF INFO fields",
+              "properties": {
+                "DP": {"bsonType": "int", "description": "Total depth"},
+                "AF": {"bsonType": "array", "items": {"bsonType": "double"}, "description": "Allele frequency"},
+                "AC": {"bsonType": "array", "items": {"bsonType": "int"}, "description": "Allele count"},
+                "AN": {"bsonType": "int", "description": "Total allele number"}
+              }
+            },
+            "genotypes": {
+              "bsonType": "array",
+              "items": {
+                "bsonType": "object",
+                "properties": {
+                  "sample_id": {"bsonType": "string"},
+                  "GT": {"bsonType": "string", "description": "Genotype (0/0, 0/1, 1/1)"},
+                  "DP": {"bsonType": "int", "description": "Read depth"},
+                  "AD": {"bsonType": "array", "items": {"bsonType": "int"}, "description": "Allelic depth"},
+                  "GQ": {"bsonType": "int", "description": "Genotype quality"}
+                }
+              }
+            },
+            "annotations": {
+              "bsonType": "object",
+              "properties": {
+                "gene_id": {"bsonType": "string"},
+                "gene_symbol": {"bsonType": "string"},
+                "transcript_id": {"bsonType": "string"},
+                "consequence": {"bsonType": "string", "description": "Variant consequence (VEP)"},
+                "impact": {"bsonType": "string", "enum": ["HIGH", "MODERATE", "LOW", "MODIFIER"]},
+                "codon_change": {"bsonType": "string"},
+                "amino_acid_change": {"bsonType": "string"},
+                "polyphen_prediction": {"bsonType": "string"},
+                "sift_prediction": {"bsonType": "string"}
+              }
+            },
+            "created_at": {
+              "bsonType": "date"
+            }
+          }
+        }
+      },
+      "indexes": [
+        {
+          "name": "idx_variant_id",
+          "keys": {"variant_id": 1},
+          "options": {"unique": true}
+        },
+        {
+          "name": "idx_experiment_id",
+          "keys": {"experiment_id": 1}
+        },
+        {
+          "name": "idx_genomic_position",
+          "keys": {"chromosome": 1, "position": 1}
+        },
+        {
+          "name": "idx_variant_type",
+          "keys": {"variant_type": 1}
+        },
+        {
+          "name": "idx_gene_symbol",
+          "keys": {"annotations.gene_symbol": 1}
+        }
+      ]
+    },
+
+    "genome_annotations": {
+      "description": "Gene annotations, exons, transcripts (from GTF/GFF3)",
+      "validator": {
+        "$jsonSchema": {
+          "bsonType": "object",
+          "required": ["annotation_id", "feature_type", "chromosome", "start", "end", "strand"],
+          "properties": {
+            "annotation_id": {
+              "bsonType": "string"
+            },
+            "reference_genome_id": {
+              "bsonType": "string",
+              "description": "Reference genome UUID"
+            },
+            "feature_type": {
+              "bsonType": "string",
+              "enum": ["gene", "transcript", "exon", "CDS", "UTR", "start_codon", "stop_codon"],
+              "description": "Feature type (GTF column 3)"
+            },
+            "chromosome": {
+              "bsonType": "string"
+            },
+            "start": {
+              "bsonType": "long",
+              "minimum": 1
+            },
+            "end": {
+              "bsonType": "long",
+              "minimum": 1
+            },
+            "strand": {
+              "bsonType": "string",
+              "enum": ["+", "-", "."]
+            },
+            "score": {
+              "bsonType": "double",
+              "description": "Feature score (GTF column 6)"
+            },
+            "frame": {
+              "bsonType": "int",
+              "enum": [0, 1, 2],
+              "description": "Reading frame (for CDS)"
+            },
+            "attributes": {
+              "bsonType": "object",
+              "description": "GTF attributes (gene_id, transcript_id, etc.)",
+              "properties": {
+                "gene_id": {"bsonType": "string"},
+                "gene_name": {"bsonType": "string"},
+                "gene_biotype": {"bsonType": "string"},
+                "transcript_id": {"bsonType": "string"},
+                "transcript_name": {"bsonType": "string"},
+                "transcript_biotype": {"bsonType": "string"},
+                "exon_number": {"bsonType": "int"},
+                "protein_id": {"bsonType": "string"}
+              }
+            },
+            "created_at": {
+              "bsonType": "date"
+            }
+          }
+        }
+      },
+      "indexes": [
+        {
+          "name": "idx_annotation_id",
+          "keys": {"annotation_id": 1},
+          "options": {"unique": true}
+        },
+        {
+          "name": "idx_reference_genome",
+          "keys": {"reference_genome_id": 1}
+        },
+        {
+          "name": "idx_feature_type",
+          "keys": {"feature_type": 1}
+        },
+        {
+          "name": "idx_genomic_range",
+          "keys": {"chromosome": 1, "start": 1, "end": 1}
+        },
+        {
+          "name": "idx_gene_id",
+          "keys": {"attributes.gene_id": 1}
+        },
+        {
+          "name": "idx_transcript_id",
+          "keys": {"attributes.transcript_id": 1}
+        }
+      ]
+    },
+
+    "sequence_features": {
+      "description": "Custom sequence features (repeat regions, conserved elements, etc.)",
+      "validator": {
+        "$jsonSchema": {
+          "bsonType": "object",
+          "required": ["feature_id", "feature_type", "chromosome", "start", "end"],
+          "properties": {
+            "feature_id": {
+              "bsonType": "string"
+            },
+            "feature_type": {
+              "bsonType": "string",
+              "description": "Feature type (repeat, conservation, regulatory, custom)"
+            },
+            "feature_name": {
+              "bsonType": "string"
+            },
+            "chromosome": {
+              "bsonType": "string"
+            },
+            "start": {
+              "bsonType": "long"
+            },
+            "end": {
+              "bsonType": "long"
+            },
+            "strand": {
+              "bsonType": "string",
+              "enum": ["+", "-", "."]
+            },
+            "score": {
+              "bsonType": "double",
+              "description": "Feature score/confidence"
+            },
+            "source": {
+              "bsonType": "string",
+              "description": "Feature source (RepeatMasker, PhyloP, custom)"
+            },
+            "properties": {
+              "bsonType": "object",
+              "description": "Feature-specific properties"
+            },
+            "created_at": {
+              "bsonType": "date"
+            }
+          }
+        }
+      },
+      "indexes": [
+        {
+          "name": "idx_feature_id",
+          "keys": {"feature_id": 1},
+          "options": {"unique": true}
+        },
+        {
+          "name": "idx_feature_type",
+          "keys": {"feature_type": 1}
+        },
+        {
+          "name": "idx_genomic_location",
+          "keys": {"chromosome": 1, "start": 1, "end": 1}
+        }
+      ]
+    },
+
+    "pipeline_metrics": {
+      "description": "Detailed pipeline execution metrics and performance data",
+      "validator": {
+        "$jsonSchema": {
+          "bsonType": "object",
+          "required": ["metric_id", "job_id", "stage", "timestamp"],
+          "properties": {
+            "metric_id": {
+              "bsonType": "string"
+            },
+            "job_id": {
+              "bsonType": "string",
+              "description": "Processing job UUID"
+            },
+            "stage": {
+              "bsonType": "string",
+              "description": "Pipeline stage (qc, alignment, quantification, etc.)"
+            },
+            "timestamp": {
+              "bsonType": "date"
+            },
+            "cpu_percent": {
+              "bsonType": "double",
+              "minimum": 0.0,
+              "maximum": 100.0
+            },
+            "memory_gb": {
+              "bsonType": "double",
+              "minimum": 0.0
+            },
+            "disk_read_mbps": {
+              "bsonType": "double"
+            },
+            "disk_write_mbps": {
+              "bsonType": "double"
+            },
+            "network_recv_mbps": {
+              "bsonType": "double"
+            },
+            "network_sent_mbps": {
+              "bsonType": "double"
+            },
+            "progress_percent": {
+              "bsonType": "double",
+              "minimum": 0.0,
+              "maximum": 100.0
+            },
+            "reads_processed": {
+              "bsonType": "long"
+            },
+            "reads_per_second": {
+              "bsonType": "double"
+            },
+            "custom_metrics": {
+              "bsonType": "object",
+              "description": "Stage-specific metrics"
+            }
+          }
+        }
+      },
+      "indexes": [
+        {
+          "name": "idx_metric_id",
+          "keys": {"metric_id": 1}
+        },
+        {
+          "name": "idx_job_id",
+          "keys": {"job_id": 1}
+        },
+        {
+          "name": "idx_timestamp",
+          "keys": {"timestamp": -1}
+        }
+      ],
+      "time_series": {
+        "enabled": true,
+        "timeField": "timestamp",
+        "metaField": "job_id",
+        "granularity": "seconds",
+        "description": "Use time-series collection for performance metrics"
+      }
+    }
+  },
+
+  "administration": {
+    "backup_strategy": {
+      "frequency": "daily",
+      "retention_days": 30,
+      "method": "mongodump with gzip compression",
+      "s3_bucket": "s3://crispr-pipeline-backups/mongodb/"
+    },
+    "sharding_plan": {
+      "collections_to_shard": ["read_alignments", "expression_matrices"],
+      "shard_key_strategy": "Shard by genomic location (chromosome + position) for optimal query performance"
+    },
+    "monitoring": {
+      "tools": ["MongoDB Atlas", "Prometheus + Grafana"],
+      "alerts": [
+        "Replication lag > 10 seconds",
+        "Storage usage > 80%",
+        "Query response time > 1 second"
+      ]
+    }
+  }
+}

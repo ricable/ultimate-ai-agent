@@ -1,0 +1,54 @@
+# Claude Model Configuration for Cloud Run
+# High-quality, powerful AI model from Anthropic
+
+name: claude-sonnet-4
+provider: anthropic
+description: "Claude Sonnet 4 - Best for complex reasoning and code generation"
+
+# Model settings
+model:
+  id: claude-sonnet-4
+  temperature: 0.7
+  max_tokens: 4096
+  top_p: 1.0
+
+# Cloud Run Job Configuration
+cloudrun:
+  memory: 2Gi
+  cpu: 2
+  timeout: 3600  # 1 hour
+  max_instances: 10
+  min_instances: 0  # Scale to zero when idle
+
+# Environment variables
+env:
+  PROVIDER: anthropic
+  USE_OPENROUTER: "false"
+  COMPLETION_MODEL: claude-sonnet-4
+  ENABLE_STREAMING: "true"
+
+# Secrets (from Google Secret Manager)
+secrets:
+  - name: ANTHROPIC_API_KEY
+    key: anthropic-api-key
+    version: latest
+
+# Agent configuration
+agents:
+  enabled: true
+  agents_dir: /app/.claude/agents
+  auto_load: true
+
+# MCP Servers
+mcp:
+  enabled: true
+  servers:
+    - claude-flow
+    - flow-nexus
+    - agentic-payments
+
+# Cost tracking
+cost:
+  input_cost_per_1k: 0.003
+  output_cost_per_1k: 0.015
+  estimated_monthly: 100  # USD estimate for moderate usage

@@ -1,0 +1,43 @@
+{
+  "file_hash": "fabf13741b5cf142793ccd2b51777d4d",
+  "feature": {
+    "id": "121 1819",
+    "name": "S-GW Relocation at X2 Handover",
+    "cxc_code": "CXC4011479",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The S-GW Relocation at X2 Handover feature allows to change the S-GW at an X2",
+    "parameters": [
+      {
+        "name": "Uen.AM",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011479 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011479 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/258_22104-LZA7016014_1Uen.AM.md",
+    "file_hash": "fabf13741b5cf142793ccd2b51777d4d",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

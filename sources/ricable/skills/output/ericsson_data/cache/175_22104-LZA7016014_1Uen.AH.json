@@ -1,0 +1,76 @@
+{
+  "file_hash": "323455c99b845af580c2d73bed21dcc8",
+  "feature": {
+    "id": "121 2026",
+    "name": "Automated RACH Root Sequence Allocation",
+    "cxc_code": "CXC4011246",
+    "value_package": "Self-Organizing Networks",
+    "value_package_id": "FAJ 801 0435",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Automated RACH Root Sequence Allocation feature removes the need for manually",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.rachRootSequence  EUtranCellTDD.rachRootSequence",
+        "type": "Affected",
+        "description": "First root sequence number for RACH preamble generation.  RACH root sequence is broadcast as a part of system information distribution and is                 used for preamble detection. For information on the definition of logical root                 sequence number, see 3GPP TS 36.211.  Taking effect depends on the feature state.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "Uen.AH",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.rachRootSequence",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.rachRootSequence",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmRaAttCbra",
+        "description": "Performance counter pmRaAttCbra",
+        "category": "General"
+      },
+      {
+        "name": "pmRaAttCfra",
+        "description": "Performance counter pmRaAttCfra",
+        "category": "General"
+      },
+      {
+        "name": "pmRaSuccCbra",
+        "description": "Performance counter pmRaSuccCbra",
+        "category": "General"
+      },
+      {
+        "name": "pmRaSuccCfra",
+        "description": "Performance counter pmRaSuccCfra",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011246 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011246 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/175_22104-LZA7016014_1Uen.AH.md",
+    "file_hash": "323455c99b845af580c2d73bed21dcc8",
+    "processed_at": "2025-10-19 15:48:54",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

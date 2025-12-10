@@ -1,0 +1,89 @@
+{
+  "file_hash": "e86f9b3916efad901ab5cda05be49805",
+  "feature": {
+    "id": "121 5747",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012752",
+    "value_package": "Differentiated Mobile Broadband",
+    "value_package_id": "FAJ 801 0409",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The LTE Flexible Power Boost for Initial Access feature introduces flexible Msg2",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.pwrBoostRaMsg2Pdcch",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.pwrBoostRaMsg2Pdsch",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.pwrBoostRaMsg2TaThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pwrBoostRaMsg2Pdcch",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.pwrBoostRaMsg2Pdsch",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.pwrBoostRaMsg2TaThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "Uen.U",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmPdcchMsg2PwrBoostDistr",
+        "description": "Performance counter pmPdcchMsg2PwrBoostDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPdschMsg2PwrBoostDistr",
+        "description": "Performance counter pmPdschMsg2PwrBoostDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012752 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012752 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/590_22104-LZA7016014_1Uen.U.md",
+    "file_hash": "e86f9b3916efad901ab5cda05be49805",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

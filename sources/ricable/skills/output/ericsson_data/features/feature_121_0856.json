@@ -1,0 +1,191 @@
+{
+  "id": "121 0856",
+  "name": "CS Fallback to GERAN and UTRAN  Measurement-Based CSFB Target Selection  PSHO-Based CS Fallback to UTRAN",
+  "cxc_code": "CXC4011663",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400 R8",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node, DU Radio Node",
+  "description": "",
+  "summary": "This feature enables the eNodeB to transfer the UE to UTRAN when a CS voice call service",
+  "parameters": [
+    {
+      "name": "ReportConfigCsfbUtra.thresholdEcNo",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigCsfbUtra"
+    },
+    {
+      "name": "ReportConfigCsfbUtra.thresholdRscp",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigCsfbUtra"
+    },
+    {
+      "name": "ReportConfigCsfbUtra.hysteresis",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigCsfbUtra"
+    },
+    {
+      "name": "ReportConfigCsfbGeran.hysteresis",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigCsfbGeran"
+    },
+    {
+      "name": "ReportConfigCsfbUtra.timeToTrigger",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigCsfbUtra"
+    },
+    {
+      "name": "ReportConfigCsfbGeran.timeToTrigger",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigCsfbGeran"
+    },
+    {
+      "name": "UeMeasControl.csfbHoTargetSearchTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "ENodeBFunction.csfbSkipSmcRrcFromIdleMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "UtranFreqRelation.mobilityActionCsfb",
+      "type": "Affected",
+      "description": "A new value HANDOVER is defined for this parameter.",
+      "mo_class": "UtranFreqRelation"
+    },
+    {
+      "name": "ENodeBFunction.hoSrvccToWcdmaMocnEnabled",
+      "type": "Affecting",
+      "description": "The parameter is used to enable PSHO and SRVCC handover to shared WCDMA RAN for UEs                 using additional PLMNs in MOCN configurations.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "UtranFreqRelation.allowedPlmnList",
+      "type": "Affecting",
+      "description": "The parameter is used when PSHO and SRVCC handover is enabled to shared WCDMA RAN                 for UEs using additional PLMNs in MOCN configurations.",
+      "mo_class": "UtranFreqRelation"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "type": "EVENT_PARAM_MOBILITY_TRIGGER",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.BN",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "UtranFreqRelation.mobilityActionfCsfb",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UtranFreqRelation"
+    },
+    {
+      "name": "UtranCellRelation.isHoAllowed",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UtranCellRelation"
+    },
+    {
+      "name": "MobilityStatusIrat.available",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "MobilityStatusIrat"
+    },
+    {
+      "name": "EUtranCellFDD.covTriggerdBlindHoAllowed",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.covTriggerdBlindHoAllowed",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "UtranCellRelation.coverageIndicator",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UtranCellRelation"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmHoExeAttCsfb",
+      "description": "Performance counter pmHoExeAttCsfb",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccCsfb",
+      "description": "Performance counter pmHoExeSuccCsfb",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttCsfb",
+      "description": "Performance counter pmHoPrepAttCsfb",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccCsfb",
+      "description": "Performance counter pmHoPrepSuccCsfb",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "type": "EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "type": "EVENT_PARAM_MOBILITY_TRIGGER",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011663 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011663 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/250_22104-LZA7016014_1Uen.BN.md",
+  "file_hash": "ab0dbbd315ef855c88b6517eeb7c24e2",
+  "processed_at": "2025-10-19 15:50:05",
+  "network_impact": {},
+  "performance_impact": {}
+}

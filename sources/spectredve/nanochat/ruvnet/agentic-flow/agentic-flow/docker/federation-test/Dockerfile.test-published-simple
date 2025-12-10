@@ -1,0 +1,24 @@
+FROM node:20-slim
+
+WORKDIR /app
+
+# Install build dependencies for native modules
+RUN apt-get update && apt-get install -y python3 make g++ curl && rm -rf /var/lib/apt/lists/*
+
+# Install the published npm package locally
+RUN npm install agentic-flow@1.8.13 express
+
+# Verify installation
+RUN npx agentic-flow --version
+
+# Copy test script
+COPY test-published-hub.js /app/
+
+# Create data directory
+RUN mkdir -p /data
+
+# Expose ports
+EXPOSE 8443 8444
+
+# Run test script
+CMD ["node", "/app/test-published-hub.js"]

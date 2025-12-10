@@ -1,0 +1,114 @@
+{
+  "file_hash": "d3d14d6bd6aa4853758d98fd5b6527ad",
+  "feature": {
+    "id": "121 5832",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012819",
+    "value_package": "Advanced RAN Slicing",
+    "value_package_id": "FAJ 801 4019",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The NR Soft Admission feature allows the admission of a new QoS flow after reaching the",
+    "parameters": [
+      {
+        "name": "FlowLimit.softAdmissionEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "FlowLimit"
+      },
+      {
+        "name": "Uen.B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "NRCellDU.pmDrbEstabSoftAdmissionQos",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmDrbModSoftAdmissionQos",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellCU.pmDrbEstabSuccInit5qi",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "NRCellCU.pmDrbEstabSucc5qi",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmDrbEstabSoftAdmissionQos",
+        "description": "Performance counter pmDrbEstabSoftAdmissionQos",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbEstabSucc5qi",
+        "description": "Performance counter pmDrbEstabSucc5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbEstabSuccInit5qi",
+        "description": "Performance counter pmDrbEstabSuccInit5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbModSoftAdmissionQos",
+        "description": "Performance counter pmDrbModSoftAdmissionQos",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbEstabSoftAdmissionQos",
+        "description": "Performance counter pmEbsDrbEstabSoftAdmissionQos",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbModSoftAdmissionQos",
+        "description": "Performance counter pmEbsDrbModSoftAdmissionQos",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012819 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012819 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/252_22104-LZA7016017_1Uen.B.md",
+    "file_hash": "d3d14d6bd6aa4853758d98fd5b6527ad",
+    "processed_at": "2025-10-19 15:50:11",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "file_hash": "c45160a647123f3b1179d1285cbf22c0",
+  "feature": {
+    "id": "121 3099",
+    "name": "PHICH Group Spreading",
+    "cxc_code": "CXC4011813",
+    "value_package": "VoLTE Performance",
+    "value_package_id": "FAJ 801 0444",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The PHICH Group Spreading feature distributes users into different PHICH",
+    "parameters": [
+      {
+        "name": "Uen.AF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.pmPdcpPktLostUl",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmPdcpPktLostUl",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmPdcpPktLostUlQci",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmPdcpPktLostUlQci",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmPdcpPktReceivedUl",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmPdcpPktReceivedUl",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmPdcpPktReceivedUlQci",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmPdcpPktReceivedUlQci",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmPdcpPktLostUl",
+        "description": "Performance counter pmPdcpPktLostUl",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktLostUlQci",
+        "description": "Performance counter pmPdcpPktLostUlQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktReceivedUl",
+        "description": "Performance counter pmPdcpPktReceivedUl",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktReceivedUlQci",
+        "description": "Performance counter pmPdcpPktReceivedUlQci",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityRbUlNok",
+        "description": "Performance counter pmVoipQualityRbUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityRbUlOk",
+        "description": "Performance counter pmVoipQualityRbUlOk",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityUeUlNok",
+        "description": "Performance counter pmVoipQualityUeUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityUeUlOk",
+        "description": "Performance counter pmVoipQualityUeUlOk",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011813 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011813 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/51_22104-LZA7016014_1Uen.AF.md",
+    "file_hash": "c45160a647123f3b1179d1285cbf22c0",
+    "processed_at": "2025-10-19 15:50:06",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

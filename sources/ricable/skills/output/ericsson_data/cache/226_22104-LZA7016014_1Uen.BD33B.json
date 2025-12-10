@@ -1,0 +1,402 @@
+{
+  "file_hash": "7cca3056f4f178607116c4b9fcdacc27",
+  "feature": {
+    "id": "121 4843",
+    "name": "Basic Intelligent Connectivity",
+    "cxc_code": "CXC4011810",
+    "value_package": "Intelligent Connectivity",
+    "value_package_id": "FAJ 801 1013",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature enables multiple open HeNodeBs to be allocated with the same",
+    "parameters": [
+      {
+        "name": "ENodeBFunction.measuringEcgiWithAgActive",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranFreqRelation.nonPlannedPhysCellId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.nonPlannedPhysCellIdRange",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.nonPlannedPciCIO",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.nonPlannedPciTargetIdType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.nonPlannedPciAllowedPlmnList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "NonPlannedPciDrxProfile.nonPlannedPciLongDrxCycle",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NonPlannedPciDrxProfile"
+      },
+      {
+        "name": "NonPlannedPciDrxProfile.nonPlannedPciDrxInactivityTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NonPlannedPciDrxProfile"
+      },
+      {
+        "name": "NonPlannedPciDrxProfile.nonPlannedPciOnDurationTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NonPlannedPciDrxProfile"
+      },
+      {
+        "name": "INTERNAL_PROC_NON_PLANNED_PCI_CGI_REPORT",
+        "type": "EVENT_PARAM_REJECT_MEAS_CAUSE   EVENT_PARAM_AFFECTED_MEAS_TYPE   EVENT_PARAM_MEASUREMENT_ID   EVENT_PARAM_NEIGHBOR_PCI   EVENT_PARAM_NON_PLANNED_PCI_MEASURE_RESULT   EVENT_PARAM_NEIGHBOR_CGI    EVENT_PARAM_RAT    EVENT_PARAM_FREQ",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE   EVENT_PARAM_HO_TARGET_SELECTION_TYPE    EVENT_PARAM_NEIGHBOR_CGI   EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE   EVENT_PARAM_PROC_HO_PREP_OUT_RESULT   EVENT_PARAM_HO_OUT_PREP_ERAB_REQ_BITMAP   EVENT_PARAM_HO_OUT_PREP_ERAB_FAIL_BITMAP   EVENT_PARAM_SRVCC_TYPE   EVENT_PARAM_3GPP_CAUSE_GROUP   EVENT_PARAM_3GPP_CAUSE    EVENT_ARRAY_HO_PREP_QCI    EVENT_PARAM_TIMESTAMP_START_HOUR   EVENT_PARAM_TIMESTAMP_START_MINUTE   EVENT_PARAM_TIMESTAMP_START_SECOND   EVENT_PARAM_TIMESTAMP_START_MILLISEC   EVENT_PARAM_TIMESTAMP_STOP_HOUR   EVENT_PARAM_TIMESTAMP_STOP_MINUTE   EVENT_PARAM_TIMESTAMP_STOP_SECOND   EVENT_PARAM_TIMESTAMP_STOP_MILLISEC   EVENT_PARAM_NEIGHBOR_PCI   EVENT_ARRAY_ERAB_HO_PREP_SERVICE_TYPE",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE   EVENT_PARAM_HO_TARGET_SELECTION_TYPE   EVENT_PARAM_NEIGHBOR_CGI    EVENT_PARAM_PROC_HO_EXEC_OUT_RESULT    EVENT_PARAM_DRX_CONFIG_INDEX   EVENT_PARAM_HO_OUT_EXEC_ERAB_REQ_BITMAP   EVENT_PARAM_HO_OUT_EXEC_ERAB_FAIL_BITMAP   EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE   EVENT_ARRAY_ERAB_HO_EXEC_OUT_QCI   EVENT_PARAM_TIMESTAMP_START_HOUR   EVENT_PARAM_TIMESTAMP_START_MINUTE   EVENT_PARAM_TIMESTAMP_START_SECOND   EVENT_PARAM_TIMESTAMP_START_MILLISEC    EVENT_PARAM_TIMESTAMP_STOP_HOUR   EVENT_PARAM_TIMESTAMP_STOP_MINUTE   EVENT_PARAM_TIMESTAMP_STOP_SECOND   EVENT_PARAM_TIMESTAMP_STOP_MILLISEC EVENT_PARAM_TA   EVENT_PARAM_NEIGHBOR_PCI   EVENT_ARRAY_ERAB_HO_EXEC_OUT_SERVICE_TYPE",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_RECONF_NO_MOB",
+        "type": "EVENT_PARAM_RRC_RECONFIG_CAUSE   EVENT_PARAM_RRC_RECONFIG_RESULT   EVENT_ARRAY_ERAB_SERVICE_TYPE  EVENT_PARAM_START_CGI_MEAS",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_X2_SETUP",
+        "type": "EVENT_PARAM_TIMESTAMP_START_HOUR   EVENT_PARAM_TIMESTAMP_START_MINUTE   EVENT_PARAM_TIMESTAMP_START_SECOND   EVENT_PARAM_TIMESTAMP_START_MILLISEC   EVENT_PARAM_TIMESTAMP_STOP_HOUR   EVENT_PARAM_TIMESTAMP_STOP_MINUTE   EVENT_PARAM_TIMESTAMP_STOP_SECOND   EVENT_PARAM_TIMESTAMP_STOP_MILLISEC   EVENT_PARAM_ENB_IP_ADDRESS   EVENT_PARAM_X2_CAUSE   EVENT_PARAM_GENBID   EVENT_PARAM_X2_SETUP_RESULT   EVENT_PARAM_3GPP_CAUSE_GROUP   EVENT_PARAM_3GPP_CAUSE",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.BD33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "RobustCallSetup.intraLteMobilityDelayEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "PCI.Note",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PCI"
+      },
+      {
+        "name": "NonPlannedPciDrxProfile.LongDrxCycle",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NonPlannedPciDrxProfile"
+      },
+      {
+        "name": "NonPlannedPciDrxProfile.OnDurationTimer",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NonPlannedPciDrxProfile"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmAgMeasSuccCgiMcPtt",
+        "description": "Performance counter pmAgMeasSuccCgiMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmAgMeasSuccCgiNonMcPtt",
+        "description": "Performance counter pmAgMeasSuccCgiNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteInterFNpPCI",
+        "description": "Performance counter pmCellHoExeAttLteInterFNpPCI",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteIntraFNpPCI",
+        "description": "Performance counter pmCellHoExeAttLteIntraFNpPCI",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteSmallCellMcPttAg",
+        "description": "Performance counter pmCellHoExeAttLteSmallCellMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteSmallCellMcPttDrx",
+        "description": "Performance counter pmCellHoExeAttLteSmallCellMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteSmallCellNonMcPttAg",
+        "description": "Performance counter pmCellHoExeAttLteSmallCellNonMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteSmallCellNonMcPttDrx",
+        "description": "Performance counter pmCellHoExeAttLteSmallCellNonMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteInterFNpPCI",
+        "description": "Performance counter pmCellHoExeSuccLteInterFNpPCI",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteIntraFNpPCI",
+        "description": "Performance counter pmCellHoExeSuccLteIntraFNpPCI",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteSmallCellMcPttAg",
+        "description": "Performance counter pmCellHoExeSuccLteSmallCellMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteSmallCellMcPttDrx",
+        "description": "Performance counter pmCellHoExeSuccLteSmallCellMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteSmallCellNonMcPttAg",
+        "description": "Performance counter pmCellHoExeSuccLteSmallCellNonMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteSmallCellNonMcPttDrx",
+        "description": "Performance counter pmCellHoExeSuccLteSmallCellNonMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteInterFNpPCI",
+        "description": "Performance counter pmCellHoPrepAttLteInterFNpPCI",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteIntraFNpPCI",
+        "description": "Performance counter pmCellHoPrepAttLteIntraFNpPCI",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteSmallCellMcPttAg",
+        "description": "Performance counter pmCellHoPrepAttLteSmallCellMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteSmallCellMcPttDrx",
+        "description": "Performance counter pmCellHoPrepAttLteSmallCellMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteSmallCellNonMcPttAg",
+        "description": "Performance counter pmCellHoPrepAttLteSmallCellNonMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteSmallCellNonMcPttDrx",
+        "description": "Performance counter pmCellHoPrepAttLteSmallCellNonMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepSuccLteInterFNpPCI",
+        "description": "Performance counter pmCellHoPrepSuccLteInterFNpPCI",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepSuccLteIntraFNpPCI",
+        "description": "Performance counter pmCellHoPrepSuccLteIntraFNpPCI",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepSuccLteSmallCellMcPttAg",
+        "description": "Performance counter pmCellHoPrepSuccLteSmallCellMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepSuccLteSmallCellMcPttDrx",
+        "description": "Performance counter pmCellHoPrepSuccLteSmallCellMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepSuccLteSmallCellNonMcPttAg",
+        "description": "Performance counter pmCellHoPrepSuccLteSmallCellNonMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepSuccLteSmallCellNonMcPttDrx",
+        "description": "Performance counter pmCellHoPrepSuccLteSmallCellNonMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmDrxMeasSuccCgiMcPtt",
+        "description": "Performance counter pmDrxMeasSuccCgiMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmDrxMeasSuccCgiNonMcPtt",
+        "description": "Performance counter pmDrxMeasSuccCgiNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttMeasBasedInterFreqNpPCI",
+        "description": "Performance counter pmHoExeAttMeasBasedInterFreqNpPCI",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttMeasBasedIntraFreqNpPCI",
+        "description": "Performance counter pmHoExeAttMeasBasedIntraFreqNpPCI",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccMeasBasedInterFreqNpPCI",
+        "description": "Performance counter pmHoExeSuccMeasBasedInterFreqNpPCI",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccMeasBasedIntraFreqNpPCI",
+        "description": "Performance counter pmHoExeSuccMeasBasedIntraFreqNpPCI",
+        "category": "General"
+      },
+      {
+        "name": "pmNonPlannedPciMeasFailEutranCgi",
+        "description": "Performance counter pmNonPlannedPciMeasFailEutranCgi",
+        "category": "General"
+      },
+      {
+        "name": "pmNonPlannedPciMeasSuccEutranCgi",
+        "description": "Performance counter pmNonPlannedPciMeasSuccEutranCgi",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgRestoreMcPtt",
+        "description": "Performance counter pmRrcConnReconfAgRestoreMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgRestoreNonMcPtt",
+        "description": "Performance counter pmRrcConnReconfAgRestoreNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgSuccMcPtt",
+        "description": "Performance counter pmRrcConnReconfAgSuccMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgSuccNonMcPtt",
+        "description": "Performance counter pmRrcConnReconfAgSuccNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxFail",
+        "description": "Performance counter pmRrcConnReconfDrxFail",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxRestoreMcPtt",
+        "description": "Performance counter pmRrcConnReconfDrxRestoreMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxRestoreNonMcPtt",
+        "description": "Performance counter pmRrcConnReconfDrxRestoreNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxSucc",
+        "description": "Performance counter pmRrcConnReconfDrxSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxSuccMcPtt",
+        "description": "Performance counter pmRrcConnReconfDrxSuccMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxSuccNonMcPtt",
+        "description": "Performance counter pmRrcConnReconfDrxSuccNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PROC_NON_PLANNED_PCI_CGI_REPORT",
+        "type": "EVENT_PARAM_REJECT_MEAS_CAUSE   EVENT_PARAM_AFFECTED_MEAS_TYPE   EVENT_PARAM_MEASUREMENT_ID   EVENT_PARAM_NEIGHBOR_PCI   EVENT_PARAM_NON_PLANNED_PCI_MEASURE_RESULT   EVENT_PARAM_NEIGHBOR_CGI    EVENT_PARAM_RAT    EVENT_PARAM_FREQ",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_OUT",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE   EVENT_PARAM_HO_TARGET_SELECTION_TYPE    EVENT_PARAM_NEIGHBOR_CGI   EVENT_PARAM_PROC_HO_PREP_OUT_ATTEMPT_CAUSE   EVENT_PARAM_PROC_HO_PREP_OUT_RESULT   EVENT_PARAM_HO_OUT_PREP_ERAB_REQ_BITMAP   EVENT_PARAM_HO_OUT_PREP_ERAB_FAIL_BITMAP   EVENT_PARAM_SRVCC_TYPE   EVENT_PARAM_3GPP_CAUSE_GROUP   EVENT_PARAM_3GPP_CAUSE    EVENT_ARRAY_HO_PREP_QCI    EVENT_PARAM_TIMESTAMP_START_HOUR   EVENT_PARAM_TIMESTAMP_START_MINUTE   EVENT_PARAM_TIMESTAMP_START_SECOND   EVENT_PARAM_TIMESTAMP_START_MILLISEC   EVENT_PARAM_TIMESTAMP_STOP_HOUR   EVENT_PARAM_TIMESTAMP_STOP_MINUTE   EVENT_PARAM_TIMESTAMP_STOP_SECOND   EVENT_PARAM_TIMESTAMP_STOP_MILLISEC   EVENT_PARAM_NEIGHBOR_PCI   EVENT_ARRAY_ERAB_HO_PREP_SERVICE_TYPE",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE   EVENT_PARAM_HO_TARGET_SELECTION_TYPE   EVENT_PARAM_NEIGHBOR_CGI    EVENT_PARAM_PROC_HO_EXEC_OUT_RESULT    EVENT_PARAM_DRX_CONFIG_INDEX   EVENT_PARAM_HO_OUT_EXEC_ERAB_REQ_BITMAP   EVENT_PARAM_HO_OUT_EXEC_ERAB_FAIL_BITMAP   EVENT_PARAM_PROC_HO_EXEC_OUT_ATTEMPT_CAUSE   EVENT_ARRAY_ERAB_HO_EXEC_OUT_QCI   EVENT_PARAM_TIMESTAMP_START_HOUR   EVENT_PARAM_TIMESTAMP_START_MINUTE   EVENT_PARAM_TIMESTAMP_START_SECOND   EVENT_PARAM_TIMESTAMP_START_MILLISEC    EVENT_PARAM_TIMESTAMP_STOP_HOUR   EVENT_PARAM_TIMESTAMP_STOP_MINUTE   EVENT_PARAM_TIMESTAMP_STOP_SECOND   EVENT_PARAM_TIMESTAMP_STOP_MILLISEC EVENT_PARAM_TA   EVENT_PARAM_NEIGHBOR_PCI   EVENT_ARRAY_ERAB_HO_EXEC_OUT_SERVICE_TYPE",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PROC_RRC_CONN_RECONF_NO_MOB",
+        "type": "EVENT_PARAM_RRC_RECONFIG_CAUSE   EVENT_PARAM_RRC_RECONFIG_RESULT   EVENT_ARRAY_ERAB_SERVICE_TYPE  EVENT_PARAM_START_CGI_MEAS",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PROC_X2_SETUP",
+        "type": "EVENT_PARAM_TIMESTAMP_START_HOUR   EVENT_PARAM_TIMESTAMP_START_MINUTE   EVENT_PARAM_TIMESTAMP_START_SECOND   EVENT_PARAM_TIMESTAMP_START_MILLISEC   EVENT_PARAM_TIMESTAMP_STOP_HOUR   EVENT_PARAM_TIMESTAMP_STOP_MINUTE   EVENT_PARAM_TIMESTAMP_STOP_SECOND   EVENT_PARAM_TIMESTAMP_STOP_MILLISEC   EVENT_PARAM_ENB_IP_ADDRESS   EVENT_PARAM_X2_CAUSE   EVENT_PARAM_GENBID   EVENT_PARAM_X2_SETUP_RESULT   EVENT_PARAM_3GPP_CAUSE_GROUP   EVENT_PARAM_3GPP_CAUSE",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011810 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011810 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/226_22104-LZA7016014_1Uen.BD33B.md",
+    "file_hash": "7cca3056f4f178607116c4b9fcdacc27",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,278 @@
+# LlamaEdge Runtime Configuration for Kubernetes
+# Enables running LLM inference with WasmEdge and GGML backend
+# Reference: https://github.com/LlamaEdge/LlamaEdge
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: llamaedge
+  labels:
+    app.kubernetes.io/name: llamaedge
+    app.kubernetes.io/component: llm-inference
+    runtime.kubernetes.io/type: wasm
+---
+# LlamaEdge RuntimeClass for LLM inference
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: llamaedge
+  labels:
+    runtime.kubernetes.io/type: wasm
+    runtime.kubernetes.io/engine: wasmedge
+    runtime.kubernetes.io/workload: llm
+handler: wasmedge
+overhead:
+  podFixed:
+    cpu: "500m"
+    memory: "2Gi"
+scheduling:
+  nodeSelector:
+    kubernetes.io/os: linux
+    ruvector.io/llamaedge-enabled: "true"
+  tolerations:
+    - key: "ruvector.io/llm"
+      operator: "Exists"
+      effect: "PreferNoSchedule"
+---
+# LlamaEdge with GPU acceleration
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: llamaedge-gpu
+  labels:
+    runtime.kubernetes.io/type: wasm
+    runtime.kubernetes.io/engine: wasmedge
+    runtime.kubernetes.io/workload: llm
+    runtime.kubernetes.io/gpu: "true"
+handler: wasmedge
+overhead:
+  podFixed:
+    cpu: "1"
+    memory: "4Gi"
+scheduling:
+  nodeSelector:
+    kubernetes.io/os: linux
+    ruvector.io/llamaedge-enabled: "true"
+    nvidia.com/gpu.present: "true"
+  tolerations:
+    - key: "nvidia.com/gpu"
+      operator: "Exists"
+      effect: "NoSchedule"
+    - key: "ruvector.io/llm"
+      operator: "Exists"
+      effect: "PreferNoSchedule"
+---
+# ConfigMap for LlamaEdge server configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: llamaedge-config
+  namespace: llamaedge
+data:
+  config.json: |
+    {
+      "server": {
+        "host": "0.0.0.0",
+        "port": 8080,
+        "threads": 4
+      },
+      "inference": {
+        "ctx_size": 4096,
+        "batch_size": 512,
+        "n_gpu_layers": 0,
+        "rope_freq_base": 10000.0,
+        "rope_freq_scale": 1.0
+      },
+      "models": {
+        "default": {
+          "path": "/models/default.gguf",
+          "alias": "default"
+        }
+      },
+      "api": {
+        "enable_chat": true,
+        "enable_completions": true,
+        "enable_embeddings": true,
+        "cors_enabled": true
+      }
+    }
+---
+# ServiceAccount for LlamaEdge workloads
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: llamaedge
+  namespace: llamaedge
+---
+# RBAC for LlamaEdge
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: llamaedge
+  namespace: llamaedge
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: llamaedge
+  namespace: llamaedge
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: llamaedge
+subjects:
+  - kind: ServiceAccount
+    name: llamaedge
+    namespace: llamaedge
+---
+# PersistentVolumeClaim for model storage
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: llamaedge-models
+  namespace: llamaedge
+  labels:
+    app.kubernetes.io/name: llamaedge
+    app.kubernetes.io/component: storage
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+  storageClassName: local-path  # Adjust for your storage class
+---
+# LlamaEdge Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llamaedge
+  namespace: llamaedge
+  labels:
+    app.kubernetes.io/name: llamaedge
+    app.kubernetes.io/component: inference-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llamaedge
+  template:
+    metadata:
+      labels:
+        app: llamaedge
+        app.kubernetes.io/name: llamaedge
+    spec:
+      serviceAccountName: llamaedge
+      runtimeClassName: llamaedge
+      nodeSelector:
+        ruvector.io/llamaedge-enabled: "true"
+      tolerations:
+        - key: ruvector.io/llm
+          operator: Exists
+          effect: PreferNoSchedule
+      containers:
+        - name: llamaedge
+          # Use WasmEdge container with GGML plugin
+          image: wasmedge/wasmedge:latest-ubuntu
+          command:
+            - wasmedge
+            - --dir
+            - ".:/models"
+            - --nn-preload
+            - "default:GGML:AUTO:/models/model.gguf"
+            - /app/llama-api-server.wasm
+            - --model-name
+            - llama
+            - --ctx-size
+            - "4096"
+            - --socket-addr
+            - "0.0.0.0:8080"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            requests:
+              memory: "16Gi"
+              cpu: "4"
+            limits:
+              memory: "32Gi"
+              cpu: "8"
+          volumeMounts:
+            - name: models
+              mountPath: /models
+            - name: config
+              mountPath: /etc/llamaedge
+          livenessProbe:
+            httpGet:
+              path: /v1/models
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /v1/models
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: llamaedge-models
+        - name: config
+          configMap:
+            name: llamaedge-config
+---
+# LlamaEdge Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: llamaedge
+  namespace: llamaedge
+  labels:
+    app.kubernetes.io/name: llamaedge
+    app.kubernetes.io/component: inference-server
+spec:
+  type: ClusterIP
+  selector:
+    app: llamaedge
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+---
+# HorizontalPodAutoscaler for LlamaEdge
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: llamaedge
+  namespace: llamaedge
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: llamaedge
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80

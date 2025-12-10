@@ -1,0 +1,225 @@
+{
+  "$schema": "../schemas/deployment-config.schema.json",
+  "name": "balanced-deployment",
+  "version": "1.0.0",
+  "description": "Balanced cost and quality configuration (90%+ reduction vs Claude 3.5 Sonnet). Optimized for production workloads requiring good quality at minimal cost.",
+
+  "models": {
+    "primary": {
+      "provider": "openrouter",
+      "model": "meta-llama/llama-3.3-70b-instruct",
+      "pricing": {
+        "input": 0.10,
+        "output": 0.40,
+        "unit": "per_million_tokens"
+      },
+      "capabilities": {
+        "toolCalling": true,
+        "jsonMode": true,
+        "streaming": true,
+        "contextWindow": 128000,
+        "multimodal": false
+      },
+      "qualityScore": 90,
+      "specialization": ["general", "reasoning", "analysis"],
+      "rateLimits": {
+        "requestsPerMinute": 100,
+        "tokensPerMinute": 200000
+      }
+    },
+    "secondary": {
+      "provider": "openrouter",
+      "model": "qwen/qwen-2.5-coder-32b-instruct",
+      "pricing": {
+        "input": 0.23,
+        "output": 0.23,
+        "unit": "per_million_tokens"
+      },
+      "capabilities": {
+        "toolCalling": true,
+        "jsonMode": true,
+        "streaming": true,
+        "contextWindow": 128000,
+        "multimodal": false
+      },
+      "qualityScore": 92,
+      "specialization": ["coding", "function_calling", "tool_use", "repository_reasoning"],
+      "rateLimits": {
+        "requestsPerMinute": 80,
+        "tokensPerMinute": 150000
+      }
+    },
+    "fallback": {
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-chat",
+      "pricing": {
+        "input": 0.15,
+        "output": 0.15,
+        "unit": "per_million_tokens"
+      },
+      "capabilities": {
+        "toolCalling": true,
+        "jsonMode": true,
+        "streaming": true,
+        "contextWindow": 128000,
+        "multimodal": false
+      },
+      "qualityScore": 88,
+      "specialization": ["general", "fallback"],
+      "rateLimits": {
+        "requestsPerMinute": 60,
+        "tokensPerMinute": 100000
+      }
+    }
+  },
+  "routing": {
+    "strategy": "balanced",
+    "taskTypeMapping": {
+      "coding": "secondary",
+      "code_generation": "secondary",
+      "code_review": "secondary",
+      "refactoring": "secondary",
+      "debugging": "secondary",
+      "general": "primary",
+      "reasoning": "primary",
+      "analysis": "primary",
+      "research": "primary",
+      "simple": "fallback",
+      "fallback": "fallback"
+    },
+    "complexityRouting": {
+      "simple": "fallback",
+      "medium": "primary",
+      "complex": "primary",
+      "expert": "secondary"
+    },
+    "qualityThresholds": {
+      "high": "primary",
+      "medium": "fallback",
+      "low": "fallback"
+    },
+    "fallbackRules": {
+      "onRateLimit": true,
+      "onError": true,
+      "onTimeout": true,
+      "onQualityFailure": true,
+      "maxRetries": 3,
+      "retryDelay": 2000,
+      "escalateToSecondary": true
+    }
+  },
+  "monitoring": {
+    "costTracking": {
+      "enabled": true,
+      "realTime": true,
+      "monthlyBudget": 200,
+      "alertThresholds": {
+        "warning": 0.75,
+        "critical": 0.90
+      },
+      "costByModel": true,
+      "costByTaskType": true
+    },
+    "performanceMetrics": {
+      "enabled": true,
+      "trackLatency": true,
+      "trackThroughput": true,
+      "trackTokenUsage": true,
+      "trackQuality": true,
+      "aggregationInterval": 300000
+    },
+    "errorTracking": {
+      "enabled": true,
+      "logErrors": true,
+      "alertOnCritical": true,
+      "trackErrorRates": true
+    },
+    "qualityAssurance": {
+      "enabled": true,
+      "samplingRate": 0.10,
+      "compareToBaseline": true,
+      "baselineModel": "claude-3.5-sonnet",
+      "qualityThreshold": 0.90
+    }
+  },
+  "optimization": {
+    "caching": {
+      "enabled": true,
+      "ttl": 7200,
+      "maxSize": 5000,
+      "cacheByTaskType": true
+    },
+    "promptOptimization": {
+      "enabled": true,
+      "minimizeTokens": true,
+      "useShortPrompts": false,
+      "contextCompression": true
+    },
+    "batchRequests": {
+      "enabled": true,
+      "maxBatchSize": 20,
+      "batchingDelay": 100
+    },
+    "responseCompression": {
+      "enabled": true,
+      "algorithm": "gzip"
+    },
+    "loadBalancing": {
+      "enabled": true,
+      "strategy": "round-robin",
+      "healthCheckInterval": 30000
+    }
+  },
+  "deployment": {
+    "environment": "production",
+    "region": "auto",
+    "scaling": {
+      "minAgents": 5,
+      "maxAgents": 50,
+      "autoScale": true,
+      "scaleUpThreshold": 0.80,
+      "scaleDownThreshold": 0.30,
+      "cooldownPeriod": 300000
+    },
+    "healthCheck": {
+      "enabled": true,
+      "interval": 30000,
+      "timeout": 10000,
+      "unhealthyThreshold": 3
+    },
+    "redundancy": {
+      "enabled": true,
+      "replicationFactor": 2
+    }
+  },
+  "estimatedCosts": {
+    "monthly": {
+      "low": 5.0,
+      "typical": 15.0,
+      "high": 30.0
+    },
+    "perRequest": {
+      "simple": 0.00002,
+      "medium": 0.0001,
+      "complex": 0.0003
+    },
+    "breakdown": {
+      "primary": 0.40,
+      "secondary": 0.45,
+      "fallback": 0.15
+    },
+    "savingsVsBaseline": 0.95
+  },
+  "metadata": {
+    "createdAt": "2025-10-07T00:00:00Z",
+    "updatedAt": "2025-10-07T00:00:00Z",
+    "author": "Claude Code SPARC-GOAP",
+    "tags": ["balanced", "production", "cost-effective", "95-percent-savings"],
+    "recommendedFor": [
+      "production-api-services",
+      "multi-agent-coordination",
+      "mixed-workloads",
+      "cost-conscious-deployments"
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+# Sidero Omni Proxmox Infrastructure Provider
+# Reference: https://github.com/siderolabs/omni-infra-provider-proxmox
+#
+# This provider automatically provisions Talos VMs in Proxmox
+# based on machine classes defined in Omni.
+#
+# Prerequisites:
+# 1. Self-hosted Omni instance running
+# 2. Proxmox cluster with API access
+# 3. Talos ISO/image available in Proxmox
+#
+# Setup:
+# 1. cp .env.example .env
+# 2. Edit .env with your credentials
+# 3. docker compose up -d
+
+services:
+  omni-infra-provider-proxmox:
+    image: ghcr.io/siderolabs/omni-infra-provider-proxmox:latest
+    container_name: omni-proxmox-provider
+    restart: unless-stopped
+    volumes:
+      - ./config.yaml:/etc/omni-infra-provider-proxmox/config.yaml:ro
+      - provider-data:/var/lib/omni-infra-provider-proxmox
+    environment:
+      # Omni connection
+      - OMNI_ENDPOINT=${OMNI_ENDPOINT}
+      - OMNI_SERVICE_ACCOUNT_KEY=${OMNI_SERVICE_ACCOUNT_KEY}
+
+      # Proxmox connection
+      - PROXMOX_URL=${PROXMOX_URL}
+      - PROXMOX_USER=${PROXMOX_USER}
+      - PROXMOX_TOKEN_ID=${PROXMOX_TOKEN_ID}
+      - PROXMOX_TOKEN_SECRET=${PROXMOX_TOKEN_SECRET}
+
+      # Provider identity
+      - PROVIDER_ID=${PROVIDER_ID:-proxmox-provider-1}
+      - PROVIDER_NAME=${PROVIDER_NAME:-Proxmox Provider}
+
+      # Logging
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+    networks:
+      - omni-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  omni-network:
+    external: true
+    name: omni_default
+
+volumes:
+  provider-data:
+    name: omni-proxmox-provider-data

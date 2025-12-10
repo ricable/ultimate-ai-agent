@@ -1,0 +1,170 @@
+# Swarm Coordinator with Cognitive Consciousness and Claude Flow Integration
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swarm-coordinator
+  namespace: ran-optimization
+  labels:
+    app: ran-optimization
+    component: swarm-coordinator
+    version: v4.0.0
+    cognitive-feature: "orchestration"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ran-optimization
+      component: swarm-coordinator
+  template:
+    metadata:
+      labels:
+        app: ran-optimization
+        component: swarm-coordinator
+        cognitive-feature: "orchestration"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: "/metrics"
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: swarm-coordinator
+        image: ericsson/ran-swarm-coordinator:v4.0.0-cognitive
+        ports:
+        - containerPort: 8080
+          name: http-api
+          protocol: TCP
+        - containerPort: 9090
+          name: metrics
+          protocol: TCP
+        - containerPort: 8081
+          name: grpc
+          protocol: TCP
+        env:
+        - name: CLAUDE_FLOW_TOPOLOGY
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: CLAUDE_FLOW_TOPOLOGY
+        - name: CLAUDE_FLOW_MAX_AGENTS
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: CLAUDE_FLOW_MAX_AGENTS
+        - name: CLAUDE_FLOW_STRATEGY
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: CLAUDE_FLOW_STRATEGY
+        - name: AGENTDB_ENDPOINTS
+          value: "agentdb-0.agentdb:8080,agentdb-1.agentdb:8080,agentdb-2.agentdb:8080"
+        - name: AGENTDB_QUIC_ENDPOINTS
+          value: "agentdb-0.agentdb:4433,agentdb-1.agentdb:4433,agentdb-2.agentdb:4433"
+        - name: TEMPORAL_EXPANSION_FACTOR
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: TEMPORAL_EXPANSION_FACTOR
+        - name: COGNITIVE_CONSCIOUSNESS_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: COGNITIVE_CONSCIOUSNESS_LEVEL
+        - name: RAN_OPTIMIZATION_CYCLE
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: RAN_OPTIMIZATION_CYCLE
+        - name: RAN_TARGET_SOLVE_RATE
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: RAN_TARGET_SOLVE_RATE
+        - name: PERFORMANCE_TARGET_RESPONSE_TIME
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: PERFORMANCE_TARGET_RESPONSE_TIME
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: NODE_ENV
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: ran-optimization-config
+              key: LOG_LEVEL
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 4Gi
+          limits:
+            cpu: 2000m
+            memory: 8Gi
+        volumeMounts:
+        - name: config
+          mountPath: /config
+          readOnly: true
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /startup
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 30
+      volumes:
+      - name: config
+        configMap:
+          name: ran-optimization-config
+---
+# Swarm Coordinator Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: swarm-coordinator
+  namespace: ran-optimization
+  labels:
+    app: ran-optimization
+    component: swarm-coordinator
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    name: http-api
+  - port: 9090
+    targetPort: 9090
+    protocol: TCP
+    name: metrics
+  - port: 8081
+    targetPort: 8081
+    protocol: TCP
+    name: grpc
+  selector:
+    app: ran-optimization
+    component: swarm-coordinator

@@ -1,0 +1,173 @@
+services:
+  # Federation Hub Server
+  federation-hub:
+    build:
+      context: ../..
+      dockerfile: docker/federation-test/Dockerfile.hub.production
+    container_name: federation-hub
+    ports:
+      - "8443:8443"
+      - "8444:8444"
+    environment:
+      - NODE_ENV=production
+      - FEDERATION_HUB_PORT=8443
+      - FEDERATION_DB_PATH=/data/hub.db
+      - FEDERATION_MAX_AGENTS=1000
+      - DEBUG_LEVEL=DETAILED
+      - DEBUG_FORMAT=human
+      - DEBUG_OUTPUT=console
+    volumes:
+      - hub-data:/data
+    networks:
+      - federation-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8444/health || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+
+  # Agent 1: Researcher (finds patterns)
+  agent-researcher:
+    build:
+      context: ../..
+      dockerfile: docker/federation-test/Dockerfile.agent.production
+    container_name: agent-researcher
+    depends_on:
+      federation-hub:
+        condition: service_healthy
+    environment:
+      - AGENT_TYPE=researcher
+      - AGENT_ID=researcher-001
+      - TENANT_ID=test-collaboration
+      - HUB_ENDPOINT=ws://federation-hub:8443
+      - TASK=research
+      - DEBUG_LEVEL=DETAILED
+      - DEBUG_FORMAT=human
+    networks:
+      - federation-network
+    restart: on-failure
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+
+  # Agent 2: Coder (implements solutions)
+  agent-coder:
+    build:
+      context: ../..
+      dockerfile: docker/federation-test/Dockerfile.agent.production
+    container_name: agent-coder
+    depends_on:
+      federation-hub:
+        condition: service_healthy
+      agent-researcher:
+        condition: service_started
+    environment:
+      - AGENT_TYPE=coder
+      - AGENT_ID=coder-001
+      - TENANT_ID=test-collaboration
+      - HUB_ENDPOINT=ws://federation-hub:8443
+      - TASK=implement
+      - DEBUG_LEVEL=DETAILED
+      - DEBUG_FORMAT=human
+    networks:
+      - federation-network
+    restart: on-failure
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+
+  # Agent 3: Tester (validates work)
+  agent-tester:
+    build:
+      context: ../..
+      dockerfile: docker/federation-test/Dockerfile.agent.production
+    container_name: agent-tester
+    depends_on:
+      federation-hub:
+        condition: service_healthy
+      agent-coder:
+        condition: service_started
+    environment:
+      - AGENT_TYPE=tester
+      - AGENT_ID=tester-001
+      - TENANT_ID=test-collaboration
+      - HUB_ENDPOINT=ws://federation-hub:8443
+      - TASK=validate
+      - DEBUG_LEVEL=DETAILED
+      - DEBUG_FORMAT=human
+    networks:
+      - federation-network
+    restart: on-failure
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+
+  # Agent 4: Reviewer (quality check)
+  agent-reviewer:
+    build:
+      context: ../..
+      dockerfile: docker/federation-test/Dockerfile.agent.production
+    container_name: agent-reviewer
+    depends_on:
+      federation-hub:
+        condition: service_healthy
+      agent-tester:
+        condition: service_started
+    environment:
+      - AGENT_TYPE=reviewer
+      - AGENT_ID=reviewer-001
+      - TENANT_ID=test-collaboration
+      - HUB_ENDPOINT=ws://federation-hub:8443
+      - TASK=review
+      - DEBUG_LEVEL=DETAILED
+      - DEBUG_FORMAT=human
+    networks:
+      - federation-network
+    restart: on-failure
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+
+  # Agent 5: Different tenant (should be isolated)
+  agent-isolated:
+    build:
+      context: ../..
+      dockerfile: docker/federation-test/Dockerfile.agent.production
+    container_name: agent-isolated
+    depends_on:
+      federation-hub:
+        condition: service_healthy
+    environment:
+      - AGENT_TYPE=researcher
+      - AGENT_ID=isolated-001
+      - TENANT_ID=different-tenant
+      - HUB_ENDPOINT=ws://federation-hub:8443
+      - TASK=research
+      - DEBUG_LEVEL=DETAILED
+      - DEBUG_FORMAT=human
+    networks:
+      - federation-network
+    restart: on-failure
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+
+volumes:
+  hub-data:
+    driver: local
+
+networks:
+  federation-network:
+    driver: bridge

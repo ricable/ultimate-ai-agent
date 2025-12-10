@@ -1,0 +1,88 @@
+{
+  "id": "121 5659",
+  "name": "Theft Deterrence",
+  "cxc_code": "CXC4012709",
+  "value_package": "NR Base Package",
+  "value_package_id": "FAJ 801 4002",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Theft Deterrence feature introduces the capability to dissuade node theft by",
+  "parameters": [
+    {
+      "name": "TheftDeterrence.thdAuthentication",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TheftDeterrence"
+    },
+    {
+      "name": "TheftDeterrence.thdStatus",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TheftDeterrence"
+    },
+    {
+      "name": "TheftDeterrence.thdStoredId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TheftDeterrence"
+    },
+    {
+      "name": "Uen.L33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "TheftDeterrence.thdAuthenticationType",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TheftDeterrence"
+    },
+    {
+      "name": "TheftDeterrence.displayPlmnIds",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TheftDeterrence"
+    },
+    {
+      "name": "TheftDeterrence.lock",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TheftDeterrence"
+    },
+    {
+      "name": "TheftDeterrence.lockPermanently",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TheftDeterrence"
+    },
+    {
+      "name": "TheftDeterrence.unlock",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "TheftDeterrence"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012709 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012709 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch4/862_22104-LZA7016014_1Uen.L33B.md",
+  "file_hash": "fb04aa763e81aa81d33077dd223d1eb6",
+  "processed_at": "2025-10-19 17:07:27",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,70 @@
+[package]
+name = "code-mesh-cli"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Command-line interface for the Code-Mesh distributed swarm intelligence system"
+homepage = "https://github.com/ruvnet/code-mesh"
+repository = "https://github.com/ruvnet/code-mesh"
+documentation = "https://docs.rs/code-mesh-cli"
+readme = "README.md"
+keywords = ["cli", "swarm", "distributed", "neural", "performance"]
+categories = ["command-line-utilities", "development-tools", "concurrency"]
+
+[[bin]]
+name = "code-mesh"
+path = "src/main.rs"
+
+[dependencies]
+# Workspace dependencies
+code-mesh-core = { version = "0.1.0", path = "../code-mesh-core" }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+dirs = { workspace = true }
+which = { workspace = true }
+
+# CLI specific
+clap = { version = "4.5", features = ["derive", "cargo"] }
+indicatif = "0.17"
+console = "0.15"
+dialoguer = "0.11"
+
+# Terminal UI
+ratatui = "0.26"
+crossterm = "0.27"
+tui-textarea = "0.5"
+syntect = "5.2"
+
+# HTTP server
+axum = "0.7"
+tower = "0.4"
+tower-http = { version = "0.5", features = ["cors", "trace"] }
+
+# Utils
+open = "5.1"
+colored = "2.1"
+chrono = { version = "0.4", features = ["serde"] }
+atty = "0.2"
+terminal_size = "0.3"
+base64 = "0.22"
+sha2 = "0.10"
+rand = "0.8"
+url = "2.5"
+reqwest = { version = "0.12", features = ["json"] }
+
+[dev-dependencies]
+tempfile = { workspace = true }
+assert_cmd = "2.0"
+predicates = { workspace = true }
+proptest = { workspace = true }
+criterion = { workspace = true }
+mockall = { workspace = true }
+assert_fs = { workspace = true }
+insta = { workspace = true }
+rstest = { workspace = true }

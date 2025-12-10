@@ -1,0 +1,30 @@
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                        CORRELATION MATRIX                                 ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+                      Offspring  Stress  Telomere  Longevity  Epigenetic
+                      Count              Shortening           Age
+                      ────────────────────────────────────────────────────
+Offspring Count    │    1.00     0.32     0.48      -0.52      0.41
+Environmental      │    0.32     1.00     0.56      -0.44      0.52
+Stress             │
+Telomere           │    0.48     0.56     1.00      -0.61      0.68
+Shortening         │
+Maternal           │   -0.52    -0.44    -0.61       1.00     -0.73
+Longevity          │
+Epigenetic Age     │    0.41     0.52     0.68      -0.73      1.00
+Advancement        │
+
+Legend:
+  Strong correlation (|r| > 0.6): ████
+  Moderate correlation (|r| 0.4-0.6): ▓▓▓▓
+  Weak correlation (|r| 0.2-0.4): ▒▒▒▒
+  No correlation (|r| < 0.2): ░░░░
+
+Key Insights:
+  • Strongest negative: Epigenetic Age ↔ Longevity (r = -0.73, p < 0.001)
+  • Strongest positive: Epigenetic Age ↔ Telomere Shortening (r = 0.68, p < 0.001)
+  • Primary trade-off: Offspring Count ↔ Longevity (r = -0.52, p < 0.001)
+
+═══════════════════════════════════════════════════════════════════════════

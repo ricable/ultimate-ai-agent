@@ -1,0 +1,84 @@
+{
+  "file_hash": "229e2ea52695bfdf55686aaef0ca8cc7",
+  "feature": {
+    "id": "121 4797",
+    "name": "ASGH-Based Prescheduling",
+    "cxc_code": "CXC4012200",
+    "value_package": "Differentiated Mobile Broadband",
+    "value_package_id": "FAJ 801 0409",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature enables the differentiation of prescheduling configuration for",
+    "parameters": [
+      {
+        "name": "SubscriberGroupProfile.preschedProfileRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "SubscriberGroupProfile.preschedulingMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "PreschedProfile.preschedulingDataSize",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "PreschedProfile.preschedulingPeriod",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "PreschedProfile.preschedulingDuration",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "PreschedProfile.preschedulingSinrThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "Uen.AY",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmFlexActiveUeUlPresched",
+        "description": "Performance counter pmFlexActiveUeUlPresched",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012200 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012200 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/366_22104-LZA7016014_1Uen.AY.md",
+    "file_hash": "229e2ea52695bfdf55686aaef0ca8cc7",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

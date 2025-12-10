@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: neural-mesh
+  labels:
+    name: neural-mesh
+    neural-mesh.io/environment: base
+  annotations:
+    neural-mesh.io/description: "Synaptic Neural Mesh namespace for distributed neural fabric"

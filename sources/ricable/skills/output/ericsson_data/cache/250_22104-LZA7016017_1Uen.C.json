@@ -1,0 +1,145 @@
+{
+  "file_hash": "ba19223d8a59c230560866b7d0d43613",
+  "feature": {
+    "id": "121 5778",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012774",
+    "value_package": "Intelligent Traffic Management and Mobility",
+    "value_package_id": "FAJ 801 4022",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature introduces support for prioritized inter-gNodeB handover to small",
+    "parameters": [
+      {
+        "name": "TrStSaNrFreqRelProfileUeCfg.hoToPrioritizedCell",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrStSaNrFreqRelProfileUeCfg"
+      },
+      {
+        "name": "Uen.C",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsHoExeAttOutInterGnb",
+        "description": "Performance counter pmEbsHoExeAttOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeAttOutInterGnbTs",
+        "description": "Performance counter pmEbsHoExeAttOutInterGnbTs",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeSuccOutInterGnb",
+        "description": "Performance counter pmEbsHoExeSuccOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoExeSuccOutInterGnbTs",
+        "description": "Performance counter pmEbsHoExeSuccOutInterGnbTs",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepAttOutInterGnb",
+        "description": "Performance counter pmEbsHoPrepAttOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepAttOutInterGnbTs",
+        "description": "Performance counter pmEbsHoPrepAttOutInterGnbTs",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepSuccOutInterGnb",
+        "description": "Performance counter pmEbsHoPrepSuccOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsHoPrepSuccOutInterGnbTs",
+        "description": "Performance counter pmEbsHoPrepSuccOutInterGnbTs",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsPeriodicTsInit",
+        "description": "Performance counter pmEbsPeriodicTsInit",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttOutInterGnb",
+        "description": "Performance counter pmHoExeAttOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttOutInterGnbTs",
+        "description": "Performance counter pmHoExeAttOutInterGnbTs",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccOutInterGnb",
+        "description": "Performance counter pmHoExeSuccOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccOutInterGnbTs",
+        "description": "Performance counter pmHoExeSuccOutInterGnbTs",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttOutInterGnb",
+        "description": "Performance counter pmHoPrepAttOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttOutInterGnbTs",
+        "description": "Performance counter pmHoPrepAttOutInterGnbTs",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccOutInterGnb",
+        "description": "Performance counter pmHoPrepSuccOutInterGnb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccOutInterGnbTs",
+        "description": "Performance counter pmHoPrepSuccOutInterGnbTs",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012774 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012774 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/250_22104-LZA7016017_1Uen.C.md",
+    "file_hash": "ba19223d8a59c230560866b7d0d43613",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

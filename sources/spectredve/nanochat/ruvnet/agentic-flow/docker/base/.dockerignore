@@ -1,0 +1,74 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Node modules (will be installed in container)
+node_modules
+npm-debug.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Source files (only ship dist/)
+src/
+*.ts
+tsconfig.json
+config/tsconfig.json
+
+# Tests
+tests/
+test/
+validation/
+*.test.js
+*.spec.js
+coverage/
+.nyc_output/
+
+# Build artifacts
+*.tsbuildinfo
+dist-ssr/
+
+# Development files
+.claude-flow/
+.swarm/
+.hive-mind/
+memory/
+coordination/
+test-output/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker files
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# Documentation source
+*.md.bak
+.doctrees/
+
+# Lock files (use package-lock.json only)
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+
+# Local package
+*.tgz
+agentic-flow-*.tgz
+
+# ONNX models (too large)
+*.onnx
+models/
+onnx/

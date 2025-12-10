@@ -1,0 +1,115 @@
+{
+  "id": "121 4415",
+  "name": "Advanced Differentiation for Resource Fair Scheduling",
+  "cxc_code": "CXC4011967",
+  "value_package": "Differentiated Mobile Broadband",
+  "value_package_id": "FAJ 801 0409",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Advanced Differentiation for Resource Fair Scheduling feature enables the control",
+  "parameters": [
+    {
+      "name": "LOCAL_PER_BB_QCI_EVENT",
+      "type": "",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "LOCAL_PER_BB_RB_EVENT",
+      "type": "",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "LOCAL_PER_BB_RB_ON_CELL_QCI_LEVEL_EVENT",
+      "type": "",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AM",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "QciProfileOperatorDefined.relativePriority",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "EUtranCellFDD.pmActiveDrbDlSumQci",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmActiveDrbDlSumQci",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmPdcpVolDlDrbQci",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmPdcpVolDlDrbQci",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmActiveDrbDlSumQci",
+      "description": "Performance counter pmActiveDrbDlSumQci",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolDlDrbQci",
+      "description": "Performance counter pmPdcpVolDlDrbQci",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "LOCAL_PER_BB_QCI_EVENT",
+      "type": "",
+      "description": ""
+    },
+    {
+      "name": "LOCAL_PER_BB_RB_EVENT",
+      "type": "",
+      "description": ""
+    },
+    {
+      "name": "LOCAL_PER_BB_RB_ON_CELL_QCI_LEVEL_EVENT",
+      "type": "",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011967 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011967 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/49_22104-LZA7016014_1Uen.AM.md",
+  "file_hash": "490c07fa52e1f58e01ef5570045a95e1",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

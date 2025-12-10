@@ -1,0 +1,100 @@
+{
+  "file_hash": "b16cebd101c4df90c500102d914d2cb9",
+  "feature": {
+    "id": "121 0920",
+    "name": "Minimum Rate Proportional Fair Scheduler",
+    "cxc_code": "CXC4011033",
+    "value_package": "Differentiated Mobile Broadband",
+    "value_package_id": "FAJ 801 0409",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature enables higher throughput because of a trade-off between user fairness",
+    "parameters": [
+      {
+        "name": "QciProfilePredefined.ulMinBitRate",
+        "type": "Introduced",
+        "description": "Uplink minimum bit rate  The scheduler attempts to achieve minimum bit rate for all bearers before giving                 any user a higher rate. This parameter is only used if one of the five Proportional                 Fair scheduling algorithms is selected.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfilePredefined.dlMinBitRate",
+        "type": "Introduced",
+        "description": "Downlink minimum bit rate  The scheduler attempts to achieve minimum bit rate for all bearers before giving                 any user a higher rate. This parameter is only used if one of the five Proportional                 Fair scheduling algorithms is selected.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfilePredefined.schedulingAlgorithm",
+        "type": "Introduced",
+        "description": "The parameter specifies which scheduling algorithm is to be used for a certain                 QCI.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "CarrierAggregationFunction.caRateAdjustCoeff",
+        "type": "Introduced",
+        "description": "The parameter adjusts the factor of CC rate for CA-capable UEs, which is used in                 the proportional fairness algorithm. A smaller value gives a CA-capable UE a greater                 advantage over non-CA UE. The parameter acts based on the configured value,                 according to the following:  Value 0 sets the rate as 0 and this is for testing purpose only.     Values 1 \u2013 4 set the rate as a fraction of the cell rate in increased                       order.     Values 6 \u2013 9 set the rate as cell rate plus rate influence from other CCs in                       increased order.     Value 10 sets the rate as aggregated rate of all CCs.     The parameter specifies which scheduling algorithm is to be used for a certain                 QCI.",
+        "mo_class": "CarrierAggregationFunction"
+      },
+      {
+        "name": "Uen.AH",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "QciProfileOperatorDefined.schedulingAlgorithm",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfileOperatorDefined.dlMinBitRate",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfileOperatorDefined.ulMinBitRate",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfileOperatorDefined"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmRadioThpResDl",
+        "description": "Performance counter pmRadioThpResDl",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpResUl",
+        "description": "Performance counter pmRadioThpResUl",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDl",
+        "description": "Performance counter pmRadioThpVolDl",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolUl",
+        "description": "Performance counter pmRadioThpVolUl",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011033 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011033 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/87_22104-LZA7016014_1Uen.AH.md",
+    "file_hash": "b16cebd101c4df90c500102d914d2cb9",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "id": "121 4917",
+  "name": "",
+  "cxc_code": "CXC4012279",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "The Progressive Barring for Special Access Classes feature can bar special access",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.lbabMinBarringFactorPrio3",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbabMinBarringFactorPrio4",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.acBarringForEmergency",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.acBarringPresence",
+      "type": "Affecting",
+      "description": "This feature introduces the following members to this struct:  acBarringForCsfbPresence     acBarringForEmergencySpecAcPres     acBarringForMmtelVideoPresence     acBarringForMoDataPresence     acBarringForMoSignPresence     acBarringPrioCsfbSpecAc     acBarringPrioEmergencySpecAc     acBarringPrioMmtelVideoSpecAc     acBarringPrioMoDataSpecAc     acBarringPrioMoSignalingSpecAc     acBarringPriorityCsfb     acBarringPriorityMmtelVideo     acBarringPriorityMoData     acBarringPriorityMoSignaling",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.acBarringPresence",
+      "type": "Affecting",
+      "description": "This feature introduces the following members to this struct:  acBarringForCsfbPresence     acBarringForEmergencySpecAcPres     acBarringForMmtelVideoPresence     acBarringForMoDataPresence     acBarringForMoSignPresence     acBarringPrioCsfbSpecAc     acBarringPrioEmergencySpecAc     acBarringPrioMmtelVideoSpecAc     acBarringPrioMoDataSpecAc     acBarringPrioMoSignalingSpecAc     acBarringPriorityCsfb     acBarringPriorityMmtelVideo     acBarringPriorityMoData     acBarringPriorityMoSignaling",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "Uen.AB",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.iflbAbEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.iflbAbEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "PtmFunction.ptmEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "PtmFunction"
+    },
+    {
+      "name": "PtmCellProfile.cellType",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "PtmCellProfile"
+    },
+    {
+      "name": "EUtranCellFDD.ptmCellProfileRef",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.ptmCellProfileRef",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmAcBarringCsfbSpecialAcDistr",
+      "description": "Performance counter pmAcBarringCsfbSpecialAcDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringEmSpecialAc",
+      "description": "Performance counter pmAcBarringEmSpecialAc",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringModSpecialAcDistr",
+      "description": "Performance counter pmAcBarringModSpecialAcDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringMosSpecialAcDistr",
+      "description": "Performance counter pmAcBarringMosSpecialAcDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringVideoSpecialAcDistr",
+      "description": "Performance counter pmAcBarringVideoSpecialAcDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringVoiceSpecialAcDistr",
+      "description": "Performance counter pmAcBarringVoiceSpecialAcDistr",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012279 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012279 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/414_22104-LZA7016014_1Uen.AB.md",
+  "file_hash": "4224ce98d1e1216f601f3c94d70d8e26",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

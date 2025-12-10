@@ -1,0 +1,268 @@
+{
+  "file_hash": "87d689e79c52103a74390c22a8a52af7",
+  "feature": {
+    "id": "121 5783",
+    "name": "NR Downlink-Only Cell Support for Carrier Aggregation",
+    "cxc_code": "CXC4012777",
+    "value_package": "Peak Rate Evolution",
+    "value_package_id": "FAJ 801 4005",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature introduces downlink-only support for the NR downlink carrier aggregation",
+    "parameters": [
+      {
+        "name": "NRCellDU.bwpSetContext",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.caPerCcFairnessWeightEnabled",
+        "type": "Affecting",
+        "description": "Not applicable to downlink-only cells.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.cellBarred",
+        "type": "Affecting",
+        "description": "The NRCellDU.cellBarred attribute must be set                                     to BARRED for Low-Band cells if the value of                                     the NRSectorCarrier.txDirection attribute is                                     set to DL.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pMaxCa",
+        "type": "Affecting",
+        "description": "This attribute is not applicable to downlink-only cells.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pointAFrequencyUlFdd",
+        "type": "Affecting",
+        "description": "Not applicable if the value of the                                         NRSectorCarrier.txDirection attribute is                                     set to DL.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.puschModeOnFddSCell",
+        "type": "Affecting",
+        "description": "Not applicable to downlink-only cells.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.ulAvailableCrbs",
+        "type": "Affecting",
+        "description": "The NRCellDU.ulAvailableCrbs attribute must be                                     empty if the value of the                                         NRSectorCarrier.txDirection attribute is                                     set to DL.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.ulCaTimeAlignmentMode",
+        "type": "Affecting",
+        "description": "Not applicable to downlink-only cells.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRSectorCarrier.arfcnUL",
+        "type": "Affecting",
+        "description": "The value of the NRSectorCarrier.arfcnUL                                     attribute must be set to 0 for Low-Band if the                                     value of the NRSectorCarrier.txDirection                                     attribute is set to DL.                                     Value                                     set to 0 means that the                                     uplink channel number is empty for Low-Band and the value of the                                         NRSectorCarrier.txDirection attribute is                                     set to DL.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.bSChannelBwUL",
+        "type": "Affecting",
+        "description": "The value of the NRSectorCarrier.bSChannelBwUl                                     attribute is not applicable for Low-Band if the                                         NRSectorCarrier.txDirection                                     attribute has the value set to                                         DL.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.essScPairId",
+        "type": "Affecting",
+        "description": "If the NRSectorCarrier.essScPairId attribute                                     is configured, the value of the                                         NRSectorCarrier.arfcnDL attribute must be                                     different than the value of the                                         NRSectorCarrier.arfcnUL                                     attribute.                                     The values of the                                         NRSectorCarrier.bSChannelBwUL and the                                         NRSectorCarrier.bSChannelBwDL attributes                                     must be set to 10, 15, or                                         20 and the                                         NRSectorCarrier.txDirection attribute                                     must be set to                                     DL_AND_UL.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.noOfRxAntennas",
+        "type": "Affecting",
+        "description": "The NRSectorCarrier.noOfRxAntennas\u00a0attribute                                     must be set to 0 if the value of the                                         NRSectorCarrier.txDirection attribute is                                     set to DL.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.txDirection",
+        "type": "Affecting",
+        "description": "The value of the NRSectorCarrier.txDirection                                     attribute being set to DL is only applicable                                     for Low-Band if the NR Downlink-Only Cell Support for Carrier                                     Aggregation feature is enabled.  The NRCellDU.administrativeState attribute                                     must be set to LOCKED when changing the                                         NRSectorCarrier.txDirection                                     attribute.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.ueAssistedPrecodingOptEnabled",
+        "type": "Affecting",
+        "description": "The                                         NRSectorCarrier.ueAssistedPrecodingOptEnabled                                     must be set to FALSE for Low-Band cells if the                                     value of the NRSectorCarrier.txDirection                                     attribute is set to DL.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "GUtranSyncSignalFrequency",
+        "type": "",
+        "description": "Not present",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.M33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCaConfigDISumEndcDistr",
+        "description": "Performance counter pmCaConfigDISumEndcDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigDISumSaDistr",
+        "description": "Performance counter pmCaConfigDISumSaDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacRBSymUsedPdschTypeA",
+        "description": "Performance counter pmEbsMacRBSymUsedPdschTypeA",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelMaxEnDc",
+        "description": "Performance counter pmEbsRrcConnLevelMaxEnDc",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelMaxSa",
+        "description": "Performance counter pmEbsRrcConnLevelMaxSa",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelMaxSaTotal",
+        "description": "Performance counter pmEbsRrcConnLevelMaxSaTotal",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelPriorityMaxEnDc",
+        "description": "Performance counter pmEbsRrcConnLevelPriorityMaxEnDc",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelPriorityMaxSa",
+        "description": "Performance counter pmEbsRrcConnLevelPriorityMaxSa",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelPrioritySumEnDc",
+        "description": "Performance counter pmEbsRrcConnLevelPrioritySumEnDc",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelPrioritySumSa",
+        "description": "Performance counter pmEbsRrcConnLevelPrioritySumSa",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelSnssaiMax",
+        "description": "Performance counter pmEbsRrcConnLevelSnssaiMax",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelSnssaiSum",
+        "description": "Performance counter pmEbsRrcConnLevelSnssaiSum",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelSumEnDc",
+        "description": "Performance counter pmEbsRrcConnLevelSumEnDc",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnLevelSumSa",
+        "description": "Performance counter pmEbsRrcConnLevelSumSa",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacDrbThpDlMbbHighVolDistr",
+        "description": "Performance counter pmEbsnMacDrbThpDlMbbHighVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacDrbThpDlMbbLowVolDistr",
+        "description": "Performance counter pmEbsnMacDrbThpDlMbbLowVolDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacOffloadVolDISCell",
+        "description": "Performance counter pmMacOffloadVolDISCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacOffloadVolDISCellExt",
+        "description": "Performance counter pmMacOffloadVolDISCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschTypeA",
+        "description": "Performance counter pmMacRBSymUsedPdschTypeA",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPdschTypeB",
+        "description": "Performance counter pmMacRBSymUsedPdschTypeB",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDISCell",
+        "description": "Performance counter pmMacVolDISCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDISCellExt",
+        "description": "Performance counter pmMacVolDISCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnLevelMaxEnDc",
+        "description": "Performance counter pmRrcConnLevelMaxEnDc",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnLevelMaxSa",
+        "description": "Performance counter pmRrcConnLevelMaxSa",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnLevelSumEnDc",
+        "description": "Performance counter pmRrcConnLevelSumEnDc",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnLevelSumSa",
+        "description": "Performance counter pmRrcConnLevelSumSa",
+        "category": "General"
+      },
+      {
+        "name": "pmaxCa",
+        "description": "Performance counter pmaxCa",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012777 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012777 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/238_22104-LZA7016017_1Uen.M33B.md",
+    "file_hash": "87d689e79c52103a74390c22a8a52af7",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

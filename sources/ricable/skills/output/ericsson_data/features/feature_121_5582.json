@@ -1,0 +1,112 @@
+{
+  "id": "121 5582",
+  "name": "NR Delay-Controlled Scheduling",
+  "cxc_code": "CXC4012713",
+  "value_package": "Advanced RAN Slicing",
+  "value_package_id": "FAJ 801 4019",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables priority domain shift based on packet delay.",
+  "parameters": [
+    {
+      "name": "SchedulingProfile.schedulingAlgorithm",
+      "type": "Affecting",
+      "description": "To enable the elevation time scheduling operation, the attribute must                                 be set to ELEVATION_TIME.",
+      "mo_class": "SchedulingProfile"
+    },
+    {
+      "name": "SchedulingProfile.ulSchedulingAlgorithm",
+      "type": "Affecting",
+      "description": "To enable the elevation time scheduling operation, the attribute must                                 be set to ELEVATION_TIME.",
+      "mo_class": "SchedulingProfile"
+    },
+    {
+      "name": "CellPriorityShift.cellDlElevationTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CellPriorityShift"
+    },
+    {
+      "name": "CellPriorityShift.cellUlElevationTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CellPriorityShift"
+    },
+    {
+      "name": "DlDelayBasedPriority.dlDemotedPriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DlDelayBasedPriority"
+    },
+    {
+      "name": "UlDelayBasedPriority.ulDemotedPriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UlDelayBasedPriority"
+    },
+    {
+      "name": "CellPriorityShift.cellDlMaxWaitingTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CellPriorityShift"
+    },
+    {
+      "name": "CellPriorityShift.cellUlMaxWaitingTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CellPriorityShift"
+    },
+    {
+      "name": "CellPriorityShift.cellMwtDlElevatedPriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CellPriorityShift"
+    },
+    {
+      "name": "CellPriorityShift.cellMwtUlElevatedPriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CellPriorityShift"
+    },
+    {
+      "name": "NRCellDU.cellPriorityShiftRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "DUQos.dUQosId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DUQos"
+    },
+    {
+      "name": "QosPriorityShift.qosPriorityShiftId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QosPriorityShift"
+    },
+    {
+      "name": "Uen.D",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012713 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012713 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/187_22104-LZA7016017_1Uen.D.md",
+  "file_hash": "10b21c56fc98f6a0578ffa803f0b0fef",
+  "processed_at": "2025-10-19 15:48:56",
+  "network_impact": {},
+  "performance_impact": {}
+}

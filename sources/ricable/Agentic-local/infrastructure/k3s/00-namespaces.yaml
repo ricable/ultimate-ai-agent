@@ -1,0 +1,44 @@
+# =============================================================================
+# Edge-Native AI - Kubernetes Namespaces
+# =============================================================================
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: edge-ai-system
+  labels:
+    app.kubernetes.io/name: edge-ai
+    app.kubernetes.io/component: system
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: edge-ai-agents
+  labels:
+    app.kubernetes.io/name: edge-ai
+    app.kubernetes.io/component: agents
+    # Enable SpinKube for this namespace
+    runtime.spin.fermyon.dev/containerd-shim: "true"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: edge-ai-inference
+  labels:
+    app.kubernetes.io/name: edge-ai
+    app.kubernetes.io/component: inference
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: edge-ai-data
+  labels:
+    app.kubernetes.io/name: edge-ai
+    app.kubernetes.io/component: data
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: edge-ai-gateway
+  labels:
+    app.kubernetes.io/name: edge-ai
+    app.kubernetes.io/component: gateway

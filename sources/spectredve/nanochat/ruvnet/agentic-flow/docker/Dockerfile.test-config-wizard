@@ -1,0 +1,51 @@
+FROM node:22-slim
+WORKDIR /app
+
+# Copy local built package
+COPY agentic-flow/package.json ./
+COPY agentic-flow/dist ./dist
+COPY agentic-flow/.claude ./.claude
+
+# Install dependencies and link globally
+RUN npm install --omit=dev && npm link
+
+ENV NODE_ENV=production
+
+# Test script that validates all config commands
+CMD ["sh", "-c", "\
+echo '🧪 Testing Config Wizard...' && echo '' && \
+\
+echo '1️⃣ Testing config help...' && \
+agentic-flow config help && \
+echo '✅ Help works' && echo '' && \
+\
+echo '2️⃣ Testing config list (should be empty/defaults)...' && \
+agentic-flow config list && \
+echo '✅ List works' && echo '' && \
+\
+echo '3️⃣ Testing config set PROVIDER...' && \
+agentic-flow config set PROVIDER openrouter && \
+echo '✅ Set works' && echo '' && \
+\
+echo '4️⃣ Testing config get PROVIDER...' && \
+agentic-flow config get PROVIDER | grep -q openrouter && \
+echo '✅ Get works' && echo '' && \
+\
+echo '5️⃣ Testing config set API key...' && \
+agentic-flow config set OPENROUTER_API_KEY sk-or-v1-test123 && \
+echo '✅ API key set' && echo '' && \
+\
+echo '6️⃣ Verifying .env file created...' && \
+test -f .env && echo '✅ .env file exists' && \
+cat .env && echo '' && \
+\
+echo '7️⃣ Testing config delete...' && \
+agentic-flow config delete PROVIDER && \
+echo '✅ Delete works' && echo '' && \
+\
+echo '8️⃣ Testing config reset...' && \
+agentic-flow config reset && \
+echo '✅ Reset works' && echo '' && \
+\
+echo '✅ All config wizard tests passed!' \
+"]

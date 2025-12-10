@@ -1,0 +1,136 @@
+{
+  "name": "hyperscale-ai-agents",
+  "version": "3.0.0",
+  "description": "HyperScale Edge-Native AI Agents Platform - Sovereign, Self-Healing, 10K+ Agents",
+  "type": "module",
+  "main": "platform/index.ts",
+  "bin": {
+    "hyperscale": "./platform/index.ts"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "start:api": "cd src/api && uvicorn main:app --host 0.0.0.0 --port 8000 --reload",
+    "start:gateway": "node src/gateway/index.js",
+
+    "hyperscale": "npx ts-node platform/index.ts",
+    "hyperscale:deploy": "./platform/scripts/deploy-hyperscale.sh",
+    "hyperscale:swarm": "./platform/scripts/launch-swarm.sh",
+    "hyperscale:status": "kubectl get pods -A | grep edge-ai",
+
+    "update-ruvnet": "ncu -u -f '/^@?ruvnet\\b|^ruvllm$|^agentdb$|^ruvector$/'",
+    "check-updates": "ncu -f '/^@?ruvnet\\b|^ruvllm$|^agentdb$|^ruvector$/'",
+
+    "setup": "npm install && npm run check-docker && npm run check-wasmedge",
+    "setup:distributed": "node scripts/setup-distributed.js",
+    "setup:kairos": "./infrastructure/kairos/generate-token.sh",
+    "setup:hyperscale": "npm run hyperscale:deploy",
+
+    "check-docker": "docker --version || echo 'Docker not installed'",
+    "check-wasmedge": "wasmedge --version || echo 'WasmEdge not installed'",
+    "check-k3s": "k3s --version || echo 'K3s not installed'",
+    "check-spin": "spin --version || echo 'Spin not installed'",
+
+    "start:agent": "node src/orchestration/start-agent.js",
+    "start:quad": "node src/orchestration/quad-orchestrator.js",
+    "start:qdag": "node src/orchestration/qdag-orchestrator.js",
+    "start:gaianet": "gaianet start",
+    "stop:gaianet": "gaianet stop",
+
+    "sandbox:test": "node src/sandbox/test-sandbox.js",
+    "sandbox:e2b": "node src/e2b/sandbox.js",
+
+    "cluster:init": "node src/distributed/init-cluster.js",
+    "cluster:status": "node src/distributed/cluster-status.js",
+    "cluster:federation": "kubectl get clusters -A",
+
+    "k8s:apply": "kubectl apply -f infrastructure/k3s/",
+    "k8s:delete": "kubectl delete -f infrastructure/k3s/",
+    "k8s:operator": "kubectl apply -f infrastructure/operators/",
+    "spinkube:deploy": "kubectl apply -f infrastructure/spinkube/",
+
+    "agents:create": "npm run hyperscale -- agent",
+    "agents:swarm": "npm run hyperscale:swarm -- --agents 100",
+    "agents:status": "kubectl get aiagents -A",
+
+    "test": "node --test",
+    "lint": "eslint src/",
+    "build:wasm": "cargo build --target wasm32-wasi --release",
+    "build:platform": "tsc -p platform/tsconfig.json"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "edge-native",
+    "kairos",
+    "spinkube",
+    "k3s",
+    "kubernetes",
+    "wasm",
+    "webassembly",
+    "wasmedge",
+    "gaianet",
+    "local-ai",
+    "sovereign-ai",
+    "a2a-protocol",
+    "mcp",
+    "litellm",
+    "mlx",
+    "apple-silicon",
+    "distributed",
+    "decentralized"
+  ],
+  "author": "Edge-Native AI Team",
+  "license": "MIT",
+  "dependencies": {
+    "agentic-flow": "^1.7.7",
+    "claude-flow": "^2.7.10",
+    "ruv-swarm": "^1.0.20",
+    "ruvllm": "latest",
+    "agentdb": "latest",
+    "ruvector": "latest",
+    "@ruv/quad": "latest",
+    "@ruv/qdag": "latest",
+    "strange-loops": "latest",
+    "strange-loops-mcp": "latest",
+    "sublinear-time-solver": "latest",
+    "temporal-neural-solver": "latest",
+    "@ruv/sparc-ui": "latest",
+    "@agentics.org/sparc2": "^2.0.25",
+    "create-sparc": "^1.2.4",
+
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "ws": "^8.18.0",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+
+    "better-sqlite3": "^11.3.0",
+    "ioredis": "^5.4.1",
+    "pg": "^8.12.0",
+
+    "node-machine-id": "^1.1.12",
+    "uuid": "^10.0.0",
+    "crypto-js": "^4.2.0",
+
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "@alfonsograziano/node-code-sandbox-mcp": "^1.0.0"
+  },
+  "devDependencies": {
+    "npm-check-updates": "^17.1.3",
+    "nodemon": "^3.1.7",
+    "eslint": "^9.12.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2",
+    "@types/node": "^20.10.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edge-native-ai/agentic-local"
+  }
+}

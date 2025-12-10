@@ -1,0 +1,109 @@
+{
+  "id": "121 5758",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4012762",
+  "value_package": "Performance Boost",
+  "value_package_id": "FAJ 801 4021",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature increases the periodicity of aperiodic CSI based on the downlink",
+  "parameters": [
+    {
+      "name": "CsiProfileUeCfg.csiBufferThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CsiProfileUeCfg"
+    },
+    {
+      "name": "CsiProfileUeCfg.csiRptPeriodAdd",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CsiProfileUeCfg"
+    },
+    {
+      "name": "CsiProfileUeCfg.csiPollRetransmitEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CsiProfileUeCfg"
+    },
+    {
+      "name": "Uen.G33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "DlBeamOptProfileUeCfg.pdcchBeamOptMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "DlBeamOptProfileUeCfg"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmDrxSleepTime",
+      "description": "Performance counter pmDrxSleepTime",
+      "category": "Energy"
+    },
+    {
+      "name": "pmDrxTotalTime",
+      "description": "Performance counter pmDrxTotalTime",
+      "category": "General"
+    },
+    {
+      "name": "pmMacTimeUlResUe",
+      "description": "Performance counter pmMacTimeUlResUe",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUl",
+      "description": "Performance counter pmMacVolUl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlResUe",
+      "description": "Performance counter pmMacVolUlResUe",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpRadioResSwitchDlMcg",
+      "description": "Performance counter pmPdcpRadioResSwitchDlMcg",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpRadioResSwitchDlScg",
+      "description": "Performance counter pmPdcpRadioResSwitchDlScg",
+      "category": "General"
+    },
+    {
+      "name": "pmPuschAvailTime",
+      "description": "Performance counter pmPuschAvailTime",
+      "category": "General"
+    },
+    {
+      "name": "pmPuschSchedActivity",
+      "description": "Performance counter pmPuschSchedActivity",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012762 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012762 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/594_22104-LZA7016014_1Uen.G33B.md",
+  "file_hash": "e450e0ead94cd4be89d0597c41b45625",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

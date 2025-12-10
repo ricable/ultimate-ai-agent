@@ -1,0 +1,89 @@
+{
+  "file_hash": "d042900934ac42c2a9237c15cb153a68",
+  "feature": {
+    "id": "121 4855",
+    "name": "",
+    "cxc_code": "CXC4012240",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "The feature introduces the possibility to delay the SRVCC handover to ensure a VoLTE",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.srvccDelayTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.srvccDelayTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "Uen.AB",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "GeranCellRelation.pmHoPrepSucc",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "GeranCellRelation"
+      },
+      {
+        "name": "UtranCellRelation.pmHoPrepSuccSrvcc",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UtranCellRelation"
+      },
+      {
+        "name": "EUtranCellFDD.pmErabRelAbnormalMmeActQci",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmErabRelAbnormalMmeActQci",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmErabRelAbnormalMmeActQci",
+        "description": "Performance counter pmErabRelAbnormalMmeActQci",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSucc",
+        "description": "Performance counter pmHoPrepSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccSrvcc",
+        "description": "Performance counter pmHoPrepSuccSrvcc",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012240 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012240 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/392_22104-LZA7016014_1Uen.AB.md",
+    "file_hash": "d042900934ac42c2a9237c15cb153a68",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

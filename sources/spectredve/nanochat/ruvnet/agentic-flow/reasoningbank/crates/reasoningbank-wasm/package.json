@@ -1,0 +1,37 @@
+{
+  "name": "reasoningbank-wasm",
+  "version": "0.1.0",
+  "description": "WebAssembly bindings for ReasoningBank - Adaptive self-learning reasoning engine",
+  "main": "pkg/reasoningbank_wasm.js",
+  "types": "pkg/reasoningbank_wasm.d.ts",
+  "files": [
+    "pkg"
+  ],
+  "scripts": {
+    "build": "wasm-pack build --target bundler",
+    "build:node": "wasm-pack build --target nodejs",
+    "build:web": "wasm-pack build --target web",
+    "test": "wasm-pack test --node",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/agentic-flow.git",
+    "directory": "reasoningbank/crates/reasoningbank-wasm"
+  },
+  "keywords": [
+    "reasoning",
+    "ai",
+    "machine-learning",
+    "wasm",
+    "webassembly",
+    "adaptive-learning",
+    "pattern-matching"
+  ],
+  "author": "ReasoningBank Contributors",
+  "license": "MIT OR Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ruvnet/agentic-flow/issues"
+  },
+  "homepage": "https://github.com/ruvnet/agentic-flow/tree/main/reasoningbank"
+}

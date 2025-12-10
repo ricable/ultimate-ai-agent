@@ -1,0 +1,123 @@
+{
+  "id": "121 4429",
+  "name": "UE-Assisted Adaptive DRX",
+  "cxc_code": "CXC4011975",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The UE-Assisted Adaptive DRX feature provides customized battery saving DRX profiles,",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.enableUeAssistedAdaptiveDrx",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "PreschedulingProfile.preschedulingDuration",
+      "type": "Affecting",
+      "description": "The Prescheduling feature affects Efficient DRX/DTX for Connected UE, and prolongs                 the DRX active state. As such, configure parameters                   PreschedulingProfile.preschedulingDuration and                   PreschedulingProfile.preschedulingPeriod with minimum values to                 minimize impact on this feature.",
+      "mo_class": "PreschedulingProfile"
+    },
+    {
+      "name": "PreschedulingProfile.preschedulingPeriod",
+      "type": "Affecting",
+      "description": "The Prescheduling feature affects Efficient DRX/DTX for Connected UE, and prolongs                 the DRX active state. As such, configure parameters                   PreschedulingProfile.preschedulingDuration and                   PreschedulingProfile.preschedulingPeriod with minimum values to                 minimize impact on this feature.",
+      "mo_class": "PreschedulingProfile"
+    },
+    {
+      "name": "Uen.AF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmConfirmedUeRelReqPft",
+      "description": "Performance counter pmConfirmedUeRelReqPft",
+      "category": "General"
+    },
+    {
+      "name": "pmDrxCommandPft",
+      "description": "Performance counter pmDrxCommandPft",
+      "category": "General"
+    },
+    {
+      "name": "pmDrxReqPftDistr",
+      "description": "Performance counter pmDrxReqPftDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmDrxSleepTimePft",
+      "description": "Performance counter pmDrxSleepTimePft",
+      "category": "Energy"
+    },
+    {
+      "name": "pmDrxSwitchPftDistr",
+      "description": "Performance counter pmDrxSwitchPftDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmDrxTotalTimePft",
+      "description": "Performance counter pmDrxTotalTimePft",
+      "category": "General"
+    },
+    {
+      "name": "pmDsdReqPft",
+      "description": "Performance counter pmDsdReqPft",
+      "category": "General"
+    },
+    {
+      "name": "pmDtdReqPft",
+      "description": "Performance counter pmDtdReqPft",
+      "category": "General"
+    },
+    {
+      "name": "pmInSyncTimePft",
+      "description": "Performance counter pmInSyncTimePft",
+      "category": "General"
+    },
+    {
+      "name": "pmInvalidPftMsg",
+      "description": "Performance counter pmInvalidPftMsg",
+      "category": "General"
+    },
+    {
+      "name": "pmInvalidPftNum",
+      "description": "Performance counter pmInvalidPftNum",
+      "category": "General"
+    },
+    {
+      "name": "pmOutOfSyncTimePft",
+      "description": "Performance counter pmOutOfSyncTimePft",
+      "category": "General"
+    },
+    {
+      "name": "pmPftEstablishedSession",
+      "description": "Performance counter pmPftEstablishedSession",
+      "category": "General"
+    },
+    {
+      "name": "pmRaSuccSrOutOfSyncPft",
+      "description": "Performance counter pmRaSuccSrOutOfSyncPft",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011975 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011975 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/190_22104-LZA7016014_1Uen.AF.md",
+  "file_hash": "c8df7a44653f3338db86e9f1bbd24d5a",
+  "processed_at": "2025-10-19 15:48:54",
+  "network_impact": {},
+  "performance_impact": {}
+}

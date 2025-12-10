@@ -1,0 +1,224 @@
+{
+  "file_hash": "396b37f386a71678fe277363aa094fba",
+  "feature": {
+    "id": "801 0415",
+    "name": "Dynamic UE Admission Control  Dynamic GBR Admission Control  Load-Based CA SCell Handling  Enhanced PTT Admission Control",
+    "cxc_code": "CXC4011060",
+    "value_package": "High Load Handling  VoLTE Performance  Mission Critical High Load Handling  Mission-Critical Services",
+    "value_package_id": "FAJ 801 0415  FAJ 801 0444  FAJ 801 1016  FAJ 801 1017",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Dynamic GBR Admission Control feature allows the operator to set up new GBR",
+    "parameters": [
+      {
+        "name": "AdmissionControl.dlAdmDifferentiationThr",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "AdmissionControl.ulAdmDifferentiationThr",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "AdmissionControl.enhPttAdmCtrlRejPaReqOvlGbr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "QciProfileOperatorDefined.qciACTuning",
+        "type": "Affected",
+        "description": "See MOM description.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+        "type": "EVENT_ARRAY_ERAB_SETUP_RESULT",
+        "description": "The Dynamic GBR Admission Control feature returns lack of                                     resources at reject due to GBR overload.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_ERAB_SETUP",
+        "type": "EVENT_ARRAY_ERAB_SETUP_RESULT",
+        "description": "The Dynamic GBR Admission Control feature returns lack of                                     resources at reject due to GBR overload.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.BF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.pmErabEstabSuccInitGbrArp",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmErabEstabSuccInitGbrArp",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmErabEstabSuccAddedGbrArp",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmErabEstabSuccAddedGbrArp",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmErabEstabAttAddedGbrArp",
+        "description": "Performance counter pmErabEstabAttAddedGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttInitGbrArp",
+        "description": "Performance counter pmErabEstabAttInitGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttRejAdmMsrAddedArp",
+        "description": "Performance counter pmErabEstabAttRejAdmMsrAddedArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttRejAdmMsrAddedPttArp",
+        "description": "Performance counter pmErabEstabAttRejAdmMsrAddedPttArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttRejAdmMsrAddedRpid",
+        "description": "Performance counter pmErabEstabAttRejAdmMsrAddedRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttRejAdmMsrInitArp",
+        "description": "Performance counter pmErabEstabAttRejAdmMsrInitArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttRejAdmMsrInitPttArp",
+        "description": "Performance counter pmErabEstabAttRejAdmMsrInitPttArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttRejAdmMsrInitRpid",
+        "description": "Performance counter pmErabEstabAttRejAdmMsrInitRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabFailUeAdmLicRejArp",
+        "description": "Performance counter pmErabEstabFailUeAdmLicRejArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabSuccAddedGbrArp",
+        "description": "Performance counter pmErabEstabSuccAddedGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabSuccInitGbrArp",
+        "description": "Performance counter pmErabEstabSuccInitGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabReestAttRejAdmMsrArp",
+        "description": "Performance counter pmErabReestAttRejAdmMsrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabReestAttRejAdmMsrPttArp",
+        "description": "Performance counter pmErabReestAttRejAdmMsrPttArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbActGbrArp",
+        "description": "Performance counter pmErabRelAbnormalEnbActGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalEnbGbrArp",
+        "description": "Performance counter pmErabRelAbnormalEnbGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalMmeActGbrArp",
+        "description": "Performance counter pmErabRelAbnormalMmeActGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelAbnormalMmeGbrArp",
+        "description": "Performance counter pmErabRelAbnormalMmeGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelMMeGbrArp",
+        "description": "Performance counter pmErabRelMMeGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabRelNormalEnbGbrArp",
+        "description": "Performance counter pmErabRelNormalEnbGbrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInAdmMsrArp",
+        "description": "Performance counter pmHoPrepRejInAdmMsrArp",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInAdmMsrPttArp",
+        "description": "Performance counter pmHoPrepRejInAdmMsrPttArp",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInAdmMsrRpid",
+        "description": "Performance counter pmHoPrepRejInAdmMsrRpid",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReestFailInAdmMsrRpid",
+        "description": "Performance counter pmRrcConnReestFailInAdmMsrRpid",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+        "type": "EVENT_ARRAY_ERAB_SETUP_RESULT",
+        "description": "The Dynamic GBR Admission Control feature returns lack of                                     resources at reject due to GBR overload."
+      },
+      {
+        "name": "INTERNAL_PROC_ERAB_SETUP",
+        "type": "EVENT_ARRAY_ERAB_SETUP_RESULT",
+        "description": "The Dynamic GBR Admission Control feature returns lack of                                     resources at reject due to GBR overload."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011060 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011060 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/90_22104-LZA7016014_1Uen.BF.md",
+    "file_hash": "396b37f386a71678fe277363aa094fba",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

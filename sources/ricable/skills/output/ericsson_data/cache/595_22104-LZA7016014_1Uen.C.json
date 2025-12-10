@@ -1,0 +1,73 @@
+{
+  "file_hash": "b622808d560293ba1ff76e5d129121b9",
+  "feature": {
+    "id": "121 5746",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012748",
+    "value_package": "High Load Handling",
+    "value_package_id": "FAJ 801 0415",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "Selected high-priority UEs are handled by the Subscriber Triggered Mobility feature if",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.spidUeEnhLoadMgmtThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.spidUeEnhLoadMgmtThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "RATFreqPrio.spidUeEnhLoadMgmtIncl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RATFreqPrio"
+      },
+      {
+        "name": "UeProfileFilter.spidUeEnhLoadMgmtIncl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeProfileFilter"
+      },
+      {
+        "name": "Uen.C",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "RATFreqPrio.ueCapPrioAllowed",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "RATFreqPrio"
+      },
+      {
+        "name": "UeProfileFilter.ueCapPrioAllowed",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeProfileFilter"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012748 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012748 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/595_22104-LZA7016014_1Uen.C.md",
+    "file_hash": "b622808d560293ba1ff76e5d129121b9",
+    "processed_at": "2025-10-19 15:50:06",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,39 @@
+# Kustomization for WasmEdge Agent Application
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: agents
+
+resources:
+  - deployment.yaml
+
+commonLabels:
+  app.kubernetes.io/name: wasmedge-agent
+  app.kubernetes.io/component: ai-agent
+  app.kubernetes.io/part-of: ruvnet-agents
+
+configMapGenerator:
+  - name: wasmedge-agent-config
+    behavior: merge
+    literals:
+      - AGENT_MODEL=claude-3-5-sonnet-20241022
+      - LITELLM_ENDPOINT=http://litellm.default.svc.cluster.local:4000
+      - RUVECTOR_ENDPOINT=http://ruvector.default.svc.cluster.local:8765
+      - AGENTDB_ENDPOINT=http://agentdb.default.svc.cluster.local:8766
+
+# Environment-specific overlays can be added here
+# For example, production overlay with more replicas:
+#
+# patches:
+#   - patch: |-
+#       - op: replace
+#         path: /spec/replicas
+#         value: 10
+#     target:
+#       kind: Deployment
+#       name: wasmedge-agent
+
+images:
+  - name: ghcr.io/ruvnet/wasmedge-agent
+    newTag: latest

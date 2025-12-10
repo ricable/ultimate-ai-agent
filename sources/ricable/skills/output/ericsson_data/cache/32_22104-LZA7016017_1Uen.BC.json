@@ -1,0 +1,123 @@
+{
+  "file_hash": "bbc831c4e4938f3e9f910be9852d56e7",
+  "feature": {
+    "id": "121 5034",
+    "name": "PRACH Enhancements Mid-Band",
+    "cxc_code": "CXC4012347",
+    "value_package": "Advanced Coverage Extension",
+    "value_package_id": "FAJ 801 4006",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature introduces PRACH preamble format 0. This preamble format supports up to 15",
+    "parameters": [
+      {
+        "name": "NRCellDU.cellRange",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.rachPreambleFormat",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.rachRootSequence",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "Uen.BC",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "NRCellDU.pmRadioRaAttTaDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pmRadioRaCbPreambles",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmRadioRaAttTaDistr",
+        "description": "Performance counter pmRadioRaAttTaDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbAttMsg2",
+        "description": "Performance counter pmRadioRaCbAttMsg2",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg1MaxMsg3Sched",
+        "description": "Performance counter pmRadioRaCbFailMsg1MaxMsg3Sched",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg1Ooc",
+        "description": "Performance counter pmRadioRaCbFailMsg1Ooc",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg2Disc",
+        "description": "Performance counter pmRadioRaCbFailMsg2Disc",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg3Crc",
+        "description": "Performance counter pmRadioRaCbFailMsg3Crc",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg3Crnti",
+        "description": "Performance counter pmRadioRaCbFailMsg3Crnti",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbFailMsg3Dtx",
+        "description": "Performance counter pmRadioRaCbFailMsg3Dtx",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbPreambles",
+        "description": "Performance counter pmRadioRaCbPreambles",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRaCbSuccMsg3",
+        "description": "Performance counter pmRadioRaCbSuccMsg3",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012347 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012347 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/32_22104-LZA7016017_1Uen.BC.md",
+    "file_hash": "bbc831c4e4938f3e9f910be9852d56e7",
+    "processed_at": "2025-10-19 15:50:09",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

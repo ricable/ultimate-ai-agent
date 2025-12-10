@@ -1,0 +1,84 @@
+{
+  "id": "121 5449",
+  "name": "NR UE-Assisted Overheating Mitigation",
+  "cxc_code": "CXC4012741",
+  "value_package": "NR Base Package",
+  "value_package_id": "FAJ 801 4002",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature introduces support for UE-assisted RRC state preference based on UAI in",
+  "parameters": [
+    {
+      "name": "UaiProfileUeCfg.releasePrefConfig",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UaiProfileUeCfg"
+    },
+    {
+      "name": "UaiProfileUeCfg.releasePrefOverride",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UaiProfileUeCfg"
+    },
+    {
+      "name": "Uen.K",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "RrcInactiveProfileUeCfg.rrcInactiveStateSupport",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RrcInactiveProfileUeCfg"
+    },
+    {
+      "name": "UaiUeCfg.releasePrefOverride",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UaiUeCfg"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsUaiRecRelPref",
+      "description": "Performance counter pmEbsUaiRecRelPref",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnLevelSamp",
+      "description": "Performance counter pmRrcConnLevelSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnLevelSumSa",
+      "description": "Performance counter pmRrcConnLevelSumSa",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012741 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012741 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/209_22104-LZA7016017_1Uen.K.md",
+  "file_hash": "fb260ad196a2bb3c3e0ea88529e04bee",
+  "processed_at": "2025-10-19 15:50:10",
+  "network_impact": {},
+  "performance_impact": {}
+}

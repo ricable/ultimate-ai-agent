@@ -1,0 +1,84 @@
+{
+  "file_hash": "2227353e147333609913c0d9bbacaef5",
+  "feature": {
+    "id": "121 4426",
+    "name": "19-24 Cell Support  13-18 Cell Support  7-12 Cell Support",
+    "cxc_code": "CXC4011917",
+    "value_package": "Large eNodeB",
+    "value_package_id": "FAJ 801 0403",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The 13-18 Cell Support feature increases the number of supported cells from 12 to 18",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.pdcchCfiMode",
+        "type": "Affected",
+        "description": "See MOM description.  Cell unlocking can be rejected because of shortage of PUCCH                                 resources. This triggers the Resource Configuration                                     Failure alarm. Required and available PUCCH                                 resources for a cell in FDD depends on the following conditions:    Number of cells in each node     Cell bandwidths     The following parameters:  EUtranCellFDD.pdcchCfiMode     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers         For more information about parameter dependencies, see Control Channel Dimensioning.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.noOfPucchCqiUsers",
+        "type": "Affected",
+        "description": "See MOM description.  Cell unlocking can be rejected because of shortage of PUCCH                                 resources. This triggers the Resource Configuration                                     Failure alarm. Required and available PUCCH                                 resources for a cell in FDD depends on the following conditions:    Number of cells in each node     Cell bandwidths     The following parameters:  EUtranCellFDD.pdcchCfiMode     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers         For more information about parameter dependencies, see Control Channel Dimensioning.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.noOfPucchSrUsers",
+        "type": "Affected",
+        "description": "See MOM description.  Cell unlocking can be rejected because of shortage of PUCCH                                 resources. This triggers the Resource Configuration                                     Failure alarm. Required and available PUCCH                                 resources for a cell in FDD depends on the following conditions:    Number of cells in each node     Cell bandwidths     The following parameters:  EUtranCellFDD.pdcchCfiMode     EUtranCellFDD.noOfPucchCqiUsers     EUtranCellFDD.noOfPucchSrUsers         For more information about parameter dependencies, see Control Channel Dimensioning.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pdcchCfiMode",
+        "type": "Affected",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.noOfPucchCqiUsers",
+        "type": "Affected",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.noOfPucchSrUsers",
+        "type": "Affected",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "Uen.BA",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMoFootprintMax",
+        "description": "Performance counter pmMoFootprintMax",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011917 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011917 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/4_22104-LZA7016014_1Uen.BA.md",
+    "file_hash": "2227353e147333609913c0d9bbacaef5",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

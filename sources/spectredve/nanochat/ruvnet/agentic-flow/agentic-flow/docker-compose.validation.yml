@@ -1,0 +1,72 @@
+# Docker Compose for v1.7.0 Validation
+# Runs comprehensive validation in isolated environment
+
+version: '3.8'
+
+services:
+  # Main validation service
+  validation:
+    build:
+      context: .
+      dockerfile: Dockerfile.validation
+      target: validation
+    container_name: agentic-flow-validation
+    environment:
+      - NODE_ENV=test
+      - LOG_LEVEL=debug
+      - AGENTDB_PATH=/app/test-data/agentdb.db
+    volumes:
+      - validation-data:/app/test-data
+      - ./validation-results:/app/results
+    networks:
+      - validation-net
+    mem_limit: 512m
+    cpus: 2
+
+  # Regression test service (runs existing tests)
+  regression:
+    build:
+      context: .
+      dockerfile: Dockerfile.validation
+      target: validation
+    container_name: agentic-flow-regression
+    environment:
+      - NODE_ENV=test
+      - LOG_LEVEL=info
+    command: ["npm", "test"]
+    volumes:
+      - regression-data:/app/test-data
+    networks:
+      - validation-net
+    depends_on:
+      - validation
+
+  # Performance benchmark service
+  benchmark:
+    build:
+      context: .
+      dockerfile: Dockerfile.validation
+      target: validation
+    container_name: agentic-flow-benchmark
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=info
+      - BENCHMARK_ITERATIONS=100
+    volumes:
+      - benchmark-data:/app/test-data
+      - ./benchmark-results:/app/results
+    networks:
+      - validation-net
+    mem_limit: 1g
+    cpus: 4
+    depends_on:
+      - validation
+
+volumes:
+  validation-data:
+  regression-data:
+  benchmark-data:
+
+networks:
+  validation-net:
+    driver: bridge

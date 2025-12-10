@@ -1,0 +1,187 @@
+{
+  "file_hash": "64d801b45426018892beaf4d79e8c4f7",
+  "feature": {
+    "id": "121 5298",
+    "name": "NR Emergency Procedures",
+    "cxc_code": "CXC4012534",
+    "value_package": "Voice over NR",
+    "value_package_id": "FAJ 801 4017",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The NR Emergency Procedures feature supports the setup of emergency voice calls in an NR",
+    "parameters": [
+      {
+        "name": "EmCall.arpPrioEm5qi1List",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EmCall"
+      },
+      {
+        "name": "EmCall.arpPrioEm5qi5List",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EmCall"
+      },
+      {
+        "name": "EmCall.mobilityRestrictionsApplied",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EmCall"
+      },
+      {
+        "name": "EmCall.pLMNIdList",
+        "type": "Affecting",
+        "description": "This attribute defines each PLMN in which the configured ARP values                                 for an emergency voice call are applicable.",
+        "mo_class": "EmCall"
+      },
+      {
+        "name": "McfbCellProfileUeCfg.epsFallbackOperationEm",
+        "type": "Affecting",
+        "description": "This attribute determines how EPS fallback and VoNR are used for                                 emergency calls.",
+        "mo_class": "McfbCellProfileUeCfg"
+      },
+      {
+        "name": "Mcfb.voiceEpsFbPossible",
+        "type": "Affecting",
+        "description": "This attribute can be used by the operator to determine how EPS                                 fallback is handled. It can also be used for emergency calls if the                                 IE indicating support for EPS fallback is not sent from the 5GC.",
+        "mo_class": "Mcfb"
+      },
+      {
+        "name": "McfbCellProfileUeCfg.rejectVoiceIncHoAtEpsFb",
+        "type": "Affecting",
+        "description": "In case of incoming voice handover, the                                     McfbCellProfileUeCfg.rejectVoiceIncHoAtEpsFb                                 attribute determines if EPS fallback is considered.",
+        "mo_class": "McfbCellProfileUeCfg"
+      },
+      {
+        "name": "McfbCellProfileUeCfg.epsFbAtSessionSetup",
+        "type": "Affecting",
+        "description": "This attribute determines if EPS fallback is allowed or VoNR is used                                 when the 5QI=1 is received at PDU Session Setup.",
+        "mo_class": "McfbCellProfileUeCfg"
+      },
+      {
+        "name": "NRCellCU.mcfbCellProfileRef",
+        "type": "Affecting",
+        "description": "This attribute is used to determine which                                     McfbCellProfileUeCfg attributes are used in                                 the cell.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "Uen.AG",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmDrbEstabAttArp",
+        "description": "Performance counter pmDrbEstabAttArp",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbEstabSuccArp",
+        "description": "Performance counter pmDrbEstabSuccArp",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalAmfActArp",
+        "description": "Performance counter pmDrbRelAbnormalAmfActArp",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalAmfArp",
+        "description": "Performance counter pmDrbRelAbnormalAmfArp",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalGnbActArp",
+        "description": "Performance counter pmDrbRelAbnormalGnbActArp",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelAbnormalGnbArp",
+        "description": "Performance counter pmDrbRelAbnormalGnbArp",
+        "category": "General"
+      },
+      {
+        "name": "pmDrbRelNormalArp",
+        "description": "Performance counter pmDrbRelNormalArp",
+        "category": "General"
+      },
+      {
+        "name": "pmNgSigConnEstabAttEm",
+        "description": "Performance counter pmNgSigConnEstabAttEm",
+        "category": "General"
+      },
+      {
+        "name": "pmNgSigConnEstabSuccEm",
+        "description": "Performance counter pmNgSigConnEstabSuccEm",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabAttEm",
+        "description": "Performance counter pmRrcConnEstabAttEm",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabAttReattEm",
+        "description": "Performance counter pmRrcConnEstabAttReattEm",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabSuccEm",
+        "description": "Performance counter pmRrcConnEstabSuccEm",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcResumeAttFallbackEm",
+        "description": "Performance counter pmRrcResumeAttFallbackEm",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcResumeSuccFallbackEm",
+        "description": "Performance counter pmRrcResumeSuccFallbackEm",
+        "category": "General"
+      },
+      {
+        "name": "pmRwrEutranUeNonPerfEpsfbEm",
+        "description": "Performance counter pmRwrEutranUeNonPerfEpsfbEm",
+        "category": "General"
+      },
+      {
+        "name": "pmRwrEutranUeSuccEpsfb",
+        "description": "Performance counter pmRwrEutranUeSuccEpsfb",
+        "category": "General"
+      },
+      {
+        "name": "pmRwrEutranUeSuccEpsfbEm",
+        "description": "Performance counter pmRwrEutranUeSuccEpsfbEm",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012534 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012534 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch4/96_22104-LZA7016017_1Uen.AG.md",
+    "file_hash": "64d801b45426018892beaf4d79e8c4f7",
+    "processed_at": "2025-10-19 15:50:09",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

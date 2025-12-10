@@ -1,0 +1,134 @@
+{
+  "file_hash": "b5d4aa3a4ef6ed1d917f0215789f8f64",
+  "feature": {
+    "id": "121 5144",
+    "name": "Coverage-Triggered Mobility at Setup",
+    "cxc_code": "CXC4012407",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature improves voice setup and voice quality by moving the UE from poor LTE",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.covTrigMobErabSetupConfig",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.covTrigMobErabSetupConfig",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "ReportConfigErabSetup.a1a2UlPlThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigErabSetup"
+      },
+      {
+        "name": "ReportConfigErabSetup.a1a2UlSinrThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigErabSetup"
+      },
+      {
+        "name": "ReportConfigErabSetup.filterCoeffUlSinrMax",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigErabSetup"
+      },
+      {
+        "name": "ReportConfigErabSetup.hysteresisA1A2UlPl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigErabSetup"
+      },
+      {
+        "name": "ReportConfigErabSetup.hysteresisA1A2UlSinr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigErabSetup"
+      },
+      {
+        "name": "ReportConfigErabSetup.timeToTriggerA1A2UlPl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigErabSetup"
+      },
+      {
+        "name": "ReportConfigErabSetup.timeToTriggerA1A2UlSinr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigErabSetup"
+      },
+      {
+        "name": "Uen.J",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.servOrPrioTriggeredIFHo",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.servOrPrioTriggeredIFHo",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmErabEstabAttAddedCsfb",
+        "description": "Performance counter pmErabEstabAttAddedCsfb",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttAddedCsfbArp",
+        "description": "Performance counter pmErabEstabAttAddedCsfbArp",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttAddedCsfbPl",
+        "description": "Performance counter pmErabEstabAttAddedCsfbPl",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttAddedCsfbQci",
+        "description": "Performance counter pmErabEstabAttAddedCsfbQci",
+        "category": "General"
+      },
+      {
+        "name": "pmErabEstabAttAddedCsfbSinr",
+        "description": "Performance counter pmErabEstabAttAddedCsfbSinr",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexErabEstabAttAddedCsfb",
+        "description": "Performance counter pmFlexErabEstabAttAddedCsfb",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012407 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012407 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/466_22104-LZA7016014_1Uen.J.md",
+    "file_hash": "b5d4aa3a4ef6ed1d917f0215789f8f64",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

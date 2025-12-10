@@ -1,0 +1,199 @@
+{
+  "file_hash": "29287d7ab7f5985680aae4693a24e0f7",
+  "feature": {
+    "id": "121 5481",
+    "name": "NR Rate-Controlled Scheduling",
+    "cxc_code": "CXC4012659",
+    "value_package": "Advanced RAN Slicing",
+    "value_package_id": "FAJ 801 4019",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature enables priority domain shift based on the configured rate.",
+    "parameters": [
+      {
+        "name": "SchedulingProfile.schedulingAlgorithm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SchedulingProfile"
+      },
+      {
+        "name": "SchedulingProfile.ulSchedulingAlgorithm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SchedulingProfile"
+      },
+      {
+        "name": "DlRateBasedPriority.dlPrioritizedRate",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DlRateBasedPriority"
+      },
+      {
+        "name": "UlRateBasedPriority.ulPrioritizedRate",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlRateBasedPriority"
+      },
+      {
+        "name": "DlRateBasedPriority.dlDemotedPriority",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DlRateBasedPriority"
+      },
+      {
+        "name": "UlRateBasedPriority.ulDemotedPriority",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlRateBasedPriority"
+      },
+      {
+        "name": "DlRateBasedPriority.dlDemotedRelativePriority",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DlRateBasedPriority"
+      },
+      {
+        "name": "UlRateBasedPriority.ulDemotedRelativePriority",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlRateBasedPriority"
+      },
+      {
+        "name": "DlRateBasedPriority.dlDrbOverloadHandling",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DlRateBasedPriority"
+      },
+      {
+        "name": "UlRateBasedPriority.ulDrbOverloadHandling",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlRateBasedPriority"
+      },
+      {
+        "name": "CellPriorityShift.cellDlDrbPriorityLimitBase",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CellPriorityShift"
+      },
+      {
+        "name": "CellPriorityShift.cellUlDrbPriorityLimitBase",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CellPriorityShift"
+      },
+      {
+        "name": "DlResourceBasedPriority.dlDrbPriorityLimit",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DlResourceBasedPriority"
+      },
+      {
+        "name": "UlResourceBasedPriority.ulDrbPriorityLimit",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlResourceBasedPriority"
+      },
+      {
+        "name": "DlResourceBasedPriority.dlResourceLimitMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DlResourceBasedPriority"
+      },
+      {
+        "name": "UlResourceBasedPriority.ulResourceLimitMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlResourceBasedPriority"
+      },
+      {
+        "name": "Uen.S",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsDrbEstabFailSchdRateReject",
+        "description": "Performance counter pmEbsDrbEstabFailSchdRateReject",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbEstabSuccSchdRate",
+        "description": "Performance counter pmEbsDrbEstabSuccSchdRate",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbEstabSuccSchdRateBasic",
+        "description": "Performance counter pmEbsDrbEstabSuccSchdRateBasic",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbModFailSchdRateReject",
+        "description": "Performance counter pmEbsDrbModFailSchdRateReject",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbModSuccSchdRate",
+        "description": "Performance counter pmEbsDrbModSuccSchdRate",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbModSuccSchdRateBasic",
+        "description": "Performance counter pmEbsDrbModSuccSchdRateBasic",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnDrbPrioritizedRateChannelCapacityDlDistr",
+        "description": "Performance counter pmEbsnDrbPrioritizedRateChannelCapacityDlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnDrbPrioritizedRateChannelCapacityUlDistr",
+        "description": "Performance counter pmEbsnDrbPrioritizedRateChannelCapacityUlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacRBSymUsedPdsch",
+        "description": "Performance counter pmEbsnMacRBSymUsedPdsch",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacRBSymUsedPusch",
+        "description": "Performance counter pmEbsnMacRBSymUsedPusch",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioSinrPdschDistr",
+        "description": "Performance counter pmRadioSinrPdschDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012659 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012659 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/170_22104-LZA7016017_1Uen.S.md",
+    "file_hash": "29287d7ab7f5985680aae4693a24e0f7",
+    "processed_at": "2025-10-19 15:48:56",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

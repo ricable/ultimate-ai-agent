@@ -1,0 +1,87 @@
+{
+  "id": "801 0415",
+  "name": "Dynamic UE Admission Control  Dynamic GBR Admission Control  Load-Based CA SCell Handling  Enhanced PTT Admission Control",
+  "cxc_code": "CXC4012296",
+  "value_package": "High Load Handling  VoLTE Performance  Mission Critical High Load Handling  Mission-Critical Services",
+  "value_package_id": "FAJ 801 0415  FAJ 801 0444  FAJ 801 1016  FAJ 801 1017",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Load-Based CA SCell Handling feature allows prioritization of cell resources for RRC",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.loadBasedCaEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.loadBasedCaMsrThr",
+      "type": "Introduced",
+      "description": "See MOM description.  The attribute references struct LoadBasedCaMsrThr.                                 The struct has the following members:  dlPrbUtilThreshHigh     dlPrbUtilThreshLow     ulPrbUtilThreshHigh     ulPrbUtilThreshLow     dlSeUtilThreshHigh     dlSeUtilThreshLow     ulSeUtilThreshHigh     ulSeUtilThreshLow     cceUtilThreshHigh     cceUtilThreshLow",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "Uen.AH",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "ExternalENodeBFunction.eSCellCapacityScaling",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ExternalENodeBFunction"
+    },
+    {
+      "name": "EUtranCellFDD.caLockDueToHighLoad",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "ExternalEUtranCellFDD.caLockDueToHighLoad",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ExternalEUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmCellCaLockTimeHighLoad",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCellCaLockTimeHighLoad",
+      "description": "Performance counter pmCellCaLockTimeHighLoad",
+      "category": "General"
+    },
+    {
+      "name": "pmCellLoadStateInd",
+      "description": "Performance counter pmCellLoadStateInd",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "LOCAL_EVENT_CELL_CA_LOCKED_HL_TIME",
+      "type": "Local event reported per minute while cell is in high load state,                                     containing CA lock time in seconds. This event is reported on                                     capacity cells enabled.",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012296 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012296 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/425_22104-LZA7016014_1Uen.AH.md",
+  "file_hash": "78983622667f613d31b73358d94a5497",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

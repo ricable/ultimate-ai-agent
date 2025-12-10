@@ -1,0 +1,67 @@
+{
+  "file_hash": "2447fb253502db36111ece36031f1492",
+  "feature": {
+    "id": "121 5090",
+    "name": "Cell-Level Scheduler",
+    "cxc_code": "CXC4012374",
+    "value_package": "Differentiated Mobile Broadband",
+    "value_package_id": "FAJ 801 0409",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature enables the configuration of the scheduler algorithm and the minimum",
+    "parameters": [
+      {
+        "name": "SubscriberGroupProfile.cellTriggerList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "SubscriberGroupProfile.bearerTriggerList",
+        "type": "Affected",
+        "description": "The SubscriberGroupProfile.cellTriggerList                                 attribute is added to the condition list of the UE selection.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "SubscriberGroupProfile.customTriggerList",
+        "type": "Affected",
+        "description": "The SubscriberGroupProfile.cellTriggerList                                 attribute is added to the condition list of the UE selection.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "SubscriberGroupProfile.spidTriggerList",
+        "type": "Affected",
+        "description": "The SubscriberGroupProfile.cellTriggerList                                 attribute is added to the condition list of the UE selection.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "SubscriberGroupProfile.selectionProbability",
+        "type": "Affected",
+        "description": "The SubscriberGroupProfile.cellTriggerList                                 attribute is added to the condition list of the UE selection.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "Uen.Y",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012374 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012374 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/441_22104-LZA7016014_1Uen.Y.md",
+    "file_hash": "2447fb253502db36111ece36031f1492",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

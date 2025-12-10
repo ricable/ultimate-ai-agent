@@ -1,0 +1,213 @@
+{
+  "id": "121 5018",
+  "name": "Enhanced PTT Admission Control  Enhanced Dynamic UE Admission Control for Privileged Access",
+  "cxc_code": "CXC4012336",
+  "value_package": "Mission-Critical Services  High Load Handling",
+  "value_package_id": "FAJ 801 1017  FAJ 801 0415",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "feature reserves an estimate of the dynamic resources in downlink",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.includeDynPttMsrReservations",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.includeDynPttMsrReservations",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "AdmissionControl.enhPttAdmCtrlRejPaReqOvlGbr",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "INTERNAL_PROC_ERAB_SETUP",
+      "type": "EVENT_PARAM_ERAB_SETUP_RESULT",
+      "description": "Values are added to indicate that the GBR bearer setup rejections                                     occurred because of the PTT reservations.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "ResourcePartitionGroup.gbrPartitioning",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ResourcePartitionGroup"
+    },
+    {
+      "name": "A.a",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "A"
+    },
+    {
+      "name": "A.b",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "A"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmBbmDlBbCapacityPttReservation",
+      "description": "Performance counter pmBbmDlBbCapacityPttReservation",
+      "category": "General"
+    },
+    {
+      "name": "pmBbmDlPrbPttReservation",
+      "description": "Performance counter pmBbmDlPrbPttReservation",
+      "category": "General"
+    },
+    {
+      "name": "pmBbmDlSePttReservation",
+      "description": "Performance counter pmBbmDlSePttReservation",
+      "category": "General"
+    },
+    {
+      "name": "pmCellCcePttReservation",
+      "description": "Performance counter pmCellCcePttReservation",
+      "category": "General"
+    },
+    {
+      "name": "pmCellDlPrbPttReservation",
+      "description": "Performance counter pmCellDlPrbPttReservation",
+      "category": "General"
+    },
+    {
+      "name": "pmCellDlSePttReservation",
+      "description": "Performance counter pmCellDlSePttReservation",
+      "category": "General"
+    },
+    {
+      "name": "pmErabEstabAttRejAdmMsrAddedArp",
+      "description": "Performance counter pmErabEstabAttRejAdmMsrAddedArp",
+      "category": "General"
+    },
+    {
+      "name": "pmErabEstabAttRejAdmMsrAddedPttArp",
+      "description": "Performance counter pmErabEstabAttRejAdmMsrAddedPttArp",
+      "category": "General"
+    },
+    {
+      "name": "pmErabEstabAttRejAdmMsrInitArp",
+      "description": "Performance counter pmErabEstabAttRejAdmMsrInitArp",
+      "category": "General"
+    },
+    {
+      "name": "pmErabEstabAttRejAdmMsrInitPttArp",
+      "description": "Performance counter pmErabEstabAttRejAdmMsrInitPttArp",
+      "category": "General"
+    },
+    {
+      "name": "pmErabReestAttRejAdmMsrArp",
+      "description": "Performance counter pmErabReestAttRejAdmMsrArp",
+      "category": "General"
+    },
+    {
+      "name": "pmErabReestAttRejAdmMsrPttArp",
+      "description": "Performance counter pmErabReestAttRejAdmMsrPttArp",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepRejInAdmMsrArp",
+      "description": "Performance counter pmHoPrepRejInAdmMsrArp",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepRejInAdmMsrPttArp",
+      "description": "Performance counter pmHoPrepRejInAdmMsrPttArp",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepRejInDynUeAdmCtrlPa",
+      "description": "Performance counter pmHoPrepRejInDynUeAdmCtrlPa",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepRejInDynUeAdmCtrlPaPtt",
+      "description": "Performance counter pmHoPrepRejInDynUeAdmCtrlPaPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepRejInDynUeAdmCtrlPtt",
+      "description": "Performance counter pmHoPrepRejInDynUeAdmCtrlPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabFailDynUeAdmCtrlMoVoicePtt",
+      "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlMoVoicePtt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabFailDynUeAdmCtrlPa",
+      "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlPa",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabFailDynUeAdmCtrlPaPtt",
+      "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlPaPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabFailDynUeAdmCtrlPtt",
+      "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabFailDynUeAdmCtrlPttCe",
+      "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlPttCe",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnReestFailDynUeAdmCtrlPa",
+      "description": "Performance counter pmRrcConnReestFailDynUeAdmCtrlPa",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnReestFailDynUeAdmCtrlPaPtt",
+      "description": "Performance counter pmRrcConnReestFailDynUeAdmCtrlPaPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnReestFailDynUeAdmCtrlPtt",
+      "description": "Performance counter pmRrcConnReestFailDynUeAdmCtrlPtt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnReestFailDynUeAdmCtrlPttCe",
+      "description": "Performance counter pmRrcConnReestFailDynUeAdmCtrlPttCe",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_ERAB_SETUP",
+      "type": "EVENT_PARAM_ERAB_SETUP_RESULT",
+      "description": "Values are added to indicate that the GBR bearer setup rejections                                     occurred because of the PTT reservations."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": null,
+  "deactivation_step": null,
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/442_22104-LZA7016014_1Uen.AF.md",
+  "file_hash": "2a262eb563018bf7dd6271f0b6f1b31b",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

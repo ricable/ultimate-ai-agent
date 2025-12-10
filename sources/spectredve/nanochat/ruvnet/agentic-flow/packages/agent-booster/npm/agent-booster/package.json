@@ -1,0 +1,44 @@
+{
+  "name": "agent-booster",
+  "version": "0.1.0",
+  "description": "High-performance prompt optimization with automatic native/WASM binding detection",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md"
+  ],
+  "keywords": [
+    "ai",
+    "llm",
+    "prompt",
+    "optimization",
+    "agent",
+    "wasm",
+    "native"
+  ],
+  "author": "Agent Booster Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/agentic-flow.git",
+    "directory": "agent-booster/npm/agent-booster"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "optionalDependencies": {
+    "@agent-booster/native-darwin-arm64": "^0.1.0",
+    "@agent-booster/native-darwin-x64": "^0.1.0",
+    "@agent-booster/native-linux-arm64": "^0.1.0",
+    "@agent-booster/native-linux-x64": "^0.1.0",
+    "@agent-booster/native-win32-x64": "^0.1.0"
+  },
+  "dependencies": {
+    "@agent-booster/wasm": "^0.1.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  }
+}

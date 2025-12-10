@@ -1,0 +1,106 @@
+{
+  "file_hash": "4df1f5425e8cfcf67b4e325d4fc7c2d9",
+  "feature": {
+    "id": "121 0892",
+    "name": "",
+    "cxc_code": "CXC4010990",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "The Robust Header Compression feature increases capacity and coverage by compressing",
+    "parameters": [
+      {
+        "name": "QciProfileOperatorDefined.rohcEnabled  QciProfilePredefined.rohcEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "Uen.AM",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "QciProfileOperatorDefined.rohcEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfilePredefined.rohcEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfilePredefined"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmPdcpVolDlCmpHdrQci",
+        "description": "Performance counter pmPdcpVolDlCmpHdrQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolDlHdrQci",
+        "description": "Performance counter pmPdcpVolDlHdrQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolUlCmpHdrQci",
+        "description": "Performance counter pmPdcpVolUlCmpHdrQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolUlHdrQci",
+        "description": "Performance counter pmPdcpVolUlHdrQci",
+        "category": "General"
+      },
+      {
+        "name": "pmRohcCidSamp",
+        "description": "Performance counter pmRohcCidSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmRohcCidSum",
+        "description": "Performance counter pmRohcCidSum",
+        "category": "General"
+      },
+      {
+        "name": "pmRohcEstabFailCid",
+        "description": "Performance counter pmRohcEstabFailCid",
+        "category": "General"
+      },
+      {
+        "name": "pmRohcEstabFailLic",
+        "description": "Performance counter pmRohcEstabFailLic",
+        "category": "General"
+      },
+      {
+        "name": "pmRohcEstabFailUeCap",
+        "description": "Performance counter pmRohcEstabFailUeCap",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010990 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010990 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/106_22104-LZA7016014_1Uen.AM.md",
+    "file_hash": "4df1f5425e8cfcf67b4e325d4fc7c2d9",
+    "processed_at": "2025-10-19 15:48:54",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "id": "121 4224",
+  "name": "VoLTE Frequency Hopping",
+  "cxc_code": "CXC4011914",
+  "value_package": "VoLTE Performance",
+  "value_package_id": "FAJ 801 0444",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The VoLTE Frequency Hopping feature is an enhancement of TTI bundling. The feature",
+  "parameters": [
+    {
+      "name": "Uen.AT",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmRlcSduEstLostUlMcPttTtiBundl",
+      "description": "Performance counter pmRlcSduEstLostUlMcPttTtiBundl",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcSduEstLostUlNonMcPttTtiBundl",
+      "description": "Performance counter pmRlcSduEstLostUlNonMcPttTtiBundl",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcSduEstLostUlVoipTtiBundling",
+      "description": "Performance counter pmRlcSduEstLostUlVoipTtiBundling",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcSduRecUlMcPttTtiBundl",
+      "description": "Performance counter pmRlcSduRecUlMcPttTtiBundl",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcSduRecUlNonMcPttTtiBundl",
+      "description": "Performance counter pmRlcSduRecUlNonMcPttTtiBundl",
+      "category": "General"
+    },
+    {
+      "name": "pmRlcSduRecUlVoipTtiBundling",
+      "description": "Performance counter pmRlcSduRecUlVoipTtiBundling",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011914 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011914 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/138_22104-LZA7016014_1Uen.AT.md",
+  "file_hash": "f2d7ff0282429409f0e8b4a7c6bf898f",
+  "processed_at": "2025-10-19 15:48:54",
+  "network_impact": {},
+  "performance_impact": {}
+}

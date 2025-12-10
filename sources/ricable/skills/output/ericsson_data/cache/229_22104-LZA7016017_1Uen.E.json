@@ -1,0 +1,109 @@
+{
+  "file_hash": "5fa1d417e4e9e251e11ae5af4536106a",
+  "feature": {
+    "id": "121 5801",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012782",
+    "value_package": "5G Advanced Mission Critical Services",
+    "value_package_id": "FAJ 801 4032",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature enables the target LTE or NR cell to recognize if UEs redirected from the",
+    "parameters": [
+      {
+        "name": "McfbCellProfileUeCfg.epsFbVoiceIndication",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "McfbCellProfileUeCfg"
+      },
+      {
+        "name": "PriorityService.arp5qiPairList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PriorityService"
+      },
+      {
+        "name": "PriorityService.mpsPriorityForRwr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PriorityService"
+      },
+      {
+        "name": "PriorityService.pLMNIdList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PriorityService"
+      },
+      {
+        "name": "PriorityService.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PriorityService"
+      },
+      {
+        "name": "Uen.E",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "Mcfb.voiceEpsFbPossible",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Mcfb"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsRrcConnEstabAttEstabCause",
+        "description": "Performance counter pmEbsRrcConnEstabAttEstabCause",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsRrcConnEstabSuccEstabCause",
+        "description": "Performance counter pmEbsRrcConnEstabSuccEstabCause",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabAttHpa",
+        "description": "Performance counter pmRrcConnEstabAttHpa",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabAttMoVoice",
+        "description": "Performance counter pmRrcConnEstabAttMoVoice",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabSuccHpa",
+        "description": "Performance counter pmRrcConnEstabSuccHpa",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabSuccMoVoice",
+        "description": "Performance counter pmRrcConnEstabSuccMoVoice",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012782 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012782 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/229_22104-LZA7016017_1Uen.E.md",
+    "file_hash": "5fa1d417e4e9e251e11ae5af4536106a",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

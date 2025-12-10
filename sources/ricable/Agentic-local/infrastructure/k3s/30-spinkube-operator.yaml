@@ -1,0 +1,208 @@
+# =============================================================================
+# Edge-Native AI - SpinKube Operator Installation
+# Enables WebAssembly workloads on Kubernetes
+# =============================================================================
+
+# SpinKube requires the spin-operator to be installed
+# This manifest deploys the operator and runtime class
+
+# RuntimeClass for Spin workloads
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: wasmtime-spin-v2
+handler: spin
+scheduling:
+  nodeSelector:
+    runtime.spin.fermyon.dev/containerd-shim: "true"
+---
+# SpinKube CRD - SpinApp definition
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: spinapps.core.spinoperator.dev
+spec:
+  group: core.spinoperator.dev
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                image:
+                  type: string
+                  description: "OCI image containing the Spin application"
+                replicas:
+                  type: integer
+                  default: 1
+                executor:
+                  type: string
+                  default: "containerd-shim-spin"
+                deploymentAnnotations:
+                  type: object
+                  additionalProperties:
+                    type: string
+                podAnnotations:
+                  type: object
+                  additionalProperties:
+                    type: string
+                runtimeConfig:
+                  type: object
+                  properties:
+                    loadFromSecret:
+                      type: string
+                    keyValueStores:
+                      type: array
+                      items:
+                        type: object
+                    sqliteDatabases:
+                      type: array
+                      items:
+                        type: object
+                    llmCompute:
+                      type: object
+                resources:
+                  type: object
+                  properties:
+                    limits:
+                      type: object
+                      additionalProperties:
+                        type: string
+                    requests:
+                      type: object
+                      additionalProperties:
+                        type: string
+                variables:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      value:
+                        type: string
+                      valueFrom:
+                        type: object
+            status:
+              type: object
+              properties:
+                activeReplicas:
+                  type: integer
+                readyReplicas:
+                  type: integer
+                conditions:
+                  type: array
+                  items:
+                    type: object
+      subresources:
+        status: {}
+      additionalPrinterColumns:
+        - name: Ready
+          type: integer
+          jsonPath: .status.readyReplicas
+        - name: Desired
+          type: integer
+          jsonPath: .spec.replicas
+        - name: Age
+          type: date
+          jsonPath: .metadata.creationTimestamp
+  scope: Namespaced
+  names:
+    plural: spinapps
+    singular: spinapp
+    kind: SpinApp
+    shortNames:
+      - sa
+---
+# Spin Operator ServiceAccount
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: spin-operator
+  namespace: edge-ai-system
+---
+# ClusterRole for Spin Operator
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: spin-operator
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services", "configmaps", "secrets"]
+    verbs: ["*"]
+  - apiGroups: ["apps"]
+    resources: ["deployments", "replicasets"]
+    verbs: ["*"]
+  - apiGroups: ["core.spinoperator.dev"]
+    resources: ["spinapps", "spinapps/status"]
+    verbs: ["*"]
+  - apiGroups: ["networking.k8s.io"]
+    resources: ["ingresses"]
+    verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: spin-operator
+subjects:
+  - kind: ServiceAccount
+    name: spin-operator
+    namespace: edge-ai-system
+roleRef:
+  kind: ClusterRole
+  name: spin-operator
+  apiGroup: rbac.authorization.k8s.io
+---
+# Spin Operator Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spin-operator
+  namespace: edge-ai-system
+  labels:
+    app: spin-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spin-operator
+  template:
+    metadata:
+      labels:
+        app: spin-operator
+    spec:
+      serviceAccountName: spin-operator
+      containers:
+        - name: spin-operator
+          image: ghcr.io/spinkube/spin-operator:latest
+          args:
+            - --leader-elect
+          ports:
+            - containerPort: 8080
+              name: metrics
+            - containerPort: 8081
+              name: health
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8081
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8081
+            initialDelaySeconds: 5
+            periodSeconds: 10

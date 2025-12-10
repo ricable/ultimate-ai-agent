@@ -1,0 +1,178 @@
+[package]
+name = "ranml"
+version = "0.1.0"
+edition = "2021"
+authors = ["RAN ML Team"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/your-org/ranML"
+homepage = "https://github.com/your-org/ranML"
+description = "Radio Access Network Machine Learning optimization suite with neural training and edge deployment"
+keywords = ["radio", "5g", "machine-learning", "optimization", "telecom", "neural-networks", "wasm"]
+categories = ["science", "algorithms", "mathematics", "network-programming", "wasm"]
+rust-version = "1.70"
+readme = "README.md"
+
+[lib]
+name = "ranml"
+path = "src/lib.rs"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "ranml-train"
+path = "crates/neural-training/src/bin/main.rs"
+required-features = ["training"]
+
+[workspace]
+members = [
+    "crates/ran-core",
+    "crates/ran-training",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@ericsson.com>"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/your-org/ranML"
+homepage = "https://github.com/your-org/ranML"
+description = "High-performance Radio Access Network ML optimization and automation platform"
+keywords = ["radio", "5g", "machine-learning", "optimization", "telecom"]
+categories = ["science", "algorithms", "mathematics", "network-programming"]
+rust-version = "1.70"
+
+[workspace.dependencies]
+# Core dependencies
+tokio = { version = "1.0", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+uuid = { version = "1.0", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Numeric and ML dependencies
+ndarray = "0.15"
+num-traits = "0.2"
+num-complex = "0.4"
+rand = "0.8"
+rayon = "1.8"
+
+# Data processing
+polars = { version = "0.35", features = ["lazy", "temporal", "csv", "parquet"] }
+csv = "1.3"
+
+# Configuration and serialization
+toml = "0.8"
+config = "0.13"
+serde_yaml = "0.9"
+
+# Networking and protocols
+tokio-tungstenite = "0.20"
+reqwest = { version = "0.11", features = ["json"] }
+
+# Local dependencies (from parent FANN repo) - moved to individual crates as needed
+# ruv-fann = { path = "../src" }
+# neuro-divergent = { path = "../neuro-divergent" }
+
+# Performance and monitoring
+criterion = "0.5"
+pprof = { version = "0.13", features = ["flamegraph"] }
+sysinfo = "0.30"
+
+# Testing
+approx = "0.5"
+tempfile = "3.8"
+proptest = "1.4"
+
+[profile.release]
+codegen-units = 1
+lto = true
+panic = "abort"
+opt-level = 3
+
+[profile.bench]
+opt-level = 3
+debug = true
+
+[profile.dev]
+opt-level = 0
+debug = true
+overflow-checks = true
+
+[dependencies]
+# Local crates
+ran-core = { path = "crates/ran-core", optional = true }
+ran-neural = { path = "crates/ran-neural", optional = true }
+ran-forecasting = { path = "crates/ran-forecasting", optional = true }
+ran-training = { path = "crates/ran-training", optional = true }
+# neural-training = { path = "crates/neural-training", optional = true } # Separate workspace
+
+# Core dependencies
+anyhow = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_yaml = { workspace = true }
+tokio = { workspace = true, optional = true }
+tracing = { workspace = true, optional = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+ndarray = { workspace = true }
+
+# WASM dependencies
+wasm-bindgen = { version = "0.2", optional = true }
+wasm-bindgen-futures = { version = "0.4", optional = true }
+js-sys = { version = "0.3", optional = true }
+web-sys = { version = "0.3", optional = true }
+console_error_panic_hook = { version = "0.1", optional = true }
+serde-wasm-bindgen = { version = "0.6", optional = true }
+
+# Build dependencies
+[build-dependencies]
+vergen = { version = "8.0", features = ["build", "git", "gitcl"] }
+
+[dev-dependencies]
+tempfile = { workspace = true }
+approx = { workspace = true }
+criterion = { workspace = true }
+
+[features]
+default = ["core"]
+core = ["ran-core"]
+neural = ["ran-neural"]
+forecasting = ["ran-forecasting"]
+training = ["ran-training", "tokio"]
+async = ["tokio"]
+monitoring = ["tracing"]
+wasm = [
+    "wasm-bindgen",
+    "wasm-bindgen-futures", 
+    "js-sys",
+    "web-sys",
+    "console_error_panic_hook",
+    "serde-wasm-bindgen"
+]
+# gpu = ["ran-neural/gpu"]  # Uncomment when ran-neural supports GPU
+# simd = ["ran-neural/simd"]  # Uncomment when ran-neural supports SIMD
+all = ["neural", "forecasting", "training", "monitoring"]
+
+# WASM-specific profile
+[profile.wasm-release]
+inherits = "release"
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+
+# Features for different deployment targets
+[workspace.metadata.features]
+default = ["std", "tokio-runtime"]
+std = []
+tokio-runtime = ["tokio"]
+gpu = []
+wasm = []
+edge = ["wasm", "std"]
+simulation = ["std", "tokio-runtime"]
+telemetry = ["tracing", "std"]

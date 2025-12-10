@@ -1,0 +1,21 @@
+name: 'Issue Triage Automation'
+description: 'Automated issue triage and assignment with AgentDB integration'
+author: 'Ericsson RAN Team'
+inputs:
+  triage-rules:
+    description: 'Triage rules configuration file'
+    required: false
+    default: '.github/trie-rules.json'
+  agentdb-endpoint:
+    description: 'AgentDB endpoint for pattern learning'
+    required: true
+  performance-threshold:
+    description: 'Performance impact threshold for prioritization'
+    required: false
+    default: 'medium'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+branding:
+  icon: 'issue-opened'
+  color: 'orange'

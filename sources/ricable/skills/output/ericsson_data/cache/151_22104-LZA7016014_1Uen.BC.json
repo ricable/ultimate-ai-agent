@@ -1,0 +1,265 @@
+{
+  "file_hash": "e06cd3bb6e8b496cf953cebfaf67a2bf",
+  "feature": {
+    "id": "121 1823",
+    "name": "Egress IP Traffic Shaping",
+    "cxc_code": "CXC4040005",
+    "value_package": "LTE Base Package  NR Low/Mid-Band Base Package  NR High-Band Base Package",
+    "value_package_id": "FAJ 801 0400  FAJ 801 4002/5LM  FAJ 801 4002/5H",
+    "access_type": "LTE, NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This optional feature protects the RAN from overloading its transmission network",
+    "parameters": [
+      {
+        "name": "DscpDscpMap.defaultDscp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DscpDscpMap"
+      },
+      {
+        "name": "DscpDscpMap.dscp0 to                                 DscpDscpMap.dscp63",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DscpDscpMap"
+      },
+      {
+        "name": "DscpSetToPCP.dscpSet",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DscpSetToPCP"
+      },
+      {
+        "name": "DscpSetToPCP.pcp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DscpSetToPCP"
+      },
+      {
+        "name": "DscpToPCPMap.defaultPCP",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DscpToPCPMap"
+      },
+      {
+        "name": "PcpPcpMap.defaultPcp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PcpPcpMap"
+      },
+      {
+        "name": "PcpPcpMap.pcp0",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PcpPcpMap"
+      },
+      {
+        "name": "PcpPcpMap.pcp1",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PcpPcpMap"
+      },
+      {
+        "name": "PcpPcpMap.pcp2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PcpPcpMap"
+      },
+      {
+        "name": "PcpPcpMap.pcp3",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PcpPcpMap"
+      },
+      {
+        "name": "PcpPcpMap.pcp4",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PcpPcpMap"
+      },
+      {
+        "name": "PcpPcpMap.pcp5",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PcpPcpMap"
+      },
+      {
+        "name": "PcpPcpMap.pcp6",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PcpPcpMap"
+      },
+      {
+        "name": "PcpPcpMap.pcp7",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PcpPcpMap"
+      },
+      {
+        "name": "PcpSetToQueue.pcpSet",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PcpSetToQueue"
+      },
+      {
+        "name": "PcpSetToQueue.queue",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PcpSetToQueue"
+      },
+      {
+        "name": "PcpToQueueMap.defaultQueue",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PcpToQueueMap"
+      },
+      {
+        "name": "QueueRed.exponentWeight",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QueueRed"
+      },
+      {
+        "name": "QueueRed.maxThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QueueRed"
+      },
+      {
+        "name": "QueueRed.minThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QueueRed"
+      },
+      {
+        "name": "QueueRed.order",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QueueRed"
+      },
+      {
+        "name": "QueueRed.queueSize",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QueueRed"
+      },
+      {
+        "name": "QueueTailDrop.order",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QueueTailDrop"
+      },
+      {
+        "name": "QueueTailDrop.queueSize",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QueueTailDrop"
+      },
+      {
+        "name": "SchedulerDwrr.order",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SchedulerDwrr"
+      },
+      {
+        "name": "SchedulerDwrr.schedulingWeight",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SchedulerDwrr"
+      },
+      {
+        "name": "SchedulerSp.order",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SchedulerSp"
+      },
+      {
+        "name": "Shaper.committedBurstSize",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Shaper"
+      },
+      {
+        "name": "Shaper.committedInformationRate",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Shaper"
+      },
+      {
+        "name": "Shaper.order",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Shaper"
+      },
+      {
+        "name": "Uen.BC",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "AdmissionControl.ulTransNwBandwidth",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "AdmissionControl"
+      },
+      {
+        "name": "QueueRed.filledLowerThreshold",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QueueRed"
+      },
+      {
+        "name": "QueueTailDrop.filledLowerThreshold",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QueueTailDrop"
+      },
+      {
+        "name": "QueueRed.filledUpperThreshold",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QueueRed"
+      },
+      {
+        "name": "QueueTailDrop.filledUpperThreshold",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QueueTailDrop"
+      },
+      {
+        "name": "VlanPort.egressQosQueueMap",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "VlanPort"
+      },
+      {
+        "name": "EthernetPort.egressQosQueueMap",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EthernetPort"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmap",
+        "description": "Performance counter pmap",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4040005 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4040005 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/151_22104-LZA7016014_1Uen.BC.md",
+    "file_hash": "e06cd3bb6e8b496cf953cebfaf67a2bf",
+    "processed_at": "2025-10-19 17:07:26",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

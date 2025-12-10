@@ -1,0 +1,231 @@
+{
+  "file_hash": "31879945763d4208760f9c67abd5afae",
+  "feature": {
+    "id": "121 5224",
+    "name": "Intelligent Power Emission Control",
+    "cxc_code": "CXC4012486",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Intelligent Power Emission Control feature monitors and controls the sector",
+    "parameters": [
+      {
+        "name": "PowerBackoff.powerBackoffAvgTime",
+        "type": "Introduced",
+        "description": "See MOM description.  The attributes of the PowerBackoff MO cannot be                                 configured after the initial configuration. To change the attribute                                 values later, the PowerBackoff MO must be deleted                                 and recreated to set a new configuration.",
+        "mo_class": "PowerBackoff"
+      },
+      {
+        "name": "PowerBackoff.powerBackoffEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.  The attributes of the PowerBackoff MO cannot be                                 configured after the initial configuration. To change the attribute                                 values later, the PowerBackoff MO must be deleted                                 and recreated to set a new configuration.",
+        "mo_class": "PowerBackoff"
+      },
+      {
+        "name": "PowerBackoff.powerBackoffThresh",
+        "type": "Introduced",
+        "description": "See MOM description.  The attributes of the PowerBackoff MO cannot be                                 configured after the initial configuration. To change the attribute                                 values later, the PowerBackoff MO must be deleted                                 and recreated to set a new configuration.",
+        "mo_class": "PowerBackoff"
+      },
+      {
+        "name": "EUtranCellFDD.lessPrbUsageThreshold",
+        "type": "Affected",
+        "description": "The Low Energy Scheduler Solution feature and the Intelligent             Power Emission Control feature can be used together. In such cases, the value of the                 EUtranCellFDD.lessPrbUsageThreshold attribute must be lower than             the PRB limit set on the PDSCH by the Intelligent Power Emission Control feature. In             this way, longer downlink latency can be prevented.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.lessPrbUsageThreshold",
+        "type": "Affected",
+        "description": "The Low Energy Scheduler Solution feature and the Intelligent             Power Emission Control feature can be used together. In such cases, the value of the                 EUtranCellFDD.lessPrbUsageThreshold attribute must be lower than             the PRB limit set on the PDSCH by the Intelligent Power Emission Control feature. In             this way, longer downlink latency can be prevented.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "ENodeBFunction.combCellSectorSelectThreshTx",
+        "type": "Affecting",
+        "description": "This threshold is used in combined cells for downlink sector                                 selection, and to decide how many downlink sectors are used for a                                 specific UE. The uplink PUCCH format 2 measurement from the UE is                                 compared with the                                     ENodeBFunction.combCellSectorSelectThreshTx                                 attribute to decide from which sectors the UE can receive data. The                                 number of downlink sectors for the UE is considered in the emitted                                 power calculation for each sector carrier.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranCellFDD.dlConfigurableFrequencyStart",
+        "type": "Affecting",
+        "description": "The Flexible Channel Bandwidth feature allows to block PRBs.             The blocked PRBs are considered by the Intelligent Power Emission Control feature when             determining power emission levels.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.dlFrequencyAllocationProportion",
+        "type": "Affecting",
+        "description": "The Flexible Channel Bandwidth feature allows to block PRBs.             The blocked PRBs are considered by the Intelligent Power Emission Control feature when             determining power emission levels.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.dlConfigurableFrequencyStart",
+        "type": "Affecting",
+        "description": "The Flexible Channel Bandwidth feature allows to block PRBs.             The blocked PRBs are considered by the Intelligent Power Emission Control feature when             determining power emission levels.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.dlFrequencyAllocationProportion",
+        "type": "Affecting",
+        "description": "The Flexible Channel Bandwidth feature allows to block PRBs.             The blocked PRBs are considered by the Intelligent Power Emission Control feature when             determining power emission levels.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "SectorCarrier.configuredMaxTxPower",
+        "type": "Affecting",
+        "description": "The PowerBackoff.powerBackoffThresh attribute is set as a                                 percentage of the configured maximum transmitted power. The maximum                                 transmitted power is controlled by the                                     SectorCarrier.configuredMaxTxPower                                 attribute.",
+        "mo_class": "SectorCarrier"
+      },
+      {
+        "name": "Uen.BA33A",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.ipecGseEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.ipecGseEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEmfPwrBackoffDynResThrDistr",
+        "description": "Performance counter pmEmfPwrBackoffDynResThrDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEmfPwrBackoffHardLimit",
+        "description": "Performance counter pmEmfPwrBackoffHardLimit",
+        "category": "General"
+      },
+      {
+        "name": "pmEmfPwrBackoffOnPwrDistr",
+        "description": "Performance counter pmEmfPwrBackoffOnPwrDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEmfPwrBackoffPwrDistr",
+        "description": "Performance counter pmEmfPwrBackoffPwrDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEmfPwrBackoffSamp",
+        "description": "Performance counter pmEmfPwrBackoffSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmEmfPwrBackoffStepPwrDistr",
+        "description": "Performance counter pmEmfPwrBackoffStepPwrDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEmfPwrBackoffSum",
+        "description": "Performance counter pmEmfPwrBackoffSum",
+        "category": "General"
+      },
+      {
+        "name": "pmEmfPwrBackoffSumOn",
+        "description": "Performance counter pmEmfPwrBackoffSumOn",
+        "category": "General"
+      },
+      {
+        "name": "pmEventPbAvgPow",
+        "description": "Performance counter pmEventPbAvgPow",
+        "category": "General"
+      },
+      {
+        "name": "pmEventPbHardLimit",
+        "description": "Performance counter pmEventPbHardLimit",
+        "category": "General"
+      },
+      {
+        "name": "pmEventPbOnAvgPow",
+        "description": "Performance counter pmEventPbOnAvgPow",
+        "category": "General"
+      },
+      {
+        "name": "pmEventPbOnOffTrig",
+        "description": "Performance counter pmEventPbOnOffTrig",
+        "category": "General"
+      },
+      {
+        "name": "pmEventPbResThr",
+        "description": "Performance counter pmEventPbResThr",
+        "category": "General"
+      },
+      {
+        "name": "pmEventPbSamp",
+        "description": "Performance counter pmEventPbSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmEventPbStatusTrue",
+        "description": "Performance counter pmEventPbStatusTrue",
+        "category": "General"
+      },
+      {
+        "name": "pmEventPbStepPow",
+        "description": "Performance counter pmEventPbStepPow",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolDlDrbCa",
+        "description": "Performance counter pmPdcpVolDlDrbCa",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolDlDrbLastTTICa",
+        "description": "Performance counter pmPdcpVolDlDrbLastTTICa",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioTxPowerMaxConfigured",
+        "description": "Performance counter pmRadioTxPowerMaxConfigured",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThpTimeDlCa",
+        "description": "Performance counter pmUeThpTimeDlCa",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012486 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012486 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/495_22104-LZA7016014_1Uen.BA33A.md",
+    "file_hash": "31879945763d4208760f9c67abd5afae",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

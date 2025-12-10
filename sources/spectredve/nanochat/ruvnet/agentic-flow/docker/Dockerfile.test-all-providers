@@ -1,0 +1,34 @@
+FROM node:22-slim
+WORKDIR /app
+
+# Copy local built package
+COPY agentic-flow/package.json ./
+COPY agentic-flow/dist ./dist
+COPY agentic-flow/.claude ./.claude
+COPY agentic-flow/docs ./docs
+
+# Copy .env from root
+COPY .env ./.env
+
+# Install dependencies and link globally
+RUN npm install --omit=dev && npm link
+
+# Install optional ONNX dependencies for local inference testing
+RUN npm install -g onnxruntime-node @xenova/transformers @huggingface/transformers || true
+
+ENV NODE_ENV=production
+
+# Test all three providers
+CMD ["sh", "-c", "\
+  echo '🧪 Testing All Providers...' && echo '' && \
+  echo '1️⃣ Testing Anthropic (default)...' && \
+  agentic-flow --agent coder --task 'Write hello world in Python' --provider anthropic 2>&1 | grep -A 5 'Completed' && \
+  echo '' && echo '✅ Anthropic works' && echo '' && \
+  echo '2️⃣ Testing OpenRouter (meta-llama)...' && \
+  agentic-flow --agent coder --task 'Write hello world in Python' --model 'meta-llama/llama-3.1-8b-instruct' 2>&1 | grep -A 5 'Completed' && \
+  echo '' && echo '✅ OpenRouter works' && echo '' && \
+  echo '3️⃣ Testing ONNX (local inference)...' && \
+  agentic-flow --agent coder --task 'Write hello world in Python' --provider onnx 2>&1 | grep -A 5 'Completed' && \
+  echo '' && echo '✅ ONNX works' && echo '' && \
+  echo '✅ All 3 providers validated successfully!' \
+"]

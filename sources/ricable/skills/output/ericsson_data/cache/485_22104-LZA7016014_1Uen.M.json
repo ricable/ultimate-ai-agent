@@ -1,0 +1,55 @@
+{
+  "file_hash": "4909d243bb6471bded4385da199b4e4b",
+  "feature": {
+    "id": "121 5181",
+    "name": "VoLTE Inactivity Timer Extension",
+    "cxc_code": "CXC4012453",
+    "value_package": "VoLTE Performance",
+    "value_package_id": "FAJ 801 0444",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature introduces a configurable extension to the inactivity timer after the end",
+    "parameters": [
+      {
+        "name": "Rcs.extendInactAfterVolteRel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Rcs"
+      },
+      {
+        "name": "SubscriberGroupProfile.groupExtendInactAfterVolteRel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "Rcs.tInactivityTimer",
+        "type": "Affecting",
+        "description": "The total inactivity time is the sum of this attribute and the                                 inactivity timer extension introduced by this feature.",
+        "mo_class": "Rcs"
+      },
+      {
+        "name": "Uen.M",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012453 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012453 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/485_22104-LZA7016014_1Uen.M.md",
+    "file_hash": "4909d243bb6471bded4385da199b4e4b",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

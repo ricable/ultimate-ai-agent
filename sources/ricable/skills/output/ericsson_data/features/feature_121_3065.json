@@ -1,0 +1,220 @@
+{
+  "id": "121 3065",
+  "name": "Best Neighbor Relations for WCDMA IRAT Offload",
+  "cxc_code": "CXC4010512",
+  "value_package": "LTE Offload to WCDMA",
+  "value_package_id": "FAJ 801 0421",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature identifies suitable WCDMA target load-balancing relations to be used for",
+  "parameters": [
+    {
+      "name": "LoadBalancingFunction.lbHitRateUtranAddThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbHitRateUtranMeasUeIntensity",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbHitRateUtranMeasUeThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.lbHitRateUtranRemoveThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "UtranCellRelation.lbBnrAllowed",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UtranCellRelation"
+    },
+    {
+      "name": "UtranFreqRelation.lbBnrPolicy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UtranFreqRelation"
+    },
+    {
+      "name": "UtranCellRelation.lastModification",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "UtranCellRelation"
+    },
+    {
+      "name": "UtranCellRelation.loadBalancing",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "UtranCellRelation"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_FREQ",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_UE_CA_CAPABLE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRAVERSED_UES",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AK",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.lbActionForEndcUe",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.lbActionForEndcUe",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmAtoMeasuredUe",
+      "description": "Performance counter pmAtoMeasuredUe",
+      "category": "General"
+    },
+    {
+      "name": "pmAtoQualifiedUe",
+      "description": "Performance counter pmAtoQualifiedUe",
+      "category": "General"
+    },
+    {
+      "name": "pmLbMeasuredUe",
+      "description": "Performance counter pmLbMeasuredUe",
+      "category": "General"
+    },
+    {
+      "name": "pmLbQualifiedUe",
+      "description": "Performance counter pmLbQualifiedUe",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_FREQ",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_UE_CA_CAPABLE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_MEAS",
+      "type": "EVENT_PARAM_TRAVERSED_UES",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_LB_CANCELLED_REASON",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_UE_LB_QUAL",
+      "type": "EVENT_PARAM_TRIGGERING_FUNCTION",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010512 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010512 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/215_22104-LZA7016014_1Uen.AK.md",
+  "file_hash": "c61717eed257ae1dfd8d66e3831abd70",
+  "processed_at": "2025-10-19 15:50:04",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synaptic-mesh
+  labels:
+    app: synaptic-mesh
+    component: neural-node
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: synaptic-mesh
+  template:
+    metadata:
+      labels:
+        app: synaptic-mesh
+        component: neural-node
+    spec:
+      containers:
+      - name: synaptic-mesh
+        image: ruvnet/synaptic-mesh:latest
+        ports:
+        - containerPort: 8080
+          name: p2p
+          protocol: TCP
+        - containerPort: 9090
+          name: metrics
+          protocol: TCP
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: SYNAPTIC_NETWORK
+          value: "mainnet"
+        - name: SYNAPTIC_LOG_LEVEL
+          value: "info"
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        volumeMounts:
+        - name: synaptic-data
+          mountPath: /app/.synaptic
+        - name: synaptic-logs
+          mountPath: /app/.synaptic/logs
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9090
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 9090
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumes:
+      - name: synaptic-data
+        persistentVolumeClaim:
+          claimName: synaptic-data-pvc
+      - name: synaptic-logs
+        emptyDir: {}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: synaptic-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi

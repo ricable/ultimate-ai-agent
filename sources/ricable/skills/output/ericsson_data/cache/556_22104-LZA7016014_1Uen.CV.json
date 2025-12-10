@@ -1,0 +1,491 @@
+{
+  "file_hash": "582ff817cddeda1a27fce7176b21b293",
+  "feature": {
+    "id": "121 5377",
+    "name": "Outgoing NR IRAT Handover",
+    "cxc_code": "CXC4012580",
+    "value_package": "Basic NR Mobility Support",
+    "value_package_id": "FAJ 801 1018",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature enables the handover of UEs capable of NR standalone from an LTE network to",
+    "parameters": [
+      {
+        "name": "ENodeBFunction.voiceMobilityToNrEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.nrMobilityForMcPttDisabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ExternalGNodeBFunction.dirDataPathAvail",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGNodeBFunction"
+      },
+      {
+        "name": "GUtranCellRelation.coverageIndicator",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GUtranCellRelation"
+      },
+      {
+        "name": "GUtranCellRelation.isHoAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GUtranCellRelation"
+      },
+      {
+        "name": "GUtranCellRelation.isVoiceHoAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GUtranCellRelation"
+      },
+      {
+        "name": "GUtranFreqRelation.mobilityAction",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GUtranFreqRelation"
+      },
+      {
+        "name": "GUtranFreqRelation.voicePrio",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GUtranFreqRelation"
+      },
+      {
+        "name": "ReportConfigB2NR.b2Threshold1Rsrp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2NR"
+      },
+      {
+        "name": "ReportConfigB2NR.b2Threshold1Rsrq",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2NR"
+      },
+      {
+        "name": "ReportConfigB2NR.b2Threshold2Rsrp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2NR"
+      },
+      {
+        "name": "ReportConfigB2NR.b2Threshold2Rsrq",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2NR"
+      },
+      {
+        "name": "ReportConfigB2NR.hysteresisB2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2NR"
+      },
+      {
+        "name": "ReportConfigB2NR.hysteresisB2RsrqOffset",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2NR"
+      },
+      {
+        "name": "ReportConfigB2NR.mbmsB2ThresholdRsrpOffset",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2NR"
+      },
+      {
+        "name": "ReportConfigB2NR.mbmsB2ThresholdRsrqOffset",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2NR"
+      },
+      {
+        "name": "ReportConfigB2NR.timeToTriggerB2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2NR"
+      },
+      {
+        "name": "ReportConfigB2NR.timeToTriggerB2Rsrq",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2NR"
+      },
+      {
+        "name": "ReportConfigB2NR.triggerQuantityB2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2NR"
+      },
+      {
+        "name": "ReportConfigB2NR.triggerQuantityB2NR",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigB2NR"
+      },
+      {
+        "name": "UeMeasControl.nrB1MeasEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.ueMeasurementsActiveNR",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "ENodeBFunction.mobilityBackToNrFreqDisabled",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.ueCapabilityEnquirySteps  (1)",
+        "type": "Affected",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranCellFDD.rwrCriticalZoneAllowed",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring search zones and the                                 critical zone if the Mobility Control at Poor Coverage feature is                                 also active in the node.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.rwrSearchZoneAllowed",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring search zones and the                                 critical zone if the Mobility Control at Poor Coverage feature is                                 also active in the node.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.rwrCriticalZoneAllowed",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring search zones and the                                 critical zone if the Mobility Control at Poor Coverage feature is                                 also active in the node.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.rwrSearchZoneAllowed",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring search zones and the                                 critical zone if the Mobility Control at Poor Coverage feature is                                 also active in the node.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "GUtranFreqRelation.timeToTriggerNrB1B2Override",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring NR Standalone measurements.                                 The frequency with which the UE performs handover to NR Standalone                                 might increase or decrease when the attribute settings are                                 changed.",
+        "mo_class": "GUtranFreqRelation"
+      },
+      {
+        "name": "ReportConfigB1NR.b1ThresholdRsrp",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring NR Standalone measurements.                                 The frequency with which the UE performs handover to NR Standalone                                 might increase or decrease when the attribute settings are                                 changed.",
+        "mo_class": "ReportConfigB1NR"
+      },
+      {
+        "name": "ReportConfigB1NR.b1ThresholdRsrq",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring NR Standalone measurements.                                 The frequency with which the UE performs handover to NR Standalone                                 might increase or decrease when the attribute settings are                                 changed.",
+        "mo_class": "ReportConfigB1NR"
+      },
+      {
+        "name": "ReportConfigB1NR.hysteresisB1",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring NR Standalone measurements.                                 The frequency with which the UE performs handover to NR Standalone                                 might increase or decrease when the attribute settings are                                 changed.",
+        "mo_class": "ReportConfigB1NR"
+      },
+      {
+        "name": "ReportConfigB1NR.timeToTriggerB1",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring NR Standalone measurements.                                 The frequency with which the UE performs handover to NR Standalone                                 might increase or decrease when the attribute settings are                                 changed.",
+        "mo_class": "ReportConfigB1NR"
+      },
+      {
+        "name": "ReportConfigB1NR.triggerQuantityB1NR",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring NR Standalone measurements.                                 The frequency with which the UE performs handover to NR Standalone                                 might increase or decrease when the attribute settings are                                 changed.",
+        "mo_class": "ReportConfigB1NR"
+      },
+      {
+        "name": "UeMeasControl.maxMeasNR",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring NR Standalone measurements.                                 The frequency with which the UE performs handover to NR Standalone                                 might increase or decrease when the attribute settings are                                 changed.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.nrB1MeasAtEndcEnabled",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring NR Standalone measurements.                                 The frequency with which the UE performs handover to NR Standalone                                 might increase or decrease when the attribute settings are                                 changed.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.nrB1MobilityTimerLessTtt",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring NR Standalone measurements.                                 The frequency with which the UE performs handover to NR Standalone                                 might increase or decrease when the attribute settings are                                 changed.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.waitForResumeNRMeas",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring NR Standalone measurements.                                 The frequency with which the UE performs handover to NR Standalone                                 might increase or decrease when the attribute settings are                                 changed.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.waitForStartNRMeas",
+        "type": "Affecting",
+        "description": "The existing attributes allow configuring NR Standalone measurements.                                 The frequency with which the UE performs handover to NR Standalone                                 might increase or decrease when the attribute settings are                                 changed.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "GUtranFreqRelation.allowedPlmnList",
+        "type": "Affecting",
+        "description": "The attribute can be used for restricting UEs from mobility to an NR                                 network of another operator.",
+        "mo_class": "GUtranFreqRelation"
+      },
+      {
+        "name": "ExternalGUtranCell.bandList",
+        "type": "Affecting",
+        "description": "These attributes are checked when measured cell is evaluated.",
+        "mo_class": "ExternalGUtranCell"
+      },
+      {
+        "name": "ExternalGUtranCell.plmnIdList",
+        "type": "Affecting",
+        "description": "These attributes are checked when measured cell is evaluated.",
+        "mo_class": "ExternalGUtranCell"
+      },
+      {
+        "name": "ExternalGUtranCell.nRTAC",
+        "type": "Affecting",
+        "description": "These attributes are checked when measured cell is evaluated.",
+        "mo_class": "ExternalGUtranCell"
+      },
+      {
+        "name": "FreqPrioNR.arfcnValueNRDl",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "FreqPrioNR"
+      },
+      {
+        "name": "FreqPrioNR.connModeMobilityPrio",
+        "type": "Affecting",
+        "description": "Priority of NR frequencies is defined in                                     FreqPrioNR MO instance as a child of                                     RATFreqPrio MO.",
+        "mo_class": "FreqPrioNR"
+      },
+      {
+        "name": "FreqPrioNR.voicePrio",
+        "type": "Affecting",
+        "description": "Priority for handovers with an ongoing VoLTE connection can be                                 defined among NR frequencies with this attribute.",
+        "mo_class": "FreqPrioNR"
+      },
+      {
+        "name": "GUtranFreqRelation.connectedModeMobilityPrio",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "GUtranFreqRelation"
+      },
+      {
+        "name": "UeMeasControl.nrB1MeasWindow",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "Uen.CV",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UePolicyOptimization.zzzTemporary1",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UePolicyOptimization"
+      },
+      {
+        "name": "RobustCallSetup.nrMobilityDelayEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "NR.mbmsB2ThresholdRsrpOffset",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NR"
+      },
+      {
+        "name": "NR.mbmsB2ThresholdRsrqOffset",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NR"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmB2BestCellEvalReport",
+        "description": "Performance counter pmB2BestCellEvalReport",
+        "category": "General"
+      },
+      {
+        "name": "pmB2BestCellEvalReportRsrp",
+        "description": "Performance counter pmB2BestCellEvalReportRsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmEvent",
+        "description": "Performance counter pmEvent",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeAttNr",
+        "description": "Performance counter pmFlexCellHoExeAttNr",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoExeSuccNr",
+        "description": "Performance counter pmFlexCellHoExeSuccNr",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepAttNr",
+        "description": "Performance counter pmFlexCellHoPrepAttNr",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexCellHoPrepSuccNr",
+        "description": "Performance counter pmFlexCellHoPrepSuccNr",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexUeCtxtRelSCNr",
+        "description": "Performance counter pmFlexUeCtxtRelSCNr",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAtt",
+        "description": "Performance counter pmHoExeAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttBlindNr",
+        "description": "Performance counter pmHoExeAttBlindNr",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttMeasBasedNr",
+        "description": "Performance counter pmHoExeAttMeasBasedNr",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSucc",
+        "description": "Performance counter pmHoExeSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccBlindNr",
+        "description": "Performance counter pmHoExeSuccBlindNr",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccMeasBasedNr",
+        "description": "Performance counter pmHoExeSuccMeasBasedNr",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAtt",
+        "description": "Performance counter pmHoPrepAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSucc",
+        "description": "Performance counter pmHoPrepSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktDiscDlHo",
+        "description": "Performance counter pmPdcpPktDiscDlHo",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktFwdDl",
+        "description": "Performance counter pmPdcpPktFwdDl",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktTransDl",
+        "description": "Performance counter pmPdcpPktTransDl",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCNr",
+        "description": "Performance counter pmUeCtxtRelSCNr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCNrA2Rsrp",
+        "description": "Performance counter pmUeCtxtRelSCNrA2Rsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCNrA2Rsrq",
+        "description": "Performance counter pmUeCtxtRelSCNrA2Rsrq",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCNrB2Rsrp",
+        "description": "Performance counter pmUeCtxtRelSCNrB2Rsrp",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCNrB2Rsrq",
+        "description": "Performance counter pmUeCtxtRelSCNrB2Rsrq",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+        "type": "Event parameter                                             EVENT_PARAM_HO_PACKET_FORWARD is                                         added to the PM event.",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012580 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012580 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/556_22104-LZA7016014_1Uen.CV.md",
+    "file_hash": "582ff817cddeda1a27fce7176b21b293",
+    "processed_at": "2025-10-19 15:50:06",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,331 @@
+{
+  "file_hash": "88caf104e8bd905ec120c0d14f82c708",
+  "feature": {
+    "id": "121 5200",
+    "name": "NR System Improvements in 24.Q4",
+    "cxc_code": "CXC4040008",
+    "value_package": "NR Base Package",
+    "value_package_id": "FAJ 801 4002",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature provides high precision time and phase network",
+    "parameters": [
+      {
+        "name": "BoundaryOrdinaryClock.clockType",
+        "type": "Configures which PTP clock to run, must be set to                     SLAVE_ONLY_ORDINARY_CLOCK for this feature.",
+        "description": "",
+        "mo_class": "BoundaryOrdinaryClock"
+      },
+      {
+        "name": "BoundaryOrdinaryClock.ptpProfile",
+        "type": "Selects which PTP profile is used, must be set to                     IEEE_1588_TIME_DEFAULT,                     IEEE_1588_TIME_SLOW, G_8275_1,                   G_8275_2,                   or IEEE_1588_CUSTOM                   for                   this feature.",
+        "description": "",
+        "mo_class": "BoundaryOrdinaryClock"
+      },
+      {
+        "name": "BoundaryOrdinaryClock.domainNumber",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "BoundaryOrdinaryClock"
+      },
+      {
+        "name": "PtpBcOcPort.administrativeState",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "PtpBcOcPort.announceMessageInterval",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "PtpBcOcPort.associatedGrandmaster",
+        "type": "IP address or domain name of associated grandmaster according to G.8275.1 or                   G.8275.2.  PTP associated grandmaster and PTP slave must have the same IP versions.",
+        "description": "",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "PtpBcOcPort.ptpPathTimeError",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "PtpBcOcPort.syncMessageInterval",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "PtpBcOcPort.transportInterface",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "PtpBcOcPort.transportVlan",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PtpBcOcPort"
+      },
+      {
+        "name": "RadioEquipmentClock.bfnOffset",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "RadioEquipmentClock"
+      },
+      {
+        "name": "RadioEquipmentClock.timeSyncModeConfig",
+        "type": "If configured to AUTO_SELECT, PTS with relaxed network limits is                   automatically activated. For configurations that do not support automatic                   activation, PTS with relaxed network limits can be manually activated by setting                   the attribute to RELAXED.",
+        "description": "",
+        "mo_class": "RadioEquipmentClock"
+      },
+      {
+        "name": "RadioEquipmentClock.timeSyncModeOper",
+        "type": "If PTS with relaxed network limits function is activated and PTS is the selected                   reference, then the attribute value is RELAXED. Otherwise, the                   value is REGULAR.",
+        "description": "",
+        "mo_class": "RadioEquipmentClock"
+      },
+      {
+        "name": "RadioEquipmentClockReference.encapsulation",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "RadioEquipmentClockReference"
+      },
+      {
+        "name": "PtpProfileMeasurement.measurementDuration",
+        "type": "See MOM description.",
+        "description": "",
+        "mo_class": "PtpProfileMeasurement"
+      },
+      {
+        "name": "BoundaryOrdinaryClock.ptpProfile",
+        "type": "New value, IEEE_1588_CUSTOM is added.",
+        "description": "",
+        "mo_class": "BoundaryOrdinaryClock"
+      },
+      {
+        "name": "Uen.EG",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCounters",
+        "description": "Performance counter pmCounters",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpAnnounceForeignMasterRxCounter",
+        "description": "Performance counter pmPtpAnnounceForeignMasterRxCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpAnnounceRxCounter",
+        "description": "Performance counter pmPtpAnnounceRxCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpDelayReqTxCounter",
+        "description": "Performance counter pmPtpDelayReqTxCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpDelayRspRxCounter",
+        "description": "Performance counter pmPtpDelayRspRxCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpDownLinkDelayAvg",
+        "description": "Performance counter pmPtpDownLinkDelayAvg",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpDownLinkDelayMax",
+        "description": "Performance counter pmPtpDownLinkDelayMax",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpDownLinkDelayMin",
+        "description": "Performance counter pmPtpDownLinkDelayMin",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpDownLinkDelayStDev",
+        "description": "Performance counter pmPtpDownLinkDelayStDev",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpFollowupRxCounter",
+        "description": "Performance counter pmPtpFollowupRxCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpMeanPathDelayAvg",
+        "description": "Performance counter pmPtpMeanPathDelayAvg",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpMeanPathDelayMax",
+        "description": "Performance counter pmPtpMeanPathDelayMax",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpMeanPathDelayMin",
+        "description": "Performance counter pmPtpMeanPathDelayMin",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpMeanPathDelayStDev",
+        "description": "Performance counter pmPtpMeanPathDelayStDev",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpOffsetFromMasterAvg",
+        "description": "Performance counter pmPtpOffsetFromMasterAvg",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpOffsetFromMasterMax",
+        "description": "Performance counter pmPtpOffsetFromMasterMax",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpOffsetFromMasterMin",
+        "description": "Performance counter pmPtpOffsetFromMasterMin",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpOffsetFromMasterStDev",
+        "description": "Performance counter pmPtpOffsetFromMasterStDev",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpPacketsRxCounter",
+        "description": "Performance counter pmPtpPacketsRxCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpPacketsTxCounter",
+        "description": "Performance counter pmPtpPacketsTxCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpRefDefectTime",
+        "description": "Performance counter pmPtpRefDefectTime",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpSyncRxCounter",
+        "description": "Performance counter pmPtpSyncRxCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpUpLinkDelayAvg",
+        "description": "Performance counter pmPtpUpLinkDelayAvg",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpUpLinkDelayMax",
+        "description": "Performance counter pmPtpUpLinkDelayMax",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpUpLinkDelayMin",
+        "description": "Performance counter pmPtpUpLinkDelayMin",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpUpLinkDelayStDev",
+        "description": "Performance counter pmPtpUpLinkDelayStDev",
+        "category": "General"
+      },
+      {
+        "name": "pmPtpValidMeasurement",
+        "description": "Performance counter pmPtpValidMeasurement",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmeanPathDelayAvg",
+        "description": "Performance counter pmeanPathDelayAvg",
+        "category": "General"
+      },
+      {
+        "name": "pmeanPathDelayMax",
+        "description": "Performance counter pmeanPathDelayMax",
+        "category": "General"
+      },
+      {
+        "name": "pmeanPathDelayMin",
+        "description": "Performance counter pmeanPathDelayMin",
+        "category": "General"
+      },
+      {
+        "name": "pmeanPathDelayStDev",
+        "description": "Performance counter pmeanPathDelayStDev",
+        "category": "General"
+      },
+      {
+        "name": "pmeasurement",
+        "description": "Performance counter pmeasurement",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmentClock",
+        "description": "Performance counter pmentClock",
+        "category": "General"
+      },
+      {
+        "name": "pmentClockReference",
+        "description": "Performance counter pmentClockReference",
+        "category": "General"
+      },
+      {
+        "name": "pmtieLimit",
+        "description": "Performance counter pmtieLimit",
+        "category": "General"
+      },
+      {
+        "name": "pmtieValue",
+        "description": "Performance counter pmtieValue",
+        "category": "General"
+      },
+      {
+        "name": "pmulticastAddress",
+        "description": "Performance counter pmulticastAddress",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": null,
+    "deactivation_step": null,
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/232_22104-LZA7016014_1Uen.EG.md",
+    "file_hash": "88caf104e8bd905ec120c0d14f82c708",
+    "processed_at": "2025-10-19 17:07:27",
+    "network_impact": {},
+    "performance_impact": {
+      "counters": "New counters introduced"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "id": "121 5154",
+  "name": "Device-Based Frequency Filtering",
+  "cxc_code": "CXC4012417",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables UE-specific frequency filtering to provide improved compatibility",
+  "parameters": [
+    {
+      "name": "ImeisvProfile.unsupportedFreqProfileRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ImeisvProfile"
+    },
+    {
+      "name": "UnsupportedFreqProfile.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UnsupportedFreqProfile"
+    },
+    {
+      "name": "UnsupportedFreqProfile.unsupportedFreqList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UnsupportedFreqProfile"
+    },
+    {
+      "name": "UnsupportedFreqProfile.unsupportedFreqProfileId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UnsupportedFreqProfile"
+    },
+    {
+      "name": "UnsupportedFreqProfile.unsupportedFreqList",
+      "type": "Introduced",
+      "description": "See MOM description.  The attribute references the UnsupportedFreqRange struct.                                 The struct has the following members:    earfcnDlHigh     earfcnDlLow",
+      "mo_class": "UnsupportedFreqProfile"
+    },
+    {
+      "name": "Uen.Z",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmModImeisvParamSet",
+      "description": "Performance counter pmModImeisvParamSet",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012417 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012417 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/476_22104-LZA7016014_1Uen.Z.md",
+  "file_hash": "557beda5d4eeb8bc25474407139d6c29",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

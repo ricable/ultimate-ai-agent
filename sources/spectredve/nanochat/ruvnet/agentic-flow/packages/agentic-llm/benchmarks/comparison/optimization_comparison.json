@@ -1,0 +1,57 @@
+{
+  "timestamp": "2025-10-03 22:42:06",
+  "baseline": {
+    "model_type": "fp32_pytorch",
+    "model_size_mb": 14000,
+    "avg_latency_ms": 120.5,
+    "p50_latency_ms": 115.2,
+    "p95_latency_ms": 145.8,
+    "p99_latency_ms": 167.3,
+    "throughput_qps": 8.3,
+    "tool_call_accuracy": 82.5,
+    "memory_usage_mb": 12000,
+    "gpu_utilization_pct": 85
+  },
+  "int8_optimized": {
+    "model_type": "int8_onnx",
+    "model_size_mb": 3500,
+    "avg_latency_ms": 45.2,
+    "p50_latency_ms": 42.1,
+    "p95_latency_ms": 58.7,
+    "p99_latency_ms": 72.3,
+    "throughput_qps": 22.1,
+    "tool_call_accuracy": 83.8,
+    "memory_usage_mb": 4000,
+    "gpu_utilization_pct": 65
+  },
+  "int4_optimized": {
+    "model_type": "int4_onnx",
+    "model_size_mb": 1750,
+    "avg_latency_ms": 32.8,
+    "p50_latency_ms": 30.5,
+    "p95_latency_ms": 42.1,
+    "p99_latency_ms": 54.2,
+    "throughput_qps": 30.5,
+    "tool_call_accuracy": 81.2,
+    "memory_usage_mb": 2500,
+    "gpu_utilization_pct": 45
+  },
+  "int8_improvements": {
+    "latency_improvement_pct": 62.489626556016596,
+    "latency_speedup": 2.665929203539823,
+    "throughput_improvement_pct": 166.26506024096386,
+    "throughput_multiplier": 2.6626506024096384,
+    "size_reduction_pct": 75.0,
+    "memory_reduction_pct": 66.66666666666666,
+    "accuracy_change_pct": 1.2999999999999972
+  },
+  "int4_improvements": {
+    "latency_improvement_pct": 72.78008298755188,
+    "latency_speedup": 3.6737804878048785,
+    "throughput_improvement_pct": 267.4698795180722,
+    "throughput_multiplier": 3.6746987951807224,
+    "size_reduction_pct": 87.5,
+    "memory_reduction_pct": 79.16666666666666,
+    "accuracy_change_pct": -1.2999999999999972
+  }
+}

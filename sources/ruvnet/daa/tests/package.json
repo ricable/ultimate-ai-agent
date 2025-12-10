@@ -1,0 +1,39 @@
+{
+  "name": "@daa/tests",
+  "version": "1.0.0",
+  "description": "Comprehensive test suite for DAA NAPI bindings and SDK",
+  "private": true,
+  "scripts": {
+    "test": "node --test **/*.test.js",
+    "test:unit": "node --test unit/**/*.test.js",
+    "test:integration": "node --test integration/**/*.test.js",
+    "test:e2e": "node --test e2e/**/*.test.js",
+    "test:watch": "node --test --watch **/*.test.js",
+    "test:coverage": "c8 --config .c8rc.json node --test **/*.test.js",
+    "test:coverage:html": "c8 --config .c8rc.json --reporter=html node --test **/*.test.js && open coverage/index.html",
+    "benchmark": "node --test benchmarks/**/*.bench.js",
+    "benchmark:crypto": "node --test benchmarks/crypto-performance.bench.js",
+    "clean": "rm -rf coverage .tmp",
+    "lint": "eslint **/*.js",
+    "format": "prettier --write '**/*.js'"
+  },
+  "keywords": [
+    "daa",
+    "napi",
+    "tests",
+    "quantum-resistant",
+    "qudag",
+    "ml-kem",
+    "ml-dsa"
+  ],
+  "author": "rUv",
+  "license": "MIT",
+  "devDependencies": {
+    "c8": "^9.1.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

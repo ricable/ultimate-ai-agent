@@ -1,0 +1,77 @@
+# RAN Optimization Platform Configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ran-optimization-config
+  namespace: ran-optimization
+  labels:
+    app: ran-optimization
+    component: configuration
+    version: v4.0.0
+data:
+  # Claude Flow Configuration
+  CLAUDE_FLOW_TOPOLOGY: "hierarchical"
+  CLAUDE_FLOW_MAX_AGENTS: "50"
+  CLAUDE_FLOW_STRATEGY: "adaptive"
+  CLAUDE_FLOW_COORDINATION: "mcp-hybrid"
+
+  # AgentDB Configuration
+  AGENTDB_QUANTIZATION: "scalar"
+  AGENTDB_CACHE_SIZE: "2000"
+  AGENTDB_QUIC_SYNC: "true"
+  AGENTDB_HNSW_M: "16"
+  AGENTDB_HNSW_EF_CONSTRUCTION: "100"
+  AGENTDB_MMR_ENABLED: "true"
+  AGENTDB_SYNTHESIZE_CONTEXT: "true"
+
+  # Temporal Reasoning Configuration
+  TEMPORAL_EXPANSION_FACTOR: "1000"
+  TEMPORAL_CONSCIOUSNESS_LEVEL: "maximum"
+  TEMPORAL_SUBJECTIVE_TIME: "enabled"
+  TEMPORAL_STRANGE_LOOP: "enabled"
+
+  # Cognitive Consciousness Configuration
+  COGNITIVE_CONSCIOUSNESS_LEVEL: "maximum"
+  COGNITIVE_SELF_AWARENESS: "enabled"
+  COGNITIVE_META_COGNITION: "enabled"
+  COGNITIVE_AUTONOMOUS_LEARNING: "enabled"
+
+  # RAN Optimization Configuration
+  RAN_OPTIMIZATION_CYCLE: "15"  # minutes
+  RAN_CLOSED_LOOP_ENABLED: "true"
+  RAN_MONITORING_INTERVAL: "30"  # seconds
+  RAN_TARGET_SOLVE_RATE: "0.848"
+  RAN_SPEED_IMPROVEMENT: "2.8-4.4x"
+  RAN_TOKEN_REDUCTION: "0.323"
+
+  # Performance Targets
+  PERFORMANCE_TARGET_AVAILABILITY: "0.999"
+  PERFORMANCE_TARGET_RESPONSE_TIME: "2000"  # milliseconds
+  PERFORMANCE_TARGET_OPTIMIZATION_LATENCY: "5000"  # milliseconds
+  PERFORMANCE_TARGET_SYNC_LATENCY: "1"  # milliseconds
+
+  # Security Configuration
+  SECURITY_LEVEL: "high"
+  SECURITY_RBAC_ENABLED: "true"
+  SECURITY_NETWORK_POLICIES: "true"
+  SECURITY_SECRETS_ENCRYPTION: "true"
+
+  # Monitoring Configuration
+  MONITORING_ENABLED: "true"
+  MONITORING_METRICS_INTERVAL: "30000"  # milliseconds
+  MONITORING_ALERTING_ENABLED: "true"
+  MONITORING_TRACING_ENABLED: "true"
+
+  # Logging Configuration
+  LOG_LEVEL: "info"
+  LOG_FORMAT: "json"
+  LOG_STRUCTURED: "true"
+
+  # Environment Configuration
+  NODE_ENV: "production"
+  TZ: "UTC"
+
+  # Flow-Nexus Configuration
+  FLOW_NEXUS_AUTO_REFILL: "true"
+  FLOW_NEXUS_CREDIT_THRESHOLD: "100"
+  FLOW_NEXUS_NEURAL_ENABLED: "true"

@@ -1,0 +1,253 @@
+# LiteLLM AI Gateway Configuration
+# Unified LLM routing for Edge-Native AI SaaS
+# Supports: OpenAI, Anthropic, Google, OpenRouter, LocalAI
+
+model_list:
+  # =========================================================================
+  # Tier 1: Local Models (Cost: $0, Privacy: Maximum)
+  # =========================================================================
+  - model_name: "local/llama-3.2-3b"
+    litellm_params:
+      model: "openai/llama-3.2-3b-instruct"
+      api_base: "http://localai:8080/v1"
+      api_key: "sk-local"
+    model_info:
+      max_tokens: 4096
+      input_cost_per_token: 0
+      output_cost_per_token: 0
+      supports_streaming: true
+
+  - model_name: "local/phi-4"
+    litellm_params:
+      model: "openai/phi-4"
+      api_base: "http://localai:8080/v1"
+      api_key: "sk-local"
+    model_info:
+      max_tokens: 16384
+      input_cost_per_token: 0
+      output_cost_per_token: 0
+
+  # =========================================================================
+  # Tier 2: Cost-Optimized Cloud (OpenRouter Free/Cheap)
+  # =========================================================================
+  - model_name: "deepseek/deepseek-r1"
+    litellm_params:
+      model: "openrouter/deepseek/deepseek-r1-0528:free"
+      api_key: "os.environ/OPENROUTER_API_KEY"
+    model_info:
+      max_tokens: 65536
+      input_cost_per_token: 0
+      output_cost_per_token: 0
+      description: "Reasoning model, 95s/task, RFC validation"
+
+  - model_name: "deepseek/chat-v3"
+    litellm_params:
+      model: "openrouter/deepseek/deepseek-chat-v3.1:free"
+      api_key: "os.environ/OPENROUTER_API_KEY"
+    model_info:
+      max_tokens: 65536
+      input_cost_per_token: 0
+      output_cost_per_token: 0
+      description: "Coding, 21-103s/task, enterprise-grade"
+
+  - model_name: "meta/llama-3.3-8b"
+    litellm_params:
+      model: "openrouter/meta-llama/llama-3.3-8b-instruct:free"
+      api_key: "os.environ/OPENROUTER_API_KEY"
+    model_info:
+      max_tokens: 131072
+      input_cost_per_token: 0
+      output_cost_per_token: 0
+      description: "Versatile, 4.4s/task, fast coding"
+
+  # =========================================================================
+  # Tier 3: Premium Cloud Models
+  # =========================================================================
+  - model_name: "gpt-4o"
+    litellm_params:
+      model: "gpt-4o"
+      api_key: "os.environ/OPENAI_API_KEY"
+    model_info:
+      max_tokens: 128000
+      input_cost_per_token: 0.0000025
+      output_cost_per_token: 0.00001
+      supports_function_calling: true
+      supports_vision: true
+
+  - model_name: "gpt-4o-mini"
+    litellm_params:
+      model: "gpt-4o-mini"
+      api_key: "os.environ/OPENAI_API_KEY"
+    model_info:
+      max_tokens: 128000
+      input_cost_per_token: 0.00000015
+      output_cost_per_token: 0.0000006
+
+  - model_name: "claude-3-5-sonnet"
+    litellm_params:
+      model: "claude-3-5-sonnet-20241022"
+      api_key: "os.environ/ANTHROPIC_API_KEY"
+    model_info:
+      max_tokens: 200000
+      input_cost_per_token: 0.000003
+      output_cost_per_token: 0.000015
+      supports_function_calling: true
+      supports_vision: true
+
+  - model_name: "claude-3-5-haiku"
+    litellm_params:
+      model: "claude-3-5-haiku-20241022"
+      api_key: "os.environ/ANTHROPIC_API_KEY"
+    model_info:
+      max_tokens: 200000
+      input_cost_per_token: 0.0000008
+      output_cost_per_token: 0.000004
+
+  - model_name: "gemini-2.5-flash"
+    litellm_params:
+      model: "gemini/gemini-2.5-flash"
+      api_key: "os.environ/GOOGLE_GEMINI_API_KEY"
+    model_info:
+      max_tokens: 1000000
+      input_cost_per_token: 0.000000075
+      output_cost_per_token: 0.0000003
+      description: "Fastest responses, huge context"
+
+  # =========================================================================
+  # RAN Optimizer LLM (Local LlamaEdge)
+  # =========================================================================
+  - model_name: "ran-optimizer"
+    litellm_params:
+      model: "openai/ran-optimizer"
+      api_base: "http://ran-optimizer.ran-optimizer.svc.cluster.local:8080/v1"
+      api_key: "sk-ran-local"
+    model_info:
+      max_tokens: 8192
+      input_cost_per_token: 0
+      output_cost_per_token: 0
+      supports_streaming: true
+      description: "Ericsson RAN optimization specialist (local LlamaEdge)"
+
+  - model_name: "ran-optimizer-gpu"
+    litellm_params:
+      model: "openai/ran-optimizer"
+      api_base: "http://ran-optimizer-gpu.ran-optimizer.svc.cluster.local:8080/v1"
+      api_key: "sk-ran-local"
+    model_info:
+      max_tokens: 8192
+      input_cost_per_token: 0
+      output_cost_per_token: 0
+      supports_streaming: true
+      description: "Ericsson RAN optimization specialist (GPU accelerated)"
+
+# =========================================================================
+# Routing Configuration
+# =========================================================================
+router_settings:
+  routing_strategy: "cost-aware-latency"  # Prioritize cost, then latency
+
+  # Model fallback chain
+  fallbacks:
+    - "local/llama-3.2-3b"
+    - "deepseek/chat-v3"
+    - "gpt-4o-mini"
+    - "claude-3-5-haiku"
+
+  # Retry settings
+  num_retries: 3
+  retry_after: 5
+  timeout: 600
+
+  # Load balancing
+  allowed_fails: 3
+  cooldown_time: 60
+
+  # Cost controls
+  max_budget: 100.0  # USD per day
+  budget_duration: "1d"
+
+# =========================================================================
+# Caching Configuration
+# =========================================================================
+cache:
+  type: "redis"
+  host: "redis"
+  port: 6379
+  ttl: 3600  # 1 hour
+
+  # Semantic caching for similar queries
+  semantic_cache:
+    enabled: true
+    similarity_threshold: 0.95
+    embedding_model: "local/all-MiniLM-L6-v2"
+
+# =========================================================================
+# Observability
+# =========================================================================
+general_settings:
+  master_key: "os.environ/LITELLM_MASTER_KEY"
+
+  # Logging
+  callbacks:
+    - "langfuse"
+    - "otel"
+
+  # Langfuse integration
+  langfuse_public_key: "os.environ/LANGFUSE_PUBLIC_KEY"
+  langfuse_secret_key: "os.environ/LANGFUSE_SECRET_KEY"
+  langfuse_host: "https://cloud.langfuse.com"
+
+  # OpenTelemetry
+  otel_exporter: "otlp"
+  otel_endpoint: "http://otel-collector:4317"
+
+  # Success callbacks for tracking
+  success_callback:
+    - "langfuse"
+
+  # Failure callbacks
+  failure_callback:
+    - "langfuse"
+
+# =========================================================================
+# Rate Limiting
+# =========================================================================
+litellm_settings:
+  # Global rate limits
+  max_parallel_requests: 100
+
+  # Per-user rate limits
+  request_timeout: 600
+
+  # Token tracking
+  track_cost_callback: true
+
+  # Guardrails
+  guardrails:
+    - guardrail_name: "prompt_injection_check"
+      enabled: true
+    - guardrail_name: "pii_redaction"
+      enabled: true
+      fields_to_redact:
+        - "email"
+        - "phone"
+        - "ssn"
+        - "credit_card"
+
+# =========================================================================
+# Health Checks
+# =========================================================================
+health_check_interval: 300  # Check every 5 minutes
+health_check_timeout: 30
+
+# =========================================================================
+# Environment-Specific Overrides
+# =========================================================================
+environment_variables:
+  - OPENAI_API_KEY
+  - ANTHROPIC_API_KEY
+  - GOOGLE_GEMINI_API_KEY
+  - OPENROUTER_API_KEY
+  - LITELLM_MASTER_KEY
+  - LANGFUSE_PUBLIC_KEY
+  - LANGFUSE_SECRET_KEY

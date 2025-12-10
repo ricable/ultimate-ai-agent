@@ -1,0 +1,357 @@
+{
+  "file_hash": "71854726474845a9aeb55a7a2f328315",
+  "feature": {
+    "id": "121 5337",
+    "name": "NR Radio Resource Partitioning",
+    "cxc_code": "CXC4012559",
+    "value_package": "Advanced RAN Slicing",
+    "value_package_id": "FAJ 801 4019",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature ensures that resource partitions get prioritized access to PRBs",
+    "parameters": [
+      {
+        "name": "CellResourceMapping.cellResourceMappingId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CellResourceMapping"
+      },
+      {
+        "name": "CellResourceMapping.priorityPartition5qiList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CellResourceMapping"
+      },
+      {
+        "name": "CellResourceMapping.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CellResourceMapping"
+      },
+      {
+        "name": "CellResourceMapping.shareInheritance",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CellResourceMapping"
+      },
+      {
+        "name": "CellResourceMapping.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CellResourceMapping"
+      },
+      {
+        "name": "NRCellDU.cellResourceMappingRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.nrRrpEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "PartitionMapping.listResourcePartitionRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PartitionMapping"
+      },
+      {
+        "name": "PartitionMapping.networkId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PartitionMapping"
+      },
+      {
+        "name": "PartitionMapping.caPartition",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PartitionMapping"
+      },
+      {
+        "name": "PartitionMapping.partitionId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PartitionMapping"
+      },
+      {
+        "name": "PartitionMapping.partitionMappingId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PartitionMapping"
+      },
+      {
+        "name": "PartitionMapping.partitionMappingName",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PartitionMapping"
+      },
+      {
+        "name": "PartitionMapping.priorityPartition5qiList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PartitionMapping"
+      },
+      {
+        "name": "PartitionMapping.resourceAllocationPolicyRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PartitionMapping"
+      },
+      {
+        "name": "PartitionMapping.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PartitionMapping"
+      },
+      {
+        "name": "ResourceAllocationPolicies.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicies"
+      },
+      {
+        "name": "ResourceAllocationPolicy.demotedRrpSchedulingPriority",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "ResourceAllocationPolicies.resourceAllocationPoliciesId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicies"
+      },
+      {
+        "name": "ResourceAllocationPolicy.rrpOperationModeDl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "ResourceAllocationPolicy.rrpOperationModeUl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "ResourceAllocationPolicy.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "ResourceAllocationPolicy.resourceAllocationPolicyId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "ResourceAllocationPolicy.shareAdjustmentModeDl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "ResourceAllocationPolicy.shareAdjustmentModeUl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "ResourceAllocationPolicy.spectrumShareDl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "ResourceAllocationPolicy.spectrumShareUl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "ResourceAllocationPolicy.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "ResourcePartition.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourcePartition"
+      },
+      {
+        "name": "ServicePolicy.demotedRrpSchedulingPriority",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "ServicePolicy.rrpOperationModeDl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "ServicePolicy.rrpOperationModeUl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "ServicePolicy.serviceId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "ServicePolicy.servicePolicy5qiList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "ServicePolicy.servicePolicyId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "ServicePolicy.servicePolicyName",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "ServicePolicy.spectrumShareDl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "ServicePolicy.spectrumShareUl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "ServicePolicy.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "ResourcePartitionMember.cellIdList",
+        "type": "Affecting",
+        "description": "This attribute is used to map PDU sessions to resource                                 partitions.",
+        "mo_class": "ResourcePartitionMember"
+      },
+      {
+        "name": "ResourcePartitionMember.pLMNIdList",
+        "type": "Affecting",
+        "description": "This attribute is used to map PDU sessions to resource                                 partitions.",
+        "mo_class": "ResourcePartitionMember"
+      },
+      {
+        "name": "ResourcePartitionMember.sNSSAIList",
+        "type": "Affecting",
+        "description": "This attribute is used to map PDU sessions to resource                                 partitions.",
+        "mo_class": "ResourcePartitionMember"
+      },
+      {
+        "name": "ResourceAllocationPolicy.overAllocationAllowed",
+        "type": "Affecting",
+        "description": "The value of this attribute defines whether the over-allocation of                                 resource shares is enabled. The default value of this attribute is                                 set to true.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "Uen.BC",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ResourceAllocationPolicy.shareAdjustmentModeDlattribute",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ResourceAllocationPolicy"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsMacRBSymUtilDlCaScellPartitionDistr",
+        "description": "Performance counter pmEbsMacRBSymUtilDlCaScellPartitionDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacRBSymUtilDlPartitionDistr",
+        "description": "Performance counter pmEbsMacRBSymUtilDlPartitionDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacRBSymUtilDlPriorityPartitionDistr",
+        "description": "Performance counter pmEbsMacRBSymUtilDlPriorityPartitionDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacRBSymUtilDlResidualPartitionDistr",
+        "description": "Performance counter pmEbsMacRBSymUtilDlResidualPartitionDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacRBSymUtilUlCaSCellPartitionDistr",
+        "description": "Performance counter pmEbsMacRBSymUtilUlCaSCellPartitionDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacRBSymUtilUlPartitionDistr",
+        "description": "Performance counter pmEbsMacRBSymUtilUlPartitionDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacRBSymUtilUlPriorityPartitionDistr",
+        "description": "Performance counter pmEbsMacRBSymUtilUlPriorityPartitionDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacRBSymUtilUlResidualPartitionDistr",
+        "description": "Performance counter pmEbsMacRBSymUtilUlResidualPartitionDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmFwkSampLostL2Cellpartition",
+        "description": "Performance counter pmFwkSampLostL2Cellpartition",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012559 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012559 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/109_22104-LZA7016017_1Uen.BC.md",
+    "file_hash": "71854726474845a9aeb55a7a2f328315",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

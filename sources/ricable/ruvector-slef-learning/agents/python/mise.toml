@@ -1,0 +1,338 @@
+# mise.toml - Python Agent Category Configuration
+# For FastAPI, LangChain, and ML agents
+# https://mise.jdx.dev/
+
+[env]
+# Python-specific environment
+AGENT_CATEGORY = "python"
+PYTHONDONTWRITEBYTECODE = "1"
+PYTHONUNBUFFERED = "1"
+
+# Virtual environment configuration
+VIRTUAL_ENV = "{{config_root}}/.venv"
+PIP_DISABLE_PIP_VERSION_CHECK = "1"
+
+# FastAPI configuration
+FASTAPI_ENV = "development"
+UVICORN_HOST = "0.0.0.0"
+UVICORN_PORT = "8000"
+UVICORN_RELOAD = "true"
+
+# ML/AI configuration
+TOKENIZERS_PARALLELISM = "false"
+HF_HOME = "{{env.HOME}}/.cache/huggingface"
+
+# Add venv to path
+_.path = [
+  "{{config_root}}/.venv/bin",
+  "{{config_root}}/scripts"
+]
+
+# Auto-activate virtual environment
+_.python.venv = { path = ".venv", create = true }
+
+[tools]
+# Python versions for ML/AI workloads
+python = { version = "3.12", virtualenv = ".venv" }
+
+# UV for fast package management
+uv = "latest"
+
+# Node.js for tooling
+node = "22"
+
+# Development tools
+"pipx:ruff" = "latest"
+"pipx:pytest" = "latest"
+"pipx:mypy" = "latest"
+
+[settings]
+# Python settings
+python.compile = false
+python.venv_auto_create = true
+
+# UV integration (faster than pip)
+python.uv_pip = true
+
+# =============================================================================
+# PYTHON AGENT TASKS
+# =============================================================================
+
+[tasks.setup]
+description = "Setup Python agent environment"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🐍 Setting up Python agent environment..."
+
+# Create virtual environment with uv if available
+if command -v uv &> /dev/null; then
+  uv venv .venv --seed
+  uv pip install -r requirements.txt
+else
+  python -m venv .venv
+  .venv/bin/pip install --upgrade pip
+  .venv/bin/pip install -r requirements.txt
+fi
+
+echo "✅ Python environment ready"
+"""
+
+[tasks.build]
+description = "Build Python agent"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🔨 Building Python agent..."
+
+source .venv/bin/activate
+
+# Install in development mode
+pip install -e .
+
+# Type checking
+mypy src/ --ignore-missing-imports || true
+
+# Linting
+ruff check --fix src/
+
+echo "✅ Python agent built"
+"""
+
+[tasks.test]
+description = "Run Python tests"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🧪 Running Python tests..."
+source .venv/bin/activate
+
+pytest -v --tb=short
+
+echo "✅ Tests complete"
+"""
+
+[tasks.test-cov]
+description = "Run tests with coverage"
+run = """
+#!/usr/bin/env bash
+source .venv/bin/activate
+pytest --cov=src --cov-report=html --cov-report=term
+"""
+
+[tasks.run]
+description = "Run FastAPI agent locally"
+run = """
+#!/usr/bin/env bash
+source .venv/bin/activate
+uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
+"""
+
+[tasks.lint]
+description = "Lint Python code"
+run = """
+#!/usr/bin/env bash
+source .venv/bin/activate
+echo "🔍 Linting..."
+ruff check --fix src/
+ruff format src/
+echo "✅ Linting complete"
+"""
+
+[tasks.typecheck]
+description = "Run type checking"
+run = """
+#!/usr/bin/env bash
+source .venv/bin/activate
+mypy src/ --ignore-missing-imports
+"""
+
+[tasks.deploy]
+description = "Deploy Python agent to Kubernetes"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+NAMESPACE=${NAMESPACE:-"default"}
+
+echo "🚀 Deploying Python agent to namespace: $NAMESPACE"
+kubectl apply -f k8s/ -n "$NAMESPACE"
+
+echo "✅ Agent deployed"
+"""
+
+[tasks.docker-build]
+description = "Build Docker image"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+REGISTRY=${REGISTRY:-"ghcr.io/ruvnet"}
+AGENT_NAME=${AGENT_NAME:-$(basename $(pwd))}
+VERSION=${VERSION:-"latest"}
+
+echo "🐳 Building Docker image..."
+docker build -t "$REGISTRY/$AGENT_NAME:$VERSION" .
+
+echo "✅ Docker image built: $REGISTRY/$AGENT_NAME:$VERSION"
+"""
+
+[tasks.docker-push]
+description = "Push Docker image"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+REGISTRY=${REGISTRY:-"ghcr.io/ruvnet"}
+AGENT_NAME=${AGENT_NAME:-$(basename $(pwd))}
+VERSION=${VERSION:-"latest"}
+
+docker push "$REGISTRY/$AGENT_NAME:$VERSION"
+echo "✅ Docker image pushed"
+"""
+
+[tasks.logs]
+description = "View agent logs in Kubernetes"
+run = """
+#!/usr/bin/env bash
+AGENT_NAME=${1:-"python-agent"}
+kubectl logs -f -l app="$AGENT_NAME"
+"""
+
+[tasks.shell]
+description = "Open Python shell with agent context"
+run = """
+#!/usr/bin/env bash
+source .venv/bin/activate
+python -i -c "print('Python agent shell ready')"
+"""
+
+[tasks.template]
+description = "Create new Python agent from template"
+run = """
+#!/usr/bin/env bash
+AGENT_NAME=${1:?"Usage: mise run template <agent-name>"}
+
+echo "🐍 Creating Python agent: $AGENT_NAME"
+
+mkdir -p "$AGENT_NAME"/{src,k8s,tests}
+
+# Create pyproject.toml
+cat > "$AGENT_NAME/pyproject.toml" << EOF
+[project]
+name = "zgents-$AGENT_NAME"
+version = "0.1.0"
+description = "Python AI Agent"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "pydantic>=2.5.0",
+    "httpx>=0.26.0",
+    "anthropic>=0.18.0",
+    "openai>=1.10.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.1.0",
+    "mypy>=1.8.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+EOF
+
+# Create requirements.txt
+cat > "$AGENT_NAME/requirements.txt" << EOF
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.5.0
+httpx>=0.26.0
+anthropic>=0.18.0
+openai>=1.10.0
+langchain>=0.1.0
+EOF
+
+# Create main.py
+cat > "$AGENT_NAME/src/main.py" << 'EOF'
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI(title="$AGENT_NAME Agent")
+
+class AgentRequest(BaseModel):
+    message: str
+
+class AgentResponse(BaseModel):
+    status: str
+    agent: str
+    response: str
+
+@app.get("/health")
+async def health():
+    return {"status": "healthy", "agent": "$AGENT_NAME"}
+
+@app.post("/invoke", response_model=AgentResponse)
+async def invoke(request: AgentRequest):
+    return AgentResponse(
+        status="ok",
+        agent="$AGENT_NAME",
+        response=f"Processed: {request.message}"
+    )
+EOF
+
+# Create Dockerfile
+cat > "$AGENT_NAME/Dockerfile" << 'EOF'
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY src/ ./src/
+
+EXPOSE 8000
+
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+EOF
+
+# Create mise.toml
+cat > "$AGENT_NAME/mise.toml" << EOF
+# Inherits from parent agents/python/mise.toml
+[env]
+AGENT_NAME = "$AGENT_NAME"
+EOF
+
+echo "✅ Agent created at $AGENT_NAME/"
+"""
+
+# =============================================================================
+# ML/AI SPECIFIC TASKS
+# =============================================================================
+
+[tasks.install-ml]
+description = "Install ML/AI dependencies"
+run = """
+#!/usr/bin/env bash
+source .venv/bin/activate
+pip install torch transformers sentence-transformers langchain chromadb
+echo "✅ ML dependencies installed"
+"""
+
+[tasks.download-model]
+description = "Download HuggingFace model"
+run = """
+#!/usr/bin/env bash
+MODEL=${1:?"Usage: mise run download-model <model-name>"}
+source .venv/bin/activate
+python -c "from transformers import AutoModel; AutoModel.from_pretrained('$MODEL')"
+echo "✅ Model downloaded: $MODEL"
+"""

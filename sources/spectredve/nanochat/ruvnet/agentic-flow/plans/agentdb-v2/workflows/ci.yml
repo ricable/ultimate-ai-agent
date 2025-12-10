@@ -1,0 +1,331 @@
+# AgentDB v2 CI Pipeline
+# Comprehensive testing across platforms and backends
+
+name: AgentDB CI
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'packages/agentdb/**'
+      - '.github/workflows/agentdb-*.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/agentdb/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '20'
+  AGENTDB_LOG_LEVEL: 'error'
+
+jobs:
+  # ============================================
+  # Quick Checks (Fail Fast)
+  # ============================================
+  lint-and-typecheck:
+    name: Lint & TypeCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: TypeScript check
+        run: npm run typecheck
+        working-directory: packages/agentdb
+
+      - name: ESLint
+        run: npm run lint
+        working-directory: packages/agentdb
+
+      - name: Prettier check
+        run: npm run format:check
+        working-directory: packages/agentdb
+
+  # ============================================
+  # Unit Tests (Both Backends)
+  # ============================================
+  unit-tests:
+    name: Unit Tests (${{ matrix.backend }})
+    runs-on: ubuntu-latest
+    needs: lint-and-typecheck
+    strategy:
+      fail-fast: false
+      matrix:
+        backend: [ruvector, hnswlib]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Install RuVector (if backend=ruvector)
+        if: matrix.backend == 'ruvector'
+        run: npm install @ruvector/core @ruvector/gnn
+        working-directory: packages/agentdb
+
+      - name: Run unit tests
+        run: npm run test:unit -- --coverage
+        working-directory: packages/agentdb
+        env:
+          AGENTDB_BACKEND: ${{ matrix.backend }}
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          files: packages/agentdb/coverage/lcov.info
+          flags: unit-${{ matrix.backend }}
+
+  # ============================================
+  # Integration Tests
+  # ============================================
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: unit-tests
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Install all optional deps
+        run: npm install @ruvector/core @ruvector/gnn
+        working-directory: packages/agentdb
+
+      - name: Run integration tests
+        run: npm run test:integration
+        working-directory: packages/agentdb
+
+  # ============================================
+  # Regression Tests
+  # ============================================
+  regression-tests:
+    name: Regression Tests
+    runs-on: ubuntu-latest
+    needs: unit-tests
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Install all backends
+        run: npm install @ruvector/core @ruvector/gnn
+        working-directory: packages/agentdb
+
+      - name: Run regression tests
+        run: npm run test:regression
+        working-directory: packages/agentdb
+
+      - name: Upload regression results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: regression-results
+          path: packages/agentdb/test-results/
+
+  # ============================================
+  # Backend Parity Check
+  # ============================================
+  backend-parity:
+    name: Backend Parity Verification
+    runs-on: ubuntu-latest
+    needs: unit-tests
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Install RuVector
+        run: npm install @ruvector/core
+        working-directory: packages/agentdb
+
+      - name: Run parity tests
+        run: npm run test:parity
+        working-directory: packages/agentdb
+
+  # ============================================
+  # Security Scan
+  # ============================================
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: lint-and-typecheck
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: npm audit
+        run: npm audit --audit-level=high
+        working-directory: packages/agentdb
+        continue-on-error: true
+
+      - name: Snyk scan
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+          command: test
+
+      - name: Upload Snyk results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: snyk.sarif
+
+  # ============================================
+  # Build Verification
+  # ============================================
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [unit-tests, security]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Build package
+        run: npm run build
+        working-directory: packages/agentdb
+
+      - name: Verify build output
+        run: |
+          test -f dist/index.js
+          test -f dist/index.d.ts
+          test -f dist/backends/factory.js
+        working-directory: packages/agentdb
+
+      - name: Test package install
+        run: |
+          npm pack
+          mkdir /tmp/test-install
+          cp agentdb-*.tgz /tmp/test-install/
+          cd /tmp/test-install
+          npm init -y
+          npm install agentdb-*.tgz
+          node -e "require('agentdb')"
+        working-directory: packages/agentdb
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: packages/agentdb/dist/
+
+  # ============================================
+  # Quick Benchmark (Smoke Test)
+  # ============================================
+  benchmark-smoke:
+    name: Benchmark Smoke Test
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: packages/agentdb
+
+      - name: Install RuVector
+        run: npm install @ruvector/core
+        working-directory: packages/agentdb
+
+      - name: Run quick benchmark
+        run: npm run bench:quick
+        working-directory: packages/agentdb
+
+      - name: Check performance thresholds
+        run: |
+          npm run bench:check-thresholds
+        working-directory: packages/agentdb
+
+  # ============================================
+  # Final Status
+  # ============================================
+  ci-success:
+    name: CI Success
+    runs-on: ubuntu-latest
+    needs:
+      - lint-and-typecheck
+      - unit-tests
+      - integration-tests
+      - regression-tests
+      - backend-parity
+      - security
+      - build
+      - benchmark-smoke
+    if: always()
+    steps:
+      - name: Check all jobs passed
+        run: |
+          if [[ "${{ needs.lint-and-typecheck.result }}" != "success" ]] ||
+             [[ "${{ needs.unit-tests.result }}" != "success" ]] ||
+             [[ "${{ needs.integration-tests.result }}" != "success" ]] ||
+             [[ "${{ needs.regression-tests.result }}" != "success" ]] ||
+             [[ "${{ needs.backend-parity.result }}" != "success" ]] ||
+             [[ "${{ needs.build.result }}" != "success" ]]; then
+            echo "One or more required jobs failed"
+            exit 1
+          fi
+          echo "All CI checks passed!"

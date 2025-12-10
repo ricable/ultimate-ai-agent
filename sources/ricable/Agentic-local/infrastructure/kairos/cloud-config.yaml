@@ -1,0 +1,246 @@
+#cloud-config
+# Kairos Immutable OS Configuration for Edge-Native AI
+# This configuration enables atomic upgrades, P2P mesh networking, and K3s bootstrapping
+
+# =============================================================================
+# SYSTEM CONFIGURATION
+# =============================================================================
+
+hostname: "edge-ai-{{.MachineID}}"
+
+# Users configuration
+users:
+  - name: "admin"
+    passwd: "$6$rounds=4096$..." # Replace with hashed password
+    groups:
+      - "admin"
+      - "docker"
+      - "wheel"
+    ssh_authorized_keys:
+      - "ssh-rsa YOUR_PUBLIC_KEY_HERE"
+    shell: /bin/bash
+
+# =============================================================================
+# K3s KUBERNETES CONFIGURATION
+# =============================================================================
+
+k3s:
+  enabled: true
+  # Role: server (control-plane) or agent (worker)
+  # Set based on node role in cluster
+  args:
+    - --disable=traefik  # We'll use Kong AI Gateway instead
+    - --disable=servicelb
+    - --flannel-backend=wireguard-native
+    - --kubelet-arg=max-pods=250
+    - --kube-apiserver-arg=default-not-ready-toleration-seconds=30
+    - --kube-apiserver-arg=default-unreachable-toleration-seconds=30
+
+# For control-plane nodes (first node)
+k3s-server:
+  enabled: false  # Set to true for control-plane nodes
+  args:
+    - --cluster-init
+    - --tls-san={{.Hostname}}
+    - --tls-san=edge-ai-cluster.local
+
+# For worker nodes
+k3s-agent:
+  enabled: false  # Set to true for worker nodes
+  env:
+    K3S_URL: "https://control-plane.edge-ai-cluster.local:6443"
+    K3S_TOKEN: "${K3S_CLUSTER_TOKEN}"
+
+# =============================================================================
+# P2P MESH NETWORKING (EdgeVPN + Libp2p)
+# =============================================================================
+
+p2p:
+  # Enable P2P mesh networking for distributed cluster
+  enabled: true
+  # Network token for cluster discovery (generate with: kairos generate-token)
+  network_token: "${KAIROS_NETWORK_TOKEN}"
+  # DNS configuration for service discovery
+  dns: true
+  # Disable DHT for private networks (use bootstrap nodes instead)
+  disable_dht: false
+  # VPN configuration
+  vpn:
+    # Enable encrypted VPN tunnel
+    enabled: true
+    # Interface name
+    interface: "edgevpn0"
+    # MTU size
+    mtu: 1420
+  # Bootstrap nodes for initial discovery
+  bootstrap:
+    - "/ip4/bootstrap1.edge-ai.local/tcp/4001/p2p/QmBootstrap1ID"
+    - "/ip4/bootstrap2.edge-ai.local/tcp/4001/p2p/QmBootstrap2ID"
+
+# =============================================================================
+# IMMUTABLE FILESYSTEM CONFIGURATION
+# =============================================================================
+
+install:
+  # Device to install Kairos OS
+  device: "/dev/sda"
+  # Partition layout for A/B atomic upgrades
+  auto: true
+  # Filesystem type
+  filesystem: "ext4"
+  # Recovery partition size
+  recovery-size: 4096
+  # State partition for persistent data
+  state:
+    directories:
+      - /var/lib/rancher/k3s
+      - /var/lib/kubelet
+      - /var/lib/containerd
+      - /var/lib/spinkube
+      - /opt/edge-ai/data
+      - /opt/edge-ai/models
+      - /opt/edge-ai/agentdb
+
+# Persistent directories that survive reboots and upgrades
+stages:
+  initramfs:
+    - name: "Setup persistent storage"
+      directories:
+        - path: /opt/edge-ai
+          permissions: 0755
+          owner: 0
+          group: 0
+
+# =============================================================================
+# SYSTEM SERVICES
+# =============================================================================
+
+# Enable necessary services
+services:
+  # Enable SSH
+  ssh:
+    enabled: true
+    port: 22
+  # Enable container runtime
+  containerd:
+    enabled: true
+  # Enable Docker (for legacy workloads)
+  docker:
+    enabled: true
+
+# =============================================================================
+# UPGRADE CONFIGURATION (Atomic A/B Updates)
+# =============================================================================
+
+upgrade:
+  # Enable automatic upgrades
+  auto: false
+  # Upgrade channel
+  channel: "stable"
+  # Container registry for OS images
+  image: "quay.io/kairos/kairos-ubuntu:latest"
+  # Recovery image
+  recovery-image: "quay.io/kairos/kairos-ubuntu-recovery:latest"
+  # Pre-upgrade hooks
+  pre-upgrade:
+    - name: "Drain K3s node"
+      commands:
+        - kubectl drain $(hostname) --ignore-daemonsets --delete-emptydir-data
+  # Post-upgrade hooks
+  post-upgrade:
+    - name: "Uncordon K3s node"
+      commands:
+        - kubectl uncordon $(hostname)
+
+# =============================================================================
+# HARDWARE DETECTION & LABELS
+# =============================================================================
+
+# Auto-detect hardware and apply Kubernetes labels
+stages:
+  boot:
+    - name: "Detect hardware capabilities"
+      commands:
+        - |
+          # Detect GPU
+          if lspci | grep -i nvidia > /dev/null; then
+            kubectl label node $(hostname) gpu=nvidia --overwrite
+          fi
+          if [ -d /sys/class/misc/npu ]; then
+            kubectl label node $(hostname) npu=true --overwrite
+          fi
+          # Detect architecture
+          ARCH=$(uname -m)
+          if [ "$ARCH" = "x86_64" ]; then
+            kubectl label node $(hostname) arch=amd64 --overwrite
+            # Check for AVX512
+            if grep -q avx512 /proc/cpuinfo; then
+              kubectl label node $(hostname) avx512=true --overwrite
+            fi
+          elif [ "$ARCH" = "aarch64" ]; then
+            kubectl label node $(hostname) arch=arm64 --overwrite
+          fi
+          # Detect memory tier
+          MEM_GB=$(free -g | awk '/^Mem:/{print $2}')
+          if [ "$MEM_GB" -ge 64 ]; then
+            kubectl label node $(hostname) memory-tier=high --overwrite
+          elif [ "$MEM_GB" -ge 16 ]; then
+            kubectl label node $(hostname) memory-tier=medium --overwrite
+          else
+            kubectl label node $(hostname) memory-tier=low --overwrite
+          fi
+
+# =============================================================================
+# NETWORK CONFIGURATION
+# =============================================================================
+
+network:
+  # Network manager
+  manager: "systemd-networkd"
+  # DNS servers
+  dns:
+    - 1.1.1.1
+    - 8.8.8.8
+  # Static IP configuration (optional, comment out for DHCP)
+  # interfaces:
+  #   eth0:
+  #     addresses:
+  #       - 192.168.1.100/24
+  #     gateway4: 192.168.1.1
+
+# =============================================================================
+# SECURITY CONFIGURATION
+# =============================================================================
+
+security:
+  # Enable SELinux
+  selinux: enforcing
+  # Firewall rules
+  firewall:
+    enabled: true
+    rules:
+      - port: 22
+        protocol: tcp
+        action: allow
+      - port: 6443
+        protocol: tcp
+        action: allow
+      - port: 10250
+        protocol: tcp
+        action: allow
+      - port: 4001
+        protocol: tcp
+        action: allow  # Libp2p
+      - port: 51820
+        protocol: udp
+        action: allow  # WireGuard
+
+# =============================================================================
+# RUNTIME EXTENSIONS
+# =============================================================================
+
+# Install additional packages during boot
+bundles:
+  - targets:
+      - run://quay.io/kairos/community-bundles:nvidia-driver  # NVIDIA drivers
+      - run://quay.io/kairos/community-bundles:cert-manager   # TLS certificates

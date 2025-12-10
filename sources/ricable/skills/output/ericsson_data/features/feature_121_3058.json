@@ -1,0 +1,46 @@
+{
+  "id": "121 3058",
+  "name": "IFLB Activation Threshold",
+  "cxc_code": "CXC4011554",
+  "value_package": "Multi-Carrier Load Management",
+  "value_package_id": "FAJ 801 0427",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The IFLB Activation Threshold feature reduces UE measurements and handovers for IFLB",
+  "parameters": [
+    {
+      "name": "EUtranFreqRelation.lbActivationThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "Uen.AJ",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011554 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011554 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/243_22104-LZA7016014_1Uen.AJ.md",
+  "file_hash": "61cabbb66f649b256159a4eb615a24aa",
+  "processed_at": "2025-10-19 15:50:05",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,131 @@
+{
+  "file_hash": "e7d0f03697948c176c72a84c883e36bb",
+  "feature": {
+    "id": "121 3011",
+    "name": "Service Specific DRX",
+    "cxc_code": "CXC4011327",
+    "value_package": "VoLTE",
+    "value_package_id": "FAJ 801 0443",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "Specific DRX feature enables configuring different DRX parameter settings for different",
+    "parameters": [
+      {
+        "name": "QciProfilePredefined.drxProfileRef",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfileOperatorDefined.drxPriority",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "DrxProfile.onDurationTimer",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.drxInactivityTimer",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.drxRetransmissionTimer",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.shortDrxCycle",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.shortDrxCycleTimer",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.longDrxCycle",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.longDrxCycleOnly",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.drxState",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "ENodeBFunction.tMoVoiceBearerEstSupervision",
+        "type": "Affecting",
+        "description": "Defines the guard timer used to delay DRX configuration at voice call                                 setup.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "Uen.BG",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "PreschedProfile.preschedulingDuration",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PreschedProfile"
+      },
+      {
+        "name": "DrxProfile.drxProfileId",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "DrxProfile"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmDrxSleepTime",
+        "description": "Performance counter pmDrxSleepTime",
+        "category": "Energy"
+      },
+      {
+        "name": "pmRrcConnReconfNoDrxMoVoice",
+        "description": "Performance counter pmRrcConnReconfNoDrxMoVoice",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011327 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011327 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/95_22104-LZA7016014_1Uen.BG.md",
+    "file_hash": "e7d0f03697948c176c72a84c883e36bb",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

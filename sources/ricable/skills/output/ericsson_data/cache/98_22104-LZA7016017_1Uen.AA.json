@@ -1,0 +1,97 @@
+{
+  "file_hash": "fb6c147f03e323612822638f1aa92274",
+  "feature": {
+    "id": "121 5300",
+    "name": "Directional Interference Mitigation",
+    "cxc_code": "CXC4012536",
+    "value_package": "Massive MIMO Enabler",
+    "value_package_id": "FAJ 801 4004",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature introduces horizontal and vertical spatial null steering on the configured",
+    "parameters": [
+      {
+        "name": "Affected DL channels",
+        "type": "NRSectorCarrier.nullSteeringMode",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Frequency",
+        "type": "frequency member of the                                         NRSectorCarrier.elevationNull or the                                         NRSectorCarrier.azimuthNull attributes(1)",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Null width",
+        "type": "nullWidth member of the                                         NRSectorCarrier.elevationNull or the                                         NRSectorCarrier.azimuthNull                                     attributes",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Horizontal angle",
+        "type": "horizontalAngle member of the                                         NRSectorCarrier.azimuthNull attribute",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Vertical angle",
+        "type": "verticalAngle member of the                                         NRSectorCarrier.elevationNull or the                                         NRSectorCarrier.azimuthNull                                     attributes",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "NRSectorCarrier.azimuthNull",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.elevationNull",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "NRSectorCarrier.nullSteeringMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRSectorCarrier"
+      },
+      {
+        "name": "CommonBeamforming.coverageShape",
+        "type": "Affecting",
+        "description": "To use the feature, this attribute must be set to                                     MACRO_1.",
+        "mo_class": "CommonBeamforming"
+      },
+      {
+        "name": "CommonBeamforming.customComBfwWideBeam",
+        "type": "Affecting",
+        "description": "To use the feature, this attribute must be empty.",
+        "mo_class": "CommonBeamforming"
+      },
+      {
+        "name": "Uen.AA",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012536 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012536 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch4/98_22104-LZA7016017_1Uen.AA.md",
+    "file_hash": "fb6c147f03e323612822638f1aa92274",
+    "processed_at": "2025-10-19 15:50:09",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

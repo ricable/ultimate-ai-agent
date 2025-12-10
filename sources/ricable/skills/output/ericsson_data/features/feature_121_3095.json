@@ -1,0 +1,139 @@
+{
+  "id": "121 3095",
+  "name": "Multicabinet Control",
+  "cxc_code": "CXC4011809",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 121 4629 R12",
+  "access_type": "LTE, WCDMA",
+  "node_type": "DU Radio Node, Baseband Radio Node",
+  "description": "",
+  "summary": "The feature allows for large and flexible RBS configurations over a cluster of RBS",
+  "parameters": [
+    {
+      "name": "Climate.climateControlMode",
+      "type": "Introduced",
+      "description": "See MOM description.  By default, the NORMAL value is used, but for RBS with                   integrated batteries it is possible to use the BATTERY LIFE                     EXTENSION value.",
+      "mo_class": "Climate"
+    },
+    {
+      "name": "BatteryBackup.controlDomainRef",
+      "type": "Introduced",
+      "description": "See MOM description.  This attribute must be configured even                 if a single cabinet configuration is used. It must refer to the cabinet where the                 functional MO operates, as follows:  For the BatteryBackup MO, the cabinet where the BFUs are                       placed.     For the Climate MO, the cabinet where the Support System,                       SCUs, or CLUs are placed.     For the PowerDistribution MO, the cabinet where the PDUs                       are placed.     For the PowerSupply MO, the cabinet where the PSUs are                       placed.     The controlDomainRef attribute can refer to only one                   cabinet at a time.",
+      "mo_class": "BatteryBackup"
+    },
+    {
+      "name": "Climate.controlDomainRef",
+      "type": "Introduced",
+      "description": "See MOM description.  This attribute must be configured even                 if a single cabinet configuration is used. It must refer to the cabinet where the                 functional MO operates, as follows:  For the BatteryBackup MO, the cabinet where the BFUs are                       placed.     For the Climate MO, the cabinet where the Support System,                       SCUs, or CLUs are placed.     For the PowerDistribution MO, the cabinet where the PDUs                       are placed.     For the PowerSupply MO, the cabinet where the PSUs are                       placed.     The controlDomainRef attribute can refer to only one                   cabinet at a time.",
+      "mo_class": "Climate"
+    },
+    {
+      "name": "PowerDistribution.controlDomainRef",
+      "type": "Introduced",
+      "description": "See MOM description.  This attribute must be configured even                 if a single cabinet configuration is used. It must refer to the cabinet where the                 functional MO operates, as follows:  For the BatteryBackup MO, the cabinet where the BFUs are                       placed.     For the Climate MO, the cabinet where the Support System,                       SCUs, or CLUs are placed.     For the PowerDistribution MO, the cabinet where the PDUs                       are placed.     For the PowerSupply MO, the cabinet where the PSUs are                       placed.     The controlDomainRef attribute can refer to only one                   cabinet at a time.",
+      "mo_class": "PowerDistribution"
+    },
+    {
+      "name": "PowerSupply.controlDomainRef",
+      "type": "Introduced",
+      "description": "See MOM description.  This attribute must be configured even                 if a single cabinet configuration is used. It must refer to the cabinet where the                 functional MO operates, as follows:  For the BatteryBackup MO, the cabinet where the BFUs are                       placed.     For the Climate MO, the cabinet where the Support System,                       SCUs, or CLUs are placed.     For the PowerDistribution MO, the cabinet where the PDUs                       are placed.     For the PowerSupply MO, the cabinet where the PSUs are                       placed.     The controlDomainRef attribute can refer to only one                   cabinet at a time.",
+      "mo_class": "PowerSupply"
+    },
+    {
+      "name": "EcBus.ecBusConnectorRef",
+      "type": "Introduced",
+      "description": "See MOM description.  The processing unit to which the EC bus in the cabinet is connected.",
+      "mo_class": "EcBus"
+    },
+    {
+      "name": "EcPort.ecBusRef",
+      "type": "Introduced",
+      "description": "See MOM description.  The EcPort MO cannot be created without referring to an                   existing EcBus MO.",
+      "mo_class": "EcPort"
+    },
+    {
+      "name": "EcBus.equipmentSupportFunctionRef",
+      "type": "Introduced",
+      "description": "See MOM description.  Reference for an instance of the functional MO identifying the primary or                   secondary support system role the node takes. In a multiple roles node,                   configuration is mandatory, and the roles of the two instances must be reversed.                   In a single role node, configuration is optional.",
+      "mo_class": "EcBus"
+    },
+    {
+      "name": "ExternalNode.equipmentSupportFunctionRef",
+      "type": "Introduced",
+      "description": "See MOM description.  Reference for an instance of the functional MO identifying the primary or                   secondary support system role the node takes. In a multiple roles node,                   configuration is mandatory, and the roles of the two instances must be reversed.                   In a single role node, configuration is optional.",
+      "mo_class": "ExternalNode"
+    },
+    {
+      "name": "FieldReplaceableUnit.positionRef",
+      "type": "Introduced",
+      "description": "See MOM description.  This attribute must be configured even if a single cabinet configuration is                   used.  Reference for a hardware-related MO to the cabinet to which the hardware belongs.                   It is set to refer an existing cabinet.   The positionRef parameter must be set for                     FieldReplaceableUnit MOs representing all support system                   hardware units, such as BFU, PDU, PSU, SCU, in the cabinet in Baseband Radio Node                   configurations.",
+      "mo_class": "FieldReplaceableUnit"
+    },
+    {
+      "name": "EquipmentSupportFunction.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EquipmentSupportFunction"
+    },
+    {
+      "name": "Cabinet.sharedCabinetIdentifier",
+      "type": "Introduced",
+      "description": "See MOM description.  This is a unique identifier for the cabinet in a shared cabinet configuration.                   The same value must be set for all nodes that share the cabinet. If a secondary                   role node is shared between multiple cabinets, then the node has multiple                     sharedCabinetIdentifier values. Each                     Cabinet MO class instance defined under the secondary role                   node has a unique value.",
+      "mo_class": "Cabinet"
+    },
+    {
+      "name": "ExternalNode.inciConnectorRef",
+      "type": "Introduced",
+      "description": "See MOM description.  Used as a reference to the shared intermediate unit that is providing the                   termination point of INCI when the nodes are connected through CPRI.  Used as a reference to the EcBus MO when the nodes are                   connected through an EC bus.  Used as a reference to the ExternalNode MO representing the                   common primary node when this ExternalNode MO represents a                   neighbor secondary node.",
+      "mo_class": "ExternalNode"
+    },
+    {
+      "name": "Climate.climateControlMode",
+      "type": "Affected",
+      "description": "The parameter is deprecated in the Cabinet MO. The                   functionality is moved to the Climate MO.",
+      "mo_class": "Climate"
+    },
+    {
+      "name": "Uen.CE",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmentSupportFunction",
+      "description": "Performance counter pmentSupportFunction",
+      "category": "General"
+    },
+    {
+      "name": "pmentSupportFunctionRef",
+      "description": "Performance counter pmentSupportFunctionRef",
+      "category": "General"
+    },
+    {
+      "name": "pmentSupportfinction",
+      "description": "Performance counter pmentSupportfinction",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": null,
+  "deactivation_step": null,
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/261_22104-LZA7016014_1Uen.CE.md",
+  "file_hash": "74c83b958df152b3821ed1f0b533d17c",
+  "processed_at": "2025-10-19 17:07:27",
+  "network_impact": {},
+  "performance_impact": {}
+}

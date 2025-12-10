@@ -1,0 +1,463 @@
+{
+  "id": "121 4916",
+  "name": "PLMN-Specific Access Barring",
+  "cxc_code": "CXC4012278",
+  "value_package": "Mission Critical  High Load Handling",
+  "value_package_id": "FAJ 801 1016",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node  DU Radio Node",
+  "description": "",
+  "summary": "The feature allows to differentiate access barring configuration based on PLMNs in the",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.acBarringPlmnPabEnabled  EUtranCellTDD.acBarringPlmnPabEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.plmn1AbConfProfileRef  EUtranCellTDD.plmn1AbConfProfileRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.plmn2AbConfProfileRef  EUtranCellTDD.plmn2AbConfProfileRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.plmn3AbConfProfileRef  EUtranCellTDD.plmn3AbConfProfileRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.plmnPabBarringPriorityLevel  EUtranCellTDD.plmnPabBarringPriorityLevel",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringForCsfb",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringForCsfbPresence",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringForEmergency",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringForEmergencySpecAcPres",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringForMmtelVidPres",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringForMmtelVoicePres",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringForMoData",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringForMoDataPresence",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringForMoSignalling",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringForMoSignalPresence",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringPerPlmnPriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringPlmnId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringSkipForMmtelVideo",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringSkipForMmtelVoice",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.acBarringSkipForSms",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.ssacBarringForMmtelVideo",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "PlmnAbConfProfile.ssacBarringForMmtelVoice",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PlmnAbConfProfile"
+    },
+    {
+      "name": "EUtranCellFDD.acBarringInfoPresent  EUtranCellTDD.acBarringInfoPresent",
+      "type": "Affecting",
+      "description": "If attribute acBarringInfoPresent is set to false,                                 none of the common access barring parameters are present in SIB2                                 messages. Therefore, UEs of an earlier 3GPP release than Release 12                                 are not barred, because they use only the common access barring                                 parameters. This does not affect access barring by the PLMN-Specific                                 Access Barring feature of 3GPP Release 12 or later UEs.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.acBarringPresence  EUtranCellTDD.acBarringPresence",
+      "type": "Affecting",
+      "description": "The priority components of the corresponding MO structure specify the                                 priority levels of each traffic class for the PLMN-specific access                                 barring parameters as for the common access barring parameters.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbabDecr  EUtranCellTDD.lbabDecr",
+      "type": "Affecting",
+      "description": "These parameters are used in the existing access class barring                                 features and reused by the PLMN-Specific Access Barring feature.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbabIncr  EUtranCellTDD.lbabIncr",
+      "type": "Affecting",
+      "description": "These parameters are used in the existing access class barring                                 features and reused by the PLMN-Specific Access Barring feature.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbabMinBarringFactor  EUtranCellTDD.lbabMinBarringFactor",
+      "type": "Affecting",
+      "description": "These parameters are used in the existing access class barring                                 features and reused by the PLMN-Specific Access Barring feature.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbabPeriod  EUtranCellTDD.lbabPeriod",
+      "type": "Affecting",
+      "description": "These parameters are used in the existing access class barring                                 features and reused by the PLMN-Specific Access Barring feature.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbabThreshRejectRateHigh  EUtranCellTDD.lbabThreshRejectRateHigh",
+      "type": "Affecting",
+      "description": "These parameters are used in the existing access class barring                                 features and reused by the PLMN-Specific Access Barring feature.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbabThreshRejectRateLow  EUtranCellTDD.lbabThreshRejectRateLow",
+      "type": "Affecting",
+      "description": "These parameters are used in the existing access class barring                                 features and reused by the PLMN-Specific Access Barring feature.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbabThreshTimeHigh  EUtranCellTDD.lbabThreshTimeHigh",
+      "type": "Affecting",
+      "description": "These parameters are used in the existing access class barring                                 features and reused by the PLMN-Specific Access Barring feature.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbabThreshTimeLow  EUtranCellTDD.lbabThreshTimeLow",
+      "type": "Affecting",
+      "description": "These parameters are used in the existing access class barring                                 features and reused by the PLMN-Specific Access Barring feature.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbabMinBarringFactorPrio1  EUtranCellTDD.lbabMinBarringFactorPrio1",
+      "type": "Affecting",
+      "description": "These parameters are introduced by the Progressive Access Barring                                 feature and reused by the PLMN-Specific Access Barring feature.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbabMinBarringFactorPrio2  EUtranCellTDD.lbabMinBarringFactorPrio2",
+      "type": "Affecting",
+      "description": "These parameters are introduced by the Progressive Access Barring                                 feature and reused by the PLMN-Specific Access Barring feature.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbabMinBarringFactorPrio3  EUtranCellTDD.lbabMinBarringFactorPrio3",
+      "type": "Affecting",
+      "description": "These parameters are introduced by the Progressive Access Barring                                 feature and reused by the PLMN-Specific Access Barring feature.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.lbabMinBarringFactorPrio4  EUtranCellTDD.lbabMinBarringFactorPrio4",
+      "type": "Affecting",
+      "description": "These parameters are introduced by the Progressive Access Barring                                 feature and reused by the PLMN-Specific Access Barring feature.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.minIntensityLimitForLbab  EUtranCellTDD.minIntensityLimitForLbab",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "Uen.AT",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.iflbAbEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.iflbAbEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "PtmFunction.ptmEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "PtmFunction"
+    },
+    {
+      "name": "PtmCellProfile.cellType",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "PtmCellProfile"
+    },
+    {
+      "name": "EUtranCellFDD.ptmCellProfileRef",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.ptmCellProfileRef",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmAcBarringCsfbSpecAcPlmn1Distr",
+      "description": "Performance counter pmAcBarringCsfbSpecAcPlmn1Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringCsfbSpecAcPlmn2Distr",
+      "description": "Performance counter pmAcBarringCsfbSpecAcPlmn2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringCsfbSpecAcPlmn3Distr",
+      "description": "Performance counter pmAcBarringCsfbSpecAcPlmn3Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringEmSpecAcPlmn1Distr",
+      "description": "Performance counter pmAcBarringEmSpecAcPlmn1Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringEmSpecAcPlmn2Distr",
+      "description": "Performance counter pmAcBarringEmSpecAcPlmn2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringEmSpecAcPlmn3Distr",
+      "description": "Performance counter pmAcBarringEmSpecAcPlmn3Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringModSpecAcPlmn1Distr",
+      "description": "Performance counter pmAcBarringModSpecAcPlmn1Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringModSpecAcPlmn2Distr",
+      "description": "Performance counter pmAcBarringModSpecAcPlmn2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringModSpecAcPlmn3Distr",
+      "description": "Performance counter pmAcBarringModSpecAcPlmn3Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringMosSpecAcPlmn1Distr",
+      "description": "Performance counter pmAcBarringMosSpecAcPlmn1Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringMosSpecAcPlmn2Distr",
+      "description": "Performance counter pmAcBarringMosSpecAcPlmn2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringMosSpecAcPlmn3Distr",
+      "description": "Performance counter pmAcBarringMosSpecAcPlmn3Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringVideoSpecAcPlmn1Distr",
+      "description": "Performance counter pmAcBarringVideoSpecAcPlmn1Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringVideoSpecAcPlmn2Distr",
+      "description": "Performance counter pmAcBarringVideoSpecAcPlmn2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringVideoSpecAcPlmn3Distr",
+      "description": "Performance counter pmAcBarringVideoSpecAcPlmn3Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringVoiceSpecAcPlmn1Distr",
+      "description": "Performance counter pmAcBarringVoiceSpecAcPlmn1Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringVoiceSpecAcPlmn2Distr",
+      "description": "Performance counter pmAcBarringVoiceSpecAcPlmn2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAcBarringVoiceSpecAcPlmn3Distr",
+      "description": "Performance counter pmAcBarringVoiceSpecAcPlmn3Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringCsfbPlmn1Distr",
+      "description": "Performance counter pmAccessClassBarringCsfbPlmn1Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringCsfbPlmn2Distr",
+      "description": "Performance counter pmAccessClassBarringCsfbPlmn2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringCsfbPlmn3Distr",
+      "description": "Performance counter pmAccessClassBarringCsfbPlmn3Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringModPlmn1Distr",
+      "description": "Performance counter pmAccessClassBarringModPlmn1Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringModPlmn2Distr",
+      "description": "Performance counter pmAccessClassBarringModPlmn2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringModPlmn3Distr",
+      "description": "Performance counter pmAccessClassBarringModPlmn3Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringMosPlmn1Distr",
+      "description": "Performance counter pmAccessClassBarringMosPlmn1Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringMosPlmn2Distr",
+      "description": "Performance counter pmAccessClassBarringMosPlmn2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringMosPlmn3Distr",
+      "description": "Performance counter pmAccessClassBarringMosPlmn3Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringVideoPlmn1Distr",
+      "description": "Performance counter pmAccessClassBarringVideoPlmn1Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringVideoPlmn2Distr",
+      "description": "Performance counter pmAccessClassBarringVideoPlmn2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringVideoPlmn3Distr",
+      "description": "Performance counter pmAccessClassBarringVideoPlmn3Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringVoicePlmn1Distr",
+      "description": "Performance counter pmAccessClassBarringVoicePlmn1Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringVoicePlmn2Distr",
+      "description": "Performance counter pmAccessClassBarringVoicePlmn2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmAccessClassBarringVoicePlmn3Distr",
+      "description": "Performance counter pmAccessClassBarringVoicePlmn3Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012278 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012278 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/412_22104-LZA7016014_1Uen.AT.md",
+  "file_hash": "4bb6222e78f0d4c6a7fd43f4bfe39a78",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

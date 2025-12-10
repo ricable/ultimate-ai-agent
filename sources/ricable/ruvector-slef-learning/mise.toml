@@ -1,0 +1,1092 @@
+# mise.toml - Root configuration for zgents environment manager
+# https://mise.jdx.dev/
+# Reproducible environments for edge-native AI agents
+# Supports local Docker on Mac and Kairos Kubernetes with k3s
+
+[env]
+# Core environment
+NODE_ENV = "development"
+MISE_EXPERIMENTAL = "1"
+MISE_USE_TOML = "1"
+
+# Agent runtime configuration
+ZGENTS_ROOT = "{{config_root}}"
+ZGENTS_AGENTS_DIR = "{{config_root}}/agents"
+ZGENTS_CONFIG_DIR = "{{config_root}}/config"
+
+# Kubernetes configuration
+KUBECONFIG = "{{env.HOME}}/.kube/config"
+K3S_KUBECONFIG_MODE = "644"
+
+# Runtime shims
+_.path = [
+  "{{config_root}}/node_modules/.bin",
+  "{{config_root}}/scripts",
+  "{{env.HOME}}/.local/share/mise/shims"
+]
+
+[tools]
+# Core JavaScript/TypeScript runtime
+node = "22"
+bun = "latest"
+
+# Systems programming (for WASM compilation)
+rust = { version = "stable", targets = "wasm32-unknown-unknown,wasm32-wasi" }
+
+# Python for ML/AI agents
+python = { version = "3.12", virtualenv = ".venv" }
+
+# Container and Kubernetes tools
+kubectl = "latest"
+helm = "latest"
+k9s = "latest"
+
+# WASM toolchain
+"cargo:wasm-pack" = "latest"
+"cargo:cargo-component" = "latest"
+
+# Development tools
+"npm:esbuild" = "latest"
+"npm:tsx" = "latest"
+
+# Code quality
+"npm:prettier" = "latest"
+"npm:eslint" = "latest"
+
+# Spin CLI for SpinKube
+[tools.spin]
+version = "latest"
+
+[settings]
+# Enable shims for non-interactive environments (Docker, CI/CD, Kubernetes)
+shims_dir = "~/.local/share/mise/shims"
+always_keep_download = false
+legacy_version_file = true
+asdf_compat = true
+jobs = 4
+raw = false
+yes = true
+
+# Python settings
+python.compile = false
+python.venv_auto_create = true
+
+# Rust settings
+rust.cargo_home = "{{env.HOME}}/.cargo"
+rust.rustup_home = "{{env.HOME}}/.rustup"
+
+# Age encryption for secrets
+age.key_file = "{{config_root}}/config/age-key.txt"
+age.strict = false
+
+# =============================================================================
+# MISE TASKS - Agent Lifecycle Management
+# =============================================================================
+
+[tasks.setup]
+description = "Initialize zgents environment with all dependencies"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🚀 Setting up zgents environment..."
+
+# Install mise tools
+mise install
+
+# Install Node.js dependencies
+bun install || npm install
+
+# Create Python virtual environment
+python -m venv .venv
+source .venv/bin/activate
+pip install -r apps/fastapi/requirements.txt
+
+# Setup Rust WASM targets
+rustup target add wasm32-unknown-unknown
+rustup target add wasm32-wasi
+
+# Generate age key if not exists
+if [ ! -f config/age-key.txt ]; then
+  mkdir -p config
+  age-keygen -o config/age-key.txt 2>/dev/null || echo "Install age for secrets: brew install age"
+fi
+
+echo "✅ zgents environment ready!"
+"""
+
+[tasks.dev]
+description = "Start local development environment with Docker"
+depends = ["setup"]
+run = """
+#!/usr/bin/env bash
+docker compose up -d
+echo "🐳 Development environment started"
+echo "   - Access services at localhost"
+"""
+
+[tasks.dev-stop]
+description = "Stop local development environment"
+run = "docker compose down"
+
+[tasks.build]
+description = "Build all agent artifacts"
+depends = ["build-wasm", "build-python", "build-node"]
+run = "echo '✅ All agents built'"
+
+[tasks.build-wasm]
+description = "Build WebAssembly agents"
+dir = "apps/wasmedge-js"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+echo "🔨 Building WasmEdge agent..."
+npm run build:bundle
+echo "✅ WasmEdge agent built"
+"""
+
+[tasks.build-spin]
+description = "Build Spin/SpinKube agents"
+dir = "apps/spin-js"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+echo "🔨 Building Spin agent..."
+spin build
+echo "✅ Spin agent built"
+"""
+
+[tasks.build-python]
+description = "Build Python/FastAPI agents"
+dir = "apps/fastapi"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+echo "🔨 Building FastAPI agent..."
+source ../../.venv/bin/activate
+pip install -e .
+echo "✅ FastAPI agent built"
+"""
+
+[tasks.build-node]
+description = "Build Node.js dependencies"
+run = """
+#!/usr/bin/env bash
+echo "🔨 Building Node.js dependencies..."
+bun install || npm install
+echo "✅ Node.js dependencies built"
+"""
+
+[tasks.test]
+description = "Run all agent tests"
+depends = ["test-wasm", "test-python"]
+run = "echo '✅ All tests passed'"
+
+[tasks.test-wasm]
+description = "Run WebAssembly agent tests"
+run = "bash tests/wasm/test-wasm-agents.sh"
+
+[tasks.test-python]
+description = "Run Python agent tests"
+dir = "apps/fastapi"
+run = """
+#!/usr/bin/env bash
+source ../../.venv/bin/activate
+pytest -v
+"""
+
+[tasks.lint]
+description = "Run linting on all code"
+run = """
+#!/usr/bin/env bash
+echo "🔍 Linting JavaScript/TypeScript..."
+npx eslint --fix . || true
+
+echo "🔍 Linting Python..."
+source .venv/bin/activate
+ruff check --fix apps/fastapi || true
+
+echo "🔍 Formatting..."
+npx prettier --write .
+"""
+
+# =============================================================================
+# KUBERNETES DEPLOYMENT TASKS
+# =============================================================================
+
+[tasks.k8s-apply]
+description = "Deploy to Kubernetes cluster"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+echo "🚀 Deploying to Kubernetes..."
+kubectl apply -k infrastructure/
+echo "✅ Kubernetes resources applied"
+"""
+
+[tasks.k8s-delete]
+description = "Remove from Kubernetes cluster"
+run = "kubectl delete -k infrastructure/"
+
+[tasks.k8s-status]
+description = "Check Kubernetes deployment status"
+run = """
+#!/usr/bin/env bash
+echo "📊 Kubernetes Status:"
+kubectl get pods -A
+kubectl get svc -A
+"""
+
+# =============================================================================
+# AGENT LIFECYCLE TASKS
+# =============================================================================
+
+[tasks.agent-create]
+description = "Create a new agent from template"
+run = """
+#!/usr/bin/env bash
+AGENT_NAME=${1:-"new-agent"}
+AGENT_TYPE=${2:-"wasm"}
+
+echo "🤖 Creating agent: $AGENT_NAME (type: $AGENT_TYPE)"
+
+case $AGENT_TYPE in
+  wasm)
+    cp -r agents/wasm/template "agents/wasm/$AGENT_NAME"
+    ;;
+  python)
+    cp -r agents/python/template "agents/python/$AGENT_NAME"
+    ;;
+  rust)
+    cp -r agents/rust/template "agents/rust/$AGENT_NAME"
+    ;;
+  *)
+    echo "❌ Unknown agent type: $AGENT_TYPE"
+    exit 1
+    ;;
+esac
+
+echo "✅ Agent created at agents/$AGENT_TYPE/$AGENT_NAME"
+"""
+
+[tasks.agent-list]
+description = "List all available agents"
+run = """
+#!/usr/bin/env bash
+echo "🤖 Available Agents:"
+echo ""
+echo "WASM Agents:"
+ls -1 agents/wasm 2>/dev/null || echo "  (none)"
+echo ""
+echo "Python Agents:"
+ls -1 agents/python 2>/dev/null || echo "  (none)"
+echo ""
+echo "Rust Agents:"
+ls -1 agents/rust 2>/dev/null || echo "  (none)"
+"""
+
+[tasks.agent-deploy]
+description = "Deploy agent to cluster"
+run = """
+#!/usr/bin/env bash
+AGENT_PATH=${1:?"Usage: mise run agent-deploy <agent-path>"}
+echo "🚀 Deploying agent from $AGENT_PATH..."
+kubectl apply -f "$AGENT_PATH/k8s/"
+"""
+
+# =============================================================================
+# SECRETS MANAGEMENT
+# =============================================================================
+
+[tasks.secrets-init]
+description = "Initialize secrets with age encryption"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ ! -f config/age-key.txt ]; then
+  echo "🔐 Generating age encryption key..."
+  mkdir -p config
+  age-keygen -o config/age-key.txt
+  echo "✅ Age key created at config/age-key.txt"
+  echo "⚠️  Keep this file secure and backed up!"
+else
+  echo "✅ Age key already exists"
+fi
+"""
+
+[tasks.secrets-set]
+description = "Set an encrypted secret"
+run = """
+#!/usr/bin/env bash
+SECRET_NAME=${1:?"Usage: mise run secrets-set <name>"}
+mise set --age-encrypt --prompt "$SECRET_NAME"
+echo "✅ Secret $SECRET_NAME encrypted"
+"""
+
+# =============================================================================
+# SHIMS AND RUNTIME CONFIGURATION
+# =============================================================================
+
+[tasks.shims-setup]
+description = "Setup mise shims for non-interactive environments"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🔗 Setting up mise shims..."
+
+# Ensure shims directory exists
+mkdir -p ~/.local/share/mise/shims
+
+# Reshim to create all shim binaries
+mise reshim
+
+# Add to profile if not present
+SHIM_PATH='export PATH="$HOME/.local/share/mise/shims:$PATH"'
+if ! grep -q "mise/shims" ~/.bashrc 2>/dev/null; then
+  echo "$SHIM_PATH" >> ~/.bashrc
+fi
+if ! grep -q "mise/shims" ~/.zshrc 2>/dev/null; then
+  echo "$SHIM_PATH" >> ~/.zshrc
+fi
+
+echo "✅ Shims configured"
+echo "   Shims directory: ~/.local/share/mise/shims"
+"""
+
+[tasks.shims-verify]
+description = "Verify shims are working correctly"
+run = """
+#!/usr/bin/env bash
+echo "🔍 Verifying shims..."
+echo ""
+echo "Node: $(which node) -> $(node --version 2>/dev/null || echo 'not found')"
+echo "Bun: $(which bun) -> $(bun --version 2>/dev/null || echo 'not found')"
+echo "Python: $(which python) -> $(python --version 2>/dev/null || echo 'not found')"
+echo "Rust: $(which rustc) -> $(rustc --version 2>/dev/null || echo 'not found')"
+echo "kubectl: $(which kubectl) -> $(kubectl version --client --short 2>/dev/null || echo 'not found')"
+"""
+
+# =============================================================================
+# DOCKER INTEGRATION
+# =============================================================================
+
+[tasks.docker-build]
+description = "Build Docker images for all agents"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🐳 Building Docker images..."
+
+# Build WasmEdge agent
+docker build -t ghcr.io/ruvnet/wasmedge-agent:latest apps/wasmedge-js/
+
+# Build FastAPI agent
+docker build -t ghcr.io/ruvnet/fastapi-agent:latest apps/fastapi/
+
+echo "✅ Docker images built"
+"""
+
+[tasks.docker-push]
+description = "Push Docker images to registry"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+docker push ghcr.io/ruvnet/wasmedge-agent:latest
+docker push ghcr.io/ruvnet/fastapi-agent:latest
+
+echo "✅ Docker images pushed"
+"""
+
+# =============================================================================
+# KAIROS/K3S SPECIFIC TASKS
+# =============================================================================
+
+[tasks.kairos-prepare]
+description = "Prepare Kairos node configuration"
+run = """
+#!/usr/bin/env bash
+echo "☁️  Preparing Kairos configuration..."
+cat infrastructure/kairos/cloud-config.yaml
+echo ""
+echo "Use this configuration with Kairos installer"
+"""
+
+[tasks.k3s-join]
+description = "Generate K3s join command for new nodes"
+run = """
+#!/usr/bin/env bash
+K3S_URL=${K3S_URL:?"Set K3S_URL environment variable"}
+K3S_TOKEN=${K3S_TOKEN:?"Set K3S_TOKEN environment variable"}
+
+echo "🔗 K3s Join Command:"
+echo ""
+echo "curl -sfL https://get.k3s.io | K3S_URL=$K3S_URL K3S_TOKEN=$K3S_TOKEN sh -"
+"""
+
+# =============================================================================
+# KAGENTI OPERATOR INTEGRATION
+# =============================================================================
+
+[tasks.kagenti-install]
+description = "Install kagenti-operator to cluster"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🤖 Installing kagenti-operator..."
+
+# Add Helm repo if not exists
+helm repo add kagenti https://kagenti.github.io/charts 2>/dev/null || true
+helm repo update
+
+# Install operator
+helm upgrade --install kagenti-operator kagenti/kagenti-operator \
+  --namespace kagenti-system \
+  --create-namespace
+
+echo "✅ kagenti-operator installed"
+"""
+
+[tasks.kagenti-platform]
+description = "Deploy Platform CR for agent orchestration"
+run = """
+#!/usr/bin/env bash
+PLATFORM_FILE=${1:-"config/kagenti/platform.yaml"}
+echo "🚀 Deploying Platform: $PLATFORM_FILE"
+kubectl apply -f "$PLATFORM_FILE"
+"""
+
+[tasks.kagenti-component]
+description = "Deploy Component CR for individual agent"
+run = """
+#!/usr/bin/env bash
+COMPONENT_FILE=${1:?"Usage: mise run kagenti-component <component.yaml>"}
+echo "🧩 Deploying Component: $COMPONENT_FILE"
+kubectl apply -f "$COMPONENT_FILE"
+"""
+
+# =============================================================================
+# CLAUDE-FLOW INTEGRATION
+# =============================================================================
+
+[tasks.flow-init]
+description = "Initialize claude-flow for agent coordination"
+run = "npx claude-flow init"
+
+[tasks.flow-sparc]
+description = "Run SPARC development workflow"
+run = """
+#!/usr/bin/env bash
+MODE=${1:-"spec-pseudocode"}
+TASK=${2:-"develop agent"}
+npx claude-flow sparc run "$MODE" "$TASK"
+"""
+
+[tasks.flow-tdd]
+description = "Run TDD workflow with claude-flow"
+run = """
+#!/usr/bin/env bash
+FEATURE=${1:-"new feature"}
+npx claude-flow sparc tdd "$FEATURE"
+"""
+
+# =============================================================================
+# RUVNET ECOSYSTEM NPX TOOLS
+# =============================================================================
+
+[tasks.ruvector]
+description = "Run ruvector vector database CLI"
+run = "npx ruvector"
+
+[tasks.ruvector-gnn]
+description = "Run ruvector-gnn graph neural network tools"
+run = "npx ruvector-gnn"
+
+[tasks.ruvector-graph]
+description = "Run ruvector-graph for graph operations"
+run = "npx ruvector-graph"
+
+[tasks.ruvector-postgres]
+description = "Run @ruvector/postgres-cli for PostgreSQL vector operations"
+run = "npx @ruvector/postgres-cli"
+
+[tasks.agentdb]
+description = "Run agentdb for agent state management"
+run = "npx agentdb@alpha"
+
+[tasks.agentic-flow]
+description = "Run agentic-flow for multi-agent orchestration"
+run = "npx agentic-flow@alpha"
+
+[tasks.claude-flow-alpha]
+description = "Run claude-flow@alpha for SPARC development"
+run = "npx claude-flow@alpha"
+
+# =============================================================================
+# TALOS LINUX / SIDEROLABS DEPLOYMENT
+# =============================================================================
+
+[tasks.talos-genconfig]
+description = "Generate Talos machine configuration"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+CLUSTER_NAME=${1:-"ruvector-cluster"}
+ENDPOINT=${2:-"https://192.168.1.100:6443"}
+
+echo "🔧 Generating Talos configuration for $CLUSTER_NAME..."
+talosctl gen config "$CLUSTER_NAME" "$ENDPOINT" \
+  --output-dir infrastructure/talos/generated \
+  --with-docs=false \
+  --with-examples=false
+
+echo "✅ Talos config generated in infrastructure/talos/generated/"
+"""
+
+[tasks.talos-apply]
+description = "Apply Talos configuration to nodes"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+NODE=${1:?"Usage: mise run talos-apply <node-ip>"}
+CONFIG=${2:-"infrastructure/talos/generated/controlplane.yaml"}
+
+echo "🚀 Applying Talos config to $NODE..."
+talosctl apply-config --insecure --nodes "$NODE" --file "$CONFIG"
+echo "✅ Configuration applied to $NODE"
+"""
+
+[tasks.talos-bootstrap]
+description = "Bootstrap Talos cluster"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+NODE=${1:?"Usage: mise run talos-bootstrap <control-plane-ip>"}
+
+echo "🚀 Bootstrapping Talos cluster on $NODE..."
+talosctl bootstrap --nodes "$NODE" --endpoints "$NODE"
+echo "✅ Cluster bootstrapped"
+"""
+
+[tasks.talos-kubeconfig]
+description = "Get kubeconfig from Talos cluster"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+NODE=${1:?"Usage: mise run talos-kubeconfig <control-plane-ip>"}
+
+echo "📝 Fetching kubeconfig from $NODE..."
+talosctl kubeconfig --nodes "$NODE" --endpoints "$NODE"
+echo "✅ Kubeconfig saved to ~/.kube/config"
+"""
+
+[tasks.talos-status]
+description = "Check Talos cluster status"
+run = """
+#!/usr/bin/env bash
+echo "📊 Talos Cluster Status:"
+talosctl get machinestatus 2>/dev/null || echo "Run: talosctl config endpoint <ip> first"
+talosctl get members 2>/dev/null || true
+"""
+
+[tasks.talos-upgrade]
+description = "Upgrade Talos on nodes"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+NODE=${1:?"Usage: mise run talos-upgrade <node-ip>"}
+IMAGE=${2:-"ghcr.io/siderolabs/installer:latest"}
+
+echo "⬆️ Upgrading Talos on $NODE to $IMAGE..."
+talosctl upgrade --nodes "$NODE" --image "$IMAGE"
+echo "✅ Upgrade initiated on $NODE"
+"""
+
+# =============================================================================
+# SIDERO OMNI INTEGRATION
+# =============================================================================
+
+[tasks.omni-cluster-create]
+description = "Create cluster via Omni"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+CLUSTER_NAME=${1:-"ruvector-cluster"}
+TEMPLATE=${2:-"infrastructure/talos/cluster-template.yaml"}
+
+echo "🚀 Creating cluster $CLUSTER_NAME via Omni..."
+omnictl cluster template sync -v -f "$TEMPLATE"
+echo "✅ Cluster template synced"
+"""
+
+[tasks.omni-status]
+description = "Check Omni managed clusters status"
+run = """
+#!/usr/bin/env bash
+echo "📊 Omni Clusters:"
+omnictl get clusters 2>/dev/null || echo "Omni not configured. Set OMNI_ENDPOINT"
+echo ""
+echo "📊 Machines:"
+omnictl get machines 2>/dev/null || true
+"""
+
+[tasks.omni-machine-classes]
+description = "Apply machine classes to Omni"
+run = """
+#!/usr/bin/env bash
+echo "🔧 Applying machine classes..."
+omnictl apply -f infrastructure/talos/machine-classes/
+echo "✅ Machine classes applied"
+"""
+
+[tasks.omni-kubeconfig]
+description = "Get kubeconfig from Omni managed cluster"
+run = """
+#!/usr/bin/env bash
+CLUSTER_NAME=${1:-"ruvector-cluster"}
+echo "📝 Fetching kubeconfig for $CLUSTER_NAME..."
+omnictl kubeconfig --cluster "$CLUSTER_NAME"
+echo "✅ Kubeconfig saved"
+"""
+
+# =============================================================================
+# WASMEDGE / LLAMAEDGE RUNTIME
+# =============================================================================
+
+[tasks.wasmedge-install]
+description = "Install WasmEdge runtime"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+echo "📦 Installing WasmEdge..."
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash -s -- -p /usr/local
+source ~/.wasmedge/env
+echo "✅ WasmEdge installed: $(wasmedge --version)"
+"""
+
+[tasks.wasmedge-run]
+description = "Run JavaScript/TypeScript with WasmEdge"
+run = """
+#!/usr/bin/env bash
+FILE=${1:?"Usage: mise run wasmedge-run <file.js>"}
+echo "🚀 Running $FILE with WasmEdge QuickJS..."
+wasmedge --dir .:. wasmedge_quickjs.wasm "$FILE"
+"""
+
+[tasks.llamaedge-install]
+description = "Install LlamaEdge for LLM inference"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+echo "📦 Installing LlamaEdge..."
+
+# Install WasmEdge with GGML plugin for LLM inference
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | \
+  bash -s -- -p /usr/local --plugins wasi_nn-ggml
+
+echo "✅ LlamaEdge installed"
+"""
+
+[tasks.llamaedge-run]
+description = "Run LlamaEdge inference server"
+run = """
+#!/usr/bin/env bash
+MODEL=${1:-"models/llama-2-7b-chat.Q4_K_M.gguf"}
+PORT=${2:-8080}
+
+echo "🤖 Starting LlamaEdge server on port $PORT..."
+wasmedge --dir .:. \
+  --nn-preload default:GGML:AUTO:"$MODEL" \
+  llama-api-server.wasm \
+  --model-name llama-2-chat \
+  --ctx-size 4096 \
+  --socket-addr 0.0.0.0:"$PORT"
+"""
+
+[tasks.wasmedge-build]
+description = "Build WasmEdge JavaScript agent"
+dir = "apps/wasmedge-js"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+echo "🔨 Building WasmEdge JS agent..."
+npm run build:bundle
+echo "✅ WasmEdge JS agent built"
+"""
+
+# =============================================================================
+# CONTAINER RUNTIME EXTENSIONS (SIDEROLABS)
+# =============================================================================
+
+[tasks.talos-extensions-list]
+description = "List available Talos system extensions"
+run = """
+#!/usr/bin/env bash
+echo "📦 Available Talos System Extensions:"
+echo ""
+echo "Container Runtimes:"
+echo "  - ghcr.io/siderolabs/wasmedge:0.11.2"
+echo "  - ghcr.io/siderolabs/spin:2.0.0"
+echo "  - ghcr.io/siderolabs/gvisor:20231023"
+echo ""
+echo "Storage:"
+echo "  - ghcr.io/siderolabs/iscsi-tools:latest"
+echo "  - ghcr.io/siderolabs/drbd:9.2.0"
+echo ""
+echo "GPU/ML:"
+echo "  - ghcr.io/siderolabs/nvidia-open-gpu-kernel-modules:latest"
+echo "  - ghcr.io/siderolabs/nvidia-container-toolkit:latest"
+echo ""
+echo "Networking:"
+echo "  - ghcr.io/siderolabs/tailscale:latest"
+echo ""
+echo "See: https://github.com/siderolabs/extensions"
+"""
+
+[tasks.talos-extensions-add]
+description = "Add system extensions to Talos config"
+run = """
+#!/usr/bin/env bash
+EXTENSION=${1:?"Usage: mise run talos-extensions-add <extension-image>"}
+CONFIG=${2:-"infrastructure/talos/generated/controlplane.yaml"}
+
+echo "➕ Adding extension $EXTENSION to $CONFIG..."
+echo "  Edit machine.install.extensions in your Talos config:"
+echo ""
+echo "machine:"
+echo "  install:"
+echo "    extensions:"
+echo "      - image: $EXTENSION"
+"""
+
+# =============================================================================
+# SPIN / SPINKUBE RUNTIME
+# =============================================================================
+
+[tasks.spin-new]
+description = "Create new Spin application"
+run = """
+#!/usr/bin/env bash
+APP_NAME=${1:-"new-spin-app"}
+TEMPLATE=${2:-"http-js"}
+
+echo "🆕 Creating Spin app: $APP_NAME (template: $TEMPLATE)..."
+spin new --template "$TEMPLATE" "$APP_NAME"
+echo "✅ Created apps/$APP_NAME"
+"""
+
+[tasks.spin-build]
+description = "Build Spin application"
+dir = "apps/spin-js"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+echo "🔨 Building Spin application..."
+spin build
+echo "✅ Spin application built"
+"""
+
+[tasks.spin-up]
+description = "Run Spin application locally"
+dir = "apps/spin-js"
+run = """
+#!/usr/bin/env bash
+echo "🚀 Starting Spin application..."
+spin up --listen 0.0.0.0:3000
+"""
+
+[tasks.spin-deploy]
+description = "Deploy Spin app to SpinKube cluster"
+run = """
+#!/usr/bin/env bash
+APP_PATH=${1:-"apps/spin-js"}
+echo "🚀 Deploying Spin app from $APP_PATH..."
+cd "$APP_PATH" && spin kube scaffold | kubectl apply -f -
+echo "✅ Spin app deployed to cluster"
+"""
+
+# =============================================================================
+# PROXMOX INFRASTRUCTURE PROVIDER (OMNI)
+# =============================================================================
+
+[tasks.proxmox-provider-setup]
+description = "Setup Omni Proxmox infrastructure provider"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+echo "🔧 Setting up Proxmox infrastructure provider..."
+echo ""
+echo "1. Create API token in Proxmox:"
+echo "   pveum user token add omni@pve omni-token --privsep 0"
+echo ""
+echo "2. Configure provider in infrastructure/talos/proxmox-provider/"
+echo ""
+echo "3. Run: docker compose -f infrastructure/talos/proxmox-provider/docker-compose.yml up -d"
+"""
+
+[tasks.proxmox-provider-start]
+description = "Start Proxmox infrastructure provider"
+run = """
+#!/usr/bin/env bash
+cd infrastructure/talos/proxmox-provider
+docker compose up -d
+echo "✅ Proxmox provider started"
+"""
+
+# =============================================================================
+# FULL STACK DEPLOYMENT TASKS
+# =============================================================================
+
+[tasks.deploy-talos-wasm]
+description = "Deploy complete Talos cluster with Wasm runtimes"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🚀 Deploying Talos cluster with Wasm runtimes..."
+
+# 1. Apply machine classes
+echo "📋 Applying machine classes..."
+omnictl apply -f infrastructure/talos/machine-classes/ || true
+
+# 2. Sync cluster template
+echo "📋 Syncing cluster template..."
+omnictl cluster template sync -v -f infrastructure/talos/cluster-template.yaml || true
+
+# 3. Wait for cluster
+echo "⏳ Waiting for cluster to be ready..."
+sleep 30
+
+# 4. Deploy runtime class manager
+echo "📦 Deploying runtime class manager..."
+kubectl apply -f infrastructure/runtime-class-manager/
+
+# 5. Deploy WasmEdge/Spin runtimes
+echo "📦 Deploying Wasm runtimes..."
+kubectl apply -f infrastructure/wasmedge/
+kubectl apply -f infrastructure/spinkube/
+
+echo "✅ Talos cluster with Wasm runtimes deployed!"
+"""
+
+[tasks.deploy-ruvector-stack]
+description = "Deploy full ruvector agent stack"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🚀 Deploying ruvector agent stack..."
+
+# Initialize claude-flow
+npx claude-flow@alpha init
+
+# Deploy infrastructure
+kubectl apply -k infrastructure/
+
+# Deploy ruvector agents
+echo "🤖 Initializing ruvector agents..."
+npx ruvector init --cluster
+npx agentdb@alpha init --cluster
+
+echo "✅ Ruvector stack deployed!"
+"""
+
+# =============================================================================
+# RAN OPTIMIZER LLM AGENT (WASI-NN / LlamaEdge)
+# =============================================================================
+
+[tasks.ran-build]
+description = "Build RAN Optimizer LLM agent (Rust WASM)"
+dir = "agents/ran-optimizer"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🔨 Building RAN Optimizer LLM agent..."
+
+# Build for WASM target
+cargo build --release --target wasm32-wasi
+
+# Copy output
+mkdir -p ../../dist
+cp target/wasm32-wasi/release/ran-optimizer.wasm ../../dist/
+
+echo "✅ RAN Optimizer built: dist/ran-optimizer.wasm"
+"""
+
+[tasks.ran-download-model]
+description = "Download recommended model for RAN optimization"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+MODEL=${1:-"qwen2.5-7b"}
+mkdir -p models
+
+case $MODEL in
+  qwen2.5-7b)
+    echo "📥 Downloading Qwen2.5-7B-Instruct..."
+    curl -L -o models/qwen2.5-7b-instruct-q5_k_m.gguf \
+      "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct-GGUF/resolve/main/qwen2.5-7b-instruct-q5_k_m.gguf"
+    ;;
+  llama-3.2-3b)
+    echo "📥 Downloading Llama-3.2-3B-Instruct..."
+    curl -L -o models/llama-3.2-3b-instruct-q5_k_m.gguf \
+      "https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q5_K_M.gguf"
+    ;;
+  mistral-7b)
+    echo "📥 Downloading Mistral-7B-Instruct..."
+    curl -L -o models/mistral-7b-instruct-q5_k_m.gguf \
+      "https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF/resolve/main/mistral-7b-instruct-v0.2.Q5_K_M.gguf"
+    ;;
+  *)
+    echo "❌ Unknown model: $MODEL"
+    echo "Available: qwen2.5-7b, llama-3.2-3b, mistral-7b"
+    exit 1
+    ;;
+esac
+
+echo "✅ Model downloaded to models/"
+"""
+
+[tasks.ran-run]
+description = "Run RAN Optimizer LLM agent locally"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+MODEL=${1:-"models/qwen2.5-7b-instruct-q5_k_m.gguf"}
+MODE=${2:-"interactive"}
+
+if [ ! -f "$MODEL" ]; then
+  echo "❌ Model not found: $MODEL"
+  echo "Run: mise run ran-download-model"
+  exit 1
+fi
+
+echo "🤖 Starting RAN Optimizer LLM agent..."
+echo "   Model: $MODEL"
+echo "   Mode: $MODE"
+echo ""
+
+wasmedge --dir .:. \
+  --nn-preload default:GGML:AUTO:"$MODEL" \
+  dist/ran-optimizer.wasm default "$MODE"
+"""
+
+[tasks.ran-analyze]
+description = "Analyze RAN metrics with LLM agent"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+MODEL=${1:-"models/qwen2.5-7b-instruct-q5_k_m.gguf"}
+METRICS_FILE=${2:-"agents/ran-optimizer/examples/sample_metrics.json"}
+
+if [ ! -f "$MODEL" ]; then
+  echo "❌ Model not found: $MODEL"
+  exit 1
+fi
+
+echo "📊 Analyzing RAN metrics..."
+echo "   Metrics: $METRICS_FILE"
+echo ""
+
+wasmedge --dir .:. \
+  --nn-preload default:GGML:AUTO:"$MODEL" \
+  dist/ran-optimizer.wasm default analyze "$(cat $METRICS_FILE)"
+"""
+
+[tasks.ran-server]
+description = "Start RAN Optimizer as API server"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+MODEL=${1:-"models/qwen2.5-7b-instruct-q5_k_m.gguf"}
+PORT=${2:-8090}
+
+if [ ! -f "$MODEL" ]; then
+  echo "❌ Model not found: $MODEL"
+  exit 1
+fi
+
+echo "🌐 Starting RAN Optimizer API server..."
+echo "   Model: $MODEL"
+echo "   Port: $PORT"
+echo ""
+echo "Endpoints:"
+echo "   POST /v1/chat/completions - OpenAI-compatible chat"
+echo "   POST /analyze             - RAN metrics analysis"
+echo "   GET  /health              - Health check"
+echo ""
+
+wasmedge --dir .:. \
+  --nn-preload default:GGML:AUTO:"$MODEL" \
+  llama-api-server.wasm \
+  --model-name ran-optimizer \
+  --ctx-size 8192 \
+  --socket-addr 0.0.0.0:"$PORT" \
+  --prompt-template llama-3-chat
+"""
+
+[tasks.ran-deploy]
+description = "Deploy RAN Optimizer to Kubernetes"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🚀 Deploying RAN Optimizer to Kubernetes..."
+
+# Apply namespace and resources
+kubectl apply -f infrastructure/k8s/ran-optimizer/
+
+echo "⏳ Waiting for deployment..."
+kubectl -n ran-optimizer wait --for=condition=available deployment/ran-optimizer --timeout=300s
+
+echo "✅ RAN Optimizer deployed!"
+echo ""
+echo "Access:"
+echo "  kubectl -n ran-optimizer port-forward svc/ran-optimizer 8090:8080"
+echo "  curl http://localhost:8090/health"
+"""
+
+[tasks.ran-test]
+description = "Run RAN Optimizer tests"
+dir = "agents/ran-optimizer"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🧪 Running RAN Optimizer tests..."
+cargo test --release
+
+echo "✅ All tests passed"
+"""
+
+[tasks.ran-docker-build]
+description = "Build RAN Optimizer Docker image"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🐳 Building RAN Optimizer Docker image..."
+
+docker build -t ghcr.io/ruvnet/ran-optimizer:latest \
+  -f agents/ran-optimizer/Dockerfile \
+  agents/ran-optimizer/
+
+echo "✅ Docker image built: ghcr.io/ruvnet/ran-optimizer:latest"
+"""
+
+[tasks.ran-docker-push]
+description = "Push RAN Optimizer Docker image"
+run = """
+#!/usr/bin/env bash
+docker push ghcr.io/ruvnet/ran-optimizer:latest
+echo "✅ Docker image pushed"
+"""

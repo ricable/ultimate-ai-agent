@@ -1,0 +1,113 @@
+{
+  "id": "121 5465",
+  "name": "NR UE-Assisted Precoding Optimization",
+  "cxc_code": "CXC4012610",
+  "value_package": "Performance Boost",
+  "value_package_id": "FAJ 801 4021",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature mitigates NR performance degradation by compensating antenna phase",
+  "parameters": [
+    {
+      "name": "Uen.AB",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NrSectorCarrier.ueAssistedPrecodingOptEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NrSectorCarrier"
+    },
+    {
+      "name": "NrSectorCarrier.txDirection",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NrSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.ueAssistedPrecodingOptTimeGap",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.pmUeAssistedPrecodingOptCalibrated",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.pmUeAssistedPrecodingOptCalibratedUpdating",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "NRSectorCarrier.pmUeAssistedPrecodingOptNoUpdate",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRSectorCarrier"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    },
+    {
+      "name": "NRCellDU.administrativeState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmI",
+      "description": "Performance counter pmI",
+      "category": "General"
+    },
+    {
+      "name": "pmIs",
+      "description": "Performance counter pmIs",
+      "category": "General"
+    },
+    {
+      "name": "pmUeAssistedPrecodingOptCalibrated",
+      "description": "Performance counter pmUeAssistedPrecodingOptCalibrated",
+      "category": "General"
+    },
+    {
+      "name": "pmUeAssistedPrecodingOptCalibratedUpdating",
+      "description": "Performance counter pmUeAssistedPrecodingOptCalibratedUpdating",
+      "category": "General"
+    },
+    {
+      "name": "pmUeAssistedPrecodingOptNoUpdate",
+      "description": "Performance counter pmUeAssistedPrecodingOptNoUpdate",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012610 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012610 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/141_22104-LZA7016017_1Uen.AB.md",
+  "file_hash": "fed7da194f825147e1cf0fee081c2d15",
+  "processed_at": "2025-10-19 15:50:04",
+  "network_impact": {},
+  "performance_impact": {}
+}

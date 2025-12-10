@@ -1,0 +1,85 @@
+{
+  "file_hash": "bf288c26cab38bbf58d39cf569cdc3dc",
+  "feature": {
+    "id": "121 5821",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012806",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "This feature enables NRPPa-based E-CID positioning by using measurement reporting for",
+    "parameters": [
+      {
+        "name": "UeNoDrbPCellProfileUeCfg.posUeWoPduSessionEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeNoDrbPCellProfileUeCfg"
+      },
+      {
+        "name": "Uen.B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsEcidMeasFailIndicationNoDrb",
+        "description": "Performance counter pmEbsEcidMeasFailIndicationNoDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEcidMeasInitReqOnDemandNoDrb",
+        "description": "Performance counter pmEbsEcidMeasInitReqOnDemandNoDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEcidMeasInitReqPeriodicNoDrb",
+        "description": "Performance counter pmEbsEcidMeasInitReqPeriodicNoDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEcidMeasInitRespOnDemandNoDrb",
+        "description": "Performance counter pmEbsEcidMeasInitRespOnDemandNoDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEcidMeasInitRespPeriodicNoDrb",
+        "description": "Performance counter pmEbsEcidMeasInitRespPeriodicNoDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012806 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012806 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/237_22104-LZA7016017_1Uen.B.md",
+    "file_hash": "bf288c26cab38bbf58d39cf569cdc3dc",
+    "processed_at": "2025-10-19 15:50:11",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

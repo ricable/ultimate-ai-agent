@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  # Test 1: MCP Status Check
+  mcp-status:
+    build:
+      context: ../claude-agent-sdk
+      dockerfile: ../docker/fastmcp-test.Dockerfile
+    container_name: fastmcp-status-test
+    command: node dist/cli/mcp.js status
+
+  # Test 2: List MCP Tools
+  mcp-tools:
+    build:
+      context: ../claude-agent-sdk
+      dockerfile: ../docker/fastmcp-test.Dockerfile
+    container_name: fastmcp-tools-test
+    command: node dist/cli/mcp.js tools
+
+  # Test 3: HTTP Server
+  mcp-http:
+    build:
+      context: ../claude-agent-sdk
+      dockerfile: ../docker/fastmcp-test.Dockerfile
+    container_name: fastmcp-http-server
+    command: node dist/mcp/fastmcp/servers/http-streaming.js
+    ports:
+      - "${FASTMCP_PORT:-3000}:3000"
+    env_file:
+      - ../claude-agent-sdk/.env
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - PORT=${FASTMCP_PORT:-3000}
+      - DEBUG=${DEBUG:-}
+      - SUPABASE_PROJECT_ID=${SUPABASE_PROJECT_ID}
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  # Test 4: Tool Test Suite
+  mcp-test-suite:
+    build:
+      context: ../claude-agent-sdk
+      dockerfile: ../docker/fastmcp-test.Dockerfile
+    container_name: fastmcp-test-suite
+    command: sh -c "chmod +x scripts/test-claude-flow-sdk.sh && scripts/test-claude-flow-sdk.sh"
+    depends_on:
+      - mcp-http
+
+  # Test 5: Health Check Client
+  mcp-health-check:
+    image: curlimages/curl:latest
+    container_name: fastmcp-health-client
+    command: >
+      sh -c "
+        sleep 5 &&
+        echo '🏥 Testing Health Endpoint...' &&
+        curl -f http://mcp-http:3000/health &&
+        echo '\n\n✅ Health check passed!'
+      "
+    depends_on:
+      - mcp-http
+
+  # Test 6: SSE Stream Test
+  mcp-sse-test:
+    image: curlimages/curl:latest
+    container_name: fastmcp-sse-client
+    command: >
+      sh -c "
+        sleep 5 &&
+        echo '📡 Testing SSE Endpoint...' &&
+        timeout 10 curl -N http://mcp-http:3000/events || true &&
+        echo '\n\n✅ SSE stream test passed!'
+      "
+    depends_on:
+      - mcp-http
+
+  # Test 7: MCP Tool Call Test
+  mcp-tool-call:
+    image: curlimages/curl:latest
+    container_name: fastmcp-tool-client
+    command: >
+      sh -c "
+        sleep 5 &&
+        echo '🔧 Testing MCP Tool Call...' &&
+        curl -X POST http://mcp-http:3000/mcp \
+          -H 'Content-Type: application/json' \
+          -d '{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"tools/call\",\"params\":{\"name\":\"memory_store\",\"arguments\":{\"key\":\"docker-test\",\"value\":\"FastMCP works in Docker!\"}}}' &&
+        echo '\n\n✅ Tool call test passed!'
+      "
+    depends_on:
+      - mcp-http

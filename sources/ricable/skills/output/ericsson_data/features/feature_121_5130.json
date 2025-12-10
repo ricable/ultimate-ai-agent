@@ -1,0 +1,127 @@
+{
+  "id": "121 5130",
+  "name": "Downlink Multi-User MIMO Low/Mid-Band",
+  "cxc_code": "CXC4012502",
+  "value_package": "Massive MIMO Performance",
+  "value_package_id": "FAJ 801 4008",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables cell shaping and flexible cell coverage with common channel",
+  "parameters": [
+    {
+      "name": "Uen.AK33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "ResourceAllocationPolicy.shareAdjustmentModeDl",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ResourceAllocationPolicy"
+    },
+    {
+      "name": "NRCellDU.csiRsConfig8P",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.csiRsConfig16P",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.csiRsConfig32P",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.typeISinglePanelRiRestriction",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmI",
+      "description": "Performance counter pmI",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschAdvMimoSinrThresUserDistr",
+      "description": "Performance counter pmMacRBSymUsedPdschAdvMimoSinrThresUserDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschCbRatDistr",
+      "description": "Performance counter pmMacRBSymUsedPdschCbRatDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschMimoLayerDistr",
+      "description": "Performance counter pmMacRBSymUsedPdschMimoLayerDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschMimoSinrThresUserDistr",
+      "description": "Performance counter pmMacRBSymUsedPdschMimoSinrThresUserDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschMimoUserDistr",
+      "description": "Performance counter pmMacRBSymUsedPdschMimoUserDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschMuMimoLayerDistr",
+      "description": "Performance counter pmMacRBSymUsedPdschMuMimoLayerDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschSuMimoLayerDistr",
+      "description": "Performance counter pmMacRBSymUsedPdschSuMimoLayerDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacVolPdschAdvMimoSinrThresUserDistr",
+      "description": "Performance counter pmMacVolPdschAdvMimoSinrThresUserDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMacVolPdschMimoSinrThresUserDistr",
+      "description": "Performance counter pmMacVolPdschMimoSinrThresUserDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012502 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012502 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch4/95_22104-LZA7016017_1Uen.AK33B.md",
+  "file_hash": "396891420d1079efac418dd9fbd46b20",
+  "processed_at": "2025-10-19 15:50:09",
+  "network_impact": {},
+  "performance_impact": {
+    "counters": "New counters introduced"
+  }
+}

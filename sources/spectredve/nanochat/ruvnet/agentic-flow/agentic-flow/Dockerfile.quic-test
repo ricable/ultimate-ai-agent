@@ -1,0 +1,18 @@
+# Docker test for QUIC transport integration
+# Simulates a fresh installation to verify npm package works correctly
+
+FROM node:20-slim
+
+WORKDIR /test
+
+# Copy package files
+COPY package*.json ./
+COPY dist ./dist
+COPY wasm ./wasm
+COPY validation/test-quic-wasm.ts ./test-quic-wasm.ts
+
+# Install dependencies (including tsx for running tests)
+RUN npm install --production && npm install tsx
+
+# Run QUIC WASM integration test
+CMD ["npx", "tsx", "test-quic-wasm.ts"]

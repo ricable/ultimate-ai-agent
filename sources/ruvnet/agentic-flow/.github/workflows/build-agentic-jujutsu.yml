@@ -1,0 +1,268 @@
+name: Build Agentic-Jujutsu Native Modules
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/agentic-jujutsu/**'
+      - '.github/workflows/build-agentic-jujutsu.yml'
+    tags:
+      - 'agentic-jujutsu-v*'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/agentic-jujutsu/**'
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        settings:
+          - host: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+            build: npx napi build --platform --release --target x86_64-unknown-linux-gnu
+            platform: linux-x64-gnu
+          - host: ubuntu-22.04
+            target: aarch64-unknown-linux-gnu
+            build: npx napi build --platform --release --target aarch64-unknown-linux-gnu
+            platform: linux-arm64-gnu
+          - host: ubuntu-22.04
+            target: x86_64-unknown-linux-musl
+            build: npx napi build --platform --release --target x86_64-unknown-linux-musl
+            platform: linux-x64-musl
+          - host: ubuntu-22.04
+            target: aarch64-unknown-linux-musl
+            build: npx napi build --platform --release --target aarch64-unknown-linux-musl
+            platform: linux-arm64-musl
+          - host: ubuntu-22.04
+            target: armv7-unknown-linux-gnueabihf
+            build: npx napi build --platform --release --target armv7-unknown-linux-gnueabihf
+            platform: linux-arm-gnueabihf
+          - host: macos-13
+            target: x86_64-apple-darwin
+            build: npx napi build --platform --release --target x86_64-apple-darwin
+            platform: darwin-x64
+          - host: macos-14
+            target: aarch64-apple-darwin
+            build: npx napi build --platform --release --target aarch64-apple-darwin
+            platform: darwin-arm64
+          - host: windows-2022
+            target: x86_64-pc-windows-msvc
+            build: npx napi build --platform --release --target x86_64-pc-windows-msvc
+            platform: win32-x64-msvc
+
+    name: Build ${{ matrix.settings.platform }}
+    runs-on: ${{ matrix.settings.host }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+          targets: ${{ matrix.settings.target }}
+
+      - name: Cache Rust
+        uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.settings.target }}
+          workspaces: packages/agentic-jujutsu
+
+      - name: Install cross-compilation tools (Linux ARM64)
+        if: matrix.settings.platform == 'linux-arm64-gnu'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+
+      - name: Install cross-compilation tools (Linux ARM64 MUSL)
+        if: matrix.settings.platform == 'linux-arm64-musl'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu musl-tools
+
+      - name: Install cross-compilation tools (Linux ARMv7)
+        if: matrix.settings.platform == 'linux-arm-gnueabihf'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+
+      - name: Install cross-compilation tools (Linux x64 MUSL)
+        if: matrix.settings.platform == 'linux-x64-musl'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y musl-tools
+
+      - name: Install dependencies
+        working-directory: packages/agentic-jujutsu
+        run: npm install
+
+      - name: Build native module
+        working-directory: packages/agentic-jujutsu
+        run: ${{ matrix.settings.build }}
+        env:
+          CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
+          CARGO_TARGET_AARCH64_UNKNOWN_LINUX_MUSL_LINKER: aarch64-linux-gnu-gcc
+          CARGO_TARGET_ARMV7_UNKNOWN_LINUX_GNUEABIHF_LINKER: arm-linux-gnueabihf-gcc
+          MACOSX_DEPLOYMENT_TARGET: '10.13'
+
+      - name: Find built .node files (debug)
+        shell: bash
+        working-directory: packages/agentic-jujutsu
+        run: |
+          echo "=== Searching for .node files ==="
+          find . -name "*.node" -type f 2>/dev/null || true
+          echo "=== Listing current directory ==="
+          ls -la *.node 2>/dev/null || echo "No .node files in root"
+
+      - name: Prepare artifact
+        shell: bash
+        working-directory: packages/agentic-jujutsu
+        run: |
+          NAPI_PLATFORM="${{ matrix.settings.platform }}"
+          SRC_FILE="agentic-jujutsu.${NAPI_PLATFORM}.node"
+          DEST_DIR="npm/${NAPI_PLATFORM}"
+          DEST_FILE="${DEST_DIR}/agentic-jujutsu.${NAPI_PLATFORM}.node"
+
+          echo "Looking for: $SRC_FILE"
+          ls -lah "$SRC_FILE" || {
+            echo "ERROR: Expected file not found: $SRC_FILE"
+            echo "Searching for any .node files..."
+            find . -name "*.node" -type f
+            exit 1
+          }
+
+          echo "Creating directory: $DEST_DIR"
+          mkdir -p "$DEST_DIR"
+
+          echo "Copying $SRC_FILE to $DEST_FILE"
+          cp -v "$SRC_FILE" "$DEST_FILE"
+
+          echo "Verifying copy:"
+          ls -lah "$DEST_FILE"
+
+      - name: Test native module (native platform only)
+        if: |
+          (matrix.settings.platform == 'linux-x64-gnu' && runner.os == 'Linux') ||
+          (matrix.settings.platform == 'darwin-x64' && runner.os == 'macOS' && runner.arch == 'X64') ||
+          (matrix.settings.platform == 'darwin-arm64' && runner.os == 'macOS' && runner.arch == 'ARM64') ||
+          (matrix.settings.platform == 'win32-x64-msvc' && runner.os == 'Windows')
+        continue-on-error: true
+        working-directory: packages/agentic-jujutsu
+        run: npm run test:quick
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bindings-${{ matrix.settings.platform }}
+          path: packages/agentic-jujutsu/npm/${{ matrix.settings.platform }}/*.node
+          if-no-files-found: error
+
+  publish:
+    name: Publish Packages
+    runs-on: ubuntu-22.04
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/agentic-jujutsu-v')
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Copy binaries to package
+        working-directory: packages/agentic-jujutsu
+        run: |
+          echo "=== Copying platform binaries ==="
+          for dir in ../../artifacts/bindings-*/; do
+            platform=$(basename "$dir" | sed 's/bindings-//')
+            echo "Processing platform: $platform"
+            mkdir -p "npm/${platform}"
+            cp -v "$dir"/*.node "npm/${platform}/"
+            ls -la "npm/${platform}/"
+          done
+
+          echo "=== Verifying all binaries ==="
+          find npm -name "*.node" -type f
+
+      - name: Install dependencies
+        working-directory: packages/agentic-jujutsu
+        run: npm install
+
+      - name: Create platform packages
+        working-directory: packages/agentic-jujutsu
+        run: |
+          VERSION="${GITHUB_REF_NAME#agentic-jujutsu-v}"
+
+          for platform in darwin-x64 darwin-arm64 linux-x64-gnu linux-x64-musl linux-arm64-gnu linux-arm64-musl linux-arm-gnueabihf win32-x64-msvc; do
+            if [ -f "npm/${platform}/agentic-jujutsu.${platform}.node" ]; then
+              echo "Creating package for ${platform}"
+              cat > "npm/${platform}/package.json" <<'PKGJSON'
+          {
+            "name": "agentic-jujutsu-PLATFORM",
+            "version": "VERSION",
+            "description": "agentic-jujutsu native binding for PLATFORM",
+            "main": "agentic-jujutsu.PLATFORM.node",
+            "files": [
+              "agentic-jujutsu.PLATFORM.node"
+            ],
+            "license": "MIT",
+            "engines": {
+              "node": ">=16.0.0"
+            },
+            "repository": {
+              "type": "git",
+              "url": "https://github.com/ruvnet/agentic-flow.git",
+              "directory": "packages/agentic-jujutsu"
+            }
+          }
+          PKGJSON
+              sed -i "s/PLATFORM/${platform}/g" "npm/${platform}/package.json"
+              sed -i "s/VERSION/${VERSION}/g" "npm/${platform}/package.json"
+              cat "npm/${platform}/package.json"
+            fi
+          done
+
+      - name: Publish platform packages
+        working-directory: packages/agentic-jujutsu
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          for platform in darwin-x64 darwin-arm64 linux-x64-gnu linux-x64-musl linux-arm64-gnu linux-arm64-musl linux-arm-gnueabihf win32-x64-msvc; do
+            if [ -f "npm/${platform}/package.json" ]; then
+              echo "Publishing agentic-jujutsu-${platform}"
+              cd "npm/${platform}"
+              npm publish --access public || echo "Failed to publish ${platform}"
+              cd ../..
+            fi
+          done
+
+      - name: Update main package version
+        working-directory: packages/agentic-jujutsu
+        run: |
+          VERSION="${GITHUB_REF_NAME#agentic-jujutsu-v}"
+          npm version "$VERSION" --no-git-tag-version
+
+      - name: Publish main package
+        working-directory: packages/agentic-jujutsu
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public

@@ -1,0 +1,153 @@
+{
+  "file_hash": "fb7eeb930e86fea5469f8529d3a62392",
+  "feature": {
+    "id": "121 5089",
+    "name": "DFTS-OFDM Waveform in Uplink",
+    "cxc_code": "CXC4012373",
+    "value_package": "Advanced Coverage Extension",
+    "value_package_id": "FAJ 801 4006",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature enables DFT-s-OFDM waveform in uplink transmissions. The DFT-s-OFDM",
+    "parameters": [
+      {
+        "name": "NRCellDU.dftSOfdmMsg3Enabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.dftSOfdmPuschEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "UeBbProfileUeCfg.ulWfPortSwitchUeCfgRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeBbProfileUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulWfPuschStartFr1RsrpThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulWfSwitchFr1CpRetProhibTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulWfSwitchFr1Mode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulWfSwitchFr1QualHyst",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulWfSwitchFr1QualThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "Uen.BL",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmRadioMacCpofdmTransUl",
+        "description": "Performance counter pmRadioMacCpofdmTransUl",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioMacDftsTransUl",
+        "description": "Performance counter pmRadioMacDftsTransUl",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioMacWvfSwitchAttUlCpofdm",
+        "description": "Performance counter pmRadioMacWvfSwitchAttUlCpofdm",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioMacWvfSwitchAttUlDfts",
+        "description": "Performance counter pmRadioMacWvfSwitchAttUlDfts",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioMacWvfSwitchSuccUlCpofdm",
+        "description": "Performance counter pmRadioMacWvfSwitchSuccUlCpofdm",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioMacWvfSwitchSuccUlDfts",
+        "description": "Performance counter pmRadioMacWvfSwitchSuccUlDfts",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioPuschPhrDistr",
+        "description": "Performance counter pmRadioPuschPhrDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioSinrPuschDistr",
+        "description": "Performance counter pmRadioSinrPuschDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtModAttWvfSwitchDistr",
+        "description": "Performance counter pmUeCtxtModAttWvfSwitchDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtModSuccWvfSwitchDistr",
+        "description": "Performance counter pmUeCtxtModSuccWvfSwitchDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012373 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012373 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/55_22104-LZA7016017_1Uen.BL.md",
+    "file_hash": "fb7eeb930e86fea5469f8529d3a62392",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

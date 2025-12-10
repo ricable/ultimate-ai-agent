@@ -1,0 +1,392 @@
+# =============================================================================
+# Self-Healing AI Agent Kubernetes Operator
+# Manages lifecycle, scaling, and recovery of AI agent workloads
+# =============================================================================
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: aiagents.edge-ai.io
+spec:
+  group: edge-ai.io
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required:
+                - agentType
+                - replicas
+              properties:
+                agentType:
+                  type: string
+                  enum: [coder, researcher, analyst, orchestrator, monitor, custom]
+                replicas:
+                  type: integer
+                  minimum: 1
+                  maximum: 10000
+                model:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    backend:
+                      type: string
+                      enum: [llamaedge, mlx, localai, gaia]
+                    quantization:
+                      type: string
+                      enum: ["4bit", "8bit", "16bit", "fp32"]
+                resources:
+                  type: object
+                  properties:
+                    cpu:
+                      type: string
+                    memory:
+                      type: string
+                    gpu:
+                      type: boolean
+                    gpuMemory:
+                      type: string
+                autoscaling:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    minReplicas:
+                      type: integer
+                    maxReplicas:
+                      type: integer
+                    targetCPU:
+                      type: integer
+                    targetMemory:
+                      type: integer
+                    targetQueueLength:
+                      type: integer
+                selfHealing:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    healthCheckInterval:
+                      type: string
+                    failureThreshold:
+                      type: integer
+                    recoveryAction:
+                      type: string
+                      enum: [restart, recreate, migrate, escalate]
+                a2a:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    discoveryMethod:
+                      type: string
+                      enum: [kubernetes, dns, manual]
+                    exposedSkills:
+                      type: array
+                      items:
+                        type: string
+                federation:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    clusters:
+                      type: array
+                      items:
+                        type: string
+                    spilloverThreshold:
+                      type: integer
+            status:
+              type: object
+              properties:
+                phase:
+                  type: string
+                replicas:
+                  type: integer
+                readyReplicas:
+                  type: integer
+                failedReplicas:
+                  type: integer
+                lastHealthCheck:
+                  type: string
+                  format: date-time
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      status:
+                        type: string
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      lastTransitionTime:
+                        type: string
+      subresources:
+        status: {}
+        scale:
+          specReplicasPath: .spec.replicas
+          statusReplicasPath: .status.replicas
+      additionalPrinterColumns:
+        - name: Type
+          type: string
+          jsonPath: .spec.agentType
+        - name: Replicas
+          type: integer
+          jsonPath: .status.replicas
+        - name: Ready
+          type: integer
+          jsonPath: .status.readyReplicas
+        - name: Phase
+          type: string
+          jsonPath: .status.phase
+        - name: Age
+          type: date
+          jsonPath: .metadata.creationTimestamp
+  scope: Namespaced
+  names:
+    plural: aiagents
+    singular: aiagent
+    kind: AIAgent
+    shortNames:
+      - agent
+      - aa
+---
+# =============================================================================
+# Agent Swarm CRD - Manages collections of agents
+# =============================================================================
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: agentswarms.edge-ai.io
+spec:
+  group: edge-ai.io
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required:
+                - topology
+                - agents
+              properties:
+                topology:
+                  type: string
+                  enum: [hierarchical, mesh, star, ring, custom]
+                agents:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      type:
+                        type: string
+                      replicas:
+                        type: integer
+                      role:
+                        type: string
+                        enum: [leader, worker, specialist]
+                      dependencies:
+                        type: array
+                        items:
+                          type: string
+                workflow:
+                  type: object
+                  properties:
+                    dagId:
+                      type: string
+                    scheduler:
+                      type: string
+                    checkpointing:
+                      type: boolean
+            status:
+              type: object
+              properties:
+                phase:
+                  type: string
+                activeAgents:
+                  type: integer
+                completedTasks:
+                  type: integer
+                failedTasks:
+                  type: integer
+  scope: Namespaced
+  names:
+    plural: agentswarms
+    singular: agentswarm
+    kind: AgentSwarm
+    shortNames:
+      - swarm
+---
+# =============================================================================
+# Operator Deployment
+# =============================================================================
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: agent-operator
+  namespace: edge-ai-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: agent-operator-role
+rules:
+  - apiGroups: [""]
+    resources: [pods, services, configmaps, secrets, events]
+    verbs: [get, list, watch, create, update, patch, delete]
+  - apiGroups: ["apps"]
+    resources: [deployments, replicasets, statefulsets]
+    verbs: [get, list, watch, create, update, patch, delete]
+  - apiGroups: ["edge-ai.io"]
+    resources: [aiagents, agentswarms]
+    verbs: [get, list, watch, create, update, patch, delete]
+  - apiGroups: ["edge-ai.io"]
+    resources: [aiagents/status, agentswarms/status]
+    verbs: [get, update, patch]
+  - apiGroups: ["autoscaling"]
+    resources: [horizontalpodautoscalers]
+    verbs: [get, list, watch, create, update, patch, delete]
+  - apiGroups: ["policy"]
+    resources: [poddisruptionbudgets]
+    verbs: [get, list, watch, create, update, patch, delete]
+  - apiGroups: ["core.spinoperator.dev"]
+    resources: [spinapps]
+    verbs: [get, list, watch, create, update, patch, delete]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: agent-operator-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: agent-operator-role
+subjects:
+  - kind: ServiceAccount
+    name: agent-operator
+    namespace: edge-ai-system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agent-operator
+  namespace: edge-ai-system
+  labels:
+    app: agent-operator
+spec:
+  replicas: 2  # HA deployment
+  selector:
+    matchLabels:
+      app: agent-operator
+  template:
+    metadata:
+      labels:
+        app: agent-operator
+    spec:
+      serviceAccountName: agent-operator
+      containers:
+        - name: operator
+          image: ghcr.io/edge-ai/agent-operator:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: metrics
+            - containerPort: 8081
+              name: health
+          env:
+            - name: OPERATOR_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: LEADER_ELECTION_ENABLED
+              value: "true"
+            - name: RECONCILE_INTERVAL
+              value: "30s"
+            - name: HEALTH_CHECK_INTERVAL
+              value: "10s"
+            - name: SELF_HEALING_ENABLED
+              value: "true"
+            - name: FEDERATION_ENABLED
+              value: "true"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8081
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8081
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: agent-operator
+                topologyKey: kubernetes.io/hostname
+---
+# =============================================================================
+# Metrics Service
+# =============================================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: agent-operator-metrics
+  namespace: edge-ai-system
+  labels:
+    app: agent-operator
+spec:
+  ports:
+    - port: 8080
+      name: metrics
+      targetPort: metrics
+  selector:
+    app: agent-operator
+---
+# =============================================================================
+# ServiceMonitor for Prometheus
+# =============================================================================
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: agent-operator
+  namespace: edge-ai-system
+spec:
+  selector:
+    matchLabels:
+      app: agent-operator
+  endpoints:
+    - port: metrics
+      interval: 30s
+      path: /metrics

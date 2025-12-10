@@ -1,0 +1,64 @@
+{
+  "id": "121 1744",
+  "name": "Quad Antenna Uplink Performance Package",
+  "cxc_code": "CXC4011056",
+  "value_package": "4-Way Receiver Diversity",
+  "value_package_id": "FAJ 801 0430",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Quad Antenna Uplink Performance Package feature supports four receiver antennas used",
+  "parameters": [
+    {
+      "name": "SectorCarrier.noOfRxAntennas",
+      "type": "Affected",
+      "description": "A parameter value of 0 results in that the optional features enabling                                 usage of RX antennas defines the configuration, and available                                 resources will be used accordingly. If set to 0, and the optional                                 features enabling usage of RX antennas are deactivated, the                                 predefined value for the number of RX antennas is 2.",
+      "mo_class": "SectorCarrier"
+    },
+    {
+      "name": "Uen.AL",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    },
+    {
+      "name": "RfBranch.rfBranchId",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RfBranch"
+    },
+    {
+      "name": "RfBranch.RfBranchId",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RfBranch"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011056 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011056 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/251_22104-LZA7016014_1Uen.AL.md",
+  "file_hash": "379d2d47c680eec3a2863016104d1a8f",
+  "processed_at": "2025-10-19 15:50:04",
+  "network_impact": {},
+  "performance_impact": {}
+}

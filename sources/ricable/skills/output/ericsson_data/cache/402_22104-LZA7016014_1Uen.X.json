@@ -1,0 +1,195 @@
+{
+  "file_hash": "6fc629f4b004c66b146b75e071a48f78",
+  "feature": {
+    "id": "121 4894",
+    "name": "IDC for Uplink Carrier Aggregation",
+    "cxc_code": "CXC4012264",
+    "value_package": "Carrier Aggregation",
+    "value_package_id": "FAJ 801 0405",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "For more information about this feature and related topics, see the following",
+    "parameters": [
+      {
+        "name": "EUtranCellRelation.sCellCandidate",
+        "type": "Affecting",
+        "description": "The value indicates whether the cell indicated by parameter                                     cellrelation can be used as SCell for UEs                                 using this cell as their PCell.",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellFDD.earfcnul",
+        "type": "Affecting",
+        "description": "The channel number for the central downlink frequency. The mapping                                 from channel number to physical frequency for specified EUTRA bands                                 is described in 3GPP TS 36.104. The values that can be used depend                                 on national, operator-specific frequency allocation as well as on                                 the supported frequency bands in the RBS.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.ulChannelBandwidth",
+        "type": "Affecting",
+        "description": "The uplink channel bandwidth in the cell.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "LOCAL_PER_IDC_USERS",
+        "type": "EVENT_PARAM_IDC_CAPABLE_USERS",
+        "description": "Number of UEs that are IDC-capable.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "LOCAL_PER_IDC_USERS",
+        "type": "EVENT_PARAM_IDC_ULCA_CAPABLE_USERS",
+        "description": "Number of UEs that are IDC for Uplink Carrier                                     Aggregation-capable.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "LOCAL_PER_IDC_USERS",
+        "type": "EVENT_PARAM_IDC_ULCA_ACTIVE_USERS",
+        "description": "Number of UEs with disabled uplink caused by                                                                          IDC                                     issues.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "LOCAL_EVENT_IDC_INDICATION",
+        "type": "EVENT_PARAM_IDC_VICTIM_SYSTEM",
+        "description": "Number of times when UL CA is turned on and turned off for each                                     victim system type reason.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "LOCAL_EVENT_IDC_INDICATION",
+        "type": "EVENT_PARAM_IDC_INDICATION_DIRECTION",
+        "description": "This parameter determines if IDC for each victim system type is                                     active or inactive.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "LOCAL_RRC_IN_DEVICE_COEX_INDICATION",
+        "type": "EVENT_PARAM_CRNTI",
+        "description": "CRNTI value.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "LOCAL_EVENT_IDC_ACTIVE_USERS_CHANGE",
+        "type": "EVENT_PARAM_IDC_INDICATION_DIRECTION",
+        "description": "This parameter determined if In-Device Coexistence is active or                                     inactive for UE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.X",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmIdcCapableMax",
+        "description": "Performance counter pmIdcCapableMax",
+        "category": "General"
+      },
+      {
+        "name": "pmIdcCapableSum",
+        "description": "Performance counter pmIdcCapableSum",
+        "category": "General"
+      },
+      {
+        "name": "pmIdcSamp",
+        "description": "Performance counter pmIdcSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmIdcUlCaCapableMax",
+        "description": "Performance counter pmIdcUlCaCapableMax",
+        "category": "General"
+      },
+      {
+        "name": "pmIdcUlCaCapableSum",
+        "description": "Performance counter pmIdcUlCaCapableSum",
+        "category": "General"
+      },
+      {
+        "name": "pmIdcUlCaMax",
+        "description": "Performance counter pmIdcUlCaMax",
+        "category": "General"
+      },
+      {
+        "name": "pmIdcUlCaSum",
+        "description": "Performance counter pmIdcUlCaSum",
+        "category": "General"
+      },
+      {
+        "name": "pmIdcUlCaVictimOffDistr",
+        "description": "Performance counter pmIdcUlCaVictimOffDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmIdcUlCaVictimOnDistr",
+        "description": "Performance counter pmIdcUlCaVictimOnDistr",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "LOCAL_PER_IDC_USERS",
+        "type": "EVENT_PARAM_IDC_CAPABLE_USERS",
+        "description": "Number of UEs that are IDC-capable."
+      },
+      {
+        "name": "LOCAL_PER_IDC_USERS",
+        "type": "EVENT_PARAM_IDC_ULCA_CAPABLE_USERS",
+        "description": "Number of UEs that are IDC for Uplink Carrier                                     Aggregation-capable."
+      },
+      {
+        "name": "LOCAL_PER_IDC_USERS",
+        "type": "EVENT_PARAM_IDC_ULCA_ACTIVE_USERS",
+        "description": "Number of UEs with disabled uplink caused by                                                                          IDC                                     issues."
+      },
+      {
+        "name": "LOCAL_EVENT_IDC_INDICATION",
+        "type": "EVENT_PARAM_IDC_VICTIM_SYSTEM",
+        "description": "Number of times when UL CA is turned on and turned off for each                                     victim system type reason."
+      },
+      {
+        "name": "LOCAL_EVENT_IDC_INDICATION",
+        "type": "EVENT_PARAM_IDC_INDICATION_DIRECTION",
+        "description": "This parameter determines if IDC for each victim system type is                                     active or inactive."
+      },
+      {
+        "name": "LOCAL_RRC_IN_DEVICE_COEX_INDICATION",
+        "type": "EVENT_PARAM_CRNTI",
+        "description": "CRNTI value."
+      },
+      {
+        "name": "LOCAL_EVENT_IDC_ACTIVE_USERS_CHANGE",
+        "type": "EVENT_PARAM_IDC_INDICATION_DIRECTION",
+        "description": "This parameter determined if In-Device Coexistence is active or                                     inactive for UE."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012264 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012264 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/402_22104-LZA7016014_1Uen.X.md",
+    "file_hash": "6fc629f4b004c66b146b75e071a48f78",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

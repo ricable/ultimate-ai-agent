@@ -1,0 +1,13 @@
+{
+  "modules": [
+    "ruv_swarm_wasm_bg.wasm",
+    "ruv_swarm_simd.wasm",
+    "ruv-fann.wasm",
+    "neuro-divergent.wasm"
+  ],
+  "optimization": {
+    "simd": true,
+    "threads": true,
+    "bulkMemory": true
+  }
+}

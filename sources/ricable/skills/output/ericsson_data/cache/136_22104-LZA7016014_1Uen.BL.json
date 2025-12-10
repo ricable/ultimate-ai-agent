@@ -1,0 +1,260 @@
+{
+  "file_hash": "43b2250cdc83bb1c82c29c3db91f4a96",
+  "feature": {
+    "id": "121 4363",
+    "name": "64-QAM Uplink",
+    "cxc_code": "CXC4011946",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature increases uplink throughput and makes the uplink spectrum more",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.puschPwrOffset64qam",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.puschPwrOffset64qam",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.ul64qamEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.ul64qamEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_UE_HARQ_UL_SUCC_64QAM",
+        "description": "The total number of successful HARQ transmissions in the uplink                                     direction using a 64-QAM modulation.  Successful is based on the CRC check, not based on if RBS sends                                     HARQ ACK (RBS can use the ACK even if the transport block was                                     not successfully decoded in a way to control the HARQ).",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_UE_HARQ_UL_FAIL_64QAM",
+        "description": "The total number of unsuccessful HARQ transmissions in the uplink                                     direction using a 64-QAM modulation.  Failure is based on the CRC check (which will result in an                                     NACK).",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_PER_UE_MAC_DTX_UL_64QAM",
+        "description": "The total number of occasions when an uplink grant was meant for                                     HARQ transmission of a transport block using 64Q-AM modulation                                     in the uplink direction, where DTX is considered the reason for                                     no reception of HARQ in uplink in the eNodeB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_SINR_MEAS_PUSCH_7",
+        "description": "Number of samples for the measured SINR on PUSCH, with 17 <                                     SINR <= 20.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_SINR_MEAS_PUSCH_8",
+        "description": "Number of samples for the measured SINR on PUSCH, with 20 <                                     SINR.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_UE_CAP_CATEGORY_DL_UL_COMB",
+        "description": "The ue-CategoryDL and ue-CategoryUL Combination indicated by the                                     UE, which sets many other UE L2 parameters for the UE; it has a                                     range of [1..12].  See Table 4.1A-1, 4.1A-2, 4.1A-3, 4.1A-4, 4.1A-5 and 4.1A-6 3GPP                                     Rel-12 TS 36.306.  EVENT_VALUE_UE_CATEGORY_DL_0_UL_0  EVENT_VALUE_UE_CATEGORY_DL_6_UL_5   EVENT_VALUE_UE_CATEGORY_DL_7_UL_13  EVENT_VALUE_UE_CATEGORY_DL_9_UL_5  EVENT_VALUE_UE_CATEGORY_DL_10_UL_13  EVENT_VALUE_UE_CATEGORY_DL_11_UL_5  EVENT_VALUE_UE_CATEGORY_DL_12_UL_13   EVENT_VALUE_UE_CATEGORY_DL_13_UL_3  EVENT_VALUE_UE_CATEGORY_DL_13_UL_5  EVENT_VALUE_UE_CATEGORY_DL_13_UL_7  EVENT_VALUE_UE_CATEGORY_DL_13_UL_13",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_SINR_MEAS_PUSCH_7_XL",
+        "description": "Number of samples for the measured SINR on PUSCH, with 17 <                                     SINR <= 20.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_SINR_MEAS_PUSCH_8_XL",
+        "description": "Number of samples for the measured SINR on PUSCH, with 20 <                                     SINR.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_UE_HARQ_UL_SUCC_64QAM_XL",
+        "description": "The total number of successful HARQ transmissions in the uplink                                     direction using a 64-QAM modulation.  Successful is based on the CRC check, not based on if RBS sends                                     HARQ ACK (RBS can use the ACK even if the transport block was                                     not successfully decoded in a way to control the HARQ).",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_UE_HARQ_UL_FAIL_64QAM_XL",
+        "description": "The total number of unsuccessful HARQ transmissions in the uplink                                     direction using a 64-QAM modulation. Failure is based on the CRC                                     check (which results in an NACK).",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_PER_UE_MAC_DTX_UL_64QAM_XL",
+        "description": "The total number of occasions when an uplink grant was meant for                                     HARQ transmission of a transport block using 64-QAM modulation                                     in the uplink direction, where DTX is considered the reason for                                     no reception of HARQ in uplink in the eNB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.BL",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodSinrThr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodSinrOffset64Qam",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.p0ClpcExGoodSinrThr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.p0ClpcExGoodSinrOffset64Qam",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmUlSinrDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmUlSinrDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMacHarqUlDtx64Qam",
+        "description": "Performance counter pmMacHarqUlDtx64Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlFail64Qam",
+        "description": "Performance counter pmMacHarqUlFail64Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlSucc64Qam",
+        "description": "Performance counter pmMacHarqUlSucc64Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmSinrPuschDistr",
+        "description": "Performance counter pmSinrPuschDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCategoryDlUlCombDistr",
+        "description": "Performance counter pmUeCategoryDlUlCombDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUlSinrDistr",
+        "description": "Performance counter pmUlSinrDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_UE_HARQ_UL_SUCC_64QAM",
+        "description": "The total number of successful HARQ transmissions in the uplink                                     direction using a 64-QAM modulation.  Successful is based on the CRC check, not based on if RBS sends                                     HARQ ACK (RBS can use the ACK even if the transport block was                                     not successfully decoded in a way to control the HARQ)."
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_UE_HARQ_UL_FAIL_64QAM",
+        "description": "The total number of unsuccessful HARQ transmissions in the uplink                                     direction using a 64-QAM modulation.  Failure is based on the CRC check (which will result in an                                     NACK)."
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_PER_UE_MAC_DTX_UL_64QAM",
+        "description": "The total number of occasions when an uplink grant was meant for                                     HARQ transmission of a transport block using 64Q-AM modulation                                     in the uplink direction, where DTX is considered the reason for                                     no reception of HARQ in uplink in the eNodeB."
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_SINR_MEAS_PUSCH_7",
+        "description": "Number of samples for the measured SINR on PUSCH, with 17 <                                     SINR <= 20."
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_SINR_MEAS_PUSCH_8",
+        "description": "Number of samples for the measured SINR on PUSCH, with 20 <                                     SINR."
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_UE_CAP_CATEGORY_DL_UL_COMB",
+        "description": "The ue-CategoryDL and ue-CategoryUL Combination indicated by the                                     UE, which sets many other UE L2 parameters for the UE; it has a                                     range of [1..12].  See Table 4.1A-1, 4.1A-2, 4.1A-3, 4.1A-4, 4.1A-5 and 4.1A-6 3GPP                                     Rel-12 TS 36.306.  EVENT_VALUE_UE_CATEGORY_DL_0_UL_0  EVENT_VALUE_UE_CATEGORY_DL_6_UL_5   EVENT_VALUE_UE_CATEGORY_DL_7_UL_13  EVENT_VALUE_UE_CATEGORY_DL_9_UL_5  EVENT_VALUE_UE_CATEGORY_DL_10_UL_13  EVENT_VALUE_UE_CATEGORY_DL_11_UL_5  EVENT_VALUE_UE_CATEGORY_DL_12_UL_13   EVENT_VALUE_UE_CATEGORY_DL_13_UL_3  EVENT_VALUE_UE_CATEGORY_DL_13_UL_5  EVENT_VALUE_UE_CATEGORY_DL_13_UL_7  EVENT_VALUE_UE_CATEGORY_DL_13_UL_13"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_SINR_MEAS_PUSCH_7_XL",
+        "description": "Number of samples for the measured SINR on PUSCH, with 17 <                                     SINR <= 20."
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_SINR_MEAS_PUSCH_8_XL",
+        "description": "Number of samples for the measured SINR on PUSCH, with 20 <                                     SINR."
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_UE_HARQ_UL_SUCC_64QAM_XL",
+        "description": "The total number of successful HARQ transmissions in the uplink                                     direction using a 64-QAM modulation.  Successful is based on the CRC check, not based on if RBS sends                                     HARQ ACK (RBS can use the ACK even if the transport block was                                     not successfully decoded in a way to control the HARQ)."
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_UE_HARQ_UL_FAIL_64QAM_XL",
+        "description": "The total number of unsuccessful HARQ transmissions in the uplink                                     direction using a 64-QAM modulation. Failure is based on the CRC                                     check (which results in an NACK)."
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UTILIZATION",
+        "type": "EVENT_PARAM_PER_UE_MAC_DTX_UL_64QAM_XL",
+        "description": "The total number of occasions when an uplink grant was meant for                                     HARQ transmission of a transport block using 64-QAM modulation                                     in the uplink direction, where DTX is considered the reason for                                     no reception of HARQ in uplink in the eNB."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011946 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011946 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/136_22104-LZA7016014_1Uen.BL.md",
+    "file_hash": "43b2250cdc83bb1c82c29c3db91f4a96",
+    "processed_at": "2025-10-19 15:48:54",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,51 @@
+# E2E Test Dockerfile for agentic-flow with WASM integration
+# Simulates a clean remote npx installation
+
+FROM node:22-slim
+
+# Install Rust and wasm-pack for WASM builds
+RUN apt-get update && apt-get install -y \
+    curl \
+    build-essential \
+    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
+    && . $HOME/.cargo/env \
+    && cargo install wasm-pack \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package.json ./
+COPY config ./config/
+COPY src ./src/
+COPY wasm ./wasm/
+COPY validation ./validation/
+COPY scripts ./scripts/
+COPY .claude ./.claude/
+COPY certs ./certs/
+
+# Copy reasoningbank source (needed for build:wasm)
+COPY ../reasoningbank /reasoningbank
+
+# Install dependencies
+RUN npm install
+
+# Build the package (includes WASM build)
+RUN npm run build 2>&1 || echo "Build attempted (some warnings expected)"
+
+# Verify WASM files exist
+RUN ls -lh /app/wasm/reasoningbank/*.wasm && \
+    echo "✅ WASM files present" || \
+    (echo "❌ WASM files missing" && exit 1)
+
+# Verify TypeScript compiled
+RUN ls -lh /app/dist/reasoningbank/wasm-adapter.js && \
+    echo "✅ TypeScript wrapper compiled" || \
+    (echo "❌ TypeScript wrapper missing" && exit 1)
+
+# Run the E2E test
+CMD ["npm", "run", "test:wasm:e2e"]

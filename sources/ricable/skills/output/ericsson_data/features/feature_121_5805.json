@@ -1,0 +1,210 @@
+{
+  "id": "121 5805",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4012811",
+  "value_package": "5G Advanced Energy Performance",
+  "value_package_id": "FAJ 801 4027",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature dynamically scales down the output power for downlink transmissions to",
+  "parameters": [
+    {
+      "name": "EnergyOptPwrAlloc.avgRbSymThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EnergyOptPwrAlloc"
+    },
+    {
+      "name": "EnergyOptPwrAlloc.energyOptPwrAllocCellMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EnergyOptPwrAlloc"
+    },
+    {
+      "name": "EnergyOptPwrAlloc.rbExpansionTarget",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EnergyOptPwrAlloc"
+    },
+    {
+      "name": "EnergyOptPwrAlloc.ueConfGroupType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EnergyOptPwrAlloc"
+    },
+    {
+      "name": "EnergyOptPwrAllocUeCfg.energyOptPwrAllocMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EnergyOptPwrAllocUeCfg"
+    },
+    {
+      "name": "EnergyOptPwrAllocUeCfg.prefUeGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EnergyOptPwrAllocUeCfg"
+    },
+    {
+      "name": "EnergyOptPwrAllocUeCfg.ueConfGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EnergyOptPwrAllocUeCfg"
+    },
+    {
+      "name": "EnergyOptPwrAllocUeCfg.ueGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EnergyOptPwrAllocUeCfg"
+    },
+    {
+      "name": "NRCellDU.energyOptPwrAllocRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "Uen.D33C",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRCellDU.pdschStartPrbStrategy",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmConsumedEnergy",
+      "description": "Performance counter pmConsumedEnergy",
+      "category": "General"
+    },
+    {
+      "name": "pmConsumedEnergyAccumulated",
+      "description": "Performance counter pmConsumedEnergyAccumulated",
+      "category": "General"
+    },
+    {
+      "name": "pmEeAllResBlockUsed",
+      "description": "Performance counter pmEeAllResBlockUsed",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAck16Qam",
+      "description": "Performance counter pmMacHarqDlAck16Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAck256Qam",
+      "description": "Performance counter pmMacHarqDlAck256Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAck64Qam",
+      "description": "Performance counter pmMacHarqDlAck64Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlAckQpsk",
+      "description": "Performance counter pmMacHarqDlAckQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack16Qam",
+      "description": "Performance counter pmMacHarqDlNack16Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack256Qam",
+      "description": "Performance counter pmMacHarqDlNack256Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNack64Qam",
+      "description": "Performance counter pmMacHarqDlNack64Qam",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNackQpsk",
+      "description": "Performance counter pmMacHarqDlNackQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymEstimatedPdschTypeA",
+      "description": "Performance counter pmMacRBSymEstimatedPdschTypeA",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymEstimatedPdschTypeAThe",
+      "description": "Performance counter pmMacRBSymEstimatedPdschTypeAThe",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymPowerBackoffDistr",
+      "description": "Performance counter pmMacRBSymPowerBackoffDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymPowerBackoffDistrNRCellDU",
+      "description": "Performance counter pmMacRBSymPowerBackoffDistrNRCellDU",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUsedPdschTypeA",
+      "description": "Performance counter pmMacRBSymUsedPdschTypeA",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDl",
+      "description": "Performance counter pmMacVolDl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrb",
+      "description": "Performance counter pmMacVolDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmMaxPowerConsumption",
+      "description": "Performance counter pmMaxPowerConsumption",
+      "category": "General"
+    },
+    {
+      "name": "pmMinPowerConsumption",
+      "description": "Performance counter pmMinPowerConsumption",
+      "category": "General"
+    },
+    {
+      "name": "pmPowerConsumption",
+      "description": "Performance counter pmPowerConsumption",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012811 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012811 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/246_22104-LZA7016017_1Uen.D33C.md",
+  "file_hash": "52f355d47a8a35d1dc6b4fc052512a1e",
+  "processed_at": "2025-10-19 15:50:11",
+  "network_impact": {},
+  "performance_impact": {}
+}

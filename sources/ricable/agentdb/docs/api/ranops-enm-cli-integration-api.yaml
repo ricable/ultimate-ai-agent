@@ -1,0 +1,1397 @@
+openapi: 3.0.3
+info:
+  title: RANOps ENM CLI Integration API
+  description: |
+    Comprehensive API for cognitive RANOps ENM CLI integration system.
+
+    This API provides intelligent command generation, template-to-CLI conversion,
+    expert system integration, and batch operations management for Ericsson RAN
+    configuration automation through cmedit commands.
+
+    ## Key Features
+    - **Cognitive Command Generation**: AI-powered conversion of RTB templates to cmedit commands
+    - **Expert System Integration**: Ericsson RAN expertise for parameter optimization
+    - **Batch Operations**: Safe, scalable multi-node configuration deployment
+    - **Dependency Analysis**: Intelligent command sequencing with constraint validation
+    - **Pattern Learning**: Continuous improvement through AgentDB integration
+    - **Real-time Monitoring**: Live execution tracking and performance analytics
+
+  version: 1.0.0
+  contact:
+    name: RANOps Development Team
+    email: ranops@ericsson.com
+  license:
+    name: Ericsson Proprietary
+    url: https://www.ericsson.com/en/legal
+servers:
+  - url: https://api.ranops.ericsson.com/v1
+    description: Production environment
+  - url: https://staging-api.ranops.ericsson.com/v1
+    description: Staging environment
+  - url: https://dev-api.ranops.ericsson.com/v1
+    description: Development environment
+
+tags:
+  - name: Template Conversion
+    description: RTB template to CLI command conversion operations
+  - name: Command Generation
+    description: Cognitive command generation and optimization
+  - name: Expert System
+    description: Ericsson RAN expert system integration
+  - name: Batch Operations
+    description: Batch operation planning and execution
+  - name: Dependency Analysis
+    description: Command dependency analysis and sequencing
+  - name: Pattern Library
+    description: Command pattern management and learning
+  - name: Monitoring
+    description: Real-time monitoring and analytics
+  - name: Validation
+    description: Configuration validation and safety checks
+
+paths:
+  /templates/convert:
+    post:
+      tags:
+        - Template Conversion
+      summary: Convert RTB template to CLI commands
+      description: |
+        Converts RTB JSON templates into executable cmedit commands using cognitive
+        processing and expert system integration. This endpoint applies Ericsson RAN
+        expertise to optimize parameters and ensure configuration validity.
+      operationId: convertTemplate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateConversionRequest'
+            examples:
+              basicConversion:
+                summary: Basic template conversion
+                description: Simple RTB template to CLI conversion
+                value:
+                  template:
+                    id: "cell_optimization_001"
+                    name: "Urban Cell Optimization"
+                    version: "1.0"
+                    priority: 50
+                    parameters:
+                      - name: "qRxLevMin"
+                        value: -130
+                        type: "integer"
+                      - name: "qQualMin"
+                        value: -32
+                        type: "integer"
+                  options:
+                    applyExpertOptimization: true
+                    generateRollbackCommands: true
+                    validateConfiguration: true
+              advancedConversion:
+                summary: Advanced conversion with expert optimization
+                description: Complex template conversion with full expert system integration
+                value:
+                  template:
+                    id: "mobility_optimization_001"
+                    name: "Advanced Mobility Optimization"
+                    version: "2.0"
+                    priority: 70
+                    parameters:
+                      - name: "hysteresisA3"
+                        value: 4
+                        type: "integer"
+                      - name: "timeToTriggerA3"
+                        value: 512
+                        type: "integer"
+                  options:
+                    applyExpertOptimization: true
+                    enableCognitiveProcessing: true
+                    useAdvancedDependencyAnalysis: true
+                    generateMonitoringPlan: true
+                    applyLearningPatterns: true
+      responses:
+        '200':
+          description: Successful template conversion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateConversionResponse'
+              examples:
+                successfulConversion:
+                  summary: Successful conversion result
+                  description: Template successfully converted to optimized CLI commands
+                  value:
+                    conversionId: "conv_1234567890"
+                    status: "completed"
+                    commands:
+                      - id: "cmd_001"
+                        operation: "set"
+                        target: "LTE32ERBS00001 EUtranCellFDD=83906_E1"
+                        parameters:
+                          - name: "qRxLevMin"
+                            value: -128
+                            unit: "dBm"
+                        commandString: "cmedit set LTE32ERBS00001 EUtranCellFDD=83906_E1 qRxLevMin=-128"
+                        metadata:
+                          optimizedByExpertSystem: true
+                          confidenceScore: 0.95
+                    metadata:
+                      conversionTime: "2024-01-15T10:30:00Z"
+                      processingTimeMs: 1250
+                      optimizationApplied: true
+                      expertConsultations: 3
+                    validationResults:
+                      isValid: true
+                      errors: []
+                      warnings: []
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /templates/validate:
+    post:
+      tags:
+        - Template Conversion
+      summary: Validate RTB template structure and content
+      description: |
+        Performs comprehensive validation of RTB templates including schema compliance,
+        business rule validation, and semantic correctness checks.
+      operationId: validateTemplate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateValidationRequest'
+      responses:
+        '200':
+          description: Template validation completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateValidationResponse'
+
+  /commands/generate:
+    post:
+      tags:
+        - Command Generation
+      summary: Generate cognitive CLI commands
+      description: |
+        Generates cmedit commands using cognitive processing, expert system integration,
+        and advanced optimization techniques. Supports multiple generation strategies
+        and optimization goals.
+      operationId: generateCommands
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommandGenerationRequest'
+      responses:
+        '200':
+          description: Commands generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommandGenerationResponse'
+
+  /commands/optimize:
+    post:
+      tags:
+        - Command Generation
+      summary: Optimize existing CLI commands
+      description: |
+        Applies expert system optimization and cognitive processing to existing
+        cmedit commands to improve performance, safety, and efficiency.
+      operationId: optimizeCommands
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommandOptimizationRequest'
+      responses:
+        '200':
+          description: Commands optimized successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommandOptimizationResponse'
+
+  /batch/operations:
+    post:
+      tags:
+        - Batch Operations
+      summary: Create batch operation plan
+      description: |
+        Creates a comprehensive batch operation plan including dependency analysis,
+        resource allocation, safety measures, and execution sequencing.
+      operationId: createBatchOperation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchOperationRequest'
+      responses:
+        '201':
+          description: Batch operation plan created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchOperationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /batch/operations/{batchId}:
+    get:
+      tags:
+        - Batch Operations
+      summary: Get batch operation details
+      description: Retrieves detailed information about a specific batch operation
+        including execution plan, status, and results.
+      operationId: getBatchOperation
+      parameters:
+        - name: batchId
+          in: path
+          required: true
+          description: Unique identifier for the batch operation
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Batch operation details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchOperationDetails'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /batch/operations/{batchId}/execute:
+    post:
+      tags:
+        - Batch Operations
+      summary: Execute batch operation
+      description: |
+        Executes a planned batch operation with real-time monitoring, error handling,
+        and automatic rollback capabilities.
+      operationId: executeBatchOperation
+      parameters:
+        - name: batchId
+          in: path
+          required: true
+          description: Unique identifier for the batch operation
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchExecutionRequest'
+      responses:
+        '200':
+          description: Batch operation execution started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchExecutionResponse'
+
+  /batch/operations/{batchId}/rollback:
+    post:
+      tags:
+        - Batch Operations
+      summary: Rollback batch operation
+      description: |
+        Rolls back a partially or fully executed batch operation using predefined
+        rollback strategies.
+      operationId: rollbackBatchOperation
+      parameters:
+        - name: batchId
+          in: path
+          required: true
+          description: Unique identifier for the batch operation
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Rollback operation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RollbackResponse'
+
+  /dependencies/analyze:
+    post:
+      tags:
+        - Dependency Analysis
+      summary: Analyze command dependencies
+      description: |
+        Performs comprehensive dependency analysis on a set of commands to identify
+        relationships, conflicts, and optimal execution sequences.
+      operationId: analyzeDependencies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DependencyAnalysisRequest'
+      responses:
+        '200':
+          description: Dependency analysis completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DependencyAnalysisResponse'
+
+  /patterns/search:
+    post:
+      tags:
+        - Pattern Library
+      summary: Search command patterns
+      description: |
+        Searches the command pattern library using various criteria including
+        similarity, context, and semantic matching.
+      operationId: searchPatterns
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatternSearchRequest'
+      responses:
+        '200':
+          description: Pattern search completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatternSearchResponse'
+
+  /patterns/{patternId}:
+    get:
+      tags:
+        - Pattern Library
+      summary: Get pattern details
+      description: Retrieves detailed information about a specific command pattern
+      operationId: getPattern
+      parameters:
+        - name: patternId
+          in: path
+          required: true
+          description: Unique identifier for the pattern
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Pattern details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatternDetails'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /patterns:
+    post:
+      tags:
+        - Pattern Library
+      summary: Create new command pattern
+      description: |
+        Creates a new command pattern in the library with automatic validation
+        and classification.
+      operationId: createPattern
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatternCreationRequest'
+      responses:
+        '201':
+          description: Pattern created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatternCreationResponse'
+
+  /expert/consult:
+    post:
+      tags:
+        - Expert System
+      summary: Consult expert system
+      description: |
+        Queries the Ericsson RAN expert system for recommendations, optimizations,
+        and troubleshooting guidance.
+      operationId: consultExpertSystem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpertConsultationRequest'
+      responses:
+        '200':
+          description: Expert consultation completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpertConsultationResponse'
+
+  /monitoring/operations/{operationId}:
+    get:
+      tags:
+        - Monitoring
+      summary: Get operation monitoring data
+      description: |
+        Retrieves real-time monitoring data for a specific operation including
+        progress, performance metrics, and status updates.
+      operationId: getOperationMonitoring
+      parameters:
+        - name: operationId
+          in: path
+          required: true
+          description: Unique identifier for the operation
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Monitoring data retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationMonitoringResponse'
+
+  /monitoring/metrics:
+    get:
+      tags:
+        - Monitoring
+      summary: Get system performance metrics
+      description: |
+        Retrieves comprehensive system performance metrics including cognitive
+        processing, expert system, and batch operation statistics.
+      operationId: getPerformanceMetrics
+      parameters:
+        - name: timeRange
+          in: query
+          description: Time range for metrics collection
+          schema:
+            type: string
+            enum: [1h, 24h, 7d, 30d]
+            default: 24h
+        - name: categories
+          in: query
+          description: Specific metric categories to retrieve
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [cognitive, expert_system, batch_operations, pattern_library, template_conversion]
+        - name: granularity
+          in: query
+          description: Time granularity for metrics
+          schema:
+            type: string
+            enum: [1m, 5m, 15m, 1h]
+            default: 5m
+      responses:
+        '200':
+          description: Performance metrics retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceMetricsResponse'
+
+  /validation/safety-check:
+    post:
+      tags:
+        - Validation
+      summary: Perform safety validation
+      description: |
+        Performs comprehensive safety validation on commands or batch operations
+        including risk assessment, impact analysis, and safety measure recommendations.
+      operationId: performSafetyCheck
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SafetyCheckRequest'
+      responses:
+        '200':
+          description: Safety check completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SafetyCheckResponse'
+
+components:
+  schemas:
+    # Request Schemas
+    TemplateConversionRequest:
+      type: object
+      required:
+        - template
+      properties:
+        template:
+          $ref: '#/components/schemas/RTBTemplate'
+        context:
+          $ref: '#/components/schemas/ExecutionContext'
+        options:
+          $ref: '#/components/schemas/ConversionOptions'
+
+    ConversionOptions:
+      type: object
+      properties:
+        applyExpertOptimization:
+          type: boolean
+          default: true
+          description: Apply Ericsson RAN expert system optimization
+        enableCognitiveProcessing:
+          type: boolean
+          default: true
+          description: Enable cognitive reasoning and temporal analysis
+        useAdvancedDependencyAnalysis:
+          type: boolean
+          default: false
+          description: Use advanced dependency analysis algorithms
+        generateRollbackCommands:
+          type: boolean
+          default: true
+          description: Generate automatic rollback commands
+        validateConfiguration:
+          type: boolean
+          default: true
+          description: Perform comprehensive configuration validation
+        generateMonitoringPlan:
+          type: boolean
+          default: false
+          description: Generate post-execution monitoring plan
+        applyLearningPatterns:
+          type: boolean
+          default: true
+          description: Apply learned patterns from AgentDB
+        optimizationGoals:
+          type: array
+          items:
+            $ref: '#/components/schemas/OptimizationGoal'
+          description: Specific optimization goals to prioritize
+        safetyLevel:
+          $ref: '#/components/schemas/SafetyLevel'
+          default: "standard"
+
+    RTBTemplate:
+      type: object
+      required:
+        - id
+        - name
+        - version
+        - priority
+      properties:
+        id:
+          type: string
+          description: Unique template identifier
+          example: "cell_optimization_001"
+        name:
+          type: string
+          description: Human-readable template name
+          example: "Urban Cell Optimization Template"
+        version:
+          type: string
+          description: Template version
+          example: "1.0.0"
+        priority:
+          type: integer
+          minimum: 1
+          maximum: 100
+          description: Template priority for inheritance resolution
+          example: 50
+        metadata:
+          $ref: '#/components/schemas/TemplateMetadata'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/RTBParameter'
+          description: Template parameters
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/RTBConstraint'
+          description: Template constraints
+        moClasses:
+          type: array
+          items:
+            $ref: '#/components/schemas/MOClassReference'
+          description: MO class references
+
+    TemplateMetadata:
+      type: object
+      properties:
+        author:
+          type: string
+          description: Template author
+          example: "RAN Optimization Team"
+        createdAt:
+          type: string
+          format: date-time
+          description: Template creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Template last update timestamp
+        description:
+          type: string
+          description: Template description
+        category:
+          type: string
+          description: Template category
+          example: "Cell Optimization"
+        tags:
+          type: array
+          items:
+            type: string
+          description: Template tags
+        networkType:
+          type: string
+          enum: [4G, 5G, 4G5G_Interop]
+          description: Network type
+        environment:
+          type: string
+          enum: [urban, suburban, rural, dense_urban]
+          description: Environment type
+
+    RTBParameter:
+      type: object
+      required:
+        - name
+        - value
+        - type
+      properties:
+        name:
+          type: string
+          description: Parameter name
+          example: "qRxLevMin"
+        value:
+          description: Parameter value
+          oneOf:
+            - type: string
+            - type: number
+            - type: boolean
+            - type: array
+          example: -130
+        type:
+          $ref: '#/components/schemas/ParameterType'
+        unit:
+          type: string
+          description: Parameter unit
+          example: "dBm"
+        description:
+          type: string
+          description: Parameter description
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParameterConstraint'
+          description: Parameter constraints
+        defaultValue:
+          description: Default value
+          oneOf:
+            - type: string
+            - type: number
+            - type: boolean
+        isOptional:
+          type: boolean
+          default: false
+          description: Whether parameter is optional
+
+    ParameterType:
+      type: string
+      enum:
+        - integer
+        - float
+        - string
+        - boolean
+        - array
+        - object
+        - enumeration
+        - ip_address
+        - mac_address
+        - date_time
+
+    # Response Schemas
+    TemplateConversionResponse:
+      type: object
+      required:
+        - conversionId
+        - status
+        - commands
+        - metadata
+      properties:
+        conversionId:
+          type: string
+          format: uuid
+          description: Unique conversion identifier
+        status:
+          $ref: '#/components/schemas/ConversionStatus'
+        commands:
+          type: array
+          items:
+            $ref: '#/components/schemas/cmeditCommand'
+          description: Generated CLI commands
+        metadata:
+          $ref: '#/components/schemas/ConversionMetadata'
+        validationResults:
+          $ref: '#/components/schemas/ValidationResult'
+        optimizationReport:
+          $ref: '#/components/schemas/OptimizationReport'
+        expertConsultations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpertConsultation'
+          description: Expert system consultations performed
+
+    ConversionStatus:
+      type: string
+      enum:
+        - pending
+        - in_progress
+        - completed
+        - failed
+        - validation_failed
+        - optimization_failed
+
+    cmeditCommand:
+      type: object
+      required:
+        - id
+        - operation
+        - target
+        - commandString
+      properties:
+        id:
+          type: string
+          description: Unique command identifier
+        operation:
+          $ref: '#/components/schemas/cmeditOperationType'
+        target:
+          type: string
+          description: Command target (FDN or MO identifier)
+          example: "LTE32ERBS00001 EUtranCellFDD=83906_E1"
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommandParameter'
+          description: Command parameters
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommandOption'
+          description: Command options
+        commandString:
+          type: string
+          description: Complete cmedit command string
+          example: "cmedit set LTE32ERBS00001 EUtranCellFDD=83906_E1 qRxLevMin=-128,qQualMin=-30"
+        metadata:
+          $ref: '#/components/schemas/CommandMetadata'
+        validationResults:
+          $ref: '#/components/schemas/ValidationResult'
+        rollbackCommand:
+          description: Automatic rollback command
+          allOf:
+            - $ref: '#/components/schemas/cmeditCommand'
+        riskAssessment:
+          $ref: '#/components/schemas/RiskAssessment'
+
+    cmeditOperationType:
+      type: string
+      enum:
+        - get
+        - set
+        - create
+        - delete
+        - mon
+        - unmon
+      description: cmedit operation type
+
+    CommandParameter:
+      type: object
+      required:
+        - name
+        - value
+        - type
+      properties:
+        name:
+          type: string
+          description: Parameter name
+          example: "qRxLevMin"
+        value:
+          description: Parameter value
+          oneOf:
+            - type: string
+            - type: number
+            - type: boolean
+          example: -128
+        type:
+          $ref: '#/components/schemas/ParameterType'
+        unit:
+          type: string
+          description: Parameter unit
+          example: "dBm"
+        description:
+          type: string
+          description: Parameter description
+        source:
+          $ref: '#/components/schemas/ParameterSource'
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Confidence in parameter value
+          example: 0.95
+
+    ParameterSource:
+      type: string
+      enum:
+        - template
+        - expert_system
+        - optimization
+        - learning
+        - default
+        - user_override
+      description: Source of parameter value
+
+    CommandMetadata:
+      type: object
+      properties:
+        generatedAt:
+          type: string
+          format: date-time
+          description: Command generation timestamp
+        generatorVersion:
+          type: string
+          description: Generator version
+        sourceTemplate:
+          type: string
+          description: Source template ID
+        expertSystemVersion:
+          type: string
+          description: Expert system version used
+        cognitiveProcessId:
+          type: string
+          description: Cognitive process identifier
+        optimizationApplied:
+          type: boolean
+          description: Whether optimization was applied
+        confidenceScore:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Overall confidence score
+
+    ValidationResult:
+      type: object
+      required:
+        - isValid
+      properties:
+        isValid:
+          type: boolean
+          description: Overall validation result
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          description: Validation errors
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationWarning'
+          description: Validation warnings
+        suggestions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationSuggestion'
+          description: Improvement suggestions
+        complianceScore:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: Compliance score percentage
+
+    ValidationError:
+      type: object
+      required:
+        - code
+        - message
+        - severity
+      properties:
+        code:
+          type: string
+          description: Error code
+          example: "INVALID_PARAMETER_VALUE"
+        message:
+          type: string
+          description: Error message
+          example: "qRxLevMin value -140 is below minimum allowed range"
+        severity:
+          type: string
+          enum: [error, warning, info]
+          description: Error severity
+        parameter:
+          type: string
+          description: Affected parameter name
+        location:
+          type: string
+          description: Error location
+        suggestedFix:
+          type: string
+          description: Suggested fix
+
+    ConversionMetadata:
+      type: object
+      properties:
+        conversionTime:
+          type: string
+          format: date-time
+          description: Conversion completion timestamp
+        processingTimeMs:
+          type: integer
+          description: Processing time in milliseconds
+          example: 1250
+        cognitiveLoad:
+          $ref: '#/components/schemas/CognitiveLoad'
+        optimizationApplied:
+          type: boolean
+          description: Whether optimization was applied
+        expertConsultations:
+          type: integer
+          description: Number of expert consultations
+          example: 3
+        patternsUsed:
+          type: array
+          items:
+            type: string
+          description: Patterns used in conversion
+        reasoningSteps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReasoningStep'
+          description: Cognitive reasoning steps
+
+    CognitiveLoad:
+      type: object
+      properties:
+        temporalExpansionFactor:
+          type: number
+          description: Temporal expansion factor applied
+          example: 1000
+        patternRecognitionDepth:
+          type: number
+          description: Pattern recognition analysis depth
+          example: 0.85
+        reasoningComplexity:
+          type: number
+          description: Reasoning complexity score
+          example: 0.72
+        memoryAccessPatterns:
+          type: array
+          items:
+            type: string
+          description: Memory access patterns used
+        consciousnessLevel:
+          $ref: '#/components/schemas/ConsciousnessLevel'
+
+    ConsciousnessLevel:
+      type: object
+      properties:
+        selfAwareness:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Self-awareness level
+        contextualUnderstanding:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Contextual understanding level
+        predictiveCapability:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Predictive capability level
+        adaptiveLearning:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Adaptive learning capability
+        strangeLoopRecursion:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Strange-loop recursion depth
+
+    # Common Schemas
+    ExecutionContext:
+      type: object
+      properties:
+        networkContext:
+          $ref: '#/components/schemas/NetworkContext'
+        nodeType:
+          $ref: '#/components/schemas/NodeType'
+        configurationScope:
+          $ref: '#/components/schemas/ConfigurationScope'
+        optimizationGoals:
+          type: array
+          items:
+            $ref: '#/components/schemas/OptimizationGoal'
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExecutionConstraint'
+        temporalWindow:
+          $ref: '#/components/schemas/TemporalWindow'
+
+    NetworkContext:
+      type: object
+      required:
+        - subnetworkId
+        - managedElementId
+      properties:
+        subnetworkId:
+          type: string
+          description: Subnetwork identifier
+        managedElementId:
+          type: string
+          description: Managed element identifier
+        meContextId:
+          type: string
+          description: ME context identifier
+        cellId:
+          type: string
+          description: Cell identifier
+        networkTopology:
+          $ref: '#/components/schemas/NetworkTopology'
+        currentLoad:
+          $ref: '#/components/schemas/LoadInformation'
+        performanceKPIs:
+          $ref: '#/components/schemas/PerformanceKPIs'
+
+    OptimizationGoal:
+      type: object
+      required:
+        - type
+        - priority
+      properties:
+        type:
+          $ref: '#/components/schemas/OptimizationGoalType'
+        priority:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Goal priority (1-10)
+        targetValue:
+          type: number
+          description: Target value for optimization
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/OptimizationConstraint'
+          description: Goal constraints
+
+    OptimizationGoalType:
+      type: string
+      enum:
+        - coverage
+        - capacity
+        - quality
+        - energy_efficiency
+        - mobility
+        - interference_mitigation
+        - throughput
+        - latency
+        - reliability
+
+    SafetyLevel:
+      type: string
+      enum:
+        - conservative
+        - standard
+        - aggressive
+        - custom
+      description: Safety validation level
+
+    NodeType:
+      type: string
+      enum:
+        - ENB
+        - GNB
+        - Cell_FDD
+        - Cell_TDD
+        - Sector
+        - Antenna
+      description: RAN node type
+
+    ConfigurationScope:
+      type: string
+      enum:
+        - network
+        - subnetwork
+        - managed_element
+        - me_context
+      description: Configuration scope
+
+    # Response Headers
+    ResponseHeaders:
+      type: object
+      properties:
+        X-Request-ID:
+          type: string
+          description: Unique request identifier
+        X-Processing-Time:
+          type: string
+          description: Processing time in milliseconds
+        X-Cognitive-Load:
+          type: string
+          description: Cognitive processing load score
+        X-Expert-Consultations:
+          type: string
+          description: Number of expert consultations performed
+        X-Rate-Limit-Remaining:
+          type: string
+          description: Remaining API calls in current window
+
+    # Error Responses
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
+        metadata:
+          $ref: '#/components/schemas/ErrorMetadata'
+
+    ErrorDetails:
+      type: object
+      required:
+        - code
+        - message
+        - type
+      properties:
+        code:
+          type: string
+          description: Error code
+          example: "TEMPLATE_VALIDATION_FAILED"
+        message:
+          type: string
+          description: Human-readable error message
+          example: "Template validation failed due to missing required parameters"
+        type:
+          type: string
+          enum: [validation_error, processing_error, system_error, rate_limit_error]
+          description: Error type
+        details:
+          type: object
+          description: Additional error details
+        timestamp:
+          type: string
+          format: date-time
+          description: Error timestamp
+        requestId:
+          type: string
+          description: Request identifier
+
+    ErrorMetadata:
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Request identifier
+        timestamp:
+          type: string
+          format: date-time
+          description: Error timestamp
+        service:
+          type: string
+          description: Service name
+        version:
+          type: string
+          description: Service version
+        environment:
+          type: string
+          description: Environment
+        traceId:
+          type: string
+          description: Distributed trace identifier
+
+  responses:
+    BadRequest:
+      description: Bad request - invalid input parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: "INVALID_TEMPLATE_FORMAT"
+              message: "Template format is invalid or missing required fields"
+              type: "validation_error"
+              details:
+                missingFields: ["id", "name", "version"]
+                invalidFields: ["priority"]
+              timestamp: "2024-01-15T10:30:00Z"
+              requestId: "req_1234567890"
+            metadata:
+              requestId: "req_1234567890"
+              timestamp: "2024-01-15T10:30:00Z"
+              service: "ranops-api"
+              version: "1.0.0"
+              environment: "production"
+              traceId: "trace_1234567890"
+
+    Unauthorized:
+      description: Authentication failed or missing
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          headers:
+            X-Rate-Limit-Limit:
+              schema:
+                type: string
+              description: Rate limit per window
+            X-Rate-Limit-Remaining:
+              schema:
+                type: string
+              description: Remaining requests in window
+            X-Rate-Limit-Reset:
+              schema:
+                type: string
+              description: Time when rate limit resets
+
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token for authentication
+
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for service authentication
+
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth2/token
+          scopes:
+            template:read: Read access to templates
+            template:write: Write access to templates
+            command:execute: Execute commands
+            batch:manage: Manage batch operations
+            expert:consult: Consult expert system
+            monitoring:read: Read monitoring data
+
+security:
+  - BearerAuth: []
+  - ApiKeyAuth: []
+  - OAuth2:
+      - template:read
+      - template:write
+      - command:execute
+      - batch:manage
+      - expert:consult
+      - monitoring:read
+
+# Examples and Additional Documentation
+examples:
+  TemplateConversionWorkflow:
+    summary: Complete template to CLI conversion workflow
+    description: |
+      This example demonstrates the complete workflow for converting an RTB template
+      to optimized CLI commands with expert system integration and cognitive processing.
+    value:
+      template:
+        id: "urban_cell_optimization_v2"
+        name: "Urban Cell Optimization Template v2.0"
+        version: "2.0.0"
+        priority: 65
+        metadata:
+          author: "RAN Optimization Team"
+          category: "Cell Configuration"
+          environment: "urban"
+          networkType: "4G"
+        parameters:
+          - name: "qRxLevMin"
+            value: -130
+            type: "integer"
+            unit: "dBm"
+            description: "Minimum required RX level"
+          - name: "qQualMin"
+            value: -32
+            type: "integer"
+            unit: "dB"
+            description: "Minimum required quality level"
+          - name: "cellIndividualOffset"
+            value: 3
+            type: "integer"
+            unit: "dB"
+            description: "Cell individual offset"
+      context:
+        networkContext:
+          subnetworkId: "SN_001"
+          managedElementId: "ME_001"
+          meContextId: "MEC_001"
+          cellId: "CELL_001"
+        nodeType: "Cell_FDD"
+        configurationScope: "me_context"
+        optimizationGoals:
+          - type: "coverage"
+            priority: 8
+          - type: "capacity"
+            priority: 7
+      options:
+        applyExpertOptimization: true
+        enableCognitiveProcessing: true
+        generateRollbackCommands: true
+        validateConfiguration: true
+        safetyLevel: "standard"
+        optimizationGoals:
+          - type: "coverage"
+            targetValue: 95
+          - type: "energy_efficiency"
+            targetValue: 0.85

@@ -1,0 +1,93 @@
+{
+  "id": "121 5324",
+  "name": "NR Service-Adaptive Prescheduling",
+  "cxc_code": "CXC4012547",
+  "value_package": "Performance Boost",
+  "value_package_id": "FAJ 801 4021",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The NR Service-Adaptive Prescheduling feature introduces the possibility to configure",
+  "parameters": [
+    {
+      "name": "PreschedulingUeCfg.preschedulingUeMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PreschedulingUeCfg"
+    },
+    {
+      "name": "PreschedulingUeCfg.preschedulingDataSize",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PreschedulingUeCfg"
+    },
+    {
+      "name": "PreschedulingUeCfg.preschedulingDuration",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "PreschedulingUeCfg"
+    },
+    {
+      "name": "UeBbProfileUeCfg.prefUeGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeBbProfileUeCfg"
+    },
+    {
+      "name": "UeBbProfileUeCfg.preschedulingUeCfgRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeBbProfileUeCfg"
+    },
+    {
+      "name": "UeBbProfileUeCfg.ueGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeBbProfileUeCfg"
+    },
+    {
+      "name": "NRCellDU.ueBbProfileRef",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "Uen.AE",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "GNBDUFunction.UeCC",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "GNBDUFunction"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmUeConfigProfileOverwrite",
+      "description": "Performance counter pmUeConfigProfileOverwrite",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012547 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012547 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/129_22104-LZA7016017_1Uen.AE.md",
+  "file_hash": "de2499deda20a5ccde2bdb66eaa3e5c6",
+  "processed_at": "2025-10-19 15:50:03",
+  "network_impact": {},
+  "performance_impact": {}
+}

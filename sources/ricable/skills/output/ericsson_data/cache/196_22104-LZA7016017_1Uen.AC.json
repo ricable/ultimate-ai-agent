@@ -1,0 +1,76 @@
+{
+  "file_hash": "92345537f9db48938bf4af09231a6944",
+  "feature": {
+    "id": "121 5510",
+    "name": "NR SSB Time Shift Mid-Band",
+    "cxc_code": "CXC4012634",
+    "value_package": "Advanced Coverage Extension",
+    "value_package_id": "FAJ 801 4006",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature introduces a time shifted SSB index to increase SSB SINR for NR cells and",
+    "parameters": [
+      {
+        "name": "NRCellDU.ssbTimeShiftEnabled",
+        "type": "Affected",
+        "description": "See MOM description",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.ssbIndex",
+        "type": "Introduced",
+        "description": "See MOM description",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.ssbIndexAutoSelected",
+        "type": "Introduced",
+        "description": "See MOM description",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "Uen.AC",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMacContentionDelayDlDistr",
+        "description": "Performance counter pmMacContentionDelayDlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeDlDrb",
+        "description": "Performance counter pmMacTimeDlDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrb",
+        "description": "Performance counter pmMacVolDlDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012634 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012634 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/196_22104-LZA7016017_1Uen.AC.md",
+    "file_hash": "92345537f9db48938bf4af09231a6944",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

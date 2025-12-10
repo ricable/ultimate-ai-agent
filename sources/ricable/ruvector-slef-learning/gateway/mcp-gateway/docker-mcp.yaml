@@ -1,0 +1,181 @@
+# Docker MCP Gateway - Server Catalog
+# Available server definitions for the Edge-Native AI SaaS
+# Location: ~/.docker/mcp/docker-mcp.yaml
+
+# Vector Database Server - RuVector Integration
+ruvector:
+  image: ghcr.io/ruvnet/ruvector-mcp:latest
+  command:
+    - --dimension
+    - "384"
+    - --index-type
+    - hnsw
+  env:
+    - RUVECTOR_DATA_PATH=/data
+  volumes:
+    - ruvector-data:/data
+  description: "High-performance vector database with HNSW indexing"
+  capabilities:
+    - vector-search
+    - embedding-storage
+    - similarity-search
+
+# AgentDB Server - AI Agent Memory
+agentdb:
+  image: ghcr.io/ruvnet/agentdb-mcp:latest
+  command:
+    - --backend
+    - ruvector
+    - --dimension
+    - "384"
+  env:
+    - AGENTDB_PATH=/data/agentdb.db
+  volumes:
+    - agentdb-data:/data
+  description: "Agent memory with causal reasoning and skill library"
+  capabilities:
+    - agent-memory
+    - causal-reasoning
+    - reflexion-memory
+
+# Claude Flow - Agent Orchestration
+claude-flow:
+  image: ghcr.io/ruvnet/claude-flow-mcp:latest
+  command:
+    - --mode
+    - server
+  env:
+    - CLAUDE_FLOW_DB=/data/memory.db
+  volumes:
+    - claude-flow-data:/data
+  secrets:
+    - anthropic_api_key
+  description: "AI agent orchestration with ReasoningBank memory"
+  capabilities:
+    - agent-orchestration
+    - workflow-automation
+    - multi-agent-coordination
+
+# Agentic Flow - Multi-Agent Swarms
+agentic-flow:
+  image: ghcr.io/ruvnet/agentic-flow-mcp:latest
+  command:
+    - mcp
+    - start
+  env:
+    - AGENTIC_FLOW_MODE=production
+  secrets:
+    - anthropic_api_key
+    - openrouter_api_key
+  description: "Production AI agent orchestration with 66 specialized agents"
+  capabilities:
+    - agent-execution
+    - swarm-intelligence
+    - multi-provider-llm
+
+# E2B Code Sandbox
+e2b-sandbox:
+  image: ghcr.io/e2b-dev/mcp-server:latest
+  command:
+    - --timeout
+    - "60"
+  secrets:
+    - e2b_api_key
+  description: "Secure code execution in Firecracker microVMs"
+  capabilities:
+    - code-execution
+    - python-runtime
+    - file-operations
+
+# LiteLLM Router
+litellm:
+  image: ghcr.io/berriai/litellm:latest
+  command:
+    - --config
+    - /config/litellm.yaml
+  volumes:
+    - ./litellm:/config:ro
+  secrets:
+    - openai_api_key
+    - anthropic_api_key
+    - openrouter_api_key
+  ports:
+    - "4000:4000"
+  description: "Unified LLM API gateway with routing and caching"
+  capabilities:
+    - llm-routing
+    - cost-tracking
+    - model-fallback
+
+# PostgreSQL Database
+postgres:
+  image: postgres:16-alpine
+  env:
+    - POSTGRES_DB=edge_ai_saas
+    - POSTGRES_USER=admin
+  secrets:
+    - postgres_password
+  volumes:
+    - postgres-data:/var/lib/postgresql/data
+  description: "Primary relational database"
+  capabilities:
+    - sql-database
+    - transactional-storage
+
+# Redis Cache
+redis:
+  image: redis:7-alpine
+  command:
+    - --maxmemory
+    - 256mb
+    - --maxmemory-policy
+    - allkeys-lru
+  volumes:
+    - redis-data:/data
+  description: "In-memory cache for sessions and rate limiting"
+  capabilities:
+    - caching
+    - session-storage
+    - rate-limiting
+
+# LocalAI - Local LLM Inference
+localai:
+  image: localai/localai:latest
+  env:
+    - MODELS_PATH=/models
+    - THREADS=4
+  volumes:
+    - localai-models:/models
+  description: "Local LLM inference for cost savings and privacy"
+  capabilities:
+    - local-llm
+    - embedding-generation
+    - text-completion
+
+# Graph Neural Network Server
+ruvector-gnn:
+  image: ghcr.io/ruvnet/ruvector-gnn-mcp:latest
+  command:
+    - --enable-training
+  env:
+    - GNN_MODEL_PATH=/models
+  volumes:
+    - gnn-models:/models
+  description: "Graph Neural Network capabilities for self-learning"
+  capabilities:
+    - graph-learning
+    - pattern-recognition
+    - adaptive-training
+
+# Hypergraph Database
+ruvector-graph:
+  image: ghcr.io/ruvnet/ruvector-graph-mcp:latest
+  command:
+    - --cypher-enabled
+  volumes:
+    - graph-data:/data
+  description: "Hypergraph database with Cypher query support"
+  capabilities:
+    - graph-database
+    - knowledge-graph
+    - cypher-queries

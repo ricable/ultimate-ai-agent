@@ -1,0 +1,158 @@
+{
+  "id": "121 0855",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4010955",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature is used to test the effects of load in radio units.",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.ailgActive  EUtranCellTDD.ailgActive",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.ailgRef  EUtranCellTDD.ailgRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.ailgAutoRestartEnabled  EUtranCellTDD.ailgAutoRestartEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "AirIfLoadProfile.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AirIfLoadProfile"
+    },
+    {
+      "name": "AirIfLoadProfile.userLabel",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AirIfLoadProfile"
+    },
+    {
+      "name": "AirIfLoadProfile.ailgChangePeriod",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AirIfLoadProfile"
+    },
+    {
+      "name": "AirIfLoadProfile.ailgHighPrio",
+      "type": "Introduced",
+      "description": "See MOM description.  The AirIfLoadProfile.ailgHighPrio is not supported and it is                   recommended to be set to NO_HIGH_PRIO_LOAD.",
+      "mo_class": "AirIfLoadProfile"
+    },
+    {
+      "name": "AirIfLoadProfile.ailgLoadType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AirIfLoadProfile"
+    },
+    {
+      "name": "AirIfLoadProfile.ailgLowPrioModType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AirIfLoadProfile"
+    },
+    {
+      "name": "AirIfLoadProfile.dlPrbLoadLevel",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AirIfLoadProfile"
+    },
+    {
+      "name": "AirIfLoadProfile.minLoadLevelPdcch",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AirIfLoadProfile"
+    },
+    {
+      "name": "AirIfLoadProfile.noOfOcngPrbSeries",
+      "type": "Introduced",
+      "description": "See MOM description.  The AirIfLoadProfile.noOfOcngPrbSeries is not supported.",
+      "mo_class": "AirIfLoadProfile"
+    },
+    {
+      "name": "AirIfLoadProfile.ocngPrbSerie",
+      "type": "Introduced",
+      "description": "See MOM description.  The AirIfLoadProfile.ocngPrbSerie is not supported.",
+      "mo_class": "AirIfLoadProfile"
+    },
+    {
+      "name": "Uen.BT",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.ailgActive",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.ailgActive",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.ailgRef",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.ailgRef",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.ailgAutoRestartEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmPrbUsedDlAilgHighPrio",
+      "description": "Performance counter pmPrbUsedDlAilgHighPrio",
+      "category": "General"
+    },
+    {
+      "name": "pmPrbUsedDlAilgTot",
+      "description": "Performance counter pmPrbUsedDlAilgTot",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010955 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010955 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/93_22104-LZA7016014_1Uen.BT.md",
+  "file_hash": "ac0cfac7f8f04be526d5bfaca45dd832",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

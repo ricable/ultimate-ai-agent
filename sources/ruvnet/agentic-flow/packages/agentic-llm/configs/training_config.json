@@ -1,0 +1,71 @@
+{
+  "model": {
+    "name": "microsoft/Phi-4",
+    "cache_dir": "/app/models",
+    "torch_dtype": "float16",
+    "device_map": "auto"
+  },
+  "training": {
+    "output_dir": "/app/checkpoints",
+    "num_train_epochs": 3,
+    "per_device_train_batch_size": 4,
+    "per_device_eval_batch_size": 4,
+    "gradient_accumulation_steps": 4,
+    "learning_rate": 2e-05,
+    "warmup_steps": 100,
+    "max_seq_length": 2048,
+    "weight_decay": 0.01,
+    "max_grad_norm": 1.0,
+    "fp16": true,
+    "gradient_checkpointing": true
+  },
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "v_proj",
+      "k_proj",
+      "o_proj"
+    ],
+    "bias": "none",
+    "task_type": "CAUSAL_LM"
+  },
+  "overfitting_prevention": {
+    "early_stopping_patience": 3,
+    "early_stopping_threshold": 0.01,
+    "validation_split": 0.15,
+    "test_split": 0.05,
+    "eval_steps": 100,
+    "save_steps": 200,
+    "logging_steps": 50,
+    "load_best_model_at_end": true,
+    "metric_for_best_model": "eval_loss",
+    "save_total_limit": 3
+  },
+  "quantization": {
+    "use_4bit": true,
+    "use_8bit": false,
+    "bnb_4bit_compute_dtype": "float16",
+    "bnb_4bit_quant_type": "nf4"
+  },
+  "mcp_optimization": {
+    "tool_focus": true,
+    "agentic_workflow_focus": true,
+    "synthetic_examples": 100
+  },
+  "monitoring": {
+    "use_wandb": true,
+    "wandb_project": "phi4-agentic-optimization",
+    "wandb_entity": null,
+    "tensorboard": true,
+    "log_dir": "/app/logs"
+  },
+  "data": {
+    "dataset_name": "mcp_tool_calls",
+    "max_samples": 10000,
+    "shuffle": true,
+    "seed": 42
+  }
+}

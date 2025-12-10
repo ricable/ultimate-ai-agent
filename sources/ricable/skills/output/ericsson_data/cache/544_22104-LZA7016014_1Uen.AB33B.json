@@ -1,0 +1,141 @@
+{
+  "file_hash": "ee874e96ee374296e0bb2fe736b1e605",
+  "feature": {
+    "id": "121 5433",
+    "name": "Uplink-Triggered VoLTE Mobility",
+    "cxc_code": "CXC4012603",
+    "value_package": "VoLTE Performance",
+    "value_package_id": "FAJ 801 0444",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature introduces an uplink-triggered VoLTE mobility procedure for UEs with",
+    "parameters": [
+      {
+        "name": "Uen.AB33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.servOrPrioTriggeredIFHo",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.servOrPrioTriggeredIFHo",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.servOrPrioIFHoSetupBearer",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.servOrPrioIFHoSetupBearer",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranFreqRelation.voiceprio",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "UnsupportedFreqProfile.unsupportedFreqList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UnsupportedFreqProfile"
+      },
+      {
+        "name": "EUtranCellFDD.ulVolteCovMobThr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.ulVolteCovMobThr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCellHoExeAttLteInterFUtvm",
+        "description": "Performance counter pmCellHoExeAttLteInterFUtvm",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteInterFUtvm",
+        "description": "Performance counter pmCellHoExeSuccLteInterFUtvm",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteInterFUtvm",
+        "description": "Performance counter pmCellHoPrepAttLteInterFUtvm",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepSuccLteInterFUtvm",
+        "description": "Performance counter pmCellHoPrepSuccLteInterFUtvm",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeAttLteInterFUtvm",
+        "description": "Performance counter pmHoExeAttLteInterFUtvm",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeSuccLteInterFUtvm",
+        "description": "Performance counter pmHoExeSuccLteInterFUtvm",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteInterFUtvm",
+        "description": "Performance counter pmHoPrepAttLteInterFUtvm",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccLteInterFUtvm",
+        "description": "Performance counter pmHoPrepSuccLteInterFUtvm",
+        "category": "General"
+      },
+      {
+        "name": "pmNumUlPotentialPktLossInd",
+        "description": "Performance counter pmNumUlPotentialPktLossInd",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012603 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012603 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/544_22104-LZA7016014_1Uen.AB33B.md",
+    "file_hash": "ee874e96ee374296e0bb2fe736b1e605",
+    "processed_at": "2025-10-19 15:50:06",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

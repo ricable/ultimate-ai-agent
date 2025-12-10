@@ -1,0 +1,109 @@
+{
+  "hardware": {
+    "type": "intel-nuc",
+    "variants": ["nuc11", "nuc12", "nuc13"],
+    "architecture": "x86_64",
+    "capabilities": {
+      "compute": "moderate-high",
+      "memory": "high",
+      "storage": "very-high",
+      "power": "moderate",
+      "network": "high",
+      "gpu": "intel-iris-xe"
+    }
+  },
+
+  "inference": {
+    "provider": "llamaedge",
+    "runtime": "wasmedge",
+    "backend": "ggml-openvino",
+
+    "models": {
+      "recommended": [
+        {
+          "name": "Qwen2.5-Coder-7B-Instruct",
+          "format": "gguf",
+          "quantization": "Q5_K_M",
+          "ram": "8GB",
+          "speed": "15-25 tokens/sec",
+          "useGPU": true
+        },
+        {
+          "name": "Qwen2.5-Coder-14B-Instruct",
+          "format": "gguf",
+          "quantization": "Q4_K_M",
+          "ram": "12GB",
+          "speed": "10-18 tokens/sec",
+          "useGPU": true
+        }
+      ],
+      "maxContextSize": 32768
+    },
+
+    "optimization": {
+      "threads": 8,
+      "batchSize": 512,
+      "enableMmap": true,
+      "gpuLayers": 20,
+      "useOpenVINO": true
+    }
+  },
+
+  "orchestration": {
+    "role": "general-worker",
+    "capabilities": [
+      "code-generation",
+      "data-processing",
+      "database-operations",
+      "storage-intensive-tasks",
+      "moderate-inference"
+    ],
+
+    "limits": {
+      "maxConcurrentTasks": 4,
+      "maxMemoryPerTask": "4GB",
+      "taskTimeout": 600000
+    }
+  },
+
+  "gaianet": {
+    "enabled": true,
+    "nodeType": "general-purpose",
+    "publicEndpoint": true,
+    "domains": ["developer-tools", "data-processing"]
+  },
+
+  "quad": {
+    "enabled": true,
+    "nodeRole": "worker",
+    "acceptTaskTypes": [
+      "code-generation",
+      "data-processing",
+      "testing",
+      "database-operations"
+    ]
+  },
+
+  "storage": {
+    "database": {
+      "type": "sqlite",
+      "location": "/mnt/nvme/agent-db",
+      "maxSize": "100GB"
+    },
+    "cache": {
+      "type": "redis",
+      "maxMemory": "2GB"
+    }
+  },
+
+  "environment": {
+    "NODE_ENV": "production",
+    "LLM_PROVIDER": "local",
+    "GAIANET_ENDPOINT": "http://localhost:8080/v1",
+    "GAIANET_MODEL": "Qwen2.5-Coder-7B-Instruct",
+    "SANDBOX_MEMORY_LIMIT": "4g",
+    "SANDBOX_CPU_LIMIT": "4",
+    "CONTEXT_WINDOW": "32768",
+    "ENABLE_AGENT_BOOSTER": "true"
+  }
+}

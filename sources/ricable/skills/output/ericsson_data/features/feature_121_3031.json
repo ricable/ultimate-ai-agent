@@ -1,0 +1,168 @@
+{
+  "id": "121 3031",
+  "name": "Automated Cell Capacity Estimation",
+  "cxc_code": "CXC4011373",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "perform estimations of the downlink capacity in order to serve the load management features",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.dynCellSubscrCap  EUtranCellTDD.dynCellSubscrCap",
+      "type": "Introduced",
+      "description": "See the MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.cellCapMaxCellSubCap  EUtranCellTDD.cellCapMaxCellSubCap",
+      "type": "Introduced",
+      "description": "See the MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.cellCapMinCellSubCap  EUtranCellTDD.cellCapMinCellSubCap",
+      "type": "Introduced",
+      "description": "See the MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.cellCapMinMaxWriProt  EUtranCellFDD.cellCapMinMaxWriProt",
+      "type": "Introduced",
+      "description": "See the MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "AutoCellCapEstFunction.useEstimatedCellCap",
+      "type": "Introduced",
+      "description": "See the MOM description.",
+      "mo_class": "AutoCellCapEstFunction"
+    },
+    {
+      "name": "EUtranCellFDD.cellSubscriptionCapacity or                                     EUtranCellTDD.cellSubscriptionCapacity",
+      "type": "Affected",
+      "description": "The unit of the value must be identical to kbps instead of in                                 proportion to kbps",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "QciProfilePredefined.qciSubscriptionQuanta                                 (Operator Defined)",
+      "type": "Affected",
+      "description": "The unit of the value must be identical to kbps instead of in                                 proportion to kbps",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfilePredefined.qciSubscriptionQuanta                                 (Predefined)",
+      "type": "Affected",
+      "description": "The unit of the value must be identical to kbps instead of in                                 proportion to kbps",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "EUtranCellFDD.cellSubscriptionCapacity or                                     EUtranCellTDD.cellSubscriptionCapacity",
+      "type": "Affecting",
+      "description": "The value affects the initial value of                                     EUtranCellFDD.dynCellSubscrCap or                                     EUtranCellTDD.dynCellSubscrCap,                                     EUtranCellFDD.cellCapMinCellSubCap or                                     EUtranCellTDD.cellCapMinCellSubCap and                                     EUtranCellFDD.cellCapMaxCellSubCap or                                     EUtranCellTDD.cellCapMaxCellSubCap",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "INTERNAL_EVENT_CELL_DL_CAPACITY",
+      "type": "EVENT_PARAM_ESTIM_CELL_CAPACITY",
+      "description": "New estimate of cell capacity value.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CELL_DL_CAPACITY",
+      "type": "EVENT_PARAM_CELL_CAPACITY_UPDATE_CAUSE",
+      "description": "The reason for updating cell capacity value, normal update or                                     rapid compensation.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.BF33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.dynCellSubscrCap",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.dynCellSubscrCap",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.cellSubscriptionCapacity",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.cellSubscriptionCapacity",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.cellCapMaxCellSubCap",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.cellCapMinCellSubCap",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEvent",
+      "description": "Performance counter pmEvent",
+      "category": "General"
+    },
+    {
+      "name": "pmaxCellSubCap",
+      "description": "Performance counter pmaxCellSubCap",
+      "category": "General"
+    },
+    {
+      "name": "pminCellSubCap",
+      "description": "Performance counter pminCellSubCap",
+      "category": "General"
+    },
+    {
+      "name": "pminMaxWriProt",
+      "description": "Performance counter pminMaxWriProt",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_EVENT_CELL_DL_CAPACITY",
+      "type": "EVENT_PARAM_ESTIM_CELL_CAPACITY",
+      "description": "New estimate of cell capacity value."
+    },
+    {
+      "name": "INTERNAL_EVENT_CELL_DL_CAPACITY",
+      "type": "EVENT_PARAM_CELL_CAPACITY_UPDATE_CAUSE",
+      "description": "The reason for updating cell capacity value, normal update or                                     rapid compensation."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011373 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011373 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/105_22104-LZA7016014_1Uen.BF33B.md",
+  "file_hash": "d71c2df3c096cec6ebf8dd9f45b1d005",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,114 @@
+{
+  "id": "121 0845",
+  "name": "CS Fallback for Dual-Radio UEs",
+  "cxc_code": "CXC4010949",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The CS Fallback for Dual-Radio UEs licensed feature allows UE in either",
+  "parameters": [
+    {
+      "name": "Uen.AL",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "X.S0004",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "X"
+    },
+    {
+      "name": "EUtranCellTDD.pmErabRelNormalEnb",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmErabRelNormalEnb",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmUeCtxtRelNormalEnb",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmUeCtxtRelNormalEnb",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmErabRelNormalEnbAct",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmErabRelNormalEnbAct",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmUeCtxtRelNormalEnbAct",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmErabRelAbnormalEnb",
+      "description": "Performance counter pmErabRelAbnormalEnb",
+      "category": "General"
+    },
+    {
+      "name": "pmErabRelNormalEnb",
+      "description": "Performance counter pmErabRelNormalEnb",
+      "category": "General"
+    },
+    {
+      "name": "pmErabRelNormalEnbAct",
+      "description": "Performance counter pmErabRelNormalEnbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelNormalEnb",
+      "description": "Performance counter pmUeCtxtRelNormalEnb",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelNormalEnbAct",
+      "description": "Performance counter pmUeCtxtRelNormalEnbAct",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_UE_CTXT_RELEASE_ENB",
+      "type": "Cause value (CS Fallback Triggered) for the procedure event sent                                     for UE Context Release",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010949 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010949 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/176_22104-LZA7016014_1Uen.AL.md",
+  "file_hash": "5f69368b10604e7b6f7d386d51113918",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

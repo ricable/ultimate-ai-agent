@@ -1,0 +1,101 @@
+# Docker MCP Gateway - Server Configuration
+# Per-server configuration settings
+# Location: ~/.docker/mcp/config.yaml
+
+# Global Gateway Settings
+gateway:
+  transport: streaming  # stdio, streaming, or sse
+  port: 8080
+  watch: false  # Disable for production
+  log_level: info
+  metrics_enabled: true
+  health_check_interval: 30s
+
+# OAuth and Security
+security:
+  oauth_interceptor: true
+  mcp_oauth_dcr: true
+  credential_store: docker-desktop
+  token_refresh_buffer: 300  # Refresh 5 minutes before expiry
+
+# Feature Flags
+features:
+  dynamic_tools: true
+  oauth_interceptor: true
+  mcp_oauth_dcr: true
+
+# Per-Server Configuration
+servers:
+  ruvector:
+    dimension: 384
+    index_type: hnsw
+    m: 16  # HNSW parameter
+    ef_construction: 200
+    ef_search: 100
+    max_elements: 1000000
+    persistence: true
+
+  agentdb:
+    backend: ruvector
+    dimension: 384
+    model: Xenova/all-MiniLM-L6-v2
+    enable_gnn: true
+    causal_reasoning: true
+    reflexion_memory: true
+
+  claude-flow:
+    mode: server
+    reasoningbank_enabled: true
+    hive_mind_enabled: true
+    memory_persistence: true
+    swarm_topology: mesh
+
+  agentic-flow:
+    mode: production
+    agent_count: 66
+    mcp_tools: 213
+    provider_fallback: true
+    circuit_breaker_enabled: true
+
+  litellm:
+    cache_enabled: true
+    cache_ttl: 3600
+    cost_tracking: true
+    fallback_models:
+      - gpt-4o
+      - claude-3-5-sonnet-20241022
+      - deepseek/deepseek-r1-0528
+    routing_strategy: cost-optimized
+
+  e2b-sandbox:
+    timeout: 60
+    max_concurrent: 10
+    default_template: python3
+    persist_artifacts: true
+
+  localai:
+    threads: 4
+    context_size: 4096
+    gpu_layers: 0  # CPU only by default
+    default_model: llama-3.2-3b-instruct
+
+  postgres:
+    max_connections: 100
+    shared_buffers: 256MB
+    work_mem: 16MB
+
+  redis:
+    maxmemory: 256mb
+    maxmemory_policy: allkeys-lru
+    save: "900 1 300 10 60 10000"
+
+  ruvector-gnn:
+    enable_training: true
+    learning_rate: 0.001
+    epochs: 100
+    batch_size: 32
+
+  ruvector-graph:
+    cypher_enabled: true
+    max_graph_size: 10000000
+    index_type: btree

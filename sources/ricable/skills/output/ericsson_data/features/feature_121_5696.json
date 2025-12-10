@@ -1,0 +1,435 @@
+{
+  "id": "121 5696",
+  "name": "NR Data-Aware Mobility",
+  "cxc_code": "CXC4012736",
+  "value_package": "Intelligent Traffic Management and Mobility",
+  "value_package_id": "FAJ 801 4022",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature enables mobility actions from NR standalone to LTE for UEs that experience",
+  "parameters": [
+    {
+      "name": "TrStSaCellProfile.dataAwareMobDlLowThpDuration",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfile"
+    },
+    {
+      "name": "TrStSaCellProfile.dataAwareMobDlThpFilterCoeff",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfile"
+    },
+    {
+      "name": "TrStSaCellProfile.dataAwareMobDlThpFilterTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfile"
+    },
+    {
+      "name": "TrStSaCellProfile.dataAwareMobUlLowThpDuration",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfile"
+    },
+    {
+      "name": "TrStSaCellProfile.dataAwareMobUlThpFilterCoeff",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfile"
+    },
+    {
+      "name": "TrStSaCellProfile.dataAwareMobUlThpFilterTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfile"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.dataAwareMobDlPktAgeThr",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.dataAwareMobDlPktVolThr",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.dataAwareMobLowDlThpThr",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.dataAwareMobLowUlThpThr",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "EUtranCellRelation.cellIndividualOffset",
+      "type": "Affecting",
+      "description": "This attribute is used for the conditions that trigger B2                                 measurements. For more information about the conditions that trigger                                 B2 measurements, see\u202f3GPP\u202fTS\u202f38.331; NR; Radio Resource                                     Control (RRC); Protocol specification.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellRelation.isHoAllowed",
+      "type": "Affecting",
+      "description": "Handover is allowed to E-UTRAN cells only if this attribute is set to                                     true for the E-UTRAN cell relation.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranFreqRelation.trStSaEUtranFreqRelProfileRef",
+      "type": "Affecting",
+      "description": "This attribute must be set to reference the corresponding                                     TrStSaEutranFreqRelProfile MO instance.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranFreqRelation.ueMCEUtranFreqRelProfileRef",
+      "type": "Affecting",
+      "description": "This attribute must be set to reference the corresponding                                     UeMCEUtranFreqRelProfile MO instance.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "NRCellCU.trStSaCellProfileRef",
+      "type": "Affecting",
+      "description": "This attribute must be set to reference the corresponding                                     TrStSaCellProfile MO instance.",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.aggregatedBwThreshold",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.bwTrigISHoEnabled",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.bwTrigISHoTriggerQuantity",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.rsrpPCellCandidateB2",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.rsrpPCellCandidateB2AddTargEval",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.rsrqPCellCandidateB2",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.rsrqPCellCandidateB2AddTargEval",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.sinrPCellCandidateB2",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.sinrPCellCandidateB2AddTargEval",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfile.ueConfGroupType",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfile"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.mlcPeriodicEnabled",
+      "type": "Affecting",
+      "description": "This attribute enables periodic evaluations for traffic steering                                 functions, including the NR Data-Aware Mobility feature.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.mlcPeriodicInterval",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.prefUeGroupList",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.ueConfGroupList",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaCellProfileUeCfg.ueGroupList",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaCellProfileUeCfg"
+    },
+    {
+      "name": "TrStSaEUtranFreqRelProfile.ueConfGroupType",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaEUtranFreqRelProfile"
+    },
+    {
+      "name": "TrStSaEUtranFreqRelProfileUeCfg.prefUeGroupList",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "TrStSaEUtranFreqRelProfileUeCfg.rsrpPCellCandidateB2Offsets",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "TrStSaEUtranFreqRelProfileUeCfg.rsrqPCellCandidateB2Offsets",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "TrStSaEUtranFreqRelProfileUeCfg.sinrPCellCandidateB2Offsets",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "TrStSaEUtranFreqRelProfileUeCfg.ueGroupList",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "TrStSaEUtranFreqRelProfileUeCfg.ueConfGroupList",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "TrStSaEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "UeMCEUtranFreqRelProfile.ueConfGroupType",
+      "type": "Affecting",
+      "description": "This attribute is used in the UE group adaptation of the NR                                 Data-Aware Mobility feature.",
+      "mo_class": "UeMCEUtranFreqRelProfile"
+    },
+    {
+      "name": "UeMCEUtranFreqRelProfileUeCfg.connModeAllowedPCell",
+      "type": "Affecting",
+      "description": "If this attribute is set to true for E-UTRAN                                 frequencies, the frequencies are included in B2 measurements.",
+      "mo_class": "UeMCEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "UeMCEUtranFreqRelProfileUeCfg.connModePrioPCell",
+      "type": "Affecting",
+      "description": "The value of this attribute is used to prioritize the E-UTRAN cells                                 reported in the B2 measurement reports.",
+      "mo_class": "UeMCEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "UeMCEUtranFreqRelProfileUeCfg.prefUeGroupList",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "UeMCEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "UeMCEUtranFreqRelProfileUeCfg.ueConfGroupList",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "UeMCEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "UeMCEUtranFreqRelProfileUeCfg.ueGroupList",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "UeMCEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "Uen.V",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "ENodeBFunction.mobilityBackToNrFreqDisabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "UeMeasControl.waitForStartNRMeas",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UeMeasControl"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsDataAwareMobilityBufMonConfig",
+      "description": "Performance counter pmEbsDataAwareMobilityBufMonConfig",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDataAwareMobilityBufMonReport",
+      "description": "Performance counter pmEbsDataAwareMobilityBufMonReport",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDataAwareMobilityThpMonConfigDl",
+      "description": "Performance counter pmEbsDataAwareMobilityThpMonConfigDl",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDataAwareMobilityThpMonConfigUl",
+      "description": "Performance counter pmEbsDataAwareMobilityThpMonConfigUl",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDataAwareMobilityThpMonReportDl",
+      "description": "Performance counter pmEbsDataAwareMobilityThpMonReportDl",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDataAwareMobilityThpMonReportUl",
+      "description": "Performance counter pmEbsDataAwareMobilityThpMonReportUl",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsHoExeAttOutEutran",
+      "description": "Performance counter pmEbsHoExeAttOutEutran",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsHoExeSuccOutEutran",
+      "description": "Performance counter pmEbsHoExeSuccOutEutran",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsHoPrepAttOutEutran",
+      "description": "Performance counter pmEbsHoPrepAttOutEutran",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsHoPrepSuccOutEutran",
+      "description": "Performance counter pmEbsHoPrepSuccOutEutran",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRwrEutranUeSuccTrigger",
+      "description": "Performance counter pmEbsRwrEutranUeSuccTrigger",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRwrEutranUeSuccTrigger14",
+      "description": "Performance counter pmEbsRwrEutranUeSuccTrigger14",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRwrEutranUeSuccTrigger15",
+      "description": "Performance counter pmEbsRwrEutranUeSuccTrigger15",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRwrEutranUeSuccTrigger16",
+      "description": "Performance counter pmEbsRwrEutranUeSuccTrigger16",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRwrEutranUeSuccTrigger17",
+      "description": "Performance counter pmEbsRwrEutranUeSuccTrigger17",
+      "category": "General"
+    },
+    {
+      "name": "pmMacOverlapTimeDlDrbExtSCell",
+      "description": "Performance counter pmMacOverlapTimeDlDrbExtSCell",
+      "category": "General"
+    },
+    {
+      "name": "pmMacTimeDlDrb",
+      "description": "Performance counter pmMacTimeDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmMacTimeUlResUe",
+      "description": "Performance counter pmMacTimeUlResUe",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrb",
+      "description": "Performance counter pmMacVolDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrbOverlapLastSlot",
+      "description": "Performance counter pmMacVolDlDrbOverlapLastSlot",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolUlResUe",
+      "description": "Performance counter pmMacVolUlResUe",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    },
+    {
+      "name": "pmonConfig",
+      "description": "Performance counter pmonConfig",
+      "category": "General"
+    },
+    {
+      "name": "pmonReport",
+      "description": "Performance counter pmonReport",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012736 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012736 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/201_22104-LZA7016017_1Uen.V.md",
+  "file_hash": "eb672ec71fea909a7d02e5758f338d19",
+  "processed_at": "2025-10-19 15:50:11",
+  "network_impact": {},
+  "performance_impact": {}
+}

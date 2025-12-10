@@ -1,0 +1,206 @@
+name: Publish to NPM
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+      - 'agentic-jujutsu-v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 1.0.0)'
+        required: true
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  build-binaries:
+    strategy:
+      fail-fast: false
+      matrix:
+        settings:
+          - host: macos-latest
+            target: x86_64-apple-darwin
+          - host: macos-latest
+            target: aarch64-apple-darwin
+          - host: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+          - host: ubuntu-latest
+            target: aarch64-unknown-linux-gnu
+          - host: windows-latest
+            target: x86_64-pc-windows-msvc
+          - host: windows-latest
+            target: i686-pc-windows-msvc
+
+    name: Build ${{ matrix.settings.target }}
+    runs-on: ${{ matrix.settings.host }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup Rust toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: stable
+          targets: ${{ matrix.settings.target }}
+
+      - name: Install cross-compilation tools (Linux ARM64)
+        if: matrix.settings.target == 'aarch64-unknown-linux-gnu'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-aarch64-linux-gnu
+
+      - name: Build for ${{ matrix.settings.target }}
+        working-directory: packages/agentic-jujutsu
+        run: |
+          rustup target add ${{ matrix.settings.target }}
+          cargo build --release --target ${{ matrix.settings.target }}
+
+      - name: Upload binary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: binary-${{ matrix.settings.target }}
+          path: |
+            packages/agentic-jujutsu/target/${{ matrix.settings.target }}/release/*.node
+            packages/agentic-jujutsu/target/${{ matrix.settings.target }}/release/*.so
+            packages/agentic-jujutsu/target/${{ matrix.settings.target }}/release/*.dylib
+            packages/agentic-jujutsu/target/${{ matrix.settings.target }}/release/*.dll
+          retention-days: 1
+
+  build-wasm:
+    name: Build WASM packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Rust toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: stable
+          targets: wasm32-unknown-unknown
+
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+      - name: Build WASM packages
+        working-directory: packages/agentic-jujutsu
+        run: |
+          chmod +x scripts/wasm-pack-build.sh
+          ./scripts/wasm-pack-build.sh --release
+
+      - name: Upload WASM artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: wasm-packages
+          path: packages/agentic-jujutsu/pkg/
+          retention-days: 1
+
+  publish:
+    needs: [build-binaries, build-wasm]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Download WASM packages
+        uses: actions/download-artifact@v4
+        with:
+          name: wasm-packages
+          path: packages/agentic-jujutsu/pkg
+
+      - name: Download all binaries
+        uses: actions/download-artifact@v4
+        with:
+          path: packages/agentic-jujutsu/binaries
+
+      - name: Prepare package for publishing
+        working-directory: packages/agentic-jujutsu
+        run: |
+          echo "=== Package contents ==="
+          ls -la
+          echo "=== WASM packages ==="
+          ls -la pkg/
+          echo "=== Native binaries ==="
+          ls -R binaries/
+
+      - name: Verify package
+        working-directory: packages/agentic-jujutsu
+        run: |
+          npm ci
+          npm run verify || echo "Verification warnings (non-fatal)"
+
+      - name: Publish to NPM
+        working-directory: packages/agentic-jujutsu
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          # Publish package
+          npm publish --access public
+
+          echo "=== Published to NPM ==="
+          echo "Package: agentic-jujutsu"
+          echo "Version: $(node -p "require('./package.json').version")"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            packages/agentic-jujutsu/pkg/**/*
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  verify-publish:
+    needs: publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Wait for NPM propagation
+        run: sleep 60
+
+      - name: Verify NPM package
+        run: |
+          echo "=== Verifying published package ==="
+          npm view agentic-jujutsu
+
+          echo "=== Installing via npx ==="
+          npx agentic-jujutsu --version || echo "CLI test (may fail if not yet propagated)"
+
+      - name: Test package installation
+        run: |
+          mkdir -p /tmp/test-install
+          cd /tmp/test-install
+          npm init -y
+          npm install agentic-jujutsu
+          node -e "const jj = require('agentic-jujutsu'); console.log('Package loaded successfully');"

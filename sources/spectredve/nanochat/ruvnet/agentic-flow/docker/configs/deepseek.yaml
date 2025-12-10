@@ -1,0 +1,63 @@
+# DeepSeek Model Configuration for Cloud Run
+# Excellent for code generation, very cost-effective
+
+name: deepseek-chat
+provider: openrouter
+description: "DeepSeek Chat V3 - Excellent for code, very affordable"
+
+# Model settings
+model:
+  id: deepseek/deepseek-chat
+  temperature: 0.7
+  max_tokens: 8192  # Larger context
+  top_p: 0.95
+
+# Cloud Run Job Configuration
+cloudrun:
+  memory: 2Gi
+  cpu: 2
+  timeout: 3600  # 1 hour
+  max_instances: 50
+  min_instances: 0  # Scale to zero when idle
+
+# Environment variables
+env:
+  PROVIDER: openrouter
+  USE_OPENROUTER: "true"
+  COMPLETION_MODEL: deepseek/deepseek-chat
+  ENABLE_STREAMING: "true"
+  PROXY_PORT: "3000"
+
+# Secrets (from Google Secret Manager)
+secrets:
+  - name: OPENROUTER_API_KEY
+    key: openrouter-api-key
+    version: latest
+
+# Agent configuration
+agents:
+  enabled: true
+  agents_dir: /app/.claude/agents
+  auto_load: true
+  preferred_agents:  # Optimized for code-heavy tasks
+    - coder
+    - reviewer
+    - tester
+    - sparc-coder
+    - backend-dev
+
+# MCP Servers
+mcp:
+  enabled: true
+  servers:
+    - claude-flow
+    - flow-nexus
+    - agentic-payments
+
+# Cost tracking
+cost:
+  input_cost_per_1k: 0.00014
+  output_cost_per_1k: 0.00028
+  estimated_monthly: 5  # USD estimate for moderate usage
+  savings_vs_claude: 98.5%
+  specialization: code_generation

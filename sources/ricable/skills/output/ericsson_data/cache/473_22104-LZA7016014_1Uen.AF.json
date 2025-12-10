@@ -1,0 +1,146 @@
+{
+  "file_hash": "9ae3a32d5cedaa5f21fc91c01a539894",
+  "feature": {
+    "id": "121 5118",
+    "name": "Incoming NR IRAT Handover",
+    "cxc_code": "CXC4012385",
+    "value_package": "Basic NR Mobility Support",
+    "value_package_id": "FAJ 801 1018",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature makes it possible for a call arriving from an NR cell to be transferred to",
+    "parameters": [
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the RAT of the source for incoming handover, or target                                     for outgoing handover cell.  EVENT_VALUE_NR enum value is introduced for incoming handover                                     from NR.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_PROC_HO_PREP_IN_RESULT",
+        "description": "The result of the Handover Preparation Procedure.   EVENT_VALUE_FAILED_LICENSE_NR_HANDOVER enum value is introduced                                     for handover reject due to lack of Incoming NR IRAT handover                                     feature license.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ExternalGNodeBFunction.dirDataPathAvail",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ExternalGNodeBFunction"
+      },
+      {
+        "name": "NR.The",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NR"
+      },
+      {
+        "name": "EUtranCellFDD.pmHoPrepRejInLicMob",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmHoPrepRejInLicMob",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmHoExeInSuccNr",
+        "description": "Performance counter pmHoExeInSuccNr",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepInAttNr",
+        "description": "Performance counter pmHoPrepInAttNr",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepInRejNrGrp",
+        "description": "Performance counter pmHoPrepInRejNrGrp",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepInRejNrMiscS1Cause",
+        "description": "Performance counter pmHoPrepInRejNrMiscS1Cause",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepInRejNrNasS1Cause",
+        "description": "Performance counter pmHoPrepInRejNrNasS1Cause",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepInRejNrProtS1Cause",
+        "description": "Performance counter pmHoPrepInRejNrProtS1Cause",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepInRejNrRnlS1Cause",
+        "description": "Performance counter pmHoPrepInRejNrRnlS1Cause",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepInRejNrTranS1Cause",
+        "description": "Performance counter pmHoPrepInRejNrTranS1Cause",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepInSuccNr",
+        "description": "Performance counter pmHoPrepInSuccNr",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInLicMob",
+        "description": "Performance counter pmHoPrepRejInLicMob",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInLicMobNr",
+        "description": "Performance counter pmHoPrepRejInLicMobNr",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_HO_SOURCE_OR_TARGET_TYPE",
+        "description": "Indicates the RAT of the source for incoming handover, or target                                     for outgoing handover cell.  EVENT_VALUE_NR enum value is introduced for incoming handover                                     from NR."
+      },
+      {
+        "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+        "type": "EVENT_PARAM_PROC_HO_PREP_IN_RESULT",
+        "description": "The result of the Handover Preparation Procedure.   EVENT_VALUE_FAILED_LICENSE_NR_HANDOVER enum value is introduced                                     for handover reject due to lack of Incoming NR IRAT handover                                     feature license."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012385 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012385 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/473_22104-LZA7016014_1Uen.AF.md",
+    "file_hash": "9ae3a32d5cedaa5f21fc91c01a539894",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

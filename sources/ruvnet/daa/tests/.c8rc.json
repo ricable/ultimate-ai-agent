@@ -1,0 +1,27 @@
+{
+  "all": true,
+  "include": [
+    "qudag/qudag-napi/src/**/*.rs",
+    "packages/daa-sdk/src/**/*.ts",
+    "packages/daa-sdk/src/**/*.js",
+    "daa-orchestrator/**/*.rs",
+    "prime-rust/crates/**/*.rs"
+  ],
+  "exclude": [
+    "tests/**",
+    "node_modules/**",
+    "**/dist/**",
+    "**/target/**",
+    "**/*.test.js",
+    "**/*.bench.js",
+    "**/mock*.js"
+  ],
+  "reporter": ["text", "html", "lcov", "json"],
+  "check-coverage": true,
+  "lines": 90,
+  "functions": 90,
+  "branches": 85,
+  "statements": 90,
+  "report-dir": "./coverage",
+  "temp-directory": "./coverage/.tmp"
+}

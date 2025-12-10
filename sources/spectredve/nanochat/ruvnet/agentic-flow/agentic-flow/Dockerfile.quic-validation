@@ -1,0 +1,56 @@
+# Multi-stage Docker build for QUIC validation
+# Simulates fresh remote install to validate all capabilities
+
+FROM node:20-slim AS builder
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies first
+RUN npm ci
+
+# Copy source files (these definitely exist)
+COPY src ./src
+COPY wasm ./wasm
+COPY validation ./validation
+
+# Create tsconfig for Docker build context (adjusted paths from config/tsconfig.json)
+RUN echo '{"compilerOptions":{"module":"esnext","target":"es2022","moduleResolution":"bundler","outDir":"./dist","rootDir":"./src","strict":true,"skipLibCheck":true,"esModuleInterop":true},"include":["src"],"exclude":["src/examples/parallel-swarm-deployment.ts","validation","node_modules","dist"]}' > ./tsconfig.json
+
+# Create certs directory (optional for validation)
+RUN mkdir -p ./certs
+
+# Build TypeScript only (skip WASM build since we're validating pre-built artifacts)
+RUN npx tsc -p ./tsconfig.json && \
+    if [ -d src/reasoningbank/prompts ]; then \
+      mkdir -p dist/reasoningbank && \
+      cp -r src/reasoningbank/prompts dist/reasoningbank/ || true; \
+    fi
+
+# ============================================
+# Test Stage - Simulates Remote Install
+# ============================================
+FROM node:20-slim AS test
+
+WORKDIR /test
+
+# Install tsx for running TypeScript tests
+RUN npm install -g tsx
+
+# Copy built artifacts (simulating npm install)
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/wasm ./wasm
+COPY --from=builder /app/validation ./validation
+
+# Install only production dependencies
+RUN npm install --production
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV QUIC_PORT=4433
+
+# Run comprehensive validation
+CMD ["tsx", "validation/quic-deep-validation.ts"]

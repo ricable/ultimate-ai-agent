@@ -1,0 +1,99 @@
+{
+  "id": "121 4881",
+  "name": "",
+  "cxc_code": "CXC4012281",
+  "value_package": "",
+  "value_package_id": "",
+  "access_type": "",
+  "node_type": "",
+  "description": "",
+  "summary": "The Advanced SR Allocation for Privileged Access Users feature ensures the acceptance of",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.nrOfPreallocatedSrRes  EUtranCellTDD.nrOfPreallocatedSrRes",
+      "type": "Introduced",
+      "description": "For more information, see the MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.allocThrPucchFormat1  EUtranCellTDD.allocThrPucchFormat1",
+      "type": "Affected",
+      "description": "A verification was made to ensure that the                                     EUtranCellFDD.allocThrPucchFormat1 or                                     EUtranCellTDD.allocThrPucchFormat1 attributes                                 in the Dynamic PUCCH feature are always set to a value which is                                 higher than the AdmissionControl.limitSrNonPa                                 attribute, so the expansion of SR resources by the Dynamic PUCCH                                 feature occurs before the limit of SR resources is reached.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "Uen.U",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.nrOfPucchUsers",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.nrOfPucchUsers",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.allocThrPucchFormat1",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.allocThrPucchFormat1",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "AdmissionControl.limitSrNonPa",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "EUtranCellFDD.nrOfPreallocatedSrRes",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.nrOfPreallocatedSrRes",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmUeCtxtRelAbnormalEnbPeSrResPa",
+      "description": "Performance counter pmUeCtxtRelAbnormalEnbPeSrResPa",
+      "category": "General"
+    },
+    {
+      "name": "pmUePeAttSrResPa",
+      "description": "Performance counter pmUePeAttSrResPa",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012281 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012281 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/419_22104-LZA7016014_1Uen.U.md",
+  "file_hash": "30ff3d5964ec99fb1b6dd1ac97f51906",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

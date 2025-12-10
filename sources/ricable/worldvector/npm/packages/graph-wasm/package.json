@@ -1,0 +1,52 @@
+{
+  "name": "@ruvector/graph-wasm",
+  "version": "0.1.1",
+  "description": "WebAssembly bindings for RuVector graph database with Neo4j-inspired API and Cypher support",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "ruvector_graph_wasm_bg.wasm",
+    "ruvector_graph_wasm.js",
+    "ruvector_graph_wasm.d.ts"
+  ],
+  "scripts": {
+    "build": "wasm-pack build --target web --out-dir ../../../npm/packages/graph-wasm ../../../crates/ruvector-graph-wasm",
+    "build:wasm": "wasm-pack build --target web --out-dir . ../../../crates/ruvector-graph-wasm",
+    "build:node": "wasm-pack build --target nodejs --out-dir ../../../npm/packages/graph-wasm/node ../../../crates/ruvector-graph-wasm",
+    "build:bundler": "wasm-pack build --target bundler --out-dir ../../../npm/packages/graph-wasm/bundler ../../../crates/ruvector-graph-wasm",
+    "build:all": "npm run build && npm run build:node && npm run build:bundler",
+    "test": "wasm-pack test --headless --firefox --chrome"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/ruvector.git",
+    "directory": "npm/packages/graph-wasm"
+  },
+  "keywords": [
+    "graph-database",
+    "neo4j",
+    "cypher",
+    "wasm",
+    "webassembly",
+    "hypergraph",
+    "vector-database",
+    "embeddings",
+    "knowledge-graph"
+  ],
+  "author": "Ruvector Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ruvnet/ruvector/issues"
+  },
+  "homepage": "https://github.com/ruvnet/ruvector#readme",
+  "devDependencies": {
+    "wasm-pack": "^0.12.1"
+  },
+  "dependencies": {},
+  "browser": {
+    "fs": false,
+    "path": false
+  }
+}

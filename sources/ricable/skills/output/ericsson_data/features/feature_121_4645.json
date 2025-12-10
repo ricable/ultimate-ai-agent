@@ -1,0 +1,136 @@
+{
+  "id": "121 4645",
+  "name": "Service-Specific HARQ",
+  "cxc_code": "CXC4012070",
+  "value_package": "VoLTE Performance",
+  "value_package_id": "FAJ 801 0444",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature allows the setting of the maximum number of HARQ transmissions based on",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.enableServiceSpecificHARQ",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.harqOffsetDl",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.harqOffsetUl",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.tReorderingAutoConfiguration",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.enableServiceSpecificHARQ",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.harqOffsetDl",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.harqOffsetUl",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.tReorderingAutoConfiguration",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "QciProfileOperatorDefined.dlMaxHARQTxQci",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "QciProfileOperatorDefined.harqPriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "QciProfileOperatorDefined.ulMaxHARQTxQci",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "QciProfilePredefined.dlMaxHARQTxQci",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfilePredefined.harqPriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "QciProfileOperatorDefined.tReorderingDl",
+      "type": "Introduced",
+      "description": "See MOM description.  For UEs with at least Category 11 and 3CC Carrier Aggregation             capability, the value of 25 ms is used in RRC reconfiguration messages for downlink AM DRBs instead of the value configured in the                 QciProfileOperatorDefined.tReorderingDl attribute if the 3CC DL             Carrier Aggregation Extension feature is activated.",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "QciProfilePredefined.tReorderingDl",
+      "type": "Introduced",
+      "description": "See MOM description.  For UEs with at least Category 11 and 3CC Carrier Aggregation             capability, the value of 25 ms is used in RRC reconfiguration messages for downlink AM DRBs instead of the value configured in the                 QciProfilePredefined.tReorderingDl attribute if the 3CC DL             Carrier Aggregation Extension feature is activated.",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "Uen.AN",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "MACConfiguration.ulMaxHARQTx",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "MACConfiguration"
+    },
+    {
+      "name": "MACConfiguration.ulTtiBundlingMaxHARQTx",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "MACConfiguration"
+    }
+  ],
+  "counters": [],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012070 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012070 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/339_22104-LZA7016014_1Uen.AN.md",
+  "file_hash": "bcf8453511d491d2146d22feb7ca5e57",
+  "processed_at": "2025-10-19 15:50:04",
+  "network_impact": {},
+  "performance_impact": {}
+}

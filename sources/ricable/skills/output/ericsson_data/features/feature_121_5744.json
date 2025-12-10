@@ -1,0 +1,183 @@
+{
+  "id": "121 5744",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4012747",
+  "value_package": "Service-Based Mobility",
+  "value_package_id": "FAJ 801 0433",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature enables mobility to NR standalone for UEs with a specific service",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.nrMobilityTriggerQciRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.nrMobilityTriggerQciRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "RATFreqPrio.nrMobilityTrigQciAllAllowed",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RATFreqPrio"
+    },
+    {
+      "name": "UeProfileFilter.nrMobilityTrigQciAllAllowed",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeProfileFilter"
+    },
+    {
+      "name": "Uen.H",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "UeMeasControl.nrB1MeasAtEndcEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "RobustCallSetup.nrMobilityDelayEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RobustCallSetup"
+    },
+    {
+      "name": "ENodeBFunction.mobilityBackToNrFreqDisabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "ExternalGUtranCell.plmnIdList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ExternalGUtranCell"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmB1NrServTrigEvalReport",
+      "description": "Performance counter pmB1NrServTrigEvalReport",
+      "category": "General"
+    },
+    {
+      "name": "pmB1NrServTrigEvalReportRsrp",
+      "description": "Performance counter pmB1NrServTrigEvalReportRsrp",
+      "category": "General"
+    },
+    {
+      "name": "pmCellHoExeAttNrServTrig",
+      "description": "Performance counter pmCellHoExeAttNrServTrig",
+      "category": "General"
+    },
+    {
+      "name": "pmCellHoExeSuccNrServTrig",
+      "description": "Performance counter pmCellHoExeSuccNrServTrig",
+      "category": "General"
+    },
+    {
+      "name": "pmCellHoPrepAttNrServTrig",
+      "description": "Performance counter pmCellHoPrepAttNrServTrig",
+      "category": "General"
+    },
+    {
+      "name": "pmErabLevSamp",
+      "description": "Performance counter pmErabLevSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmErabQciLevSum",
+      "description": "Performance counter pmErabQciLevSum",
+      "category": "General"
+    },
+    {
+      "name": "pmErabQciMax",
+      "description": "Performance counter pmErabQciMax",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexRrcConnSum",
+      "description": "Performance counter pmFlexRrcConnSum",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexServiceTimeUe",
+      "description": "Performance counter pmFlexServiceTimeUe",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexSessionTimeUe",
+      "description": "Performance counter pmFlexSessionTimeUe",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeAtt",
+      "description": "Performance counter pmHoExeAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSucc",
+      "description": "Performance counter pmHoExeSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAtt",
+      "description": "Performance counter pmHoPrepAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSucc",
+      "description": "Performance counter pmHoPrepSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolDlDrbQci",
+      "description": "Performance counter pmPdcpVolDlDrbQci",
+      "category": "General"
+    },
+    {
+      "name": "pmSessionTimeDrbQci",
+      "description": "Performance counter pmSessionTimeDrbQci",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelSCNrB1ServTrigRsrp",
+      "description": "Performance counter pmUeCtxtRelSCNrB1ServTrigRsrp",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelSCNrB1ServTrigRsrq",
+      "description": "Performance counter pmUeCtxtRelSCNrB1ServTrigRsrq",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012747 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012747 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/593_22104-LZA7016014_1Uen.H.md",
+  "file_hash": "78a5aafac679703dcc6b6f2b0cbb16e6",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,150 @@
+# Sidero Omni Proxmox Infrastructure Provider Configuration
+# Reference: https://github.com/siderolabs/omni-infra-provider-proxmox
+
+# Provider identification
+provider:
+  id: ${PROVIDER_ID}
+  name: ${PROVIDER_NAME}
+  description: "Proxmox infrastructure provider for Ruvector Talos clusters"
+
+# Proxmox cluster configuration
+proxmox:
+  # API endpoint
+  endpoint: ${PROXMOX_URL}
+
+  # Authentication
+  user: ${PROXMOX_USER}
+  tokenId: ${PROXMOX_TOKEN_ID}
+  tokenSecret: ${PROXMOX_TOKEN_SECRET}
+
+  # Skip TLS verification for self-signed certs (not recommended for production)
+  insecure: false
+
+  # Default Proxmox node for VM creation
+  defaultNode: pve
+
+  # Storage configuration
+  storage:
+    # Storage pool for VM disks
+    pool: local-lvm
+    # ISO storage for Talos images
+    isoStorage: local
+
+# Talos configuration
+talos:
+  # Talos version to use
+  version: v1.8.0
+
+  # Talos image source
+  # Options: iso, pxe, oci
+  imageSource: iso
+
+  # Path to Talos ISO in Proxmox storage
+  # Upload from: https://github.com/siderolabs/talos/releases
+  isoPath: local:iso/talos-v1.8.0-amd64.iso
+
+  # System extensions to include
+  extensions:
+    - ghcr.io/siderolabs/wasmedge:0.11.2
+    - ghcr.io/siderolabs/spin:2.0.0
+
+# VM creation defaults
+vmDefaults:
+  # OS type
+  osType: l26
+
+  # CPU configuration
+  cpu:
+    type: host
+    sockets: 1
+
+  # BIOS type (seabios or ovmf for UEFI)
+  bios: seabios
+
+  # Network configuration
+  network:
+    bridge: vmbr0
+    model: virtio
+
+  # SCSI controller
+  scsi: virtio-scsi-pci
+
+  # Start VM on creation
+  startOnCreate: true
+
+  # Enable QEMU agent
+  agent: true
+
+# Machine class mappings
+machineClasses:
+  control-plane:
+    cores: 4
+    memory: 8192
+    disk: 50
+    tags:
+      - talos
+      - control-plane
+      - ruvector
+
+  worker:
+    cores: 4
+    memory: 16384
+    disk: 100
+    tags:
+      - talos
+      - worker
+      - ruvector
+
+  worker-highmem:
+    cores: 8
+    memory: 65536
+    disk: 200
+    tags:
+      - talos
+      - worker
+      - highmem
+      - ruvector
+
+  gpu-worker:
+    cores: 8
+    memory: 32768
+    disk: 200
+    # PCI passthrough for GPU
+    hostpci:
+      - device: "0000:01:00"  # GPU PCI address
+        pcie: true
+    tags:
+      - talos
+      - gpu
+      - ruvector
+
+  llamaedge-worker:
+    cores: 8
+    memory: 65536
+    disk: 500
+    hostpci:
+      - device: "0000:01:00"
+        pcie: true
+    tags:
+      - talos
+      - llamaedge
+      - llm
+      - ruvector
+
+# Resource limits
+limits:
+  # Maximum VMs per node
+  maxVMsPerNode: 20
+  # Maximum total VMs
+  maxTotalVMs: 100
+  # Concurrent VM operations
+  concurrentOperations: 5
+
+# Health monitoring
+health:
+  # Check interval
+  checkInterval: 30s
+  # Timeout for health checks
+  timeout: 10s
+  # Unhealthy threshold
+  unhealthyThreshold: 3

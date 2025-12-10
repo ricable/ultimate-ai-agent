@@ -1,0 +1,49 @@
+{
+  "file_hash": "755302b3965741b4ca656067210aa7a6",
+  "feature": {
+    "id": "121 5770",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012771",
+    "value_package": "5G Advanced Macro Positioning",
+    "value_package_id": "FAJ 801 4028",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature provides UE-level observability for NR Timing Advance measurements with",
+    "parameters": [
+      {
+        "name": "Uen.E",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012771 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012771 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/212_22104-LZA7016017_1Uen.E.md",
+    "file_hash": "755302b3965741b4ca656067210aa7a6",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

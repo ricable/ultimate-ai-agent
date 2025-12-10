@@ -1,0 +1,115 @@
+{
+  "scenario": "Handover Optimization",
+  "description": "Cell with high ping-pong rate and handover failures requiring mobility parameter tuning",
+  "cells": [
+    {
+      "cell_id": "ENB_GBG_015_C2",
+      "site_name": "Gothenburg_Lindholmen",
+      "timestamp": "2024-12-08T11:00:00Z",
+      "technology": "LTE",
+      "radio_kpis": {
+        "rsrp_avg": -88.0,
+        "rsrq_avg": -10.5,
+        "sinr_avg": 12.0,
+        "prb_dl_utilization": 58.0
+      },
+      "throughput_kpis": {
+        "dl_throughput_avg": 72.0,
+        "ul_throughput_avg": 25.0
+      },
+      "mobility_kpis": {
+        "ho_attempts": 2850,
+        "ho_success_rate": 91.5,
+        "intra_freq_ho_sr": 92.8,
+        "inter_freq_ho_sr": 88.5,
+        "inter_rat_ho_sr": 85.2,
+        "pingpong_rate": 12.5,
+        "too_early_ho_rate": 4.2,
+        "too_late_ho_rate": 2.8,
+        "rrc_reest_rate": 3.5
+      },
+      "accessibility_kpis": {
+        "connected_users": 165
+      },
+      "retainability_kpis": {
+        "call_drop_rate": 1.2
+      },
+      "alarms": [
+        {
+          "alarm_id": "MOB_001",
+          "severity": "Major",
+          "alarm_text": "High ping-pong handover rate detected",
+          "raised_time": "2024-12-08T09:00:00Z"
+        },
+        {
+          "alarm_id": "MOB_002",
+          "severity": "Warning",
+          "alarm_text": "Handover success rate below threshold",
+          "raised_time": "2024-12-08T10:30:00Z"
+        }
+      ],
+      "config": {
+        "pci": 315,
+        "earfcn": 1850,
+        "bandwidth": 20,
+        "antenna": {
+          "electrical_tilt": 5.0,
+          "azimuth": 180.0,
+          "height": 28.0
+        },
+        "ho_params": {
+          "time_to_trigger": 160,
+          "hysteresis": 1.0,
+          "a3_offset": 2.0,
+          "filter_coefficient": 2,
+          "report_interval": 240
+        }
+      },
+      "ho_relations": [
+        {
+          "target_cell": "ENB_GBG_016_C1",
+          "ho_attempts": 850,
+          "ho_success_rate": 89.5,
+          "pingpong_rate": 18.0,
+          "cio": 0.0,
+          "distance_m": 420
+        },
+        {
+          "target_cell": "ENB_GBG_016_C2",
+          "ho_attempts": 620,
+          "ho_success_rate": 93.2,
+          "pingpong_rate": 8.5,
+          "cio": 0.0,
+          "distance_m": 380
+        },
+        {
+          "target_cell": "ENB_GBG_014_C3",
+          "ho_attempts": 480,
+          "ho_success_rate": 95.5,
+          "pingpong_rate": 5.2,
+          "cio": -2.0,
+          "distance_m": 550
+        },
+        {
+          "target_cell": "gNB_GBG_015_N1",
+          "technology": "5G_NSA",
+          "ho_attempts": 420,
+          "ho_success_rate": 86.0,
+          "pingpong_rate": 15.5,
+          "distance_m": 0
+        }
+      ]
+    }
+  ],
+  "query": "This cell is located in the Lindholmen tech hub area with many office buildings and a ferry terminal. High mobility due to pedestrians and vehicles moving between buildings. The ping-pong rate of 12.5% is causing poor user experience and unnecessary signaling load. Analyze the handover relations and recommend parameter changes to reduce ping-pong while maintaining connectivity for fast-moving users.",
+  "environment": {
+    "type": "dense_urban_office",
+    "user_mobility": ["pedestrian", "vehicle", "ferry"],
+    "typical_speed_kmh": [5, 30, 15]
+  },
+  "constraints": {
+    "min_ho_success_rate": 95,
+    "max_pingpong_rate": 5,
+    "max_call_drop_rate": 1.0
+  }
+}

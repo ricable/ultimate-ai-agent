@@ -1,0 +1,125 @@
+{
+  "id": "121 3027",
+  "name": "Real-Time Security Event Logging",
+  "cxc_code": "CXC4040010",
+  "value_package": "NR Base Package",
+  "value_package_id": "FAJ 801 4002",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Real-Time Security Event Logging feature captures real-time security events in",
+  "parameters": [
+    {
+      "name": "LogPushTransfer.logPushTransferId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogPushTransfer"
+    },
+    {
+      "name": "LogPushTransfer.password",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogPushTransfer"
+    },
+    {
+      "name": "LogPushTransfer.transferType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogPushTransfer"
+    },
+    {
+      "name": "LogPushTransfer.uri",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LogPushTransfer"
+    },
+    {
+      "name": "LogPushTransfer.availStatus",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "LogPushTransfer"
+    },
+    {
+      "name": "LogPushTransfer.operationalState",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "LogPushTransfer"
+    },
+    {
+      "name": "LogM.nodeCredential",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "LogM"
+    },
+    {
+      "name": "LogM.trustCategory",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "LogM"
+    },
+    {
+      "name": "Log.severityFilter",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "Log"
+    },
+    {
+      "name": "ManagedElement.networkManagedElementId",
+      "type": "Affected",
+      "description": "See MOM description.",
+      "mo_class": "ManagedElement"
+    },
+    {
+      "name": "Uen.BH",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [],
+  "events": [
+    {
+      "name": "Feature Identity",
+      "type": "FAJ 121 3027",
+      "description": "FAJ 121 3027"
+    },
+    {
+      "name": "Value Package Name",
+      "type": "NR Base Package",
+      "description": "Secure OAM & security logging"
+    },
+    {
+      "name": "Value Package Identity",
+      "type": "FAJ 801 4002",
+      "description": "FAJ 801 0432"
+    },
+    {
+      "name": "Node Type",
+      "type": "Baseband Radio Node",
+      "description": "Baseband Radio Node"
+    },
+    {
+      "name": "Access Type",
+      "type": "NR",
+      "description": "LTE"
+    },
+    {
+      "name": "Licensing",
+      "type": "Non-license-controlled feature. No license is required.",
+      "description": "License-controlled feature. One license is required for each                               node."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4040010 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4040010 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/239_22104-LZA7016014_1Uen.BH.md",
+  "file_hash": "683aa0ae162b9ef3292d95296b09f0d6",
+  "processed_at": "2025-10-19 17:07:27",
+  "network_impact": {},
+  "performance_impact": {}
+}

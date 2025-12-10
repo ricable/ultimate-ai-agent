@@ -1,0 +1,134 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neural-mesh-bootstrap
+  labels:
+    component: bootstrap
+    tier: core
+spec:
+  replicas: 1  # Bootstrap node should be singleton
+  strategy:
+    type: Recreate  # Ensure single instance
+  selector:
+    matchLabels:
+      component: bootstrap
+  template:
+    metadata:
+      labels:
+        component: bootstrap
+        tier: core
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: "/metrics"
+    spec:
+      serviceAccountName: neural-mesh-bootstrap
+      containers:
+      - name: neural-mesh
+        image: synaptic-neural-mesh:latest
+        imagePullPolicy: Always
+        env:
+        - name: NODE_ID
+          value: "neural-bootstrap-$(HOSTNAME)"
+        - name: MESH_ROLE
+          value: "bootstrap"
+        - name: BOOTSTRAP_MODE
+          value: "true"
+        - name: NEURAL_MESH_MODE
+          value: "coordinator"
+        - name: QUDAG_P2P_PORT
+          value: "4001"
+        - name: QUDAG_RPC_PORT
+          value: "8080"
+        - name: NEURAL_API_PORT
+          value: "8081"
+        - name: METRICS_PORT
+          value: "9090"
+        - name: RUST_LOG
+          value: "info,qudag=debug,neural_mesh=debug"
+        - name: QUDAG_DATA_DIR
+          value: "/app/data"
+        - name: QUDAG_CONFIG_DIR
+          value: "/app/config"
+        envFrom:
+        - configMapRef:
+            name: neural-mesh-config
+        - secretRef:
+            name: neural-mesh-secrets
+        ports:
+        - name: p2p
+          containerPort: 4001
+          protocol: TCP
+        - name: rpc
+          containerPort: 8080
+          protocol: TCP
+        - name: api
+          containerPort: 8081
+          protocol: TCP
+        - name: metrics
+          containerPort: 9090
+          protocol: TCP
+        volumeMounts:
+        - name: data
+          mountPath: /app/data
+        - name: config
+          mountPath: /app/config
+        - name: logs
+          mountPath: /app/logs
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: rpc
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: rpc
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /health
+            port: rpc
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 10
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: neural-mesh-bootstrap-data
+      - name: config
+        configMap:
+          name: neural-mesh-config
+      - name: logs
+        emptyDir: {}
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: neural-mesh-bootstrap
+  labels:
+    component: bootstrap
+automountServiceAccountToken: false

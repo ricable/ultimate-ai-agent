@@ -1,0 +1,700 @@
+{
+  "id": "121 5514",
+  "name": "NR Remote Interference Management",
+  "cxc_code": "CXC4012635",
+  "value_package": "Performance Boost",
+  "value_package_id": "FAJ 801 4021",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature can be used to mitigate interference in remote cells.",
+  "parameters": [
+    {
+      "name": "NRCellCU.offloadCellProfileRef",
+      "type": "Affecting",
+      "description": "The RSRP threshold for accepting incoming handovers depends on the                             configuration of the UE configured group type that the attribute refers                             to.",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "NRCellDU.raResponseWindow",
+      "type": "Affecting",
+      "description": "PDSCH slot-based blanking requires a larger random access response                                 window, so it is recommended to set the                                     NRCellDU.raResponseWindow attribute to                                     20. This can increase the chance of UEs                                 receiving random access response messages within the random access                                 response window.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimDetectionEnabled",
+      "type": "Affecting",
+      "description": "The remote interference detection function must be enabled for the                                 automatic blanking function.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimDetectedSlopeState",
+      "type": "Affecting",
+      "description": "The value of the attribute must be set to true for                                 the PDSCH slot-based blanking function to be triggered                                 automatically.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.qRxLevMin",
+      "type": "Affecting",
+      "description": "The value of the attribute is the minimum RSRP level for selecting                             the cell. The value is also included in the calculation of the RSRP                             threshold for accepting or blocking incoming mobility to the cell                             affected by interference during offload.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "EUtranFreqRelation.offloadEUtranFreqRelProfileRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "GNBDUFunction.setIdAllocation",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GNBDUFunction"
+    },
+    {
+      "name": "NRCellDU.rimAggressorRSSetRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimBgNoiseThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimCLPCHighIpnRSThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimDetectedRS1State",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimDetectedRS2State",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimDLMitChangeSymThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimDLMitChangeTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimHighIpnThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimLocationEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimMaxNoReportedSequences",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimNotEnoughPortionThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimOffloadEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimOffloadHighIpNThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPdschSlotBlankDlOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPdschSlotBlankDlSsThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPdschSlotBlankMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPdschSlotBlankSsThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPdschSlotBlankStopThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPdschSlotBlankTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPdschSlotPcBlankThrOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPdschSlotPcThreshHigh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPdschSlotPcThreshLow",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPdschSlotPcPwrBackoffHigh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPdschSlotPcPwrBackoffLow",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPdschSlotPcPrbUsageThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPdschSlotPcSinrThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimPowerControlEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimQRxLevMinIpNCompFactor",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimQRxLevMinConstant",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimRSDetectionThresholdOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimRSDetectionTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimRSReportInterval",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimRS1FarThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimRS1NotEnoughDetectedThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimRS1PortionStartDLMitThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimRS1PortionStopDLMitThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimRS2DetectedThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimRS2TransEnabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimRS2TransStartThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimRS2TransStopThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimSlopeFrontSymIndex",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimSlopeDetectPeriod",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimSlopePwrDiffThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimTransmittedRS1State",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimTransmittedRS2State",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimValidFrequencyOffsets",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.rimVictimRSSetRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRFreqRelation.offloadNrFreqRelProfileRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRFreqRelation"
+    },
+    {
+      "name": "OffloadCellProfileUeCfg.rimOffloadIncHoRsrpThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "OffloadCellProfileUeCfg"
+    },
+    {
+      "name": "OffloadEUtranFreqRelProfile.ueConfGroupType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "OffloadEUtranFreqRelProfile"
+    },
+    {
+      "name": "OffloadEUtranFreqRelProfileUeCfg.prefUeGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "OffloadEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "OffloadEUtranFreqRelProfileUeCfg.rimOffloadType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "OffloadEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "OffloadEUtranFreqRelProfileUeCfg.ueConfGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "OffloadEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "OffloadEUtranFreqRelProfileUeCfg.ueGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "OffloadEUtranFreqRelProfileUeCfg"
+    },
+    {
+      "name": "OffloadNrFreqRelProfile.ueConfGroupType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "OffloadNrFreqRelProfile"
+    },
+    {
+      "name": "OffloadNrFreqRelProfileUeCfg.prefUeGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "OffloadNrFreqRelProfileUeCfg"
+    },
+    {
+      "name": "OffloadNrFreqRelProfileUeCfg.rimOffloadType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "OffloadNrFreqRelProfileUeCfg"
+    },
+    {
+      "name": "OffloadNrFreqRelProfileUeCfg.ueConfGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "OffloadNrFreqRelProfileUeCfg"
+    },
+    {
+      "name": "OffloadNrFreqRelProfileUeCfg.ueGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "OffloadNrFreqRelProfileUeCfg"
+    },
+    {
+      "name": "RimOffload.rimOffloadId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RimOffload"
+    },
+    {
+      "name": "RimOffloadUeCfg.rimOffloadUeCfgId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RimOffloadUeCfg"
+    },
+    {
+      "name": "RimOffloadUeCfg.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RimOffloadUeCfg"
+    },
+    {
+      "name": "RimOffloadUeCfg.rimUlCriticalQualThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RimOffloadUeCfg"
+    },
+    {
+      "name": "RimRSGlobal.sequenceDomainPara",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RimRSGlobal"
+    },
+    {
+      "name": "RimRSGlobal.frequencyDomainPara",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RimRSGlobal"
+    },
+    {
+      "name": "RimRSGlobal.timeDomainPara",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RimRSGlobal"
+    },
+    {
+      "name": "RimRSSet.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RimRSSet"
+    },
+    {
+      "name": "RimRSSet.setId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RimRSSet"
+    },
+    {
+      "name": "RimRSSet.setType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RimRSSet"
+    },
+    {
+      "name": "UeBbProfileUeCfg.rimOffloadUeCfgRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UeBbProfileUeCfg"
+    },
+    {
+      "name": "RimRSGlobal.dlUlSwitchingPeriod",
+      "type": "5 ms",
+      "description": "",
+      "mo_class": "RimRSGlobal"
+    },
+    {
+      "name": "The total number of SET-IDs for RIM-RS type 1 and RIM-RS type                                     2",
+      "type": "2^19",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Number of candidate frequency resources",
+      "type": "2",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "nrofRIMRSSequenceCandidatesofRS1 and                                         nrofRIMRSSequenceCandidatesofRS2",
+      "type": "8",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Value of nrofConsecutiveRIMRS1 and                                         nrofConsecutiveRIMRS2",
+      "type": "2",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Enough/Not-Enough indication",
+      "type": "True / False",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Near-Far indication",
+      "type": "True / False",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AX33D",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "RimRSGlobal.TimeDomainPara",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RimRSGlobal"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsHoPrepFailInEutranRi",
+      "description": "Performance counter pmEbsHoPrepFailInEutranRi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsHoPrepFailInInterGnbRi",
+      "description": "Performance counter pmEbsHoPrepFailInInterGnbRi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRwrEutranNrUeSuccTrigger",
+      "description": "Performance counter pmEbsRwrEutranNrUeSuccTrigger",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRwrEutranUeSuccTrigger",
+      "description": "Performance counter pmEbsRwrEutranUeSuccTrigger",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRwrIntraNrUeSuccTrigger",
+      "description": "Performance counter pmEbsRwrIntraNrUeSuccTrigger",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepFailInEutranRi",
+      "description": "Performance counter pmHoPrepFailInEutranRi",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepFailInInterGnbRi",
+      "description": "Performance counter pmHoPrepFailInInterGnbRi",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUtilDlDistr",
+      "description": "Performance counter pmMacRBSymUtilDlDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacRBSymUtilDlMax",
+      "description": "Performance counter pmMacRBSymUtilDlMax",
+      "category": "General"
+    },
+    {
+      "name": "pmPdschAvailTime",
+      "description": "Performance counter pmPdschAvailTime",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioPdschEmptySlots",
+      "description": "Performance counter pmRadioPdschEmptySlots",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioPdschEmptySlotsNote",
+      "description": "Performance counter pmRadioPdschEmptySlotsNote",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioPdschRimBlankSlotsMaxDistr",
+      "description": "Performance counter pmRadioPdschRimBlankSlotsMaxDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioPdschRimBlankSymbolMaxDistr",
+      "description": "Performance counter pmRadioPdschRimBlankSymbolMaxDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRimAggressorCellDetectedMax",
+      "description": "Performance counter pmRimAggressorCellDetectedMax",
+      "category": "General"
+    },
+    {
+      "name": "pmRimDetectedAggressorDistanceMaxDistr",
+      "description": "Performance counter pmRimDetectedAggressorDistanceMaxDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRimDetectedAggressorSetIDsMax",
+      "description": "Performance counter pmRimDetectedAggressorSetIDsMax",
+      "category": "General"
+    },
+    {
+      "name": "pmRimDetectedVictimDistanceMaxDistr",
+      "description": "Performance counter pmRimDetectedVictimDistanceMaxDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRimDetectedVictimSetIDsMax",
+      "description": "Performance counter pmRimDetectedVictimSetIDsMax",
+      "category": "General"
+    },
+    {
+      "name": "pmRimPdschAction2LastDlSlotDistr",
+      "description": "Performance counter pmRimPdschAction2LastDlSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRimPdschActionLastDlSlotDistr",
+      "description": "Performance counter pmRimPdschActionLastDlSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRimPdschActionSpecialSlotDistr",
+      "description": "Performance counter pmRimPdschActionSpecialSlotDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRimRS1EnoughNotEnoughRatioMax",
+      "description": "Performance counter pmRimRS1EnoughNotEnoughRatioMax",
+      "category": "General"
+    },
+    {
+      "name": "pmRimVictimCellDetectedMax",
+      "description": "Performance counter pmRimVictimCellDetectedMax",
+      "category": "General"
+    },
+    {
+      "name": "pmRimVictimRiDetectedMax",
+      "description": "Performance counter pmRimVictimRiDetectedMax",
+      "category": "General"
+    },
+    {
+      "name": "pmRwrEutranUeSuccRi",
+      "description": "Performance counter pmRwrEutranUeSuccRi",
+      "category": "General"
+    },
+    {
+      "name": "pmRwrIntraNrUeSuccRi",
+      "description": "Performance counter pmRwrIntraNrUeSuccRi",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012635 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012635 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/161_22104-LZA7016017_1Uen.AX33D.md",
+  "file_hash": "ba36886cad5297c15ac25bbb0a557547",
+  "processed_at": "2025-10-19 15:48:56",
+  "network_impact": {},
+  "performance_impact": {}
+}

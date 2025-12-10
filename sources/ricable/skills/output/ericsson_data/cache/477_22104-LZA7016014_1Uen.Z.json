@@ -1,0 +1,201 @@
+{
+  "file_hash": "959f0183d1d8cb272b05621006228331",
+  "feature": {
+    "id": "121 5116",
+    "name": "Data-Aware Carrier Aggregation Configuration",
+    "cxc_code": "CXC4012383",
+    "value_package": "Advanced Carrier Aggregation",
+    "value_package_id": "FAJ 801 0564",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature provides improved uplink throughput for UEs with continuous and heavy uplink",
+    "parameters": [
+      {
+        "name": "ENodeBFunction.ulHeavyCaReconfMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.ulHeavyExitCaMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.ulHeavyUeBsrThUlCaFactor",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.ulHeavyUeDetectTimeOffset",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranCellFDD.ulCaPrioThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.ulCaPrioThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranFreqRelation.ulCaFreqPriority",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.ulCaFreqProportion",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "ENodeBFunction.ulHeavyUeBsrHyst",
+        "type": "Affecting",
+        "description": "This attribute controls the hysteresis of the buffer size threshold                                 for uplink-heavy UE detection.  It is not recommended to set this attribute to 0.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.ulHeavyUeBsrThresh",
+        "type": "Affecting",
+        "description": "This attribute controls the buffer size threshold for uplink-heavy UE                                 detection.  It is not recommended to set this attribute to 0. The recommended                                 value of this attribute is higher than the following:    The value of the                                             ENodeBFunction.ulHeavyUeBsrHyst                                         attribute.     The multiplication of the                                             ENodeBFunction.ulHeavyUeBsrHyst, and                                         the                                             ENodeBFunction.ulHeavyUeBsrThUlCaFactor                                         attributes.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.ulHeavyUeDetectTime",
+        "type": "Affecting",
+        "description": "This attribute controls the detection window length for uplink-heavy                                 UE detection.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranCellFDD.ulHeavyUeDetectEnabled",
+        "type": "Affecting",
+        "description": "The Data-Aware Carrier Aggregation Configuration feature is not                                 operable if the                                     EUtranCellFDD.ulHeavyUeDetectEnabled or                                     EUtranCellTDD.ulHeavyUeDetectEnabled                                 attribute is set to false.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.ulHeavyUeDetectEnabled",
+        "type": "Affecting",
+        "description": "The Data-Aware Carrier Aggregation Configuration feature is not                                 operable if the                                     EUtranCellFDD.ulHeavyUeDetectEnabled or                                     EUtranCellTDD.ulHeavyUeDetectEnabled                                 attribute is set to false.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.ulSCellPriority",
+        "type": "Affecting",
+        "description": "The attribute provides configuration options for the specific uplink                                 SCell or uplink SCell carrier prioritization function.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.ulSCellPriority",
+        "type": "Affecting",
+        "description": "The attribute provides configuration options for the specific uplink                                 SCell or uplink SCell carrier prioritization function.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP  INTERNAL_PER_UETR_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_PER_UL_SCELL_ACTIVITY_STATE_BEFORE_SELE  EVENT_PARAM_PER_UL_SCELL_ACTIVITY_STATE_AFTER_SELE  EVENT_PARAM_PER_UL_HEAVY_UE_SCELL_THP_BEFORE_SELE  EVENT_PARAM_PER_UL_HEAVY_UE_SCELL_THP_AFTER_SELE  EVENT_PARAM_PER_UL_HEAVY_UE_REQUIRED_TBS_BEFORE_HO_SELE  EVENT_PARAM_PER_UL_HEAVY_UE_REQUIRED_TBS_AFTER_HO_SELE  EVENT_PARAM_PER_UL_HEAVY_UE_PCELL_THP_BEFORE_HO_SELE  EVENT_PARAM_PER_UL_HEAVY_UE_PCELL_THP_AFTER_HO_SELE",
+        "description": "These parameters report average throughput, required TBS, and                                     uplink SCell activation state before and after an uplink SCell                                     configuration. When this feature is active, increased uplink                                     throughput is reported.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.Z",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.prioHpueCapability",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.prioHpueCapability",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.hpueCaSwitchThres",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.hpueCaSwitchThres",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.hpueCaSwitchHyst",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.hpueCaSwitchHyst",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCaConfiguredDlSum",
+        "description": "Performance counter pmCaConfiguredDlSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfiguredUlSum",
+        "description": "Performance counter pmCaConfiguredUlSum",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAttNoMobDacc",
+        "description": "Performance counter pmRrcConnReconfAttNoMobDacc",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfSuccNoMobDacc",
+        "description": "Performance counter pmRrcConnReconfSuccNoMobDacc",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_UE_TRAFFIC_REP  INTERNAL_PER_UETR_UE_TRAFFIC_REP",
+        "type": "EVENT_PARAM_PER_UL_SCELL_ACTIVITY_STATE_BEFORE_SELE  EVENT_PARAM_PER_UL_SCELL_ACTIVITY_STATE_AFTER_SELE  EVENT_PARAM_PER_UL_HEAVY_UE_SCELL_THP_BEFORE_SELE  EVENT_PARAM_PER_UL_HEAVY_UE_SCELL_THP_AFTER_SELE  EVENT_PARAM_PER_UL_HEAVY_UE_REQUIRED_TBS_BEFORE_HO_SELE  EVENT_PARAM_PER_UL_HEAVY_UE_REQUIRED_TBS_AFTER_HO_SELE  EVENT_PARAM_PER_UL_HEAVY_UE_PCELL_THP_BEFORE_HO_SELE  EVENT_PARAM_PER_UL_HEAVY_UE_PCELL_THP_AFTER_HO_SELE",
+        "description": "These parameters report average throughput, required TBS, and                                     uplink SCell activation state before and after an uplink SCell                                     configuration. When this feature is active, increased uplink                                     throughput is reported."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012383 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012383 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/477_22104-LZA7016014_1Uen.Z.md",
+    "file_hash": "959f0183d1d8cb272b05621006228331",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

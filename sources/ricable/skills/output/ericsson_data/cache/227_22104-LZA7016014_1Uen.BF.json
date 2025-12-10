@@ -1,0 +1,131 @@
+{
+  "file_hash": "f53e89d896ecd8d573a4f2c5bc9286f0",
+  "feature": {
+    "id": "121 2052",
+    "name": "Octal Antenna Uplink Performance Package",
+    "cxc_code": "CXC4011254",
+    "value_package": "8-Way Receive Diversity",
+    "value_package_id": "FAJ 801 0561",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Octal Antenna Uplink Performance Package feature supports eight RX antennas to",
+    "parameters": [
+      {
+        "name": "OctAntUlPerfPkgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "noOfRxAntennas",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "noOfUsedRxAntennas",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.BF",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "SectorCarrier.no0fRxAntennas",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "SectorCarrier"
+      },
+      {
+        "name": "EUtranCellTDD.pmSinrPucchDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmRadioRecInterferencePwrPucch",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmSinrPuschDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmSinrPucchDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmRadioRecInterferencePwrPucch",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmSinrPuschDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmRadioRecInterferencePwrPucch",
+        "description": "Performance counter pmRadioRecInterferencePwrPucch",
+        "category": "General"
+      },
+      {
+        "name": "pmSinrPucchDistr",
+        "description": "Performance counter pmSinrPucchDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmSinrPuschDistr",
+        "description": "Performance counter pmSinrPuschDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011254 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011254 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/227_22104-LZA7016014_1Uen.BF.md",
+    "file_hash": "f53e89d896ecd8d573a4f2c5bc9286f0",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {
+      "counters": "New counters introduced"
+    }
+  }
+}

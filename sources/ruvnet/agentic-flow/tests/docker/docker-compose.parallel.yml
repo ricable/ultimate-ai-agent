@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # Main test runner
+  parallel-test:
+    build:
+      context: ../..
+      dockerfile: tests/docker/Dockerfile.parallel-test
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - NODE_ENV=test
+      - ENABLE_PARALLEL_EXECUTION=true
+      - LOG_LEVEL=info
+    volumes:
+      - ../../:/app
+      - /app/node_modules
+      - test-results:/app/test-results
+    command: npm run test:parallel
+
+  # Mesh topology swarm
+  mesh-swarm:
+    build:
+      context: ../..
+      dockerfile: tests/docker/Dockerfile.parallel-test
+    environment:
+      - SWARM_TOPOLOGY=mesh
+      - MAX_AGENTS=10
+      - BATCH_SIZE=5
+    volumes:
+      - ../../:/app
+      - /app/node_modules
+    command: node tests/parallel/mesh-swarm-test.js
+
+  # Hierarchical topology swarm
+  hierarchical-swarm:
+    build:
+      context: ../..
+      dockerfile: tests/docker/Dockerfile.parallel-test
+    environment:
+      - SWARM_TOPOLOGY=hierarchical
+      - MAX_AGENTS=8
+      - BATCH_SIZE=4
+    volumes:
+      - ../../:/app
+      - /app/node_modules
+    command: node tests/parallel/hierarchical-swarm-test.js
+
+  # Ring topology swarm
+  ring-swarm:
+    build:
+      context: ../..
+      dockerfile: tests/docker/Dockerfile.parallel-test
+    environment:
+      - SWARM_TOPOLOGY=ring
+      - MAX_AGENTS=6
+      - BATCH_SIZE=3
+    volumes:
+      - ../../:/app
+      - /app/node_modules
+    command: node tests/parallel/ring-swarm-test.js
+
+  # Benchmark runner
+  benchmark:
+    build:
+      context: ../..
+      dockerfile: tests/docker/Dockerfile.parallel-test
+    environment:
+      - BENCHMARK_MODE=true
+      - ITERATIONS=10
+    volumes:
+      - ../../:/app
+      - /app/node_modules
+      - benchmark-results:/app/benchmark-results
+    command: node tests/parallel/benchmark-suite.js
+
+volumes:
+  test-results:
+  benchmark-results:

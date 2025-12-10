@@ -1,0 +1,132 @@
+{
+  "file_hash": "07c146559aa4c36ba550522e987dfb0a",
+  "feature": {
+    "id": "121 0490",
+    "name": "Data Forwarding at Intra-LTE Handover",
+    "cxc_code": "CXC4010613",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The purpose of Data Forwarding at Intra-LTE Handover feature is to ensure that no downlink data packets are lost when performing an X2 Intra-LTE handover, an intra-RBS handover or re-establishment.",
+    "parameters": [
+      {
+        "name": "QciProfileOperatorDefined.dataFwdPerQciEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QciProfileOperatorDefined"
+      },
+      {
+        "name": "QciProfilePredefined.dataFwdPerQciEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "Uen.BG33C",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.pmPdcpPktDiscDlHo",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmPdcpPktDiscDlHo",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmLicDlCapUsedMax",
+        "description": "Performance counter pmLicDlCapUsedMax",
+        "category": "General"
+      },
+      {
+        "name": "pmLicDlCapUsedSamp",
+        "description": "Performance counter pmLicDlCapUsedSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmLicDlCapUsedSum",
+        "description": "Performance counter pmLicDlCapUsedSum",
+        "category": "General"
+      },
+      {
+        "name": "pmLicDlCapUsedSumMbps",
+        "description": "Performance counter pmLicDlCapUsedSumMbps",
+        "category": "General"
+      },
+      {
+        "name": "pmLicUlCapUsedMax",
+        "description": "Performance counter pmLicUlCapUsedMax",
+        "category": "General"
+      },
+      {
+        "name": "pmLicUlCapUsedSamp",
+        "description": "Performance counter pmLicUlCapUsedSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmLicUlCapUsedSum",
+        "description": "Performance counter pmLicUlCapUsedSum",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktDiscDlHo",
+        "description": "Performance counter pmPdcpPktDiscDlHo",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktDiscDlHoQci",
+        "description": "Performance counter pmPdcpPktDiscDlHoQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktFwdDl",
+        "description": "Performance counter pmPdcpPktFwdDl",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010613 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010613 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/31_22104-LZA7016014_1Uen.BG33C.md",
+    "file_hash": "07c146559aa4c36ba550522e987dfb0a",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "id": "121 5342",
+  "name": "Prioritized Mobile Terminating Access at High Load",
+  "cxc_code": "CXC4012561",
+  "value_package": "High Load Handling",
+  "value_package_id": "FAJ 801 0415",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature enables the Dynamic UE Admission Control feature to use the paging",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.pagingPriorityDiffThr",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pagingPriorityDiffThr",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.pagingPriorityOverloadThr",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pagingPriorityOverloadThr",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "Uen.K",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.pmRrcConnEstabAttMtaPagPrioDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmRrcConnEstabAttMtaPagPrioDistr",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmRrcConnEstabAttMta",
+      "description": "Performance counter pmRrcConnEstabAttMta",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttMtaPagPrioDistr",
+      "description": "Performance counter pmRrcConnEstabAttMtaPagPrioDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttReattMta",
+      "description": "Performance counter pmRrcConnEstabAttReattMta",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttReattMtaPagPrioDistr",
+      "description": "Performance counter pmRrcConnEstabAttReattMtaPagPrioDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabFailMtaDynUeAdmCtrlPagPrioDistr",
+      "description": "Performance counter pmRrcConnEstabFailMtaDynUeAdmCtrlPagPrioDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabSuccMta",
+      "description": "Performance counter pmRrcConnEstabSuccMta",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabSuccMtaPagPrioDistr",
+      "description": "Performance counter pmRrcConnEstabSuccMtaPagPrioDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueAttMtaHp",
+      "description": "Performance counter pmRrcConnQueueAttMtaHp",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueAttMtaVoice",
+      "description": "Performance counter pmRrcConnQueueAttMtaVoice",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueSuccMtaHp",
+      "description": "Performance counter pmRrcConnQueueSuccMtaHp",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnQueueSuccMtaVoice",
+      "description": "Performance counter pmRrcConnQueueSuccMtaVoice",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012561 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012561 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/528_22104-LZA7016014_1Uen.K.md",
+  "file_hash": "a57cc9f1bc01cc05fa7b6ff844531da7",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

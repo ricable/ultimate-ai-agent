@@ -1,0 +1,128 @@
+[
+  {
+    "$meta": {
+      "version": "0.0.0",
+      "description": "Set d'optimisation full autoroutes",
+      "author": "BOURASSEAU Nicolas QSE/EXPER-E <nicolas.bourasseau@orange.com>"
+    }
+  },
+  {
+    "$custom": [
+      {
+        "name": "qciA1A2ThrOffsets",
+        "args": [
+          "mo",   
+          "valeur"
+        ],
+        "body": [
+          "res = mo.qciA1A2ThrOffsets",
+          "res[1]['a1a2ThrRsrqQciOffset'] = valeur",
+          "return res"
+        ]
+      },
+      {
+        "name": "systemInformationBlock3",
+        "args": [
+          "mo",
+          "valeur"
+        ],
+        "body": [
+          "res = mo.systemInformationBlock3",
+          "res['qHyst'] = valeur",
+          "return res"
+        ]
+      },
+      {
+        "name": "eutranFreqToQciProfileRelation",
+        "args": [
+          "mo",
+          "valeur"
+        ],
+        "body": [
+          "res = mo.eutranFreqToQciProfileRelation",
+          "res[1]['a5Thr1RsrqFreqQciOffset'] = valeur",
+          "return res"
+        ]
+      }
+    ]
+  },
+  {
+      "EUtranCellFDD": {
+      "@EUtranFreqRelation-*": {
+        "$cond": {
+          "if": "int(mo.dn.split(\"-\")[-1]) in [12,16,18,19,32,36,38,39,52,56,58,59]",
+          "then": {
+            "a5Thr1RsrpFreqOffset": "0",
+            "a5Thr2RsrpFreqOffset": "0"
+          },
+          "else": "__ignore__"
+        },
+        "eutranFreqToQciProfileRelation": {
+          "$eval": "custom.eutranFreqToQciProfileRelation(mo, '2.5')"
+        }
+      },
+      "UeMeasControl-*": {
+        "@ReportConfigSearch-*": {
+          "$cond": {
+            "if": "int(mo.a1a2SearchThresholdRsrp) < -119 and cell.get_freq_str() in ['1300','524','3000']",
+            "then": {
+              "a1a2SearchThresholdRsrp": "-119"
+            },
+            "else": "__ignore__"
+          },
+          "hysteresisA1A2SearchRsrq": "0.5",
+          "inhibitA2SearchConfig": "NOT_INHIBIT",
+          "qciA1A2ThrOffsets": {
+            "$eval": "custom.qciA1A2ThrOffsets(mo, '25')"
+          }
+        },
+        "@ReportConfigA5-*": {
+          "$cond": {
+            "if": "cell.get_freq_str() in ['1300','3000','524']",
+            "then": [
+              {
+                "$cond": {
+                  "if": "int(mo.a5Threshold2Rsrp) < -120",
+                  "then": {
+                    "a5Threshold2Rsrp": "-120"
+                  },
+                  "else": "__ignore__"
+                }
+              },
+              {
+                "$cond": {
+                  "if": "int(mo.a5Threshold1Rsrp) < -119",
+                  "then": {
+                    "a5Threshold1Rsrp": "-119"
+                  },
+                  "else": "__ignore__"
+                }
+              },
+              {
+                "$eval": "print(mo.a5Threshold1Rsrp)\r\nprint(mo.a5Threshold2Rsrp)"
+              }
+            ],
+            "else": "__ignore__"
+          }
+        },
+        "ReportConfigEUtraBestCell-*": {
+          "timeToTriggerA3": "640",
+          "a3offset": "2.0"
+        },
+        "filterCoefficientEUtraRsrq": "6",
+        "filterCoefficientEUtraRsrp": "6"
+      },
+      "systemInformationBlock3": {
+        "$eval": "custom.systemInformationBlock3(mo, '3')"
+      }
+    }
+  },
+  {
+    "ENodeBFunction": {
+      "SubscriberGroupProfile-VOLTE": {
+        "ulMcsLowerLimit": "2",
+        "ulMcsUpperLimit": "10"
+      }
+    }
+  }
+]

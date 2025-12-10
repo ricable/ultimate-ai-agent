@@ -1,0 +1,399 @@
+---
+# Canary Rollout Strategy with Analysis
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: web-frontend
+  namespace: default
+  labels:
+    app: web-frontend
+spec:
+  replicas: 5
+  revisionHistoryLimit: 5
+
+  selector:
+    matchLabels:
+      app: web-frontend
+
+  template:
+    metadata:
+      labels:
+        app: web-frontend
+        version: stable
+    spec:
+      containers:
+        - name: web-frontend
+          image: registry.company.com/web-frontend:v1.2.3
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          env:
+            - name: VERSION
+              value: "v1.2.3"
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 2000m
+              memory: 2Gi
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+
+  # Progressive delivery strategy
+  strategy:
+    canary:
+      # Traffic management with Istio
+      trafficRouting:
+        istio:
+          virtualService:
+            name: web-frontend-vsvc
+            routes:
+              - primary
+          destinationRule:
+            name: web-frontend-destrule
+            canarySubsetName: canary
+            stableSubsetName: stable
+
+      # Canary deployment steps
+      steps:
+        # Step 1: Deploy canary with 10% traffic
+        - setWeight: 10
+        - pause:
+            duration: 5m
+
+        # Step 2: Run analysis
+        - analysis:
+            templates:
+              - templateName: error-rate
+                clusterScope: true
+              - templateName: latency-p95
+            args:
+              - name: service-name
+                value: web-frontend
+              - name: canary-hash
+                valueFrom:
+                  podTemplateHashValue: Latest
+
+        # Step 3: Increase to 25%
+        - setWeight: 25
+        - pause:
+            duration: 5m
+
+        # Step 4: Run analysis again
+        - analysis:
+            templates:
+              - templateName: error-rate
+              - templateName: latency-p95
+              - templateName: saturation
+
+        # Step 5: Increase to 50%
+        - setWeight: 50
+        - pause:
+            duration: 10m
+
+        # Step 6: Extended analysis with custom metrics
+        - analysis:
+            templates:
+              - templateName: error-rate
+              - templateName: latency-p95
+              - templateName: custom-business-metrics
+            args:
+              - name: minimum-conversion-rate
+                value: "0.95"
+
+        # Step 7: Increase to 75%
+        - setWeight: 75
+        - pause:
+            duration: 10m
+
+        # Step 8: Final promotion to 100%
+        - setWeight: 100
+
+      # Analysis configuration
+      analysis:
+        successfulRunHistoryLimit: 5
+        unsuccessfulRunHistoryLimit: 5
+
+      # Automatic rollback configuration
+      autoRollback:
+        enabled: true
+
+      # Anti-affinity to spread canary pods
+      antiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution: {}
+        preferredDuringSchedulingIgnoredDuringExecution:
+          weight: 1
+
+---
+# Error Rate Analysis Template
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: error-rate
+spec:
+  args:
+    - name: service-name
+    - name: canary-hash
+
+  metrics:
+    - name: error-rate
+      initialDelay: 1m
+      interval: 1m
+      count: 5
+      successCondition: result < 0.01  # Less than 1%
+      failureCondition: result >= 0.05  # 5% or more triggers rollback
+      failureLimit: 3
+      inconclusiveLimit: 2
+      consecutiveErrorLimit: 3
+
+      provider:
+        prometheus:
+          address: http://prometheus.monitoring.svc:9090
+          query: |
+            sum(rate(http_requests_total{
+              app="{{ args.service-name }}",
+              pod_template_hash="{{ args.canary-hash }}",
+              status=~"5.."
+            }[2m])) /
+            sum(rate(http_requests_total{
+              app="{{ args.service-name }}",
+              pod_template_hash="{{ args.canary-hash }}"
+            }[2m]))
+
+---
+# Latency P95 Analysis Template
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: latency-p95
+spec:
+  args:
+    - name: service-name
+    - name: canary-hash
+
+  metrics:
+    - name: latency-p95
+      initialDelay: 1m
+      interval: 1m
+      count: 5
+      successCondition: result < 0.5  # Less than 500ms
+      failureCondition: result >= 1.0  # 1s or more triggers rollback
+      failureLimit: 3
+      inconclusiveLimit: 2
+
+      provider:
+        prometheus:
+          address: http://prometheus.monitoring.svc:9090
+          query: |
+            histogram_quantile(0.95,
+              sum(rate(http_request_duration_seconds_bucket{
+                app="{{ args.service-name }}",
+                pod_template_hash="{{ args.canary-hash }}"
+              }[2m])) by (le)
+            )
+
+---
+# Saturation Analysis Template
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: saturation
+spec:
+  args:
+    - name: service-name
+
+  metrics:
+    - name: cpu-saturation
+      initialDelay: 1m
+      interval: 1m
+      count: 5
+      successCondition: result < 80  # Less than 80% CPU
+      failureCondition: result >= 95  # 95% or more triggers rollback
+      failureLimit: 3
+
+      provider:
+        prometheus:
+          address: http://prometheus.monitoring.svc:9090
+          query: |
+            avg(rate(container_cpu_usage_seconds_total{
+              pod=~"{{ args.service-name }}.*"
+            }[2m])) * 100
+
+    - name: memory-saturation
+      initialDelay: 1m
+      interval: 1m
+      count: 5
+      successCondition: result < 85  # Less than 85% memory
+      failureCondition: result >= 95  # 95% or more triggers rollback
+      failureLimit: 3
+
+      provider:
+        prometheus:
+          address: http://prometheus.monitoring.svc:9090
+          query: |
+            avg(container_memory_working_set_bytes{
+              pod=~"{{ args.service-name }}.*"
+            } / container_spec_memory_limit_bytes{
+              pod=~"{{ args.service-name }}.*"
+            }) * 100
+
+---
+# Custom Business Metrics Analysis Template
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: custom-business-metrics
+spec:
+  args:
+    - name: service-name
+    - name: minimum-conversion-rate
+      value: "0.95"
+
+  metrics:
+    - name: conversion-rate
+      initialDelay: 2m
+      interval: 2m
+      count: 3
+      successCondition: result >= {{ args.minimum-conversion-rate }}
+      failureCondition: result < 0.90
+      failureLimit: 2
+
+      provider:
+        prometheus:
+          address: http://prometheus.monitoring.svc:9090
+          query: |
+            sum(rate(checkout_success_total{
+              app="{{ args.service-name }}"
+            }[5m])) /
+            sum(rate(checkout_attempt_total{
+              app="{{ args.service-name }}"
+            }[5m]))
+
+    - name: revenue-per-minute
+      initialDelay: 2m
+      interval: 2m
+      count: 3
+      successCondition: result >= 1000  # Minimum $1000/min
+      failureCondition: result < 500
+
+      provider:
+        prometheus:
+          address: http://prometheus.monitoring.svc:9090
+          query: |
+            sum(rate(order_value_total{
+              app="{{ args.service-name }}"
+            }[5m])) * 60
+
+---
+# Istio VirtualService for Traffic Management
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: web-frontend-vsvc
+  namespace: default
+spec:
+  hosts:
+    - web-frontend
+    - app.company.com
+  gateways:
+    - web-frontend-gateway
+  http:
+    - name: primary
+      match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: web-frontend
+            subset: stable
+          weight: 100
+        - destination:
+            host: web-frontend
+            subset: canary
+          weight: 0
+
+---
+# Istio DestinationRule for Subsets
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: web-frontend-destrule
+  namespace: default
+spec:
+  host: web-frontend
+  subsets:
+    - name: stable
+      labels:
+        app: web-frontend
+    - name: canary
+      labels:
+        app: web-frontend
+        rollouts-pod-template-hash: canary
+
+---
+# Blue-Green Deployment Strategy
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: web-frontend-blue-green
+  namespace: default
+spec:
+  replicas: 5
+
+  selector:
+    matchLabels:
+      app: web-frontend-bg
+
+  template:
+    metadata:
+      labels:
+        app: web-frontend-bg
+    spec:
+      containers:
+        - name: web-frontend
+          image: registry.company.com/web-frontend:v1.2.3
+          ports:
+            - containerPort: 8080
+
+  strategy:
+    blueGreen:
+      # Service that points to active (stable) version
+      activeService: web-frontend-active
+
+      # Service that points to preview (new) version
+      previewService: web-frontend-preview
+
+      # Automatically promote after analysis
+      autoPromotionEnabled: false
+
+      # Time to wait before scaling down old version
+      scaleDownDelaySeconds: 300
+
+      # Pre-promotion analysis
+      prePromotionAnalysis:
+        templates:
+          - templateName: error-rate
+          - templateName: latency-p95
+        args:
+          - name: service-name
+            value: web-frontend-bg
+
+      # Post-promotion analysis
+      postPromotionAnalysis:
+        templates:
+          - templateName: error-rate
+        args:
+          - name: service-name
+            value: web-frontend-bg

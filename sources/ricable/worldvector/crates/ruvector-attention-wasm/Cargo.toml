@@ -1,0 +1,35 @@
+[package]
+name = "ruvector-attention-wasm"
+version = "0.1.0"
+edition = "2021"
+description = "WASM bindings for ruvector-attention"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/ruvnet/ruvector"
+documentation = "https://ruv.io/ruvector"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+ruvector-attention = { version = "0.1.0", path = "../ruvector-attention", default-features = false, features = ["wasm"] }
+wasm-bindgen = "0.2"
+js-sys = "0.3"
+web-sys = { version = "0.3", features = ["console"] }
+serde = { version = "1.0", features = ["derive"] }
+serde-wasm-bindgen = "0.6"
+console_error_panic_hook = { version = "0.1", optional = true }
+getrandom = { version = "0.2", features = ["js"] }
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"
+
+[features]
+default = ["console_error_panic_hook"]
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false

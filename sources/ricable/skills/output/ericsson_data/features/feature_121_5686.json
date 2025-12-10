@@ -1,0 +1,234 @@
+{
+  "id": "121 5686",
+  "name": "Downlink-Triggered VoLTE Mobility",
+  "cxc_code": "CXC4012712",
+  "value_package": "VoLTE Performance",
+  "value_package_id": "FAJ 801 0444",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature introduces a downlink-triggered VoLTE mobility procedure for UEs with",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.dlVolteCovMobDetect",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.dlVolteCovMobThrHigh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.dlVolteCovMobThrLow",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.dlVolteCovMobWindowLen",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.dlVolteCovMobDetect",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.dlVolteCovMobThrHigh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.dlVolteCovMobThrLow",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.dlVolteCovMobWindowLen",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "ReportConfigA5UlVolte.a5Threshold1Rsrp",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5UlVolte"
+    },
+    {
+      "name": "ReportConfigA5UlVolte.a5Threshold1Rsrq",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5UlVolte"
+    },
+    {
+      "name": "ReportConfigA5UlVolte.a5Threshold2Rsrp",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5UlVolte"
+    },
+    {
+      "name": "ReportConfigA5UlVolte.a5Threshold2Rsrq",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5UlVolte"
+    },
+    {
+      "name": "ReportConfigA5UlVolte.hysteresisA5",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5UlVolte"
+    },
+    {
+      "name": "ReportConfigA5UlVolte.timeToTriggerA5",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5UlVolte"
+    },
+    {
+      "name": "ReportConfigA5UlVolte.triggerQuantityA5",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "ReportConfigA5UlVolte"
+    },
+    {
+      "name": "UeMeasControl.a5TimerUlVolteCovMob",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "UeMeasControl"
+    },
+    {
+      "name": "Uen.M33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "QciProfileOperatorDefined.caOffloadingEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "QciProfileOperatorDefined"
+    },
+    {
+      "name": "UnsupportedFreqProfile.unsupportedFreqList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UnsupportedFreqProfile"
+    },
+    {
+      "name": "EUtranFreqRelation.voicePrio",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranCellFDD.servOrPrioTriggeredIFHo",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.servOrPrioTriggeredIFHo",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.servOrPrioIFHoSetupBearer",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.servOrPrioIFHoSetupBearer",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranFreqRelation.voiceprio",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranFreqRelation"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCellHoExeAttLteInterFDtvm",
+      "description": "Performance counter pmCellHoExeAttLteInterFDtvm",
+      "category": "General"
+    },
+    {
+      "name": "pmCellHoExeSuccLteInterFDtvm",
+      "description": "Performance counter pmCellHoExeSuccLteInterFDtvm",
+      "category": "General"
+    },
+    {
+      "name": "pmCellHoPrepAttLteInterFDtvm",
+      "description": "Performance counter pmCellHoPrepAttLteInterFDtvm",
+      "category": "General"
+    },
+    {
+      "name": "pmCellHoPrepSuccLteInterFDtvm",
+      "description": "Performance counter pmCellHoPrepSuccLteInterFDtvm",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeAttLteInterFDtvm",
+      "description": "Performance counter pmHoExeAttLteInterFDtvm",
+      "category": "General"
+    },
+    {
+      "name": "pmHoExeSuccLteInterFDtvm",
+      "description": "Performance counter pmHoExeSuccLteInterFDtvm",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepAttLteInterFDtvm",
+      "description": "Performance counter pmHoPrepAttLteInterFDtvm",
+      "category": "General"
+    },
+    {
+      "name": "pmHoPrepSuccLteInterFDtvm",
+      "description": "Performance counter pmHoPrepSuccLteInterFDtvm",
+      "category": "General"
+    },
+    {
+      "name": "pmNumDlPotentialPktLossInd",
+      "description": "Performance counter pmNumDlPotentialPktLossInd",
+      "category": "General"
+    },
+    {
+      "name": "pmNumUlPotentialPktLossInd",
+      "description": "Performance counter pmNumUlPotentialPktLossInd",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012712 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012712 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/584_22104-LZA7016014_1Uen.M33B.md",
+  "file_hash": "b2387d56d835cc4d0bdf22d1681f44d6",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,24 @@
+name: 'Quality Gate Automation'
+description: 'Automated quality gates with SonarQube and security scanning'
+author: 'Ericsson RAN Team'
+inputs:
+  sonar-host-url:
+    description: 'SonarQube server URL'
+    required: true
+  sonar-token:
+    description: 'SonarQube token'
+    required: true
+  quality-threshold:
+    description: 'Quality gate threshold percentage'
+    required: false
+    default: '90'
+  security-scan:
+    description: 'Enable security vulnerability scanning'
+    required: false
+    default: 'true'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+branding:
+  icon: 'shield'
+  color: 'green'

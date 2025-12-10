@@ -1,0 +1,81 @@
+[package]
+name = "synaptic-mesh-p2p"
+version = "1.0.0"
+edition = "2021"
+authors = ["rUv <https://github.com/ruvnet>"]
+description = "P2P networking layer for Synaptic Neural Mesh with QuDAG integration"
+repository = "https://github.com/ruvnet/Synaptic-Neural-Mesh"
+license = "MIT OR Apache-2.0"
+homepage = "https://github.com/ruvnet/Synaptic-Neural-Mesh"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Core libraries
+wasm-bindgen = "0.2"
+js-sys = "0.3"
+wasm-bindgen-futures = "0.4"
+serde = { version = "1.0", features = ["derive"] }
+serde-wasm-bindgen = "0.6"
+uuid = { version = "1.0", features = ["v4", "serde"] }
+
+# Cryptography - Post-quantum
+ml-dsa = "0.5"
+ml-kem = "0.2"
+blake3 = "1.5"
+rand = "0.8"
+rand_core = "0.6"
+getrandom = { version = "0.2", features = ["js"] }
+zeroize = { version = "1.7", features = ["zeroize_derive"] }
+
+# Networking (WASM-compatible subset)
+futures = "0.3"
+futures-util = "0.3"
+
+# Async runtime for WASM
+wasm-bindgen-rayon = { version = "1.0", optional = true }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Local dependencies
+qudag-core = { path = "../qudag-core", default-features = false, features = ["wasm"] }
+
+[dependencies.web-sys]
+version = "0.3"
+features = [
+  "console",
+  "Performance",
+  "Window",
+  "Navigator",
+  "Crypto",
+  "CryptoKey",
+  "SubtleCrypto",
+  "WebSocket",
+  "MessageEvent",
+  "CloseEvent",
+  "ErrorEvent",
+  "Blob",
+  "File",
+  "FileReader",
+  "Uint8Array",
+  "ArrayBuffer",
+]
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"
+
+[features]
+default = ["console_error_panic_hook"]
+console_error_panic_hook = ["dep:console_error_panic_hook"]
+parallel = ["wasm-bindgen-rayon"]
+
+# For wasm-pack build
+[package.metadata.wasm-pack.profile.release]
+wee-alloc = false
+
+[dependencies.console_error_panic_hook]
+version = "0.1.7"
+optional = true

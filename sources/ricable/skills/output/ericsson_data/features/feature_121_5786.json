@@ -1,0 +1,211 @@
+{
+  "id": "121 5786",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4012787",
+  "value_package": "5G Advanced Differentiated Connectivity",
+  "value_package_id": "FAJ 801 4030",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature introduces a scheduling algorithm based on packet age, mainly for",
+  "parameters": [
+    {
+      "name": "DlLatencyBasedPriority.dlDemotedPriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DlLatencyBasedPriority"
+    },
+    {
+      "name": "DlLatencyBasedPriority.dlLatencyBasedPriorityId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DlLatencyBasedPriority"
+    },
+    {
+      "name": "DlLatencyBasedPriority.dlPriorityScaler",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DlLatencyBasedPriority"
+    },
+    {
+      "name": "DlLatencyBasedPriority.dlPriorityShiftMargin",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DlLatencyBasedPriority"
+    },
+    {
+      "name": "DlLatencyBasedPriority.dlResourceControlLevel",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DlLatencyBasedPriority"
+    },
+    {
+      "name": "DlLatencyBasedPriority.dlWeightOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DlLatencyBasedPriority"
+    },
+    {
+      "name": "UlLatencyBasedPriority.ulDemotedPriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UlLatencyBasedPriority"
+    },
+    {
+      "name": "UlLatencyBasedPriority.ulLatencyBasedPriorityId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UlLatencyBasedPriority"
+    },
+    {
+      "name": "UlLatencyBasedPriority.ulPriorityScaler",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UlLatencyBasedPriority"
+    },
+    {
+      "name": "UlLatencyBasedPriority.ulPriorityShiftMargin",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UlLatencyBasedPriority"
+    },
+    {
+      "name": "UlLatencyBasedPriority.ulResourceControlLevel",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UlLatencyBasedPriority"
+    },
+    {
+      "name": "UlLatencyBasedPriority.ulWeightOffset",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UlLatencyBasedPriority"
+    },
+    {
+      "name": "SchedulingProfile.schedulingAlgorithm",
+      "type": "Affected",
+      "description": "The attribute is extended with values that correspond to                                     Latency-Prioritized Scheduling.",
+      "mo_class": "SchedulingProfile"
+    },
+    {
+      "name": "SchedulingProfile.ulSchedulingAlgorithm",
+      "type": "Affected",
+      "description": "The attribute is extended with values that correspond to                                     Latency-Prioritized Scheduling.",
+      "mo_class": "SchedulingProfile"
+    },
+    {
+      "name": "DU5qi.packetDelayBudget",
+      "type": "Affecting",
+      "description": "The attribute affects the feature operation depending on its                                     value.",
+      "mo_class": "DU5qi"
+    },
+    {
+      "name": "DU5qi.priorityLevel",
+      "type": "Affecting",
+      "description": "The attribute affects the feature operation depending on its                                     value.",
+      "mo_class": "DU5qi"
+    },
+    {
+      "name": "DUModified5qiUeCfg.packetDelayBudget",
+      "type": "Affecting",
+      "description": "The attribute affects the feature operation depending on its                                     value.",
+      "mo_class": "DUModified5qiUeCfg"
+    },
+    {
+      "name": "DUModified5qiUeCfg.priorityLevel",
+      "type": "Affecting",
+      "description": "The attribute affects the feature operation depending on its                                     value.",
+      "mo_class": "DUModified5qiUeCfg"
+    },
+    {
+      "name": "QosPriorityMapping.priorityDomainMapping",
+      "type": "Affecting",
+      "description": "The attribute affects the feature operation depending on its                                     value.",
+      "mo_class": "QosPriorityMapping"
+    },
+    {
+      "name": "Uen.D",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "UeCfg.priorityLevel",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UeCfg"
+    },
+    {
+      "name": "NRCellDU.pCellDlDataOffload",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsRlcDelayDlGoodRfResCtrlOffDistr",
+      "description": "Performance counter pmEbsRlcDelayDlGoodRfResCtrlOffDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRlcDelayDlGoodRfResCtrlOnDistr",
+      "description": "Performance counter pmEbsRlcDelayDlGoodRfResCtrlOnDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRlcDelayDlNotGoodRfResCtrlOffDistr",
+      "description": "Performance counter pmEbsRlcDelayDlNotGoodRfResCtrlOffDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRlcDelayDlNotGoodRfResCtrlOnDistr",
+      "description": "Performance counter pmEbsRlcDelayDlNotGoodRfResCtrlOnDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRlcDelayUlGoodRfResCtrlOffDistr",
+      "description": "Performance counter pmEbsRlcDelayUlGoodRfResCtrlOffDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRlcDelayUlGoodRfResCtrlOnDistr",
+      "description": "Performance counter pmEbsRlcDelayUlGoodRfResCtrlOnDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRlcDelayUlNotGoodRfResCtrlOffDistr",
+      "description": "Performance counter pmEbsRlcDelayUlNotGoodRfResCtrlOffDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRlcDelayUlNotGoodRfResCtrlOnDistr",
+      "description": "Performance counter pmEbsRlcDelayUlNotGoodRfResCtrlOnDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012787 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012787 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/245_22104-LZA7016017_1Uen.D.md",
+  "file_hash": "eb91959ec10fb9d0ad0374d058b22067",
+  "processed_at": "2025-10-19 15:50:10",
+  "network_impact": {},
+  "performance_impact": {}
+}

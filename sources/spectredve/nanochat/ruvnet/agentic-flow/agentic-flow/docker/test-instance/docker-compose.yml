@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  agentic-flow:
+    build:
+      context: ../../..
+      dockerfile: agentic-flow/docker/test-instance/Dockerfile
+    container_name: agentic-flow-test
+    environment:
+      # API Keys (load from .env file)
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - GOOGLE_GEMINI_API_KEY=${GOOGLE_GEMINI_API_KEY}
+
+      # AgentDB Configuration
+      - AGENTDB_PATH=/app/data/agentdb
+      - AGENTDB_MEMORY_LIMIT=512
+
+      # Memory Configuration
+      - MEMORY_PATH=/app/data/memory
+      - MEMORY_PERSISTENCE=true
+
+      # Router Configuration
+      - DEFAULT_PROVIDER=${DEFAULT_PROVIDER:-anthropic}
+      - DEFAULT_MODEL=${DEFAULT_MODEL:-claude-sonnet-4-5-20250929}
+
+      # Performance Settings
+      - MAX_TOKENS=${MAX_TOKENS:-4096}
+      - TEMPERATURE=${TEMPERATURE:-0.7}
+      - TIMEOUT=${TIMEOUT:-300000}
+
+      # Feature Flags
+      - ENABLE_STREAMING=${ENABLE_STREAMING:-true}
+      - ENABLE_HOOKS=${ENABLE_HOOKS:-true}
+      - ENABLE_NEURAL=${ENABLE_NEURAL:-true}
+
+      # Logging
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - VERBOSE=${VERBOSE:-false}
+
+    volumes:
+      # Persist data
+      - agentdb-data:/app/data/agentdb
+      - memory-data:/app/data/memory
+      - session-data:/app/data/sessions
+
+      # Mount local workspace for testing (optional)
+      - ./workspace:/workspace
+
+    # Keep container running for interactive testing
+    stdin_open: true
+    tty: true
+
+    # Override entrypoint for interactive shell
+    command: /bin/bash
+
+volumes:
+  agentdb-data:
+    driver: local
+  memory-data:
+    driver: local
+  session-data:
+    driver: local

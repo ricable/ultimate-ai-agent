@@ -1,0 +1,137 @@
+{
+  "file_hash": "1ff6bd40de10d7770f35b123acb3ee42",
+  "feature": {
+    "id": "121 5149",
+    "name": "Reduced Connection Setup Time",
+    "cxc_code": "CXC4012412",
+    "value_package": "Spectral Efficiency",
+    "value_package_id": "FAJ 801 1015",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature enables an enhanced initial prescheduling procedure to speed up the connection setup time.",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.reducedConnSetupTimeEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.reducedConnSetupTimeEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "PreschedulingProfile.initPreschedulingControl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PreschedulingProfile"
+      },
+      {
+        "name": "PreschedulingProfile.initPreschedulingDuration",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PreschedulingProfile"
+      },
+      {
+        "name": "PreschedulingProfile.initPreschedulingPathlossThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PreschedulingProfile"
+      },
+      {
+        "name": "PreschedulingProfile.initPreschedulingPeriod",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PreschedulingProfile"
+      },
+      {
+        "name": "PreschedulingProfile.initPreschedulingSinrThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PreschedulingProfile"
+      },
+      {
+        "name": "Uen.Z",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ENodeBFunction.initPreschedulingEnable",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "PrschedulingProfile.initPreschedulingPeriod",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PrschedulingProfile"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmActiveUeUlPresched",
+        "description": "Performance counter pmActiveUeUlPresched",
+        "category": "General"
+      },
+      {
+        "name": "pmActiveUeUlPreschedData",
+        "description": "Performance counter pmActiveUeUlPreschedData",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcchCceUsedUlPresched",
+        "description": "Performance counter pmPdcchCceUsedUlPresched",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbUsedUlPresched",
+        "description": "Performance counter pmPrbUsedUlPresched",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcLatencyCapEnqDistr",
+        "description": "Performance counter pmRrcLatencyCapEnqDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcLatencyConnReconfigDistr",
+        "description": "Performance counter pmRrcLatencyConnReconfigDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcLatencyConnSetupDistr",
+        "description": "Performance counter pmRrcLatencyConnSetupDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcLatencySecModeCmdDistr",
+        "description": "Performance counter pmRrcLatencySecModeCmdDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012412 MO instance.",
+    "deactivation_step": null,
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/483_22104-LZA7016014_1Uen.Z.md",
+    "file_hash": "1ff6bd40de10d7770f35b123acb3ee42",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

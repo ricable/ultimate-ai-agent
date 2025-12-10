@@ -1,0 +1,19 @@
+FROM node:20-slim
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install production dependencies
+RUN npm ci --only=production
+
+# Copy built distribution
+COPY dist ./dist
+COPY wasm ./wasm
+
+# Copy standalone agent script
+COPY docker/federation-test/standalone-agent.js ./docker/federation-test/
+
+# Run standalone agent
+CMD ["node", "docker/federation-test/standalone-agent.js"]

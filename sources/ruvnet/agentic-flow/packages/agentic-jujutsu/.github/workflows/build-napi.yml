@@ -1,0 +1,278 @@
+name: Build N-API Native Modules
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  release:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        settings:
+          # macOS builds
+          - host: macos-latest
+            target: x86_64-apple-darwin
+            build: npm run build -- --target x86_64-apple-darwin
+            artifact: agentic-jujutsu-darwin-x64
+          - host: macos-latest
+            target: aarch64-apple-darwin
+            build: npm run build -- --target aarch64-apple-darwin
+            artifact: agentic-jujutsu-darwin-arm64
+
+          # Linux builds (GNU libc)
+          - host: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            build: npm run build -- --target x86_64-unknown-linux-gnu
+            artifact: agentic-jujutsu-linux-x64-gnu
+          - host: ubuntu-latest
+            target: aarch64-unknown-linux-gnu
+            build: |
+              sudo apt-get update
+              sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+              npm run build -- --target aarch64-unknown-linux-gnu
+            artifact: agentic-jujutsu-linux-arm64-gnu
+          - host: ubuntu-latest
+            target: armv7-unknown-linux-gnueabihf
+            build: |
+              sudo apt-get update
+              sudo apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+              npm run build -- --target armv7-unknown-linux-gnueabihf
+            artifact: agentic-jujutsu-linux-arm-gnueabihf
+
+          # Linux builds (musl - Alpine)
+          - host: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+            docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-alpine
+            build: npm run build -- --target x86_64-unknown-linux-musl
+            artifact: agentic-jujutsu-linux-x64-musl
+          - host: ubuntu-latest
+            target: aarch64-unknown-linux-musl
+            docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-alpine
+            build: |
+              rustup target add aarch64-unknown-linux-musl
+              npm run build -- --target aarch64-unknown-linux-musl
+            artifact: agentic-jujutsu-linux-arm64-musl
+
+          # Windows builds
+          - host: windows-latest
+            target: x86_64-pc-windows-msvc
+            build: npm run build -- --target x86_64-pc-windows-msvc
+            artifact: agentic-jujutsu-win32-x64-msvc
+          - host: windows-latest
+            target: aarch64-pc-windows-msvc
+            build: npm run build -- --target aarch64-pc-windows-msvc
+            artifact: agentic-jujutsu-win32-arm64-msvc
+
+    name: Build ${{ matrix.settings.target }}
+    runs-on: ${{ matrix.settings.host }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+          targets: ${{ matrix.settings.target }}
+
+      - name: Cache Rust dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target/
+          key: ${{ matrix.settings.target }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ matrix.settings.target }}-cargo-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build in Docker (musl)
+        if: matrix.settings.docker
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ${{ matrix.settings.docker }}
+          options: -v ${{ github.workspace }}:/build -w /build
+          run: |
+            npm ci
+            ${{ matrix.settings.build }}
+
+      - name: Build native module
+        if: ${{ !matrix.settings.docker }}
+        run: ${{ matrix.settings.build }}
+        env:
+          RUST_BACKTRACE: 1
+
+      - name: Test native module
+        if: ${{ !matrix.settings.docker && !contains(matrix.settings.target, 'aarch64') && !contains(matrix.settings.target, 'armv7') }}
+        run: npm run test:basic
+
+      - name: List build artifacts
+        shell: bash
+        run: ls -lh *.node || echo "No .node files found"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.settings.artifact }}
+          path: |
+            *.node
+            index.js
+            index.d.ts
+          if-no-files-found: error
+          retention-days: 7
+
+  test-artifacts:
+    name: Test Build Artifacts
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: List all artifacts
+        run: find artifacts -type f -name "*.node" -exec ls -lh {} \;
+
+      - name: Verify artifact sizes
+        run: |
+          for file in artifacts/**/*.node; do
+            if [ -f "$file" ]; then
+              size=$(stat -c%s "$file" 2>/dev/null || stat -f%z "$file" 2>/dev/null)
+              echo "✅ $file: $size bytes"
+              if [ "$size" -lt 100000 ]; then
+                echo "⚠️ Warning: $file is suspiciously small"
+              fi
+            fi
+          done
+
+  publish-npm:
+    name: Publish to npm
+    needs: [build, test-artifacts]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Move artifacts to package root
+        run: |
+          for dir in artifacts/*/; do
+            cp -v "$dir"*.node . 2>/dev/null || true
+          done
+          ls -lh *.node
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create npm packages
+        run: npm run prepublishOnly
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  create-release-assets:
+    name: Create Release Assets
+    needs: [build, test-artifacts]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create release archives
+        run: |
+          cd artifacts
+          for dir in */; do
+            platform=$(basename "$dir")
+            tar -czf "../${platform}.tar.gz" -C "$dir" .
+            zip -r "../${platform}.zip" "$dir"
+          done
+          cd ..
+          ls -lh *.tar.gz *.zip
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            *.tar.gz
+            *.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  security-scan:
+    name: Security Scan
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+
+      - name: Check for vulnerable dependencies
+        run: |
+          npm audit --json > audit-report.json
+          cat audit-report.json
+
+      - name: Upload security report
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-report
+          path: audit-report.json
+          retention-days: 30

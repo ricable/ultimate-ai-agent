@@ -1,0 +1,529 @@
+{
+  "file_hash": "a4a781251e8a4d7b19ea0f47e8dd729c",
+  "feature": {
+    "id": "121 5772",
+    "name": "NR Switched Uplink for Throughput Boost",
+    "cxc_code": "CXC4012690",
+    "value_package": "Peak Rate Evolution",
+    "value_package_id": "FAJ 801 4005",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature allows for the aggregation of two uplink component carriers.",
+    "parameters": [
+      {
+        "name": "CaCellProfile.reservedBy",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfile"
+      },
+      {
+        "name": "CaCellProfileUeCfg.blockedSCellFreqList",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfileUeCfg.maxUlCcAllowed",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfileUeCfg.maxUlCcAllowed",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfileUeCfg.prefUeGroupList",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfileUeCfg.servingCellSelectionPolicy",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfileUeCfg.ueConfGroupList",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfileUeCfg.ueGroupList",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaCellProfileUeCfg.ulCaConfigurationMode",
+        "type": "Affected",
+        "description": "The attribute is used to configure the following:  The uplink aspect of the selected SCell     The configuration of PCell coverage measurements for                                             uplink carrier aggregation",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "CaSCellHandlingUeCfg.sCellActDeactUlDataThresh",
+        "type": "Affecting",
+        "description": "The attribute is used for considering uplink buffer conditions for                                 the Data-Aware Carrier Management feature.",
+        "mo_class": "CaSCellHandlingUeCfg"
+      },
+      {
+        "name": "CaSCellHandlingUeCfg.sCellActDeactUlDataThreshHyst",
+        "type": "Affecting",
+        "description": "The attribute is used for considering uplink buffer conditions for                                 the Data-Aware Carrier Management feature.",
+        "mo_class": "CaSCellHandlingUeCfg"
+      },
+      {
+        "name": "ExternalGNBCUCPFunction.sameUeGroupSelection",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "ExternalGNBCUCPFunction"
+      },
+      {
+        "name": "NRCellCU.caCellMeasProfileRef",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "NRCellCU.caCellProfileRef",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "NRCellDU.caPerCcFairnessWeightUlEnabled",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.pMaxCa",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.puschModeOnFddSCell",
+        "type": "Affecting",
+        "description": "The attribute is used to configure the PUSCH time domain allocation                                 mode of the Low-Band SCell. The attribute must be used in Low-Band                                 cells when the cell serves as uplink SCell and the NR Uplink Carrier                                 Aggregation feature is activated in the Low-Band cell. Short PUSCH                                 allocations are configured in a UE only in the Low-Band SCell for                                 uplink carrier aggregation.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.raResponseWindow",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.ulCaTimeAlignmentMode",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellRelation.caStatusInfo",
+        "type": "Affected",
+        "description": "The E5_DLCA_CAP_ONLY and the                                     ESS_ULCA_BLOCKED values are introduced.",
+        "mo_class": "NRCellRelation"
+      },
+      {
+        "name": "NRCellRelation.colocationIndicator",
+        "type": "Affecting",
+        "description": "See MOM description",
+        "mo_class": "NRCellRelation"
+      },
+      {
+        "name": "NRCellRelation.sCellCandidate",
+        "type": "Affected",
+        "description": "The ONLY_ALLOWED_FOR_DL configuration option is                                 introduced for SCell candidates. If selected, the SCell is only a                                 candidate for downlink carrier aggregation of a Low-Band and a                                 Mid-Band component carrier.  The ALLOWED configuration option is updated to                                 indicate that the SCell is a candidate for uplink and downlink                                 carrier aggregation of a Low-Band and a Mid-Band component                                 carrier.",
+        "mo_class": "NRCellRelation"
+      },
+      {
+        "name": "TrStSaCellProfileUeCfg.rsrpPCellCandidate",
+        "type": "Affecting",
+        "description": "The attribute is updated to include the following measurements:  A1 and A2 measurements to measure uplink PCell coverage                                             in case of UE power reduction.     A1 measurement on the PCell for the evaluation of the                                             current PCell as a PCell candidate with power                                             reduction.     A1, A2, and A5 measurements on the downlink signal to                                             evaluate uplink SCell coverage.",
+        "mo_class": "TrStSaCellProfileUeCfg"
+      },
+      {
+        "name": "Uen.CT33E",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "BsrUeCfg.srGrantSize",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "BsrUeCfg"
+      },
+      {
+        "name": "NRCellDU.secondaryCellOnly",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCaConfigAttUl",
+        "description": "Performance counter pmCaConfigAttUl",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigSuccUl",
+        "description": "Performance counter pmCaConfigSuccUl",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigUlSumSaDistr",
+        "description": "Performance counter pmCaConfigUlSumSaDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaDeconfigAttUl",
+        "description": "Performance counter pmCaDeconfigAttUl",
+        "category": "General"
+      },
+      {
+        "name": "pmCaDeconfigSuccUl",
+        "description": "Performance counter pmCaDeconfigSuccUl",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsCaConfigDirection",
+        "description": "Performance counter pmEbsCaConfigDirection",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsCaDeconfigDirection",
+        "description": "Performance counter pmEbsCaDeconfigDirection",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacRBSymUsedPuschTypeB",
+        "description": "Performance counter pmEbsMacRBSymUsedPuschTypeB",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacRBSymUtilUlCaSCellPartitionDistr",
+        "description": "Performance counter pmEbsMacRBSymUtilUlCaSCellPartitionDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacVolUl",
+        "description": "Performance counter pmEbsMacVolUl",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsMacVolUlPlmn",
+        "description": "Performance counter pmEbsMacVolUlPlmn",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacScellActivationUeUl",
+        "description": "Performance counter pmEbsnMacScellActivationUeUl",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacScellDeactivationAttUe",
+        "description": "Performance counter pmEbsnMacScellDeactivationAttUe",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacScellDeactivationUe",
+        "description": "Performance counter pmEbsnMacScellDeactivationUe",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacScellDeactivationUepmEbsnMacScellDeactivationAttUe",
+        "description": "Performance counter pmEbsnMacScellDeactivationUepmEbsnMacScellDeactivationAttUe",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacScellScheduleReadyUeDl",
+        "description": "Performance counter pmEbsnMacScellScheduleReadyUeDl",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacTimeUlResDrb",
+        "description": "Performance counter pmEbsnMacTimeUlResDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacTimeUlResUe",
+        "description": "Performance counter pmEbsnMacTimeUlResUe",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacUeThpUlMbbHighVol2Distr",
+        "description": "Performance counter pmEbsnMacUeThpUlMbbHighVol2Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacUeThpUlMbbLowVol2Distr",
+        "description": "Performance counter pmEbsnMacUeThpUlMbbLowVol2Distr",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacVolUlResDrb",
+        "description": "Performance counter pmEbsnMacVolUlResDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacVolUlResUe",
+        "description": "Performance counter pmEbsnMacVolUlResUe",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacVolUlResUeLate",
+        "description": "Performance counter pmEbsnMacVolUlResUeLate",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacVolUlUeLastSlot",
+        "description": "Performance counter pmEbsnMacVolUlUeLastSlot",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacVolUlUnresUe",
+        "description": "Performance counter pmEbsnMacVolUlUnresUe",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnUeExclThpUlRelativeHighVol2",
+        "description": "Performance counter pmEbsnUeExclThpUlRelativeHighVol2",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnUeExclThpUlRelativeLowVol2",
+        "description": "Performance counter pmEbsnUeExclThpUlRelativeLowVol2",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnUeExclThpUlShortTimeLowVol",
+        "description": "Performance counter pmEbsnUeExclThpUlShortTimeLowVol",
+        "category": "General"
+      },
+      {
+        "name": "pmMacOffloadVolUlSCell",
+        "description": "Performance counter pmMacOffloadVolUlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacOffloadVolUlSCellExt",
+        "description": "Performance counter pmMacOffloadVolUlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmMacPdcchBlockingPdschOccasions",
+        "description": "Performance counter pmMacPdcchBlockingPdschOccasions",
+        "category": "General"
+      },
+      {
+        "name": "pmMacPdcchBlockingPuschOccasions",
+        "description": "Performance counter pmMacPdcchBlockingPuschOccasions",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPusch1Port1Layer",
+        "description": "Performance counter pmMacRBSymUsedPusch1Port1Layer",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPusch2Port1Layer",
+        "description": "Performance counter pmMacRBSymUsedPusch2Port1Layer",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPusch2Port2Layer",
+        "description": "Performance counter pmMacRBSymUsedPusch2Port2Layer",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPuschMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPuschMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPuschMimoUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPuschMimoUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPuschTypeA",
+        "description": "Performance counter pmMacRBSymUsedPuschTypeA",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPuschTypeB",
+        "description": "Performance counter pmMacRBSymUsedPuschTypeB",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUtilUlDistr",
+        "description": "Performance counter pmMacRBSymUtilUlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmMacThpUlUeMax",
+        "description": "Performance counter pmMacThpUlUeMax",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeUlResCaUe",
+        "description": "Performance counter pmMacTimeUlResCaUe",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeUlResUe",
+        "description": "Performance counter pmMacTimeUlResUe",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUl",
+        "description": "Performance counter pmMacVolUl",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlPCellCa",
+        "description": "Performance counter pmMacVolUlPCellCa",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlResCaUe",
+        "description": "Performance counter pmMacVolUlResCaUe",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlResCaUepmMacTimeUlResCaUe",
+        "description": "Performance counter pmMacVolUlResCaUepmMacTimeUlResCaUe",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlResUe",
+        "description": "Performance counter pmMacVolUlResUe",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlResUeLate",
+        "description": "Performance counter pmMacVolUlResUeLate",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlSCell",
+        "description": "Performance counter pmMacVolUlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlSCellBw",
+        "description": "Performance counter pmMacVolUlSCellBw",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlSCellExt",
+        "description": "Performance counter pmMacVolUlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlSCellExtBwp",
+        "description": "Performance counter pmMacVolUlSCellExtBwp",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlUeLastSlot",
+        "description": "Performance counter pmMacVolUlUeLastSlot",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlUnresUe",
+        "description": "Performance counter pmMacVolUlUnresUe",
+        "category": "General"
+      },
+      {
+        "name": "pmPuschSchedActivityPCellCa",
+        "description": "Performance counter pmPuschSchedActivityPCellCa",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioSchedUlSuMimoRankDistr",
+        "description": "Performance counter pmRadioSchedUlSuMimoRankDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmaxCa",
+        "description": "Performance counter pmaxCa",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "A1",
+        "type": "A1PR",
+        "description": "The measurement is used in uplink carrier aggregation to detect                                     good PCell coverage in downlink that allows uplink SCell                                     configuration when a UE has maximum transmit power reduction                                     because of power class change."
+      },
+      {
+        "name": "A1",
+        "type": "A1UL",
+        "description": "The measurement is used in uplink carrier aggregation to detect                                     good downlink coverage to provide sufficient uplink SCell                                     coverage."
+      },
+      {
+        "name": "A1",
+        "type": "MLC A1PR",
+        "description": "The measurement is used in uplink carrier aggregation to detect                                     good PCell coverage when power reduction is detected during                                     SCell reselection."
+      },
+      {
+        "name": "A2",
+        "type": "A2PR",
+        "description": "The measurement is used in uplink carrier aggregation to detect                                     poor PCell coverage in downlink that delays or deconfigures the                                     uplink SCell when a UE has maximum transmit power reduction                                     because of power class change."
+      },
+      {
+        "name": "A2",
+        "type": "A2UL",
+        "description": "The measurement is used in uplink carrier aggregation to detect                                     poor downlink coverage that does not provide sufficient uplink                                     SCell coverage."
+      },
+      {
+        "name": "A5",
+        "type": "A5UL",
+        "description": "The measurement is used to detect good inter-frequency uplink                                     SCell candidate coverage to trigger uplink SCell reselection                                     through the Multi-Layer Coordination function."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012690 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012690 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/191_22104-LZA7016017_1Uen.CT33E.md",
+    "file_hash": "a4a781251e8a4d7b19ea0f47e8dd729c",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

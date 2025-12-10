@@ -1,0 +1,213 @@
+{
+  "file_hash": "b7de6f4888222afe124874ca4aae1383",
+  "feature": {
+    "id": "121 3056",
+    "name": "Enhanced CS Fallback to CDMA 1X",
+    "cxc_code": "CXC4011513",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Enhanced CS Fallback to CDMA 1X feature makes it possible to offer voice services to",
+    "parameters": [
+      {
+        "name": "Cdma20001xRttFreqRelation.qOffsetFreq",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Cdma20001xRttFreqRelation"
+      },
+      {
+        "name": "ReportConfigCsfbCdma2000.thresholdCdma20001xRtt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigCsfbCdma2000"
+      },
+      {
+        "name": "ReportConfigCsfbCdma2000.hysteresis",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigCsfbCdma2000"
+      },
+      {
+        "name": "ReportConfigCsfbCdma2000.timeToTrigger",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigCsfbCdma2000"
+      },
+      {
+        "name": "UeMeasControl.csfbHoTargetSearchTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.maxMeasCdma20001xRtt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "Uen.AN",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "C.S0008",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "C"
+      },
+      {
+        "name": "C.S0097",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "C"
+      },
+      {
+        "name": "C.S0024",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "C"
+      },
+      {
+        "name": "RadioEquipmentClock.bfnOffset",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "RadioEquipmentClock"
+      },
+      {
+        "name": "PlmnInfo.actualPlmn",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PlmnInfo"
+      },
+      {
+        "name": "PlmnInfo.csfbTargetRat",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PlmnInfo"
+      },
+      {
+        "name": "ENodeBFunction.csfbSkipSmcRrcFromIdleMode",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranCellFDD.dummyCdmaBandClass",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmHoPrepAttCsfb",
+        "description": "Performance counter pmHoPrepAttCsfb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttCsfbEm",
+        "description": "Performance counter pmHoPrepAttCsfbEm",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccCsfb",
+        "description": "Performance counter pmHoPrepSuccCsfb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepSuccCsfbEm",
+        "description": "Performance counter pmHoPrepSuccCsfbEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbHoPrepFail1xRtt",
+        "description": "Performance counter pmUeCtxtRelCsfbHoPrepFail1xRtt",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbHoPrepFail1xRttEm",
+        "description": "Performance counter pmUeCtxtRelCsfbHoPrepFail1xRttEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbMeasTO1xRtt",
+        "description": "Performance counter pmUeCtxtRelCsfbMeasTO1xRtt",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbMeasTO1xRttEm",
+        "description": "Performance counter pmUeCtxtRelCsfbMeasTO1xRttEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbUlHoPrepTxTO1xRtt",
+        "description": "Performance counter pmUeCtxtRelCsfbUlHoPrepTxTO1xRtt",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelCsfbUlHoPrepTxTO1xRttEm",
+        "description": "Performance counter pmUeCtxtRelCsfbUlHoPrepTxTO1xRttEm",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasAttCsfb1xRtt",
+        "description": "Performance counter pmUeMeasAttCsfb1xRtt",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasAttCsfb1xRttEm",
+        "description": "Performance counter pmUeMeasAttCsfb1xRttEm",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmentClock",
+        "description": "Performance counter pmentClock",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      },
+      {
+        "name": "pmis",
+        "description": "Performance counter pmis",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "RRC_HANDOVER_FROM_EUTRA_PREPARATION_REQUEST",
+        "type": "Triggered at transmission of the                                         HandoverFromEUTRAPreparationRequest message                                     by the eNodeB.",
+        "description": ""
+      },
+      {
+        "name": "RRC_UL_HANDOVER_PREPARATION_TRANSFER",
+        "type": "Triggered at reception of the                                         ULHandoverPreparationTransfer message by the                                     eNodeB.",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011513 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011513 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/313_22104-LZA7016014_1Uen.AN.md",
+    "file_hash": "b7de6f4888222afe124874ca4aae1383",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

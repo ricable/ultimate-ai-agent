@@ -1,0 +1,22 @@
+[package]
+name = "agent-booster-native"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Node.js native addon for agent-booster"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+agent-booster = { path = "../agent-booster" }
+napi = { version = "2.16", features = ["async", "serde-json"] }
+napi-derive = "2.16"
+serde.workspace = true
+serde_json.workspace = true
+anyhow.workspace = true
+
+[build-dependencies]
+napi-build = "2.1"

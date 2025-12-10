@@ -1,0 +1,81 @@
+{
+  "id": "121 5441",
+  "name": "NR Flexible Cell Shaping High-Band",
+  "cxc_code": "CXC4012605",
+  "value_package": "Advanced Coverage Extension",
+  "value_package_id": "FAJ 801 4006",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables the configuration of sector shape and digital tilt.",
+  "parameters": [
+    {
+      "name": "CommonBeamforming.ssbBeams",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CommonBeamforming"
+    },
+    {
+      "name": "CommonBeamforming.usedSsbBeams",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CommonBeamforming"
+    },
+    {
+      "name": "CommonBeamforming.coverageShape",
+      "type": "Affected",
+      "description": "The MACRO_120_15 enum value is introduced for the                                 configuration of macro sector shape.",
+      "mo_class": "CommonBeamforming"
+    },
+    {
+      "name": "Uen.AG33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "CommonBeamforming.digitalTilt",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "CommonBeamforming"
+    },
+    {
+      "name": "CommonBeamforming.usedCoverageShape",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "CommonBeamforming"
+    },
+    {
+      "name": "CommonBeamforming.usedDigitalTilt",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "CommonBeamforming"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmentFunction",
+      "description": "Performance counter pmentFunction",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012605 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012605 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/540_22104-LZA7016017_1Uen.AG33B.md",
+  "file_hash": "2f6e9c4521e86d729e01911ea3c995e4",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,90 @@
+{
+  "file_hash": "40d54f5e5cb9f3af58c08e98aa4f933d",
+  "feature": {
+    "id": "121 3002",
+    "name": "Single Layer Beamforming Performance Package",
+    "cxc_code": "CXC4011264",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature can improve coverage and capacity. Beamforming can reduce interference and",
+    "parameters": [
+      {
+        "name": "EUtranCellTDD.transmissionMode",
+        "type": "Affected",
+        "description": "Defines the transmission mode that is used for the UEs that are connected to the                 cell.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "ENodeBFunction.extendMixedTxModeEnabled",
+        "type": "Affecting",
+        "description": "If the value of this attribute is set to true, not only TM3 but                 TM2 or TM4, can be applied to 2TX TDD and 4TX TDD cells that coexist with TM3, TM7,                 or TM8 8TX TDD cells. This is not valid if the TM9 8x2 Octal Antenna Downlink                 Performance Package is also enabled.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_TX_5",
+        "description": "Samples with RANK=1 and TX=7 used towards a UE.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AU",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "AntennaSubunit.azimuthHalfPowerBeamwidth",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "AntennaSubunit"
+      },
+      {
+        "name": "AntennaSubunit.commonChBeamfrmPortMap",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "AntennaSubunit"
+      },
+      {
+        "name": "AntennaSubunit.customComChBeamfrmWtsAmplitude",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "AntennaSubunit"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmRadioTxRankDistr",
+        "description": "Performance counter pmRadioTxRankDistr",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_TX_5",
+        "description": "Samples with RANK=1 and TX=7 used towards a UE."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011264 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011264 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/252_22104-LZA7016014_1Uen.AU.md",
+    "file_hash": "40d54f5e5cb9f3af58c08e98aa4f933d",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

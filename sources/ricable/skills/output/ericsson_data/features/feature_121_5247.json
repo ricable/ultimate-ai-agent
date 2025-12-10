@@ -1,0 +1,697 @@
+{
+  "id": "121 5247",
+  "name": "AI Powered DL Link Adaptation",
+  "cxc_code": "CXC4012505",
+  "value_package": "Spectral Efficiency",
+  "value_package_id": "FAJ 801 1015",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature increases downlink link adaptation performance in inter-cell interference",
+  "parameters": [
+    {
+      "name": "DynamicBlerTarget.dlActivitySubscrDelay",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DynamicBlerTarget"
+    },
+    {
+      "name": "DynamicBlerTarget.dlAiLaCellRankingUpdatePeriod",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DynamicBlerTarget"
+    },
+    {
+      "name": "EUtranCellRelation.reportDlActivity",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellRelation.interferenceScoreDl",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "SubscriberGroupProfile.dlAiLaDeltaSinrMax",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.dlDynBlerTargetAlg",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.dlDynBlerTargetMax",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.dlDynBlerTargetMin",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_0",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_1",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_2",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_3",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_4",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_5",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_6",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_0",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_1",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_2",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_3",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_4",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_5",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_6",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_7",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_8",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_9",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_11",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_12",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_13",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_14",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_15",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_16",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_17",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_START_HOUR",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_START_MINUTE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_START_SECOND",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_START_MILLISEC",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_HOUR",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_MINUTE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_SECOND",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_MILLISEC",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_CELLRELATION_ID",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_NEIGHBOR_CELL_TYPE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_PRB_UTIL_SUBSCRIPTION_ATT_RESULT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.AU33A",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NodeB.Note",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NodeB"
+    },
+    {
+      "name": "EUtranCellFDD.blerTargetConfigEnabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "SubscriberGroupProfile.dlHarqBlerTarget",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "SubscriberGroupProfile"
+    },
+    {
+      "name": "SubscriberGroupProfile.selectionProbability",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "SubscriberGroupProfile"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEvent",
+      "description": "Performance counter pmEvent",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexCounterFilter",
+      "description": "Performance counter pmFlexCounterFilter",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexErabRelAbnormalEnbAct",
+      "description": "Performance counter pmFlexErabRelAbnormalEnbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqDlAck16qam",
+      "description": "Performance counter pmFlexMacHarqDlAck16qam",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqDlAck256qam",
+      "description": "Performance counter pmFlexMacHarqDlAck256qam",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqDlAck64qam",
+      "description": "Performance counter pmFlexMacHarqDlAck64qam",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqDlAckQpsk",
+      "description": "Performance counter pmFlexMacHarqDlAckQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqDlNack16qam",
+      "description": "Performance counter pmFlexMacHarqDlNack16qam",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqDlNack256qam",
+      "description": "Performance counter pmFlexMacHarqDlNack256qam",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqDlNack64qam",
+      "description": "Performance counter pmFlexMacHarqDlNack64qam",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexMacHarqDlNackQpsk",
+      "description": "Performance counter pmFlexMacHarqDlNackQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexPdcpPktDiscDlHo",
+      "description": "Performance counter pmFlexPdcpPktDiscDlHo",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexPdcpPktDiscDlPelr",
+      "description": "Performance counter pmFlexPdcpPktDiscDlPelr",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexPdcpPktDiscDlPelrUu",
+      "description": "Performance counter pmFlexPdcpPktDiscDlPelrUu",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexPdcpPktFwdDl",
+      "description": "Performance counter pmFlexPdcpPktFwdDl",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexPdcpPktReceivedDl",
+      "description": "Performance counter pmFlexPdcpPktReceivedDl",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexPdcpVolDlDrb",
+      "description": "Performance counter pmFlexPdcpVolDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexPdcpVolDlDrbLastTTI",
+      "description": "Performance counter pmFlexPdcpVolDlDrbLastTTI",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexPrbUsedDlDtch",
+      "description": "Performance counter pmFlexPrbUsedDlDtch",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexRadioThpVolumeDl",
+      "description": "Performance counter pmFlexRadioThpVolumeDl",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexRlcArqDlAck",
+      "description": "Performance counter pmFlexRlcArqDlAck",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexRlcArqDlNack",
+      "description": "Performance counter pmFlexRlcArqDlNack",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexSessionTimeUe",
+      "description": "Performance counter pmFlexSessionTimeUe",
+      "category": "General"
+    },
+    {
+      "name": "pmFlexUeThpTimeDl",
+      "description": "Performance counter pmFlexUeThpTimeDl",
+      "category": "General"
+    },
+    {
+      "name": "pmMacLinkAdaptDlOutLoopAdjDeltaDistr",
+      "description": "Performance counter pmMacLinkAdaptDlOutLoopAdjDeltaDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMbbHighVolUeSampCqi",
+      "description": "Performance counter pmMbbHighVolUeSampCqi",
+      "category": "General"
+    },
+    {
+      "name": "pmMbbHighVolUeSpEffDlSumCqi",
+      "description": "Performance counter pmMbbHighVolUeSpEffDlSumCqi",
+      "category": "General"
+    },
+    {
+      "name": "pmMbbHighVolUeThpDlSumCqi",
+      "description": "Performance counter pmMbbHighVolUeThpDlSumCqi",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktDiscDlEth",
+      "description": "Performance counter pmPdcpPktDiscDlEth",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktDiscDlNoUeCtxt",
+      "description": "Performance counter pmPdcpPktDiscDlNoUeCtxt",
+      "category": "General"
+    },
+    {
+      "name": "pmPrbUtilSubscrAtt",
+      "description": "Performance counter pmPrbUtilSubscrAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmPrbUtilSubscrFailRep",
+      "description": "Performance counter pmPrbUtilSubscrFailRep",
+      "category": "General"
+    },
+    {
+      "name": "pmPrbUtilSubscrSucc",
+      "description": "Performance counter pmPrbUtilSubscrSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioDynBlerTargetDlDistr",
+      "description": "Performance counter pmRadioDynBlerTargetDlDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_0",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_1",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_2",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_3",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_4",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_5",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_TARGET_DL_BIN_6",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_0",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_1",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_2",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_3",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_4",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_5",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_6",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_7",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_8",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_9",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_11",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_12",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_13",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_14",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_15",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_16",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT2",
+      "type": "EVENT_PARAM_UE_DYN_BLER_SINR_DELTA_DL_BIN_17",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_START_HOUR",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_START_MINUTE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_START_SECOND",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_START_MILLISEC",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_HOUR",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_MINUTE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_SECOND",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_MILLISEC",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_CELLRELATION_ID",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_NEIGHBOR_CGI",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_NEIGHBOR_CELL_TYPE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_NEIGHBOR_PRB_UTIL_SUBSCRIPTION",
+      "type": "EVENT_PARAM_PRB_UTIL_SUBSCRIPTION_ATT_RESULT",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012505 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012505 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/500_22104-LZA7016014_1Uen.AU33A.md",
+  "file_hash": "2594088f176ac4f24fa8dfae41ced7f8",
+  "processed_at": "2025-10-19 15:50:08",
+  "network_impact": {},
+  "performance_impact": {
+    "kpi": "Affects KPI monitoring",
+    "counters": "New counters introduced"
+  }
+}

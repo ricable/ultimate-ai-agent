@@ -1,0 +1,718 @@
+{
+  "file_hash": "957e68c94b1c85b05278f29f4dbd407a",
+  "feature": {
+    "id": "121 4929",
+    "name": "Mission-Critical Push-to-Talk",
+    "cxc_code": "CXC4012287",
+    "value_package": "Mission-Critical Services",
+    "value_package_id": "FAJ 801 1017",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node  DU Radio Node",
+    "description": "",
+    "summary": "This feature introduces mission-critical bearers with new predefined QCI profiles and",
+    "parameters": [
+      {
+        "name": "EricssonLeanCarrierFunction.disableElcOnPtt",
+        "type": "Affected",
+        "description": "If the EricssonLeanCarrierFunction.disableElcOnPtt is set to                                     true, ELC is disabled on the cell when a PTT                                 bearer is set up.",
+        "mo_class": "EricssonLeanCarrierFunction"
+      },
+      {
+        "name": "QciProfilePredefined.serviceType",
+        "type": "Affected",
+        "description": "Two new values are added: PTT and                                     MC_SIGNALING.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfilePredefined.qci",
+        "type": "Affected",
+        "description": "Four new values added: 65, 66, 69, 70.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "EUtranFreqRelation.eutranFreqToQciProfileRelation",
+        "type": "Affected",
+        "description": "Sequence length extended by four.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "UtranFreqRelation.utranFreqToQciProfileRelation",
+        "type": "Affected",
+        "description": "Sequence length extended by four.",
+        "mo_class": "UtranFreqRelation"
+      },
+      {
+        "name": "UtranTDDFreqRelation.qciB2ThrOffsets",
+        "type": "Affected",
+        "description": "Sequence length extended by four.",
+        "mo_class": "UtranTDDFreqRelation"
+      },
+      {
+        "name": "ReportConfigSearch.qciA1A2ThrOffsets",
+        "type": "Affected",
+        "description": "Sequence length extended by four.",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "ReportConfigSearch.qciA1A2UlThrOffsets",
+        "type": "Affected",
+        "description": "Sequence length extended by four.",
+        "mo_class": "ReportConfigSearch"
+      },
+      {
+        "name": "QciProfilePredefined.pdbOffset",
+        "type": "Affected",
+        "description": "New default values are defined for QCIs 65, 66, 69, 70.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfilePredefined.dscp",
+        "type": "Affected",
+        "description": "New default values are defined for QCIs 65, 66, 69, 70.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfilePredefined.resourceType",
+        "type": "Affected",
+        "description": "New default values are defined for QCIs 65, 66, 69, 70.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfilePredefined.aqmMode",
+        "type": "Affected",
+        "description": "New default values are defined for QCIs 65, 66, 69, 70.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfilePredefined.pdb",
+        "type": "Affected",
+        "description": "New default values are defined for QCIs 65, 66, 69, 70.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfilePredefined.endcProfileRef",
+        "type": "Affected",
+        "description": "New default values are defined for QCIs 65, 66, 69, 70.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfilePredefined.logicalChannelGroupRef",
+        "type": "Affected",
+        "description": "New default values are defined for QCIs 65, 66, 69, 70.   QCIs.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfilePredefined.rohcEnabled",
+        "type": "Affected",
+        "description": "Robust header compression is available for QCI 65 and QCI 66.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "SubscriberGroupProfile.bearerTriggerList",
+        "type": "Affected",
+        "description": "The attribute references struct BearerTriggerElementqci struct member.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "ENodeBFunction.mobility2g3gForMcPttDisabled",
+        "type": "Affecting",
+        "description": "This attribute is used for disabling mobility to GERAN and UTRAN for                                 MC-PTT bearers. The default value enables MC-PTT mobility to GERAN                                 and UTRAN.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranFreqRelation.voicePrio",
+        "type": "Affecting",
+        "description": "For mission-critical bearers, the voicePrio                                 attribute is used instead of the                                     connectedModeMobilityPrio attribute. The QCI                                 65, QCI 66, QCI 69 and QCI 70 values are added to the                                     connectedModeMobilityPrio attribute, like                                 for VoLTE bearers.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "UtranFreqRelation.voicePrio",
+        "type": "Affecting",
+        "description": "For mission-critical bearers, the voicePrio                                 attribute is used instead of the                                     connectedModeMobilityPrio attribute. The QCI                                 65, QCI 66, QCI 69 and QCI 70 values are added to the                                     connectedModeMobilityPrio attribute, like                                 for VoLTE bearers.",
+        "mo_class": "UtranFreqRelation"
+      },
+      {
+        "name": "GeranFreqGroupRelation.voicePrio",
+        "type": "Affecting",
+        "description": "For mission-critical bearers, the voicePrio                                 attribute is used instead of the                                     connectedModeMobilityPrio attribute. The QCI                                 65, QCI 66, QCI 69 and QCI 70 values are added to the                                     connectedModeMobilityPrio attribute, like                                 for VoLTE bearers.",
+        "mo_class": "GeranFreqGroupRelation"
+      },
+      {
+        "name": "UeMeasControl.allowReleaseQci1",
+        "type": "Affecting",
+        "description": "This attribute is used to regulate Release with Redirect for                                 Mission-Critical Bearers, like for VoLTE bearers.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "Uen.CG",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ImeisvProfile.nonVoiceDrxProfileRef",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ImeisvProfile"
+      },
+      {
+        "name": "EricssonLeanCarrierFunction.disableElcOnVolte",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EricssonLeanCarrierFunction"
+      },
+      {
+        "name": "QciProfilePredefined.paPartitionOverride",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfilePredefined"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmAgMeasSuccCgiMcPtt",
+        "description": "Performance counter pmAgMeasSuccCgiMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmAgMeasSuccCgiNonMcPtt",
+        "description": "Performance counter pmAgMeasSuccCgiNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteSmallCellMcPttAg",
+        "description": "Performance counter pmCellHoExeAttLteSmallCellMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteSmallCellMcPttDrx",
+        "description": "Performance counter pmCellHoExeAttLteSmallCellMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteSmallCellNonMcPttAg",
+        "description": "Performance counter pmCellHoExeAttLteSmallCellNonMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeAttLteSmallCellNonMcPttDrx",
+        "description": "Performance counter pmCellHoExeAttLteSmallCellNonMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteSmallCellMcPttAg",
+        "description": "Performance counter pmCellHoExeSuccLteSmallCellMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteSmallCellMcPttDrx",
+        "description": "Performance counter pmCellHoExeSuccLteSmallCellMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteSmallCellNonMcPttAg",
+        "description": "Performance counter pmCellHoExeSuccLteSmallCellNonMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoExeSuccLteSmallCellNonMcPttDrx",
+        "description": "Performance counter pmCellHoExeSuccLteSmallCellNonMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteSmallCellMcPttAg",
+        "description": "Performance counter pmCellHoPrepAttLteSmallCellMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteSmallCellMcPttDrx",
+        "description": "Performance counter pmCellHoPrepAttLteSmallCellMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteSmallCellNonMcPttAg",
+        "description": "Performance counter pmCellHoPrepAttLteSmallCellNonMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepAttLteSmallCellNonMcPttDrx",
+        "description": "Performance counter pmCellHoPrepAttLteSmallCellNonMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepSuccLteSmallCellMcPttAg",
+        "description": "Performance counter pmCellHoPrepSuccLteSmallCellMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepSuccLteSmallCellMcPttDrx",
+        "description": "Performance counter pmCellHoPrepSuccLteSmallCellMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepSuccLteSmallCellNonMcPttAg",
+        "description": "Performance counter pmCellHoPrepSuccLteSmallCellNonMcPttAg",
+        "category": "General"
+      },
+      {
+        "name": "pmCellHoPrepSuccLteSmallCellNonMcPttDrx",
+        "description": "Performance counter pmCellHoPrepSuccLteSmallCellNonMcPttDrx",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsDetHarqMcPttNDO",
+        "description": "Performance counter pmDlAssigsDetHarqMcPttNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsDetHarqNonMcPttNDO",
+        "description": "Performance counter pmDlAssigsDetHarqNonMcPttNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsDetectedHarqVolteNDO",
+        "description": "Performance counter pmDlAssigsDetectedHarqVolteNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsTransMcPtt",
+        "description": "Performance counter pmDlAssigsTransMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsTransMcPttNDO",
+        "description": "Performance counter pmDlAssigsTransMcPttNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsTransMcPttpmUlGrantsTransMcPtt",
+        "description": "Performance counter pmDlAssigsTransMcPttpmUlGrantsTransMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsTransNonMcPtt",
+        "description": "Performance counter pmDlAssigsTransNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsTransNonMcPttNDO",
+        "description": "Performance counter pmDlAssigsTransNonMcPttNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsTransPCell",
+        "description": "Performance counter pmDlAssigsTransPCell",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsTransVolte",
+        "description": "Performance counter pmDlAssigsTransVolte",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsTransVolteNDO",
+        "description": "Performance counter pmDlAssigsTransVolteNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsWithDetHarqAckMcPtt",
+        "description": "Performance counter pmDlAssigsWithDetHarqAckMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsWithDetHarqAckNonMcPtt",
+        "description": "Performance counter pmDlAssigsWithDetHarqAckNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsWithDetectedHarqAckPCell",
+        "description": "Performance counter pmDlAssigsWithDetectedHarqAckPCell",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsWithDetectedHarqAckVolte",
+        "description": "Performance counter pmDlAssigsWithDetectedHarqAckVolte",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsWithUnknownRecMcPtt",
+        "description": "Performance counter pmDlAssigsWithUnknownRecMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsWithUnknownRecNonMcPtt",
+        "description": "Performance counter pmDlAssigsWithUnknownRecNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsWithUnknownReceptionPCell",
+        "description": "Performance counter pmDlAssigsWithUnknownReceptionPCell",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsWithUnknownReceptionVolte",
+        "description": "Performance counter pmDlAssigsWithUnknownReceptionVolte",
+        "category": "General"
+      },
+      {
+        "name": "pmDrxMeasSuccCgiMcPtt",
+        "description": "Performance counter pmDrxMeasSuccCgiMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmDrxMeasSuccCgiNonMcPtt",
+        "description": "Performance counter pmDrxMeasSuccCgiNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexMcPttQualityRbUlNok",
+        "description": "Performance counter pmFlexMcPttQualityRbUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexMcPttQualityRbUlOk",
+        "description": "Performance counter pmFlexMcPttQualityRbUlOk",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexNonMcPttQualityRbUlNok",
+        "description": "Performance counter pmFlexNonMcPttQualityRbUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexNonMcPttQualityRbUlOk",
+        "description": "Performance counter pmFlexNonMcPttQualityRbUlOk",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexVoipQualityRbUlNok",
+        "description": "Performance counter pmFlexVoipQualityRbUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexVoipQualityRbUlOk",
+        "description": "Performance counter pmFlexVoipQualityRbUlOk",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeOutAttLteInterFMcPtt",
+        "description": "Performance counter pmHoExeOutAttLteInterFMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeOutAttLteInterFNonMcPtt",
+        "description": "Performance counter pmHoExeOutAttLteInterFNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeOutSuccLteInterFMcPtt",
+        "description": "Performance counter pmHoExeOutSuccLteInterFMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoExeOutSuccLteInterFNonMcPtt",
+        "description": "Performance counter pmHoExeOutSuccLteInterFNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmMCPttQualityRbUlNok",
+        "description": "Performance counter pmMCPttQualityRbUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmMcPttQualityRbUlLowSampl",
+        "description": "Performance counter pmMcPttQualityRbUlLowSampl",
+        "category": "General"
+      },
+      {
+        "name": "pmMcPttQualityRbUlNok",
+        "description": "Performance counter pmMcPttQualityRbUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmMcPttQualityRbUlOk",
+        "description": "Performance counter pmMcPttQualityRbUlOk",
+        "category": "General"
+      },
+      {
+        "name": "pmNonMCPttQualityRbUlNok",
+        "description": "Performance counter pmNonMCPttQualityRbUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmNonMcPttQualityRbUlLowSampl",
+        "description": "Performance counter pmNonMcPttQualityRbUlLowSampl",
+        "category": "General"
+      },
+      {
+        "name": "pmNonMcPttQualityRbUlNOk",
+        "description": "Performance counter pmNonMcPttQualityRbUlNOk",
+        "category": "General"
+      },
+      {
+        "name": "pmNonMcPttQualityRbUlNok",
+        "description": "Performance counter pmNonMcPttQualityRbUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmNonMcPttQualityRbUlOk",
+        "description": "Performance counter pmNonMcPttQualityRbUlOk",
+        "category": "General"
+      },
+      {
+        "name": "pmNonMcPttQualityrbUlOk",
+        "description": "Performance counter pmNonMcPttQualityrbUlOk",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpInactSecDlMcPttDistr",
+        "description": "Performance counter pmPdcpInactSecDlMcPttDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpInactSecDlNonMcPttDistr",
+        "description": "Performance counter pmPdcpInactSecDlNonMcPttDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpInactSecUlMcPttDistr",
+        "description": "Performance counter pmPdcpInactSecUlMcPttDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpInactSecUlNonMcPttDistr",
+        "description": "Performance counter pmPdcpInactSecUlNonMcPttDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktPdbUlOkMcPtt",
+        "description": "Performance counter pmPdcpPktPdbUlOkMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktPdbUlOkNonMcPtt",
+        "description": "Performance counter pmPdcpPktPdbUlOkNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktPdbUlOkVoip",
+        "description": "Performance counter pmPdcpPktPdbUlOkVoip",
+        "category": "General"
+      },
+      {
+        "name": "pmRlcSduEstLostUlMcPttTtiBundl",
+        "description": "Performance counter pmRlcSduEstLostUlMcPttTtiBundl",
+        "category": "General"
+      },
+      {
+        "name": "pmRlcSduEstLostUlNonMcPttTtiBundl",
+        "description": "Performance counter pmRlcSduEstLostUlNonMcPttTtiBundl",
+        "category": "General"
+      },
+      {
+        "name": "pmRlcSduEstLostUlVoipTtiBundling",
+        "description": "Performance counter pmRlcSduEstLostUlVoipTtiBundling",
+        "category": "General"
+      },
+      {
+        "name": "pmRlcSduRecUlMcPttTtiBundl",
+        "description": "Performance counter pmRlcSduRecUlMcPttTtiBundl",
+        "category": "General"
+      },
+      {
+        "name": "pmRlcSduRecUlNonMcPttTtiBundl",
+        "description": "Performance counter pmRlcSduRecUlNonMcPttTtiBundl",
+        "category": "General"
+      },
+      {
+        "name": "pmRlcSduRecUlVoipTtiBundling",
+        "description": "Performance counter pmRlcSduRecUlVoipTtiBundling",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgRestoreMcPtt",
+        "description": "Performance counter pmRrcConnReconfAgRestoreMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgRestoreNonMcPtt",
+        "description": "Performance counter pmRrcConnReconfAgRestoreNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgSuccMcPtt",
+        "description": "Performance counter pmRrcConnReconfAgSuccMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfAgSuccNonMcPtt",
+        "description": "Performance counter pmRrcConnReconfAgSuccNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxRestoreMcPtt",
+        "description": "Performance counter pmRrcConnReconfDrxRestoreMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxRestoreNonMcPtt",
+        "description": "Performance counter pmRrcConnReconfDrxRestoreNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxSuccMcPtt",
+        "description": "Performance counter pmRrcConnReconfDrxSuccMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReconfDrxSuccNonMcPtt",
+        "description": "Performance counter pmRrcConnReconfDrxSuccNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmUeExclThpDlVolte",
+        "description": "Performance counter pmUeExclThpDlVolte",
+        "category": "General"
+      },
+      {
+        "name": "pmUeExclThpDlVolteMbb",
+        "description": "Performance counter pmUeExclThpDlVolteMbb",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsDetPuschMcPttNDO",
+        "description": "Performance counter pmUlGrantsDetPuschMcPttNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsDetPuschNonMcPttNDO",
+        "description": "Performance counter pmUlGrantsDetPuschNonMcPttNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsDetectedPuschVolteNDO",
+        "description": "Performance counter pmUlGrantsDetectedPuschVolteNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransMcPtt",
+        "description": "Performance counter pmUlGrantsTransMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransMcPttNDO",
+        "description": "Performance counter pmUlGrantsTransMcPttNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransMcPttNoAck",
+        "description": "Performance counter pmUlGrantsTransMcPttNoAck",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransNonMcPtt",
+        "description": "Performance counter pmUlGrantsTransNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransNonMcPttNDO",
+        "description": "Performance counter pmUlGrantsTransNonMcPttNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransNonMcPttNoAck",
+        "description": "Performance counter pmUlGrantsTransNonMcPttNoAck",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransPCell",
+        "description": "Performance counter pmUlGrantsTransPCell",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransPCellNoAck",
+        "description": "Performance counter pmUlGrantsTransPCellNoAck",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransVolte",
+        "description": "Performance counter pmUlGrantsTransVolte",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransVolteNDO",
+        "description": "Performance counter pmUlGrantsTransVolteNDO",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsTransVolteNoAck",
+        "description": "Performance counter pmUlGrantsTransVolteNoAck",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsWithDetPuschMcPtt",
+        "description": "Performance counter pmUlGrantsWithDetPuschMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsWithDetPuschNonMcPtt",
+        "description": "Performance counter pmUlGrantsWithDetPuschNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsWithDetectedPuschPCell",
+        "description": "Performance counter pmUlGrantsWithDetectedPuschPCell",
+        "category": "General"
+      },
+      {
+        "name": "pmUlGrantsWithDetectedPuschVolte",
+        "description": "Performance counter pmUlGrantsWithDetectedPuschVolte",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityRbUlLowSampl",
+        "description": "Performance counter pmVoipQualityRbUlLowSampl",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityRbUlNok",
+        "description": "Performance counter pmVoipQualityRbUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityRbUlOk",
+        "description": "Performance counter pmVoipQualityRbUlOk",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityUeUlLowSampl",
+        "description": "Performance counter pmVoipQualityUeUlLowSampl",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityUeUlNok",
+        "description": "Performance counter pmVoipQualityUeUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityUeUlOk",
+        "description": "Performance counter pmVoipQualityUeUlOk",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012287 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012287 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/417_22104-LZA7016014_1Uen.CG.md",
+    "file_hash": "957e68c94b1c85b05278f29f4dbd407a",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

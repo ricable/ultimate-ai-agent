@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Dialog Visual Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #2a2a2a;
+        }
+        .test-section h2 {
+            margin-top: 0;
+            color: #4a9eff;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .test-result.pass {
+            background: #1a4d1a;
+            border: 1px solid #2d7a2d;
+        }
+        .test-result.fail {
+            background: #4d1a1a;
+            border: 1px solid #7a2d2d;
+        }
+        .test-result.warning {
+            background: #4d4d1a;
+            border: 1px solid #7a7a2d;
+        }
+        button {
+            background: #4a9eff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #3a8eef;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        .console-link {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background: #4a9eff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .bug-list {
+            list-style: none;
+            padding: 0;
+        }
+        .bug-list li {
+            margin: 8px 0;
+            padding: 8px;
+            background: #333;
+            border-radius: 4px;
+        }
+        .bug-list li:before {
+            content: "🐛 ";
+        }
+        .code {
+            background: #1a1a1a;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Settings Dialog Visual Test Suite</h1>
+    
+    <div class="test-section">
+        <h2>🔗 Test Environment</h2>
+        <p>Open the console in a new tab to test settings functionality:</p>
+        <a href="../src/ui/console/index.html" target="_blank" class="console-link">
+            Open Claude Code Console →
+        </a>
+        <p>Or test in iframe below:</p>
+        <iframe src="../src/ui/console/index.html" id="consoleFrame"></iframe>
+    </div>
+
+    <div class="test-section">
+        <h2>🧪 Manual Test Steps</h2>
+        <ol>
+            <li>Click the "⚙️ Settings" button in the header</li>
+            <li>Verify the settings panel slides in from the right</li>
+            <li>Test each setting control and verify it saves</li>
+            <li>Refresh the page and check if settings persist</li>
+            <li>Click outside or press ESC to close the panel</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>🐛 Known Bugs to Verify</h2>
+        <ul class="bug-list">
+            <li><strong>defaultMode dropdown:</strong> Check if "Analyzer" option works (should be "Analyst")</li>
+            <li><strong>URL validation:</strong> Try entering invalid URLs like "not-a-url" in Server URL</li>
+            <li><strong>Connect/Disconnect buttons:</strong> Check if they have correct initial states</li>
+            <li><strong>Import/Export buttons:</strong> Look for missing UI controls</li>
+            <li><strong>Advanced settings:</strong> Check if Reconnect Attempts, Heartbeat Interval, Command Timeout fields exist</li>
+            <li><strong>Reset button:</strong> Check placement at bottom of settings</li>
+            <li><strong>Font family:</strong> No UI control despite being in defaults</li>
+            <li><strong>Validation feedback:</strong> Enter invalid values and check for visual feedback</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🔍 Automated Checks</h2>
+        <button onclick="runAutomatedTests()">Run Automated Tests</button>
+        <div id="testResults"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 LocalStorage Inspector</h2>
+        <button onclick="inspectLocalStorage()">Inspect LocalStorage</button>
+        <button onclick="clearLocalStorage()">Clear LocalStorage</button>
+        <pre id="storageInspector"></pre>
+    </div>
+
+    <script>
+        function runAutomatedTests() {
+            const results = document.getElementById('testResults');
+            results.innerHTML = '';
+            
+            const frame = document.getElementById('consoleFrame');
+            const frameDoc = frame.contentDocument || frame.contentWindow.document;
+            
+            const tests = [
+                {
+                    name: 'Settings panel exists',
+                    test: () => frameDoc.getElementById('settingsPanel') !== null
+                },
+                {
+                    name: 'Settings toggle button exists',
+                    test: () => frameDoc.getElementById('settingsToggle') !== null
+                },
+                {
+                    name: 'defaultMode has correct options',
+                    test: () => {
+                        const select = frameDoc.getElementById('defaultMode');
+                        if (!select) return false;
+                        const options = Array.from(select.options).map(o => o.value);
+                        return !options.includes('analyzer') || options.includes('analyst');
+                    }
+                },
+                {
+                    name: 'Import/Export buttons exist',
+                    test: () => {
+                        return frameDoc.getElementById('exportSettingsBtn') !== null ||
+                               frameDoc.getElementById('importSettingsBtn') !== null;
+                    }
+                },
+                {
+                    name: 'Advanced settings fields exist',
+                    test: () => {
+                        return frameDoc.getElementById('reconnectAttempts') !== null ||
+                               frameDoc.getElementById('heartbeatInterval') !== null ||
+                               frameDoc.getElementById('commandTimeout') !== null;
+                    }
+                },
+                {
+                    name: 'URL validation implemented',
+                    test: () => {
+                        const input = frameDoc.getElementById('serverUrl');
+                        if (!input) return false;
+                        // Check if input has validation attributes
+                        return input.hasAttribute('pattern') || input.type === 'url';
+                    }
+                },
+                {
+                    name: 'Reset button exists',
+                    test: () => frameDoc.querySelector('.reset-settings') !== null
+                },
+                {
+                    name: 'Font family control exists',
+                    test: () => frameDoc.getElementById('fontFamily') !== null
+                }
+            ];
+            
+            tests.forEach(test => {
+                const result = document.createElement('div');
+                result.className = 'test-result';
+                
+                try {
+                    const passed = test.test();
+                    result.className += passed ? ' pass' : ' fail';
+                    result.textContent = `${passed ? '✅' : '❌'} ${test.name}`;
+                } catch (error) {
+                    result.className += ' warning';
+                    result.textContent = `⚠️ ${test.name} - Error: ${error.message}`;
+                }
+                
+                results.appendChild(result);
+            });
+        }
+        
+        function inspectLocalStorage() {
+            const inspector = document.getElementById('storageInspector');
+            const frame = document.getElementById('consoleFrame');
+            
+            try {
+                // Get localStorage from iframe
+                const frameStorage = frame.contentWindow.localStorage;
+                const data = {};
+                
+                for (let i = 0; i < frameStorage.length; i++) {
+                    const key = frameStorage.key(i);
+                    let value = frameStorage.getItem(key);
+                    
+                    // Try to parse JSON values
+                    try {
+                        value = JSON.parse(value);
+                    } catch {}
+                    
+                    data[key] = value;
+                }
+                
+                inspector.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                inspector.textContent = `Error accessing localStorage: ${error.message}`;
+            }
+        }
+        
+        function clearLocalStorage() {
+            if (confirm('Clear all localStorage data?')) {
+                const frame = document.getElementById('consoleFrame');
+                try {
+                    frame.contentWindow.localStorage.clear();
+                    inspectLocalStorage();
+                    alert('LocalStorage cleared. Refresh the console to see default settings.');
+                } catch (error) {
+                    alert(`Error: ${error.message}`);
+                }
+            }
+        }
+        
+        // Auto-run tests after iframe loads
+        document.getElementById('consoleFrame').onload = () => {
+            setTimeout(runAutomatedTests, 1000);
+        };
+    </script>
+</body>
+</html>

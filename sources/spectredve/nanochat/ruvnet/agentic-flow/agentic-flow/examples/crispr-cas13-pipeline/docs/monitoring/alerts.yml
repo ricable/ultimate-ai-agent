@@ -1,0 +1,291 @@
+# Prometheus Alerting Rules for CRISPR-Cas13 Pipeline
+# Version: 1.0.0
+
+groups:
+  # ==================================================
+  # API Gateway Alerts
+  # ==================================================
+  - name: api_gateway_alerts
+    interval: 30s
+    rules:
+      - alert: HighAPIErrorRate
+        expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: critical
+          component: api-gateway
+        annotations:
+          summary: "High API error rate detected"
+          description: "API error rate is {{ $value | humanizePercentage }} (threshold: 5%) for {{ $labels.pod }}"
+
+      - alert: HighAPILatency
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+          component: api-gateway
+        annotations:
+          summary: "High API latency (P95 > 500ms)"
+          description: "API P95 latency is {{ $value }}s for {{ $labels.pod }}"
+
+      - alert: APIGatewayDown
+        expr: up{job="api-gateway"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: api-gateway
+        annotations:
+          summary: "API Gateway is down"
+          description: "Pod {{ $labels.pod }} is unreachable"
+
+  # ==================================================
+  # Processing Services Alerts
+  # ==================================================
+  - name: processing_services_alerts
+    interval: 30s
+    rules:
+      - alert: JobProcessingFailed
+        expr: rate(jobs_failed_total[10m]) > 0.1
+        for: 10m
+        labels:
+          severity: warning
+          component: processing
+        annotations:
+          summary: "High job failure rate"
+          description: "Job failure rate is {{ $value }} jobs/sec for {{ $labels.job_type }}"
+
+      - alert: LongRunningJob
+        expr: time() - job_started_timestamp > 21600
+        for: 0m
+        labels:
+          severity: warning
+          component: processing
+        annotations:
+          summary: "Job running for over 6 hours"
+          description: "Job {{ $labels.job_id }} of type {{ $labels.job_type }} has been running for {{ $value | humanizeDuration }}"
+
+      - alert: WorkerPodCrashLooping
+        expr: rate(kube_pod_container_status_restarts_total{namespace="crispr-production"}[15m]) > 0
+        for: 5m
+        labels:
+          severity: critical
+          component: processing
+        annotations:
+          summary: "Worker pod is crash-looping"
+          description: "Pod {{ $labels.pod }} in {{ $labels.namespace }} is restarting frequently"
+
+  # ==================================================
+  # Kafka Alerts
+  # ==================================================
+  - name: kafka_alerts
+    interval: 30s
+    rules:
+      - alert: HighKafkaConsumerLag
+        expr: kafka_consumer_lag > 1000
+        for: 10m
+        labels:
+          severity: warning
+          component: kafka
+        annotations:
+          summary: "Kafka consumer lag is high"
+          description: "Topic {{ $labels.topic }} has {{ $value }} messages in lag for group {{ $labels.group }}"
+
+      - alert: KafkaConsumerGroupRebalancing
+        expr: rate(kafka_consumer_group_rebalance_total[5m]) > 0
+        for: 5m
+        labels:
+          severity: warning
+          component: kafka
+        annotations:
+          summary: "Kafka consumer group is rebalancing"
+          description: "Group {{ $labels.group }} is rebalancing frequently"
+
+      - alert: KafkaBrokerDown
+        expr: kafka_server_BrokerState < 3
+        for: 2m
+        labels:
+          severity: critical
+          component: kafka
+        annotations:
+          summary: "Kafka broker is down"
+          description: "Broker {{ $labels.instance }} is not in running state"
+
+  # ==================================================
+  # Database Alerts
+  # ==================================================
+  - name: database_alerts
+    interval: 30s
+    rules:
+      - alert: DatabaseConnectionPoolExhausted
+        expr: database_connection_pool_active / database_connection_pool_max > 0.9
+        for: 5m
+        labels:
+          severity: critical
+          component: database
+        annotations:
+          summary: "Database connection pool nearly exhausted"
+          description: "{{ $value | humanizePercentage }} of connections are in use for {{ $labels.database }}"
+
+      - alert: HighDatabaseQueryTime
+        expr: histogram_quantile(0.95, rate(database_query_duration_seconds_bucket[5m])) > 1
+        for: 5m
+        labels:
+          severity: warning
+          component: database
+        annotations:
+          summary: "High database query time (P95 > 1s)"
+          description: "Database query P95 latency is {{ $value }}s"
+
+      - alert: PostgreSQLDown
+        expr: up{job="postgresql"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: database
+        annotations:
+          summary: "PostgreSQL is down"
+          description: "PostgreSQL database is unreachable"
+
+      - alert: MongoDBReplicaSetNotHealthy
+        expr: mongodb_replset_member_health == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: database
+        annotations:
+          summary: "MongoDB replica set member is unhealthy"
+          description: "Member {{ $labels.name }} is not healthy"
+
+  # ==================================================
+  # Redis Alerts
+  # ==================================================
+  - name: redis_alerts
+    interval: 30s
+    rules:
+      - alert: RedisMemoryHigh
+        expr: redis_memory_used_bytes / redis_memory_max_bytes > 0.9
+        for: 5m
+        labels:
+          severity: warning
+          component: redis
+        annotations:
+          summary: "Redis memory usage is high"
+          description: "Redis is using {{ $value | humanizePercentage }} of max memory"
+
+      - alert: RedisDown
+        expr: up{job="redis"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: redis
+        annotations:
+          summary: "Redis is down"
+          description: "Redis {{ $labels.instance }} is unreachable"
+
+  # ==================================================
+  # Resource Alerts (CPU, Memory, Disk)
+  # ==================================================
+  - name: resource_alerts
+    interval: 30s
+    rules:
+      - alert: HighCPUUsage
+        expr: rate(process_cpu_seconds_total[5m]) > 0.9
+        for: 5m
+        labels:
+          severity: warning
+          component: resources
+        annotations:
+          summary: "High CPU usage detected"
+          description: "Pod {{ $labels.pod }} is using {{ $value | humanizePercentage }} CPU"
+
+      - alert: HighMemoryUsage
+        expr: process_resident_memory_bytes / machine_memory_bytes > 0.9
+        for: 5m
+        labels:
+          severity: warning
+          component: resources
+        annotations:
+          summary: "High memory usage detected"
+          description: "Pod {{ $labels.pod }} is using {{ $value | humanizePercentage }} of available memory"
+
+      - alert: DiskSpaceLow
+        expr: node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"} < 0.1
+        for: 5m
+        labels:
+          severity: critical
+          component: resources
+        annotations:
+          summary: "Disk space below 10%"
+          description: "Node {{ $labels.instance }} has only {{ $value | humanizePercentage }} disk space remaining"
+
+  # ==================================================
+  # MinIO Alerts
+  # ==================================================
+  - name: minio_alerts
+    interval: 30s
+    rules:
+      - alert: MinIONodeOffline
+        expr: minio_cluster_nodes_offline_total > 0
+        for: 5m
+        labels:
+          severity: critical
+          component: minio
+        annotations:
+          summary: "MinIO node is offline"
+          description: "{{ $value }} MinIO node(s) are offline"
+
+      - alert: MinIODiskOffline
+        expr: minio_cluster_disk_offline_total > 0
+        for: 5m
+        labels:
+          severity: critical
+          component: minio
+        annotations:
+          summary: "MinIO disk is offline"
+          description: "{{ $value }} MinIO disk(s) are offline"
+
+      - alert: MinIOHighDiskUsage
+        expr: minio_cluster_capacity_usable_free_bytes / minio_cluster_capacity_usable_total_bytes < 0.1
+        for: 5m
+        labels:
+          severity: warning
+          component: minio
+        annotations:
+          summary: "MinIO disk usage above 90%"
+          description: "MinIO cluster has only {{ $value | humanizePercentage }} free space"
+
+  # ==================================================
+  # Kubernetes Alerts
+  # ==================================================
+  - name: kubernetes_alerts
+    interval: 30s
+    rules:
+      - alert: PodNotReady
+        expr: kube_pod_status_phase{namespace="crispr-production", phase!="Running"} > 0
+        for: 5m
+        labels:
+          severity: warning
+          component: kubernetes
+        annotations:
+          summary: "Pod is not ready"
+          description: "Pod {{ $labels.pod }} in {{ $labels.namespace }} is not in Running state"
+
+      - alert: DeploymentReplicasMismatch
+        expr: kube_deployment_spec_replicas{namespace="crispr-production"} != kube_deployment_status_replicas_available{namespace="crispr-production"}
+        for: 10m
+        labels:
+          severity: warning
+          component: kubernetes
+        annotations:
+          summary: "Deployment replicas mismatch"
+          description: "Deployment {{ $labels.deployment }} has {{ $value }} replica(s) mismatch"
+
+      - alert: NodeNotReady
+        expr: kube_node_status_condition{condition="Ready",status="true"} == 0
+        for: 5m
+        labels:
+          severity: critical
+          component: kubernetes
+        annotations:
+          summary: "Kubernetes node is not ready"
+          description: "Node {{ $labels.node }} is not ready"

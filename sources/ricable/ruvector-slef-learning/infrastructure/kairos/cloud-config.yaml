@@ -1,0 +1,243 @@
+#cloud-config
+# Kairos Immutable OS Configuration for Edge-Native AI
+# This configuration sets up an immutable infrastructure node
+# supporting both x86_64 (Linux) and ARM64 (Mac Silicon/Raspberry Pi)
+#
+# Ruvnet Ecosystem Integration:
+# - npx claude-flow@alpha - SPARC development orchestration
+# - npx agentic-flow@alpha - Multi-agent coordination
+# - npx agentdb@alpha - Agent state management
+# - npx ruvector - Vector database operations
+# - npx ruvector-gnn - Graph neural network tools
+# - npx ruvector-graph - Graph operations
+# - npx @ruvector/postgres-cli - PostgreSQL vector operations
+#
+# Platform Support:
+# - Kairos with K3s (this config)
+# - Talos Linux with Sidero Omni (see infrastructure/talos/)
+# - WasmEdge/LlamaEdge runtimes
+# - Spin/SpinKube serverless
+#
+# References:
+# - Sidero Omni: https://github.com/siderolabs/omni
+# - Talos Extensions: https://github.com/siderolabs/extensions
+# - Proxmox Provider: https://github.com/siderolabs/omni-infra-provider-proxmox
+
+# Node identity
+hostname: "edge-node-{{.MACHINE_ID}}"
+users:
+  - name: "admin"
+    passwd: "$6$rounds=4096$..."  # Replace with hashed password
+    groups:
+      - "admin"
+      - "docker"
+      - "wheel"
+    ssh_authorized_keys:
+      - "ssh-ed25519 AAAA..."  # Replace with your SSH key
+    shell: /bin/bash
+
+# System configuration
+timezone: UTC
+locale: en_US.UTF-8
+
+# Network configuration with P2P mesh
+stages:
+  network:
+    - name: "Configure P2P Mesh Network"
+      commands:
+        - |
+          # EdgeVPN P2P configuration for NAT traversal
+          cat > /etc/edgevpn/config.yaml << EOF
+          network_token: "{{.NETWORK_TOKEN}}"
+          interface: "edgevpn0"
+          mtu: 1420
+          address: "{{.VPN_ADDRESS}}/24"
+          dns:
+            - "{{.DNS_SERVER}}"
+          enable_dht: true
+          enable_mdns: true
+          # Libp2p configuration for peer discovery
+          libp2p:
+            bootstrap_peers: []  # Will discover via DHT
+            enable_relay: true
+            enable_autonat: true
+          EOF
+
+  boot:
+    - name: "Configure K3s Cluster"
+      commands:
+        - |
+          # Create K3s configuration directory
+          mkdir -p /etc/rancher/k3s
+
+          # K3s server configuration (for master nodes)
+          cat > /etc/rancher/k3s/config.yaml << EOF
+          # K3s configuration
+          cluster-init: {{.IS_FIRST_NODE}}
+          flannel-backend: wireguard-native
+          disable:
+            - traefik  # We'll deploy our own ingress
+            - servicelb
+          node-label:
+            - "topology.kubernetes.io/zone={{.ZONE}}"
+            - "node.kubernetes.io/instance-type={{.INSTANCE_TYPE}}"
+            - "kairos.io/arch={{.ARCH}}"
+          node-taint: []
+          write-kubeconfig-mode: "0644"
+          # HA configuration
+          server: "https://{{.CONTROL_PLANE_VIP}}:6443"
+          token: "{{.K3S_TOKEN}}"
+          # Enable embedded registry for air-gapped deployments
+          embedded-registry: true
+          EOF
+
+  initramfs:
+    - name: "Pre-boot Hardware Detection"
+      commands:
+        - |
+          # Detect hardware architecture and capabilities
+          ARCH=$(uname -m)
+          if [ "$ARCH" = "aarch64" ]; then
+            export INSTANCE_TYPE="arm64"
+            # Check for Apple Silicon Neural Engine
+            if grep -q "Apple" /proc/cpuinfo 2>/dev/null; then
+              export GPU_TYPE="apple-neural-engine"
+            fi
+          else
+            export INSTANCE_TYPE="amd64"
+            # Check for AVX support for vector operations
+            if grep -q "avx512" /proc/cpuinfo; then
+              export SIMD_LEVEL="avx512"
+            elif grep -q "avx2" /proc/cpuinfo; then
+              export SIMD_LEVEL="avx2"
+            fi
+          fi
+          # Check for GPU
+          if lspci | grep -i nvidia > /dev/null; then
+            export GPU_TYPE="nvidia"
+          elif lspci | grep -i amd > /dev/null; then
+            export GPU_TYPE="amd"
+          fi
+
+# K3s installation and configuration
+k3s:
+  enabled: true
+  args:
+    - --disable=traefik
+    - --flannel-backend=wireguard-native
+    - --kube-proxy-arg=proxy-mode=ipvs
+
+# Enable P2P mesh networking
+p2p:
+  enabled: true
+  network_token: "{{.NETWORK_TOKEN}}"
+  dns: true
+  vpn:
+    enabled: true
+    use_dht: true
+
+# Upgrade configuration (A/B partitioning)
+upgrade:
+  recovery: true
+  # Auto-upgrade from OCI registry
+  system:
+    uri: "oci://ghcr.io/kairos-io/kairos-standard-amd64:latest"
+
+# Bundles to install
+bundles:
+  - targets:
+      - run://quay.io/kairos/community-bundles:nvidia_latest  # NVIDIA GPU support
+      - run://quay.io/kairos/community-bundles:cert-manager_latest
+
+# Storage configuration
+install:
+  device: "/dev/sda"  # Adjust based on hardware
+  reboot: true
+  poweroff: false
+  auto: true
+  # Partition layout
+  partitions:
+    - name: "oem"
+      size: 64
+      fs: ext4
+    - name: "state"
+      size: 8192
+      fs: ext4
+    - name: "recovery"
+      size: 4096
+      fs: ext4
+    - name: "persistent"
+      size: 0  # Use remaining space
+      fs: ext4
+
+# Container runtime configuration
+containerd:
+  config:
+    plugins:
+      io.containerd.grpc.v1.cri:
+        containerd:
+          runtimes:
+            # Enable Wasm runtime for SpinKube
+            spin:
+              runtime_type: "io.containerd.spin.v2"
+              options:
+                BinaryName: "/usr/local/bin/containerd-shim-spin-v2"
+            # WasmEdge runtime for JavaScript/TypeScript and LLM inference
+            wasmedge:
+              runtime_type: "io.containerd.wasmedge.v1"
+              options:
+                BinaryName: "/usr/local/bin/containerd-shim-wasmedge-v1"
+            # LlamaEdge runtime (uses WasmEdge with GGML backend)
+            llamaedge:
+              runtime_type: "io.containerd.wasmedge.v1"
+              options:
+                BinaryName: "/usr/local/bin/containerd-shim-wasmedge-v1"
+            # Standard runc runtime
+            runc:
+              runtime_type: "io.containerd.runc.v2"
+
+# System services
+runcmd:
+  # Install containerd-shim-spin for WebAssembly workloads
+  - |
+    ARCH=$(uname -m)
+    if [ "$ARCH" = "aarch64" ]; then
+      curl -L https://github.com/spinkube/containerd-shim-spin/releases/latest/download/containerd-shim-spin-v2-linux-aarch64.tar.gz | tar xz -C /usr/local/bin
+    else
+      curl -L https://github.com/spinkube/containerd-shim-spin/releases/latest/download/containerd-shim-spin-v2-linux-x86_64.tar.gz | tar xz -C /usr/local/bin
+    fi
+    chmod +x /usr/local/bin/containerd-shim-spin-v2
+
+  # Install WasmEdge runtime with GGML plugin for LlamaEdge
+  - |
+    curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | \
+      bash -s -- -p /usr/local --plugins wasi_nn-ggml
+    # Install containerd-shim-wasmedge
+    ARCH=$(uname -m)
+    if [ "$ARCH" = "aarch64" ]; then
+      SHIM_ARCH="aarch64"
+    else
+      SHIM_ARCH="x86_64"
+    fi
+    curl -L "https://github.com/second-state/runwasi/releases/latest/download/containerd-shim-wasmedge-v1-linux-${SHIM_ARCH}.tar.gz" | \
+      tar xz -C /usr/local/bin
+    chmod +x /usr/local/bin/containerd-shim-wasmedge-v1
+
+  # Install Node.js for ruvnet ecosystem tools
+  - |
+    curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+    apt-get install -y nodejs
+    # Verify ruvnet tools are accessible
+    npx --version
+
+  # Configure node labels based on hardware and ruvector capabilities
+  - |
+    kubectl label node $(hostname) \
+      hardware.kairos.io/gpu=${GPU_TYPE:-none} \
+      hardware.kairos.io/simd=${SIMD_LEVEL:-none} \
+      hardware.kairos.io/architecture=$(uname -m) \
+      ruvector.io/wasm-enabled=true \
+      ruvector.io/llamaedge-enabled=true \
+      runtime.kubernetes.io/wasmedge=true \
+      runtime.kubernetes.io/spin=true \
+      --overwrite || true

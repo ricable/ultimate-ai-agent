@@ -1,0 +1,82 @@
+{
+  "id": "121 5725",
+  "name": "NR Flexible Cell Shaping Low/Mid-Band",
+  "cxc_code": "CXC4012756",
+  "value_package": "Massive MIMO Performance",
+  "value_package_id": "FAJ 801 4008",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature introduces an additional coverage shape.",
+  "parameters": [
+    {
+      "name": "CommonBeamforming.azimuthCoverageWidth",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CommonBeamforming"
+    },
+    {
+      "name": "CommonBeamforming.elevationCoverageWidth",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "CommonBeamforming"
+    },
+    {
+      "name": "CommonBeamforming.supportedCoverageOptions",
+      "type": "Affecting",
+      "description": "This                                     attribute lists the supported coverage configuration                                     options.",
+      "mo_class": "CommonBeamforming"
+    },
+    {
+      "name": "CommonBeamforming.usedAzimuthCoverageWidth",
+      "type": "Affecting",
+      "description": "This attribute shows the azimuth width in                                 use.",
+      "mo_class": "CommonBeamforming"
+    },
+    {
+      "name": "CommonBeamforming.usedElevationCoverageWidth",
+      "type": "Affecting",
+      "description": "This attribute shows the elevation coverage width in                                 use.",
+      "mo_class": "CommonBeamforming"
+    },
+    {
+      "name": "CommonBeamforming.usedDigitalPan",
+      "type": "Affecting",
+      "description": "This attribute shows the digital pan in                                 use.",
+      "mo_class": "CommonBeamforming"
+    },
+    {
+      "name": "Uen.M33C",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "CommonBeamforming.cbfMacroTaperType",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "CommonBeamforming"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012756 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012756 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/224_22104-LZA7016017_1Uen.M33C.md",
+  "file_hash": "2d9653d8c49ccd7523cd1dbadef5d435",
+  "processed_at": "2025-10-19 15:50:11",
+  "network_impact": {},
+  "performance_impact": {}
+}

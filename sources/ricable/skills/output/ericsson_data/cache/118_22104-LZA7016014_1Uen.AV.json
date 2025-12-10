@@ -1,0 +1,742 @@
+{
+  "file_hash": "54c83683050af941ea88e816302cea84",
+  "feature": {
+    "id": "121 0667",
+    "name": "PM-Initiated UE Measurements",
+    "cxc_code": "CXC4010717",
+    "value_package": "RAN Data Collection",
+    "value_package_id": "FAJ 801 0431",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The PM-Initiated UE Measurements feature provides the means to configure and run UE",
+    "parameters": [
+      {
+        "name": "PmUeMeasControl.measGapAllowedPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PmUeMeasControl"
+      },
+      {
+        "name": "PmUeMeasControl.ueMeasIntraFreq1",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PmUeMeasControl"
+      },
+      {
+        "name": "PmUeMeasControl.ueMeasIntraFreq2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PmUeMeasControl"
+      },
+      {
+        "name": "PmUeMeasControl.ueMeasInterFreq1",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PmUeMeasControl"
+      },
+      {
+        "name": "PmUeMeasControl.ueMeasInterFreq2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PmUeMeasControl"
+      },
+      {
+        "name": "PmUeMeasControl.ueMeasInterRat1",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PmUeMeasControl"
+      },
+      {
+        "name": "PmUeMeasControl.ueMeasInterRat2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PmUeMeasControl"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.a1ThresholdRsrpPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.a1ThresholdRsrpPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.a1ThresholdRsrqPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.a1ThresholdRsrqPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.a2ThresholdRsrpPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.a2ThresholdRsrpPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.a2ThresholdRsrqPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.a2ThresholdRsrqPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.a3OffsetPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.a3OffsetPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.a3ReportOnLeavePm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.a3ReportOnLeavePm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.a4ThresholdRsrpPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.a4ThresholdRsrpPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.a4ThresholdRsrqPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.a4ThresholdRsrqPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.a5ThresholdRsrpPm1",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.a5ThresholdRsrpPm1",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.a5ThresholdRsrpPm2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.a5ThresholdRsrpPm2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.a5ThresholdRsrqPm1",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.a5ThresholdRsrqPm1",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.a5ThresholdRsrqPm2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.a5ThresholdRsrqPm2",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.a6OffsetPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.a6OffsetPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.hysteresisPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.hysteresisPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.maxReportCellsPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.maxReportCellsPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.measSelectionEUtraPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.measSelectionEUtraPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.reportAmountPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.reportAmountPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.reportIntervalPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.reportIntervalPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.reportQuantityPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.reportQuantityPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.timeToTriggerPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.timeToTriggerPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraIntraFreqPm.triggerQuantityPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIntraFreqPm"
+      },
+      {
+        "name": "ReportConfigEUtraInterFreqPm.triggerQuantityPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraInterFreqPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.b1ThresholdEcNoUtraPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.b1ThresholdGeranPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.b1ThresholdRscpUtraPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.b2Threshold1RsrpPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.b2Threshold1RsrqPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.b2Threshold2EcNoUtraPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.b2Threshold2GeranPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.b2Threshold2RscpUtraPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.hysteresisPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.maxReportCellsPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.measSelectionInterRatPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.ratSelectionPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.reportAmountPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.reportIntervalPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.timeToTriggerPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "ReportConfigInterRatPm.triggerQuantityPm",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigInterRatPm"
+      },
+      {
+        "name": "SubscriberGroupProfile.featuresToDisableMeas",
+        "type": "Affecting",
+        "description": "Inter-frequency and IRAT measurements with measurement gap can be                                 disabled for UEs in a subscriber group if the attribute includes the                                 value corresponding the PM-Initiated UE Measurements feature                                 name.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "Uen.AV",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UnsupportedFreqProfile.unsupportedFreqList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UnsupportedFreqProfile"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pm1",
+        "description": "Performance counter pm1",
+        "category": "General"
+      },
+      {
+        "name": "pm2",
+        "description": "Performance counter pm2",
+        "category": "General"
+      },
+      {
+        "name": "pmCounter",
+        "description": "Performance counter pmCounter",
+        "category": "General"
+      },
+      {
+        "name": "pmEvent",
+        "description": "Performance counter pmEvent",
+        "category": "General"
+      },
+      {
+        "name": "pmInitiated",
+        "description": "Performance counter pmInitiated",
+        "category": "General"
+      },
+      {
+        "name": "pmIntroduced",
+        "description": "Performance counter pmIntroduced",
+        "category": "General"
+      },
+      {
+        "name": "pmMOs",
+        "description": "Performance counter pmMOs",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolUlSrb",
+        "description": "Performance counter pmPdcpVolUlSrb",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasControl",
+        "description": "Performance counter pmUeMeasControl",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasEcNoUtran1",
+        "description": "Performance counter pmUeMeasEcNoUtran1",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasRscpUtran1",
+        "description": "Performance counter pmUeMeasRscpUtran1",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasRsrpDeltaInterFreq1",
+        "description": "Performance counter pmUeMeasRsrpDeltaInterFreq1",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasRsrpDeltaIntraFreq1",
+        "description": "Performance counter pmUeMeasRsrpDeltaIntraFreq1",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasRsrpInterFreq1",
+        "description": "Performance counter pmUeMeasRsrpInterFreq1",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasRsrpServIntraFreq1",
+        "description": "Performance counter pmUeMeasRsrpServIntraFreq1",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasRsrqDeltaInterFreq1",
+        "description": "Performance counter pmUeMeasRsrqDeltaInterFreq1",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasRsrqDeltaIntraFreq1",
+        "description": "Performance counter pmUeMeasRsrqDeltaIntraFreq1",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasRsrqInterFreq1",
+        "description": "Performance counter pmUeMeasRsrqInterFreq1",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasRsrqServIntraFreq1",
+        "description": "Performance counter pmUeMeasRsrqServIntraFreq1",
+        "category": "General"
+      },
+      {
+        "name": "pmUeMeasRssiGeran1",
+        "description": "Performance counter pmUeMeasRssiGeran1",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      },
+      {
+        "name": "pmmeasurement",
+        "description": "Performance counter pmmeasurement",
+        "category": "General"
+      },
+      {
+        "name": "pmor",
+        "description": "Performance counter pmor",
+        "category": "General"
+      },
+      {
+        "name": "pmpurposes",
+        "description": "Performance counter pmpurposes",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "UE_MEAS_INTRAFREQ1",
+        "type": "Corresponds to the E-UTRA intra-frequency 1 measurement used for                                 PM-Initiated UE Measurements. Contains the measurement report                                 received from the UE.",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_INTRAFREQ2",
+        "type": "Corresponds to the E-UTRA intra-frequency 2 measurement used for                                 PM-Initiated UE Measurements. Contains the measurement report                                 received from the UE.",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_INTERFREQ1",
+        "type": "Corresponds to the E-UTRA inter-frequency 1 measurement used for                                 PM-Initiated UE Measurements. Contains the measurement report                                 received from the UE.",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_INTERFREQ2",
+        "type": "Corresponds to the E-UTRA inter-frequency 2 measurement used for                                 PM-Initiated UE Measurements. Contains the measurement report                                 received from the UE.",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_GERAN1",
+        "type": "Corresponds to the inter-RAT GERAN measurement instance 1 used for                                 PM-Initiated UE Measurements. Contains the measurement report                                 received from the UE.",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_GERAN2",
+        "type": "Corresponds to the inter-RAT GERAN measurement instance 2 used for                                 PM-Initiated UE Measurements. Contains the measurement report                                 received from the UE.",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_UTRAN1",
+        "type": "Corresponds to the inter-RAT UTRAN measurement instance 1 used for                                 PM-Initiated UE Measurements. Contains the measurement report                                 received from the UE.",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_UTRAN2",
+        "type": "Corresponds to the inter-RAT UTRAN measurement instance 2 used for                                 PM-Initiated UE Measurements. Contains the measurement report                                 received from the UE.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_A1",
+        "type": "Used when a UE is to be configured using RRC Connection                                 Reconfiguration to report measurements on EUTRA with Report                                 Configuration of type A1 measurement.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_A2",
+        "type": "Used when a UE is to be configured using RRC Connection                                 Reconfiguration to report measurements on EUTRA with Report                                 Configuration of type A2 measurement.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_A3",
+        "type": "Used when a UE is to be configured using RRC Connection                                 Reconfiguration to report measurements on EUTRA with Report                                 Configuration of type A3 measurement.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_A4",
+        "type": "Used when a UE is to be configured using RRC Connection                                 Reconfiguration to report measurements on EUTRA with Report                                 Configuration of type A4 measurement.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_A5",
+        "type": "Used when a UE is to be configured using RRC Connection                                 Reconfiguration to report measurements on EUTRA with Report                                 Configuration of type A5 measurement.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_A6",
+        "type": "Used when a UE is to be configured using RRC Connection                                 Reconfiguration to report measurements on EUTRA with Report                                 Configuration of type A6 measurement.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_PERIODICAL_EUTRA",
+        "type": "Used when a UE is to be configured using RRC Connection                                 Reconfiguration to report measurements on EUTRA with Report                                 Configuration of type Periodical.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_UE_MEAS_FAILURE",
+        "type": "This event is generated when a measurement initiation is rejected by                                 the UE or the RBS.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_B1_GERAN",
+        "type": "Used when a UE is to be configured using RRC Connection                                 Reconfiguration to report measurements on GERAN with Report                                 Configuration of type B1 measurement.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_B2_GERAN",
+        "type": "Used when a UE is to be configured using RRC Connection                                 Reconfiguration to report measurements on GERAN with Report                                 Configuration of type B2 measurement.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_B1_UTRA",
+        "type": "Used when a UE is to be configured using RRC Connection                                 Reconfiguration to report measurements on UTRA with Report                                 Configuration of type B1 measurement.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_B2_UTRA",
+        "type": "Used when a UE is to be configured using RRC Connection                                 Reconfiguration to report measurements on UTRA with Report                                 Configuration of type B2 measurement.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_PERIODICAL_GERAN",
+        "type": "Used when a UE is to be configured using RRC Connection                                 Reconfiguration to report measurements on GERAN with Report                                 Configuration of type Periodical.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_MEAS_CONFIG_PERIODICAL_UTRA",
+        "type": "Used when a UE is to be configured using RRC Connection                                 Reconfiguration to report measurements on UTRA with Report                                 Configuration of type Periodical.",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_EVENT_NOT_CONFIG",
+        "type": "This event is generated when an PM Initiated UE Measurement has been                                 initiated but is rejected due to that no configuration exist for the                                 measurement object or report configuration.",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_EVENT_FEAT_NOT_AVAIL",
+        "type": "This event is generated when a PM Initiated UE Measurement has been                                 initiated but is rejected due to that no license for the optional                                 feature exist on the node.",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_INTRAFREQ1",
+        "type": "PmUeMeasControl.ueMeasIntraFreq1",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_INTRAFREQ2",
+        "type": "PmUeMeasControl.ueMeasIntraFreq2",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_INTERFREQ1",
+        "type": "PmUeMeasControl.ueMeasInterFreq1",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_INTERFREQ2",
+        "type": "PmUeMeasControl.ueMeasInterFreq2",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_GERAN1",
+        "type": "PmUeMeasControl.ueMeasInterRat1",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_UTRAN1",
+        "type": "PmUeMeasControl.ueMeasInterRat1",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_GERAN2",
+        "type": "PmUeMeasControl.ueMeasInterRat2",
+        "description": ""
+      },
+      {
+        "name": "UE_MEAS_UTRAN2",
+        "type": "PmUeMeasControl.ueMeasInterRat2",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010717 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010717 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/118_22104-LZA7016014_1Uen.AV.md",
+    "file_hash": "54c83683050af941ea88e816302cea84",
+    "processed_at": "2025-10-19 15:48:54",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

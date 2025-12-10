@@ -1,0 +1,644 @@
+{
+  "file_hash": "94f43159cf98862655047992d8ee4fbf",
+  "feature": {
+    "id": "121 3046",
+    "name": "Carrier Aggregation",
+    "cxc_code": "CXC4011476",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Carrier Aggregation feature enables data to be transmitted to a UE on two carriers",
+    "parameters": [
+      {
+        "name": "SubscriberGroupProfile.sCellScheduleSinrThresOffset",
+        "type": "Affecting",
+        "description": "This attribute can affect the activation and deactivation of the                                     SCell used for carrier aggregation.  When the ASGH-Based Spectral Efficiency Package feature is active,             the operator can configure differentiated SCell activation and deactivation threshold             for the UEs in subscriber groups by using the                 SubscriberGroupProfile.sCellScheduleSinrThresOffset             attribute.  If the                 SubscriberGroupProfile.sCellScheduleSinrThresOffset attribute is             configured, the threshold for the UEs in a subscriber group is the sum of the following                 attributes:  CarrierAggregationFunction.sCellScheduleSinrThres     SubscriberGroupProfile.sCellScheduleSinrThresOffset     For the UEs that are not in the subscriber group, the                 CarrierAggregationFunction.sCellScheduleSinrThres attribute             determines the SCell activation and deactivation threshold. For more information, see MOM description and ASGH-Based Spectral Efficiency                                         Package.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "Rrc.ulPowerControlCommonV1020Enabled",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "Rrc"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_SCELL_MAC_DTX_DL_QPSK",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_SCELL_MAC_DTX_DL_16QAM",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_SCELL_MAC_DTX_DL_64QAM",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_HARQ_DL_NACK_QPSK",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_HARQ_DL_NACK_16QAM",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_HARQ_DL_NACK_64QAM",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_HARQ_DL_ACK_QPSK",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_HARQ_DL_ACK_16QAM",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_HARQ_DL_ACK_64QAM",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_SCELL_DL_MAC_DELAY",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_RADIOTHP_VOL_DL",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_RADIOTHP_RES_DL",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_SCELL_SCHED_ACTIVITY_UE_DL",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.GS33D",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellRelation.sCellCandidate",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.asmStatus",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellFDD.sCellHandlingAtVolteCall",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.sCellHandlingAtVolteCall",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "CarrierAggregationFunction.pdcchEnhancedLaForVolte",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "CarrierAggregationFunction"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCaActivatedDl2ccSumDistr",
+        "description": "Performance counter pmCaActivatedDl2ccSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaActivatedDlIcmSum",
+        "description": "Performance counter pmCaActivatedDlIcmSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCaActivatedDlSum",
+        "description": "Performance counter pmCaActivatedDlSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCaCapableDlFddTddSum",
+        "description": "Performance counter pmCaCapableDlFddTddSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCaCapableDlSamp",
+        "description": "Performance counter pmCaCapableDlSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmCaCapableDlSum",
+        "description": "Performance counter pmCaCapableDlSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCaCapableUlSum",
+        "description": "Performance counter pmCaCapableUlSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfDlFddSumDistr",
+        "description": "Performance counter pmCaConfDlFddSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfDlIcmSumDistr",
+        "description": "Performance counter pmCaConfDlIcmSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfDlSCellFddSumDistr",
+        "description": "Performance counter pmCaConfDlSCellFddSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfDlSCellTddSumDistr",
+        "description": "Performance counter pmCaConfDlSCellTddSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfDlTddSumDistr",
+        "description": "Performance counter pmCaConfDlTddSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigAtt",
+        "description": "Performance counter pmCaConfigAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigAttBidirNoMeas",
+        "description": "Performance counter pmCaConfigAttBidirNoMeas",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigAttMeas",
+        "description": "Performance counter pmCaConfigAttMeas",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigAttNoMeas",
+        "description": "Performance counter pmCaConfigAttNoMeas",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigCspCreditThreshUsage",
+        "description": "Performance counter pmCaConfigCspCreditThreshUsage",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigFailPreemp",
+        "description": "Performance counter pmCaConfigFailPreemp",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigSucc",
+        "description": "Performance counter pmCaConfigSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigSuccBidirNoMeas",
+        "description": "Performance counter pmCaConfigSuccBidirNoMeas",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigSuccMeas",
+        "description": "Performance counter pmCaConfigSuccMeas",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigSuccNoMeas",
+        "description": "Performance counter pmCaConfigSuccNoMeas",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfiguredDlSamp",
+        "description": "Performance counter pmCaConfiguredDlSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfiguredDlSum",
+        "description": "Performance counter pmCaConfiguredDlSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCaDeconfig",
+        "description": "Performance counter pmCaDeconfig",
+        "category": "General"
+      },
+      {
+        "name": "pmCaDeconfigAddUl",
+        "description": "Performance counter pmCaDeconfigAddUl",
+        "category": "General"
+      },
+      {
+        "name": "pmCaDeconfigConnReest",
+        "description": "Performance counter pmCaDeconfigConnReest",
+        "category": "General"
+      },
+      {
+        "name": "pmCaDeconfigHo",
+        "description": "Performance counter pmCaDeconfigHo",
+        "category": "General"
+      },
+      {
+        "name": "pmCaDeconfigOoc",
+        "description": "Performance counter pmCaDeconfigOoc",
+        "category": "General"
+      },
+      {
+        "name": "pmCaDeconfigRemovedUl",
+        "description": "Performance counter pmCaDeconfigRemovedUl",
+        "category": "General"
+      },
+      {
+        "name": "pmCaDeconfigSCellChange",
+        "description": "Performance counter pmCaDeconfigSCellChange",
+        "category": "General"
+      },
+      {
+        "name": "pmCaScheduledDl2ccSumDistr",
+        "description": "Performance counter pmCaScheduledDl2ccSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaScheduledDlIcmSumDistr",
+        "description": "Performance counter pmCaScheduledDlIcmSumDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaScheduledDlSum",
+        "description": "Performance counter pmCaScheduledDlSum",
+        "category": "General"
+      },
+      {
+        "name": "pmCounters",
+        "description": "Performance counter pmCounters",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsTransSCell",
+        "description": "Performance counter pmDlAssigsTransSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmDlAssigsWithDetectedHarqAckSCell",
+        "description": "Performance counter pmDlAssigsWithDetectedHarqAckSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmLaaActivatedSum",
+        "description": "Performance counter pmLaaActivatedSum",
+        "category": "General"
+      },
+      {
+        "name": "pmLaaCapableDlSum",
+        "description": "Performance counter pmLaaCapableDlSum",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpLatPktTransDlDrxNoSyncQci",
+        "description": "Performance counter pmPdcpLatPktTransDlDrxNoSyncQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpLatPktTransDlDrxSyncQci",
+        "description": "Performance counter pmPdcpLatPktTransDlDrxSyncQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpLatPktTransDlNoDrxNoSyncQci",
+        "description": "Performance counter pmPdcpLatPktTransDlNoDrxNoSyncQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpLatPktTransDlNoDrxSyncQci",
+        "description": "Performance counter pmPdcpLatPktTransDlNoDrxSyncQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpLatTimeDlDrxNoSyncQci",
+        "description": "Performance counter pmPdcpLatTimeDlDrxNoSyncQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpLatTimeDlDrxSyncQci",
+        "description": "Performance counter pmPdcpLatTimeDlDrxSyncQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpLatTimeDlNoDrxNoSyncQci",
+        "description": "Performance counter pmPdcpLatTimeDlNoDrxNoSyncQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpLatTimeDlNoDrxSyncQci",
+        "description": "Performance counter pmPdcpLatTimeDlNoDrxSyncQci",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolDlDrbCa",
+        "description": "Performance counter pmPdcpVolDlDrbCa",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpVolDlDrbLastTTICa",
+        "description": "Performance counter pmPdcpVolDlDrbLastTTICa",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbUsedDlDtchSCell",
+        "description": "Performance counter pmPrbUsedDlDtchSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmPrbUsedDlDtchSCellIcm",
+        "description": "Performance counter pmPrbUsedDlDtchSCellIcm",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDl",
+        "description": "Performance counter pmRadioThpVolDl",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDl2ccPCell",
+        "description": "Performance counter pmRadioThpVolDl2ccPCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDl3ccPCell",
+        "description": "Performance counter pmRadioThpVolDl3ccPCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDl4ccPCell",
+        "description": "Performance counter pmRadioThpVolDl4ccPCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDl5ccPCell",
+        "description": "Performance counter pmRadioThpVolDl5ccPCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDl6ccPCell",
+        "description": "Performance counter pmRadioThpVolDl6ccPCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDl7ccPCell",
+        "description": "Performance counter pmRadioThpVolDl7ccPCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDlSCell",
+        "description": "Performance counter pmRadioThpVolDlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolDlSCellIcm",
+        "description": "Performance counter pmRadioThpVolDlSCellIcm",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDl2ccSCell",
+        "description": "Performance counter pmRadioThpVolTxDl2ccSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDl3ccSCell",
+        "description": "Performance counter pmRadioThpVolTxDl3ccSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDl4ccSCell",
+        "description": "Performance counter pmRadioThpVolTxDl4ccSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDl5ccSCell",
+        "description": "Performance counter pmRadioThpVolTxDl5ccSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDl6ccSCell",
+        "description": "Performance counter pmRadioThpVolTxDl6ccSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDl7ccSCell",
+        "description": "Performance counter pmRadioThpVolTxDl7ccSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCell",
+        "description": "Performance counter pmRadioThpVolTxDlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCellIcm",
+        "description": "Performance counter pmRadioThpVolTxDlSCellIcm",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCellIcmOffl",
+        "description": "Performance counter pmRadioThpVolTxDlSCellIcmOffl",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioThpVolTxDlSCellOffl",
+        "description": "Performance counter pmRadioThpVolTxDlSCellOffl",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcLatencyConnReconfigDistr",
+        "description": "Performance counter pmRrcLatencyConnReconfigDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCategoryDistr",
+        "description": "Performance counter pmUeCategoryDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCategoryDlUlCombDistr",
+        "description": "Performance counter pmUeCategoryDlUlCombDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThp2DlDistr",
+        "description": "Performance counter pmUeThp2DlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThp2UlDistr",
+        "description": "Performance counter pmUeThp2UlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThpDlMbbFilteredDistr",
+        "description": "Performance counter pmUeThpDlMbbFilteredDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThpTimeDlCa",
+        "description": "Performance counter pmUeThpTimeDlCa",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThpTimeUlCa",
+        "description": "Performance counter pmUeThpTimeUlCa",
+        "category": "General"
+      },
+      {
+        "name": "pmUeThpVolUlCa",
+        "description": "Performance counter pmUeThpVolUlCa",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      },
+      {
+        "name": "pmodLink",
+        "description": "Performance counter pmodLink",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_SCELL_MAC_DTX_DL_QPSK",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_SCELL_MAC_DTX_DL_16QAM",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_SCELL_MAC_DTX_DL_64QAM",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_HARQ_DL_NACK_QPSK",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_HARQ_DL_NACK_16QAM",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_HARQ_DL_NACK_64QAM",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_HARQ_DL_ACK_QPSK",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_HARQ_DL_ACK_16QAM",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_HARQ_DL_ACK_64QAM",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_SCELL_DL_MAC_DELAY",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_RADIOTHP_VOL_DL",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_SCELL_RADIOTHP_RES_DL",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_SCELL_SCHED_ACTIVITY_UE_DL",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011476 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011476 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/32_22104-LZA7016014_1Uen.GS33D.md",
+    "file_hash": "94f43159cf98862655047992d8ee4fbf",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,76 @@
+# Source files (only ship compiled dist/)
+src/
+*.ts
+tsconfig.json
+config/tsconfig.json
+
+# Tests and validation
+tests/
+test/
+validation/
+*.test.js
+*.spec.js
+
+# Development files
+.env
+.env.*
+!.env.example
+.claude-flow/
+.swarm/
+.hive-mind/
+memory/
+coordination/
+
+# Build artifacts
+*.tsbuildinfo
+.eslintrc.*
+.prettierrc
+
+# Git and CI
+.git/
+.github/
+.gitignore
+.gitattributes
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Node modules (will be in user's install)
+node_modules/
+
+# ONNX models (too large for npm)
+*.onnx
+models/
+onnx/
+
+# Documentation source (keep only built docs)
+*.md.bak
+.doctrees/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Lock files (use package-lock in the package)
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+
+# Test output
+test-output/
+coverage/
+.nyc_output/
+
+# Rust build artifacts (massive - exclude from npm)
+reasoningbank/target/
+**/target/
+*.rlib
+*.rmeta

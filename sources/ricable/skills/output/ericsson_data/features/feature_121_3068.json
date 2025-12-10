@@ -1,0 +1,188 @@
+{
+  "id": "121 3068",
+  "name": "Supplemental Downlink for Carrier Aggregation",
+  "cxc_code": "CXC4011567",
+  "value_package": "Carrier Aggregation",
+  "value_package_id": "FAJ 801 0405",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature makes it possible to add and unlock an LTE cell with a downlink-only",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.isDlOnly",
+      "type": "Introduced",
+      "description": "When set to true, the SCell candidate                             is given priority in SCell selection, but only after the priority set by                             the CarrierAggregationFunction.fddTddSCellPriority                             attribute.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.isDlOnly",
+      "type": "Introduced",
+      "description": "When set to true, the SCell candidate                             is given priority in SCell selection, but only after the priority set by                             the CarrierAggregationFunction.fddTddSCellPriority                             attribute.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranFreqRelation.anrMeasOn",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranCellFDD.cellBarred",
+      "type": "Affected",
+      "description": "Indicates if the cell is operated with downlink only and with no                                 uplink. The cell must be locked when changing this attribute and it                                 takes effect at cell unlock.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.cellBarred",
+      "type": "Affected",
+      "description": "Indicates if the cell is operated with downlink only and with no                                 uplink. The cell must be locked when changing this attribute and it                                 takes effect at cell unlock.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellRelation.sCellCandidate",
+      "type": "Affecting",
+      "description": "The value indicates whether the cell that is indicated by the                                 parameter cell relation can be used as the Secondary component                                 carrier (SCell). This is for the UE using this cell as the Primary                                 component carrier (PCell).",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellRelation.isRemoveAllowed",
+      "type": "Affecting",
+      "description": "Indicates if the ANR function is allowed to remove this object. The                                 ANR function does not restrict operator removal of the object.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellRelation.isHoAllowed",
+      "type": "Affecting",
+      "description": "Specifies whether handover between the cells in this relation is                                 allowed.",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranFreqRelation.connectedModeMobilityPrio",
+      "type": "Affecting",
+      "description": "Prioritizes E-UTRAN frequencies among all frequencies related to the                                 cell for UEs in connected mode.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranFreqRelation.voicePrio",
+      "type": "Affecting",
+      "description": "Prioritizes E-UTRAN frequencies among all frequencies related to the                                 cell for UEs in connected mode. Sets the priority to which frequency                                 to perform mobility to for a voice session.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranCellRelation.loadBalancing",
+      "type": "Affecting",
+      "description": "This attribute indicates whether Inter-Frequency Load Balancing is                                     ALLOWED or NOT_ALLOWED",
+      "mo_class": "EUtranCellRelation"
+    },
+    {
+      "name": "EUtranCellFDD.earfcnul",
+      "type": "Affecting",
+      "description": "Indicated the channel number for the central uplink frequency. The                                 mapping from channel number to physical frequency for specified                                 E-UTRA bands is described in 3GPP TS 36.104, Evolved Universal                                     Terrestrial Radio Access (E-UTRA); Base Station (BS) radio                                     transmission and reception.  The values that can be used depend on national, operator-specific                                 frequency allocation as well as on the supported frequency bands of                                 the RBS.  For downlink only bands, the value of                                     EUtranCellFDD.earfcnul or                                     EUtranCellTDD.earfcnul is set to                                     N/A.(1)",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.earfcnul",
+      "type": "Affecting",
+      "description": "Indicated the channel number for the central uplink frequency. The                                 mapping from channel number to physical frequency for specified                                 E-UTRA bands is described in 3GPP TS 36.104, Evolved Universal                                     Terrestrial Radio Access (E-UTRA); Base Station (BS) radio                                     transmission and reception.  The values that can be used depend on national, operator-specific                                 frequency allocation as well as on the supported frequency bands of                                 the RBS.  For downlink only bands, the value of                                     EUtranCellFDD.earfcnul or                                     EUtranCellTDD.earfcnul is set to                                     N/A.(1)",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellFDD.ulChannelBandwidth",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.ulChannelBandwidth",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "SectorCarrier.noOfRxAntennas",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "SectorCarrier"
+    },
+    {
+      "name": "RfBranch.ulAttenuation",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "RfBranch"
+    },
+    {
+      "name": "RfBranch.ulTrafficDelay",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "RfBranch"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+      "type": "EVENT_PARAM_HO_REJECT_CAUSE",
+      "description": "Updated with new failure cause REJECT_DUE_TO_DL_ONLY_CELL",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "type": "EVENT_PARAM_HO_REJECT_CAUSE",
+      "description": "Updated with new failure cause REJECT_DUE_TO_DL_ONLY_CELL",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.BN",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranFreqRelation.arpPrio",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "CarrierAggregationFunction.fddTddSCellPriority",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "CarrierAggregationFunction"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmHoPrepRejInDlOnlyCell",
+      "description": "Performance counter pmHoPrepRejInDlOnlyCell",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_PROC_HO_PREP_X2_IN",
+      "type": "EVENT_PARAM_HO_REJECT_CAUSE",
+      "description": "Updated with new failure cause REJECT_DUE_TO_DL_ONLY_CELL"
+    },
+    {
+      "name": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "type": "EVENT_PARAM_HO_REJECT_CAUSE",
+      "description": "Updated with new failure cause REJECT_DUE_TO_DL_ONLY_CELL"
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011567 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011567 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/254_22104-LZA7016014_1Uen.BN.md",
+  "file_hash": "ef6d1f137fa8ce777ab5646caefb79d2",
+  "processed_at": "2025-10-19 15:50:04",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,91 @@
+# Shim Definitions for WasmEdge, Spin, and Wasmer runtimes
+# These CRs tell the Runtime Class Manager which shims to install on nodes
+
+---
+# WasmEdge Shim Installation
+apiVersion: runtime.kwasm.sh/v1alpha1
+kind: Shim
+metadata:
+  name: wasmedge
+spec:
+  shimName: wasmedge
+  shimVersion: "0.13.5"
+  runtimeClassName: wasmedge
+  handler: wasmedge
+  nodeSelector:
+    kubernetes.io/os: linux
+  fetchStrategy:
+    type: oci
+    ociRef: ghcr.io/second-state/runwasi-wasmedge:v0.13.5
+  installPath: /usr/local/bin
+---
+# WasmEdge with WASI-NN Plugin (AI inference support)
+apiVersion: runtime.kwasm.sh/v1alpha1
+kind: Shim
+metadata:
+  name: wasmedge-nn
+spec:
+  shimName: wasmedge
+  shimVersion: "0.13.5"
+  runtimeClassName: wasmedge-nn
+  handler: wasmedge
+  nodeSelector:
+    kubernetes.io/os: linux
+    ai.hardware/accelerator: "true"
+  fetchStrategy:
+    type: oci
+    ociRef: ghcr.io/second-state/runwasi-wasmedge-nn:v0.13.5
+  installPath: /usr/local/bin
+---
+# Spin (Wasmtime) Shim Installation
+apiVersion: runtime.kwasm.sh/v1alpha1
+kind: Shim
+metadata:
+  name: spin
+spec:
+  shimName: spin
+  shimVersion: "v2.7.0"
+  runtimeClassName: wasmtime-spin
+  handler: spin
+  nodeSelector:
+    kubernetes.io/os: linux
+  fetchStrategy:
+    type: oci
+    ociRef: ghcr.io/spinkube/containerd-shim-spin:v0.15.1
+  installPath: /usr/local/bin
+---
+# Spin Shim for ARM64 nodes
+apiVersion: runtime.kwasm.sh/v1alpha1
+kind: Shim
+metadata:
+  name: spin-arm64
+spec:
+  shimName: spin
+  shimVersion: "v2.7.0"
+  runtimeClassName: wasmtime-spin-arm64
+  handler: spin
+  nodeSelector:
+    kubernetes.io/os: linux
+    kubernetes.io/arch: arm64
+  fetchStrategy:
+    type: oci
+    ociRef: ghcr.io/spinkube/containerd-shim-spin:v0.15.1-arm64
+  installPath: /usr/local/bin
+---
+# Combined Runtime for multi-runtime workloads
+apiVersion: runtime.kwasm.sh/v1alpha1
+kind: Shim
+metadata:
+  name: wasm-multi
+spec:
+  shimName: wasmtime
+  shimVersion: "latest"
+  runtimeClassName: wasm-multi
+  handler: wasmtime
+  nodeSelector:
+    kubernetes.io/os: linux
+    wasm.runtime/multi: "true"
+  fetchStrategy:
+    type: oci
+    ociRef: ghcr.io/containerd/runwasi:latest
+  installPath: /usr/local/bin

@@ -1,0 +1,169 @@
+{
+  "file_hash": "594c53512c003fbf7ba11603d618337c",
+  "feature": {
+    "id": "121 5325",
+    "name": "NR Service-Adaptive DRX",
+    "cxc_code": "CXC4012548",
+    "value_package": "Performance Boost",
+    "value_package_id": "FAJ 801 4021",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The NR Service-Adaptive DRX feature balances the use of radio resources and reduces UE",
+    "parameters": [
+      {
+        "name": "NRCellDU.drxProfileRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "DrxProfile.drxProfileId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfile.ueConfGroupType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfile"
+      },
+      {
+        "name": "DrxProfileUeCfg.drxProfileUeCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfileUeCfg"
+      },
+      {
+        "name": "DrxProfileUeCfg.ueGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfileUeCfg"
+      },
+      {
+        "name": "DrxProfileUeCfg.prefUeGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfileUeCfg"
+      },
+      {
+        "name": "DrxProfileUeCfg.drxEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfileUeCfg"
+      },
+      {
+        "name": "DrxProfileUeCfg.drxInactivityTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfileUeCfg"
+      },
+      {
+        "name": "DrxProfileUeCfg.drxLongCycle",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfileUeCfg"
+      },
+      {
+        "name": "DrxProfileUeCfg.drxOnDurationTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfileUeCfg"
+      },
+      {
+        "name": "DrxProfileUeCfg.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfileUeCfg"
+      },
+      {
+        "name": "DrxProfileUeCfg.ueConfGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfileUeCfg"
+      },
+      {
+        "name": "DrxProfileUeCfg.drxRetransmissionTimerUl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfileUeCfg"
+      },
+      {
+        "name": "DrxProfileUeCfg.drxRetransmissionTimerDl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DrxProfileUeCfg"
+      },
+      {
+        "name": "Uen.AG",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "PreschedulingUeCfg.highPrioPreschedPauseDuration",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "PreschedulingUeCfg"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmDrxSleepTime",
+        "description": "Performance counter pmDrxSleepTime",
+        "category": "Energy"
+      },
+      {
+        "name": "pmDrxTotalTime",
+        "description": "Performance counter pmDrxTotalTime",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacTimeDlDrb",
+        "description": "Performance counter pmEbsnMacTimeDlDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacTimeDlDrbQos",
+        "description": "Performance counter pmEbsnMacTimeDlDrbQos",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacVolDlDrb",
+        "description": "Performance counter pmEbsnMacVolDlDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacVolDrbQos",
+        "description": "Performance counter pmEbsnMacVolDrbQos",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012548 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012548 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/127_22104-LZA7016017_1Uen.AG.md",
+    "file_hash": "594c53512c003fbf7ba11603d618337c",
+    "processed_at": "2025-10-19 15:48:56",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

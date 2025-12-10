@@ -1,0 +1,19 @@
+FROM node:22-slim
+WORKDIR /app
+
+# Copy package files
+COPY agentic-flow/package.json ./
+COPY agentic-flow/dist ./dist
+COPY agentic-flow/.claude ./.claude
+COPY docker/test-mcp-args.sh /test-mcp-args.sh
+
+# Install dependencies and link
+RUN npm install --omit=dev && npm link
+
+# Set up test environment
+ENV ANTHROPIC_API_KEY=sk-ant-test-key-12345
+ENV OPENROUTER_API_KEY=sk-or-test-key-67890
+
+RUN chmod +x /test-mcp-args.sh
+
+CMD ["/test-mcp-args.sh"]

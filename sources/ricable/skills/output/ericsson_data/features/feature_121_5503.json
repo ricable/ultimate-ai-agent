@@ -1,0 +1,104 @@
+{
+  "id": "121 5503",
+  "name": "NR QoS Profile Modification",
+  "cxc_code": "CXC4012622",
+  "value_package": "Advanced RAN Slicing",
+  "value_package_id": "FAJ 801 4019",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature supports the termination of the O-RAN A1 interface in the gNodeB and a",
+  "parameters": [
+    {
+      "name": "LocalA1Endpoint.addressRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LocalA1Endpoint"
+    },
+    {
+      "name": "LocalA1Endpoint.localA1EndpointId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LocalA1Endpoint"
+    },
+    {
+      "name": "LocalA1Endpoint.nodeCredentialRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LocalA1Endpoint"
+    },
+    {
+      "name": "LocalA1Endpoint.portNumber",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LocalA1Endpoint"
+    },
+    {
+      "name": "LocalA1Endpoint.trustCategoryRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LocalA1Endpoint"
+    },
+    {
+      "name": "Uen.H",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "RAN.WG2",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RAN"
+    },
+    {
+      "name": "UeCfg.priorityLevel",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UeCfg"
+    },
+    {
+      "name": "SchedulingProfile.relativePriority",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "SchedulingProfile"
+    },
+    {
+      "name": "UeCfg.schedulingProfileRef",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UeCfg"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEvents",
+      "description": "Performance counter pmEvents",
+      "category": "General"
+    },
+    {
+      "name": "pmevent",
+      "description": "Performance counter pmevent",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012622 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012622 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/165_22104-LZA7016017_1Uen.H.md",
+  "file_hash": "476c97bd2bca0d0c74f917e68a177006",
+  "processed_at": "2025-10-19 15:48:56",
+  "network_impact": {},
+  "performance_impact": {}
+}

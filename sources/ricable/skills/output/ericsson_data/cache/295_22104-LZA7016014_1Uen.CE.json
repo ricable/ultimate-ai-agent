@@ -1,0 +1,186 @@
+{
+  "file_hash": "ed0f71e13a04cbd4e89d5fad4d89d21a",
+  "feature": {
+    "id": "121 4655",
+    "name": "Idle Mode Extended DRX",
+    "cxc_code": "CXC4012079",
+    "value_package": "M-IoT RAN on LTE Base Package",
+    "value_package_id": "FAJ 801 1000",
+    "access_type": "MI",
+    "node_type": "Baseband Radio Node  DU Radio Node",
+    "description": "",
+    "summary": "The feature reduces the power consumption of LTE, Category M1, and NB-IoT UEs in idle",
+    "parameters": [
+      {
+        "name": "ENodeBFunction.timePhaseMaxDeviationEdrx",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranCellFDD.eDrxAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.eDrxUeType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.eDrxAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "Paging.pagingDiscardTimerEdrx",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Paging"
+      },
+      {
+        "name": "Paging.pagingDiscardTimerEdrxNb",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "Paging"
+      },
+      {
+        "name": "TimeSettings.gpsToUtcLeapSeconds",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TimeSettings"
+      },
+      {
+        "name": "TimeSettings.gpsToUtcLeapSecondsChangeDate",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TimeSettings"
+      },
+      {
+        "name": "ENodeBFunction.timePhaseSyncStateEdrx",
+        "type": "Affected",
+        "description": "Indicates if the time and phase synchronization accuracy requirement                                 is fulfilled for the eDRX. The feature has the following                                 options:     If the eDRX is enabled, the value is updated by the                                         system.      If the eDRX is disabled, the value is FALSE                                         regardless of the synchronization accuracy.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "Uen.CE",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "NbIoTCell.pmPagS1EdrxReceived",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NbIoTCell"
+      },
+      {
+        "name": "NbIoTCell.pmPagS1Received",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NbIoTCell"
+      },
+      {
+        "name": "NbIoTCell.pmPagS1EdrxDiscarded",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NbIoTCell"
+      },
+      {
+        "name": "NbIoTCell.pmPagS1Discarded",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NbIoTCell"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmPagDiscarded",
+        "description": "Performance counter pmPagDiscarded",
+        "category": "General"
+      },
+      {
+        "name": "pmPagDiscardedCe",
+        "description": "Performance counter pmPagDiscardedCe",
+        "category": "General"
+      },
+      {
+        "name": "pmPagDiscardedNb",
+        "description": "Performance counter pmPagDiscardedNb",
+        "category": "General"
+      },
+      {
+        "name": "pmPagEdrxDiscarded",
+        "description": "Performance counter pmPagEdrxDiscarded",
+        "category": "General"
+      },
+      {
+        "name": "pmPagEdrxReceived",
+        "description": "Performance counter pmPagEdrxReceived",
+        "category": "General"
+      },
+      {
+        "name": "pmPagReceived",
+        "description": "Performance counter pmPagReceived",
+        "category": "General"
+      },
+      {
+        "name": "pmPagReceivedCe",
+        "description": "Performance counter pmPagReceivedCe",
+        "category": "General"
+      },
+      {
+        "name": "pmPagReceivedNb",
+        "description": "Performance counter pmPagReceivedNb",
+        "category": "General"
+      },
+      {
+        "name": "pmPagS1Discarded",
+        "description": "Performance counter pmPagS1Discarded",
+        "category": "General"
+      },
+      {
+        "name": "pmPagS1EdrxDiscarded",
+        "description": "Performance counter pmPagS1EdrxDiscarded",
+        "category": "General"
+      },
+      {
+        "name": "pmPagS1EdrxReceived",
+        "description": "Performance counter pmPagS1EdrxReceived",
+        "category": "General"
+      },
+      {
+        "name": "pmPagS1Received",
+        "description": "Performance counter pmPagS1Received",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012079 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012079 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/295_22104-LZA7016014_1Uen.CE.md",
+    "file_hash": "ed0f71e13a04cbd4e89d5fad4d89d21a",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

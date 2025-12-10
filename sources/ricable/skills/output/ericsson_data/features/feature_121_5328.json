@@ -1,0 +1,676 @@
+{
+  "id": "121 5328",
+  "name": "RRC Inactive State",
+  "cxc_code": "CXC4012550",
+  "value_package": "Intelligent Traffic Management and Mobility",
+  "value_package_id": "FAJ 801 4022",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature enables the gNodeB to release the UE to RRC_INACTIVE state instead of",
+  "parameters": [
+    {
+      "name": "RrcInactiveProfile.ueConfGroupType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RrcInactiveProfile"
+    },
+    {
+      "name": "RrcInactiveProfileUeCfg.prefUeGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RrcInactiveProfileUeCfg"
+    },
+    {
+      "name": "RrcInactiveProfileUeCfg.ueGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RrcInactiveProfileUeCfg"
+    },
+    {
+      "name": "RrcInactiveProfileUeCfg.ueConfGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RrcInactiveProfileUeCfg"
+    },
+    {
+      "name": "RrcInactiveProfileUeCfg.rrcInactiveStateSupport",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RrcInactiveProfileUeCfg"
+    },
+    {
+      "name": "RrcInactiveProfileUeCfg.periodicRnaUpdateCount",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RrcInactiveProfileUeCfg"
+    },
+    {
+      "name": "RrcInactiveProfileUeCfg.periodicRnaUpdateTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "RrcInactiveProfileUeCfg"
+    },
+    {
+      "name": "Rrc.t319",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "Rrc"
+    },
+    {
+      "name": "Uen.BY33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRCellDU.serviceState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "NRCellDU.administrativeState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "InactivityProfileUeCfg.nasInactivityTime",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "InactivityProfileUeCfg"
+    },
+    {
+      "name": "InactivityProfileUeCfg.tInactivityTimer",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "InactivityProfileUeCfg"
+    },
+    {
+      "name": "NRCellDU.cellBarred",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "RRC.t380",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RRC"
+    },
+    {
+      "name": "RrcInactiveProfileUeCfg.PeriodicRNAUpdateCount",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "RrcInactiveProfileUeCfg"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmDrbEstabAtt5qi",
+      "description": "Performance counter pmDrbEstabAtt5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbEstabSucc5qi",
+      "description": "Performance counter pmDrbEstabSucc5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelAbnormalAmf5qi",
+      "description": "Performance counter pmDrbRelAbnormalAmf5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelAbnormalAmfAct5qi",
+      "description": "Performance counter pmDrbRelAbnormalAmfAct5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelAbnormalAmfInact5qi",
+      "description": "Performance counter pmDrbRelAbnormalAmfInact5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelAbnormalGnb5qi",
+      "description": "Performance counter pmDrbRelAbnormalGnb5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelAbnormalGnbAct5qi",
+      "description": "Performance counter pmDrbRelAbnormalGnbAct5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelAbnormalGnbInact5qi",
+      "description": "Performance counter pmDrbRelAbnormalGnbInact5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelNormal5qi",
+      "description": "Performance counter pmDrbRelNormal5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbRelNormalInact5qi",
+      "description": "Performance counter pmDrbRelNormalInact5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbResumeAtt5qi",
+      "description": "Performance counter pmDrbResumeAtt5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbResumeAttArp",
+      "description": "Performance counter pmDrbResumeAttArp",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbResumeSucc5qi",
+      "description": "Performance counter pmDrbResumeSucc5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbResumeSuccArp",
+      "description": "Performance counter pmDrbResumeSuccArp",
+      "category": "General"
+    },
+    {
+      "name": "pmDrbSuspend5qi",
+      "description": "Performance counter pmDrbSuspend5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbRelAbnormalAmfInact5qi",
+      "description": "Performance counter pmEbsDrbRelAbnormalAmfInact5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbRelAbnormalGnb5qi",
+      "description": "Performance counter pmEbsDrbRelAbnormalGnb5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbRelAbnormalGnbInact5qi",
+      "description": "Performance counter pmEbsDrbRelAbnormalGnbInact5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbRelNormalInact5qi",
+      "description": "Performance counter pmEbsDrbRelNormalInact5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbResumeAtt5qi",
+      "description": "Performance counter pmEbsDrbResumeAtt5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbResumeSucc5qi",
+      "description": "Performance counter pmEbsDrbResumeSucc5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsDrbSuspend5qi",
+      "description": "Performance counter pmEbsDrbSuspend5qi",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsPduSessionRelAbnormalGnb",
+      "description": "Performance counter pmEbsPduSessionRelAbnormalGnb",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnEstabLatDistr",
+      "description": "Performance counter pmEbsRrcConnEstabLatDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnResumeFailBbIntens",
+      "description": "Performance counter pmEbsRrcConnResumeFailBbIntens",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnResumeLatDistr",
+      "description": "Performance counter pmEbsRrcConnResumeLatDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcInactLevelMax",
+      "description": "Performance counter pmEbsRrcInactLevelMax",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcInactLevelPlmnMax",
+      "description": "Performance counter pmEbsRrcInactLevelPlmnMax",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcInactLevelSamp",
+      "description": "Performance counter pmEbsRrcInactLevelSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcInactLevelSum",
+      "description": "Performance counter pmEbsRrcInactLevelSum",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcResumeAtt",
+      "description": "Performance counter pmEbsRrcResumeAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcResumeAttFallback",
+      "description": "Performance counter pmEbsRrcResumeAttFallback",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcResumeAttResume",
+      "description": "Performance counter pmEbsRrcResumeAttResume",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcResumeAttResumeCause",
+      "description": "Performance counter pmEbsRrcResumeAttResumeCause",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcResumeAttResumeResumeCause",
+      "description": "Performance counter pmEbsRrcResumeAttResumeResumeCause",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcResumeSuccFallback",
+      "description": "Performance counter pmEbsRrcResumeSuccFallback",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcResumeSuccResume",
+      "description": "Performance counter pmEbsRrcResumeSuccResume",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcResumeSuccResumeResumeCause",
+      "description": "Performance counter pmEbsRrcResumeSuccResumeResumeCause",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUeCtxtEstabLatDistr",
+      "description": "Performance counter pmEbsUeCtxtEstabLatDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlDtxQpsk",
+      "description": "Performance counter pmMacHarqDlDtxQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlDtxQpskInit",
+      "description": "Performance counter pmMacHarqDlDtxQpskInit",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlFail",
+      "description": "Performance counter pmMacHarqDlFail",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNackQpsk",
+      "description": "Performance counter pmMacHarqDlNackQpsk",
+      "category": "General"
+    },
+    {
+      "name": "pmMacHarqDlNackQpskInit",
+      "description": "Performance counter pmMacHarqDlNackQpskInit",
+      "category": "General"
+    },
+    {
+      "name": "pmNgSigConnEstabAtt",
+      "description": "Performance counter pmNgSigConnEstabAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmNgSigConnEstabAttMos",
+      "description": "Performance counter pmNgSigConnEstabAttMos",
+      "category": "General"
+    },
+    {
+      "name": "pmNgSigConnEstabSucc",
+      "description": "Performance counter pmNgSigConnEstabSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmNgSigConnEstabSuccMos",
+      "description": "Performance counter pmNgSigConnEstabSuccMos",
+      "category": "General"
+    },
+    {
+      "name": "pmPagBundledUeDistr",
+      "description": "Performance counter pmPagBundledUeDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmPagBundledUeSampDistr",
+      "description": "Performance counter pmPagBundledUeSampDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmPagDiscarded",
+      "description": "Performance counter pmPagDiscarded",
+      "category": "General"
+    },
+    {
+      "name": "pmPagF1Discarded",
+      "description": "Performance counter pmPagF1Discarded",
+      "category": "General"
+    },
+    {
+      "name": "pmPagF1Received",
+      "description": "Performance counter pmPagF1Received",
+      "category": "General"
+    },
+    {
+      "name": "pmPagRanIntraGnbNonTrig",
+      "description": "Performance counter pmPagRanIntraGnbNonTrig",
+      "category": "General"
+    },
+    {
+      "name": "pmPagRanIntraGnbTrig",
+      "description": "Performance counter pmPagRanIntraGnbTrig",
+      "category": "General"
+    },
+    {
+      "name": "pmPagReceived",
+      "description": "Performance counter pmPagReceived",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktRecDlDiscInact",
+      "description": "Performance counter pmPdcpPktRecDlDiscInact",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktRecDlInact",
+      "description": "Performance counter pmPdcpPktRecDlInact",
+      "category": "General"
+    },
+    {
+      "name": "pmPduSessionRelAbnormalGnb",
+      "description": "Performance counter pmPduSessionRelAbnormalGnb",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcAccessFailBbIntens",
+      "description": "Performance counter pmRrcAccessFailBbIntens",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAtt",
+      "description": "Performance counter pmRrcConnEstabAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttMos",
+      "description": "Performance counter pmRrcConnEstabAttMos",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttReatt",
+      "description": "Performance counter pmRrcConnEstabAttReatt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttReattMos",
+      "description": "Performance counter pmRrcConnEstabAttReattMos",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabSucc",
+      "description": "Performance counter pmRrcConnEstabSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabSuccMos",
+      "description": "Performance counter pmRrcConnEstabSuccMos",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnReestFallbackAtt",
+      "description": "Performance counter pmRrcConnReestFallbackAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnReestFallbackSucc",
+      "description": "Performance counter pmRrcConnReestFallbackSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcInactLevelMax",
+      "description": "Performance counter pmRrcInactLevelMax",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcInactLevelSamp",
+      "description": "Performance counter pmRrcInactLevelSamp",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcInactLevelSum",
+      "description": "Performance counter pmRrcInactLevelSum",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeAtt",
+      "description": "Performance counter pmRrcResumeAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeAttFallback",
+      "description": "Performance counter pmRrcResumeAttFallback",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeAttFallbackEm",
+      "description": "Performance counter pmRrcResumeAttFallbackEm",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeAttFallbackRnaUpdate",
+      "description": "Performance counter pmRrcResumeAttFallbackRnaUpdate",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeAttRelInact",
+      "description": "Performance counter pmRrcResumeAttRelInact",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeAttResume",
+      "description": "Performance counter pmRrcResumeAttResume",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeAttResumeEm",
+      "description": "Performance counter pmRrcResumeAttResumeEm",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeAttRnaUpdate",
+      "description": "Performance counter pmRrcResumeAttRnaUpdate",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeRelIdle",
+      "description": "Performance counter pmRrcResumeRelIdle",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeSuccFallback",
+      "description": "Performance counter pmRrcResumeSuccFallback",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeSuccFallbackEm",
+      "description": "Performance counter pmRrcResumeSuccFallbackEm",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeSuccFallbackRnaUpdate",
+      "description": "Performance counter pmRrcResumeSuccFallbackRnaUpdate",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeSuccRelInact",
+      "description": "Performance counter pmRrcResumeSuccRelInact",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeSuccResume",
+      "description": "Performance counter pmRrcResumeSuccResume",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeSuccResumeEm",
+      "description": "Performance counter pmRrcResumeSuccResumeEm",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcResumeSuccRnaUpdate",
+      "description": "Performance counter pmRrcResumeSuccRnaUpdate",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalGnb",
+      "description": "Performance counter pmUeCtxtRelAbnormalGnb",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalGnbInact",
+      "description": "Performance counter pmUeCtxtRelAbnormalGnbInact",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelNormalInact",
+      "description": "Performance counter pmUeCtxtRelNormalInact",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtSuspend",
+      "description": "Performance counter pmUeCtxtSuspend",
+      "category": "General"
+    },
+    {
+      "name": "pmand",
+      "description": "Performance counter pmand",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "CuCpDrbSuspend",
+      "type": "This event is used to monitor DRB suspension when the UE is                                     released to RRC_INACTIVE state.",
+      "description": ""
+    },
+    {
+      "name": "CuCpRrcResumeRequest",
+      "type": "This event is used to monitor the RRC Resume Request message in                                     NR Standalone deployment.",
+      "description": ""
+    },
+    {
+      "name": "CuCpRrcResume",
+      "type": "This event is used to monitor the RRC Resume message in NR                                     Standalone deployment.",
+      "description": ""
+    },
+    {
+      "name": "CuCpRrcResumeComplete",
+      "type": "This event is used  to monitor the RRC Resume Complete message in                                     NR Standalone deployment.",
+      "description": ""
+    },
+    {
+      "name": "CuCpProcRrcResume",
+      "type": "This event is used  to monitor the RRC Resume procedure in NR                                     Standalone deployment.",
+      "description": ""
+    },
+    {
+      "name": "DuRrcResumeRequest",
+      "type": "This event is used when RRCResumeRequest is                                     rejected by the Baseband because of connection intensity control                                     or if the RRCResumeRequest is rejected by the                                     main processor because of main processor load.",
+      "description": ""
+    },
+    {
+      "name": "CuCpPerRanPagRep",
+      "type": "This is a periodic event to monitor the number of RAN Paging                                     messages.",
+      "description": ""
+    },
+    {
+      "name": "CuCpPerCuCpRrcInactiveUe",
+      "type": "This is a periodic event to monitor the number of UEs in                                     RRC_INACTIVE state.",
+      "description": ""
+    },
+    {
+      "name": "CuCpPerCellRrcInactiveUe",
+      "type": "This is a periodic event to monitor the number of UEs in                                     RRC_INACTIVE state in an NR cell.",
+      "description": ""
+    },
+    {
+      "name": "CuCpF1Paging",
+      "type": "This event is used to monitor paging message.",
+      "description": ""
+    },
+    {
+      "name": "DuF1Paging",
+      "type": "This event is used to monitor paging message.",
+      "description": ""
+    },
+    {
+      "name": "DuProcRrcAccess",
+      "type": "This event is updated with RRC Resume procedure.",
+      "description": ""
+    },
+    {
+      "name": "CuCpProcUeCtxtRel",
+      "type": "This event is updated to indicate if a UE is in RRC_INACTIVE                                     state.",
+      "description": ""
+    },
+    {
+      "name": "CuCpProcPduSessionResourceModify",
+      "type": "This event is updated to indicate if a UE is in RRC_INACTIVE                                     state.",
+      "description": ""
+    },
+    {
+      "name": "CuCpProcPduSessionResourceRelease",
+      "type": "This event is updated to indicate if a UE is in RRC_INACTIVE                                     state.",
+      "description": ""
+    },
+    {
+      "name": "CuUpPerNfTrafficRep",
+      "type": "Updated to support new parameters and counters.",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012550 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012550 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/116_22104-LZA7016017_1Uen.BY33B.md",
+  "file_hash": "bd36dd11ec089c41b14a47d1d74917c1",
+  "processed_at": "2025-10-19 15:50:03",
+  "network_impact": {},
+  "performance_impact": {}
+}

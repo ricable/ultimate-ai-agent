@@ -1,0 +1,107 @@
+# Default values for jujutsu-gitops-controller
+
+replicaCount: 2
+
+image:
+  repository: agentic-jujutsu/controller
+  pullPolicy: IfNotPresent
+  tag: "v0.1.0"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: "ajj-controller"
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 65532
+  fsGroup: 65532
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+
+service:
+  type: ClusterIP
+  port: 443
+  targetPort: 9443
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - jujutsu-gitops-controller
+          topologyKey: kubernetes.io/hostname
+
+# Controller configuration
+controller:
+  repoPath: "/tmp/gitops-repo"
+  reconcileInterval: "30s"
+  leaderElection:
+    enabled: true
+
+# Jujutsu repository configuration
+repository:
+  url: ""
+  # If using git-colocated repository
+  gitSync:
+    enabled: false
+    interval: "30s"
+
+# Metrics
+metrics:
+  enabled: true
+  port: 8080
+  serviceMonitor:
+    enabled: false
+    interval: 30s
+
+# Health probes
+healthProbe:
+  enabled: true
+  port: 8081
+
+# RBAC
+rbac:
+  create: true
+
+# Webhook configuration
+webhook:
+  enabled: true
+  port: 9443
+  certManager:
+    enabled: true

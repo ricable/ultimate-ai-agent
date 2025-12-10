@@ -1,0 +1,699 @@
+{
+  "id": "121 4368",
+  "name": "Differentiated UE Handling",
+  "cxc_code": "CXC4011951",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Differentiated UE Handling feature introduces a device handling framework in the",
+  "parameters": [
+    {
+      "name": "ImeisvProfile.listOfFeaturesToTurnOff",
+      "type": "Introduced",
+      "description": "See MOM description.(1)",
+      "mo_class": "ImeisvProfile"
+    },
+    {
+      "name": "ImeisvProfile.listOfFeaturesToTurnOn",
+      "type": "Introduced",
+      "description": "See MOM description.(1)",
+      "mo_class": "ImeisvProfile"
+    },
+    {
+      "name": "ImeisvProfile.listOfTacSvSns",
+      "type": "Introduced",
+      "description": "See MOM description.(1)",
+      "mo_class": "ImeisvProfile"
+    },
+    {
+      "name": "ImeisvProfile.voiceDrxProfileRef",
+      "type": "Introduced",
+      "description": "See MOM description.(1)",
+      "mo_class": "ImeisvProfile"
+    },
+    {
+      "name": "ImeisvProfile.nonVoiceDrxProfileRef",
+      "type": "Introduced",
+      "description": "See MOM description.(1)",
+      "mo_class": "ImeisvProfile"
+    },
+    {
+      "name": "ENodeBFunction.caUnknownImeisvEnabled",
+      "type": "Affecting",
+      "description": "The IMEISV is not provided for IRAT handover from WCDMA to LTE. If the                   ENodeBFunction.caUnknownImeisvEnabled attribute is set to                   true, the Carrier Aggregation feature is not disabled for UEs                 with unknown IMEISV even if the Carrier Aggregation feature is included in the                   ImeisvProfiles.listOfFeaturesToTurnOff attribute. UEs with                 known IMEISV are not affected by this attribute.",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_EVENT_UE_LB_MEAS",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_EVENT_UE_LB_QUAL",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_ERAB_MODIFY",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_ERAB_SETUP",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_ERAB_RELEASE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_EXEC_S1_IN",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_EXEC_X2_IN",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_PREP_X2_IN",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_RRC_CONN_RECONF_NO_MOB",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_UE_CTXT_RELEASE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_EVENT_UE_LB_MEAS",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_EVENT_UE_LB_QUAL",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_ERAB_MODIFY",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_ERAB_SETUP",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_ERAB_RELEASE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_EXEC_S1_IN",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_EXEC_X2_IN",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_PREP_X2_IN",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_RRC_CONN_RECONF_NO_MOB",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_UE_CTXT_RELEASE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_EVENT_UE_LB_MEAS",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_EVENT_UE_LB_QUAL",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_ERAB_MODIFY",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_ERAB_SETUP",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_ERAB_RELEASE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_EXEC_S1_IN",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_EXEC_X2_IN",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_PREP_X2_IN",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_RRC_CONN_RECONF_NO_MOB",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_UE_CTXT_RELEASE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.BF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "ConnectivityDrxProfile.OnDurationTimer",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ConnectivityDrxProfile"
+    },
+    {
+      "name": "DrxProfile.OnDurationTimer",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "DrxProfile"
+    },
+    {
+      "name": "UEs.Note",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "UEs"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmInhibitImeisvFeature",
+      "description": "Performance counter pmInhibitImeisvFeature",
+      "category": "General"
+    },
+    {
+      "name": "pmModImeisvParamSet",
+      "description": "Performance counter pmModImeisvParamSet",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_EVENT_UE_LB_MEAS",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_EVENT_UE_LB_QUAL",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_ERAB_MODIFY",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_ERAB_SETUP",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_ERAB_RELEASE",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_EXEC_S1_IN",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_EXEC_X2_IN",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_PREP_X2_IN",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_RRC_CONN_RECONF_NO_MOB",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_TAC",
+      "type": "INTERNAL_PROC_UE_CTXT_RELEASE",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_EVENT_UE_LB_MEAS",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_EVENT_UE_LB_QUAL",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_ERAB_MODIFY",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_ERAB_SETUP",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_ERAB_RELEASE",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_EXEC_S1_IN",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_EXEC_X2_IN",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_PREP_X2_IN",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_RRC_CONN_RECONF_NO_MOB",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_MASKEDSRN",
+      "type": "INTERNAL_PROC_UE_CTXT_RELEASE",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_EVENT_UE_LB_MEAS",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_EVENT_UE_LB_QUAL",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_EVENT_UE_MOBILITY_EVAL",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_ERAB_MODIFY",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_ERAB_SETUP",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_ERAB_RELEASE",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_EXEC_S1_IN",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_EXEC_S1_OUT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_PREP_S1_IN",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_PREP_S1_OUT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_EXEC_X2_IN",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_EXEC_X2_OUT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_PREP_X2_IN",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_HO_PREP_X2_OUT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_INITIAL_CTXT_SETUP",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_RRC_CONN_RECONF_NO_MOB",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_RRC_CONNECTION_RE_ESTABLISHMENT",
+      "description": ""
+    },
+    {
+      "name": "EVENT_PARAM_SVN",
+      "type": "INTERNAL_PROC_UE_CTXT_RELEASE",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": null,
+  "deactivation_step": null,
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/146_22104-LZA7016014_1Uen.BF.md",
+  "file_hash": "7649fccafde8e4705b9ae4ca538daf35",
+  "processed_at": "2025-10-19 15:48:55",
+  "network_impact": {},
+  "performance_impact": {}
+}

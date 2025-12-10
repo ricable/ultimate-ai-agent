@@ -1,0 +1,160 @@
+{
+  "file_hash": "7e4274495954450dccb45f4fe2e034f7",
+  "feature": {
+    "id": "121 1789",
+    "name": "",
+    "cxc_code": "CXC4011064",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "The Delay-Based Scheduling and Grant Estimation feature provides improved average",
+    "parameters": [
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_UE_VOIP_QUALITY_UL_OK",
+        "description": "The number of VoIP users in a cell that are considered satisfied.  A VoIP user is considered satisfied if 99% of the total sent packets in the                     uplink are received within the PDB.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_UE_VOIP_QUALITY_UL_NOK",
+        "description": "The number of VoIP users in a cell that are not considered satisfied.  A VoIP user is considered satisfied if 99% of the total sent packets in uplink                     are received within the PDB. To ensure that enough data exist to decide whether                     a user is satisfied, at least 1,000 packets received packets are necessary.                     However, if the ratio of packets outside packet delay budget is lower than 50%,                     an exception to the rule is applied and the user is considered unsatisfied.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_NOT_ENOUGH_VOIP_DELAY_SAMPLES",
+        "description": "The number of times the following criteria apply:  The sum of received and lost RLC SDUs (PDCP SDUs) in the uplink is lower                           than 1,000     The ratio between pmVoipQualityDrbUlOk and the sum of                           received and lost RLC SDUs (PDCP SDUs) in uplink is between 50% and                           99%.      Only applicable for VoIP.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AE",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "QciProfilePredefined.schedulingAlgorithm",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "QciProfilePredefined.pdb",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmFlexMcPttQualityRbUlNok",
+        "description": "Performance counter pmFlexMcPttQualityRbUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexMcPttQualityRbUlOk",
+        "description": "Performance counter pmFlexMcPttQualityRbUlOk",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexNonMcPttQualityRbUlNok",
+        "description": "Performance counter pmFlexNonMcPttQualityRbUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexNonMcPttQualityRbUlOk",
+        "description": "Performance counter pmFlexNonMcPttQualityRbUlOk",
+        "category": "General"
+      },
+      {
+        "name": "pmMCPttQualityRbUlNok",
+        "description": "Performance counter pmMCPttQualityRbUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmMcPttQualityRbUlOk",
+        "description": "Performance counter pmMcPttQualityRbUlOk",
+        "category": "General"
+      },
+      {
+        "name": "pmNonMCPttQualityRbUlNok",
+        "description": "Performance counter pmNonMCPttQualityRbUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmNonMcPttQualityRbUlOk",
+        "description": "Performance counter pmNonMcPttQualityRbUlOk",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktPdbUlOkMcPtt",
+        "description": "Performance counter pmPdcpPktPdbUlOkMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktPdbUlOkNonMcPtt",
+        "description": "Performance counter pmPdcpPktPdbUlOkNonMcPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityDrbUlOk",
+        "description": "Performance counter pmVoipQualityDrbUlOk",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityUeUlLowSampl",
+        "description": "Performance counter pmVoipQualityUeUlLowSampl",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityUeUlNok",
+        "description": "Performance counter pmVoipQualityUeUlNok",
+        "category": "General"
+      },
+      {
+        "name": "pmVoipQualityUeUlOk",
+        "description": "Performance counter pmVoipQualityUeUlOk",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_UE_VOIP_QUALITY_UL_OK",
+        "description": "The number of VoIP users in a cell that are considered satisfied.  A VoIP user is considered satisfied if 99% of the total sent packets in the                     uplink are received within the PDB."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_PER_UE_VOIP_QUALITY_UL_NOK",
+        "description": "The number of VoIP users in a cell that are not considered satisfied.  A VoIP user is considered satisfied if 99% of the total sent packets in uplink                     are received within the PDB. To ensure that enough data exist to decide whether                     a user is satisfied, at least 1,000 packets received packets are necessary.                     However, if the ratio of packets outside packet delay budget is lower than 50%,                     an exception to the rule is applied and the user is considered unsatisfied."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_TRAFFIC_REPORT",
+        "type": "EVENT_PARAM_NOT_ENOUGH_VOIP_DELAY_SAMPLES",
+        "description": "The number of times the following criteria apply:  The sum of received and lost RLC SDUs (PDCP SDUs) in the uplink is lower                           than 1,000     The ratio between pmVoipQualityDrbUlOk and the sum of                           received and lost RLC SDUs (PDCP SDUs) in uplink is between 50% and                           99%.      Only applicable for VoIP."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011064 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011064 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch5/86_22104-LZA7016014_1Uen.AE.md",
+    "file_hash": "7e4274495954450dccb45f4fe2e034f7",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "file_hash": "8b26064dec6f31451ef4d6f3570493b7",
+  "feature": {
+    "id": "121 5036",
+    "name": "Accelerated Inter-Frequency Load Balancing",
+    "cxc_code": "CXC4012349",
+    "value_package": "Multi-Carrier Load Management",
+    "value_package_id": "FAJ 801 0427",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature manages uneven distribution of traffic load in cases with fast and large",
+    "parameters": [
+      {
+        "name": "LoadBalancingFunction.lbCycle",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoadBalancingFunction"
+      },
+      {
+        "name": "LoadBalancingFunction.lbSubCycle",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoadBalancingFunction"
+      },
+      {
+        "name": "Uen.AJ",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UnsupportedFreqProfile.unsupportedFreqList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UnsupportedFreqProfile"
+      },
+      {
+        "name": "EUtranCellFDD.iflbAbEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.iflbAbEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCounters",
+        "description": "Performance counter pmCounters",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012349 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012349 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/451_22104-LZA7016014_1Uen.AJ.md",
+    "file_hash": "8b26064dec6f31451ef4d6f3570493b7",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

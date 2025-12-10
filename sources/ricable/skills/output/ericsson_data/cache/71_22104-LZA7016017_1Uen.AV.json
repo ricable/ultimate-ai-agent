@@ -1,0 +1,169 @@
+{
+  "file_hash": "4ff812c14afb69aae205cd206347dcd4",
+  "feature": {
+    "id": "121 5192",
+    "name": "Priority-Controlled Scheduling",
+    "cxc_code": "CXC4012475",
+    "value_package": "NR Base Package",
+    "value_package_id": "FAJ 801 4002",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature enables scheduling priority configuration on a QCI and 5QI",
+    "parameters": [
+      {
+        "name": "QosPriorityMapping.defaultDomain",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QosPriorityMapping"
+      },
+      {
+        "name": "PriorityDomainMapping.priorityLevelsList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PriorityDomainMapping"
+      },
+      {
+        "name": "PriorityDomainMapping.priorityDomain",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "PriorityDomainMapping"
+      },
+      {
+        "name": "DU5qi.priorityLevel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DU5qi"
+      },
+      {
+        "name": "DUModified5qiUeCfg.schedulingProfileRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DUModified5qiUeCfg"
+      },
+      {
+        "name": "Uen.AV",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UeCfg.prefUeGroupList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeCfg"
+      },
+      {
+        "name": "UeCfg.ueConfGroupList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeCfg"
+      },
+      {
+        "name": "UeCfg.ueGroupList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeCfg"
+      },
+      {
+        "name": "UeCfg.packetDelayBudget",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeCfg"
+      },
+      {
+        "name": "UeCfg.priorityLevel",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeCfg"
+      },
+      {
+        "name": "UeCfg.schedulingProfileRef",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeCfg"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMacContentionDelayDlMaxQos",
+        "description": "Performance counter pmMacContentionDelayDlMaxQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacLatTimeDlDrxSyncQos",
+        "description": "Performance counter pmMacLatTimeDlDrxSyncQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacLatTimeDlDrxSyncSampQos",
+        "description": "Performance counter pmMacLatTimeDlDrxSyncSampQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacLatTimeDlNoDrxSyncQos",
+        "description": "Performance counter pmMacLatTimeDlNoDrxSyncQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacLatTimeDlNoDrxSyncSampQos",
+        "description": "Performance counter pmMacLatTimeDlNoDrxSyncSampQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeDlDrbLastSlotQos",
+        "description": "Performance counter pmMacTimeDlDrbLastSlotQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeDlDrbLastSlotSampQos",
+        "description": "Performance counter pmMacTimeDlDrbLastSlotSampQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeDlDrbQos",
+        "description": "Performance counter pmMacTimeDlDrbQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacTimeDlDrbSampQos",
+        "description": "Performance counter pmMacTimeDlDrbSampQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrbLastSlotQos",
+        "description": "Performance counter pmMacVolDlDrbLastSlotQos",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolDlDrbQos",
+        "description": "Performance counter pmMacVolDlDrbQos",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012475 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012475 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch4/71_22104-LZA7016017_1Uen.AV.md",
+    "file_hash": "4ff812c14afb69aae205cd206347dcd4",
+    "processed_at": "2025-10-19 15:50:09",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,443 @@
+{
+  "id": "121 5402",
+  "name": "Priority-Based Admission Control",
+  "cxc_code": "CXC4012593",
+  "value_package": "NR Base Package",
+  "value_package_id": "FAJ 801 4002",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature improves accessibility to a highly loaded system for prioritized UEs. In this",
+  "parameters": [
+    {
+      "name": "AdmissionControl.admissionPrioThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.rrcEmergencyPrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.rrcHighPriorityAccessPrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.rrcMtAccessPrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.rrcMoSignalingPrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.rrcMoDataPrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.rrcMoVoiceCallPrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.rrcMoVideoCallPrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.rrcMoSmsPrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.rrcRnaUpdatePrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.rrcMpsPriorityAccessPrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.rrcMcsPriorityAccessPrio",
+      "type": "Introduced",
+      "description": "",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.rrcReestablishmentPrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionControl.admissionControlId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "AdmissionLimit.admissionLimitId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionLimit"
+    },
+    {
+      "name": "AdmissionLimit.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionLimit"
+    },
+    {
+      "name": "AdmissionLimit.maxConnectedUe",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionLimit"
+    },
+    {
+      "name": "AdmissionLimit.preemptionRate",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionLimit"
+    },
+    {
+      "name": "AdmissionPriority.admissionPriorityId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionPriority"
+    },
+    {
+      "name": "AdmissionPriority.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionPriority"
+    },
+    {
+      "name": "AdmissionPriority.ueConfGroupType",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionPriority"
+    },
+    {
+      "name": "AdmissionPriorityUeCfg.admissionPriorityUeCfgId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionPriorityUeCfg"
+    },
+    {
+      "name": "AdmissionPriorityUeCfg.prefUeGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionPriorityUeCfg"
+    },
+    {
+      "name": "AdmissionPriorityUeCfg.ueGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionPriorityUeCfg"
+    },
+    {
+      "name": "AdmissionPriorityUeCfg.ueConfGroupList",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionPriorityUeCfg"
+    },
+    {
+      "name": "AdmissionPriorityUeCfg.uePriority",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "AdmissionPriorityUeCfg"
+    },
+    {
+      "name": "NRCellCU.admissionPriorityRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "NRCellCU.admissionLimitRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "UeAdmissionGroupDefinition.selectionCriteria",
+      "type": "Affecting",
+      "description": "UE differentiation for priority-based UE admission and priority-based                                 UE preemption is based on the relative priority of a UE. Relative                                 priority is determined using the UE Grouping Framework.",
+      "mo_class": "UeAdmissionGroupDefinition"
+    },
+    {
+      "name": "UeAdmissionGroupDefinition.ueAdmissionGroupDefinitionId",
+      "type": "Affecting",
+      "description": "UE differentiation for priority-based UE admission and priority-based                                 UE preemption is based on the relative priority of a UE. Relative                                 priority is determined using the UE Grouping Framework.",
+      "mo_class": "UeAdmissionGroupDefinition"
+    },
+    {
+      "name": "UeAdmissionGroupDefinition.ueAdmissionGroupId",
+      "type": "Affecting",
+      "description": "UE differentiation for priority-based UE admission and priority-based                                 UE preemption is based on the relative priority of a UE. Relative                                 priority is determined using the UE Grouping Framework.",
+      "mo_class": "UeAdmissionGroupDefinition"
+    },
+    {
+      "name": "UeAdmissionGroupDefinition.ueAdmissionGroupPriority",
+      "type": "Affecting",
+      "description": "UE differentiation for priority-based UE admission and priority-based                                 UE preemption is based on the relative priority of a UE. Relative                                 priority is determined using the UE Grouping Framework.",
+      "mo_class": "UeAdmissionGroupDefinition"
+    },
+    {
+      "name": "UeAdmissionGroupDefinition.userLabel",
+      "type": "Affecting",
+      "description": "UE differentiation for priority-based UE admission and priority-based                                 UE preemption is based on the relative priority of a UE. Relative                                 priority is determined using the UE Grouping Framework.",
+      "mo_class": "UeAdmissionGroupDefinition"
+    },
+    {
+      "name": "Uen.AJ",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsEndcMnHoPSCellKeepFailAdmission",
+      "description": "Performance counter pmEbsEndcMnHoPSCellKeepFailAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsEndcPSCellChangeFailIntraSgnbAdmission",
+      "description": "Performance counter pmEbsEndcPSCellChangeFailIntraSgnbAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsEndcPSCellChangeResAllocFailInterSgnbAdmission",
+      "description": "Performance counter pmEbsEndcPSCellChangeResAllocFailInterSgnbAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsEndcRelUeAbnormalSgnbActPe",
+      "description": "Performance counter pmEbsEndcRelUeAbnormalSgnbActPe",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsEndcRelUeAbnormalSgnbPe",
+      "description": "Performance counter pmEbsEndcRelUeAbnormalSgnbPe",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsEndcSetupScgUeFailAdmission",
+      "description": "Performance counter pmEbsEndcSetupScgUeFailAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsEndcSetupUeFailAdmission",
+      "description": "Performance counter pmEbsEndcSetupUeFailAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsHoPrepAttInInterGnb",
+      "description": "Performance counter pmEbsHoPrepAttInInterGnb",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsHoPrepFailInInterGnbAdmission",
+      "description": "Performance counter pmEbsHoPrepFailInInterGnbAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsHoPrepFailOutIntraGnbAdmission",
+      "description": "Performance counter pmEbsHoPrepFailOutIntraGnbAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsHoPrepSuccInInterGnb",
+      "description": "Performance counter pmEbsHoPrepSuccInInterGnb",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsNrdcPSCellChangeResAllocSnFailInterSgnbAdmission",
+      "description": "Performance counter pmEbsNrdcPSCellChangeResAllocSnFailInterSgnbAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsNrdcRelUeSnAbnormalSnInitActPe",
+      "description": "Performance counter pmEbsNrdcRelUeSnAbnormalSnInitActPe",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsNrdcRelUeSnAbnormalSnInitPe",
+      "description": "Performance counter pmEbsNrdcRelUeSnAbnormalSnInitPe",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsNrdcSetupUeSnFailAdmission",
+      "description": "Performance counter pmEbsNrdcSetupUeSnFailAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnEstabAtt",
+      "description": "Performance counter pmEbsRrcConnEstabAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnEstabFailAdmission",
+      "description": "Performance counter pmEbsRrcConnEstabFailAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnEstabSucc",
+      "description": "Performance counter pmEbsRrcConnEstabSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnLevelPriorityMaxEnDc",
+      "description": "Performance counter pmEbsRrcConnLevelPriorityMaxEnDc",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnLevelPriorityMaxNrDc",
+      "description": "Performance counter pmEbsRrcConnLevelPriorityMaxNrDc",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnLevelPriorityMaxSa",
+      "description": "Performance counter pmEbsRrcConnLevelPriorityMaxSa",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnLevelPrioritySumEnDc",
+      "description": "Performance counter pmEbsRrcConnLevelPrioritySumEnDc",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnLevelPrioritySumNrDc",
+      "description": "Performance counter pmEbsRrcConnLevelPrioritySumNrDc",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnLevelPrioritySumSa",
+      "description": "Performance counter pmEbsRrcConnLevelPrioritySumSa",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnReestAtt",
+      "description": "Performance counter pmEbsRrcConnReestAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnReestFailAdmission",
+      "description": "Performance counter pmEbsRrcConnReestFailAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnReestSucc",
+      "description": "Performance counter pmEbsRrcConnReestSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnResumeAtt",
+      "description": "Performance counter pmEbsRrcConnResumeAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnResumeFailAdmission",
+      "description": "Performance counter pmEbsRrcConnResumeFailAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcConnResumeSucc",
+      "description": "Performance counter pmEbsRrcConnResumeSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsRrcResumeFailResumeAdmission",
+      "description": "Performance counter pmEbsRrcResumeFailResumeAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUeCtxtEstabFailAdmission",
+      "description": "Performance counter pmEbsUeCtxtEstabFailAdmission",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUeCtxtRelAbnormalGnbActPe",
+      "description": "Performance counter pmEbsUeCtxtRelAbnormalGnbActPe",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUeCtxtRelAbnormalGnbPe",
+      "description": "Performance counter pmEbsUeCtxtRelAbnormalGnbPe",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcPSCellChangeSuccIntraSgnb",
+      "description": "Performance counter pmEndcPSCellChangeSuccIntraSgnb",
+      "category": "General"
+    },
+    {
+      "name": "pmEndcSetupUeSucc",
+      "description": "Performance counter pmEndcSetupUeSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttMos",
+      "description": "Performance counter pmRrcConnEstabAttMos",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabSuccMos",
+      "description": "Performance counter pmRrcConnEstabSuccMos",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtRelAbnormalGnbAct",
+      "description": "Performance counter pmUeCtxtRelAbnormalGnbAct",
+      "category": "General"
+    },
+    {
+      "name": "pmUeCtxtSetupSucc",
+      "description": "Performance counter pmUeCtxtSetupSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012593 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012593 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/132_22104-LZA7016017_1Uen.AJ.md",
+  "file_hash": "cc46906b4f869b143a594700f1cb42e8",
+  "processed_at": "2025-10-19 15:48:56",
+  "network_impact": {},
+  "performance_impact": {}
+}

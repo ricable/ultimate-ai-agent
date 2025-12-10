@@ -1,0 +1,99 @@
+{
+  "id": "121 5362",
+  "name": "NG eCall Support for Emergency Calls",
+  "cxc_code": "CXC4012569",
+  "value_package": "Broadband IoT",
+  "value_package_id": "FAJ 801 1020",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Next Generation eCall Support for Emergency Calls feature enables the deployment",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.eCallOverImsSupport",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.eCallOverImsSupport",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "Uen.L",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.pmRrcConnEstabAttEm",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.pmRrcConnEstabAttEm",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmErabEstabAttInitArp",
+      "description": "Performance counter pmErabEstabAttInitArp",
+      "category": "General"
+    },
+    {
+      "name": "pmErabEstabSuccInitArp",
+      "description": "Performance counter pmErabEstabSuccInitArp",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttEm",
+      "description": "Performance counter pmRrcConnEstabAttEm",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabAttReattEm",
+      "description": "Performance counter pmRrcConnEstabAttReattEm",
+      "category": "General"
+    },
+    {
+      "name": "pmRrcConnEstabSuccEm",
+      "description": "Performance counter pmRrcConnEstabSuccEm",
+      "category": "General"
+    },
+    {
+      "name": "pmS1SigConnEstabAttEm",
+      "description": "Performance counter pmS1SigConnEstabAttEm",
+      "category": "General"
+    },
+    {
+      "name": "pmS1SigConnEstabSuccEm",
+      "description": "Performance counter pmS1SigConnEstabSuccEm",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012569 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012569 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/531_22104-LZA7016014_1Uen.L.md",
+  "file_hash": "fbc8fcc1a4f4ca62e53b37fb37c19147",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

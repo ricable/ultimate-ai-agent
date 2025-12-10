@@ -1,0 +1,411 @@
+openapi: 3.0.3
+info:
+  title: Climate Prediction API
+  description: |
+    Production-ready REST API for climate predictions using machine learning models.
+
+    ## Authentication
+    All API requests require an API key provided in the `x-api-key` header.
+
+    ## Rate Limiting
+    - Free tier: 10 requests/minute
+    - Premium tier: 100 requests/minute
+    - Enterprise tier: 1000 requests/minute
+
+    ## Caching
+    Predictions are cached for 1 hour to improve performance.
+  version: 0.1.0
+  contact:
+    name: Climate API Support
+    email: support@climate-api.example.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3000/api
+    description: Development server
+  - url: https://api.climate-prediction.example.com/api
+    description: Production server
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns the current health status of the API
+      security: []
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /metrics:
+    get:
+      summary: Prometheus metrics
+      description: Returns Prometheus-formatted metrics
+      security: []
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: Metrics in Prometheus format
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /predictions:
+    get:
+      summary: Get weather prediction
+      description: |
+        Generate a weather prediction for a specific location and time range.
+        Results are cached for 1 hour.
+      tags:
+        - Predictions
+      parameters:
+        - name: lat
+          in: query
+          required: true
+          description: Latitude (-90 to 90)
+          schema:
+            type: number
+            format: double
+            minimum: -90
+            maximum: 90
+          example: 37.7749
+        - name: lon
+          in: query
+          required: true
+          description: Longitude (-180 to 180)
+          schema:
+            type: number
+            format: double
+            minimum: -180
+            maximum: 180
+          example: -122.4194
+        - name: days
+          in: query
+          required: false
+          description: Number of forecast days (1-30)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 30
+            default: 7
+          example: 7
+        - name: include_confidence
+          in: query
+          required: false
+          description: Include confidence scores
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Successful prediction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictionResponseWrapper'
+        '400':
+          description: Invalid input parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    post:
+      summary: Create prediction
+      description: |
+        Create a new weather prediction with detailed parameters.
+        This endpoint provides more control than the GET endpoint.
+      tags:
+        - Predictions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PredictionRequest'
+            example:
+              latitude: 37.7749
+              longitude: -122.4194
+              forecast_days: 7
+              parameters: ["temperature", "precipitation", "humidity"]
+              include_raw_data: false
+      responses:
+        '201':
+          description: Prediction created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictionResponseWrapper'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /predictions/{id}:
+    get:
+      summary: Get prediction by ID
+      description: Retrieve a previously generated prediction by its ID
+      tags:
+        - Predictions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Prediction UUID
+          schema:
+            type: string
+            format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440000"
+      responses:
+        '200':
+          description: Prediction found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictionResponseWrapper'
+        '404':
+          description: Prediction not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key for authentication
+
+  schemas:
+    HealthResponse:
+      type: object
+      required:
+        - status
+        - version
+        - uptime_seconds
+        - timestamp
+      properties:
+        status:
+          type: string
+          example: "healthy"
+        version:
+          type: string
+          example: "0.1.0"
+        uptime_seconds:
+          type: integer
+          format: int64
+          example: 3600
+        timestamp:
+          type: string
+          format: date-time
+          example: "2024-01-15T10:30:00Z"
+
+    PredictionRequest:
+      type: object
+      required:
+        - latitude
+        - longitude
+        - forecast_days
+      properties:
+        latitude:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+          example: 37.7749
+        longitude:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+          example: -122.4194
+        forecast_days:
+          type: integer
+          minimum: 1
+          maximum: 30
+          example: 7
+        parameters:
+          type: array
+          items:
+            type: string
+          example: ["temperature", "precipitation", "humidity"]
+        include_raw_data:
+          type: boolean
+          default: false
+
+    PredictionResponseWrapper:
+      type: object
+      required:
+        - success
+        - data
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/PredictionResponse'
+
+    PredictionResponse:
+      type: object
+      required:
+        - id
+        - location
+        - forecast
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        location:
+          $ref: '#/components/schemas/Location'
+        forecast:
+          type: array
+          items:
+            $ref: '#/components/schemas/ForecastDay'
+        metadata:
+          $ref: '#/components/schemas/PredictionMetadata'
+
+    Location:
+      type: object
+      required:
+        - latitude
+        - longitude
+      properties:
+        latitude:
+          type: number
+          format: double
+          example: 37.7749
+        longitude:
+          type: number
+          format: double
+          example: -122.4194
+        name:
+          type: string
+          nullable: true
+          example: "San Francisco, CA"
+
+    ForecastDay:
+      type: object
+      required:
+        - date
+        - temperature_max
+        - temperature_min
+        - precipitation
+        - humidity
+        - wind_speed
+        - conditions
+      properties:
+        date:
+          type: string
+          format: date
+          example: "2024-01-15"
+        temperature_max:
+          type: number
+          format: double
+          description: Maximum temperature in Celsius
+          example: 20.5
+        temperature_min:
+          type: number
+          format: double
+          description: Minimum temperature in Celsius
+          example: 12.3
+        precipitation:
+          type: number
+          format: double
+          description: Precipitation in mm
+          example: 5.2
+        humidity:
+          type: number
+          format: double
+          description: Humidity percentage
+          example: 65.0
+        wind_speed:
+          type: number
+          format: double
+          description: Wind speed in km/h
+          example: 15.5
+        conditions:
+          type: string
+          example: "Partly Cloudy"
+        confidence:
+          type: number
+          format: double
+          nullable: true
+          description: Prediction confidence score (0-1)
+          example: 0.87
+
+    PredictionMetadata:
+      type: object
+      required:
+        - model_version
+        - generated_at
+        - computation_time_ms
+      properties:
+        model_version:
+          type: string
+          example: "v1.0.0"
+        generated_at:
+          type: string
+          format: date-time
+          example: "2024-01-15T10:30:00Z"
+        computation_time_ms:
+          type: integer
+          format: int64
+          description: Time taken to generate prediction
+          example: 42
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - status_code
+      properties:
+        error:
+          type: string
+          example: "Invalid input parameters"
+        status_code:
+          type: integer
+          example: 400
+
+tags:
+  - name: Health
+    description: Health check and status endpoints
+  - name: Monitoring
+    description: Metrics and monitoring endpoints
+  - name: Predictions
+    description: Weather prediction operations

@@ -1,0 +1,88 @@
+{
+  "file_hash": "9317b26f4511e04cf7809b2173d32a31",
+  "feature": {
+    "id": "121 5213",
+    "name": "Fronthaul Sharing",
+    "cxc_code": "CXC4012482",
+    "value_package": "Advanced Coverage Extension",
+    "value_package_id": "FAJ 801 4006",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature enables a solution where only two optical fiber cables connect the radios to the",
+    "parameters": [
+      {
+        "name": "SectorEquipmentFunction.radioEquipmentOrdering",
+        "type": "Introduced",
+        "description": "See MOM description",
+        "mo_class": "SectorEquipmentFunction"
+      },
+      {
+        "name": "Uen.AL",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "AasData.antSegmentation",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "AasData"
+      },
+      {
+        "name": "AasData.usedAntSegmentation",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "AasData"
+      },
+      {
+        "name": "NRCellDU.pmRadioBeamSwitchTargetNotAvailable",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "SectorEquipmentFunction.rfBranchRef",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "SectorEquipmentFunction"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmRadioBeamSwitchTargetNotAvailable",
+        "description": "Performance counter pmRadioBeamSwitchTargetNotAvailable",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmentFunction",
+        "description": "Performance counter pmentFunction",
+        "category": "General"
+      },
+      {
+        "name": "pmentOrdering",
+        "description": "Performance counter pmentOrdering",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012482 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012482 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch3/63_22104-LZA7016017_1Uen.AL.md",
+    "file_hash": "9317b26f4511e04cf7809b2173d32a31",
+    "processed_at": "2025-10-19 15:50:09",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

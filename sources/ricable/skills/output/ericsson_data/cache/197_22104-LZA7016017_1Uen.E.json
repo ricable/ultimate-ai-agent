@@ -1,0 +1,93 @@
+{
+  "file_hash": "17163935b93b433edfd826e2fb5350f4",
+  "feature": {
+    "id": "121 5684",
+    "name": "NR Standalone High-Band with Multiple PCell Support",
+    "cxc_code": "CXC4012706",
+    "value_package": "Standalone High-Band Deployment",
+    "value_package_id": "FAJ 801 4024",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature introduces support for multiple PCells for each sector in an NR standalone",
+    "parameters": [
+      {
+        "name": "NRCellDU.secondaryCellOnly",
+        "type": "Affecting",
+        "description": "This attribute must be set to false on the                                 PCells.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "TrStSaCellProfileUeCfg.actionAtRelease",
+        "type": "Affecting",
+        "description": "This attribute must be set to RANDOM_REDIRECT  to                                 activate the random redirect at release function.",
+        "mo_class": "TrStSaCellProfileUeCfg"
+      },
+      {
+        "name": "UeMCNrFreqRelProfileUeCfg.connModeAllowedPCell",
+        "type": "Affected",
+        "description": "This attribute must be set to true only for the                                     NRFreqRelation MO instances                                 thatreference                                 PCell frequencies.",
+        "mo_class": "UeMCNrFreqRelProfileUeCfg"
+      },
+      {
+        "name": "Uen.E",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "NRCellCU.pmRrcConnLevelMaxSa",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "NRCellCU.pmRrcConnLevelSumSa",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellCU"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsRwrIntraNrUeSuccTrigger",
+        "description": "Performance counter pmEbsRwrIntraNrUeSuccTrigger",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnLevelMaxSa",
+        "description": "Performance counter pmRrcConnLevelMaxSa",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnLevelSumSa",
+        "description": "Performance counter pmRrcConnLevelSumSa",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012706 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012706 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/197_22104-LZA7016017_1Uen.E.md",
+    "file_hash": "17163935b93b433edfd826e2fb5350f4",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,49 @@
+# Source files
+src/
+tsconfig.json
+
+# Tests
+tests/
+*.test.ts
+*.test.js
+jest.config.js
+coverage/
+
+# Documentation source
+docs/generate-docs.js
+docs/README-COORDINATOR.md
+
+# Development files
+.swarm-memory/
+node_modules/
+.env
+.env.*
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+
+# Keep only distribution files
+!dist/**/*
+!bin/**/*
+!docs/*.md
+!examples/**/*

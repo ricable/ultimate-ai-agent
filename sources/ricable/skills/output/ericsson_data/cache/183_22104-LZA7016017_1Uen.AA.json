@@ -1,0 +1,99 @@
+{
+  "file_hash": "53a85f01f3a508be86a8826b0e698e47",
+  "feature": {
+    "id": "121 5584",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012694",
+    "value_package": "Intelligent Traffic Management and Mobility",
+    "value_package_id": "FAJ 801 4022",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature introduces support for NR traffic steering based on cell load to maximize",
+    "parameters": [
+      {
+        "name": "GNBCUCPFunction.resourceStatusReportF1Enabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GNBCUCPFunction"
+      },
+      {
+        "name": "TrStSaCellProfileUeCfg.criterionDlAbsoluteOffset",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrStSaCellProfileUeCfg"
+      },
+      {
+        "name": "TrafficSteering.dlCellLoadAware",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "TrafficSteering"
+      },
+      {
+        "name": "Uen.AA",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "CaCellProfileUeCfg.servingCellSelectionPolicy",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "TrStSaCellProfileUeCfg.criterionBetterUeConfig",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "TrStSaCellProfileUeCfg"
+      },
+      {
+        "name": "NRCellRelation.SCellCandidate",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellRelation"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmRruCompAvailCapacityDlDistr2",
+        "description": "Performance counter pmRruCompAvailCapacityDlDistr2",
+        "category": "General"
+      },
+      {
+        "name": "pmRruCompAvailCapacityUlDistr",
+        "description": "Performance counter pmRruCompAvailCapacityUlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmeasurementConfigurationSa",
+        "description": "Performance counter pmeasurementConfigurationSa",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012694 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012694 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/183_22104-LZA7016017_1Uen.AA.md",
+    "file_hash": "53a85f01f3a508be86a8826b0e698e47",
+    "processed_at": "2025-10-19 15:48:56",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

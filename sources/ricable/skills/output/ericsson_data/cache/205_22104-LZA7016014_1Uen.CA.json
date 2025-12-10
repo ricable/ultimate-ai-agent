@@ -1,0 +1,1648 @@
+{
+  "file_hash": "ce4f5e607e34250f84aa49c9ddc2f032",
+  "feature": {
+    "id": "121 4518",
+    "name": "Minimization of Drive Tests",
+    "cxc_code": "CXC4011999",
+    "value_package": "RAN Data Collection",
+    "value_package_id": "FAJ 801 0431",
+    "access_type": "LTE",
+    "node_type": "DU Radio Node  Baseband Radio Node",
+    "description": "",
+    "summary": "The Minimization of Drive Tests feature enables the operator to replace physical",
+    "parameters": [
+      {
+        "name": "MdtConfiguration.immediateMdtGnssCheck",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.reportingTrigger",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.reportAmountMdt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.positioningMethod",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.hysteresisA2Mdt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.maxReportCellsA2Mdt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.reportQuantityA2Mdt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.triggerQuantityA2Mdt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.reportIntervalMdt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.timeToTriggerA2Mdt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.a2ThresholdRsrpMdt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.a2ThresholdRsrqMdt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.measGapAllowedMdt",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.rlfReportEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.rcefReportEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.delayThresholdMdtM6",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.reportAmountMdtM6",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "MdtConfiguration.reportIntervalMdtM6",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "MdtConfiguration"
+      },
+      {
+        "name": "EUtranFreqRelation.mdtMeasOn",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "LoggedMdt.numberOfMdtConfigUes",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoggedMdt"
+      },
+      {
+        "name": "LoggedMdt.loggedMdtReportEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoggedMdt"
+      },
+      {
+        "name": "LoggedMdt.loggedMdtGnssCheck",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoggedMdt"
+      },
+      {
+        "name": "LoggedMdt.traceId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoggedMdt"
+      },
+      {
+        "name": "LoggedMdt.tceId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoggedMdt"
+      },
+      {
+        "name": "LoggedMdt.traceRecSessionReference",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoggedMdt"
+      },
+      {
+        "name": "LoggedMdt.areaScopeType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoggedMdt"
+      },
+      {
+        "name": "LoggedMdt.areaScopeCgiList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoggedMdt"
+      },
+      {
+        "name": "LoggedMdt.areaScopeTacList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoggedMdt"
+      },
+      {
+        "name": "LoggedMdt.loggingInterval",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoggedMdt"
+      },
+      {
+        "name": "LoggedMdt.loggingDuration",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoggedMdt"
+      },
+      {
+        "name": "LoggedMdt.mdtPlmnList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LoggedMdt"
+      },
+      {
+        "name": "SubscriberGroupProfile.featuresToDisableMeas",
+        "type": "Affecting",
+        "description": "Inter-frequency measurements with measurement gap triggered by Area-based                   Immediate MDT can be disabled for UEs in a subscriber group if the attribute                   includes the value corresponding the Minimization of Drive Tests feature name.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_AFFECTED_MEAS_TYPE",
+        "description": "The UE Measurement type that the reject has affect on.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPSERVING",
+        "description": "The RSRP measurement result is the first cell in the report. See 3GPP                     36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQSERVING",
+        "description": "The RSRQ measurement result is the first cell in the report. See 3GPP                     36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID1",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the first cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT1",
+        "description": "The RSRP measurement result is the first cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT1",
+        "description": "The RSRQ measurement result is the first cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID2",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the second cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT2",
+        "description": "The RSRP measurement result is the second cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT2",
+        "description": "The RSRQ measurement result is the second cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID3",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the third cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT3",
+        "description": "The RSRP measurement result is the third cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT3",
+        "description": "The RSRQ measurement result is the third cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID4",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the fourth cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT4",
+        "description": "The RSRP measurement result is the fourth cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT4",
+        "description": "The RSRQ measurement result is the fourth cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID5",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the fifth cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT5",
+        "description": "The RSRP measurement result is the fifth cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT5",
+        "description": "The RSRQ measurement result is the fifth cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID6",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the sixth cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT6",
+        "description": "The RSRP measurement result is the sixth cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT6",
+        "description": "The RSRQ measurement result is the sixth cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID7",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the seventh cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT7",
+        "description": "The RSRP measurement result is the seventh cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT7",
+        "description": "The RSRQ measurement result is the seventh cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID8",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the eighth cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT8",
+        "description": "The RSRP measurement result is the eighth cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT8",
+        "description": "The RSRQ measurement result is the eighth cell in the report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_LOCATION_COORDINATES",
+        "description": "Indicates the possible location information defined in 3GPP                   TS36.355.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_ELLIPSOID_POINT",
+        "description": "Parameter Ellipsoid-Point defined in 3GPP TS                     36.355.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_ELLIPSOID_POINT_WITH_ALTI",
+        "description": "Parameter EllipsoidPointWithAltitude defined in 3GPP TS 36.355.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_ELLIPSOID_POINT_WITH_UNCER_CIRCLE",
+        "description": "Parameter Ellipsoid-PointWithUncertaintyCircle defined in                     3GPP TS 36.355.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_ELLIPSOID_POINT_WITH_UNCER_ELLIPSE",
+        "description": "Parameter EllipsoidPointWithUncertaintyEllipse defined in                     3GPP TS 36.355.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_ELLIPSOID_POINT_WITH_ALTI_AND_UNCER_ELLIPSOID",
+        "description": "Parameter EllipsoidPointWithUncertaintyEllipse defined in                     3GPP TS 36.355.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_ELLIPSOID_ARC",
+        "description": "Parameter EllipsoidArc defined in 3GPP TS                     36.355.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_1",
+        "description": "Length field of the Polygon parameter. The location                   information fields are OPTIONAL in the measurement report                   messages of the UE as defined in 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_2",
+        "description": "Parameter Polygon from 1 to 16 Octet Strings defined in                     3GPP TS 36.355. The location information fields are                     OPTIONAL in the measurement report messages of the UE as                   defined in 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_3",
+        "description": "Parameter Polygon from 17 to 32 Octet Strings defined in                     3GPP TS 36.355. The location information fields are                     OPTIONAL in the measurement report messages of the UE as                   defined in 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_4",
+        "description": "Parameter Polygon from 33 to 48 Octet Strings defined in                     3GPP TS 36.355. The location information fields are                     OPTIONAL in the measurement report messages of the UE as                   defined in 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_5",
+        "description": "Parameter Polygon from 49 to 64 Octet Strings defined in                     3GPP TS 36.355. The location information fields are                     OPTIONAL in the measurement report messages of the UE as                   defined in 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_6",
+        "description": "Parameter Polygon from 65 to 80 Octet Strings defined in                     3GPP TS 36.355. The location information fields are                     OPTIONAL in the measurement report messages of the UE as                   defined in 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_7",
+        "description": "Parameter Polygon from 81 to 96 Octet Strings defined in                     3GPP TS 36.355. The location information fields are                     OPTIONAL in the measurement report messages of the UE as                   defined in 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_HORIZONTAL_VELOCITY",
+        "description": "Parameter HorizontalVelocity defined in 3GPP TS                     36.355.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_GNSS_TOD_MSEC",
+        "description": "Parameter Gnss-TOD-msec defined in 3GPP TS                     36.355.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_FREQUENCY",
+        "description": "Holds information regarding the reported frequency for the received MDT                   measurement report.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_ARRAY_SCELL_RSRP",
+        "description": "RSRP measurement for SCell by UE.  See 3GPP TS                   36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_ARRAY_SCELL_RSRQ",
+        "description": "RSRQ measurements for SCell by UE.  See 3GPP TS                   36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_ARRAY_SCELL_PHYSICALID",
+        "description": "The                   physical cell identity of the SCell that the UE measurement is                   for.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_ARRAY_SCELL_FREQUENCY",
+        "description": "The                 serving frequency of the SCell that the UE measurement is                   for.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_0",
+        "description": "Number of samples for the power headroom with value < \u221219 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_1",
+        "description": "Number of samples for the power headroom with \u221219 dB \u2264 value < \u221215 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_2",
+        "description": "Number of samples for the power headroom with \u221215 dB \u2264 value < \u221211 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_3",
+        "description": "Number of samples for the power headroom with \u221211 dB \u2264 value < \u22127 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_4",
+        "description": "Number of samples for the power headroom with \u22127 dB \u2264 value < \u22123 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_5",
+        "description": "Number of samples for the power headroom with \u22123 dB \u2264 value < 1 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_6",
+        "description": "Number of samples for the power headroom with 1 dB \u2264 value < 5 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_7",
+        "description": "Number of samples for the power headroom with 5 dB \u2264 value < 9 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_8",
+        "description": "Number of samples for the power headroom with 9 dB \u2264 value < 13 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_9",
+        "description": "Number of samples for the power headroom with 13 dB \u2264 value < 17 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_10",
+        "description": "Number of samples for the power headroom with 17 dB \u2264 value < 21 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_11",
+        "description": "Number of samples for the power headroom with 21 dB \u2264 value < 25 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_12",
+        "description": "Number of samples for the power headroom with 25 dB \u2264 value < 29 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_13",
+        "description": "Number of samples for the power headroom with 29 dB \u2264 value < 33 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_14",
+        "description": "Number of samples for the power headroom with 33 dB \u2264 value < 37 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_15",
+        "description": "Number of samples for the power headroom with value \u2265 37 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                     36.133.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_0",
+        "description": "Number of samples for the measured Noise and Interference Power with N+I \u2264                   \u2212121.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_1",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212121 <                   N+I \u2264 \u2212120.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_2",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212120 <                   N+I \u2264 \u2212119.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_3",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212119 <                   N+I \u2264 \u2212118.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_4",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212118 <                   N+I \u2264 \u2212117.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_5",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212117 <                   N+I \u2264 \u2212116.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_6",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212116 <                   N+I \u2264 \u2212115.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_7",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212115 <                   N+I \u2264 \u2212114.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_8",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212114< N+I                   \u2264 \u2212113.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_9",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212113 <                   N+I \u2264 \u2212112.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_10",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212112 <                   N+I \u2264 \u2212108.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_11",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212108 <                   N+I \u2264 \u2212104.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_12",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212104 <                   N+I \u2264 \u2212100.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_13",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212100 <                   N+I \u2264 \u221296.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_14",
+        "description": "Number of samples for the measured Noise and Interference Power with \u221296 < N+I                   \u2264 \u221292.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_15",
+        "description": "Number of samples for the measured Noise and Interference Power with \u221292 <                   N+I.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M4_REPORT",
+        "type": "EVENT_ARRAY_MDT_M4_ERAB_PDCP_VOL_UL",
+        "description": "Array, where UL DRB volumes for PDCP SDUs are stored for each ERAB. See 3GPP TS                   32.423.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M4_REPORT",
+        "type": "EVENT_ARRAY_MDT_M4_ERAB_PDCP_VOL_DL",
+        "description": "Array, where DL DRB volumes for PDCP SDUs are stored for each ERAB. See 3GPP TS                   32.423.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M4_REPORT",
+        "type": "EVENT_ARRAY_MDT_M4_M5_ERAB_QCI",
+        "description": "Array, where QCI values are stored. Array of QCIs of the E-RABs for which the                   volume and throughput measurements apply. See 3GPP TS 32.423.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_PARAM_MDT_M5_UE_THP_TIME_UL",
+        "description": "Throughput                   time                   used for calculating the uplink throuhput                   per                   UE. For more information, see 3GPP TS 32.423.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_PARAM_MDT_M5_UE_THP_VOL_UL",
+        "description": "Throughput volume used for calculating the uplink throuhput                   per                   UE. For more information, see 3GPP TS 32.423.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_ARRAY_MDT_M5_ERAB_THP_TIME_DL",
+        "description": "List of throughput times used for calculating the downlink throughput for each E-RAB. Only one value for each E-RAB. For more                   information, see 3GPP TS 32.423.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_ARRAY_MDT_M5_ERAB_THP_VOL_DL",
+        "description": "List of throughput                   volumes                   used for calculating the downlink throughput for each E-RAB. Only one value for                   each E-RAB. For more information, see 3GPP TS 32.423.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_ARRAY_MDT_M4_M5_ERAB_QCI",
+        "description": "List of QCIs of the E-RABs for which the volume and throughput measurements                   apply. For more information, see 3GPP TS 32.423.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_PARAM_MDT_M5_UE_THP_TIME_DL",
+        "description": "Throughput time used for calculating the downlink throughput                   per                   UE. For more information, see 3GPP TS 32.423",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_PARAM_MDT_M5_UE_THP_VOL_DL",
+        "description": "Throughput volume used for calculating the downlink throughput                   per                   UE. For more information, see 3GPP TS 32.423.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_PARAM_MDT_M5_UE_LASTTTI_VOL_DL",
+        "description": "Volume transmitted in the last TTI and excluded from the downlink throughput                   calculation,                   per                   UE. For more information, see 3GPP TS 32.423.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_DL_REPORT",
+        "type": "EVENT_ARRAY_MDT_M6_ERAB_DELAY_TIME_DL",
+        "description": "List of downlink Packet Delay Times used for calculation of the downlink delay                   measurement per E-RAB. One value per E-RAB. For more information, see 3GPP TS 36.314.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_DL_REPORT",
+        "type": "EVENT_ARRAY_MDT_M6_ERAB_DELAY_SAMPL_DL",
+        "description": "List of number PDCP SDUs that arrive at the PDCP upper SAP during the time                   period. For more information, see 3GPP TS 36.314.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_DL_REPORT",
+        "type": "EVENT_ARRAY_MDT_M6_ERAB_QCI_DL",
+        "description": "List of E-RAB QCIs.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_ARRAY_MDT_M6_ERAB_EXC_DELAY_UL",
+        "description": "List of Excess Delay Ratio received from the UE in the RRC Measurement Report.                   For more information, see 3GPP TS 36.314.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_ARRAY_MDT_M6_ERAB_QCI_UL",
+        "description": "List of E-RAB QCIs received from the UE in the RRC Measurement Report. For more                   information, see 3GPP TS 36.314.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_LOCATION_COORDINATES",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_ELLIPSOID_POINT",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_ELLIPSOID_POINT_WITH_ALTI",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_ELLIPSOID_POINT_WITH_UNCER_CIRCLE",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_ELLIPSOID_POINT_WITH_UNCER_ELLIPSE",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_ELLIPSOID_POINT_WITH_ALTI_AND_UNCER_ELLIPSOID",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_ELLIPSOID_ARC",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_1",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_2",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_3",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_4",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_5",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_6",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_7",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_HORIZONTAL_VELOCITY",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_GNSS_TOD_MSEC",
+        "description": "GNSS based coordinates, accounting for latitude and longitude, reported by the                   UE. See 3GPP TS 36.355 for more information.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M7_REPORT",
+        "type": "EVENT_ARRAY_MDT_M7_ERAB_PACKET_LOST_UL",
+        "description": "List of the number of missing uplink PDCP sequence numbers during the time                   period. One value per E-RAB. For more information, see 3GPP TS                   36.314.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M7_REPORT",
+        "type": "EVENT_ARRAY_MDT_M7_ERAB_PACKET_REC_UL",
+        "description": "List of the number of uplink PDCP sequence numbers (including missing sequence                   numbers) during the time period. One value per E-RAB. For more information, see                     3GPP TS 36.314.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M7_REPORT",
+        "type": "EVENT_ARRAY_MDT_M7_ERAB_PACKET_LOST_PER_UU_DL",
+        "description": "List of the number of downlink packets, for which at least half had been                   transmitted over the air but have not been positively acknowledged. During the                   time period, it is decided that no more transmission attempts are made. One value                   per E-RAB. For more information, see 3GPP TS 36.314.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M7_REPORT",
+        "type": "EVENT_ARRAY_MDT_M7_ERAB_PACKET_TR_DL",
+        "description": "List of the number of downlink packets, which have been transmitted over the air                   and have been positively acknowledged during the time period. One value per E-RAB.                   For more information, see 3GPP TS 36.314.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M7_REPORT",
+        "type": "EVENT_ARRAY_MDT_M7_ERAB_QCI",
+        "description": "List of E-RAB QCIs. For more information, see 3GPP TS 36.314.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "RRC_LOGGED_MEASUREMENT_CONFIGURATION",
+        "type": "EVENT_PARAM_CRNTI",
+        "description": "RRC message sent to configure the UE to perform logging of measurement results                   while in RRC_IDLE state.  Sends MDT configuration.  For further information, see 3GPP TS 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "RRC_UE_INFORMATION_RESPONSE",
+        "type": "EVENT_PARAM_CRNTI",
+        "description": "RRC message with MDT measurements log, RLF report or RRC Connection Establishment                   Failure report received as a UE responds to an information request. For further                   information, see 3GPP TS 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "RRC_UE_INFORMATION_REQUEST",
+        "type": "EVENT_PARAM_CRNTI",
+        "description": "RRC message sent to retrieve MDT measurements log, RLF report or RRC Connection                   Establishment Failure report, while the UE in RRC_IDLE state. For                   further information, see 3GPP TS 36.331.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.CA",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UnsupportedFreqProfile.unsupportedFreqList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UnsupportedFreqProfile"
+      },
+      {
+        "name": "LoggedMdt.loggedMdtConfigEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "LoggedMdt"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEvent",
+        "description": "Performance counter pmEvent",
+        "category": "General"
+      },
+      {
+        "name": "pmEvents",
+        "description": "Performance counter pmEvents",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCapabilityGnss",
+        "description": "Performance counter pmUeCapabilityGnss",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCapabilityLoggedMdt",
+        "description": "Performance counter pmUeCapabilityLoggedMdt",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCapabilityUlDelay",
+        "description": "Performance counter pmUeCapabilityUlDelay",
+        "category": "General"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmdt",
+        "description": "Performance counter pmdt",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      },
+      {
+        "name": "pmfile",
+        "description": "Performance counter pmfile",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_AFFECTED_MEAS_TYPE",
+        "description": "The UE Measurement type that the reject has affect on."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPSERVING",
+        "description": "The RSRP measurement result is the first cell in the report. See 3GPP                     36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQSERVING",
+        "description": "The RSRQ measurement result is the first cell in the report. See 3GPP                     36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID1",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the first cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT1",
+        "description": "The RSRP measurement result is the first cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT1",
+        "description": "The RSRQ measurement result is the first cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID2",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the second cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT2",
+        "description": "The RSRP measurement result is the second cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT2",
+        "description": "The RSRQ measurement result is the second cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID3",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the third cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT3",
+        "description": "The RSRP measurement result is the third cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT3",
+        "description": "The RSRQ measurement result is the third cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID4",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the fourth cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT4",
+        "description": "The RSRP measurement result is the fourth cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT4",
+        "description": "The RSRQ measurement result is the fourth cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID5",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the fifth cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT5",
+        "description": "The RSRP measurement result is the fifth cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT5",
+        "description": "The RSRQ measurement result is the fifth cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID6",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the sixth cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT6",
+        "description": "The RSRP measurement result is the sixth cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT6",
+        "description": "The RSRQ measurement result is the sixth cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID7",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the seventh cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT7",
+        "description": "The RSRP measurement result is the seventh cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT7",
+        "description": "The RSRQ measurement result is the seventh cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_PHYSICAL_CELLID8",
+        "description": "The physical cell identity for the cell that the UE measurement is for. This is                   the eighth cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRPRESULT8",
+        "description": "The RSRP measurement result is the eighth cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_RSRQRESULT8",
+        "description": "The RSRQ measurement result is the eighth cell in the report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_LOCATION_COORDINATES",
+        "description": "Indicates the possible location information defined in 3GPP                   TS36.355."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_ELLIPSOID_POINT",
+        "description": "Parameter Ellipsoid-Point defined in 3GPP TS                     36.355."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_ELLIPSOID_POINT_WITH_ALTI",
+        "description": "Parameter EllipsoidPointWithAltitude defined in 3GPP TS 36.355."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_ELLIPSOID_POINT_WITH_UNCER_CIRCLE",
+        "description": "Parameter Ellipsoid-PointWithUncertaintyCircle defined in                     3GPP TS 36.355."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_ELLIPSOID_POINT_WITH_UNCER_ELLIPSE",
+        "description": "Parameter EllipsoidPointWithUncertaintyEllipse defined in                     3GPP TS 36.355."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_ELLIPSOID_POINT_WITH_ALTI_AND_UNCER_ELLIPSOID",
+        "description": "Parameter EllipsoidPointWithUncertaintyEllipse defined in                     3GPP TS 36.355."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_ELLIPSOID_ARC",
+        "description": "Parameter EllipsoidArc defined in 3GPP TS                     36.355."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_1",
+        "description": "Length field of the Polygon parameter. The location                   information fields are OPTIONAL in the measurement report                   messages of the UE as defined in 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_2",
+        "description": "Parameter Polygon from 1 to 16 Octet Strings defined in                     3GPP TS 36.355. The location information fields are                     OPTIONAL in the measurement report messages of the UE as                   defined in 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_3",
+        "description": "Parameter Polygon from 17 to 32 Octet Strings defined in                     3GPP TS 36.355. The location information fields are                     OPTIONAL in the measurement report messages of the UE as                   defined in 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_4",
+        "description": "Parameter Polygon from 33 to 48 Octet Strings defined in                     3GPP TS 36.355. The location information fields are                     OPTIONAL in the measurement report messages of the UE as                   defined in 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_5",
+        "description": "Parameter Polygon from 49 to 64 Octet Strings defined in                     3GPP TS 36.355. The location information fields are                     OPTIONAL in the measurement report messages of the UE as                   defined in 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_6",
+        "description": "Parameter Polygon from 65 to 80 Octet Strings defined in                     3GPP TS 36.355. The location information fields are                     OPTIONAL in the measurement report messages of the UE as                   defined in 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_POLYGON_7",
+        "description": "Parameter Polygon from 81 to 96 Octet Strings defined in                     3GPP TS 36.355. The location information fields are                     OPTIONAL in the measurement report messages of the UE as                   defined in 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_HORIZONTAL_VELOCITY",
+        "description": "Parameter HorizontalVelocity defined in 3GPP TS                     36.355."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_GNSS_TOD_MSEC",
+        "description": "Parameter Gnss-TOD-msec defined in 3GPP TS                     36.355."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_PARAM_MDT_M1_FREQUENCY",
+        "description": "Holds information regarding the reported frequency for the received MDT                   measurement report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_ARRAY_SCELL_RSRP",
+        "description": "RSRP measurement for SCell by UE.  See 3GPP TS                   36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_ARRAY_SCELL_RSRQ",
+        "description": "RSRQ measurements for SCell by UE.  See 3GPP TS                   36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_ARRAY_SCELL_PHYSICALID",
+        "description": "The                   physical cell identity of the SCell that the UE measurement is                   for."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "EVENT_ARRAY_SCELL_FREQUENCY",
+        "description": "The                 serving frequency of the SCell that the UE measurement is                   for."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_0",
+        "description": "Number of samples for the power headroom with value < \u221219 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_1",
+        "description": "Number of samples for the power headroom with \u221219 dB \u2264 value < \u221215 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_2",
+        "description": "Number of samples for the power headroom with \u221215 dB \u2264 value < \u221211 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_3",
+        "description": "Number of samples for the power headroom with \u221211 dB \u2264 value < \u22127 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_4",
+        "description": "Number of samples for the power headroom with \u22127 dB \u2264 value < \u22123 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_5",
+        "description": "Number of samples for the power headroom with \u22123 dB \u2264 value < 1 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_6",
+        "description": "Number of samples for the power headroom with 1 dB \u2264 value < 5 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_7",
+        "description": "Number of samples for the power headroom with 5 dB \u2264 value < 9 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_8",
+        "description": "Number of samples for the power headroom with 9 dB \u2264 value < 13 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_9",
+        "description": "Number of samples for the power headroom with 13 dB \u2264 value < 17 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_10",
+        "description": "Number of samples for the power headroom with 17 dB \u2264 value < 21 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_11",
+        "description": "Number of samples for the power headroom with 21 dB \u2264 value < 25 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_12",
+        "description": "Number of samples for the power headroom with 25 dB \u2264 value < 29 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_13",
+        "description": "Number of samples for the power headroom with 29 dB \u2264 value < 33 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_14",
+        "description": "Number of samples for the power headroom with 33 dB \u2264 value < 37 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                   36.133."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M2_REPORT",
+        "type": "EVENT_PARAM_MDT_M2_UE_POWER_HEADROOM_15",
+        "description": "Number of samples for the power headroom with value \u2265 37 dB. The                   measured sample is the latest value per second. For more information, see 3GPP TS                     36.133."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_0",
+        "description": "Number of samples for the measured Noise and Interference Power with N+I \u2264                   \u2212121."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_1",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212121 <                   N+I \u2264 \u2212120."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_2",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212120 <                   N+I \u2264 \u2212119."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_3",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212119 <                   N+I \u2264 \u2212118."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_4",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212118 <                   N+I \u2264 \u2212117."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_5",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212117 <                   N+I \u2264 \u2212116."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_6",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212116 <                   N+I \u2264 \u2212115."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_7",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212115 <                   N+I \u2264 \u2212114."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_8",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212114< N+I                   \u2264 \u2212113."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_9",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212113 <                   N+I \u2264 \u2212112."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_10",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212112 <                   N+I \u2264 \u2212108."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_11",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212108 <                   N+I \u2264 \u2212104."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_12",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212104 <                   N+I \u2264 \u2212100."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_13",
+        "description": "Number of samples for the measured Noise and Interference Power with \u2212100 <                   N+I \u2264 \u221296."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_14",
+        "description": "Number of samples for the measured Noise and Interference Power with \u221296 < N+I                   \u2264 \u221292."
+      },
+      {
+        "name": "INTERNAL_PER_CELL_MDT_M3_REPORT",
+        "type": "EVENT_PARAM_MDT_M3_NOISEINTERF_MEAS_15",
+        "description": "Number of samples for the measured Noise and Interference Power with \u221292 <                   N+I."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M4_REPORT",
+        "type": "EVENT_ARRAY_MDT_M4_ERAB_PDCP_VOL_UL",
+        "description": "Array, where UL DRB volumes for PDCP SDUs are stored for each ERAB. See 3GPP TS                   32.423."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M4_REPORT",
+        "type": "EVENT_ARRAY_MDT_M4_ERAB_PDCP_VOL_DL",
+        "description": "Array, where DL DRB volumes for PDCP SDUs are stored for each ERAB. See 3GPP TS                   32.423."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M4_REPORT",
+        "type": "EVENT_ARRAY_MDT_M4_M5_ERAB_QCI",
+        "description": "Array, where QCI values are stored. Array of QCIs of the E-RABs for which the                   volume and throughput measurements apply. See 3GPP TS 32.423."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_PARAM_MDT_M5_UE_THP_TIME_UL",
+        "description": "Throughput                   time                   used for calculating the uplink throuhput                   per                   UE. For more information, see 3GPP TS 32.423."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_PARAM_MDT_M5_UE_THP_VOL_UL",
+        "description": "Throughput volume used for calculating the uplink throuhput                   per                   UE. For more information, see 3GPP TS 32.423."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_ARRAY_MDT_M5_ERAB_THP_TIME_DL",
+        "description": "List of throughput times used for calculating the downlink throughput for each E-RAB. Only one value for each E-RAB. For more                   information, see 3GPP TS 32.423."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_ARRAY_MDT_M5_ERAB_THP_VOL_DL",
+        "description": "List of throughput                   volumes                   used for calculating the downlink throughput for each E-RAB. Only one value for                   each E-RAB. For more information, see 3GPP TS 32.423."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_ARRAY_MDT_M4_M5_ERAB_QCI",
+        "description": "List of QCIs of the E-RABs for which the volume and throughput measurements                   apply. For more information, see 3GPP TS 32.423."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_PARAM_MDT_M5_UE_THP_TIME_DL",
+        "description": "Throughput time used for calculating the downlink throughput                   per                   UE. For more information, see 3GPP TS 32.423"
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_PARAM_MDT_M5_UE_THP_VOL_DL",
+        "description": "Throughput volume used for calculating the downlink throughput                   per                   UE. For more information, see 3GPP TS 32.423."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M5_REPORT",
+        "type": "EVENT_PARAM_MDT_M5_UE_LASTTTI_VOL_DL",
+        "description": "Volume transmitted in the last TTI and excluded from the downlink throughput                   calculation,                   per                   UE. For more information, see 3GPP TS 32.423."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_DL_REPORT",
+        "type": "EVENT_ARRAY_MDT_M6_ERAB_DELAY_TIME_DL",
+        "description": "List of downlink Packet Delay Times used for calculation of the downlink delay                   measurement per E-RAB. One value per E-RAB. For more information, see 3GPP TS 36.314."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_DL_REPORT",
+        "type": "EVENT_ARRAY_MDT_M6_ERAB_DELAY_SAMPL_DL",
+        "description": "List of number PDCP SDUs that arrive at the PDCP upper SAP during the time                   period. For more information, see 3GPP TS 36.314."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_DL_REPORT",
+        "type": "EVENT_ARRAY_MDT_M6_ERAB_QCI_DL",
+        "description": "List of E-RAB QCIs."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_ARRAY_MDT_M6_ERAB_EXC_DELAY_UL",
+        "description": "List of Excess Delay Ratio received from the UE in the RRC Measurement Report.                   For more information, see 3GPP TS 36.314."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_ARRAY_MDT_M6_ERAB_QCI_UL",
+        "description": "List of E-RAB QCIs received from the UE in the RRC Measurement Report. For more                   information, see 3GPP TS 36.314."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_LOCATION_COORDINATES",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_ELLIPSOID_POINT",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_ELLIPSOID_POINT_WITH_ALTI",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_ELLIPSOID_POINT_WITH_UNCER_CIRCLE",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_ELLIPSOID_POINT_WITH_UNCER_ELLIPSE",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_ELLIPSOID_POINT_WITH_ALTI_AND_UNCER_ELLIPSOID",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_ELLIPSOID_ARC",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_1",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_2",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_3",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_4",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_5",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_6",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_POLYGON_7",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_HORIZONTAL_VELOCITY",
+        "description": "The location information is listed as OPTIONAL in the UE MeasurementReport messages. For more information, see 3GPP 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M6_UL_REPORT",
+        "type": "EVENT_PARAM_MDT_M6_GNSS_TOD_MSEC",
+        "description": "GNSS based coordinates, accounting for latitude and longitude, reported by the                   UE. See 3GPP TS 36.355 for more information."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M7_REPORT",
+        "type": "EVENT_ARRAY_MDT_M7_ERAB_PACKET_LOST_UL",
+        "description": "List of the number of missing uplink PDCP sequence numbers during the time                   period. One value per E-RAB. For more information, see 3GPP TS                   36.314."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M7_REPORT",
+        "type": "EVENT_ARRAY_MDT_M7_ERAB_PACKET_REC_UL",
+        "description": "List of the number of uplink PDCP sequence numbers (including missing sequence                   numbers) during the time period. One value per E-RAB. For more information, see                     3GPP TS 36.314."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M7_REPORT",
+        "type": "EVENT_ARRAY_MDT_M7_ERAB_PACKET_LOST_PER_UU_DL",
+        "description": "List of the number of downlink packets, for which at least half had been                   transmitted over the air but have not been positively acknowledged. During the                   time period, it is decided that no more transmission attempts are made. One value                   per E-RAB. For more information, see 3GPP TS 36.314."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M7_REPORT",
+        "type": "EVENT_ARRAY_MDT_M7_ERAB_PACKET_TR_DL",
+        "description": "List of the number of downlink packets, which have been transmitted over the air                   and have been positively acknowledged during the time period. One value per E-RAB.                   For more information, see 3GPP TS 36.314."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M7_REPORT",
+        "type": "EVENT_ARRAY_MDT_M7_ERAB_QCI",
+        "description": "List of E-RAB QCIs. For more information, see 3GPP TS 36.314."
+      },
+      {
+        "name": "RRC_LOGGED_MEASUREMENT_CONFIGURATION",
+        "type": "EVENT_PARAM_CRNTI",
+        "description": "RRC message sent to configure the UE to perform logging of measurement results                   while in RRC_IDLE state.  Sends MDT configuration.  For further information, see 3GPP TS 36.331."
+      },
+      {
+        "name": "RRC_UE_INFORMATION_RESPONSE",
+        "type": "EVENT_PARAM_CRNTI",
+        "description": "RRC message with MDT measurements log, RLF report or RRC Connection Establishment                   Failure report received as a UE responds to an information request. For further                   information, see 3GPP TS 36.331."
+      },
+      {
+        "name": "RRC_UE_INFORMATION_REQUEST",
+        "type": "EVENT_PARAM_CRNTI",
+        "description": "RRC message sent to retrieve MDT measurements log, RLF report or RRC Connection                   Establishment Failure report, while the UE in RRC_IDLE state. For                   further information, see 3GPP TS 36.331."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "A new parameter, EVENT_PARAM_MDT_M1_FREQUENCY was added with the following parameter                                  comment: Indicates the ARFCN applicable for a downlink E-UTRA                                   carrier frequency.",
+        "description": "Holds information regarding the reported frequency for the received Minimization of Drive                                  Test measurement report."
+      },
+      {
+        "name": "INTERNAL_PER_UE_MDT_M1_REPORT",
+        "type": "Increased number of reported pmEvents.",
+        "description": "One additional pmEvent per UE is sent for configured inter-frequency measurements when                                   reportingTrigger                                    is set to PERIODICAL."
+      },
+      {
+        "name": "RRC_ LOGGED_MEASUREMENT_CONFIGURATION",
+        "type": "Indicates that Logged MDT configuration is sent.",
+        "description": "RRC message sent to configure the UE to perform logging of                                     measurement results while in RRC_IDLE                                     state.  To send MDT configuration.  For further information, see 3GPP TS 36.331."
+      },
+      {
+        "name": "RRC_UE_INFORMATION_REQUEST",
+        "type": "Used by the E-UTRAN to retrieve information from the UE.  MDT, RLF, or RRC Connection Establishment Failure logs are                                     requested from the UE by the                                         UEInformationRequest command.",
+        "description": "RRC message sent to retrieve MDT measurement logs, RLF report, or                                     RRC Connection Establishment Failure report, while the UE in                                         RRC_IDLE state. For further information,                                     see 3GPP TS 36.331."
+      },
+      {
+        "name": "RRC_UE_INFORMATION_RESPONSE",
+        "type": "A PM event which includes MDT, RLF, or RRC Connection                                     Establishment Failure measurement log.",
+        "description": "RRC message with MDT measurements log, RLF report, or RRC                                     Connection Establishment Failure report received as a UE                                     responds to an information request. For further information, see                                         3GPP TS 36.331."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011999 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011999 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/205_22104-LZA7016014_1Uen.CA.md",
+    "file_hash": "ce4f5e607e34250f84aa49c9ddc2f032",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

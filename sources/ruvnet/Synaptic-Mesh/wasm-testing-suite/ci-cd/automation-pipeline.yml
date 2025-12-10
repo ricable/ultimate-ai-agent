@@ -1,0 +1,649 @@
+# CI/CD Pipeline for Kimi-K2 WASM Testing
+# Comprehensive automated testing across multiple platforms and browsers
+
+name: Kimi-K2 WASM Testing Pipeline
+
+on:
+  push:
+    branches: [ main, develop, wasm-* ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Nightly comprehensive testing
+    - cron: '0 2 * * *'
+
+env:
+  MEMORY_TARGET: 512MB
+  INFERENCE_TARGET: 100ms
+  PARALLEL_TARGET: 10x
+  BROWSER_TIMEOUT: 30000
+
+jobs:
+  # Quick smoke tests for fast feedback
+  smoke-tests:
+    name: Quick Smoke Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        cd wasm-testing-suite
+        npm ci
+    
+    - name: Build test WASM modules
+      run: |
+        cd wasm-testing-suite
+        npm run build:test-wasm
+    
+    - name: Run basic compatibility tests
+      run: |
+        cd wasm-testing-suite
+        npm run test:node
+    
+    - name: Quick memory check
+      run: |
+        cd wasm-testing-suite
+        node -e "
+          const { MemoryBenchmarkSuite } = require('./benchmarks/memory/memory-benchmark-suite.js');
+          const suite = new MemoryBenchmarkSuite();
+          suite.benchmarkExpertLoading().then(result => {
+            if (result.totalMemoryUsed > 512 * 1024 * 1024) {
+              process.exit(1);
+            }
+            console.log('✅ Memory usage within target');
+          });
+        "
+
+  # Comprehensive browser testing
+  browser-compatibility:
+    name: Browser Compatibility Tests
+    runs-on: ${{ matrix.os }}
+    needs: smoke-tests
+    timeout-minutes: 45
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        browser: [chromium, firefox, webkit]
+        exclude:
+          # WebKit only available on macOS and Linux
+          - os: windows-latest
+            browser: webkit
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        cd wasm-testing-suite
+        npm ci
+    
+    - name: Install Playwright browsers
+      run: |
+        cd wasm-testing-suite
+        npx playwright install ${{ matrix.browser }}
+    
+    - name: Build test WASM modules
+      run: |
+        cd wasm-testing-suite
+        npm run build:test-wasm
+    
+    - name: Start test server
+      run: |
+        cd wasm-testing-suite
+        npm run serve:test &
+        sleep 10
+    
+    - name: Run browser compatibility tests
+      run: |
+        cd wasm-testing-suite
+        BROWSER=${{ matrix.browser }} npm run test:browser
+    
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: browser-test-results-${{ matrix.os }}-${{ matrix.browser }}
+        path: wasm-testing-suite/test-results/
+    
+    - name: Upload screenshots on failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: screenshots-${{ matrix.os }}-${{ matrix.browser }}
+        path: wasm-testing-suite/test-results/screenshots/
+
+  # Performance benchmarking
+  performance-benchmarks:
+    name: Performance Benchmarks
+    runs-on: ${{ matrix.os }}
+    needs: smoke-tests
+    timeout-minutes: 30
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        cd wasm-testing-suite
+        npm ci
+    
+    - name: Build optimized WASM modules
+      run: |
+        cd wasm-testing-suite
+        npm run build:test-wasm
+        # Additional optimization flags would go here
+    
+    - name: Run inference benchmarks
+      run: |
+        cd wasm-testing-suite
+        npm run benchmark
+    
+    - name: Check performance targets
+      run: |
+        cd wasm-testing-suite
+        node -e "
+          const fs = require('fs');
+          const results = JSON.parse(fs.readFileSync('benchmark-results.json'));
+          
+          const inferenceResults = results.filter(r => r.name.includes('Inference'));
+          const failedTests = inferenceResults.filter(r => r.avgTime > 100);
+          
+          if (failedTests.length > 0) {
+            console.error('❌ Performance targets not met:', failedTests);
+            process.exit(1);
+          }
+          
+          console.log('✅ All performance targets met');
+        "
+    
+    - name: Upload benchmark results
+      uses: actions/upload-artifact@v4
+      with:
+        name: benchmark-results-${{ matrix.os }}
+        path: wasm-testing-suite/benchmark-results.json
+
+  # Memory profiling and optimization
+  memory-profiling:
+    name: Memory Profiling
+    runs-on: ubuntu-latest
+    needs: smoke-tests
+    timeout-minutes: 25
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js with heap profiling
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        cd wasm-testing-suite
+        npm ci
+    
+    - name: Install memory profiling tools
+      run: |
+        cd wasm-testing-suite
+        npm install -g clinic heapdump
+    
+    - name: Run memory profiling
+      run: |
+        cd wasm-testing-suite
+        # Enable garbage collection for testing
+        node --expose-gc --max-old-space-size=1024 memory/memory-profiler.js
+    
+    - name: Check memory targets
+      run: |
+        cd wasm-testing-suite
+        node -e "
+          const fs = require('fs');
+          const results = JSON.parse(fs.readFileSync('memory-profile-results.json'));
+          
+          const maxMemory = Math.max(...results.measurements.map(m => m.heapUsed));
+          const targetMemory = 512 * 1024 * 1024; // 512MB
+          
+          if (maxMemory > targetMemory) {
+            console.error(\`❌ Memory usage exceeded target: \${maxMemory} > \${targetMemory}\`);
+            process.exit(1);
+          }
+          
+          console.log(\`✅ Memory usage within target: \${maxMemory} bytes\`);
+        "
+    
+    - name: Generate memory report
+      run: |
+        cd wasm-testing-suite
+        npm run memory:profile
+    
+    - name: Upload memory profiles
+      uses: actions/upload-artifact@v4
+      with:
+        name: memory-profiles
+        path: wasm-testing-suite/memory-profiles/
+
+  # Cross-platform compatibility testing
+  cross-platform:
+    name: Cross-Platform Testing
+    runs-on: ${{ matrix.os }}
+    needs: smoke-tests
+    timeout-minutes: 20
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [18, 20, 22]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        cd wasm-testing-suite
+        npm ci
+    
+    - name: Run cross-platform tests
+      run: |
+        cd wasm-testing-suite
+        npm run test:compatibility
+    
+    - name: Generate compatibility report
+      run: |
+        cd wasm-testing-suite
+        node tools/cross-platform-tester.js
+    
+    - name: Upload compatibility report
+      uses: actions/upload-artifact@v4
+      with:
+        name: compatibility-${{ matrix.os }}-node${{ matrix.node-version }}
+        path: wasm-testing-suite/cross-platform-compatibility-report.json
+
+  # Mobile browser testing (simulation)
+  mobile-compatibility:
+    name: Mobile Browser Testing
+    runs-on: ubuntu-latest
+    needs: browser-compatibility
+    timeout-minutes: 30
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        cd wasm-testing-suite
+        npm ci
+    
+    - name: Install mobile browser emulation
+      run: |
+        cd wasm-testing-suite
+        npx playwright install chromium
+    
+    - name: Run mobile browser tests
+      run: |
+        cd wasm-testing-suite
+        # Test with mobile viewport and reduced memory
+        MOBILE_MODE=true npm run test:browser
+    
+    - name: Test memory constraints
+      run: |
+        cd wasm-testing-suite
+        node -e "
+          const { MemoryBenchmarkSuite } = require('./benchmarks/memory/memory-benchmark-suite.js');
+          const suite = new MemoryBenchmarkSuite();
+          suite.memoryTarget = 256 * 1024 * 1024; // 256MB mobile target
+          suite.runAllBenchmarks().then(results => {
+            const failed = results.results.filter(r => !r.passed);
+            if (failed.length > 0) {
+              console.error('❌ Mobile memory tests failed:', failed);
+              process.exit(1);
+            }
+            console.log('✅ Mobile memory constraints met');
+          });
+        "
+
+  # Security and validation testing
+  security-validation:
+    name: Security & Validation Tests
+    runs-on: ubuntu-latest
+    needs: smoke-tests
+    timeout-minutes: 15
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        cd wasm-testing-suite
+        npm ci
+    
+    - name: Install security scanning tools
+      run: |
+        npm install -g audit-ci
+        cd wasm-testing-suite
+        npm install --package-lock-only
+    
+    - name: Run dependency audit
+      run: |
+        cd wasm-testing-suite
+        npm audit --audit-level=moderate
+    
+    - name: Validate WASM modules
+      run: |
+        cd wasm-testing-suite
+        node -e "
+          const fs = require('fs');
+          const path = require('path');
+          
+          // Check for WASM files
+          const wasmFiles = fs.readdirSync('./tests/wasm-builds')
+            .filter(f => f.endsWith('.wasm'));
+          
+          if (wasmFiles.length === 0) {
+            console.error('❌ No WASM files found for validation');
+            process.exit(1);
+          }
+          
+          // Basic WASM header validation
+          for (const file of wasmFiles) {
+            const data = fs.readFileSync(path.join('./tests/wasm-builds', file));
+            const magic = data.subarray(0, 4);
+            const expected = Buffer.from([0x00, 0x61, 0x73, 0x6d]);
+            
+            if (!magic.equals(expected)) {
+              console.error(\`❌ Invalid WASM magic number in \${file}\`);
+              process.exit(1);
+            }
+          }
+          
+          console.log(\`✅ Validated \${wasmFiles.length} WASM modules\`);
+        "
+    
+    - name: Test sandboxing
+      run: |
+        cd wasm-testing-suite
+        node -e "
+          // Test WASM sandboxing by attempting dangerous operations
+          const wasmCode = new Uint8Array([
+            0x00, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00,
+            0x01, 0x04, 0x01, 0x60, 0x00, 0x00,
+            0x03, 0x02, 0x01, 0x00,
+            0x0a, 0x04, 0x01, 0x02, 0x00, 0x0b
+          ]);
+          
+          WebAssembly.instantiate(wasmCode).then(() => {
+            console.log('✅ WASM sandboxing working correctly');
+          }).catch(e => {
+            console.error('❌ WASM instantiation failed:', e);
+            process.exit(1);
+          });
+        "
+
+  # Generate comprehensive test report
+  generate-report:
+    name: Generate Test Report
+    runs-on: ubuntu-latest
+    needs: [browser-compatibility, performance-benchmarks, memory-profiling, cross-platform, mobile-compatibility, security-validation]
+    if: always()
+    timeout-minutes: 10
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        cd wasm-testing-suite
+        npm ci
+    
+    - name: Download all artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: artifacts/
+    
+    - name: Generate comprehensive report
+      run: |
+        cd wasm-testing-suite
+        node tools/report-generator.js ../artifacts/
+    
+    - name: Upload comprehensive report
+      uses: actions/upload-artifact@v4
+      with:
+        name: comprehensive-test-report
+        path: wasm-testing-suite/comprehensive-report.html
+    
+    - name: Comment PR with results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const reportPath = 'wasm-testing-suite/test-summary.json';
+          
+          if (fs.existsSync(reportPath)) {
+            const summary = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+            
+            const comment = \`
+            ## 🧪 WASM Testing Report
+            
+            ### Summary
+            - **Browser Compatibility**: \${summary.browserCompatibility}
+            - **Performance**: \${summary.performance}
+            - **Memory Usage**: \${summary.memoryUsage}
+            - **Cross-Platform**: \${summary.crossPlatform}
+            
+            ### Targets Met
+            - ✅ Inference Speed: \${summary.targets.inferenceSpeed ? 'Under 100ms' : '❌ Over 100ms'}
+            - ✅ Memory Usage: \${summary.targets.memoryUsage ? 'Under 512MB' : '❌ Over 512MB'}
+            - ✅ Browser Support: \${summary.targets.browserSupport ? '95%+' : '❌ Under 95%'}
+            
+            [View Full Report](https://github.com/\${context.repo.owner}/\${context.repo.repo}/actions/runs/\${context.runId})
+            \`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+          }
+
+  # Performance regression detection
+  performance-regression:
+    name: Performance Regression Check
+    runs-on: ubuntu-latest
+    needs: performance-benchmarks
+    if: github.event_name == 'pull_request'
+    timeout-minutes: 10
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        cd wasm-testing-suite
+        npm ci
+    
+    - name: Download benchmark results
+      uses: actions/download-artifact@v4
+      with:
+        name: benchmark-results-ubuntu-latest
+        path: current-benchmarks/
+    
+    - name: Get baseline benchmarks
+      run: |
+        # Get benchmarks from main branch
+        git checkout HEAD~1
+        cd wasm-testing-suite
+        npm run benchmark
+        cp benchmark-results.json ../baseline-benchmarks.json
+        git checkout -
+    
+    - name: Compare performance
+      run: |
+        cd wasm-testing-suite
+        node -e "
+          const fs = require('fs');
+          const current = JSON.parse(fs.readFileSync('../current-benchmarks/benchmark-results.json'));
+          const baseline = JSON.parse(fs.readFileSync('../baseline-benchmarks.json'));
+          
+          const regressions = [];
+          const threshold = 0.1; // 10% regression threshold
+          
+          for (const currentTest of current) {
+            const baselineTest = baseline.find(b => b.name === currentTest.name);
+            if (baselineTest) {
+              const regression = (currentTest.avgTime - baselineTest.avgTime) / baselineTest.avgTime;
+              if (regression > threshold) {
+                regressions.push({
+                  test: currentTest.name,
+                  regression: (regression * 100).toFixed(1) + '%',
+                  current: currentTest.avgTime.toFixed(2) + 'ms',
+                  baseline: baselineTest.avgTime.toFixed(2) + 'ms'
+                });
+              }
+            }
+          }
+          
+          if (regressions.length > 0) {
+            console.error('❌ Performance regressions detected:');
+            regressions.forEach(r => {
+              console.error(\`  • \${r.test}: \${r.regression} slower (\${r.current} vs \${r.baseline})\`);
+            });
+            process.exit(1);
+          }
+          
+          console.log('✅ No significant performance regressions detected');
+        "
+
+  # Nightly comprehensive testing
+  nightly-comprehensive:
+    name: Nightly Comprehensive Tests
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    timeout-minutes: 120
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        cd wasm-testing-suite
+        npm ci
+    
+    - name: Run extended test suite
+      run: |
+        cd wasm-testing-suite
+        # Extended testing with more iterations and edge cases
+        EXTENDED_TESTING=true npm test
+    
+    - name: Run stress tests
+      run: |
+        cd wasm-testing-suite
+        # Test with extreme conditions
+        STRESS_TESTING=true npm run benchmark
+    
+    - name: Generate nightly report
+      run: |
+        cd wasm-testing-suite
+        npm run report:generate
+    
+    - name: Upload nightly results
+      uses: actions/upload-artifact@v4
+      with:
+        name: nightly-test-results-${{ github.run_number }}
+        path: wasm-testing-suite/nightly-report.html
+    
+    - name: Notify on failures
+      if: failure()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: 'Nightly WASM Tests Failed',
+            body: \`
+            🚨 Nightly comprehensive testing failed on \${new Date().toISOString()}
+            
+            **Run**: https://github.com/\${context.repo.owner}/\${context.repo.repo}/actions/runs/\${context.runId}
+            
+            Please investigate and fix any issues found.
+            \`,
+            labels: ['bug', 'ci', 'high-priority']
+          });
+
+# Workflow completion notification
+notifications:
+  - name: Notify completion
+    if: always()
+    uses: actions/github-script@v7
+    with:
+      script: |
+        const status = '${{ job.status }}';
+        const conclusion = status === 'success' ? '✅' : '❌';
+        
+        console.log(\`\${conclusion} WASM Testing Pipeline completed with status: \${status}\`);

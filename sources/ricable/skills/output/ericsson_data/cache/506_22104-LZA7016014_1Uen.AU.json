@@ -1,0 +1,198 @@
+{
+  "file_hash": "dc7777c171db7deb288f2d2efe91a514",
+  "feature": {
+    "id": "121 4749",
+    "name": "Automatic SCell Management",
+    "cxc_code": "CXC4012123",
+    "value_package": "Advanced Carrier Aggregation",
+    "value_package_id": "FAJ 801 0564",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature enables the automatic configuration of cells as SCells for carrier",
+    "parameters": [
+      {
+        "name": "AutoSCellMgmFunction.asmAlarmSuppression",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AutoSCellMgmFunction"
+      },
+      {
+        "name": "AutoSCellMgmFunction.asmInterFMeasReportDecr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AutoSCellMgmFunction"
+      },
+      {
+        "name": "AutoSCellMgmFunction.asmInterFMeasReportIncr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AutoSCellMgmFunction"
+      },
+      {
+        "name": "AutoSCellMgmFunction.asmInterFMeasReportMax",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AutoSCellMgmFunction"
+      },
+      {
+        "name": "AutoSCellMgmFunction.asmInterFMeasReportMin",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AutoSCellMgmFunction"
+      },
+      {
+        "name": "AutoSCellMgmFunction.sCellCandidateLimit",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "AutoSCellMgmFunction"
+      },
+      {
+        "name": "EUtranCellRelation.asmStatus",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.asmSCellDlOnlyAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.  Must be set to DL_ONLY if the inter-cell distance is                                 larger than 300 meters.",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelation.sCellCaConfigurationAvail",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellRelationUnlicensed.sCellCaConfigurationAvail",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellRelationUnlicensed"
+      },
+      {
+        "name": "EUtranFreqRelation.asmHitRateAddThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.asmHitRateRemoveThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.asmSCellDetection",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.sCellPriorityExtCoSited",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.sCellPriorityExtNonCoSited",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.sCellPriorityLocal",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "ExternalENodeBFunction.coSited",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalENodeBFunction"
+      },
+      {
+        "name": "EUtranCellRelation.sCellCandidate",
+        "type": "Affecting",
+        "description": "Must be set to AUTO for the cell relation to be used                                 by the Automatic SCell Management feature.",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "SubscriberGroupProfile.featuresToDisableMeas",
+        "type": "Affecting",
+        "description": "Inter-frequency measurements with measurement gap can be disabled for                                 UEs in a subscriber group if the attribute includes the value                                 corresponding the Automatic SCell Management feature name.",
+        "mo_class": "SubscriberGroupProfile"
+      },
+      {
+        "name": "Uen.AU",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEvent",
+        "description": "Performance counter pmEvent",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_EVENT_ASM_TRIGGERED_ALARM_SUPPRESSED",
+        "type": "This event is reported instead of raising the Inter                                         Node Feature Incompatibility alarm when the                                         AutoSCellMgmFunction.asmAlarmSuppression                                     attribute is set to true.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_SCELL_CANDIDATE_ADD",
+        "type": "Reports when the EUtranCellRelation.asmStatus                                     attribute for the cell relation is set to                                         ALLOWED or                                         ONLY_ALOWED_FOR_DL by the Automatic SCell                                     Management feature.",
+        "description": ""
+      },
+      {
+        "name": "INTERNAL_EVENT_SCELL_CANDIDATE_REMOVE",
+        "type": "Reports when the EUtranCellRelation.asmStatus                                     attribute for the cell relation is changed from                                         ALLOWED or                                         ONLY_ALOWED_FOR_DL by the Automatic SCell                                     Management feature.",
+        "description": ""
+      },
+      {
+        "name": "LOCAL_EVENT_SCELL_ASM_CANDIDATE",
+        "type": "This event is reported when the value of the                                         EUtranCellRelation.asmStatus attribute                                     cannot be set to ALLOWED for an SCell, even                                     though the hit rate is above the threshold.  The following information is reported:  PCI     CGI     The value of the                                                   EUtranCellRelation.sCellCaConfigurationAvail                                                 attribute",
+        "description": ""
+      },
+      {
+        "name": "LOCAL_EVENT_NO_SCELL_ON_NODE",
+        "type": "This event reports an external eNodeB ID when the following                                     conditions are fulfilled on the external node:  An Elastic RAN connection is established with the                                                 eNodeB.     No SCells are available in which the value of the                                                   EUtranCellRelation.asmStatus or                                                 the                                                   EUtranCellRelation.sCellCandidate                                                 attribute is set to ALLOWED.     The last removed SCell is controlled by the Automatic                                                 SCell Management feature, that is, the value of the                                                   EUtranCellRelation.asmStatus                                                 attribute is set to ALLOWED.      The event is not reported if the last available SCell is manually                                     controlled, that is, the value of the                                         EUtranCellRelation.sCellCandidate                                     attribute is set to ALLOWED.",
+        "description": ""
+      },
+      {
+        "name": "LOCAL_PER_SCELL_DET_ESTIMATION",
+        "type": "This event contains SCell evaluation information about cell                                     relations. This information is needed for Automatic SCell                                     Management support. The event shows cell relations with high hit                                     rate.  The event contains the following information:  EARFCN     The number of measurements that are reported on the                                                 related frequency relation since the last update                                                 cycle     The following values are reported for each cell                                                 relation, sorted by hit rate and starting with the                                                 cell that has the highest hit rate:  PCI     CGI     The value of the                                                   EUtranCellRelation.asmStatus                                                   attribute     The number of qualified measurements reported                                                   as the strongest cell since the last update                                                   cycle     The value of the                                                   EUtranCellRelation.sCellCaConfigurationAvail                                                   attribute",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012123 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012123 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/506_22104-LZA7016014_1Uen.AU.md",
+    "file_hash": "dc7777c171db7deb288f2d2efe91a514",
+    "processed_at": "2025-10-19 15:50:08",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

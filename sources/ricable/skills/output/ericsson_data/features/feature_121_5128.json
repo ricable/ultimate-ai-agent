@@ -1,0 +1,105 @@
+{
+  "id": "121 5128",
+  "name": "Evolved Load-Based Distribution at Release",
+  "cxc_code": "CXC4012397",
+  "value_package": "Multi-Carrier Load Management",
+  "value_package_id": "FAJ 801 0427",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The Evolved Load-Based Distribution at Release feature allows for a more cognizant UE",
+  "parameters": [
+    {
+      "name": "LoadBalancingFunction.targetLoadAwareLbdar",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "LoadBalancingFunction.coverageAwareLbdar",
+      "type": "Introduced",
+      "description": "When this parameter is set to true, the Evolved                                 Load-Based Distribution at Release with hit rate functionality is                                 enabled.",
+      "mo_class": "LoadBalancingFunction"
+    },
+    {
+      "name": "EUtranCellFDD.lbdarCoverageThreshold  EUtranCellTDD.lbdarCoverageThreshold",
+      "type": "Introduced",
+      "description": "This parameter is used as a threshold to consider if a frequency                                 relation qualifies for Load-Based Distribution at Release                                 prioritization. If the aggregated hit rate is less than or equal to                                 a configurable threshold                                     (lbdarCoverageThreshold) then that                                 frequency relation is considered as a low coverage probability                                 frequency.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranFreqRelation.lbActivationThreshold",
+      "type": "Affected",
+      "description": "The threshold range is extended from (0..1000) to (0..16000). The new                                 range reflects the range of                                     IdleModePrioAtRelease.highLoadThreshold and                                 allows better control of interaction between Inter-Frequency Load                                 Balancing and Evolved Load-Based Distribution at Release.",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "IdleModePrioAtRelease.highLoadThreshold",
+      "type": "Affecting",
+      "description": "Evolved Load-Based Distribution at Release uses this threshold to                                 determine whether a cell is highly loaded or not by comparing it to                                 the cell subscription ratio.",
+      "mo_class": "IdleModePrioAtRelease"
+    },
+    {
+      "name": "Uen.AF",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "ENodeBFunction.mobilityBackToNrFreqDisabled",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "ENodeBFunction"
+    },
+    {
+      "name": "EUtranCellFDD.lbdarCoverageThreshold",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.lbdarCoverageThreshold",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranFreqRelation.lbBnrPolicy",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "GUtranFreqRelation.cellReselectionSubPriority",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "GUtranFreqRelation"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmIdleModeRelDistrPrioFreq",
+      "description": "Performance counter pmIdleModeRelDistrPrioFreq",
+      "category": "General"
+    },
+    {
+      "name": "pmLbCellHighLoaded",
+      "description": "Performance counter pmLbCellHighLoaded",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012397 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012397 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/460_22104-LZA7016014_1Uen.AF.md",
+  "file_hash": "33e16fe8944988fe29fb0da5ff9fbbec",
+  "processed_at": "2025-10-19 15:50:07",
+  "network_impact": {},
+  "performance_impact": {}
+}

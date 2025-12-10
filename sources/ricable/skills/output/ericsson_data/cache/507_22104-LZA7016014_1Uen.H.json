@@ -1,0 +1,237 @@
+{
+  "file_hash": "1063226d891d32935eac60b5d99024ca",
+  "feature": {
+    "id": "121 5018",
+    "name": "Enhanced PTT Admission Control  Enhanced Dynamic UE Admission Control for Privileged Access",
+    "cxc_code": "CXC4012490",
+    "value_package": "Mission-Critical Services  High Load Handling",
+    "value_package_id": "FAJ 801 1017  FAJ 801 0415",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature introduces a third threshold within the Dynamic UE Admission",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.cceDynUeAdmCtrlPaOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.cceDynUeAdmCtrlPaOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.ulDynUeAdmCtrlPaOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.ulDynUeAdmCtrlPaOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.dlDynUeAdmCtrlPaOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.dlDynUeAdmCtrlPaOverloadThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pagingPriorityOverloadThr",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pagingPriorityOverloadThr",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "Uen.H",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "AdmissionControl.paArpOverride",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "AdmissionControl"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCellCceUtilization",
+        "description": "Performance counter pmCellCceUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmCellDlPrbUtilization",
+        "description": "Performance counter pmCellDlPrbUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmCellDlSeUtilization",
+        "description": "Performance counter pmCellDlSeUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmCellUlPrbUtilization",
+        "description": "Performance counter pmCellUlPrbUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmCellUlSeUtilization",
+        "description": "Performance counter pmCellUlSeUtilization",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAtt",
+        "description": "Performance counter pmHoPrepAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAtt1xRttSrvcc",
+        "description": "Performance counter pmHoPrepAtt1xRttSrvcc",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLb",
+        "description": "Performance counter pmHoPrepAttLb",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteInterF",
+        "description": "Performance counter pmHoPrepAttLteInterF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepAttLteIntraF",
+        "description": "Performance counter pmHoPrepAttLteIntraF",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInCellIntensDLC",
+        "description": "Performance counter pmHoPrepRejInCellIntensDLC",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInCellIntensStat",
+        "description": "Performance counter pmHoPrepRejInCellIntensStat",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInCellLatency",
+        "description": "Performance counter pmHoPrepRejInCellLatency",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInDynUeAdmCtrl",
+        "description": "Performance counter pmHoPrepRejInDynUeAdmCtrl",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInDynUeAdmCtrlPa",
+        "description": "Performance counter pmHoPrepRejInDynUeAdmCtrlPa",
+        "category": "General"
+      },
+      {
+        "name": "pmHoPrepRejInDynUeAdmCtrlPaPtt",
+        "description": "Performance counter pmHoPrepRejInDynUeAdmCtrlPaPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabAtt",
+        "description": "Performance counter pmRrcConnEstabAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailCellIntensDLC",
+        "description": "Performance counter pmRrcConnEstabFailCellIntensDLC",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailCellIntensStat",
+        "description": "Performance counter pmRrcConnEstabFailCellIntensStat",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailCellLatency",
+        "description": "Performance counter pmRrcConnEstabFailCellLatency",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailDynUeAdmCtrl",
+        "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrl",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailDynUeAdmCtrlCe",
+        "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlCe",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailDynUeAdmCtrlPa",
+        "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlPa",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabFailDynUeAdmCtrlPaPtt",
+        "description": "Performance counter pmRrcConnEstabFailDynUeAdmCtrlPaPtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReestAtt",
+        "description": "Performance counter pmRrcConnReestAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReestFailDynUeAdmCtrl",
+        "description": "Performance counter pmRrcConnReestFailDynUeAdmCtrl",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReestFailDynUeAdmCtrlCe",
+        "description": "Performance counter pmRrcConnReestFailDynUeAdmCtrlCe",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReestFailDynUeAdmCtrlPa",
+        "description": "Performance counter pmRrcConnReestFailDynUeAdmCtrlPa",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnReestFailDynUeAdmCtrlPaPtt",
+        "description": "Performance counter pmRrcConnReestFailDynUeAdmCtrlPaPtt",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012490 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012490 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/507_22104-LZA7016014_1Uen.H.md",
+    "file_hash": "1063226d891d32935eac60b5d99024ca",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

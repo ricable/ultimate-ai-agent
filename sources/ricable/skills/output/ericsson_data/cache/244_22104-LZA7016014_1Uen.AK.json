@@ -1,0 +1,84 @@
+{
+  "file_hash": "00e9c6481d04a3c1163c906fcef9aef8",
+  "feature": {
+    "id": "121 3090",
+    "name": "",
+    "cxc_code": "CXC4011804",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "The feature allows the UE to take PRS measurements in cells which use a different",
+    "parameters": [
+      {
+        "name": "RRC_INTER_FREQ_RSTD_MEASUREMENT_INDICATION",
+        "type": "EVENT_PARAM_RRC_RECONFIG_CAUSE",
+        "description": "",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AK",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "RadioEquipmentClock.bfnOffset",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "RadioEquipmentClock"
+      },
+      {
+        "name": "EUtranCellFDD.pmMeasGapFailLicInterFOtdoa",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmMeasGapFailLicInterFOtdoa",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMeasGapFailLicInterFOtdoa",
+        "description": "Performance counter pmMeasGapFailLicInterFOtdoa",
+        "category": "General"
+      },
+      {
+        "name": "pmentClock",
+        "description": "Performance counter pmentClock",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "RRC_INTER_FREQ_RSTD_MEASUREMENT_INDICATION",
+        "type": "EVENT_PARAM_RRC_RECONFIG_CAUSE",
+        "description": ""
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011804 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011804 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/244_22104-LZA7016014_1Uen.AK.md",
+    "file_hash": "00e9c6481d04a3c1163c906fcef9aef8",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

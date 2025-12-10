@@ -1,0 +1,79 @@
+{
+  "file_hash": "f8295d7f1db483187b8ea95ed712913c",
+  "feature": {
+    "id": "121 3047",
+    "name": "",
+    "cxc_code": "CXC4011477",
+    "value_package": "",
+    "value_package_id": "",
+    "access_type": "",
+    "node_type": "",
+    "description": "",
+    "summary": "This feature enhances the control of the UE selection process.",
+    "parameters": [
+      {
+        "name": "EUtranFreqRelation.eutranFreqToQciProfileRelation",
+        "type": "Introduced",
+        "description": "See MOM description.  The attribute references the EUtranFreqToQciProfileRelation struct. The                 struct has the following members:  a3RsrpFreqQciOffsetAdjustment     a3RsrqFreqQciOffsetAdjustment     a5Thr1RsrpFreqQciOffset     a5Thr1RsrqFreqQciOffset     a5Thr2RsrpFreqQciOffset     a5Thr2RsrqFreqQciOffset     atoThresh1QciProfileHandling     atoThresh2QciProfileHandling     lbA5Threshold2RsrpOffset     lbA5Threshold2RsrqOffset     lbQciProfileHandling     qciProfileRef     timeToTriggerA3     timeToTriggerA3Rsrq",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "QciProfilePredefined.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "QciProfilePredefined"
+      },
+      {
+        "name": "UtranFreqRelation.utranFreqToQciProfileRelation",
+        "type": "Introduced",
+        "description": "See MOM description.  The attribute references the UtranFreqToQciProfileRelation struct.The                 struct has the following members:  atoThresh1QciProfileHandling     atoThresh2QciProfileHandling     b2Thr1RsrpUtraFreqQciOffset     b2Thr1RsrqUtraFreqQciOffset     b2Thr2EcNoUtraFreqQciOffset     b2Thr2RscpUtraFreqQciOffset     lbQciProfileHandling     lbUtranB1ThresholdEcNoOffset     lbUtranB1ThresholdRscpOffset     qciProfileRef",
+        "mo_class": "UtranFreqRelation"
+      },
+      {
+        "name": "UtranTDDFreqRelation.qciB2ThrOffsets",
+        "type": "Introduced",
+        "description": "See MOM description.  The attribute references the UtranFreqToQciProfileRelation struct.The                 struct has the following members:  atoThresh1QciProfileHandling     atoThresh2QciProfileHandling     b2Thr1RsrpUtraFreqQciOffset     b2Thr1RsrqUtraFreqQciOffset     b2Thr2EcNoUtraFreqQciOffset     b2Thr2RscpUtraFreqQciOffset     lbQciProfileHandling     lbUtranB1ThresholdEcNoOffset     lbUtranB1ThresholdRscpOffset     qciProfileRef",
+        "mo_class": "UtranTDDFreqRelation"
+      },
+      {
+        "name": "Uen.AH",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UnsupportedFreqProfile.unsupportedFreqList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UnsupportedFreqProfile"
+      },
+      {
+        "name": "LoadBalancingFunction.lbCycle",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "LoadBalancingFunction"
+      },
+      {
+        "name": "FeatureState.featureState",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "FeatureState"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011477 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011477 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/257_22104-LZA7016014_1Uen.AH.md",
+    "file_hash": "f8295d7f1db483187b8ea95ed712913c",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

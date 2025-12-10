@@ -1,0 +1,140 @@
+[
+  {
+    "text": "User: Read the package.json file\nAssistant: I'll read the package.json file.\n<tool_use>read(file_path='package.json')</tool_use>",
+    "tool_name": "read",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: Show me the contents of src/index.ts starting from line 50\nAssistant: I'll read src/index.ts starting from line 50.\n<tool_use>read(file_path='src/index.ts', offset=50, limit=50)</tool_use>",
+    "tool_name": "read",
+    "difficulty": "medium",
+    "context": ""
+  },
+  {
+    "text": "User: What's in the authentication configuration file?\nAssistant: I'll read the authentication configuration.\n<tool_use>read(file_path='config/auth.config.js')</tool_use>",
+    "tool_name": "read",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: Read the README and tell me about installation\nAssistant: I'll read the README file to find installation instructions.\n<tool_use>read(file_path='README.md')</tool_use>",
+    "tool_name": "read",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: Create a new file called utils.ts with a helper function\nAssistant: I'll create utils.ts with a date formatting helper.\n<tool_use>write(file_path='src/utils.ts', content='export function formatDate(date: Date): string {\\n  return date.toISOString();\\n}')</tool_use>",
+    "tool_name": "write",
+    "difficulty": "medium",
+    "context": ""
+  },
+  {
+    "text": "User: Write a basic Express server to server.js\nAssistant: I'll create a basic Express server.\n<tool_use>write(file_path='server.js', content='const express = require(\\'express\\');\\nconst app = express();\\n\\napp.get(\\'/\\', (req, res) => {\\n  res.send(\\'Hello World!\\');\\n});\\n\\napp.listen(3000);')</tool_use>",
+    "tool_name": "write",
+    "difficulty": "medium",
+    "context": ""
+  },
+  {
+    "text": "User: Create a .gitignore file\nAssistant: I'll create a .gitignore file with common exclusions.\n<tool_use>write(file_path='.gitignore', content='node_modules/\\n.env\\ndist/\\n*.log')</tool_use>",
+    "tool_name": "write",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: Change the port from 3000 to 8080 in server.js\nAssistant: I'll update the port to 8080.\n<tool_use>edit(file_path='server.js', old_string='app.listen(3000)', new_string='app.listen(8080)')</tool_use>",
+    "tool_name": "edit",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: Update the function name from getData to fetchData\nAssistant: I'll rename the function to fetchData.\n<tool_use>edit(file_path='src/api.ts', old_string='function getData', new_string='function fetchData')</tool_use>",
+    "tool_name": "edit",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: Fix the typo in the error message - change 'occured' to 'occurred'\nAssistant: I'll fix the typo in the error message.\n<tool_use>edit(file_path='src/errors.ts', old_string='Error occured', new_string='Error occurred')</tool_use>",
+    "tool_name": "edit",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: Install the dependencies\nAssistant: I'll install the dependencies using npm.\n<tool_use>bash(command='npm install', description='Install npm dependencies')</tool_use>",
+    "tool_name": "bash",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: Run the test suite\nAssistant: I'll run the test suite.\n<tool_use>bash(command='npm test', description='Run test suite')</tool_use>",
+    "tool_name": "bash",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: Check the git status\nAssistant: I'll check the git status.\n<tool_use>bash(command='git status', description='Check git repository status')</tool_use>",
+    "tool_name": "bash",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: Build the project and run it\nAssistant: I'll build the project and start it.\n<tool_use>bash(command='npm run build && npm start', description='Build and start the application')</tool_use>",
+    "tool_name": "bash",
+    "difficulty": "medium",
+    "context": ""
+  },
+  {
+    "text": "User: Create a production build\nAssistant: I'll create a production build.\n<tool_use>bash(command='npm run build', description='Create production build')</tool_use>",
+    "tool_name": "bash",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: Search for all TODO comments in the code\nAssistant: I'll search for TODO comments across TypeScript files.\n<tool_use>grep(pattern='TODO', output_mode='content', glob='**/*.ts')</tool_use>",
+    "tool_name": "grep",
+    "difficulty": "medium",
+    "context": ""
+  },
+  {
+    "text": "User: Find all authentication-related functions\nAssistant: I'll search for authentication functions.\n<tool_use>grep(pattern='function.*auth', output_mode='files_with_matches')</tool_use>",
+    "tool_name": "grep",
+    "difficulty": "medium",
+    "context": ""
+  },
+  {
+    "text": "User: Look for API endpoint definitions\nAssistant: I'll search for API endpoint definitions.\n<tool_use>grep(pattern='app\\\\.(get|post|put|delete)', output_mode='content')</tool_use>",
+    "tool_name": "grep",
+    "difficulty": "hard",
+    "context": ""
+  },
+  {
+    "text": "User: Find where the UserService class is used\nAssistant: I'll find files that use UserService.\n<tool_use>grep(pattern='UserService', output_mode='files_with_matches')</tool_use>",
+    "tool_name": "grep",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: List all TypeScript files in the src directory\nAssistant: I'll list all TypeScript files in src/.\n<tool_use>glob(pattern='src/**/*.ts')</tool_use>",
+    "tool_name": "glob",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: Show me all test files\nAssistant: I'll find all test files.\n<tool_use>glob(pattern='**/*.test.ts')</tool_use>",
+    "tool_name": "glob",
+    "difficulty": "easy",
+    "context": ""
+  },
+  {
+    "text": "User: List all configuration files\nAssistant: I'll list all configuration files.\n<tool_use>glob(pattern='**/*.config.{js,ts,json}')</tool_use>",
+    "tool_name": "glob",
+    "difficulty": "medium",
+    "context": ""
+  },
+  {
+    "text": "User: Find all JavaScript files except node_modules\nAssistant: I'll find all JavaScript files.\n<tool_use>glob(pattern='**/*.js')</tool_use>",
+    "tool_name": "glob",
+    "difficulty": "easy",
+    "context": ""
+  }
+]

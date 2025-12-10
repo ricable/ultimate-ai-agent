@@ -1,0 +1,397 @@
+{
+  "id": "121 5296",
+  "name": "LTE AI Powered MIMO Sleep Mode",
+  "cxc_code": "CXC4012533",
+  "value_package": "Energy Efficiency",
+  "value_package_id": "FAJ 801 0413",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The LTE AI Powered MIMO Sleep Mode feature is an energy efficiency feature that saves",
+  "parameters": [
+    {
+      "name": "MimoSleepFunction.modelAccuracyThreshold",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "MimoSleepFunction"
+    },
+    {
+      "name": "MimoSleepFunction.portMerging4TxOpMode",
+      "type": "Affecting",
+      "description": "Determines if 4TX is reduced to 1TX or 2TX.",
+      "mo_class": "MimoSleepFunction"
+    },
+    {
+      "name": "MimoSleepFunction.portMergingEnabled",
+      "type": "Affecting",
+      "description": "Enables port merging during MIMO sleep mode if sleepMode is set                                     to MI_SWITCH.",
+      "mo_class": "MimoSleepFunction"
+    },
+    {
+      "name": "MimoSleepFunction.portMergingOptionFor4TxTo2Tx",
+      "type": "Affecting",
+      "description": "Determines if antenna 1 and antenna 3 or antenna 2 and antenna 3                                     are muted.",
+      "mo_class": "MimoSleepFunction"
+    },
+    {
+      "name": "MimoSleepFunction.rank2Enabled",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "MimoSleepFunction"
+    },
+    {
+      "name": "MimoSleepFunction.sleepMode",
+      "type": "Affecting",
+      "description": "MIMO sleep mode status can be set with this attribute, but the                                     benefits of machine intelligence appear only with the                                         MI_DETECTION and MI_SWITCH                                     values.",
+      "mo_class": "MimoSleepFunction"
+    },
+    {
+      "name": "MimoSleepFunction.sleepPowerControl",
+      "type": "Affecting",
+      "description": "Determines if MIMO sleep mode uses maximum power available or                                     retains the original power.  Using maximum power is not supported in                                         MI_SWITCH mode.",
+      "mo_class": "MimoSleepFunction"
+    },
+    {
+      "name": "MimoSleepFunction.sleepState",
+      "type": "Affecting",
+      "description": "Determines if MIMO sleep mode is activated.",
+      "mo_class": "MimoSleepFunction"
+    },
+    {
+      "name": "SectorCarrier.noOfMutedTxAntennas",
+      "type": "Affecting",
+      "description": "Determines the number of antennas that are muted during MIMO                                     sleep mode.",
+      "mo_class": "SectorCarrier"
+    },
+    {
+      "name": "MimoSleepFunction.sleepEndTimeApplied",
+      "type": "Affected",
+      "description": "Set automatically by the feature.",
+      "mo_class": "MimoSleepFunction"
+    },
+    {
+      "name": "MimoSleepFunction.sleepStartTimeApplied",
+      "type": "Affected",
+      "description": "Set automatically by the feature.",
+      "mo_class": "MimoSleepFunction"
+    },
+    {
+      "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_DET_TX_CONFIG",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_DET_DL_PRB_USAGE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_DET_UES",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_DET_DIRECTION",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_START_HOUR",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_START_MINUTE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_START_SECOND",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_START_MILLISEC",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_HOUR",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_MINUTE",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_SECOND",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_MILLISEC",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_CURRENT_TX_CONFIG",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_DESIRED_TX_CONFIG",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_SWITCH_RESULT",
+      "description": "",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.BC33B",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.lessPrbUsageThreshold",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.lessPrbUsageThreshold",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "QciProfilePredefined.lessMaxDelayThreshold",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "QciProfilePredefined"
+    },
+    {
+      "name": "SectorCarrier.pmMicroTxSleepTime",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "SectorCarrier"
+    },
+    {
+      "name": "EUtranCellFDD.pdcchCfiMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmMiMimoModelAccuracyDistr",
+      "description": "Performance counter pmMiMimoModelAccuracyDistr",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMiMimoSleepIn",
+      "description": "Performance counter pmMiMimoSleepIn",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMiMimoSleepInEUtranCellFDD",
+      "description": "Performance counter pmMiMimoSleepInEUtranCellFDD",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMiMimoSleepInEUtranCellTDD",
+      "description": "Performance counter pmMiMimoSleepInEUtranCellTDD",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMiMimoSleepOpp",
+      "description": "Performance counter pmMiMimoSleepOpp",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMiMimoSleepOut",
+      "description": "Performance counter pmMiMimoSleepOut",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMiMimoSleepOutEUtranCellFDD",
+      "description": "Performance counter pmMiMimoSleepOutEUtranCellFDD",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMiMimoSleepOutEUtranCellTDD",
+      "description": "Performance counter pmMiMimoSleepOutEUtranCellTDD",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMiMimoSleepTerm",
+      "description": "Performance counter pmMiMimoSleepTerm",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMiMimoSleepTermEUtranCellTDD",
+      "description": "Performance counter pmMiMimoSleepTermEUtranCellTDD",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMicroTxSleepTime",
+      "description": "Performance counter pmMicroTxSleepTime",
+      "category": "Energy"
+    },
+    {
+      "name": "pmMimoSleepOppTime",
+      "description": "Performance counter pmMimoSleepOppTime",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmMimoSleepTime",
+      "description": "Performance counter pmMimoSleepTime",
+      "category": "MIMO"
+    },
+    {
+      "name": "pmRadioThpVolDlSCellExt",
+      "description": "Performance counter pmRadioThpVolDlSCellExt",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioThpVolTxDlSCellExt",
+      "description": "Performance counter pmRadioThpVolTxDlSCellExt",
+      "category": "General"
+    },
+    {
+      "name": "pmRadioTxRankDistr",
+      "description": "Performance counter pmRadioTxRankDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    },
+    {
+      "name": "pmode",
+      "description": "Performance counter pmode",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_DET_TX_CONFIG",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_DET_DL_PRB_USAGE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_DET_UES",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT_MIMO_SLEEP_DETECTED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_DET_DIRECTION",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_START_HOUR",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_START_MINUTE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_START_SECOND",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_START_MILLISEC",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_HOUR",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_MINUTE",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_SECOND",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_TIMESTAMP_STOP_MILLISEC",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_CURRENT_TX_CONFIG",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_DESIRED_TX_CONFIG",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_MIMO_SLEEP_SWITCHED",
+      "type": "EVENT_PARAM_MIMO_SLEEP_SWITCH_RESULT",
+      "description": ""
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012533 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012533 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/518_22104-LZA7016014_1Uen.BC33B.md",
+  "file_hash": "72d58cb171a1782b300e2489b3b63976",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {}
+}

@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "timestamp": "2025-10-07T22:44:44.231Z",
+    "api": "morph-compatible",
+    "runtime": "wasm",
+    "samples": 12
+  },
+  "samples": [
+    {
+      "id": "test-001",
+      "description": "Add type annotations to function",
+      "latency_ms": 4,
+      "success": true,
+      "confidence": 0.5737500190734863,
+      "strategy": "insert_after"
+    },
+    {
+      "id": "test-002",
+      "description": "Add error handling to async function",
+      "latency_ms": 0,
+      "success": false,
+      "confidence": 0,
+      "strategy": "failed"
+    },
+    {
+      "id": "test-003",
+      "description": "Convert var to const/let",
+      "latency_ms": 1,
+      "success": true,
+      "confidence": 0.7955467104911804,
+      "strategy": "fuzzy_replace"
+    },
+    {
+      "id": "test-004",
+      "description": "Add JSDoc comments",
+      "latency_ms": 0,
+      "success": true,
+      "confidence": 0.5672115683555603,
+      "strategy": "insert_after"
+    },
+    {
+      "id": "test-005",
+      "description": "Convert callback to Promise",
+      "latency_ms": 0,
+      "success": true,
+      "confidence": 0.5106883645057678,
+      "strategy": "insert_after"
+    },
+    {
+      "id": "test-006",
+      "description": "Add null checks",
+      "latency_ms": 0,
+      "success": false,
+      "confidence": 0,
+      "strategy": "failed"
+    },
+    {
+      "id": "test-007",
+      "description": "Convert to arrow function",
+      "latency_ms": 1,
+      "success": true,
+      "confidence": 0.5705881714820862,
+      "strategy": "insert_after"
+    },
+    {
+      "id": "test-008",
+      "description": "Add input validation",
+      "latency_ms": 0,
+      "success": false,
+      "confidence": 0,
+      "strategy": "failed"
+    },
+    {
+      "id": "test-009",
+      "description": "Convert class to TypeScript",
+      "latency_ms": 1,
+      "success": false,
+      "confidence": 0,
+      "strategy": "failed"
+    },
+    {
+      "id": "test-010",
+      "description": "Add destructuring",
+      "latency_ms": 0,
+      "success": true,
+      "confidence": 0.5604602098464966,
+      "strategy": "insert_after"
+    },
+    {
+      "id": "test-011",
+      "description": "Add try-catch wrapper",
+      "latency_ms": 0,
+      "success": false,
+      "confidence": 0,
+      "strategy": "failed"
+    },
+    {
+      "id": "test-012",
+      "description": "Add async/await",
+      "latency_ms": 0,
+      "success": false,
+      "confidence": 0,
+      "strategy": "failed"
+    }
+  ],
+  "aggregate": {
+    "totalLatency": 7,
+    "avgLatency": 0.5833333333333334,
+    "p50Latency": 0,
+    "p95Latency": 4,
+    "successRate": 50,
+    "totalCost": 0
+  }
+}

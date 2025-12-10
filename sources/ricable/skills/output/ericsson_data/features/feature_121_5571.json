@@ -1,0 +1,158 @@
+{
+  "id": "121 5571",
+  "name": "NR QoS-Aware Downlink Carrier Aggregation",
+  "cxc_code": "CXC4012658",
+  "value_package": "Advanced RAN Slicing",
+  "value_package_id": "FAJ 801 4019",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature makes it possible to prioritize the external downlink carrier aggregation",
+  "parameters": [
+    {
+      "name": "ExtCaPriority.adjustedPriorityMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExtCaPriority"
+    },
+    {
+      "name": "ExtCaPriority.extCaPriorityId",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExtCaPriority"
+    },
+    {
+      "name": "ExtCaPriority.priorityDomainBase",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExtCaPriority"
+    },
+    {
+      "name": "ExtCaPriority.priorityDomainLimit",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExtCaPriority"
+    },
+    {
+      "name": "ExtCaPriority.relativePriorityBase",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExtCaPriority"
+    },
+    {
+      "name": "ExtCaPriority.relativePriorityLimit",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExtCaPriority"
+    },
+    {
+      "name": "ExtCaPriority.reservedBy",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "ExtCaPriority"
+    },
+    {
+      "name": "NRCellDU.extCaPriorityRef",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellDU"
+    },
+    {
+      "name": "Uen.U",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsnMacVolDlDrbSingleBurst",
+      "description": "Performance counter pmEbsnMacVolDlDrbSingleBurst",
+      "category": "General"
+    },
+    {
+      "name": "pmMacContentionDelayDlMaxQos",
+      "description": "Performance counter pmMacContentionDelayDlMaxQos",
+      "category": "General"
+    },
+    {
+      "name": "pmMacLatTimeDlDrxSyncQos",
+      "description": "Performance counter pmMacLatTimeDlDrxSyncQos",
+      "category": "General"
+    },
+    {
+      "name": "pmMacLatTimeDlDrxSyncSampQos",
+      "description": "Performance counter pmMacLatTimeDlDrxSyncSampQos",
+      "category": "General"
+    },
+    {
+      "name": "pmMacLatTimeDlNoDrxSyncQos",
+      "description": "Performance counter pmMacLatTimeDlNoDrxSyncQos",
+      "category": "General"
+    },
+    {
+      "name": "pmMacLatTimeDlNoDrxSyncSampQos",
+      "description": "Performance counter pmMacLatTimeDlNoDrxSyncSampQos",
+      "category": "General"
+    },
+    {
+      "name": "pmMacTimeDlDrbLastSlotQos",
+      "description": "Performance counter pmMacTimeDlDrbLastSlotQos",
+      "category": "General"
+    },
+    {
+      "name": "pmMacTimeDlDrbLastSlotSampQos",
+      "description": "Performance counter pmMacTimeDlDrbLastSlotSampQos",
+      "category": "General"
+    },
+    {
+      "name": "pmMacTimeDlDrbQos",
+      "description": "Performance counter pmMacTimeDlDrbQos",
+      "category": "General"
+    },
+    {
+      "name": "pmMacTimeDlDrbSampQos",
+      "description": "Performance counter pmMacTimeDlDrbSampQos",
+      "category": "General"
+    },
+    {
+      "name": "pmMacTimeDlDrbSingleSlotShortBurstQoS",
+      "description": "Performance counter pmMacTimeDlDrbSingleSlotShortBurstQoS",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrbLastSlotQos",
+      "description": "Performance counter pmMacVolDlDrbLastSlotQos",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrbQos",
+      "description": "Performance counter pmMacVolDlDrbQos",
+      "category": "General"
+    },
+    {
+      "name": "pmMacVolDlDrbSingleSlotShortBurstQoS",
+      "description": "Performance counter pmMacVolDlDrbSingleSlotShortBurstQoS",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012658 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012658 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/164_22104-LZA7016017_1Uen.U.md",
+  "file_hash": "a6d957536e5c1a899aeeb3df2f837f1b",
+  "processed_at": "2025-10-19 15:48:56",
+  "network_impact": {},
+  "performance_impact": {}
+}

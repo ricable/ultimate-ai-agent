@@ -1,0 +1,45 @@
+[package]
+name = "reasoningbank-network"
+description = "QUIC-based networking layer with 0-RTT and stream multiplexing"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+documentation.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[dependencies]
+reasoningbank-core = { path = "../reasoningbank-core" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+tokio = { workspace = true }
+quinn = { workspace = true }
+rustls = { workspace = true }
+rcgen = { workspace = true }
+
+# Neural bus dependencies
+ed25519-dalek = { version = "2", features = ["rand_core", "serde"] }
+prost = "0.13"
+sha2 = "0.10"
+bytes = "1.5"
+futures = "0.3"
+rand = "0.8"
+base64 = "0.22"
+chrono = "0.4"
+uuid = { version = "1.6", features = ["v4", "serde"] }
+serde_bytes = "0.11"
+
+[dev-dependencies]
+tempfile = { workspace = true }
+criterion = { workspace = true }
+
+[[bench]]
+name = "neural_bus_benchmark"
+harness = false
+path = "../../benches/neural_bus_benchmark.rs"

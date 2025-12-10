@@ -1,0 +1,37 @@
+[package]
+name = "synaptic-neural-mesh"
+version = "0.1.0"
+edition = "2021"
+authors = ["rUv <https://github.com/ruvnet>"]
+description = "Neural mesh coordination layer for distributed AI agents in Synaptic Neural Mesh"
+repository = "https://github.com/ruvnet/Synaptic-Mesh"
+license = "MIT OR Apache-2.0"
+homepage = "https://github.com/ruvnet/Synaptic-Mesh"
+documentation = "https://docs.rs/synaptic-neural-mesh"
+readme = "README.md"
+keywords = ["neural", "mesh", "distributed", "ai", "coordination"]
+categories = ["network-programming", "science", "algorithms"]
+
+[dependencies]
+# Core dependencies
+synaptic-qudag-core = "0.1"
+tokio = { version = "1.0", features = ["full"] }
+async-trait = "0.1"
+futures = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Coordination
+dashmap = "5.5"
+parking_lot = "0.12"
+uuid = { version = "1.0", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Metrics
+metrics = "0.21"
+tracing = "0.1"
+
+[dev-dependencies]
+tokio-test = "0.4"

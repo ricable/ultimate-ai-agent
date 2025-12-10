@@ -1,0 +1,46 @@
+{
+  "id": "121 4508",
+  "name": "TM8 Mode Switching",
+  "cxc_code": "CXC4011996",
+  "value_package": "LTE Base Package",
+  "value_package_id": "FAJ 801 0400",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The TM8 Mode Switching feature enables the UE to dynamically switch between TM8 and",
+  "parameters": [
+    {
+      "name": "EUtranCellTDD.transmissionMode",
+      "type": "Affecting",
+      "description": "Defines the Transmission Mode used for the UEs that are connected to                                 the cell.  The TM8 Mode Switching feature is available when the                                     EUtranCellTDD.transmissionMode attribute is                                 set to either 3 or 8.",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "Uen.AC",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011996 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011996 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/162_22104-LZA7016014_1Uen.AC.md",
+  "file_hash": "c580df869072a4ed8dcab47e2aa14ec0",
+  "processed_at": "2025-10-19 15:30:38",
+  "network_impact": {},
+  "performance_impact": {}
+}

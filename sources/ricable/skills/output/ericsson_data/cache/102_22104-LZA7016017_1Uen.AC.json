@@ -1,0 +1,99 @@
+{
+  "file_hash": "ed582c93f4ba05c1f723649ce164501f",
+  "feature": {
+    "id": "121 5220",
+    "name": "NR                                 Overload Protection  NR Limited Service Mode Emergency Call Support",
+    "cxc_code": "CXC4012538",
+    "value_package": "NR Base Package",
+    "value_package_id": "FAJ 801 4002",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The NR Limited Service Mode Emergency Call Support feature enables emergency calls for",
+    "parameters": [
+      {
+        "name": "NRCellDU.imsEmSupportEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "CuCpProcInitialCtxtEstab",
+        "type": "limited_service_mode",
+        "description": "Event for monitoring Initial Context Setup procedure.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcPduSessionResourceSetup",
+        "type": "limited_service_mode",
+        "description": "Event for monitoring PDU Session Setup procedure.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "CuCpProcPduSessionResourceModify",
+        "type": "limited_service_mode",
+        "description": "Event for monitoring PDU Session Modification procedure.",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.AC",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "A.a",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "A"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsDrbEstabAttLsm5qi",
+        "description": "Performance counter pmEbsDrbEstabAttLsm5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsDrbEstabSuccLsm5qi",
+        "description": "Performance counter pmEbsDrbEstabSuccLsm5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEvents",
+        "description": "Performance counter pmEvents",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "CuCpProcInitialCtxtEstab",
+        "type": "limited_service_mode",
+        "description": "Event for monitoring Initial Context Setup procedure."
+      },
+      {
+        "name": "CuCpProcPduSessionResourceSetup",
+        "type": "limited_service_mode",
+        "description": "Event for monitoring PDU Session Setup procedure."
+      },
+      {
+        "name": "CuCpProcPduSessionResourceModify",
+        "type": "limited_service_mode",
+        "description": "Event for monitoring PDU Session Modification procedure."
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012538 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012538 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/102_22104-LZA7016017_1Uen.AC.md",
+    "file_hash": "ed582c93f4ba05c1f723649ce164501f",
+    "processed_at": "2025-10-19 15:50:03",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

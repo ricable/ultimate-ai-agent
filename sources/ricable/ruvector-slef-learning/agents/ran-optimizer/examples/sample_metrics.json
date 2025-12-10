@@ -1,0 +1,239 @@
+{
+  "cells": [
+    {
+      "cell_id": "ENB123_CELL1",
+      "site_name": "Stockholm_Central_1",
+      "timestamp": "2024-12-08T10:30:00Z",
+      "technology": "LTE",
+      "radio_kpis": {
+        "rsrp_avg": -92.5,
+        "rsrp_p10": -105.0,
+        "rsrp_p90": -82.0,
+        "rsrq_avg": -11.2,
+        "rsrq_p10": -16.0,
+        "sinr_avg": 8.5,
+        "sinr_p10": 2.0,
+        "sinr_p90": 18.0,
+        "cqi_avg": 10.2,
+        "prb_dl_utilization": 78.5,
+        "prb_ul_utilization": 45.2,
+        "pusch_bler": 2.1,
+        "pdsch_bler": 1.8
+      },
+      "throughput_kpis": {
+        "dl_throughput_avg": 85.5,
+        "dl_throughput_max": 220.0,
+        "dl_throughput_p10": 25.0,
+        "ul_throughput_avg": 28.5,
+        "cell_throughput_dl": 1.85,
+        "cell_throughput_ul": 0.62,
+        "dl_volume_gb": 156.8,
+        "ul_volume_gb": 52.3
+      },
+      "mobility_kpis": {
+        "ho_attempts": 1250,
+        "ho_success_rate": 97.2,
+        "intra_freq_ho_sr": 98.1,
+        "inter_freq_ho_sr": 95.5,
+        "pingpong_rate": 3.2,
+        "too_early_ho_rate": 0.8,
+        "too_late_ho_rate": 1.2
+      },
+      "accessibility_kpis": {
+        "rrc_setup_sr": 99.5,
+        "erab_setup_sr": 99.2,
+        "rach_sr": 98.8,
+        "connected_users": 185,
+        "max_connected_users": 312,
+        "active_users": 78
+      },
+      "retainability_kpis": {
+        "call_drop_rate": 0.45,
+        "erab_drop_rate": 0.52,
+        "rrc_abnormal_release": 0.38
+      },
+      "alarms": [
+        {
+          "alarm_id": "ALM_PRB_HIGH",
+          "severity": "Warning",
+          "alarm_text": "PRB utilization approaching threshold",
+          "raised_time": "2024-12-08T09:15:00Z"
+        }
+      ],
+      "config": {
+        "pci": 123,
+        "earfcn": 1850,
+        "bandwidth": 20,
+        "tx_power": 43.0,
+        "rs_power": 15.0,
+        "antenna": {
+          "electrical_tilt": 4.0,
+          "mechanical_tilt": 2.0,
+          "azimuth": 120.0,
+          "height": 35.0
+        },
+        "ho_params": {
+          "time_to_trigger": 320,
+          "hysteresis": 2.0,
+          "a3_offset": 3.0,
+          "filter_coefficient": 4
+        }
+      }
+    },
+    {
+      "cell_id": "ENB123_CELL2",
+      "site_name": "Stockholm_Central_1",
+      "timestamp": "2024-12-08T10:30:00Z",
+      "technology": "LTE",
+      "radio_kpis": {
+        "rsrp_avg": -88.2,
+        "rsrp_p10": -98.0,
+        "rsrq_avg": -9.5,
+        "sinr_avg": 12.8,
+        "sinr_p10": 5.2,
+        "prb_dl_utilization": 52.3,
+        "prb_ul_utilization": 38.1
+      },
+      "throughput_kpis": {
+        "dl_throughput_avg": 105.2,
+        "ul_throughput_avg": 35.8,
+        "cell_throughput_dl": 1.42,
+        "dl_volume_gb": 118.5
+      },
+      "mobility_kpis": {
+        "ho_attempts": 980,
+        "ho_success_rate": 98.8,
+        "pingpong_rate": 1.8
+      },
+      "accessibility_kpis": {
+        "rrc_setup_sr": 99.7,
+        "connected_users": 142,
+        "active_users": 62
+      },
+      "retainability_kpis": {
+        "call_drop_rate": 0.28
+      },
+      "alarms": [],
+      "config": {
+        "pci": 124,
+        "earfcn": 1850,
+        "bandwidth": 20,
+        "antenna": {
+          "electrical_tilt": 5.0,
+          "mechanical_tilt": 2.0,
+          "azimuth": 240.0
+        }
+      }
+    },
+    {
+      "cell_id": "ENB456_CELL1",
+      "site_name": "Gothenburg_Harbor",
+      "timestamp": "2024-12-08T10:30:00Z",
+      "technology": "5G_NSA",
+      "radio_kpis": {
+        "rsrp_avg": -78.5,
+        "rsrq_avg": -8.2,
+        "sinr_avg": 18.5,
+        "prb_dl_utilization": 35.8,
+        "prb_ul_utilization": 22.4
+      },
+      "throughput_kpis": {
+        "dl_throughput_avg": 450.5,
+        "dl_throughput_max": 1200.0,
+        "ul_throughput_avg": 85.2,
+        "cell_throughput_dl": 3.85
+      },
+      "mobility_kpis": {
+        "ho_attempts": 450,
+        "ho_success_rate": 99.1
+      },
+      "accessibility_kpis": {
+        "connected_users": 95,
+        "active_users": 45
+      },
+      "retainability_kpis": {
+        "call_drop_rate": 0.15
+      },
+      "alarms": [],
+      "config": {
+        "pci": 456,
+        "earfcn": 627264,
+        "bandwidth": 100
+      }
+    },
+    {
+      "cell_id": "ENB789_CELL1",
+      "site_name": "Malmo_Industrial",
+      "timestamp": "2024-12-08T10:30:00Z",
+      "technology": "LTE",
+      "radio_kpis": {
+        "rsrp_avg": -112.5,
+        "rsrp_p10": -118.0,
+        "rsrq_avg": -16.8,
+        "sinr_avg": 2.5,
+        "sinr_p10": -3.0,
+        "prb_dl_utilization": 92.5,
+        "prb_ul_utilization": 68.2,
+        "interference_level": -95.5
+      },
+      "throughput_kpis": {
+        "dl_throughput_avg": 22.5,
+        "dl_throughput_p10": 5.2,
+        "cell_throughput_dl": 0.85
+      },
+      "mobility_kpis": {
+        "ho_attempts": 2100,
+        "ho_success_rate": 88.5,
+        "pingpong_rate": 8.5,
+        "too_late_ho_rate": 5.2
+      },
+      "accessibility_kpis": {
+        "rrc_setup_sr": 95.2,
+        "connected_users": 285,
+        "max_connected_users": 250
+      },
+      "retainability_kpis": {
+        "call_drop_rate": 3.2,
+        "erab_drop_rate": 4.1
+      },
+      "alarms": [
+        {
+          "alarm_id": "ALM_COVERAGE",
+          "severity": "Major",
+          "alarm_text": "Poor coverage - RSRP below threshold",
+          "raised_time": "2024-12-08T06:00:00Z"
+        },
+        {
+          "alarm_id": "ALM_HIGH_DROP",
+          "severity": "Critical",
+          "alarm_text": "High call drop rate detected",
+          "raised_time": "2024-12-08T08:30:00Z"
+        },
+        {
+          "alarm_id": "ALM_CONGESTION",
+          "severity": "Major",
+          "alarm_text": "Cell congestion - PRB utilization critical",
+          "raised_time": "2024-12-08T09:00:00Z"
+        }
+      ],
+      "config": {
+        "pci": 789,
+        "earfcn": 1850,
+        "bandwidth": 15,
+        "tx_power": 40.0,
+        "antenna": {
+          "electrical_tilt": 8.0,
+          "mechanical_tilt": 0.0,
+          "azimuth": 0.0,
+          "height": 25.0
+        },
+        "ho_params": {
+          "time_to_trigger": 640,
+          "hysteresis": 4.0,
+          "a3_offset": 5.0
+        }
+      }
+    }
+  ],
+  "query": "Analyze the network and provide optimization recommendations for all problematic cells, prioritizing by severity."
+}

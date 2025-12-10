@@ -1,0 +1,290 @@
+{
+  "file_hash": "c14320c09f4edfb8b742aa241fc49c4a",
+  "feature": {
+    "id": "121 5772",
+    "name": "NR Switched Uplink for Throughput Boost",
+    "cxc_code": "CXC4012493",
+    "value_package": "Peak Rate Evolution",
+    "value_package_id": "FAJ 801 4005",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature enables uplink spatial multiplexing for UEs that are capable of two-layer",
+    "parameters": [
+      {
+        "name": "CaCellProfileUeCfg.ulSuMimoFr1Prevention",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CaCellProfileUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulPortSwitchFr1Mode",
+        "type": "Introduced",
+        "description": "See MOM description.  Port switching can be configured for each UE group.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulLayerSwitchMetric",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulLayerSwitchQualHyst",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulLayerSwitchQualThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulPortSwitchMetric",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulPortSwitchTimeToTrigger",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulPortSwitchQualHyst",
+        "type": "Introduced",
+        "description": "See MOM description.  A value of 15 or higher is recommended.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulPortSwitchQualThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      },
+      {
+        "name": "NRCellDU.dftSOfdmPuschEnabled",
+        "type": "Affecting",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.maxUeSpeed",
+        "type": "Affecting",
+        "description": "If the Uplink Single-User MIMO feature is active, and the                                     NRCellDU.maxUeSpeed attribute is set to                                     UP_TO_200KMPH, UP_TO_350KMPH                                 or UP_TO_500KMPH, then only one uplink layer can be                                 scheduled in the cell for each UE.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "Uen.BT33D",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UlWfPortSwitchUeCfg.ulWfSwitchFr1Mode",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UlWfPortSwitchUeCfg"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCaConfigAttUl",
+        "description": "Performance counter pmCaConfigAttUl",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigSuccUl",
+        "description": "Performance counter pmCaConfigSuccUl",
+        "category": "General"
+      },
+      {
+        "name": "pmCaConfigUlSumSaDistr",
+        "description": "Performance counter pmCaConfigUlSumSaDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmCaDeconfigAttUl",
+        "description": "Performance counter pmCaDeconfigAttUl",
+        "category": "General"
+      },
+      {
+        "name": "pmCaDeconfigSuccUl",
+        "description": "Performance counter pmCaDeconfigSuccUl",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarcUlAckMod",
+        "description": "Performance counter pmMacHarcUlAckMod",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarcUlAckModInit",
+        "description": "Performance counter pmMacHarcUlAckModInit",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlAck16Qam",
+        "description": "Performance counter pmMacHarqUlAck16Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlAck256Qam",
+        "description": "Performance counter pmMacHarqUlAck256Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlAck64Qam",
+        "description": "Performance counter pmMacHarqUlAck64Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlAckQpsk",
+        "description": "Performance counter pmMacHarqUlAckQpsk",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlNack16Qam",
+        "description": "Performance counter pmMacHarqUlNack16Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlNack256Qam",
+        "description": "Performance counter pmMacHarqUlNack256Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlNack64Qam",
+        "description": "Performance counter pmMacHarqUlNack64Qam",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlNackMod",
+        "description": "Performance counter pmMacHarqUlNackMod",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlNackModInit",
+        "description": "Performance counter pmMacHarqUlNackModInit",
+        "category": "General"
+      },
+      {
+        "name": "pmMacHarqUlNackQpsk",
+        "description": "Performance counter pmMacHarqUlNackQpsk",
+        "category": "General"
+      },
+      {
+        "name": "pmMacOffloadVolUlSCell",
+        "description": "Performance counter pmMacOffloadVolUlSCell",
+        "category": "General"
+      },
+      {
+        "name": "pmMacOffloadVolUlSCellExt",
+        "description": "Performance counter pmMacOffloadVolUlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPusch1Port1Layer",
+        "description": "Performance counter pmMacRBSymUsedPusch1Port1Layer",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPusch2Port1Layer",
+        "description": "Performance counter pmMacRBSymUsedPusch2Port1Layer",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPusch2Port2Layer",
+        "description": "Performance counter pmMacRBSymUsedPusch2Port2Layer",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymUsedPuschMimoLayerDistr",
+        "description": "Performance counter pmMacRBSymUsedPuschMimoLayerDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRBSymUsedPuschMimoUserDistr",
+        "description": "Performance counter pmMacRBSymUsedPuschMimoUserDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmMacRbsymUsedPusch1Port1Layer",
+        "description": "Performance counter pmMacRbsymUsedPusch1Port1Layer",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRbsymUsedPusch2Port1Layer",
+        "description": "Performance counter pmMacRbsymUsedPusch2Port1Layer",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRbsymUsedPusch2Port2Layer",
+        "description": "Performance counter pmMacRbsymUsedPusch2Port2Layer",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUl",
+        "description": "Performance counter pmMacVolUl",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlPCellCa",
+        "description": "Performance counter pmMacVolUlPCellCa",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlSCellExt",
+        "description": "Performance counter pmMacVolUlSCellExt",
+        "category": "General"
+      },
+      {
+        "name": "pmMacVolUlSCellExtBwp",
+        "description": "Performance counter pmMacVolUlSCellExtBwp",
+        "category": "General"
+      },
+      {
+        "name": "pmPuschSchedActivityPCellCa",
+        "description": "Performance counter pmPuschSchedActivityPCellCa",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioSchedUlSuMimoRankDistr",
+        "description": "Performance counter pmRadioSchedUlSuMimoRankDistr",
+        "category": "MIMO"
+      },
+      {
+        "name": "pmcounter",
+        "description": "Performance counter pmcounter",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012493 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012493 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch4/80_22104-LZA7016017_1Uen.BT33D.md",
+    "file_hash": "c14320c09f4edfb8b742aa241fc49c4a",
+    "processed_at": "2025-10-19 15:50:09",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

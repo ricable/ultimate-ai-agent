@@ -1,0 +1,85 @@
+{
+  "id": "121 5678",
+  "name": "NR Unified Access Control for Mission-Critical Services",
+  "cxc_code": "CXC4012707",
+  "value_package": "Mission Critical",
+  "value_package_id": "FAJ 801 4025",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature enables access prioritization for mission-critical traffic.",
+  "parameters": [
+    {
+      "name": "BarringGroup.startBarringAi2",
+      "type": "Affected",
+      "description": "The attribute is unlocked by the feature to enable the configuration                                 of the UE barring threshold for users running mission-critical                                 traffic.",
+      "mo_class": "BarringGroup"
+    },
+    {
+      "name": "Uen.C",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRCellCU.pmEbsUacBarringProbDistrBg",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "NRCellCU.pmEbsUacBarringRejBg",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "NRCellCU.pmEbsUacBarringCellUsageBg",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsUacBarringCellUsageBg",
+      "description": "Performance counter pmEbsUacBarringCellUsageBg",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUacBarringProbDistrBg",
+      "description": "Performance counter pmEbsUacBarringProbDistrBg",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsUacBarringRejBg",
+      "description": "Performance counter pmEbsUacBarringRejBg",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012707 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012707 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/195_22104-LZA7016017_1Uen.C.md",
+  "file_hash": "410c669a9163f7efceb6b5ffc91b7799",
+  "processed_at": "2025-10-19 15:50:10",
+  "network_impact": {},
+  "performance_impact": {}
+}

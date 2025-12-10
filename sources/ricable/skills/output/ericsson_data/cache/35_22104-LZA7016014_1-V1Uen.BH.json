@@ -1,0 +1,394 @@
+{
+  "file_hash": "0d59b2122c533d19004f1ec690eb0045",
+  "feature": {
+    "id": "121 1447",
+    "name": "System Improvements in LTE RAN L19.Q4",
+    "cxc_code": "CXC4010770",
+    "value_package": "LTE Base package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node, DU Radio Node",
+    "description": "",
+    "summary": "The feature provides basic connected mode mobility between frequencies in the LTE",
+    "parameters": [
+      {
+        "name": "EUtranFreqRelation.allowedMeasBandwidth",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.cellReselectionPriority",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.connectedModeMobilityPrio",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.presenceAntennaPort1",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.qOffsetFreq",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.qQualMin",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.threshXHigh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.threshXHighQ",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.threshXLow",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.threshXLowQ",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "EUtranFreqRelation.voicePrio",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranFreqRelation"
+      },
+      {
+        "name": "ReportConfigA1Prim.a1ThresholdRsrpPrim",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA1Prim"
+      },
+      {
+        "name": "ReportConfigA1Prim.a1ThresholdRsrqPrim",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA1Prim"
+      },
+      {
+        "name": "ReportConfigA1Prim.hysteresisA1Prim",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA1Prim"
+      },
+      {
+        "name": "ReportConfigA1Prim.timeToTriggerA1Prim",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA1Prim"
+      },
+      {
+        "name": "ReportConfigA1Sec.a1ThresholdRsrpSec",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA1Sec"
+      },
+      {
+        "name": "ReportConfigA1Sec.a1ThresholdRsrqSec",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA1Sec"
+      },
+      {
+        "name": "ReportConfigA1Sec.hysteresisA1Sec",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA1Sec"
+      },
+      {
+        "name": "ReportConfigA1Sec.timeToTriggerA1Sec",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA1Sec"
+      },
+      {
+        "name": "ReportConfigA5.a5Threshold1Rsrp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5"
+      },
+      {
+        "name": "ReportConfigA5.a5Threshold1Rsrq",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5"
+      },
+      {
+        "name": "ReportConfigA5.a5Threshold2Rsrp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5"
+      },
+      {
+        "name": "ReportConfigA5.a5Threshold2Rsrq",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5"
+      },
+      {
+        "name": "ReportConfigA5.hysteresisA5",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5"
+      },
+      {
+        "name": "ReportConfigA5.maxReportCellsA5",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5"
+      },
+      {
+        "name": "ReportConfigA5.timeToTriggerA5",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5"
+      },
+      {
+        "name": "ReportConfigA5.triggerQuantityA5",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigA5"
+      },
+      {
+        "name": "ReportConfigEUtraBadCovPrim.a2ThresholdRsrpPrim",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBadCovPrim"
+      },
+      {
+        "name": "ReportConfigEUtraBadCovPrim.a2ThresholdRsrqPrim",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBadCovPrim"
+      },
+      {
+        "name": "ReportConfigEUtraBadCovPrim.hysteresisA2Prim",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBadCovPrim"
+      },
+      {
+        "name": "ReportConfigEUtraBadCovPrim.timeToTriggerA2Prim",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBadCovPrim"
+      },
+      {
+        "name": "ReportConfigEUtraBadCovPrim.triggerQuantityA2Prim",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBadCovPrim"
+      },
+      {
+        "name": "ReportConfigEUtraBadCovSec.a2ThresholdRsrpSec",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBadCovSec"
+      },
+      {
+        "name": "ReportConfigEUtraBadCovSec.a2ThresholdRsrqSec",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBadCovSec"
+      },
+      {
+        "name": "ReportConfigEUtraBadCovSec.hysteresisA2Sec",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBadCovSec"
+      },
+      {
+        "name": "ReportConfigEUtraBadCovSec.timeToTriggerA2Sec",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBadCovSec"
+      },
+      {
+        "name": "ReportConfigEUtraBadCovSec.triggerQuantityA2Sec",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBadCovSec"
+      },
+      {
+        "name": "ReportConfigEUtraBestCell.maxReportCellsA3",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraBestCell"
+      },
+      {
+        "name": "ReportConfigEUtraIFBestCell.a3offset",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIFBestCell"
+      },
+      {
+        "name": "ReportConfigEUtraIFBestCell.hysteresisA3",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIFBestCell"
+      },
+      {
+        "name": "ReportConfigEUtraIFBestCell.timeToTriggerA3",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIFBestCell"
+      },
+      {
+        "name": "ReportConfigEUtraIFBestCell.triggerQuantityA3",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ReportConfigEUtraIFBestCell"
+      },
+      {
+        "name": "UeMeasControl.a5B2MobilityTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.filterCoefficientEUtraRsrp",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.filterCoefficientEUtraRsrq",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.maxMeasEUtraOther",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.maxMeasEUtraOtherR12",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.maxMeasInterFreqEUtra",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.maxMeasInterFreqEUtraIncR12",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.maxMeasInterFreqEUtraR12",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.measScaleFactor",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.sMeasure",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "UeMeasControl.ueMeasurementsActive",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UeMeasControl"
+      },
+      {
+        "name": "Uen.BH",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "UnsupportedFreqProfile.unsupportedFreqList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UnsupportedFreqProfile"
+      },
+      {
+        "name": "RobustCallSetup.intraLteMobilityDelayEnabled",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "RobustCallSetup"
+      },
+      {
+        "name": "UeMeasControl.allowReleaseQci1",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "UeMeasControl"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmBadCovEvalReport",
+        "description": "Performance counter pmBadCovEvalReport",
+        "category": "General"
+      },
+      {
+        "name": "pmFlexUeCtxtRelSCEutra",
+        "description": "Performance counter pmFlexUeCtxtRelSCEutra",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelSCEutra",
+        "description": "Performance counter pmUeCtxtRelSCEutra",
+        "category": "General"
+      },
+      {
+        "name": "pmfunction",
+        "description": "Performance counter pmfunction",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4010770 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4010770 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch3/35_22104-LZA7016014_1-V1Uen.BH.md",
+    "file_hash": "0d59b2122c533d19004f1ec690eb0045",
+    "processed_at": "2025-10-19 15:50:07",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

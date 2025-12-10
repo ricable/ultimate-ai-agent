@@ -1,0 +1,94 @@
+{
+  "file_hash": "7f4a469a64b71bc285bf6444dd765530",
+  "feature": {
+    "id": "121 3000",
+    "name": "Dual Layer Beamforming Performance Package",
+    "cxc_code": "CXC4011262",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400 R8",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node, DU Radio Node",
+    "description": "",
+    "summary": "The Dual Layer Beamforming Performance Package feature improves coverage and",
+    "parameters": [
+      {
+        "name": "EUtranCellTDD.transmissionMode",
+        "type": "Affected",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "ENodeBFunction.extendMixedTxModeEnabled",
+        "type": "Affecting",
+        "description": "If the value of this attribute is set to true, not                                 only TM3 but TM2 or TM4, can be applied to 2TX TDD and 4TX TDD cells                                 that coexist with TM3, TM7, or TM8 8TX TDD cells. This is not valid                                 if the TM9 8x2 Octal Antenna Downlink Performance Package is also                                 enabled.",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_TX_6",
+        "description": "Samples with RANK=1 and TX=8 used towards an UE",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_TX_7",
+        "description": "Samples with RANK=2 and TX=8 used towards an UE",
+        "mo_class": "Unknown"
+      },
+      {
+        "name": "Uen.BC",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.pmRadioTxRankDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmI",
+        "description": "Performance counter pmI",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioTxRankDistr",
+        "description": "Performance counter pmRadioTxRankDistr",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_TX_6",
+        "description": "Samples with RANK=1 and TX=8 used towards an UE"
+      },
+      {
+        "name": "INTERNAL_PER_RADIO_UE_MEASUREMENT",
+        "type": "EVENT_PARAM_RANK_TX_7",
+        "description": "Samples with RANK=2 and TX=8 used towards an UE"
+      }
+    ],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011262 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011262 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/177_22104-LZA7016014_1Uen.BC.md",
+    "file_hash": "7f4a469a64b71bc285bf6444dd765530",
+    "processed_at": "2025-10-19 15:48:55",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

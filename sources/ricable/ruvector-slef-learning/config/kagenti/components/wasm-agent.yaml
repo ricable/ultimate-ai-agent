@@ -1,0 +1,154 @@
+# Kagenti Component CR for WASM Agent
+# Defines a single deployable WASM-based AI agent unit
+# https://github.com/kagenti/kagenti-operator
+
+apiVersion: kagenti.io/v1alpha1
+kind: Component
+metadata:
+  name: wasm-agent
+  namespace: zgents
+  labels:
+    app.kubernetes.io/name: wasm-agent
+    app.kubernetes.io/component: agent
+    app.kubernetes.io/part-of: zgents-platform
+    zgents.io/category: wasm
+    zgents.io/runtime: wasmedge
+spec:
+  # Component type: Agent, Tool, or Infrastructure
+  type: Agent
+
+  # Source repository
+  source:
+    git:
+      url: "https://github.com/ricable/ruvector-slef-learning"
+      ref: main
+      path: "apps/wasmedge-js"
+
+  # Build configuration
+  build:
+    enabled: true
+    type: wasm
+
+    # Use mise for reproducible builds
+    mise:
+      configPath: "agents/wasm/mise.toml"
+      tasks:
+        - build-wasmedge
+
+    # Build steps
+    steps:
+      - name: install-deps
+        command: "mise run setup"
+      - name: build-wasm
+        command: "mise run build-wasmedge"
+      - name: test
+        command: "mise run test"
+
+    # Output artifact
+    output:
+      type: oci
+      registry: "ghcr.io/ruvnet"
+      image: "wasm-agent"
+
+  # Runtime configuration
+  runtime:
+    # Use WASM runtime class
+    class: wasmtime-spin
+
+    # WasmEdge specific settings
+    wasmedge:
+      plugins:
+        - wasi_nn
+        - wasi_crypto
+        - wasmedge_tensorflow
+      modules:
+        - buffer
+        - http
+        - https
+        - crypto
+
+  # Deployment configuration
+  deployment:
+    replicas: 2
+
+    # Resource limits
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "50m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+
+    # Environment from secrets
+    envFrom:
+      - secretRef:
+          name: agent-secrets
+
+    # Volume mounts
+    volumes:
+      - name: agent-data
+        persistentVolumeClaim:
+          claimName: wasm-agent-data
+
+    # Health checks
+    healthCheck:
+      httpGet:
+        path: /health
+        port: 8080
+      initialDelaySeconds: 5
+      periodSeconds: 10
+
+    # Networking
+    service:
+      ports:
+        - name: http
+          port: 8080
+          targetPort: 8080
+
+  # A2A Protocol configuration
+  a2a:
+    enabled: true
+    endpoints:
+      - name: invoke
+        path: /a2a/invoke
+        method: POST
+      - name: status
+        path: /a2a/status
+        method: GET
+
+  # MCP Protocol configuration
+  mcp:
+    enabled: true
+    tools:
+      - name: vector-search
+        description: "Search vector database"
+      - name: code-execute
+        description: "Execute code in sandbox"
+
+---
+# Secrets for agent
+apiVersion: v1
+kind: Secret
+metadata:
+  name: agent-secrets
+  namespace: zgents
+type: Opaque
+stringData:
+  ANTHROPIC_API_KEY: ""  # Populate via mise secrets or external-secrets
+  LITELLM_ENDPOINT: "http://litellm.zgents.svc.cluster.local:4000"
+  RUVECTOR_ENDPOINT: "http://ruvector.zgents.svc.cluster.local:8765"
+
+---
+# PVC for agent data
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wasm-agent-data
+  namespace: zgents
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

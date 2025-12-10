@@ -1,0 +1,137 @@
+# =============================================================================
+# Edge-Native AI - PostgreSQL Database
+# Used for: LiteLLM tracking, user data, agent state persistence
+# =============================================================================
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: edge-ai-data
+  labels:
+    app: postgres
+    component: database
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: pgvector/pgvector:pg16
+          ports:
+            - containerPort: 5432
+              name: postgres
+          env:
+            - name: POSTGRES_USER
+              value: "edgeai"
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: edge-ai-secrets
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              value: "edgeai"
+            - name: PGDATA
+              value: "/var/lib/postgresql/data/pgdata"
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+          livenessProbe:
+            exec:
+              command:
+                - pg_isready
+                - -U
+                - edgeai
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command:
+                - pg_isready
+                - -U
+                - edgeai
+            initialDelaySeconds: 5
+            periodSeconds: 5
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: edge-ai-ssd
+        resources:
+          requests:
+            storage: 20Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: edge-ai-data
+spec:
+  selector:
+    app: postgres
+  ports:
+    - port: 5432
+      targetPort: 5432
+  clusterIP: None
+---
+# Initialize databases for different services
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: postgres-init
+  namespace: edge-ai-data
+spec:
+  template:
+    spec:
+      containers:
+        - name: init
+          image: postgres:16-alpine
+          command:
+            - /bin/sh
+            - -c
+            - |
+              until pg_isready -h postgres -U edgeai; do
+                echo "Waiting for PostgreSQL..."
+                sleep 2
+              done
+
+              PGPASSWORD=$POSTGRES_PASSWORD psql -h postgres -U edgeai -d edgeai << 'EOF'
+              -- Create extension for vector operations
+              CREATE EXTENSION IF NOT EXISTS vector;
+
+              -- LiteLLM database
+              CREATE DATABASE IF NOT EXISTS litellm;
+
+              -- AgentDB database
+              CREATE DATABASE IF NOT EXISTS agentdb;
+
+              -- RuVector database
+              CREATE DATABASE IF NOT EXISTS ruvector;
+
+              -- Grant permissions
+              GRANT ALL PRIVILEGES ON DATABASE litellm TO edgeai;
+              GRANT ALL PRIVILEGES ON DATABASE agentdb TO edgeai;
+              GRANT ALL PRIVILEGES ON DATABASE ruvector TO edgeai;
+              EOF
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: edge-ai-secrets
+                  key: POSTGRES_PASSWORD
+      restartPolicy: OnFailure

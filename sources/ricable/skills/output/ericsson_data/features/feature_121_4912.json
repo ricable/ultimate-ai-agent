@@ -1,0 +1,199 @@
+{
+  "id": "121 4912",
+  "name": "LTE-NR Downlink Aggregation",
+  "cxc_code": "CXC4012273",
+  "value_package": "Peak Rate Evolution",
+  "value_package_id": "FAJ 801 4005",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The LTE-NR Downlink Aggregation feature enables sending different user plane data in",
+  "parameters": [
+    {
+      "name": "DcDlCfg.dcDlAggAllowed",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DcDlCfg"
+    },
+    {
+      "name": "DcDlCfg.dcDlAggCgPrioOverride",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "DcDlCfg"
+    },
+    {
+      "name": "GNBCUUPFunction.estimatedUeL2Buffer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "GNBCUUPFunction"
+    },
+    {
+      "name": "UserPlaneProfileUeCfg.dcDlAggActTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UserPlaneProfileUeCfg"
+    },
+    {
+      "name": "UserPlaneProfileUeCfg.dcDlAggAgeDiffPreferredCg",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UserPlaneProfileUeCfg"
+    },
+    {
+      "name": "UserPlaneProfileUeCfg.dcDlAggAgeDiffProhibitTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UserPlaneProfileUeCfg"
+    },
+    {
+      "name": "UserPlaneProfileUeCfg.dcDlAggAgeDiffThresh",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UserPlaneProfileUeCfg"
+    },
+    {
+      "name": "UserPlaneProfileUeCfg.dcDlAggCgPrio",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UserPlaneProfileUeCfg"
+    },
+    {
+      "name": "UserPlaneProfileUeCfg.dcDlAggExpiryTimer",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UserPlaneProfileUeCfg"
+    },
+    {
+      "name": "UserPlaneProfileUeCfg.dlPdcpMcgInitialRate",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UserPlaneProfileUeCfg"
+    },
+    {
+      "name": "UserPlaneProfileUeCfg.dlPdcpMcgSpsTargetTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UserPlaneProfileUeCfg"
+    },
+    {
+      "name": "UserPlaneProfileUeCfg.dlPdcpPreferredCg",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UserPlaneProfileUeCfg"
+    },
+    {
+      "name": "UserPlaneProfileUeCfg.dlPdcpScgInitialRate",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UserPlaneProfileUeCfg"
+    },
+    {
+      "name": "UserPlaneProfileUeCfg.dlPdcpScgSpsTargetTime",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "UserPlaneProfileUeCfg"
+    },
+    {
+      "name": "CgSwitchCfg.dlCgSwitchMode",
+      "type": "Affecting",
+      "description": "See MOM description.",
+      "mo_class": "CgSwitchCfg"
+    },
+    {
+      "name": "CgSwitchCfg.dlScgLowQualHyst",
+      "type": "Affecting",
+      "description": "The feature can only activate if the NR radio quality is above the                                     CgSwitchCfg.dlScgLowQualThresh attribute                                 value by at least the value defined by                                     CgSwitchCfg.dlScgLowQualHyst.",
+      "mo_class": "CgSwitchCfg"
+    },
+    {
+      "name": "CgSwitchCfg.dlScgLowQualThresh",
+      "type": "Affecting",
+      "description": "The feature can only activate if the NR radio quality is above the                                 attribute value by at least the value defined by                                     CgSwitchCfg.dlScgLowQualHyst.",
+      "mo_class": "CgSwitchCfg"
+    },
+    {
+      "name": "UserPlaneProfileUeCfg.dlPdcpScgRetProhibitTime",
+      "type": "Affecting",
+      "description": "The attribute value defines the minimum time between switches of                                 radio resources.",
+      "mo_class": "UserPlaneProfileUeCfg"
+    },
+    {
+      "name": "Uen.DZ",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "DcDlCfg.dlPdcpPreferredCgOverride",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "DcDlCfg"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmPdcpPktTransDlAckQos",
+      "description": "Performance counter pmPdcpPktTransDlAckQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktTransDlAggrQoS",
+      "description": "Performance counter pmPdcpPktTransDlAggrQoS",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktTransDlAggrQos",
+      "description": "Performance counter pmPdcpPktTransDlAggrQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpPktTransDlQos",
+      "description": "Performance counter pmPdcpPktTransDlQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolTransDlAggrQos",
+      "description": "Performance counter pmPdcpVolTransDlAggrQos",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolTransDlQos",
+      "description": "Performance counter pmPdcpVolTransDlQos",
+      "category": "General"
+    },
+    {
+      "name": "pmcgInitialRate",
+      "description": "Performance counter pmcgInitialRate",
+      "category": "General"
+    },
+    {
+      "name": "pmcgSpsTargetTime",
+      "description": "Performance counter pmcgSpsTargetTime",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012273 MO instance.",
+  "deactivation_step": null,
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/14_22104-LZA7016017_1Uen.DZ.md",
+  "file_hash": "253635d399e33fb882a07f382f684b66",
+  "processed_at": "2025-10-19 15:50:03",
+  "network_impact": {},
+  "performance_impact": {}
+}

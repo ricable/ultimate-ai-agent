@@ -1,0 +1,147 @@
+{
+  "id": "121 4377",
+  "name": "Dynamic PUCCH",
+  "cxc_code": "CXC4011955",
+  "value_package": "Uplink Spectrum Adaptations",
+  "value_package_id": "FAJ 801 0566",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature dynamically allocates and deallocates PUCCH resources depending on the",
+  "parameters": [
+    {
+      "name": "EUtranCellFDD.deallocTimerPucchFormat1",
+      "type": "Introduced",
+      "description": "For the description, see the Managed Object Model                                 (MOM).",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.allocThrPucchFormat1",
+      "type": "Introduced",
+      "description": "For the description, see the Managed Object Model                                 (MOM).",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.allocTimerPucchFormat1",
+      "type": "Introduced",
+      "description": "For the description, see the Managed Object Model                                 (MOM).",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.deallocThrPucchFormat1",
+      "type": "Introduced",
+      "description": "For the description, see the Managed Object Model                                 (MOM).",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.noOfPucchFormat1PrbPairsPerFrame",
+      "type": "Affected",
+      "description": "The default value is changed by this feature during dynamic                                 operation.",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "Uen.BC",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "EUtranCellFDD.nrOfPucchUsers",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.nrOfPucchUsers",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "EUtranCellTDD.allocThrPucchFormat1",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    },
+    {
+      "name": "AdmissionControl.limitSrNonPa",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "AdmissionControl"
+    },
+    {
+      "name": "EUtranCellFDD.noOfPucchFormat1PrbPairsPerFrameConf",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.noOfPucchSrUsers",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellFDD.pmPucchSrResShortUtilCell",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmPrachPrbOffsetUpdate",
+      "description": "Performance counter pmPrachPrbOffsetUpdate",
+      "category": "General"
+    },
+    {
+      "name": "pmPucchSrResCongBbm",
+      "description": "Performance counter pmPucchSrResCongBbm",
+      "category": "General"
+    },
+    {
+      "name": "pmPucchSrResLongUtilCell",
+      "description": "Performance counter pmPucchSrResLongUtilCell",
+      "category": "General"
+    },
+    {
+      "name": "pmPucchSrResMediumUtilCell",
+      "description": "Performance counter pmPucchSrResMediumUtilCell",
+      "category": "General"
+    },
+    {
+      "name": "pmPucchSrResShortUtilCell",
+      "description": "Performance counter pmPucchSrResShortUtilCell",
+      "category": "General"
+    },
+    {
+      "name": "pmPucchSrResUtilBbm",
+      "description": "Performance counter pmPucchSrResUtilBbm",
+      "category": "General"
+    },
+    {
+      "name": "pmSinrPucchDistr",
+      "description": "Performance counter pmSinrPucchDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011955 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011955 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/167_22104-LZA7016014_1Uen.BC.md",
+  "file_hash": "3bdb1db79fe537b4b45e621d3967ead8",
+  "processed_at": "2025-10-19 15:30:38",
+  "network_impact": {},
+  "performance_impact": {}
+}

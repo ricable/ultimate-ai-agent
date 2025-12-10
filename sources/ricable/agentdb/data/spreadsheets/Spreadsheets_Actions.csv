@@ -1,0 +1,1508 @@
+Model,MO Class Name,Action,Description,Return Type,Parameter Name,Parameter Description,Data Type,Range and Values,Sequence Length,Deprecated,Obsolete,Precondition,Disturbances,Dependencies,Preliminary
+GNBCUCPFunction,GNBCUCPFunction,updateAmfConnection,"Orders a new DNS lookup on 5GS TAI domain names and get possible new AMFs domain names.
+
+AMFs termpoints are created or deleted automatically. Procedure continues with DNS lookup on AMFs domain names and AMFs IP addresses retrieval. MO action can have two different options:
+
+- Retain Existing: This option retains all AMFs and connections that are included in DNS response and AMFs and connections that are not included in the response are removed. For AMFs domain names and IP addresses that are unknown for gNodeB, gNodeB establishes connections to those AMFs.
+- Renew All: The gNodeB releases all connections and AMFs, makes new DNS lookups and creates AMF termpoints and connections for AMFs that are included in DNS response.
+Traffic may be disturbed by this option.",void,amfConnectionUpdateOptions,Possible options for updateAmfConnection MO action. (Mandatory),enum UpdateAmfConnectionOption,"RETAIN_EXISTING
+RENEW_ALL",1,,,,Executing this action can cause loss of traffic.,,
+GNBCUCPFunction,NRCellCU,promoteLwNRCellRelation,"Creates NRCellRelation, ExternalNRCellCU, and ExternalBroadcastPLMNInfo instances based on their lightweight objects.
+
+Creates ExternalGNBCUCPFunction instance if no instance is created yet for target cell.
+Thus, lightweight NR objects are promoted to MO instances.
+Input parameters pLMNId and gNodeBIdLength are mandatory, while gNodeBId, cellId, nCI, and pLMNIdForGlobalRANNodeId are not.
+When gNodeBId and cellId are used, nCI is not needed. When gNodeBId and cellId are used together with nCI, all parameters must be consistent.",void,pLMNId,NR cell PLMN identity (Mandatory).,struct PLMNId,,1,,,,,,
+GNBCUCPFunction,NRCellCU,promoteLwNRCellRelation,"Creates NRCellRelation, ExternalNRCellCU, and ExternalBroadcastPLMNInfo instances based on their lightweight objects.
+
+Creates ExternalGNBCUCPFunction instance if no instance is created yet for target cell.
+Thus, lightweight NR objects are promoted to MO instances.
+Input parameters pLMNId and gNodeBIdLength are mandatory, while gNodeBId, cellId, nCI, and pLMNIdForGlobalRANNodeId are not.
+When gNodeBId and cellId are used, nCI is not needed. When gNodeBId and cellId are used together with nCI, all parameters must be consistent.",void,gNodeBIdLength,NR cell gNodeB identity length (Mandatory).,int32,22..32,1,,,,,,
+GNBCUCPFunction,NRCellCU,promoteLwNRCellRelation,"Creates NRCellRelation, ExternalNRCellCU, and ExternalBroadcastPLMNInfo instances based on their lightweight objects.
+
+Creates ExternalGNBCUCPFunction instance if no instance is created yet for target cell.
+Thus, lightweight NR objects are promoted to MO instances.
+Input parameters pLMNId and gNodeBIdLength are mandatory, while gNodeBId, cellId, nCI, and pLMNIdForGlobalRANNodeId are not.
+When gNodeBId and cellId are used, nCI is not needed. When gNodeBId and cellId are used together with nCI, all parameters must be consistent.",void,gNodeBId,The gNodeB identity (Optional).,int64,0..4294967295,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,promoteLwNRCellRelation,"Creates NRCellRelation, ExternalNRCellCU, and ExternalBroadcastPLMNInfo instances based on their lightweight objects.
+
+Creates ExternalGNBCUCPFunction instance if no instance is created yet for target cell.
+Thus, lightweight NR objects are promoted to MO instances.
+Input parameters pLMNId and gNodeBIdLength are mandatory, while gNodeBId, cellId, nCI, and pLMNIdForGlobalRANNodeId are not.
+When gNodeBId and cellId are used, nCI is not needed. When gNodeBId and cellId are used together with nCI, all parameters must be consistent.",void,cellId,Cell identity (Optional).,int32,0..16383,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,promoteLwNRCellRelation,"Creates NRCellRelation, ExternalNRCellCU, and ExternalBroadcastPLMNInfo instances based on their lightweight objects.
+
+Creates ExternalGNBCUCPFunction instance if no instance is created yet for target cell.
+Thus, lightweight NR objects are promoted to MO instances.
+Input parameters pLMNId and gNodeBIdLength are mandatory, while gNodeBId, cellId, nCI, and pLMNIdForGlobalRANNodeId are not.
+When gNodeBId and cellId are used, nCI is not needed. When gNodeBId and cellId are used together with nCI, all parameters must be consistent.",void,nCI,NR cell identity (Optional).,int64,0..68719476735,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,promoteLwNRCellRelation,"Creates NRCellRelation, ExternalNRCellCU, and ExternalBroadcastPLMNInfo instances based on their lightweight objects.
+
+Creates ExternalGNBCUCPFunction instance if no instance is created yet for target cell.
+Thus, lightweight NR objects are promoted to MO instances.
+Input parameters pLMNId and gNodeBIdLength are mandatory, while gNodeBId, cellId, nCI, and pLMNIdForGlobalRANNodeId are not.
+When gNodeBId and cellId are used, nCI is not needed. When gNodeBId and cellId are used together with nCI, all parameters must be consistent.",void,pLMNIdForGlobalRANNodeId,Used for searching and creating of ExternalGNBCUCPFunction (Optional).,struct PLMNId,,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,promoteLwEUtranCellRelation,"Creates EUtranCellRelation instance based on EUtranCellRelation lightweight object.
+
+This way lightweight EUtran cell relation is promoted to MO instance.
+Additionally, if ExternalEUtranCell instance in lightweight EUtran cell relation is also a lightweight object and has ExternalENodeBFunction MO as existing parent, action also creates ExternalEUtranCell instance based on ExternalEUtranCell lightweight object.
+If eNodeBId and cellId parameters are used, eCI is not needed and opposite is also true.
+When eNodeBId, cellId, or both input parameters are used together with eCI, then all parameters have to be consistent.",void,pLMNId,E-UTRAN cell PLMN identity (Mandatory).,struct PLMNId,,1,,,,,,
+GNBCUCPFunction,NRCellCU,promoteLwEUtranCellRelation,"Creates EUtranCellRelation instance based on EUtranCellRelation lightweight object.
+
+This way lightweight EUtran cell relation is promoted to MO instance.
+Additionally, if ExternalEUtranCell instance in lightweight EUtran cell relation is also a lightweight object and has ExternalENodeBFunction MO as existing parent, action also creates ExternalEUtranCell instance based on ExternalEUtranCell lightweight object.
+If eNodeBId and cellId parameters are used, eCI is not needed and opposite is also true.
+When eNodeBId, cellId, or both input parameters are used together with eCI, then all parameters have to be consistent.",void,eNodeBId,The eNodeB identity (Optional).,int32,0..1048575,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,promoteLwEUtranCellRelation,"Creates EUtranCellRelation instance based on EUtranCellRelation lightweight object.
+
+This way lightweight EUtran cell relation is promoted to MO instance.
+Additionally, if ExternalEUtranCell instance in lightweight EUtran cell relation is also a lightweight object and has ExternalENodeBFunction MO as existing parent, action also creates ExternalEUtranCell instance based on ExternalEUtranCell lightweight object.
+If eNodeBId and cellId parameters are used, eCI is not needed and opposite is also true.
+When eNodeBId, cellId, or both input parameters are used together with eCI, then all parameters have to be consistent.",void,cellId,Cell identity (Optional).,int32,0..255,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,promoteLwEUtranCellRelation,"Creates EUtranCellRelation instance based on EUtranCellRelation lightweight object.
+
+This way lightweight EUtran cell relation is promoted to MO instance.
+Additionally, if ExternalEUtranCell instance in lightweight EUtran cell relation is also a lightweight object and has ExternalENodeBFunction MO as existing parent, action also creates ExternalEUtranCell instance based on ExternalEUtranCell lightweight object.
+If eNodeBId and cellId parameters are used, eCI is not needed and opposite is also true.
+When eNodeBId, cellId, or both input parameters are used together with eCI, then all parameters have to be consistent.",void,eCI,E-UTRAN cell identity (Optional).,int32,0..268435455,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,displayNRCellRelation,"Gives information about NR cell relations.
+
+Lightweight objects are included. NRCellRelation instances are included by default but can be excluded.",string,pLMNId,NR cell PLMN identity (Optional).,struct PLMNId,,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,displayNRCellRelation,"Gives information about NR cell relations.
+
+Lightweight objects are included. NRCellRelation instances are included by default but can be excluded.",string,gNodeBIdLength,NR cell gNodeB identity length (Optional).,int32,22..32,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,displayNRCellRelation,"Gives information about NR cell relations.
+
+Lightweight objects are included. NRCellRelation instances are included by default but can be excluded.",string,gNodeBId,The gNodeB identity (Optional).,int64,0..4294967295,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,displayNRCellRelation,"Gives information about NR cell relations.
+
+Lightweight objects are included. NRCellRelation instances are included by default but can be excluded.",string,cellId,Cell identity (Optional).,int32,0..16383,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,displayNRCellRelation,"Gives information about NR cell relations.
+
+Lightweight objects are included. NRCellRelation instances are included by default but can be excluded.",string,nCI,NR cell identity (Optional).,int64,0..68719476735,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,displayNRCellRelation,"Gives information about NR cell relations.
+
+Lightweight objects are included. NRCellRelation instances are included by default but can be excluded.",string,includeManagedObjects,Whether NRCellRelation instances are included in output (Optional).,boolean,,1,,,,,,
+GNBCUCPFunction,NRCellCU,displayNRCellRelation,"Gives information about NR cell relations.
+
+Lightweight objects are included. NRCellRelation instances are included by default but can be excluded.",string,format,Format of returned information (Optional).,enum CellRelationOutput,"UNFORMATTED_TEXT
+FORMATTED_TEXT",1,,,,,,
+GNBCUCPFunction,NRCellCU,displayNRCellRelation,"Gives information about NR cell relations.
+
+Lightweight objects are included. NRCellRelation instances are included by default but can be excluded.",string,arcBalanceThreshold,"Minimum Advanced RAN Coordination balance threshold (Optional).
+
+Printed from NRCellRelation instances.
+Obsolete: Since 23.Q3. Planned to be removed.",int32,0..100,1,,,,,,
+GNBCUCPFunction,NRCellCU,displayEUtranCellRelation,"Gives information about E-UTRAN cell relations.
+
+Lightweight objects are included. EUtranCellRelation instances are included by default but can be excluded.",string,pLMNId,E-UTRAN cell PLMN identity (Optional).,struct PLMNId,,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,displayEUtranCellRelation,"Gives information about E-UTRAN cell relations.
+
+Lightweight objects are included. EUtranCellRelation instances are included by default but can be excluded.",string,eNodeBId,The eNodeB identity (Optional).,int32,0..1048575,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,displayEUtranCellRelation,"Gives information about E-UTRAN cell relations.
+
+Lightweight objects are included. EUtranCellRelation instances are included by default but can be excluded.",string,cellId,Cell identity (Optional).,int32,0..255,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,displayEUtranCellRelation,"Gives information about E-UTRAN cell relations.
+
+Lightweight objects are included. EUtranCellRelation instances are included by default but can be excluded.",string,eCI,E-UTRAN cell identity (Optional).,int32,0..268435455,0..1,,,,,,
+GNBCUCPFunction,NRCellCU,displayEUtranCellRelation,"Gives information about E-UTRAN cell relations.
+
+Lightweight objects are included. EUtranCellRelation instances are included by default but can be excluded.",string,includeManagedObjects,Whether EUtranCellRelation instances are included in output (Optional).,boolean,,1,,,,,,
+GNBCUCPFunction,NRCellCU,displayEUtranCellRelation,"Gives information about E-UTRAN cell relations.
+
+Lightweight objects are included. EUtranCellRelation instances are included by default but can be excluded.",string,format,Format of returned information (Optional).,enum CellRelationOutput,"UNFORMATTED_TEXT
+FORMATTED_TEXT",1,,,,,,
+GNBCUCPFunction,NRCellCU,displayRibTmRelation,"Displays information about RIB-TM relations.
+
+Both lightweight Radio Interface-Based Time Monitoring (RIB-TM) relations and RibTmRelation instances are displayed.",string,,,,,,,Since 24.Q3. Planned to be removed.,,,,
+GNBCUCPFunction,NRCellCU,promoteLwRibTmRelation,"Creates RibTmRelation instance based on lightweight RIB-TM relation.
+
+By this way, lightweight Radio Interface-Based Time Monitoring (RIB-TM) relation is promoted to RibTmRelation instance. Promoted RIB-TM relation cannot be removed automatically.",void,nRPCI,"Physical cell ID of an external NR cell (Mandatory).
+
+Obsolete: Since 24.Q3. Planned to be removed.",int32,0..1007,1,,Since 24.Q3. Planned to be removed.,,,,
+GNBDUFunction,NRCellDU,setCbrsReconfigPending,"Initiates reconfiguration of CBRS cell.
+
+Reconfiguration is completed by next MO unlock.
+
+Executed by Domain Coordinator. Must not be executed manually.",void,,,,,,,,,,,
+GNBDUFunction,NRSectorCarrier,setCbrsTxExpireTime,"Requests node to set transmission expire time on externally supervised sector carrier.
+
+Sets new date and time (current time + transmitExpireTime) to cbrsTxExpireTime on sector carrier. If transmitExpireTime is -1, attribute is set to empty.
+
+Executed by Domain Coordinator. Must not be executed manually.",void,transmitExpireTime,A time period granted for transmission on the assigned spectrum.,int32,-1..2147483647,1,,,,"Executing this action can cause loss of traffic. Sector carrier can be disabled automatically after transmitExpireTime, or immediately if transmitExpireTime is set to -1.",,
+GNBDUFunction,NRSectorCarrier,setCbrsReconfigPending,"Initiates reconfiguration of CBRS sector carrier.
+
+Reconfiguration is completed by next MO unlock.
+
+Executed by Domain Coordinator. Must not be executed manually.",void,,,,,,,,,,,
+MceFunction,MceFunction,updateMMEConnection,"This action shall make it possible to order the RBS to make a new DNS lookup to get possible new MME Pool addresses. The orderCode has two different options:
+
+- Retain: This option will retain all connections that were included in DNS response and the connections that weren't included in the response will be removed. For the IP addresses that were unknown for the RBS, the RBS will establish connections to those MMEs.
+
+- Renew All existing: The RBS performs a DNS lookup. Release all M3 connections to the MMEs and connect to the MMEs that are included in the DNS response.
+
+This action should be used only when dnsLookupOnTai has the value ON. The action is rejected if dnsLookupState has the value OFF or if MBMS Service is inoperable.",void,orderCode,,enum OrderCode,"RETAIN_EXISTING
+RENEW_ALL_EXISTING",1,,,,,,
+ENodeBFunction,UtranFreqRelation,setMaxNrUtranCellRelations,This MO action is used for setting the maximum number of UtranCellRelations per UtranFreqRelation. This action will remove UtranCellRelations so the number of relations goes down to the value of MaxNrUtranCellRelation. Relations that were latest used are kept.,void,maxNrUtranCellRelations,This specifies the maximum number of UtranCellRelations.,int32,0..64,1,,,,Executing this action can cause loss of traffic. Lowering the value can remove relations.,,
+ENodeBFunction,ExternalEUtranCellFDD,changeFrequency,"Changes frequency of external cell. Following attributes are updated:
+- additionalFreqBandList
+- eutranFrequencyRef
+- freqBand
+An instance of EUtranFrequency with new frequency is created (if not already existing).
+For each local cell with existing cell relation to the external cell, the following instances are created:
+- New EUtranFreqRelation instance (if not already existing), with same attribute values as the EUtranFreqRelation instance referring to old frequency of the external cell.
+- New EUtranCellRelation instance, with same attribute values as the previous EUtranCellRelation referring to the external cell.",void,earfcn,New DL frequency for this cell.,int32,"0..17999, 46590..262143",1,,,,,,
+ENodeBFunction,ENodeBFunction,updateMMEConnection,"This action shall make it possible to order the RBS to make a new DNS lookup to get possible new MME Pool addresses. The orderCode has two different options:
+
+- Retain: This option will retain all connections that were included in DNS response and the connections that were not included in the response will be removed. For the IP addresses that were unknown for the RBS, the RBS will establish connections to those MMEs.
+
+
+- Renew All existing: The RBS performs a DNS lookup. Release all S1 connections to the MMEs and connect to the MMEs that are included in the DNS response.
+
+This action should be used only when dnsLookupOnTai has the value ON. The action is rejected if dnsLookupState has the value OFF.",void,orderCode,,enum OrderCode,"RETAIN_EXISTING
+RENEW_ALL_EXISTING",1,,,,,,
+ENodeBFunction,ENodeBFunction,collectDynamicCellStatus,"Returns a snapshot of the traffic status of the node divided per cell, in the form; number of attached UEs and set up radio bearers.",string,dynamicCellStatusOutput,"Specifies the format of the returned information. It can be either of:
+- Unformatted text, suitable for on-screen reading.
+- Formatted text, suitable for automated interpretation, currently JSON (JavaScript Object Notation).",enum DynamicCellStatusOutput,"UNFORMATTED_TEXT
+FORMATTED_TEXT",1,,,,,,
+ENodeBFunction,EUtranCellFDD,changeFrequency,"Changes the frequency of the cell. The attribute earfcndl is changed. This MO action includes the following steps:
+
+- An instance of EUtranFrequency with correct frequency is created (if not already existing).
+
+
+- For neigbouring cells with existing cell relations to the cell, create new EUtranFreqRelation instances (if not already existing) and new EUtranCellRelation instances (with the same attribute values as the existing EUtranFreqRelation and EUtranCellRelation MOs).
+
+
+- For the changed cell an instance of EUtranFreqRelation with reference to the correct instance of EUtranFrequency is created, if not already existing (with the same attribute values as the existing EUtranFreqRelation MO).
+
+Note that changing frequency of a EUtranCellFDD will imply that all other eNBs that have this cell configured as an ExternaEUtranCellFDD will be updated with the new frequency. This means that new EUtranFreqRelation and corresponding EUtranFrequency MOs might be created.
+
+",void,earfcn,The new DL frequency for this cell.,int32,"0..17999, 46590..262143",1,,,,Executing this action can cause loss of traffic. Cell is locked and unlocked automatically if needed. Attribute prioAdditionalFreqBandList is reset to empty list if new additionalFreqBandList does not contain bands included in prioAdditionalFreqBandList.,,
+ENodeBFunction,EUtranCellFDD,stopAilg,Stops execution of the optional feature Air Interface Load Generator.,void,,,,,,,,,,,
+ENodeBFunction,EUtranCellFDD,startAilg,Starts execution of the optional feature Air Interface Load Generator.,void,,,,,,,,,Executing this action can cause loss of traffic if high priority load is configured.,,
+ENodeBFunction,EUtranCellTDD,changeFrequency,"Changes the frequency of the cell. The attribute earfcn is changed. This MO action includes the following steps:
+
+
+- An instance of EUtranFrequency with correct frequency is created (if not already existing).
+
+
+- For neigbouring cells with existing cell relations to the cell, create new EUtranFreqRelation instances (if not already existing) and new EUtranCellRelation instances (with the same attribute values as the existing EUtranFreqRelation and EUtranCellRelation MOs).
+
+
+- For the changed cell an instance of EUtranFreqRelation with reference to the correct instance of EUtranFrequency is created, if not already existing (with the same attribute values as the existing EUtranFreqRelation MO).
+
+Note that changing frequency of a EUtranCellTDD will imply that all other eNBs that have this cell configured as an ExternaEUtranCellTDD will be updated with the new frequency. This means that new EUtranFreqRelation and corresponding EUtranFrequency MOs might be created.
+
+",void,earfcn,"The new frequency for this cell.
+
+",int32,36000..262143,1,,,,Executing this action can cause loss of traffic. Cell is locked and unlocked automatically if needed. LAA cell (attribute isLaa = true) must be locked and unlocked manually for the change of frequency to take effect. Attribute prioAdditionalFreqBandList is reset to empty list if new additionalFreqBandList does not contain bands included in prioAdditionalFreqBandList.,,
+ENodeBFunction,EUtranCellTDD,setCbrsTxExpireTime,"Action requests node to set transmission expire time on externally supervised cell.
+Action sets date and time to attribute cbrsTxExpireTime on cell. If transmitExpireTime is -1, """" is set (empty).
+Spectrum access system controls transmission. Do not execute manually.",void,transmitExpireTime,A time period granted for transmission on the assigned spectrum.,int32,,1,,,,"Executing this action can cause loss of traffic. Cell can be disabled automatically after transmitExpireTime, or immediately if transmitExpireTime is set to -1.",,
+ENodeBFunction,EUtranCellTDD,stopAilg,Stops execution of the optional feature Air Interface Load Generator.,void,,,,,,,,,,,
+ENodeBFunction,EUtranCellTDD,startAilg,Starts execution of the optional feature Air Interface Load Generator.,void,,,,,,,,,Executing this action can cause loss of traffic if high priority load is configured.,,
+ENodeBFunction,EUtranCellTDD,setCbrsReconfigPending,"Initiates reconfiguration of CBRS cell.
+
+Reconfiguration is completed by next cell unlock.
+
+Executed by Domain Coordinator. Must not be executed manually.",void,,,,,,,,,,,
+ENodeBFunction,ExternalEUtranCellTDD,changeFrequency,"Changes frequency of external cell. Following attributes are updated:
+- additionalFreqBandList
+- eutranFrequencyRef
+- freqBand
+An instance of EUtranFrequency with new frequency is created (if not already existing).
+For each local cell with existing cell relation to the external cell, the following instances are created:
+- New EUtranFreqRelation instance (if not already existing), with same attribute values as the EUtranFreqRelation instance referring to old frequency of the external cell.
+- New EUtranCellRelation instance, with same attribute values as the previous EUtranCellRelation referring to the external cell.",void,earfcn,New frequency for this cell.,int32,36000..262143,1,,,,,,
+ENodeBFunction,ExternalGeranCell,changeFrequency,"Changes the frequency of an external Geran cell.
+Before running this action, make sure that the target GeranFrequency for the ExternalGeranCell  is created and that it refer to one of the GeranFreqGroup(s) that is referred from the same eUtranCell as the ExternalGeranCell.
+This MO action includes the following steps:
+- The ExternalGeranCell will be updated to refer to  the target GeranFrequency.
+- If the target GeranFrequency is not referred from same eUtranCell(s) as the ExternalGeranCell included in the changeFrequency  action,  the action will fail and an exception will be issued.",void,arfcnValueGeranDl,The new DL frequency for this cell.,int32,0..1023,1,,,,,,
+ENodeBFunction,ExternalGeranCell,changeFrequency,"Changes the frequency of an external Geran cell.
+Before running this action, make sure that the target GeranFrequency for the ExternalGeranCell  is created and that it refer to one of the GeranFreqGroup(s) that is referred from the same eUtranCell as the ExternalGeranCell.
+This MO action includes the following steps:
+- The ExternalGeranCell will be updated to refer to  the target GeranFrequency.
+- If the target GeranFrequency is not referred from same eUtranCell(s) as the ExternalGeranCell included in the changeFrequency  action,  the action will fail and an exception will be issued.",void,bandIndicator,"The attribute indicates the GERAN frequency band if the ARFCN value concerns either a DCS 1800 or a PCS 1900 carrier frequency. For ARFCN values not associated with either of these bands, the indicator has no meaning.",enum BandIndicator,"DCS_1800
+PCS_1900",1,,,,,,
+ENodeBFunction,ExternalUtranCellFDD,changeFrequency,"Changes the frequency of the external cell. This MO action includes the following steps:
+- Create the UtranFrequency MO (with the specified arfcnValueUtranDl) if it does not already exist.
+- Create the UtranFreqRelation MO (with the same attribute values as the existing UtranFreqRelation MO) if it does not already exist.
+- Create a new ExternalUtranCellFDD MO (with the same attribute values as the existing ExternalUtranCellFDD MO) under the specified UtranFrequency MO.
+- For each UtranCellRelation to the old ExternalUtranCellFDD, create a new UtranCellRelation MO (with the same attribute values as the existing UtranCellRelation MO) referring to the new ExternalUtranCellFDD MO. The old UtranCellRelation MOs are then removed.
+- Remove the old ExternalUtranCellFDD MO. This will be performed after successful execution of this MO action. ",void,arfcnValueUtranDl,The new DL frequency for this cell.,int32,0..16383,1,,,,,,
+ENodeBFunction,ExternalUtranCellTDD,changeFrequency,"Changes the frequency of the external cell. This MO action includes the following steps:
+ - Create the UtranFrequency MO (with the specified arfcnValueUtranDl) if it does not already exist.
+ - Create the UtranTDDFreqRelation MO (using default values for attributes) if it does not already exist.
+ - Create a new ExternalUtranCellTDD MO (with the same attribute values as the existing ExternalUtranCellTDD MO) under the specified UtranFrequency MO.
+ - For each UtranCellRelation to the old ExternalUtranCellTDD, create a new UtranCellRelation MO (with the same attribute values as the existing UtranCellRelation MO) referring to the new ExternalUtranCellTDD MO. The old UtranCellRelation MOs are then removed.
+ - Remove the old ExternalUtranCellTDD MO. This will be performed after successful execution of this MO action. ",void,arfcnValueUtranDl,The new DL frequency for this cell.,int32,0..16383,1,,,,,,
+ENodeBFunction,ParameterChangeRequests,approve,Approves a set of pending change request. ,void,pcrList,A list of integers matching the seqNo of the change requests. Any integer not matching a pending change request will be ignored.,int32,,0..,,,,,,
+ENodeBFunction,ParameterChangeRequests,reject,Rejects a set of pending change request.,void,pcrList,A list of integers matching the seqNo of the change requests. Any integer not matching a pending change request will be ignored.,int32,,0..,,,,,,
+ENodeBFunction,UnlicensedAccessFunction,convertExternalLaaCells,Changes MO structure related to modeling of external LAA cells. ExternalEUtranCellTDD is converted to ExternalEUtranCellUnlicensed by deleting ExternalEUtranCellTDD and creating ExternalEUtranCellUnlicensed.,void,,,,,,,,Supplemental Downlink with License-Assisted Access license must be deactivated or the primary cell must be LOCKED to take off the traffic from external LAA cells.,,,
+ENodeBFunction,EranInterMeLink,resetEranLink,"Resets EranInterMeLink. This is remedy action when EranInterMeLink is disabled. During reset, Elastic RAN traffic for this EranInterMeLink is temporarily stopped. This action does not remove related RBS IDs from activeList of FastCoordinationGroup if link re-establishment is successful. If link re-establishment fails, EranInterMeLink is removed, which also affects activeList of FastCoordinationGroup. Action does not interrupt X2 connection. Action is not allowed for UL CoMP EranInterMeLink when all cells are locked.",void,,,,,,,,,Executing this action causes temporary disturbances of ULCOMP or DL_CA features traffic for this EranInterMeLink.,,
+ENodeBFunction,GUtraNetwork,setSimpleGUtranFreqSmtc,"Sets simplified handling of timing attributes in GUtranSyncSignalFrequency MO.
+
+When action is executed, system migrates all existing GUtranSyncSignalFrequency MO instances to new RDN format and attribute simpleGUtranFreqSmtc is set to true.",void,,,,,,,Since 22.Q3. Planned to be removed.,,,,
+ENodeBFunction,BandCombCompression,populateRequestedFreqBandsFiltered,Checks for which E-UTRAN frequency relation exists E-UTRAN cell relation with SCell candidate allowed. Populates bands in requestedFreqBandsFiltered. Any previous content of requestedFreqBandsFiltered is removed.,void,,,,,,,,,,,
+SystemFunctions,BrmBackupManager,createBackup,"Create a new backup of the backupType and backupDomain managed by this BackupManager.
+This is an asynchronous action - the progress and result are reported in the progressReport attribute.",int32,name,"The name of the backup to create.
+If specified, input name validation is done by the implementation to forbid illegal names. Backup name validation rules are defined by the implementation and include duplicate backup names, names exceeding maximum allowed length, etc.
+If specified it will take precedence over the manualBackupName attribute.
+If not specified, the implementation will use the manualBackupName attribute (which could be empty) to generate a backup name automatically with format defined by the implementation, example: <managedElementId>_<YYYY-MM-DDThh-mm-ss>.",string,,0..1,,,,,,
+SystemFunctions,BrmBackupManager,deleteBackup,"Delete a backup.
+Specified by the backup name, the backupType and backupDomain managed by this BackupManager.
+This is an asynchronous action. The progress and result are reported in the progressReport attribute.",int32,name,The name of the backup to delete.,string,,1,,,,,,
+SystemFunctions,BrmBackupManager,cancelCurrentAction,"Cancel an ongoing asynchronous createBackup, deleteBackup, or importBackup operation.",int32,,,,,,,,,,,
+SystemFunctions,BrmBackupManager,importBackup,"Import a backup using the specified resource identifier (uri). 
+This is an asynchronous action where the progress and result are reported in the progressReport attribute. Note that the type and domain of the backup to be imported must match the backup type and domain indicated by the instance of the backup manager on which this action is invoked.",int32,uri,"Specifies url (location) or urn (resource name).
+In case of url this is the location where the backup is to be imported from.
+In case of urn this is the resource name that encapsulates the backup import procedure.",string,,1,,,,,,
+SystemFunctions,BrmBackupManager,importBackup,"Import a backup using the specified resource identifier (uri). 
+This is an asynchronous action where the progress and result are reported in the progressReport attribute. Note that the type and domain of the backup to be imported must match the backup type and domain indicated by the instance of the backup manager on which this action is invoked.",int32,password,"The password required to access the location specified by the uri.
+If no password is required, this parameter may be omitted.",string,,0..1,,,,,,
+SystemFunctions,BrmBackupManager,createSecuredBackupWithURI,"Creates a new Secure backup of the backupType and backupDomain managed by the BackupManager.
+A secured backup has some sensitive parts of the backup encrypted.
+This is an asynchronous action - progress and result will be reported in the progressReport attribute.
+The encryption key is located remotely at some URI.
+This action takes optional backup name, uri, uriPassword, optional keyDecryptionKey and userLabel.
+If the key container file is not encrypted then the keyDecryptionKey can be omitted.
+userLabel is a free text string used to describe the backup details.",int32,name,"The Secure Backup name to create.
+If specified, input name validation is done by the implementation to forbid illegal names. Backup name validation rules are defined by the implementation and include duplicate backup names, names exceeding maximum allowed length, etc.
+If specified it will take precedence over the manualBackupName attribute.
+
+If not specified, the implementation will use the manualBackupName attribute (which could be empty) to generate a backup name automatically with format defined by the implementation, example: <managedElementId>_<YYYY-MM-DDThh-mm-ss>.",string,,0..1,,,,,,
+SystemFunctions,BrmBackupManager,createSecuredBackupWithURI,"Creates a new Secure backup of the backupType and backupDomain managed by the BackupManager.
+A secured backup has some sensitive parts of the backup encrypted.
+This is an asynchronous action - progress and result will be reported in the progressReport attribute.
+The encryption key is located remotely at some URI.
+This action takes optional backup name, uri, uriPassword, optional keyDecryptionKey and userLabel.
+If the key container file is not encrypted then the keyDecryptionKey can be omitted.
+userLabel is a free text string used to describe the backup details.",int32,uri,"The remote URI location where the encryption key is located.
+For example:
+sftp://user@hostname/dir/subdir/key_file",string,,1,,,,,,
+SystemFunctions,BrmBackupManager,createSecuredBackupWithURI,"Creates a new Secure backup of the backupType and backupDomain managed by the BackupManager.
+A secured backup has some sensitive parts of the backup encrypted.
+This is an asynchronous action - progress and result will be reported in the progressReport attribute.
+The encryption key is located remotely at some URI.
+This action takes optional backup name, uri, uriPassword, optional keyDecryptionKey and userLabel.
+If the key container file is not encrypted then the keyDecryptionKey can be omitted.
+userLabel is a free text string used to describe the backup details.",int32,uriPassword,The password for the remote URI where the encryption key file is stored.,string,,1,,,,,,
+SystemFunctions,BrmBackupManager,createSecuredBackupWithURI,"Creates a new Secure backup of the backupType and backupDomain managed by the BackupManager.
+A secured backup has some sensitive parts of the backup encrypted.
+This is an asynchronous action - progress and result will be reported in the progressReport attribute.
+The encryption key is located remotely at some URI.
+This action takes optional backup name, uri, uriPassword, optional keyDecryptionKey and userLabel.
+If the key container file is not encrypted then the keyDecryptionKey can be omitted.
+userLabel is a free text string used to describe the backup details.",int32,keyDecryptionKey,Optional password for the encryption key file in case it is encrypted.,string,,0..1,,,,,,
+SystemFunctions,BrmBackupManager,createSecuredBackupWithURI,"Creates a new Secure backup of the backupType and backupDomain managed by the BackupManager.
+A secured backup has some sensitive parts of the backup encrypted.
+This is an asynchronous action - progress and result will be reported in the progressReport attribute.
+The encryption key is located remotely at some URI.
+This action takes optional backup name, uri, uriPassword, optional keyDecryptionKey and userLabel.
+If the key container file is not encrypted then the keyDecryptionKey can be omitted.
+userLabel is a free text string used to describe the backup details.",int32,userLabel,"Free text to describe the secured backup.
+Can be used to identify the key or the password to decrypt the backup during restore.
+For example:
+""Encrypted System Backup taken on 18-Jun-2019""",string,,1,,,,,,
+SystemFunctions,BrmBackupManager,createSecuredBackupWithPasswd,"Creates a new secured backup of the backupType and backupDomain managed by the BackupManager.
+A secured backup has some sensitive parts of the backup encrypted.
+This is an asynchronous action - progress and result will be reported in the progressReport attribute.
+The encryption key is generated by using the backupPassword.
+This action takes optional backup name, backupPassword and userLabel.
+userLabel is a free text string used to describe the backup details.",int32,userLabel,"Free text to describe the secured backup.
+Can be used to identify the key or the password to decrypt the backup during restore.
+For example:
+""Encrypted System Backup taken on 18-Jun-2019""",string,,1,,,,,,
+SystemFunctions,BrmBackupManager,createSecuredBackupWithPasswd,"Creates a new secured backup of the backupType and backupDomain managed by the BackupManager.
+A secured backup has some sensitive parts of the backup encrypted.
+This is an asynchronous action - progress and result will be reported in the progressReport attribute.
+The encryption key is generated by using the backupPassword.
+This action takes optional backup name, backupPassword and userLabel.
+userLabel is a free text string used to describe the backup details.",int32,name,"The Secure Backup name to create.
+If specified, input name validation is done by the implementation to forbid illegal names. Backup name validation rules are defined by the implementation and include duplicate backup names, names exceeding maximum allowed length, etc.
+If specified it will take precedence over the manualBackupName attribute.
+
+If not specified, the implementation will use the manualBackupName attribute (which could be empty) to generate a backup name automatically with format defined by the implementation, example: <managedElementId>_<YYYY-MM-DDThh-mm-ss>.",string,,0..1,,,,,,
+SystemFunctions,BrmBackupManager,createSecuredBackupWithPasswd,"Creates a new secured backup of the backupType and backupDomain managed by the BackupManager.
+A secured backup has some sensitive parts of the backup encrypted.
+This is an asynchronous action - progress and result will be reported in the progressReport attribute.
+The encryption key is generated by using the backupPassword.
+This action takes optional backup name, backupPassword and userLabel.
+userLabel is a free text string used to describe the backup details.",int32,backupPassword,The password used to generate the encryption key used to encrypt the backup.,string,,1,,,,,,
+SystemFunctions,BrmBackup,restore,"Restore from this backup.
+This is an asynchronous action - progress and result are reported in the progressReport attribute.",int32,,,,,,,,,Invoking this action causes board restart and loss of traffic.,,
+SystemFunctions,BrmBackup,cancelCurrentAction,Cancel an ongoing asynchronous restore or export operation.,int32,,,,,,,,,,,
+SystemFunctions,BrmBackup,export,"Export the backup using the specified resource identifier (uri). 
+This is an asynchronous action. Progress and the result are reported in the progressReport attribute. Note: When backup successfully completed, a copy of the backup is transferred and the original backup remains in the ME.",int32,uri,"Specifies url (location) or urn (resource name).
+In case of url this is the location where the backup is to be exported.
+In case of urn this is the resource name that encapsulates the backup export procedure.
+",string,,1,,,,,,
+SystemFunctions,BrmBackup,export,"Export the backup using the specified resource identifier (uri). 
+This is an asynchronous action. Progress and the result are reported in the progressReport attribute. Note: When backup successfully completed, a copy of the backup is transferred and the original backup remains in the ME.",int32,password,"The password required to access the location specified by the uri.
+If no password is required, this parameter may be omitted.",string,,0..1,,,,,,
+SystemFunctions,BrmBackup,restoreSecuredBackupWithURI,"Restore the current secured backup of the backupType and backupDomain managed by the BackupManager.
+A secured backup has some sensitive parts of the backup encrypted.
+This is an asynchronous action - progress and result will be reported in the progressReport attribute.
+The decryption key is located remotely at some URI.
+This action takes uri, uriPassword and optional keyDecryptionKey.
+If the key container file is not encrypted then the keyDecryptionKey can be omitted.",int32,uri,"The remote URI location where the encryption key can be obtained from.
+For example:
+sftp://user@hostname/dir/subdir/key_file",string,,1,,,,,,
+SystemFunctions,BrmBackup,restoreSecuredBackupWithURI,"Restore the current secured backup of the backupType and backupDomain managed by the BackupManager.
+A secured backup has some sensitive parts of the backup encrypted.
+This is an asynchronous action - progress and result will be reported in the progressReport attribute.
+The decryption key is located remotely at some URI.
+This action takes uri, uriPassword and optional keyDecryptionKey.
+If the key container file is not encrypted then the keyDecryptionKey can be omitted.",int32,uriPassword,The password for the remote URI where the encryption key file is stored.,string,,1,,,,,,
+SystemFunctions,BrmBackup,restoreSecuredBackupWithURI,"Restore the current secured backup of the backupType and backupDomain managed by the BackupManager.
+A secured backup has some sensitive parts of the backup encrypted.
+This is an asynchronous action - progress and result will be reported in the progressReport attribute.
+The decryption key is located remotely at some URI.
+This action takes uri, uriPassword and optional keyDecryptionKey.
+If the key container file is not encrypted then the keyDecryptionKey can be omitted.",int32,keyDecryptionKey,Optional password for the encryption key file in case it is encrypted.,string,,0..1,,,,,,
+SystemFunctions,BrmBackup,restoreSecuredBackupWithPasswd,"Restore the current secured backup of the backupType and backupDomain managed by the BackupManager.
+A secured backup has some sensitive parts of the backup encrypted.
+This is an asynchronous action - progress and result will be reported in the progressReport attribute.
+The backupPassword is used to generate the decryption key used to decrypt any secure parts of the the backup.
+This action takes backupPassword.",int32,backupPassword,The backupPassword is used to generate the encryption key used to encrypt the backup.,string,,1,,,,,,
+SystemFunctions,BrmRollbackAtRestore,confirmRestore,"Invoking this action indicates acceptance of the previously executed restore operation.
+The restore supervision timer, counting down from the initial value indicated by the timeAllowedBeforeRollback attribute, is stopped when this action is invoked. If this action is not invoked before the supervision timer expires, the system is restored to the state it was in before the last restore operation was invoked. This is a synchronous action.",int32,,,,,,,,,,,
+SystemFunctions,BrmFailsafeBackup,deactivate,Deactivates failsafe function and the failsafe backup is removed.,int32,postAction,"Optional parameter to perform post deactivate actions.
+There are three possible values:
+NOP means no operation.
+CLEAR_LIST means clear the restoreEscalationList.
+ADD_BACKUP_TO_LIST means clear the restoreEscalationList then add the failsafe backup just created to the restoreEscalationList.",enum BrmDeactivatePostAction,"NOP
+CLEAR_LIST
+ADD_BACKUP_TO_LIST",0..1,,,,,,
+SystemFunctions,BrmFailsafeBackup,activate,"Activates a failsafe backup, which is created when this action is invoked.",int32,,,,,,,,,,,
+SystemFunctions,CertM,installTrustedCertFromUri,"Installs a trusted certificate from the specified Uniform Resource Identifier (URI).
+
+A TrustedCertificate MO is created as a result of this action.
+
+The action can be invoked if no other action in progress on this MO.
+The action returns immediately after invocation. The progress of the action can be tracked via the reportProgress attribute.
+
+The action returns with TRUE after successful invocation, otherwise it returns with FALSE.
+The action has a timeout of 3 minutes.
+
+The generic URI syntax is defined by RFC 3986.
+Example: sftp://myuser@myhostname.ericsson.local/dir/subdir/certificate
+Example: http://myhostname.ericsson.local/dir/subdir/certificate",boolean,uri,"This parameter contains a URI assumed to point to the certificate file.
+
+The generic URI syntax is defined by RFC 3986.
+Example: sftp://myuser@myhostname.ericsson.local/dir/subdir/certificate
+The URI must not contain any password. The password shall be provided in the second parameter of this action.
+",string,,1,,,,,,
+SystemFunctions,CertM,installTrustedCertFromUri,"Installs a trusted certificate from the specified Uniform Resource Identifier (URI).
+
+A TrustedCertificate MO is created as a result of this action.
+
+The action can be invoked if no other action in progress on this MO.
+The action returns immediately after invocation. The progress of the action can be tracked via the reportProgress attribute.
+
+The action returns with TRUE after successful invocation, otherwise it returns with FALSE.
+The action has a timeout of 3 minutes.
+
+The generic URI syntax is defined by RFC 3986.
+Example: sftp://myuser@myhostname.ericsson.local/dir/subdir/certificate
+Example: http://myhostname.ericsson.local/dir/subdir/certificate",boolean,uriPassword,The password section of the URI.,string,,0..1,,,,,,
+SystemFunctions,CertM,installTrustedCertFromUri,"Installs a trusted certificate from the specified Uniform Resource Identifier (URI).
+
+A TrustedCertificate MO is created as a result of this action.
+
+The action can be invoked if no other action in progress on this MO.
+The action returns immediately after invocation. The progress of the action can be tracked via the reportProgress attribute.
+
+The action returns with TRUE after successful invocation, otherwise it returns with FALSE.
+The action has a timeout of 3 minutes.
+
+The generic URI syntax is defined by RFC 3986.
+Example: sftp://myuser@myhostname.ericsson.local/dir/subdir/certificate
+Example: http://myhostname.ericsson.local/dir/subdir/certificate",boolean,fingerprint,"The Secure Hash Algorithm (SHA) fingerprint of the certificate to be installed.
+
+The fingerprint is checked against the fingerprint calculated on the installed file. The hash must be calculated by the SHA algorithm indicated in fingerprintSupport of the CertMCapabilities MO. If the fingerprint check is not required, this parameter can be omitted.",string,,0..1,,,,,,
+SystemFunctions,CertM,installTrustedCertFromUri,"Installs a trusted certificate from the specified Uniform Resource Identifier (URI).
+
+A TrustedCertificate MO is created as a result of this action.
+
+The action can be invoked if no other action in progress on this MO.
+The action returns immediately after invocation. The progress of the action can be tracked via the reportProgress attribute.
+
+The action returns with TRUE after successful invocation, otherwise it returns with FALSE.
+The action has a timeout of 3 minutes.
+
+The generic URI syntax is defined by RFC 3986.
+Example: sftp://myuser@myhostname.ericsson.local/dir/subdir/certificate
+Example: http://myhostname.ericsson.local/dir/subdir/certificate",boolean,trustpointInterface,"Address object of an interface, either IPv4 or IPv6.",moRef ManagedObject,,0..1,,,,,,
+SystemFunctions,CertM,installTrustedCertFromUri,"Installs a trusted certificate from the specified Uniform Resource Identifier (URI).
+
+A TrustedCertificate MO is created as a result of this action.
+
+The action can be invoked if no other action in progress on this MO.
+The action returns immediately after invocation. The progress of the action can be tracked via the reportProgress attribute.
+
+The action returns with TRUE after successful invocation, otherwise it returns with FALSE.
+The action has a timeout of 3 minutes.
+
+The generic URI syntax is defined by RFC 3986.
+Example: sftp://myuser@myhostname.ericsson.local/dir/subdir/certificate
+Example: http://myhostname.ericsson.local/dir/subdir/certificate",boolean,moId,"Id of TrustedCertificate instance. 
+Sets attribute trustedCertificateId. If omitted, values 1, 2, ... are default.
+RDN is TrustedCertificate=N.
+",string,,0..1,,,,,,
+SystemFunctions,CertM,cancel,"Cancels an ongoing action on this MO.
+
+Can be invoked during execution of an action.",boolean,,,,,,,,,,,
+SystemFunctions,CertM,downloadCrl,"Downloads the Certificate Revocation List (CRL) files.
+
+CRLs are downloaded from Uniform Resource Identifier (URI) locations indicated by the CRL distribution points extension of the peer certificates at the time specified by the extension. This action allows the MS to trigger a download in the special case when CRLs are published prior to the published update times.
+
+The action can be invoked if no other action is in progress on this MO and returns immediately after invocation. 
+The progress of the action can be tracked via the reportProgress attribute.
+
+The action returns with TRUE after successful invocation, otherwise it returns with FALSE.",boolean,,,,,,,,,Downloading new CRLs can cause loss of traffic if newly downloaded CRLs contain revocations of trusted certificates used for TLS or IPsec.,,
+SystemFunctions,CertM,removeTrustedCert,Removes a trusted certificate.,boolean,trustedCert,The DN of the TrustedCertificate MO to be removed.,moRef TrustedCertificate,,1,,,,,,
+SystemFunctions,NodeCredential,cancelEnrollment,"Cancels the enrollment process.
+
+If the enrollment runs in online polling mode, this action stops polling the enrollment server. The enrollment rejects to confirm the PKI response from the enrollment server and releases the generated key-pair. The enrollment fails.",boolean,,,,,,,,,,,
+SystemFunctions,NodeCredential,startOnlineEnrollment,"Starts the online enrollment process.
+
+If a vendor credential is not available, a challengePassword must be provided for initial enrollments. Otherwise, the active vendor credential, indicated in the CertM MO, or the existing valid node credential signs the PKI request. 
+
+If the enrollmentSupport attribute of the CertMCapabilities MO indicates that online enrollment is supported, the action can be invoked.
+
+As inputs, the action uses subjectName, keyInfo, enrollmentServerGroup and enrollmentAuthority attributes.
+
+If no other action is in progress on this MO, the action can be invoked and it returns immediately after invocation. 
+Action progress can be tracked via the enrollmentProgress attribute.
+
+The action returns with TRUE after successful invocation, otherwise it returns with FALSE.",boolean,challengePassword,"The one-time challenge password used as a shared-secret between the ME and the enrollment CA.
+",string,,0..1,,,,,,
+SystemFunctions,NodeCredential,startOfflineCsrEnrollment,"Starts a manual enrollment procedure. 
+
+Creates a PKCS#10 Certificate Signing Request (CSR) that is stored at the specified local Uniform Resource Identifier URI. A file transfer service can be used to fetch the CSR file from the ME.
+
+The action can be invoked if the enrollmentSupport attribute of the CertMCapabilities MO indicates that offline CSR-based enrollment is supported.
+
+The action uses attributes subjectName and keyInfo attributes as inputs.
+
+If no other action is in progress on this MO, the action can be invoked and it returns immediately after invocation. 
+The action progress can be tracked via the enrollmentProgress attribute.
+
+The action returns with TRUE after successful invocation, otherwise it returns with FALSE.
+The action has timeout of 3 minutes.",boolean,uri,"This parameter contains a URI assumed to point to the certificate or credential container file. 
+
+The generic Uniform Resource Identifier (URI) syntax is defined by RFC 3986. 
+Example: sftp://myuser@myhostname.ericsson.local/dir/subdir/file 
+The URI must not contain any password. The password shall be provided in the second parameter of this action.
+The URI is a remote location sftp://user@hostname/dir/subdir/csr.p10). 
+
+
+",string,,1,,,,,,
+SystemFunctions,NodeCredential,startOfflineCsrEnrollment,"Starts a manual enrollment procedure. 
+
+Creates a PKCS#10 Certificate Signing Request (CSR) that is stored at the specified local Uniform Resource Identifier URI. A file transfer service can be used to fetch the CSR file from the ME.
+
+The action can be invoked if the enrollmentSupport attribute of the CertMCapabilities MO indicates that offline CSR-based enrollment is supported.
+
+The action uses attributes subjectName and keyInfo attributes as inputs.
+
+If no other action is in progress on this MO, the action can be invoked and it returns immediately after invocation. 
+The action progress can be tracked via the enrollmentProgress attribute.
+
+The action returns with TRUE after successful invocation, otherwise it returns with FALSE.
+The action has timeout of 3 minutes.",boolean,uriPassword,The password section of the Uniform Resource Identifier (URI).,string,,0..1,,,,,,
+SystemFunctions,NodeCredential,installCredentialFromUri,"Installs a node credential or certificate from the specified Uniform Resource Identifier (URI).
+
+If the container file is in PKCS#12 format, the action implicitly starts an offline enrollment. If the file is a certificate in Privacy Enhanced Mail (PEM) or Distinguished Encoding Rules (DER) format, this action closes the ongoing offline enrollment process started by the startOfflineCsrEnrollment action.
+
+Chain certificates are imported from PEM formatted file or PKCS#12 container file.
+
+The action can be invoked if the enrollmentSupport attribute of the CertMCapabilities MO indicates that offline enrollment is supported.
+
+For a container file in PKCS#12 format, the action can be invoked if there is no other action in progress on this MO, and the URI scheme is a secure file transfer protocol. For a certificate file in PEM or DER format, the action can be invoked if there is a startOfflineCsrEnrollment action in progress on this MO.
+
+The action returns immediately after invocation. The progress of the action can be tracked via the enrollmentProgress attribute.
+
+The action returns with TRUE after successful invocation, otherwise it returns with FALSE.
+The action has a timeout of 3 minutes.
+
+The generic URI syntax is defined by RFC 3986.
+Example: sftp://myuser@myhostname.ericsson.local/dir/subdir/certificate
+Example: http://myhostname.ericsson.local/dir/subdir/certificate",boolean,uri,"This parameter contains a URI assumed to point to the certificate or credential container file.
+
+The generic Uniform Resource Identifier (URI) syntax is defined by RFC 3986.
+Example: sftp://myuser@myhostname.ericsson.local/dir/subdir/file
+The URI must not contain any password. The password shall be provided in the second parameter of this action.
+",string,,1,,,,,,
+SystemFunctions,NodeCredential,installCredentialFromUri,"Installs a node credential or certificate from the specified Uniform Resource Identifier (URI).
+
+If the container file is in PKCS#12 format, the action implicitly starts an offline enrollment. If the file is a certificate in Privacy Enhanced Mail (PEM) or Distinguished Encoding Rules (DER) format, this action closes the ongoing offline enrollment process started by the startOfflineCsrEnrollment action.
+
+Chain certificates are imported from PEM formatted file or PKCS#12 container file.
+
+The action can be invoked if the enrollmentSupport attribute of the CertMCapabilities MO indicates that offline enrollment is supported.
+
+For a container file in PKCS#12 format, the action can be invoked if there is no other action in progress on this MO, and the URI scheme is a secure file transfer protocol. For a certificate file in PEM or DER format, the action can be invoked if there is a startOfflineCsrEnrollment action in progress on this MO.
+
+The action returns immediately after invocation. The progress of the action can be tracked via the enrollmentProgress attribute.
+
+The action returns with TRUE after successful invocation, otherwise it returns with FALSE.
+The action has a timeout of 3 minutes.
+
+The generic URI syntax is defined by RFC 3986.
+Example: sftp://myuser@myhostname.ericsson.local/dir/subdir/certificate
+Example: http://myhostname.ericsson.local/dir/subdir/certificate",boolean,uriPassword,"The password part of the Uniform Resource Identifier (URI).
+If password is not required, this parameter can be omitted.",string,,0..1,,,,,,
+SystemFunctions,NodeCredential,installCredentialFromUri,"Installs a node credential or certificate from the specified Uniform Resource Identifier (URI).
+
+If the container file is in PKCS#12 format, the action implicitly starts an offline enrollment. If the file is a certificate in Privacy Enhanced Mail (PEM) or Distinguished Encoding Rules (DER) format, this action closes the ongoing offline enrollment process started by the startOfflineCsrEnrollment action.
+
+Chain certificates are imported from PEM formatted file or PKCS#12 container file.
+
+The action can be invoked if the enrollmentSupport attribute of the CertMCapabilities MO indicates that offline enrollment is supported.
+
+For a container file in PKCS#12 format, the action can be invoked if there is no other action in progress on this MO, and the URI scheme is a secure file transfer protocol. For a certificate file in PEM or DER format, the action can be invoked if there is a startOfflineCsrEnrollment action in progress on this MO.
+
+The action returns immediately after invocation. The progress of the action can be tracked via the enrollmentProgress attribute.
+
+The action returns with TRUE after successful invocation, otherwise it returns with FALSE.
+The action has a timeout of 3 minutes.
+
+The generic URI syntax is defined by RFC 3986.
+Example: sftp://myuser@myhostname.ericsson.local/dir/subdir/certificate
+Example: http://myhostname.ericsson.local/dir/subdir/certificate",boolean,credentialPassword,"The password for decrypting the PKCS#12 container file. If the password is not required, this parameter can be omitted.",string,,0..1,,,,,,
+SystemFunctions,NodeCredential,installCredentialFromUri,"Installs a node credential or certificate from the specified Uniform Resource Identifier (URI).
+
+If the container file is in PKCS#12 format, the action implicitly starts an offline enrollment. If the file is a certificate in Privacy Enhanced Mail (PEM) or Distinguished Encoding Rules (DER) format, this action closes the ongoing offline enrollment process started by the startOfflineCsrEnrollment action.
+
+Chain certificates are imported from PEM formatted file or PKCS#12 container file.
+
+The action can be invoked if the enrollmentSupport attribute of the CertMCapabilities MO indicates that offline enrollment is supported.
+
+For a container file in PKCS#12 format, the action can be invoked if there is no other action in progress on this MO, and the URI scheme is a secure file transfer protocol. For a certificate file in PEM or DER format, the action can be invoked if there is a startOfflineCsrEnrollment action in progress on this MO.
+
+The action returns immediately after invocation. The progress of the action can be tracked via the enrollmentProgress attribute.
+
+The action returns with TRUE after successful invocation, otherwise it returns with FALSE.
+The action has a timeout of 3 minutes.
+
+The generic URI syntax is defined by RFC 3986.
+Example: sftp://myuser@myhostname.ericsson.local/dir/subdir/certificate
+Example: http://myhostname.ericsson.local/dir/subdir/certificate",boolean,fingerprint,"The Secure Hash Algorithm (SHA) fingerprint of the certificate to be installed. 
+
+The fingerprint is checked against the fingerprint calculated on the installed file. The hash must be calculated by the SHA algorithm indicated in fingerprintSupport of the CertMCapabilities MO. If the password is not required, this parameter can be omitted.",string,,0..1,,,,,,
+SystemFunctions,FmFilter,verifyFilter,"A possibility to test whether the defined filter causes suppression or not for an alarm or alert based on the input data.
+Enter one or more of the fields additionalText, additionalInfo, source and severity for the alarm or alert.
+
+",enum NotificationState,additionalText,Additional text string for the alarm or alert.,string,,0..1,,,,,,
+SystemFunctions,FmFilter,verifyFilter,"A possibility to test whether the defined filter causes suppression or not for an alarm or alert based on the input data.
+Enter one or more of the fields additionalText, additionalInfo, source and severity for the alarm or alert.
+
+",enum NotificationState,additionalInfo,Additional info string for the alarm or alert.,string,,0..1,,,,,,
+SystemFunctions,FmFilter,verifyFilter,"A possibility to test whether the defined filter causes suppression or not for an alarm or alert based on the input data.
+Enter one or more of the fields additionalText, additionalInfo, source and severity for the alarm or alert.
+
+",enum NotificationState,source,The distinguished name of the source of the alarm or alert.,string,,0..1,,,,,,
+SystemFunctions,FmFilter,verifyFilter,"A possibility to test whether the defined filter causes suppression or not for an alarm or alert based on the input data.
+Enter one or more of the fields additionalText, additionalInfo, source and severity for the alarm or alert.
+
+",enum NotificationState,severity,"Severity value. One of WARNING, MINOR or MAJOR.",string,,0..1,,,,,,
+SystemFunctions,HcJob,execute,"Executes health check job.
+Executes rules for configured category, and optionally exports report file.
+
+Returns immediately after invocation. Progress can be tracked by progressReport attribute. Action returns error message if it cannot start for some reason, for example because another parallel action is in progress. When action is successfully started, action ID is returned. Action ID is unique for every invocation of the action.
+
+",uint16,exportUri,"URI where job execution output file is to be exported.
+URI must not contain file name. File name is specified by lastReportFileName attribute.
+
+Generic URI syntax is defined by RFC 3986.
+Example for SFTP: sftp://myuser@myhostname.ericsson.local/dir/subdir/
+Example for HTTP: http://myhostname.ericsson.local/dir/subdir/
+
+URI must not contain any password.
+The following URIs are possible:
+- Local relative, for example data/dir/subdir/
+- Local absolute, for example file:///data/dir/subdir/
+- Remote, for example sftp://myuser@hostname/dir/subdir/
+If URI is local relative, archive reports and log files are stored starting from path specified by attribute localFileStorePath. ",string,,0..1,,,,,,
+SystemFunctions,HcJob,execute,"Executes health check job.
+Executes rules for configured category, and optionally exports report file.
+
+Returns immediately after invocation. Progress can be tracked by progressReport attribute. Action returns error message if it cannot start for some reason, for example because another parallel action is in progress. When action is successfully started, action ID is returned. Action ID is unique for every invocation of the action.
+
+",uint16,exportPassword,"Password required to access the location specified by URI.
+If no password is required, this parameter is ignored. ",string,,0..1,,,,,,
+SystemFunctions,HcJob,cancel,"Cancels current HcJob execution.
+Returns true if action is accepted, otherwise false is returned.
+",boolean,,,,,,,,,,,
+SystemFunctions,Lm,refreshLicenseInventory,"Initiates the synchronization of Managed Element's license inventory.
+
+Return value is true if the synchronization succeeded, otherwise false.",boolean,,,,,,,,,,,
+SystemFunctions,EmergencyUnlock,activate,"Initiates activation of the Emergency Unlock operational mode.
+
+Return value is true if the activation succeeded, otherwise false.",boolean,,,,,,,,,,,
+SystemFunctions,IntegrationUnlock,activate,"Initiates activation of the Integration Unlock operational mode.
+
+Return value is true if the activation succeeded, otherwise false.",boolean,,,,,,,,,,,
+SystemFunctions,KeyFileManagement,installKeyFile,"Initiates the key file installation defined by the URI given as a parameter.
+
+The return value is the action Id if the initiation succeeded, otherwise it is 0.
+
+The installation is an asynchronous operation. Progress is reported via attribute reportProgress.",uint16,uri,"The URI of the key file that is to be installed.
+
+The URI shall be a remote source file (for example sftp://myuser@myhostname.ericsson.local/dir/subdir/rbs006.xml).
+
+If user name is needed to access the referenced file then the URI shall include the user name. The URI must not contain password.
+
+The generic URI syntax is defined by RFC 3986.",string,,1,,,,"Installing a new key file may cause loss of traffic, if the required license keys are not included.",,
+SystemFunctions,KeyFileManagement,installKeyFile,"Initiates the key file installation defined by the URI given as a parameter.
+
+The return value is the action Id if the initiation succeeded, otherwise it is 0.
+
+The installation is an asynchronous operation. Progress is reported via attribute reportProgress.",uint16,password,"Password to access the referenced file.
+
+If  authentication is not password based, this parameter will be ignored.
+",string,,1,,,,"Installing a new key file may cause loss of traffic, if the required license keys are not included.",,
+SystemFunctions,LogM,exportEsi,"Used for For Ericsson troubleshooting.
+This action causes the system to generate Ericsson Support Information and transfer a file containing this information to a location specified in the uri.
+The MS requests ME to collect the information targeted to Ericsson personnel, information such as application log files and in general all kind of files used for troubleshooting and analysis to a predefined storage location; The ECIM Log Management  fragment sends this information to a predefined location.
+In case a system is implementing a tool to collect diagnostic information of the MEs of a node, that action can serve as a hook to invoke the retrieval through NBI of all the data collected via this mean. The use case here is for troubleshooting purposes to collect in one action all the available logs and relevant data.
+
+The return value of the action will match the actionId struct member of the progressReport attribute.
+
+e.g.
+
+exportEsi( sftp://myserver.mydomain.com/support/ESI passwd123 CLUSTER)",uint16,uri,"A uniform resource locator describing the file transfer for the ESI file.
+(i.e identifying transfer protocol, server and destination directory)
+ e.g. sftp://myserver.mydomain.com/support/ESI
+
+The file name is determined by the system",string,,1,,,,,,
+SystemFunctions,LogM,exportEsi,"Used for For Ericsson troubleshooting.
+This action causes the system to generate Ericsson Support Information and transfer a file containing this information to a location specified in the uri.
+The MS requests ME to collect the information targeted to Ericsson personnel, information such as application log files and in general all kind of files used for troubleshooting and analysis to a predefined storage location; The ECIM Log Management  fragment sends this information to a predefined location.
+In case a system is implementing a tool to collect diagnostic information of the MEs of a node, that action can serve as a hook to invoke the retrieval through NBI of all the data collected via this mean. The use case here is for troubleshooting purposes to collect in one action all the available logs and relevant data.
+
+The return value of the action will match the actionId struct member of the progressReport attribute.
+
+e.g.
+
+exportEsi( sftp://myserver.mydomain.com/support/ESI passwd123 CLUSTER)",uint16,password,"If credentials are required, the password should be given in here.
+
+ If no credentials are required, this parameter is ignored.",string,,0..1,,,,,,
+SystemFunctions,LogM,exportEsi,"Used for For Ericsson troubleshooting.
+This action causes the system to generate Ericsson Support Information and transfer a file containing this information to a location specified in the uri.
+The MS requests ME to collect the information targeted to Ericsson personnel, information such as application log files and in general all kind of files used for troubleshooting and analysis to a predefined storage location; The ECIM Log Management  fragment sends this information to a predefined location.
+In case a system is implementing a tool to collect diagnostic information of the MEs of a node, that action can serve as a hook to invoke the retrieval through NBI of all the data collected via this mean. The use case here is for troubleshooting purposes to collect in one action all the available logs and relevant data.
+
+The return value of the action will match the actionId struct member of the progressReport attribute.
+
+e.g.
+
+exportEsi( sftp://myserver.mydomain.com/support/ESI passwd123 CLUSTER)",uint16,granularity,"Description: Sets the scope of the data collection.
+The allowed values are ""small"", ""large"", ""static"", ""refresh"", and ""sp1"". If not given, ""large"" will be assumed.",string,,0..1,,,,,,
+SystemFunctions,LogM,exportAvailabilityLog,"This action causes the system to transfer the Availability log to a location defined in the action.
+When the model is deployed on certain architectures, there might be ISP (In Service Performance) mechanisms to collect and retrieve data from a system. 
+
+ The return value of the action will match the actionId struct member of the progressReport attribute.",uint16,uri,"An uniform resource locator describing the file transfer for the Availablity log file.
+(i.e. idntifying protocol, server and destination directory)
+e.g. sftp://myserver.mydomain.com/avli
+
+The file name is determined by the system.",string,,1,,,,,,
+SystemFunctions,LogM,exportAvailabilityLog,"This action causes the system to transfer the Availability log to a location defined in the action.
+When the model is deployed on certain architectures, there might be ISP (In Service Performance) mechanisms to collect and retrieve data from a system. 
+
+ The return value of the action will match the actionId struct member of the progressReport attribute.",uint16,password,"If credentials are required, the password is filled in here.
+If no credentials are required, this parameter is ignored.",string,,0..1,,,,,,
+SystemFunctions,LogM,cancel,Action will cancel the current  action invoked on this MO.,void,actionID,"Optional parameter.
+If supplied the cancel() action will operate on the selected action. 
+If omitted the cancel() action operates on all ongoing actions.",uint16,,0..1,,,,,,
+SystemFunctions,Log,export,"Exports this log type to a given destination.
+This action will move all log entries into a single ASCII encoded file which is transfered to the destination given in the parameters of the action.",uint16,uri,"A uniform resource locator describing the file transfer for the Log stream file.
+(i.e. identifying protocol, server and destination directory)
+ e.g. sftp://myserver.mydomain.com/support/LogStreamA
+
+The file name is determined by the system",string,,1,,,,,,
+SystemFunctions,Log,export,"Exports this log type to a given destination.
+This action will move all log entries into a single ASCII encoded file which is transfered to the destination given in the parameters of the action.",uint16,password,"If credentials are required, the password is filled in here.
+If no credentials are required, this parameter is ignored.",string,,0..1,,,,,,
+SystemFunctions,Log,cancel,"Action will cancel the current  action invoked on this MO.
+",void,actionID,"Optional parameter. 
+If supplied the cancel() action will operate on the selected action. 
+If omitted the cancel() action operates on all ongoing actions.",enum ActionResultType,"SUCCESS
+FAILURE
+NOT_AVAILABLE",0..1,,,,,,
+SystemFunctions,LteEtcm,export,Export the specification,void,uri,"Locator to the remote destination to which the file is transferred
+
+For example:
+sftp://username@host.domain.com/path",string,,1,,,,,,True
+SystemFunctions,LteEtcm,export,Export the specification,void,password,"Password.
+
+If the selected file transfer service no not require a password, this parameter can be omitted.",string,,0..1,,,,,,True
+SystemFunctions,NrEtcm,export,Export the specification,void,uri,"Locator to the remote destination to which the file is transferred
+
+For example:
+sftp://username@host.domain.com/path",string,,1,,,,,,
+SystemFunctions,NrEtcm,export,Export the specification,void,password,"Password.
+
+If the selected file transfer service no not require a password, this parameter can be omitted.",string,,0..1,,,,,,
+SystemFunctions,NrFtem,export,Export the specification,void,uri,"Locator to the remote destination to which the file is transferred
+
+For example:
+sftp://username@host.domain.com/path",string,,1,,,,,,
+SystemFunctions,NrFtem,export,Export the specification,void,password,"Password.
+
+If the selected file transfer service no not require a password, this parameter can be omitted.",string,,0..1,,,,,,
+SystemFunctions,LtePmEvents,export,Export the specification,void,uri,"Locator to the remote destination to which the file is transferred
+
+For example:
+sftp://username@host.domain.com/path",string,,1,,,,,,True
+SystemFunctions,LtePmEvents,export,Export the specification,void,password,"Password.
+
+If the selected file transfer service no not require a password, this parameter can be omitted.",string,,0..1,,,,,,True
+SystemFunctions,NrPmEvents,export,Export the specification,void,uri,"Locator to the remote destination to which the file is transferred
+
+For example:
+sftp://username@host.domain.com/path",string,,1,,,,,,
+SystemFunctions,NrPmEvents,export,Export the specification,void,password,"Password.
+
+If the selected file transfer service no not require a password, this parameter can be omitted.",string,,0..1,,,,,,
+SystemFunctions,ServerKey,renewKey,"Generates a new key of current type that replaces the current key.
+
+If the key is in use, it takes immediate effect. The distribution of the new public key parts shall be done timely before the key is used at the peers to avoid disruption of the service.",void,,,,,,,,,,,
+SystemFunctions,SwM,cancel,"Cancel can be invoked during any long-lasting operation.
+It stops the operation and restores the consistent state that existed before the long-lasting operation started. The action returns immediately after invocation. The consequences of the action can be tracked by attribute progressReport. The action returns false if the action is refused by the ME. In all other cases, it returns true.",boolean,,,,,,,,,,,
+SystemFunctions,SwM,removeUpgradePackage,"Removes an UpgradePackage.
+This action removes the UpgradePackage MO specified as action parameter. It also removes all files temporarily stored in the ME and associated with the UP. The action returns immediately after invocation. The progress of the action can be tracked by attribute progressReport. This action can be invoked when there is no other action in progress on this MO. The action returns false if the action could not start for any reason, for example, another parallel action is in progress. In all other cases, it returns true.",boolean,upgradePackage,An UpgradePackage MO to be removed.,moRef UpgradePackage,,1,,,,,,
+SystemFunctions,SwM,createUpgradePackage,"Creates a new UpgradePackage MO that represents a UP specified by a URI.
+This action includes all activities to initialize the UP MO. After the UP MO is created, all descriptive information is available, for example, administrativeData, number or names of activation step data. This action can be invoked when there is no other action in progress on this MO. The action returns immediately after invocation. The progress of the action can be tracked by attribute progressReport . The action returns 0 if the action cannot start for any reason, for example, another parallel action is in progress. The action also returns 0 if the ME cannot handle the URI, for example, it does not support the protocol specified in the URI. In all other cases, it returns the id of the action. The action id is different and unique for every invocation of the action.",uint16,uri,"Contains a URI that points to a directory that contains the UP content.
+The generic URI syntax is defined by RFC 2396. The URI must not contain any password. The password must be provided in the second parameter of this action. The URI can be local absolute, for example, file:///data/dir/subdir. It can also be remote, for example, sftp://hostname/dir/subdir.",string,,1,,,,,,
+SystemFunctions,SwM,createUpgradePackage,"Creates a new UpgradePackage MO that represents a UP specified by a URI.
+This action includes all activities to initialize the UP MO. After the UP MO is created, all descriptive information is available, for example, administrativeData, number or names of activation step data. This action can be invoked when there is no other action in progress on this MO. The action returns immediately after invocation. The progress of the action can be tracked by attribute progressReport . The action returns 0 if the action cannot start for any reason, for example, another parallel action is in progress. The action also returns 0 if the ME cannot handle the URI, for example, it does not support the protocol specified in the URI. In all other cases, it returns the id of the action. The action id is different and unique for every invocation of the action.",uint16,password,"A password to the server that provides the UP.
+If authentication is not password-based, this parameter is ignored.",string,,0..1,,,,,,
+SystemFunctions,SwM,removeSoftwareVersion,"Removes a SW version as much as possible.
+It does not disturb node functionality. Files shared with other SW versions are not deleted.
+The active SW version cannot be removed. This action can only be invoked when there is no other action in progress on this MO. The action returns false if any of these conditions are violated.",boolean,swVersion,The value component of the RDN of the SwVersion MO in ECIM_SWIM to be removed.,moRef SwVersion,,1,,,,,,
+SystemFunctions,UpgradePackage,activate,"Current upgrade package is taken into operation fully or partially. 
+Partial activation occurs if the UCF defines activation steps and attribute ignoreBreakPoints is false. The ME upgrade engine notifies the operator that the activation step is completed. The next activation step starts when the operator invokes an activate action. Each UP must have at least 1 activation step. When attribute ignoreBreakPoints=true, all activation steps are executed in sequence. When an activation step is complete, the ME executes the next activation step. That means there is no operator invocation when an activation step is complete. The time for observation of correct operation of the ME, after each completed step, is always monitored by a supervision timer. The invocation of activate() can be monitored by a supervision timer. If the supervision timer expires before invocation of activate() or confirm(), the activation fails and the ME falls back to state PREPARE_COMPLETED. The action returns immediately after invocation. The progress of the action can be tracked by attribute progressReport. The action returns false if the action could not start for any reason, for example, another parallel action is in progress. In all other cases, it returns true. This action can be invoked when the state is PREPARE_COMPLETED or ACTIVATION_STEP_COMPLETED. If the action is invoked in a state where the action has no meaning, ME is expected to return an error message.",boolean,upgradeType,"Specifies optional activation mode, where supported, for example SOFT or HARD.",enum UpgradeType,"HARD
+SOFT",0..1,,,,Activation of an upgrade package causes loss of traffic.,,
+SystemFunctions,UpgradePackage,activate,"Current upgrade package is taken into operation fully or partially. 
+Partial activation occurs if the UCF defines activation steps and attribute ignoreBreakPoints is false. The ME upgrade engine notifies the operator that the activation step is completed. The next activation step starts when the operator invokes an activate action. Each UP must have at least 1 activation step. When attribute ignoreBreakPoints=true, all activation steps are executed in sequence. When an activation step is complete, the ME executes the next activation step. That means there is no operator invocation when an activation step is complete. The time for observation of correct operation of the ME, after each completed step, is always monitored by a supervision timer. The invocation of activate() can be monitored by a supervision timer. If the supervision timer expires before invocation of activate() or confirm(), the activation fails and the ME falls back to state PREPARE_COMPLETED. The action returns immediately after invocation. The progress of the action can be tracked by attribute progressReport. The action returns false if the action could not start for any reason, for example, another parallel action is in progress. In all other cases, it returns true. This action can be invoked when the state is PREPARE_COMPLETED or ACTIVATION_STEP_COMPLETED. If the action is invoked in a state where the action has no meaning, ME is expected to return an error message.",boolean,restartType,Shows node restart type when upgrading from the current active UP. ,enum RestartType,"COLD
+ADAPTIVE",0..1,,,,Activation of an upgrade package causes loss of traffic.,,
+SystemFunctions,UpgradePackage,cancel,"Cancel can be invoked during any long-lasting operation.
+Stops the operation and restores the consistent state that existed before the long-lasting operation started. Furthermore, cancel() can also be invoked when the UP is in state WAITING_FOR_COMMIT or ACTIVATION_STEP_COMPLETED without having a long-lasting operation in progress. Calling cancel() in this state orders the ME to restore the state that existed before the activation procedure started. The action returns immediately after invocation. The consequences of the action can be tracked by attribute progressReport. The action returns false if the action is refused by the ME. If the action is invoked in a state where the action has no meaning, the ME is expected to return false. In all other cases, it returns true. This action can be invoked when the UP state is PREPARE_IN_PROGRESS, ACTIVATION_IN_PROGRESS, ACTIVATION_STEP_COMPLETED, or WAITING_FOR_COMMIT.",boolean,,,,,,,,,Cancelling an upgrade while in waiting for confirm causes a board restart.,,
+SystemFunctions,UpgradePackage,verify,"Verifies the ability to activate the current upgrade package.
+The action returns immediately after invocation. The progress of the action can be tracked by attribute progressReport. The action returns false if the action could not start for any reason, for example, another parallel action is in progress. In all other cases, it returns true. This action can be invoked when the state is PREPARE_COMPLETED. If the action is invoked in a state where the action has no meaning, the ME is expected to return an error message.This action can be called as an option in the whole upgrade procedure. The action can be called more than once if required.",boolean,,,,,,,,,,,
+SystemFunctions,UpgradePackage,prepare,"Prepares the Managed Element for activation of the current upgrade package.
+Executing prepare() does not have any negative impact on the in-service performance of the Managed Element. The action returns immediately after invocation. The progress of the action can be tracked by attribute progressReport. The action returns false if the action could not start for any reason, for example, another parallel action is in progress. In all other cases, it returns true.",boolean,,,,,,,,,,,
+SystemFunctions,UpgradePackage,confirm,"Stops the activation fallback timer and confirms the upgrade. 
+The action returns when the synchronous action is completed. This action can be invoked when the state is WAITING_FOR_COMMIT. The action returns true on success, false on failure.",boolean,,,,,,,,,,,
+SystemFunctions,Schema,export,"Pushes the schema file out from the ME.
+
+The URI shall contain both the file name and the destination address. The password is optional.",void,uri,"The URI used to identify the address to the remote location to which the file must be transferred.
+",string,,1,,,,,,
+SystemFunctions,Schema,export,"Pushes the schema file out from the ME.
+
+The URI shall contain both the file name and the destination address. The password is optional.",void,password,The password used to connect to the remote file location.,string,,0..1,,,,,,
+SystemFunctions,TopologySchema,export,"Pushes the schema file out from the ME.
+
+The URI shall contain both the file name and the destination address. The password is optional.",void,uri,"The URI used to identify the address to the remote location to which the file must be transferred.
+",string,,1,,,,,,
+SystemFunctions,TopologySchema,export,"Pushes the schema file out from the ME.
+
+The URI shall contain both the file name and the destination address. The password is optional.",void,password,The password used to connect to the remote file location.,string,,0..1,,,,,,
+SystemFunctions,TheftDeterrence,lock,Locks the stored network identities.,string,password,Password used when unlocking.,string,,0..1,,,,,,
+SystemFunctions,TheftDeterrence,unlock,Unlock stored network identities.,string,password,Password for unlocking.,string,,0..1,,,,,,
+SystemFunctions,TheftDeterrence,lockPermanently,"Locks stored network identities permanently.
+
+Note. Unlocking is not possible.
+This action is not recommended for units where unlocking is possible.
+                ",string,,,,,,,,,,,
+SystemFunctions,TheftDeterrence,displayPlmnIds,"Displays list of PLMN IDs.
+                ",string,,,,,,,,,,,
+SystemFunctions,MaintenanceUserSecurity,closeSessions,This action will close all sessions except for maintenance user sessions.,void,,,,,,,,,,,
+SystemFunctions,MaintenanceUserSecurity,unlockUser, This action will unlock a locked maintenance user.,string,maintenanceUserName,Maintenance user's username for SSH-based login.See MO MaintenanceUser.username.,string,,1,,,,,,
+Equipment,AdbSubUnit,getLogicalAntennaArraysData,Returns log file provided by antenna database and stores it on FTP server.,void,server, IP address or hostname of FTP server.,string,,1,,,,,,
+Equipment,AdbSubUnit,getLogicalAntennaArraysData,Returns log file provided by antenna database and stores it on FTP server.,void,path,File path to software on FTP server.,string,,1,,,,,,
+Equipment,AdbSubUnit,getLogicalAntennaArraysData,Returns log file provided by antenna database and stores it on FTP server.,void,userName,User name used to log on to FTP server.,string,,1,,,,,,
+Equipment,AdbSubUnit,getLogicalAntennaArraysData,Returns log file provided by antenna database and stores it on FTP server.,void,password,Password used to log on to FTP server.,string,,1,,,,,,
+Equipment,AdbSubUnit,receiveLogFile,Returns log file provided by antenna database and stores it on FTP server.,void,server, IP address or hostname of FTP server.,string,,1,,,,,,
+Equipment,AdbSubUnit,receiveLogFile,Returns log file provided by antenna database and stores it on FTP server.,void,path,File path to software on FTP server.,string,,1,,,,,,
+Equipment,AdbSubUnit,receiveLogFile,Returns log file provided by antenna database and stores it on FTP server.,void,userName,User name used to log on to FTP server.,string,,1,,,,,,
+Equipment,AdbSubUnit,receiveLogFile,Returns log file provided by antenna database and stores it on FTP server.,void,password,Password used to log on to FTP server.,string,,1,,,,,,
+Equipment,AdbSubUnit,clearActiveAlarms,"ALD clears all stored alarm states and diagnostic information, including all test alarms on subunit.",void,,,,,,,,,,,
+Equipment,AntennaNearUnit,downloadSoftware,"Fetches the Antenna Near Unit SW package from an FTP server and downloads the firmware file to the Antenna Near Unit.
+The Antenna Near Unit will run on the new firmware when the action is completed.",void,server,"The IP address or hostname of the FTP server.
+",string,,1,,,,,,
+Equipment,AntennaNearUnit,downloadSoftware,"Fetches the Antenna Near Unit SW package from an FTP server and downloads the firmware file to the Antenna Near Unit.
+The Antenna Near Unit will run on the new firmware when the action is completed.",void,path,The file path to the software on the FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,downloadSoftware,"Fetches the Antenna Near Unit SW package from an FTP server and downloads the firmware file to the Antenna Near Unit.
+The Antenna Near Unit will run on the new firmware when the action is completed.",void,userName,User name used to logon to the FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,downloadSoftware,"Fetches the Antenna Near Unit SW package from an FTP server and downloads the firmware file to the Antenna Near Unit.
+The Antenna Near Unit will run on the new firmware when the action is completed.",void,password,Password used to logon to the FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,readUserData,The Antenna Near Unit answers with user-specific data stored in the non-volatile memory reserved for such purpose.,string,memoryOffset,The memory offset to calculate the relative memory address to point the user data area where the required information is stored.,uint32,,1,,,,,,
+Equipment,AntennaNearUnit,readUserData,The Antenna Near Unit answers with user-specific data stored in the non-volatile memory reserved for such purpose.,string,numberOfOctetsToRead,The number of octets to be read from that relative memory address. It must be less or equal than 70.,uint32,,1,,,,,,
+Equipment,AntennaNearUnit,restartUnit,Restarts the Antenna Near Unit.,void,,,,,,,,,,,
+Equipment,AntennaNearUnit,selfTest,"The Antenna Near Unit will execute an implementation-specific test procedure of its own performance (that is, of physical and processor functions).",string,,,,,,,,,,,
+Equipment,AntennaNearUnit,writeUserData,"The AntennaNearUnit shall store user data in non-volatile memory.
+The data is stored in the user data area using the relative memory address offset given in the initiating message and starting with zero.",void,memoryOffset,The memory offset to calculate the relative memory address to point the user data area where the required information will be stored.,uint32,,1,,,,,,
+Equipment,AntennaNearUnit,writeUserData,"The AntennaNearUnit shall store user data in non-volatile memory.
+The data is stored in the user data area using the relative memory address offset given in the initiating message and starting with zero.",void,numberOfOctetsToWrite,The number of octets to be written starting on that relative memory address. It must be less or equal than 68.,uint32,,1,,,,,,
+Equipment,AntennaNearUnit,writeUserData,"The AntennaNearUnit shall store user data in non-volatile memory.
+The data is stored in the user data area using the relative memory address offset given in the initiating message and starting with zero.",void,userDataW,numerOfOctetsToWrite octets containing User Specific data to be written in the non-volatile memory area of the ANU.,string,,1,,,,,,
+Equipment,AntennaNearUnit,sendTmfConfigurationFile,Configures a TMF (TmaSubUnit with tmaType = TMF) based on a TMF configuration file which is fetched from an FTP server and pushed down to the TMF. The TMF will run with the new settings when the action is completed.,void,server,IP address or hostname of the FTP server.,string,Length: 0..255,1,,,tmaType of corresponding TmaSubUnit MOs must be TMF.,Running the action will cause the sector and hence the cell to become disabled. All traffic in the cell will be lost.,,
+Equipment,AntennaNearUnit,sendTmfConfigurationFile,Configures a TMF (TmaSubUnit with tmaType = TMF) based on a TMF configuration file which is fetched from an FTP server and pushed down to the TMF. The TMF will run with the new settings when the action is completed.,void,path,File path to the TMF configuration file on the FTP server.,string,Length: 0..255,1,,,tmaType of corresponding TmaSubUnit MOs must be TMF.,Running the action will cause the sector and hence the cell to become disabled. All traffic in the cell will be lost.,,
+Equipment,AntennaNearUnit,sendTmfConfigurationFile,Configures a TMF (TmaSubUnit with tmaType = TMF) based on a TMF configuration file which is fetched from an FTP server and pushed down to the TMF. The TMF will run with the new settings when the action is completed.,void,userName,User name used to logon to the FTP server. ,string,Length: 0..255,1,,,tmaType of corresponding TmaSubUnit MOs must be TMF.,Running the action will cause the sector and hence the cell to become disabled. All traffic in the cell will be lost.,,
+Equipment,AntennaNearUnit,sendTmfConfigurationFile,Configures a TMF (TmaSubUnit with tmaType = TMF) based on a TMF configuration file which is fetched from an FTP server and pushed down to the TMF. The TMF will run with the new settings when the action is completed.,void,password,Password used to logon to the FTP server.,string,Length: 0..255,1,,,tmaType of corresponding TmaSubUnit MOs must be TMF.,Running the action will cause the sector and hence the cell to become disabled. All traffic in the cell will be lost.,,
+Equipment,AntennaNearUnit,clearActiveAlarms,"ALD clears all stored alarm states and diagnostic information, including all test alarms.",void,,,,,,,,,,,
+Equipment,AntennaNearUnit,generateTestAlarm,Raises an alarm on ALD for testing purposes.,void,errorCode,Iuant Error code to generate test alarm.,uint16,,1,,,,,,
+Equipment,AntennaNearUnit,setAisgVersionForSubunitType,"Sets AISG standard version for all subunits of given type.
+Standard version format is a.b.c, where a = releaseVersion, b = majorVersion,  c = minorVersion.",void,subUnitType,"Possible values for subunitType are RET, TMA and ADB.",string,,1,,,,,,
+Equipment,AntennaNearUnit,setAisgVersionForSubunitType,"Sets AISG standard version for all subunits of given type.
+Standard version format is a.b.c, where a = releaseVersion, b = majorVersion,  c = minorVersion.",void,releaseVersion,Release version number.,uint8,,1,,,,,,
+Equipment,AntennaNearUnit,setAisgVersionForSubunitType,"Sets AISG standard version for all subunits of given type.
+Standard version format is a.b.c, where a = releaseVersion, b = majorVersion,  c = minorVersion.",void,majorVersion,Major version number.,uint8,,1,,,,,,
+Equipment,AntennaNearUnit,setAisgVersionForSubunitType,"Sets AISG standard version for all subunits of given type.
+Standard version format is a.b.c, where a = releaseVersion, b = majorVersion,  c = minorVersion.",void,minorVersion,Minor version number.,uint8,,1,,,,,,
+Equipment,AntennaNearUnit,sendInformationFile,Sends information file to device.,void,server,IP address or hostname of FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,sendInformationFile,Sends information file to device.,void,path,File path to the information file on the FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,sendInformationFile,Sends information file to device.,void,userName,User name used to log on to FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,sendInformationFile,Sends information file to device.,void,password,Password used to log on to FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,sendConfigurationFile,Sends configuration file to device.,void,server,IP address or hostname of FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,sendConfigurationFile,Sends configuration file to device.,void,path,File path to the configuration file on the FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,sendConfigurationFile,Sends configuration file to device.,void,userName,User name used to log on to FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,sendConfigurationFile,Sends configuration file to device.,void,password,Password used to log on to FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,receiveLogFile,"Receives log file from device.
+This is an asynchronous action - progress and result are reported in uploadState attribute.",void,server,IP address or hostname of FTP server.,string,,1,,,"Upload from this antenna near unit must not be ongoing. In other words: attribute uploadState.state must not have value STARTED, when uploadState.subUnitNumber is equal to 0.",,,
+Equipment,AntennaNearUnit,receiveLogFile,"Receives log file from device.
+This is an asynchronous action - progress and result are reported in uploadState attribute.",void,path,File path to the log file on the FTP server.,string,,1,,,"Upload from this antenna near unit must not be ongoing. In other words: attribute uploadState.state must not have value STARTED, when uploadState.subUnitNumber is equal to 0.",,,
+Equipment,AntennaNearUnit,receiveLogFile,"Receives log file from device.
+This is an asynchronous action - progress and result are reported in uploadState attribute.",void,userName,User name used to log on to FTP server.,string,,1,,,"Upload from this antenna near unit must not be ongoing. In other words: attribute uploadState.state must not have value STARTED, when uploadState.subUnitNumber is equal to 0.",,,
+Equipment,AntennaNearUnit,receiveLogFile,"Receives log file from device.
+This is an asynchronous action - progress and result are reported in uploadState attribute.",void,password,Password used to log on to FTP server.,string,,1,,,"Upload from this antenna near unit must not be ongoing. In other words: attribute uploadState.state must not have value STARTED, when uploadState.subUnitNumber is equal to 0.",,,
+Equipment,AntennaNearUnit,receiveInformationFile,"Receives information file from device.
+This is an asynchronous action - progress and result are reported in uploadState attribute.",void,server,IP address or hostname of FTP server.,string,,1,,,"Upload from this antenna near unit must not be ongoing. In other words: attribute uploadState.state must not have value STARTED, when uploadState.subUnitNumber is equal to 0.",,,
+Equipment,AntennaNearUnit,receiveInformationFile,"Receives information file from device.
+This is an asynchronous action - progress and result are reported in uploadState attribute.",void,path,File path to the information file on the FTP server.,string,,1,,,"Upload from this antenna near unit must not be ongoing. In other words: attribute uploadState.state must not have value STARTED, when uploadState.subUnitNumber is equal to 0.",,,
+Equipment,AntennaNearUnit,receiveInformationFile,"Receives information file from device.
+This is an asynchronous action - progress and result are reported in uploadState attribute.",void,userName,User name used to log on to FTP server.,string,,1,,,"Upload from this antenna near unit must not be ongoing. In other words: attribute uploadState.state must not have value STARTED, when uploadState.subUnitNumber is equal to 0.",,,
+Equipment,AntennaNearUnit,receiveInformationFile,"Receives information file from device.
+This is an asynchronous action - progress and result are reported in uploadState attribute.",void,password,Password used to log on to FTP server.,string,,1,,,"Upload from this antenna near unit must not be ongoing. In other words: attribute uploadState.state must not have value STARTED, when uploadState.subUnitNumber is equal to 0.",,,
+Equipment,AntennaNearUnit,recoverFactoryConfiguration,Restores factory configuration for device.,void,,,,,,,,,,,
+Equipment,AntennaNearUnit,resetAllPorts,Reset control ports on ALD.,void,,,,,,,,,,,
+Equipment,AntennaNearUnit,maldGetSetup,Reads MALD setup from ALD and stores on chosen location.,void,server,IP address or hostname of FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,maldGetSetup,Reads MALD setup from ALD and stores on chosen location.,void,path,"File path to setup file on FTP server, including file extension, for example /dir/subdir/rbs001.xml",string,,1,,,,,,
+Equipment,AntennaNearUnit,maldGetSetup,Reads MALD setup from ALD and stores on chosen location.,void,userName, User name used to log on to FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,maldGetSetup,Reads MALD setup from ALD and stores on chosen location.,void,password,Password used to log on to FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,maldResetSetup,Restores MALD setup to factory configuration.,void,,,,,,,,,,,
+Equipment,AntennaNearUnit,maldSetSetup,"Sets MALD setup in ALD, based on chosen XML file with MALD configuration.",void,server,IP address or hostname of FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,maldSetSetup,"Sets MALD setup in ALD, based on chosen XML file with MALD configuration.",void,path,"File path to setup file on FTP server, including file extension, for example /dir/subdir/rbs001.xml",string,,1,,,,,,
+Equipment,AntennaNearUnit,maldSetSetup,"Sets MALD setup in ALD, based on chosen XML file with MALD configuration.",void,userName,User name used to log on to FTP server.,string,,1,,,,,,
+Equipment,AntennaNearUnit,maldSetSetup,"Sets MALD setup in ALD, based on chosen XML file with MALD configuration.",void,password,Password used to log on to FTP server.,string,,1,,,,,,
+Equipment,RetSubUnit,forceCalibration,"Force calibration of the antenna.
+Exercises the antenna drive unit over its entire range of travel to ensure fault-free operation and synchronize the measured and actual beam tilt of the antenna.
+",void,,,,,,,,,"This is a Time Consuming Procedure (TCP) that cannot be executed simultaneously with another TCP, while it can be executed simultaneously with a maximum of one EP. It may affect traffic.",,
+Equipment,RetSubUnit,sendAntennaConfigurationFile,"Sends vendor and antenna specific configuration data in an antenna configuration file to the RET subunit.
+The antenna configuration file is fetched from an FTP server. The configuration data includes the relationship between the movement of the drive system and the beam tilt position of the addressed antenna.",void,server,The IP address or hostname of the FTP server.,string,,0..255,,,,,,
+Equipment,RetSubUnit,sendAntennaConfigurationFile,"Sends vendor and antenna specific configuration data in an antenna configuration file to the RET subunit.
+The antenna configuration file is fetched from an FTP server. The configuration data includes the relationship between the movement of the drive system and the beam tilt position of the addressed antenna.",void,path,The file path to the antenna configuration file on the FTP server.,string,,0..255,,,,,,
+Equipment,RetSubUnit,sendAntennaConfigurationFile,"Sends vendor and antenna specific configuration data in an antenna configuration file to the RET subunit.
+The antenna configuration file is fetched from an FTP server. The configuration data includes the relationship between the movement of the drive system and the beam tilt position of the addressed antenna.",void,userName,"User name used to logon to the FTP server.
+
+",string,,0..255,,,,,,
+Equipment,RetSubUnit,sendAntennaConfigurationFile,"Sends vendor and antenna specific configuration data in an antenna configuration file to the RET subunit.
+The antenna configuration file is fetched from an FTP server. The configuration data includes the relationship between the movement of the drive system and the beam tilt position of the addressed antenna.",void,password,Password used to logon to the FTP server.,string,,0..255,,,,,,
+Equipment,RetSubUnit,refreshIuantAttribute,Refresh value of chosen Iuant attribute. Attribute is read from hardware and store in MO.,void,attributeName,"Name of Iuant attribute to update. Attributes that can be updated are: minTilt, maxTilt and all attributes with the 'iuant' prefix. Using the keyword 'all' will refresh all Iuant attributes.",string,,0..255,,Since 22.Q2. Deprecated: Since 20.Q1. Has no functional behavior. Planned to be removed.,,,,
+Equipment,RetSubUnit,clearConfig,Clears configuration file on RET device.,void,,,,,,Since 21.Q4. Replaced by AntennaNearUnit::recoverFactoryConfiguration. Planned to be removed.,,,,,
+Equipment,RetSubUnit,resetAld,"Process of putting ALD in same status as the status reached after completed power-up.
+Following options can cause reset:
+- DC power-up.
+- DC power cycle.
+- Communication timeout.
+- Internally implemented ALD watchdog timeout.
+- Execution of layer 2 ResetALD command.",void,,,,,,Since 21.Q4. Replaced by AntennaNearUnit::restartUnit. Planned to be removed.,,,,,
+Equipment,RetSubUnit,resetAllPorts,Resets all ALD ports,void,,,,,,Since 21.Q4. Replaced by AntennaNearUnit::resetAllPorts. Planned to be removed.,,,,,
+Equipment,RetSubUnit,receiveLogFile,"Receives log file regarding subUnit.
+This is an asynchronous action - progress and result are reported in uploadState attribute in parent MO.",void,server,IP address or hostname of FTP server.,string,,1,,,"Upload from this sub unit must not be ongoing. In other words: attribute uploadState.state in parent AntennaNearUnit MO must not have value STARTED, when uploadState.subUnitNumber is equal to attribute subUnitNumber in this MO instance.",,,
+Equipment,RetSubUnit,receiveLogFile,"Receives log file regarding subUnit.
+This is an asynchronous action - progress and result are reported in uploadState attribute in parent MO.",void,path,File path to the log file on the FTP server.,string,,1,,,"Upload from this sub unit must not be ongoing. In other words: attribute uploadState.state in parent AntennaNearUnit MO must not have value STARTED, when uploadState.subUnitNumber is equal to attribute subUnitNumber in this MO instance.",,,
+Equipment,RetSubUnit,receiveLogFile,"Receives log file regarding subUnit.
+This is an asynchronous action - progress and result are reported in uploadState attribute in parent MO.",void,userName,User name used to log on to FTP server.,string,,1,,,"Upload from this sub unit must not be ongoing. In other words: attribute uploadState.state in parent AntennaNearUnit MO must not have value STARTED, when uploadState.subUnitNumber is equal to attribute subUnitNumber in this MO instance.",,,
+Equipment,RetSubUnit,receiveLogFile,"Receives log file regarding subUnit.
+This is an asynchronous action - progress and result are reported in uploadState attribute in parent MO.",void,password,Password used to log on to FTP server.,string,,1,,,"Upload from this sub unit must not be ongoing. In other words: attribute uploadState.state in parent AntennaNearUnit MO must not have value STARTED, when uploadState.subUnitNumber is equal to attribute subUnitNumber in this MO instance.",,,
+Equipment,RetSubUnit,clearActiveAlarms,"ALD clears all stored alarm states and diagnostic information, including all test alarms on subunit.",void,,,,,,,,,,,
+Equipment,TmaSubUnit,resetAld,"The process of putting ALD in the same status as the status reached after a completed power-up.
+Following options can cause reset:
+- DC power-up.
+- DC power cycle.
+- Communication timeout.
+- Internally implemented ALD watchdog timeout.
+- Execution of layer 2 ResetALD command.",void,,,,,,,,,,,
+Equipment,TmaSubUnit,resetAllPorts,Resets all ALD ports.,void,,,,,,,,,,,
+Equipment,TmaSubUnit,receiveLogFile,"Receives log file regarding subUnit.
+This is an asynchronous action - progress and result are reported in uploadState attribute in parent MO.",void,server,IP address or hostname of FTP server.,string,,1,,,"Upload from this sub unit must not be ongoing. In other words: attribute uploadState.state in parent AntennaNearUnit MO must not have value STARTED, when uploadState.subUnitNumber is equal to attribute subUnitNumber in this MO instance.",,,
+Equipment,TmaSubUnit,receiveLogFile,"Receives log file regarding subUnit.
+This is an asynchronous action - progress and result are reported in uploadState attribute in parent MO.",void,path,File path to the log file on the FTP server.,string,,1,,,"Upload from this sub unit must not be ongoing. In other words: attribute uploadState.state in parent AntennaNearUnit MO must not have value STARTED, when uploadState.subUnitNumber is equal to attribute subUnitNumber in this MO instance.",,,
+Equipment,TmaSubUnit,receiveLogFile,"Receives log file regarding subUnit.
+This is an asynchronous action - progress and result are reported in uploadState attribute in parent MO.",void,userName,User name used to log on to FTP server.,string,,1,,,"Upload from this sub unit must not be ongoing. In other words: attribute uploadState.state in parent AntennaNearUnit MO must not have value STARTED, when uploadState.subUnitNumber is equal to attribute subUnitNumber in this MO instance.",,,
+Equipment,TmaSubUnit,receiveLogFile,"Receives log file regarding subUnit.
+This is an asynchronous action - progress and result are reported in uploadState attribute in parent MO.",void,password,Password used to log on to FTP server.,string,,1,,,"Upload from this sub unit must not be ongoing. In other words: attribute uploadState.state in parent AntennaNearUnit MO must not have value STARTED, when uploadState.subUnitNumber is equal to attribute subUnitNumber in this MO instance.",,,
+Equipment,TmaSubUnit,clearActiveAlarms,"ALD clears all stored alarm states and diagnostic information, including all test alarms on subunit.",void,,,,,,,,,,,
+Equipment,RaeSubUnit,getSensorData,Updates values in sensorData struct with data provided by GPS sensors. Fields are not updated if HW does not support the corresponding function. See getSupportedFunctions.,void,,,,,,,,,,,
+Equipment,RaeSubUnit,getWeightingFactor,Returns sets of values provided in Weighting Factor File.,string,field,For values from 0x01 to 0x0B will return antenna information data according to Annex A in AISG-ES-RAE v2.1.0.,string,,1,,,,,,
+Equipment,RaeSubUnit,getWeightingFactor,Returns sets of values provided in Weighting Factor File.,string,additionalParameters,"Additional information for field number 0x0B specific in Table 8.4.8.3 in AISG-ES-RAE v2.1.0 is separated with semicolon. Otherwise filled with 0.
+
+Example: 30;65;1880;1920",string,,0..1,,,,,,
+Equipment,RaeSubUnit,sendWeightingFactorFile,"Sends vendor and antenna specific configuration data with a set of amplitude and phase settings for one RF port of a beam forming antenna.
+Weighting factors file is fetched from FTP server.",void,server,"IP address or hostname of FTP server.
+",string,,1,,,,,,
+Equipment,RaeSubUnit,sendWeightingFactorFile,"Sends vendor and antenna specific configuration data with a set of amplitude and phase settings for one RF port of a beam forming antenna.
+Weighting factors file is fetched from FTP server.",void,path,File path to file on FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,sendWeightingFactorFile,"Sends vendor and antenna specific configuration data with a set of amplitude and phase settings for one RF port of a beam forming antenna.
+Weighting factors file is fetched from FTP server.",void,userName,User name used to logon to FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,sendWeightingFactorFile,"Sends vendor and antenna specific configuration data with a set of amplitude and phase settings for one RF port of a beam forming antenna.
+Weighting factors file is fetched from FTP server.",void,password,Password used to logon to FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,sendAntennaPatternFile,"Sends antenna specific data with a mathematical function or graphical representation of the radiation properties of the antenna as a function of space coordinates.
+Antenna pattern file is fetched from FTP server.",void,server,"IP address or hostname of FTP server.
+",string,,1,,,,,,
+Equipment,RaeSubUnit,sendAntennaPatternFile,"Sends antenna specific data with a mathematical function or graphical representation of the radiation properties of the antenna as a function of space coordinates.
+Antenna pattern file is fetched from FTP server.",void,path,File path to file on FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,sendAntennaPatternFile,"Sends antenna specific data with a mathematical function or graphical representation of the radiation properties of the antenna as a function of space coordinates.
+Antenna pattern file is fetched from FTP server.",void,userName,User name used to logon to FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,sendAntennaPatternFile,"Sends antenna specific data with a mathematical function or graphical representation of the radiation properties of the antenna as a function of space coordinates.
+Antenna pattern file is fetched from FTP server.",void,password,Password used to logon to FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,readWeightingFactorFile,Copies Weighting Factor File stored on a device into a specified FTP server.,void,server,"IP address or hostname of FTP server.
+",string,,1,,Since 22.Q2. Deprecated: Since 19.Q3. Replaced by downloadWeightingFactorFile. Planned to be removed.,,,,
+Equipment,RaeSubUnit,readWeightingFactorFile,Copies Weighting Factor File stored on a device into a specified FTP server.,void,path,File path to store file on FTP server.,string,,1,,Since 22.Q2. Deprecated: Since 19.Q3. Replaced by downloadWeightingFactorFile. Planned to be removed.,,,,
+Equipment,RaeSubUnit,readWeightingFactorFile,Copies Weighting Factor File stored on a device into a specified FTP server.,void,userName,User name used to logon to FTP server.,string,,1,,Since 22.Q2. Deprecated: Since 19.Q3. Replaced by downloadWeightingFactorFile. Planned to be removed.,,,,
+Equipment,RaeSubUnit,readWeightingFactorFile,Copies Weighting Factor File stored on a device into a specified FTP server.,void,password,Password used to logon to FTP server.,string,,1,,Since 22.Q2. Deprecated: Since 19.Q3. Replaced by downloadWeightingFactorFile. Planned to be removed.,,,,
+Equipment,RaeSubUnit,readWeightingFactorFile,Copies Weighting Factor File stored on a device into a specified FTP server.,void,fileIndex,"Index of file to be downloaded, can be ommited to download all Weighting Factor from a device.",string,,0..1,,Since 22.Q2. Deprecated: Since 19.Q3. Replaced by downloadWeightingFactorFile. Planned to be removed.,,,,
+Equipment,RaeSubUnit,resetFactoryWeightingFactors,Restores Factory Weighting File to factory settings.,void,,,,,,,,,,,
+Equipment,RaeSubUnit,getSupportedFunctions,Returns information of function availability provided by a device.,string,,,,,,,,,,,
+Equipment,RaeSubUnit,getNumberofFiles,Returns number of files in subunit.,string,,,,,,,Since 22.Q2. Deprecated: Since 19.Q3. Replaced by getNumberOfFiles. Planned to be removed.,,,,
+Equipment,RaeSubUnit,getFileInformation,"Returns names, sizes and types of files stored on a device.",string,fileIndex,Index of file. Typing 0 gives information about all files on device.,string,,0..1,,,,,,
+Equipment,RaeSubUnit,getWeightingFactorXml,Returns sets of values provided in Weighting Factor File in form of XML file stored on FTP server.,void,field,For values from 0x01 to 0x0B will return antenna information data according to Annex A in AISG-ES-RAE v2.1.0.,string,,1,,,,,,
+Equipment,RaeSubUnit,getWeightingFactorXml,Returns sets of values provided in Weighting Factor File in form of XML file stored on FTP server.,void,server,"IP address or hostname of FTP server.
+",string,,1,,,,,,
+Equipment,RaeSubUnit,getWeightingFactorXml,Returns sets of values provided in Weighting Factor File in form of XML file stored on FTP server.,void,path,File path for a new file on FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,getWeightingFactorXml,Returns sets of values provided in Weighting Factor File in form of XML file stored on FTP server.,void,userName,User name used to logon to FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,getWeightingFactorXml,Returns sets of values provided in Weighting Factor File in form of XML file stored on FTP server.,void,password,Password used to logon to FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,getWeightingFactorXml,Returns sets of values provided in Weighting Factor File in form of XML file stored on FTP server.,void,additionalParameters,"Additional information for field number 0x0B specific in Table 8.4.8.3 in AISG-ES-RAE v2.1.0 separated with semicolon. Otherwise fill with 0.
+
+Example: 30;65;1880;1920
+",string,,0..1,,,,,,
+Equipment,RaeSubUnit,get2DWeightingFactors,Returns sets of values provided in 2D Weighting Factor File.,string,subId,For values from 0x01 to 0x1B will return antenna information data according to Chapter 8.4.10 in AISG-ES-RAE v2.2.0.,string,,1,,,,,,
+Equipment,RaeSubUnit,get2DWeightingFactors,Returns sets of values provided in 2D Weighting Factor File.,string,additionalParameters,"Optional, additional information for specific data described in Chapter 8.4.10 in AISG-ES-RAE v2.2.0.",string,,0..1,,,,,,
+Equipment,RaeSubUnit,get2DWeightingFactorsXml,Returns sets of values provided in 2D Weighting Factor File in form of XML file stored on FTP server.,void,subId,For values from 0x01 to 0x1B will return antenna information data according to Annex H in AISG-ES-RAE v2.2.0.,string,,1,,,,,,
+Equipment,RaeSubUnit,get2DWeightingFactorsXml,Returns sets of values provided in 2D Weighting Factor File in form of XML file stored on FTP server.,void,server,"IP address or hostname of FTP server.
+",string,,1,,,,,,
+Equipment,RaeSubUnit,get2DWeightingFactorsXml,Returns sets of values provided in 2D Weighting Factor File in form of XML file stored on FTP server.,void,path,File path for a new file on FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,get2DWeightingFactorsXml,Returns sets of values provided in 2D Weighting Factor File in form of XML file stored on FTP server.,void,userName,User name used to logon to FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,get2DWeightingFactorsXml,Returns sets of values provided in 2D Weighting Factor File in form of XML file stored on FTP server.,void,password,Password used to logon to FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,get2DWeightingFactorsXml,Returns sets of values provided in 2D Weighting Factor File in form of XML file stored on FTP server.,void,additionalParameters,"Optional, additional information for specific data described in Annex H in AISG-ES-RAE v2.2.0.",string,,0..1,,,,,,
+Equipment,RaeSubUnit,readAntennaPatternFile,Copies Antenna Pattern File stored on a device into a specified FTP server.,void,server,"IP address or hostname of FTP server.
+",string,,1,,Since 22.Q2. Deprecated: Since 19.Q3. Replaced by downloadAntennaPatternFile. Planned to be removed.,,,,
+Equipment,RaeSubUnit,readAntennaPatternFile,Copies Antenna Pattern File stored on a device into a specified FTP server.,void,path,File path to store file on FTP server.,string,,1,,Since 22.Q2. Deprecated: Since 19.Q3. Replaced by downloadAntennaPatternFile. Planned to be removed.,,,,
+Equipment,RaeSubUnit,readAntennaPatternFile,Copies Antenna Pattern File stored on a device into a specified FTP server.,void,userName,User name used to logon to FTP server.,string,,1,,Since 22.Q2. Deprecated: Since 19.Q3. Replaced by downloadAntennaPatternFile. Planned to be removed.,,,,
+Equipment,RaeSubUnit,readAntennaPatternFile,Copies Antenna Pattern File stored on a device into a specified FTP server.,void,password,Password used to logon to FTP server.,string,,1,,Since 22.Q2. Deprecated: Since 19.Q3. Replaced by downloadAntennaPatternFile. Planned to be removed.,,,,
+Equipment,RaeSubUnit,getNumberOfFiles,Returns number of files stored on device.,string,,,,,,,,,,,
+Equipment,RaeSubUnit,downloadAntennaPatternFile,Copies Antenna Pattern File stored on a device into a specified FTP server.,void,server,"IP address or hostname of FTP server.
+",string,,1,,,,,,
+Equipment,RaeSubUnit,downloadAntennaPatternFile,Copies Antenna Pattern File stored on a device into a specified FTP server.,void,path,File path to store file on FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,downloadAntennaPatternFile,Copies Antenna Pattern File stored on a device into a specified FTP server.,void,userName,User name used to logon to FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,downloadAntennaPatternFile,Copies Antenna Pattern File stored on a device into a specified FTP server.,void,password,Password used to logon to FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,downloadWeightingFactorFile,Copies Weighting Factor File stored on a device into a specified FTP server.,void,server,"IP address or hostname of FTP server.
+",string,,1,,,,,,
+Equipment,RaeSubUnit,downloadWeightingFactorFile,Copies Weighting Factor File stored on a device into a specified FTP server.,void,path,File path to store file on FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,downloadWeightingFactorFile,Copies Weighting Factor File stored on a device into a specified FTP server.,void,userName,User name used to logon to FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,downloadWeightingFactorFile,Copies Weighting Factor File stored on a device into a specified FTP server.,void,password,Password used to logon to FTP server.,string,,1,,,,,,
+Equipment,RaeSubUnit,setCurrentSensorDataAsTarget,"Copies actual position, altitude, azimuth, and mechanical downtilt of unit and sets them as target data for geolocation monitor.",void,,,,,,,,,,,
+Equipment,AsdSubUnit,autoset,"Activates autoset action for target tilt, roll or azimuth.",void,mechanicalAzimuth,Flag for activating autoset on mechanical azimuth target.,boolean,,1,,,,,,
+Equipment,AsdSubUnit,autoset,"Activates autoset action for target tilt, roll or azimuth.",void,mechanicalRoll,Flag for activating autoset on mechanical roll target.,boolean,,1,,,,,,
+Equipment,AsdSubUnit,autoset,"Activates autoset action for target tilt, roll or azimuth.",void,mechanicalTilt,Flag for activating autoset on mechanical tilt target.,boolean,,1,,,,,,
+Equipment,AsdSubUnit,calibrate,Calibrates ASD.,void,,,,,,,,,,,
+Equipment,AsdSubUnit,deleteTargetThresholds,Deletes target thresholds for chosen parameters.,void,mechanicalAzimuth,Flag for deleting target thresholds for mechanical azimuth.,boolean,,1,,,,Any activated autoset function will be terminated after successful action execution.,,
+Equipment,AsdSubUnit,deleteTargetThresholds,Deletes target thresholds for chosen parameters.,void,mechanicalRoll,Flag for deleting target thresholds for mechanical roll.,boolean,,1,,,,Any activated autoset function will be terminated after successful action execution.,,
+Equipment,AsdSubUnit,deleteTargetThresholds,Deletes target thresholds for chosen parameters.,void,mechanicalTilt, Flag for deleting target thresholds for mechanical tilt.,boolean,,1,,,,Any activated autoset function will be terminated after successful action execution.,,
+Equipment,AsdSubUnit,getAlignmentData,"Updates values in mechanicalAzimuth, mechanicalRoll and mechanicalTilt structs.
+Structures are not updated if hardware does not support corresponding sensing functions. See getSupportedFunctions.",void,,,,,,,,,,,
+Equipment,AsdSubUnit,getSupportedFunctions,Returns information of function availability provided by an ASD.,string,,,,,,,,,,,
+Equipment,GlsSubUnit,getSensorData,"Updates values in altitude, coordinates and precision structs with data provided by GPS sensors. Fields are not updated if hardware does not support corresponding function. See getSupportedFunctions.",void,,,,,,,,,,,
+Equipment,GlsSubUnit,getSupportedFunctions,Returns information of function availability provided by a device.,string,,,,,,,,,,,
+Equipment,BatteryUnit,delete,"This action deletes the BatteryUnit MO.
+
+To prevent the system from recreating the BatteryUnit MO, battery hardware must be disconnected.",void,,,,,,,,,,,
+Equipment,Cabinet,readUnresolvedEnclosurePid,"Reads conflicting Cabinet Product Data when alarm Enclosure Product Data Mismatch is raised due to discrepancies between the product data stored in the database and the SCU/SUP.
+Transaction required: No.",struct ApcEnclosurePidList,,,,,,,,,,,
+Equipment,Cabinet,resolveEnclosurePid,"Resolves the Cabinet Product Data to use for the system when alarm Enclosure Product Data Mismatch is raised. The selected Cabinet Pid is stored persistently in the database and in the SCU/SUP.
+Transaction required: No.",void,selectedPid,Cabinet Product Data to use.,enum ApcEnclosurePidSelection,"CANCEL
+MOM_ENCLOSURE_PID
+SCU_ENCLOSURE_PID",1,,,,,Must be preceded by action readUnresolvedEnclosurePid to execute successfully.,
+Equipment,EFuse,setLoadType,"Specifies if the e-fuse must be used for main or prio load.
+Transaction required: No.",void,loadType,Specifies if the e-fuse shall be used for main or prio load.,enum ApcEFuseLoadType,"MAIN
+PRIO",1,,,,,Attribute remoteControllable must be set to true in order to change load type setting via this action.,
+Equipment,EFuse,setColdStartup,"Specifies whether or not the e-fuse must be on at cold startup.
+Transaction required: No.",void,onAtColdStartup,Specifies if the e-fuse shall be on at cold startup or not.,boolean,,1,,,,,Attribute remoteControllable must be set to true in order to change cold startup setting via this action.,
+Equipment,EFuse,setRemoteControllable,"Specifies whether or not the e-fuse can be remote controlled.
+Transaction required: No.",void,remoteControllable,Specifies if it shall be possible to control the e-fuse remotely or not.,boolean,,1,,,,,,
+Equipment,EFuse,setOutput,"Activates or deactivates power output.
+Transaction required: No.",void,powerOutputState,Sets power output to ON or OFF.,enum ApcEFuseOutput,"ON
+OFF
+TEMPORARY_OFF",1,,,,Can disturb traffic if set to OFF or TEMPORARY_OFF.,Attribute remoteControllable must be set to true in order to set power output via this action.,
+Equipment,EnergyMeter,setEnergyMeterEnabled,Configures the energy meter as enabled or disabled. The configuration is reflected in attribute energyMeterEnabled.,void,energyMeterEnabled,Whether to configure the energy meter as enabled or disabled.,boolean,,1,,,,,,
+Equipment,EnergyMeter,configureLowDcInputVoltageNotification,"Configures low DC input voltage notification.
+
+Can be observed in attribute lowDcInputVoltageNotification.",void,perceivedSeverity,Perceived severity for alarm InputVoltageBelowConfiguredThreshold.,enum ApcPerceivedSeverity,"CRITICAL
+MAJOR
+MINOR
+WARNING",1,,,,,,
+Equipment,EnergyMeter,configureLowDcInputVoltageNotification,"Configures low DC input voltage notification.
+
+Can be observed in attribute lowDcInputVoltageNotification.",void,alarmRaiseVoltage,"Lower DC input voltage threshold for raising alarm.
+
+Value -1 disables notification.",int16,"-520..-380, -1",1,,,,,,
+Equipment,EnergyMeter,configureLowDcInputVoltageNotification,"Configures low DC input voltage notification.
+
+Can be observed in attribute lowDcInputVoltageNotification.",void,alarmCeaseVoltage,Higher DC input voltage threshold for ceasing alarm. This value must be above alarmRaiseVoltage.,int16,-530..-400,1,,,,,,
+Equipment,EnergyMeter,configureLowDcInputVoltageNotification,"Configures low DC input voltage notification.
+
+Can be observed in attribute lowDcInputVoltageNotification.",void,alarmRaiseDelay,Minimum amount of time that DC input voltage must be below alarmRaiseVoltage before an alarm is raised.,uint16,6..3600,1,,,,,,
+Equipment,EnergyMeter,configureLowDcInputVoltageNotification,"Configures low DC input voltage notification.
+
+Can be observed in attribute lowDcInputVoltageNotification.",void,alarmCeaseDelay,Minimum amount of time that DC input voltage must be above alarmCeaseVoltage before an alarm is ceased.,uint16,6..3600,1,,,,,,
+NodeSupport,EquipmentDiscovery,performFullAntennaDeviceScan,"Scans connected AISG units and stores results on the SFTP location indicated by sftpServerIpAddress and sftpServerPath. Contains unique unit ID, device type and how units are connected to RBS. Result is used to detect and correct configuration errors in antenna system, such as unique ID of cascaded ARET units.
+SFTP credentials are stored in the following attributes:
+- sftpServerIpAddress
+- sftpServerPath
+- sftpUsername
+- sftpPassword.
+Scan state can be observed through attribute equipmentDiscoveryStatus. Complete scan can take several minutes.
+
+NOTE: Scan result is incomplete in the following cases:
+- If any connected device is not operational.
+- If connection to any device is broken.
+- If corresponding radio units do not support device scan.",void,,,,,,,,"Attribute antennaDeviceScanInBackground is set to false.
+NodeMangementFunction.antennaDeviceScan action is not running.
+EquipmentDiscovery.performFullAntennaDeviceScan is not running.
+AntennaNearUnit.downloadSoftware is not running.
+The following attributes are specified:
+- sftpServerIpAddress
+- sftpServerPath
+- sftpUsername
+- sftpPassword
+- dataRate
+- portVoltage
+- portConfiguration.","When high values for parameter portVoltage are used, executing this action can cause permanent damage to antenna system equipment.",Must not be run simultaneously with the AntennaNearUnit.downloadSoftware action.,
+NodeSupport,ExternalUpManager,createExternalUp,Creates external upgrade package. Corresponding ExternalUp MO is created. MOs in unitList are referenced by created ExternalUp MO.,void,uri,Contains URI that points to directory that contains UP content. Generic URI syntax is defined by RFC 2396. URI must not contain any password. Password must be provided in second parameter of this action.,string,,0..1,,,,,,
+NodeSupport,ExternalUpManager,createExternalUp,Creates external upgrade package. Corresponding ExternalUp MO is created. MOs in unitList are referenced by created ExternalUp MO.,void,password,"Password to server that provides UP. If authentication is not password-based, this parameter is ignored.",string,,0..1,,,,,,
+NodeSupport,ExternalUpManager,createExternalUp,Creates external upgrade package. Corresponding ExternalUp MO is created. MOs in unitList are referenced by created ExternalUp MO.,void,unitList,List of MOs for which external upgrade package is applicable. This list must contain MOs of type SupportUnit.,moRef ManagedObject,,0..,,,,,,
+NodeSupport,ExternalUpManager,removeExternalUp,Deletes external upgrade package. This action removes ExternalUp MO specified as action parameter. Also removes all files temporarily stored in ME and associated with UP. This action returns when removal is completed.,void,externalUp,ExternalUp MO to be removed.,moRef ExternalUp,,0..1,,,,,,
+NodeSupport,ExternalUp,activate,"Current firmware is fully taken into operation.
+
+Disturbances: When activating upgrade package, hardware under upgrade is restarted.",void,,,,,,,,,,,
+NodeSupport,ExternalUp,transferFile,Current firmware is transferred from node to hardware that is to be upgraded.,void,,,,,,,,,,,
+Equipment,FieldReplaceableUnit,restartUnit,Restarts the FRU.,void,restartRank,The restart rank.,enum RestartRank,"RESTART_WARM
+RESTART_COLD
+RESTART_COLDWTEST",1,,,, Restart causes loss of traffic.,,
+Equipment,FieldReplaceableUnit,restartUnit,Restarts the FRU.,void,restartReason,The reason for the restart.,enum RestartReason,"PLANNED_RECONFIGURATION
+UNPLANNED_NODE_EXTERNAL_PROBLEMS
+UNPLANNED_NODE_UPGRADE_PROBLEMS
+UNPLANNED_O_AND_M_ISSUE
+UNPLANNED_CYCLIC_RECOVERY
+UNPLANNED_LOCKED_RESOURCES
+UNPLANNED_COLD_WITH_HW_TEST
+UNPLANNED_CALL_PROCESSING_DEGRADATION
+UNPLANNED_LOW_COVERAGE
+OPERATOR_CLASSIFIED_PROBLEMS",1,,,, Restart causes loss of traffic.,,
+Equipment,FieldReplaceableUnit,restartUnit,Restarts the FRU.,void,restartInfo,A free text field where extra information can be added.,string,,0..1,,,, Restart causes loss of traffic.,,
+Equipment,FieldReplaceableUnit,writeRepairDelivNote,Writes HW log entry. Only one HW log entry is allowed for each unit. The existing entries in the HW log are not updated.,void,preparedBy,Name of operator preparing the log entry.,string,Length: 1..15,1,,,,,,
+Equipment,FieldReplaceableUnit,writeRepairDelivNote,Writes HW log entry. Only one HW log entry is allowed for each unit. The existing entries in the HW log are not updated.,void,stateCode,"The HW status when the failure occured:
+R = Repaired unit failed during installation or test.
+S = Unit in service failure occured.
+T = New unit failed during installation or test.",string,Length: 1,1,,,,,,
+Equipment,FieldReplaceableUnit,writeRepairDelivNote,Writes HW log entry. Only one HW log entry is allowed for each unit. The existing entries in the HW log are not updated.,void,trNumber,"If the unit has a connection with a trouble report, a reference to this must be supplied.",string,Length: 0..10,1,,,,,,
+Equipment,FieldReplaceableUnit,writeRepairDelivNote,Writes HW log entry. Only one HW log entry is allowed for each unit. The existing entries in the HW log are not updated.,void,reference,Complaint reference.,string,Length: 0..8,1,,,,,,
+Equipment,FieldReplaceableUnit,writeRepairDelivNote,Writes HW log entry. Only one HW log entry is allowed for each unit. The existing entries in the HW log are not updated.,void,descriptionOfFault,"Specific description of the fault observed. It is also important that other external factors are described as well. For product safety reasons also specify fore, water damage and so on.",string,Length: 1..64,1,,,,,,
+Equipment,FieldReplaceableUnit,writeRepairDelivNote,Writes HW log entry. Only one HW log entry is allowed for each unit. The existing entries in the HW log are not updated.,void,countryCode,Two letter country code.,string,Length: 2,1,,,,,,
+Equipment,FieldReplaceableUnit,resetUnitInstallation,"Uninstalls the corresponding FieldReplaceableUnit. Applicable only to FieldReplaceableUnits of type Radio Dot, and only when the unit has been physically removed. The action sets the availability status of the MO to NOT_INSTALLED.",void,,,,,,,,,,,
+Equipment,FieldReplaceableUnit,activateDeepSleep,"Activates deep sleep on hardware unit represented by this MO.
+Result can be observed in deepSleepStatus attribute.",void,,,,,,,,,,,
+Equipment,FieldReplaceableUnit,deactivateDeepSleep,"Deactivates deep sleep on hardware unit represented by this MO.
+Result can be observed in deepSleepStatus attribute.",void,,,,,,,,,,,
+Equipment,FieldReplaceableUnit,activateOpticalIndicators,"Activates optical indicators during a time period.
+When time period expires, optical indicator control is resumed according to unitOpticalIndicatorControl.
+
+
+",void,duration,"Duration of time period.
+Value 0 cancels currently ongoing action.",uint16,0..1440,1,,,,,,
+Equipment,HereIAmIndication,startHereIAmIndication,"Starts double flashing of maintenance indicator on hardware unit represented by parent of this MO. 
+This action is rejected if maintenance indicator currently blinks fast or slowly. 
+This action is rejected if a faulty condition occurs, for example communication problem over link.",void,,,,,,,,,,,
+Equipment,HereIAmIndication,stopHereIAmIndication,"Stops double flashing of maintenance indicator on hardware unit represented by parent of this MO. 
+This action is rejected if a faulty condition occurs, for example communication problem over link.",void,,,,,,,,,,,
+Equipment,ORadio,sendCommand,Perform YANG style XML commands towards ORadio. ,void,commandString,Command to be executed. ,string,,1,,,,,,
+Equipment,ORadio,sendCommand,Perform YANG style XML commands towards ORadio. ,void,timeout,"Maximum time to wait for response and (optional) notification.
+value 0 is invalid.
+Unit: 1s.",int32,,1,,,,,,
+Equipment,ORadio,sendCommand,Perform YANG style XML commands towards ORadio. ,void,notification,NETCONF notification to be received.,string,,0..1,,,,,,
+Equipment,ORadio,cancelCommand,Cancel current command.,void,,,,,,,,,,,
+Equipment,ORadio,openOamNetwork,"Open OAM network connection between management system and ORadio.
+Result is displayed in oamConnectionResult.",void,,,,,,,,,,,
+Equipment,ORadio,closeOamNetwork,"Close OAM network connection between management system and ORadio.
+Result is displayed in oamConnectionResult.",void,,,,,,,,,,,
+Equipment,ORadio,readFileList,"Retrieves the file list from the ORadio unit.
+Result is displayed in readFileListResult attribute.",void,folder,Folder of ORadio unit to be read.,string,,1,,,,,,
+Equipment,ORadio,uploadFile,"Uploads a single file from the ORadio unit to a file server.
+Result is displayed in uploadFileNotificationResult attribute.",void,ipAddress,IP address of file server.,string,Length: 1..253,1,,,,,,
+Equipment,ORadio,uploadFile,"Uploads a single file from the ORadio unit to a file server.
+Result is displayed in uploadFileNotificationResult attribute.",void,username,User name for connecting to file server.,string,,1,,,,,,
+Equipment,ORadio,uploadFile,"Uploads a single file from the ORadio unit to a file server.
+Result is displayed in uploadFileNotificationResult attribute.",void,password,Password for connecting to file server.,string,,1,,,,,,
+Equipment,ORadio,uploadFile,"Uploads a single file from the ORadio unit to a file server.
+Result is displayed in uploadFileNotificationResult attribute.",void,localPath,File path on ORadio unit for file to be uploaded.,string,,1,,,,,,
+Equipment,ORadio,uploadFile,"Uploads a single file from the ORadio unit to a file server.
+Result is displayed in uploadFileNotificationResult attribute.",void,remotePath,File path on file server where uploaded file is stored.,string,,1,,,,,,
+Equipment,ORadio,uploadFile,"Uploads a single file from the ORadio unit to a file server.
+Result is displayed in uploadFileNotificationResult attribute.",void,timeout,"Maximum time to wait for response and notification.
+Unit: 1s.",uint16,1..65535,1,,,,,,
+Equipment,PlugInModule,delete,This action deletes the PlugInModule MO.,void,,,,,,,,,,,
+Equipment,RcvdPowerScanner,scanRcvdPower,"Starts a scan on the radio unit, measuring the received power on a set of frequency ranges.
+If the scan can be started, the action returns a value greater than zero, indicating the scanId. 
+When the scan is completed, attribute scanResult is updated and attribute scanId is set to the identifier returned by the action.
+
+Valid bandwidth value in RcvdPowerFreqRange is 5000 kHz or 10000 kHz.
+
+If a scan cannot be started, a negative value is returned. The negative value do not update the result attributes.
+Each negative value corresponds to a unique error code as specified below:
+-1 scan request parameters are invalid / scan request have invalid parameters
+-2 target device is not available
+-3 target device does not have capability to perform scan
+-4 scan mode and carrier status are inconsistent 
+-5 scan is already ongoing.",int32,scanFreqList,the set of frequencies on which the scan shall be performed.,struct RcvdPowerFreqRange,,1..30,,,,,,
+Equipment,RcvdPowerScanner,scanRcvdPower,"Starts a scan on the radio unit, measuring the received power on a set of frequency ranges.
+If the scan can be started, the action returns a value greater than zero, indicating the scanId. 
+When the scan is completed, attribute scanResult is updated and attribute scanId is set to the identifier returned by the action.
+
+Valid bandwidth value in RcvdPowerFreqRange is 5000 kHz or 10000 kHz.
+
+If a scan cannot be started, a negative value is returned. The negative value do not update the result attributes.
+Each negative value corresponds to a unique error code as specified below:
+-1 scan request parameters are invalid / scan request have invalid parameters
+-2 target device is not available
+-3 target device does not have capability to perform scan
+-4 scan mode and carrier status are inconsistent 
+-5 scan is already ongoing.",int32,scanType,"Received power scan types.
+Determines whether the scan shall be performed on frequency ranges with or without active carriers.",enum RcvdPowerScanType,"RCVD_POWER_WITHOUT_CARRIER
+RCVD_POWER_WITH_CARRIER",1,,,,,,
+Equipment,RfPort,startRlFreqSweep,Starts return loss frequency sweep on RfPort of a specific radio unit. Return loss measurement data is collected from the radio unit and stored on SFTP server.,void,ipAddress,IP address for SFTP server.,string,Length: 0..128,1,,,,,,
+Equipment,RfPort,startRlFreqSweep,Starts return loss frequency sweep on RfPort of a specific radio unit. Return loss measurement data is collected from the radio unit and stored on SFTP server.,void,username,User name for connecting to the SFTP server.,string,Length: 0..128,1,,,,,,
+Equipment,RfPort,startRlFreqSweep,Starts return loss frequency sweep on RfPort of a specific radio unit. Return loss measurement data is collected from the radio unit and stored on SFTP server.,void,password,Password for connecting to the SFTP server.,string,Length: 0..128,1,,,,,,
+Equipment,RfPort,startRlFreqSweep,Starts return loss frequency sweep on RfPort of a specific radio unit. Return loss measurement data is collected from the radio unit and stored on SFTP server.,void,uploadDirectory,Path to the directory in the SFTP server where measurement data is stored.,string,Length: 0..128,1,,,,,,
+Equipment,RfPort,startRlFreqSweep,Starts return loss frequency sweep on RfPort of a specific radio unit. Return loss measurement data is collected from the radio unit and stored on SFTP server.,void,samplingStep,Frequency sampling length.,uint32,500..5000,1,,,,,,
+Equipment,RfPort,resetPimDesenseFilter,Resets PIMD filter.,void,,,,,,,,,,,
+NodeSupport,RfVswrInstallationCheck,performCheck,"Triggers Antenna System Validation (ASV) VSWR measurements for whole node, given radios or specific RF ports. Stores measurement results in rfPortTestResult for further evaluation.",void,testLevel,Level on which test is executed.,enum TestLevel,"NODE
+RADIO
+RFPORT",1,,,,,,
+NodeSupport,RfVswrInstallationCheck,performCheck,"Triggers Antenna System Validation (ASV) VSWR measurements for whole node, given radios or specific RF ports. Stores measurement results in rfPortTestResult for further evaluation.",void,thresholdLow,"Integer value that is a reference to set testResult according to user requirements.
+If result is less than thresholdLow, then testResult is NOK (not OK).
+If result is greater than or equal to thresholdLow and less than thresholdHigh, then testResult is OKW (OK with warning).",uint8,10..17,0..1,,,,,,
+NodeSupport,RfVswrInstallationCheck,performCheck,"Triggers Antenna System Validation (ASV) VSWR measurements for whole node, given radios or specific RF ports. Stores measurement results in rfPortTestResult for further evaluation.",void,thresholdHigh,"Integer value that is a reference to set testResult according to user requirements.
+If result is less than thresholdHigh and greater than or equal to thresholdLow, then testResult is OKW (OK with warning).
+If result is greater than or equal to thresholdHigh then testResult is OK.",uint8,10..17,0..1,,,,,,
+NodeSupport,RfVswrInstallationCheck,performCheck,"Triggers Antenna System Validation (ASV) VSWR measurements for whole node, given radios or specific RF ports. Stores measurement results in rfPortTestResult for further evaluation.",void,targetLDN,Array of LDNs that identifies radio units or RF ports to test. Used only if testLevel is set to RADIO or RFPORT.,moRef ManagedObject,,0..280,,,,,,
+Equipment,SupportUnit,deregisterSupportUnit,"Deregisters support unit in support unit hosts. That is, SupportUnit MO is removed from supportUnitRef attribute in corresponding FieldReplaceableUnit or/and from upgradeTargetRef in corresponding ExternalUp MOs. When SupportUnit MO is no longer referred to (reservedBy attribute has become empty), SupportUnit MO is automatically deleted.
+Transaction required: Yes",void,,,,,,,,"Support unit HW is disconnected. Otherwise, SupportUnit MO is recreated.",,,
+Equipment,SupportUnit,sendCommand,Sends user-defined payload to connected support unit. Received reply is held by commandResult attribute.,void,commandString,User defined payload.,string,Length: 1..64,0..1,,,,,,
+Equipment,SupportUnit,sendCommand,Sends user-defined payload to connected support unit. Received reply is held by commandResult attribute.,void,timeout,Time in seconds for action to perform.,int16,1..30,0..1,,,,,,
+Equipment,SupportUnit,restartUnit,Restarts support unit. Applicable only to support units with restart capability.,void,,,,,,,,,,,
+Equipment,SwImage,restrictSwVersion,"Restricts installation and execution of software from Upgrade Package produced before 2025.
+Action is not reversible.
+This action can update the value of allowedSw.",string,,,,,,,,,,,
+Equipment,SyncTestInterface,outputSyncTestInterfaceSignal,Signal output on sync test interface.,void,outputSyncTestInterfaceSignal,Signal output on sync test interface.,enum OutputSyncTestInterfaceSignal,"FREQUENCY_1PPS
+TIME_LOCKED_1PPS
+FREQUENCY_2048KHZ
+FREQUENCY_10MHZ
+NO_SIGNAL",1,,,,,,
+Equipment,TheftDeterrence,lock,Locks stored network identities.,string,password,Password must be used when unlocking.,string,Length: 12..255,1,,,,,,
+Equipment,TheftDeterrence,lockPermanently,"Locks stored network identities permanently.
+
+Note. Unlocking is not possible.
+This action is not recommended for units where unlocking is possible.
+
+Action is intended for units that do not support actions lock and unlock.",string,,,,,,,,,,,
+Equipment,TheftDeterrence,unlock,Unlock stored network identities.,string,password,Password for unlocking.,string,Length: 12..255,1,,,,,,
+Equipment,TheftDeterrence,displayPlmnIds,Lists PLMN IDs configured for supported RATs and provided by TheftDeterrenceForRadioUnits license.,string,,,,,,,,,,,
+EquipmentSupportFunction,BatteryBackup,readBatteryTestResult,Action for reading out the result of a finished battery test. Output data is stored persistently. This means that the result can always be read for the last finished on demand test and periodic test separately. The action is valid for battery capacity and backup time tests.,struct ApcBatteryTestResult,testType,Type of battery test to read result for.,enum ApcBatteryTestType,"PERIODIC
+ON_DEMAND",1,,,,,,
+EquipmentSupportFunction,BatteryBackup,readBatteryTestStatus,"Action for reading out the status of an ongoing battery test (testState is IN_PROGRESS or PENDING). Valid for on demand test and periodic test. Valid for battery capacity and backup time tests. Updated values can be retrieved by issuing this action regularly during a test. Out parameter values are not stored persistently and can therefore only be read during a test. All out parameter values, except for testState, are undefined in testState PENDING.",struct ApcBatteryTestStatus,,,,,,,,,,,
+EquipmentSupportFunction,BatteryBackup,startBatteryTest,"Starts on-demand battery capacity test or battery backup time test. Test only starts when battery is fully charged or if forced parameter is set to true. Battery is considered fully charged when current is stable below 2 A for 1 hour.
+If batteries are not fully charged and forced parameter is set to false, test is set to PENDING on testState parameter. In this case, batteries must be fully charged within 24 hours to start the test.
+If conditions are not fulfilled within pending period (24 hours), testState will be set to UNDEFINED and test will end with FAILED result.",void,forced,"Specifies if forced initiation should be used or not. Forced initiation means that a number of pre-conditions are overridden and that the test can be started even if these pre-conditions are not fulfilled. Overridden pre-conditions:
+- batteries are considered fully charged
+- system is not running on batteries in case of battery time test
+No alarms are raised as a result of the battery test if parameter forced is set to true. Manual evaluation of the test result is needed.
+
+Dependencies: Attribute referenceBatteryCapacity is not updated as a result of the battery test if parameter forced is set to true. ",boolean,,1,,,,"RBS is powered from batteries during test. This battery discharge makes RBS more sensitive to mains power failure during test. If AC power interruptions are common, sensitivity can be reduced if test is scheduled for low traffic hours.","Battery capacity test is executed if sharedBattery is set to false. Otherwise, backup time test is executed.",
+EquipmentSupportFunction,BatteryBackup,startEqualizeCharging,"Starts equalize charging.
+",void,,,,,,,,,,,
+EquipmentSupportFunction,BatteryBackup,stopBatteryTest,Stops an ongoing battery capacity test or battery backup time test that was started via action startBatteryTest.,void,,,,,,,,,,,
+EquipmentSupportFunction,BatteryBackup,stopEqualizeCharging,Stops equalize charging.,void,,,,,,,,,,,
+NodeSupport,LicenseSupport,initialize,This action is not supported.,string,,,,,,,Since 19.Q3. Has no functional behaviour.,,,,
+NodeSupport,LicenseSupport,installAreaLicenseKeys,This action is not supported.,enum InstallAreaLicenseKeysResult,,,,,,,Since 19.Q3. Has no functional behaviour.,,,,
+NodeSupport,LicenseSupport,migrateFingerprint,This action is not supported.,uint16,fingerprint,The parameter is not supported.,string,,1,,Since 20.Q3. Has no functional behaviour.,,,,
+NodeSupport,LicenseSupport,migrateFingerprint,This action is not supported.,uint16,uri,The parameter is not supported.,string,,0..1,,Since 20.Q3. Has no functional behaviour.,,,,
+NodeSupport,LicenseSupport,migrateFingerprint,This action is not supported.,uint16,password,"The parameter is not supported.
+",string,,0..1,,Since 20.Q3. Has no functional behaviour.,,,,
+NodeSupport,LicenseSupport,cancel,"Cancels ongoing action.
+
+",boolean,,,,,,,,,,,
+NodeSupport,InstantaneousLicensing,cancel,"Cancels current refreshKeyFile action.
+Action returns true if action is accepted. Otherwise, false is returned.",boolean,,,,,,,,,,,
+NodeSupport,InstantaneousLicensing,refreshKeyFile,"Generates and installs Key File.
+
+Action returns immediately after invocation. Progress of action can be tracked by attribute progressReport . Action returns error message if cannot start for some reason, for example, if another parallel action is in progress. When action is successfully started, action ID is returned. Action ID is unique for every invocation of action.",uint16,,,,,,,,,,,
+NodeSupport,InstantaneousLicensing,calculateLicenseDemand,"Action to calculate current license needs
+
+Action returns calculated license needs as a JSON string and status for calculation.",struct LicenseCalculationResult,lrfName,"Optional name of License Request File (LRF).
+
+Name is stored in attribute lrfName. If not specified attribute lrfName is cleared.",string,,0..1,,,,,,
+NodeSupport,OnSiteActivities,clearTechnicianPresent,"Resets the attribute technicianPresent to NOT_PRESENT. 
+Intended to be used when the technician has left the RBS site without announcing it.",void,,,,,,,,,,,
+NodeSupport,OnapSupport,getAlarmList,"Orders sending of active alarm list towards destination specified in VesClient MO of type FM_VES_CLIENT.
+
+Returns immediately after invocation. Returned value indicates number of alarms that will be sent. Value zero means no alarms will be sent.
+
+If there is communication failure towards the destination, alarms are buffered and retransmission attempts are made for up to one hour. If a second action is made while retransmission of first alarm list is ongoing, the buffered alarm list is replaced by a new one.
+
+VES interface status can be checked in VesClient MO of clientType FM_VES_CLIENT.",uint16,,,,,,,,,,,True
+NodeSupport,SwSigningCertM,confirmCrl,"Confirm the new CRL.
+
+Ends the grace period before it expires.
+Old UPs and associated backups are removed automatically.",string,,,,,,,,,,,
+NodeSupport,SwImage,restrictSwVersion,"Restricts software version.
+
+When version is restricted, only Upgrade Packages that are produced in 2025 and onwards can be installed.
+
+This action is not reversible.",string,,,,,,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startUlsaSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,ipAddress,"IP address for SMRS server, used for measurement files. Required for all sampling types.",string,Length: 1..253,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by startSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,startUlsaSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,username,User name for connecting to SMRS server. Required for all sampling types.,string,,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by startSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,startUlsaSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,password,Password for connecting to SMRS server. Required for all sampling types.,string,,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by startSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,startUlsaSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,uploadDirectory,Path to directory in SMRS server where sampling results are stored. Required for all sampling types.,string,,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by startSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,startUlsaSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,targetRfPort,"RF port to be used for sampling. LDN value of targeted RfPort.
+Required for all sampling types.",string,Length: 0..128,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by startSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,startUlsaSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,samplingType,"Type of sampling. Possible values are SNAPSHOT_SAMPLING, CONTINUOUS_SAMPLING or CONDITIONAL_SAMPLING.",enum UlSpectrumSamplingType,"SNAPSHOT_SAMPLING
+CONTINUOUS_SAMPLING
+CONDITIONAL_SAMPLING",1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by startSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,startUlsaSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,centerFrequency,Value must be specified in range of parameters minFrequency and maxFrequency received as a return value from action getUlsaSamplingCapability.,uint32,,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by startSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,startUlsaSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,displayedBandwidth,Value 0 means display is not required.,uint32,,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by startSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,startUlsaSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,resolutionBandwidth,Must be a non-zero positive number.,uint32,,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by startSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,startUlsaSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,samplingInterval,Delay time after one sampling is finished until start of next sampling for samplingType value CONTINUOUS_SAMPLING. Parameter has no meaning for other samplingTypes. Value 0 means continuous best effort. ,uint32,,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by startSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,startUlsaSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,samplingTimeout,Maximum waiting time for a specified trigger condition to happen or maximum duration of a continuous sampling type. Range is 10-7200. Recommended value is 1000 seconds for CONDITIONAL_SAMPLING and 3600 seconds for CONTINUOUS_SAMPLING. Parameter has no meaning for samplingType SNAPSHOT_SAMPLING.,uint32,,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by startSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,startUlsaSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,triggerTimeOfDay,Time in form of hh:mm:ss.sss when a sampling can be requested from radio. Used for CONDITIONAL_SAMPLING. Parameter has no meaning for other samplingTypes. Value ff:ff:ff.fff means not used.,string,Length: 0..128,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by startSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,startUlsaSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,powerLevel,Power trigger threshold at antenna reference point. Used for CONDITIONAL_SAMPLING. The parameter has no meaning for other samplingTypes. Value must be specified in range of parameters minPower and maxPower received from action getUlsaSamplingCapability. For CONDITIONAL_SAMPLING measurement trigger powerLevel is valid when parameter triggerTimeOfDay is set to ff:ff:ff.fff.,int32,,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by startSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,stopUlsaSampling,Stops a continuous sampling or preempts a conditional sampling.,void,targetRfPort,LDN value of targeted RfPort to stop sampling.,string,Length: 0..128,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by stopSampling. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,getUlsaSamplingCapability,"Fetches UL spectrum analyzer capabilities from radio and returns result in an array of struct UlsaCapabilityConfig. When radio has no measurable spectrum types in any RF branch, size of returning array equals 0.",struct UlsaCapabilityConfig,targetRadioUnit,targetRadioUnit is set to LDN for radio FieldReplaceableUnit MO.,string,Length: 0..128,1,,Since 22.Q2. Deprecated: Since 20.Q4. Replaced by getSamplingCapability. Planned to be removed.,,,,
+NodeSupport,UlSpectrumAnalyzer,getSamplingCapability,"Fetches UL spectrum analyzer capabilities from radio and returns result in an array of struct CapabilityConfigData. When radio has no measurable spectrum types in any RF branch, size of returning array equals 0.",struct CapabilityConfigData,targetRadioUnit,targetRadioUnit is set to LDN for radio FieldReplaceableUnit MO.,string,Length: 0..255,1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,ipAddress,"IP address for SMRS server, used for measurement files. Required for all sampling types. ",string,Length: 1..253,1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,username,User name for connecting to SMRS server. Required for all sampling types.,string,,1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,password,Password for connecting to SMRS server. Required for all sampling types.,string,,1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,uploadDirectory,Path to directory in SMRS server where sampling results are stored. Required for all sampling types.,string,,1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,targetMeasurementPort,"Measurement port to be used for sampling. LDN value of targeted RfPort for CPRI radio, or LDN value of targeted Transceiver for eCPRI radio.
+Required for all sampling types.",string,Length: 0..255,1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,samplingType,"Type of sampling. Possible values are SNAPSHOT_SAMPLING, CONTINUOUS_SAMPLING or CONDITIONAL_SAMPLING.",enum UlSpectrumSamplingType,"SNAPSHOT_SAMPLING
+CONTINUOUS_SAMPLING
+CONDITIONAL_SAMPLING",1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,centerFrequency,Value must be specified in range of parameters minFrequency and maxFrequency received as a return value from action getSamplingCapability. ,uint32,,1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,displayedBandwidth,Value 0 means display is not required.,uint32,,1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,resolutionBandwidth,Must be a non-zero positive number.,uint32,,1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,samplingInterval,Delay time after one sampling is finished until start of next sampling for samplingType value CONTINUOUS_SAMPLING. Parameter has no meaning for other samplingTypes. Value 0 means continuous best effort.,uint32,,1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,samplingTimeout,Maximum waiting time for a specified trigger condition to happen or maximum duration of a continuous sampling type. Range is 10-7200. Recommended value is 1000 seconds for CONDITIONAL_SAMPLING and 3600 seconds for CONTINUOUS_SAMPLING. Parameter has no meaning for samplingType SNAPSHOT_SAMPLING.,uint32,,1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,triggerTimeOfDay,Time in form of hh:mm:ss.sss when a sampling can be requested from radio. Used for CONDITIONAL_SAMPLING. Parameter has no meaning for other samplingTypes. Value ff:ff:ff.fff means not used. ,string,Length: 0..128,1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,startSampling,"Requests one or several UL spectrum samples to be collected from radio unit and stored on an SMRS server.
+File name is displayed in filename.",void,powerLevel,"Power trigger threshold at antenna reference point. Used for CONDITIONAL_SAMPLING. Parameter has no meaning for other samplingTypes. Value must be specified in range of parameters minPower and maxPower received from action getSamplingCapability. For CONDITIONAL_SAMPLING, measurement trigger powerLevel is valid when parameter triggerTimeOfDay is set to ff:ff:ff.fff.",int32,,1,,,,,,
+NodeSupport,UlSpectrumAnalyzer,stopSampling,Stops a continuous sampling or preempts a conditional sampling.,void,,,,,,,,,,,
+Transport,GnssInfo,gnssReceiverResurvey,"Enable or disable automatic self-resurvey, or perform manual self-resurvey on connected GNSS receiver.",string,action,Selects action to perform.,enum GnssReceiverResurveyAction,"ENABLE
+DISABLE
+EXECUTE
+CANCEL
+STATUS",1,,,,,,
+Transport,GnssInfo,gnssReceiverResurvey,"Enable or disable automatic self-resurvey, or perform manual self-resurvey on connected GNSS receiver.",string,noOfSatellites,"noOfSatellites can be in range 4..24, and is used only when action is set to execute.
+
+If action is executed successfully, result is empty string.
+If action failed, result is string with explanation.",uint8,4..24,1,,,,,,
+Transport,GnssInfo,gnssReceiverReset,Initiate reset of connected GNSS receiver.,void,action,Set action to execute to initiate reset.,string,,1,Since 19.Q1. Planned to be removed. Replaced by gnssReceiverRestart.,,,,,
+Transport,GnssInfo,gnssReceiverReset,Initiate reset of connected GNSS receiver.,void,slotNumber,GRU firmware slot number is used to restart GRU on particular firmware revision.,uint8,0..2,1,Since 19.Q1. Planned to be removed. Replaced by gnssReceiverRestart.,,,,,
+Transport,GnssInfo,getGnssReceiverControl,Give node control of GNSS receiver.,string,action,"Set action to get or release control of GNSS receiver.
+
+If action is executed successfully, result is empty string.
+If action failed, result is string with explanation.
+
+Action fails in following cases:
+- Executed on node with connected GNSS receiver of older generation than GRU04.
+- GRU04 or GRU05 is connected to node, but there is no control path towards GNSS receiver.",enum GnssRecControlAction,"RELEASE_CONTROL
+GET_CONTROL",1,,,,,,
+Transport,GnssInfo,gnssReceiverRestart,"Initiate restart of connected GNSS receiver.
+
+Action can be executed if GPS02, GPS03, GRU04, or GRU05 receiver is connected to node.",string,action,"Set action to initiate reset.
+
+If action is executed successfully, result is empty string.
+If action failed, result is string with explanation.
+
+Action fails if executed on node which has:
+- GPS01 connected.
+- GPS02, GPS03, GRU04, or GRU05 connected, but there is no control path towards GNSS receiver.
+- GRU04 or GRU05 connected, but there is no control over GNSS receiver.",string,,1,,,,,,
+Transport,GnssInfo,gnssReceiverRestartFromSlot,"Initiate reset to different firmware slot on GRU04 or GRU05.
+
+Action can be executed only if GRU04 or GRU05 receiver is connected to node.",string,action,Set action to initiate reset.,string,,1,,,,,,
+Transport,GnssInfo,gnssReceiverRestartFromSlot,"Initiate reset to different firmware slot on GRU04 or GRU05.
+
+Action can be executed only if GRU04 or GRU05 receiver is connected to node.",string,slotNumber,GNSS receiver firmware slot number is used to restart GNSS receiver on particular firmware revision.,uint8,0..2,1,,,,,,
+Transport,GnssInfo,gnssReceiverRestartFromSlot,"Initiate reset to different firmware slot on GRU04 or GRU05.
+
+Action can be executed only if GRU04 or GRU05 receiver is connected to node.",string,rollbackSlot,"If restart fails due to new defined slot number, GNSS receiver autonomously restart to slot defined with rollbackSlot parameter.
+
+If action is executed successfully, result is empty string.
+If action failed, result is string with explanation.
+
+Action fails in following cases:
+- Executed on node with connected GNSS receiver of older generation than GRU04.
+- GRU04 or GRU05 is connected to node, but node has no control over GNSS receiver.",uint8,0..2,1,,,,,,
+Transport,GnssInfo,setGnssRecAntSelection,Configures GNSS receiver antenna selection.,string,action,"Set action to select internal or external GNSS antenna.
+
+If action is executed successfully, result is empty string.
+If action failed, result is string with explanation.
+
+Action fails in following case:
+- Executed on node with connected GNSS receiver that is not supporting antenna selection functionality.",enum AntSel,"INTERNAL
+EXTERNAL",1,,,,,,
+Transport,NodeGroupSyncMember,retryEntranceToNodeGroup,Retries entrance to node group. Can be used if automatic entrance to node group is unsuccessful.,void,,,,,,,,,This action might cause traffic disturbances.,,
+Transport,PtpProfileMeasurement,startMeasurement,"Starts PTP measurements.
+
+If action is executed, result is empty string.
+If action fails, result is string with explanation.
+
+Action fails in following cases:
+- Executed when operationalState is set to DISABLED.
+- Executed when measurementStatus is set to STARTED.",string,,,,,,,,,,,
+Transport,PtpProfileMeasurement,stopMeasurement,"Stops PTP measurements.
+
+If action is executed, result is empty string.
+If action fails, result is string with explanation.
+
+Action fails if executed when measurementStatus is set to NOT_STARTED or FINISHED.",string,,,,,,,,,,,
+Transport,AuthenticationServer,installPreSharedKey,"Install pre-shared key for RADIUS encryption.
+
+Installation of pre-shared key is completed when action is completed without error.
+Installation is not done if any error is returned.",void,presharedKey,String used as pre-shared key.,string,Length: 1..130,1,,,,Invoking this action causes traffic disturbances.,,
+Transport,AuthenticationServer,installPreSharedKey,"Install pre-shared key for RADIUS encryption.
+
+Installation of pre-shared key is completed when action is completed without error.
+Installation is not done if any error is returned.",void,serverAddress,"Remote authentication server, either IPv4 or IPv6 address. Address must be identical to one of addresses configured with this attribute.",string,Length: 1..253,1,,,,Invoking this action causes traffic disturbances.,,
+Transport,Ikev2Session,installPreSharedKey,"Install pre-shared key for IKEv2 session.
+
+This action must be used if pre-shared key based authentication is used.
+
+To install pre-shared key, valid IPsec license must be installed, and IPsec feature must be activated.
+
+If credential and trustCategory are set for Ikev2PolicyProfile MO, certificate-based authentication is used and pre-shared key is not used, even if installed.
+
+Installation of pre-shared key is completed when action is completed without error.
+Installation is not done if any error is returned.",void,presharedKey,String used as pre-shared key.,string,Length: 1..130,1,,,,Invoking this action causes traffic disturbances.,,
+Transport,Ikev2Session,restartIkeSa,This causes the node to delete IKE SA and initiate negotiation of new IKE SA.,void,,,,,,,,,Invoking this action causes traffic disturbances.,,
+Transport,PacketCapture,start,Start packet capturing.,string,interfaceLdn,"LDN of InterfaceIPv4/6, IpsecTunnel, or PeerIpsecTunnel.",string,,1,,,,,,
+Transport,PacketCapture,start,Start packet capturing.,string,count,Number of packets.,uint32,1..16000,1,,,,,,
+Transport,PacketCapture,start,Start packet capturing.,string,direction,Direction of packet capture.,enum PacketCaptureDirection,"BOTH
+EGRESS
+INGRESS",1,,,,,,
+Transport,PacketCapture,stop,Stop active packet capturing.,string,,,,,,,,,,,
+Transport,PacketCapture,status,Show packet capturing status.,string,,,,,,,,,,,
+Transport,PacketCapture,export,Export packet captured file.,string,uri,"URI for destination, according to RFC 3986.",string,,1,,,,,,
+Transport,PacketCapture,export,Export packet captured file.,string,password,Password for encryption.,string,,0..1,,,,,,
+Transport,PacketCapture,export,Export packet captured file.,string,uripassword,"Password to URI, according to RFC 3986.",string,,0..1,,,,,,
+Transport,Md5,setPassword,This action sets password that is used for MD5 authentication.,void,password,String to use as MD5 password.,string,Length: 1..16,1,,,,,,
+Transport,PeerIpsecTunnel,restartIkeSa,Causes node to delete IKE SA. New IKE SA negotiation is initiated.,void,,,,,,,,,Invoking this action causes traffic disturbances.,,
+NodeBFunction,NodeBFunction,bsctSetMode,"Switches NodeB between Normal and Base Station Conformance Testing operation mode. When set to BASE_STATION_CONFORMANCE_TEST, only test processing is possible, any communication on NBAP will be blocked. It fails if any cell, common channel or dedicated channel have been setup before execution. When set to NORMAL, NodeB is operational for live traffic.",void,mode,Operating modes.,enum BsctMode,"NORMAL
+BASE_STATION_CONFORMANCE_TEST",1,,,,,,
+NodeBFunction,NodeBLocalCell,bsctSetup,Sets up cell and channels for given test model. Valid if NodeB is locked for Base Station Conformance Testing with bsctSetMode.,void,testModel,"Test model.
+Allowed values:
+0: NOT_APPLICABLE
+1: TEST_MODEL_1
+2: TEST_MODEL_2
+3: TEST_MODEL_3
+4: TEST_MODEL_4
+5: TEST_MODEL_5
+6: TEST_MODEL_6",enum BsctTestModel,"TEST_MODEL_1
+TEST_MODEL_2
+TEST_MODEL_3
+TEST_MODEL_4
+TEST_MODEL_5
+TEST_MODEL_6
+TEST_MODEL_1_STF11
+NOT_APPLICABLE",1,,,,,,
+NodeBFunction,NodeBLocalCell,bsctSetup,Sets up cell and channels for given test model. Valid if NodeB is locked for Base Station Conformance Testing with bsctSetMode.,void,numOfDedicatedChannels,"Amount of dedicated channels to setup.
+Allowed values for different test models:
+Test model 1: 4, 8, 16, 32, 64
+Test model 2: 3
+Test model 3: 4, 8, 16, 32
+Test model 4: 0
+Test model 5: 4, 6, 14, 30
+Test model 6: 4, 30",uint32,,1,,,,,,
+NodeBFunction,NodeBLocalCell,bsctSetup,Sets up cell and channels for given test model. Valid if NodeB is locked for Base Station Conformance Testing with bsctSetMode.,void,pCpichPower,"Primary CPICH power. Allowed value range: [minDlPowerCapability, maxDlPowerCapability].",int32,,1,,,,,,
+NodeBFunction,NodeBLocalCell,bsctRelease,Releases cell and all channels. Valid if NodeB is setup with bsctSetup and no transmission is ongoing.,void,,,,,,,,,,,
+NodeBFunction,NodeBLocalCell,bsctStartPnTransmission,Starts PN transmission on all configured channels. Valid if NodeB is configured with test model for Base Station Conformance Testing before invoking.,void,,,,,,,,,,,
+NodeBFunction,NodeBLocalCell,bsctStopPnTransmission,Stops PN transmission on all configured channels. Valid if in Base Station Conformance Testing mode and transmission is started.,void,,,,,,,,,,,
+NodeBFunction,NodeBLocalCell,bsctStartBerMeasurement,Starts BER measurement on DCH. Valid if NodeB is configured with test model for Base Station Conformance Testing before invoking.,void,measTime,"Time in seconds to measure BER. Allowed values: 1, 10, 13, 39, 180, 300, 600.",int32,,1,,,,,,
+NodeBFunction,NodeBLocalCell,bsctStopBerMeasurement,Stops BER measurement on DCH. Valid if in Base Station Conformance Testing mode and measurement on channel is started.,void,,,,,,,,,,,
+NodeBFunction,NodeBLocalCell,bsctStartSirMeasurement,Starts SIR measurement on DCH. Valid if NodeB is configured with test model for Base Station Conformance Testing before invoking.,void,,,,,,,,,,,
+NodeBFunction,NodeBLocalCell,bsctStopSirMeasurement,Stops SIR measurement on DCH. Valid if in Base Station Conformance Testing mode and measurement on channel is started.,void,,,,,,,,,,,
+NodeBFunction,NodeBLocalCell,bsctSetupTPC,Sets up cell and channels for test model 2 with TPC test. Valid if NodeB is locked for Base Station Conformance Testing with bsctSetMode.,void,testModel,"Test model. 
+Allowed values:
+0: NOT_APPLICABLE
+2: TEST_MODEL_2
+",enum BsctTestModel,"TEST_MODEL_1
+TEST_MODEL_2
+TEST_MODEL_3
+TEST_MODEL_4
+TEST_MODEL_5
+TEST_MODEL_6
+TEST_MODEL_1_STF11
+NOT_APPLICABLE",1,,,,,,
+NodeBFunction,NodeBLocalCell,bsctSetupTPC,Sets up cell and channels for test model 2 with TPC test. Valid if NodeB is locked for Base Station Conformance Testing with bsctSetMode.,void,numOfDedicatedChannels,Amount of dedicated channels to setup. Allowed value :3,uint32,,1,,,,,,
+NodeBFunction,NodeBLocalCell,bsctSetupTPC,Sets up cell and channels for test model 2 with TPC test. Valid if NodeB is locked for Base Station Conformance Testing with bsctSetMode.,void,pCpichPower,"Primary CPICH power. Allowed value range: [minDlPowerCapability, maxDlPowerCapability].",int32,,1,,,,,,
+NodeBFunction,NodeBLocalCell,bsctSetupTPC,Sets up cell and channels for test model 2 with TPC test. Valid if NodeB is locked for Base Station Conformance Testing with bsctSetMode.,void,innerLoopDlpcStatus,Inner Loop DL power control Status.,enum BsctInnerLoopDlpcStatus,"INACTIVE
+ACTIVE",1,,,,,,
+NodeBFunction,NodeBLocalCell,bsctSetupTPC,Sets up cell and channels for test model 2 with TPC test. Valid if NodeB is locked for Base Station Conformance Testing with bsctSetMode.,void,tpcDlStepSize,"FDD transmission power control DL Step Size.
+
+Unit: 0.1dB",enum BsctTpcDlStepSize,"5
+10
+15
+20",1,,,,,,

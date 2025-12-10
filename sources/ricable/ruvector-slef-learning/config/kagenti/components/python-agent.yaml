@@ -1,0 +1,121 @@
+# Kagenti Component CR for Python Agent
+# Defines a FastAPI-based AI agent unit
+# https://github.com/kagenti/kagenti-operator
+
+apiVersion: kagenti.io/v1alpha1
+kind: Component
+metadata:
+  name: python-agent
+  namespace: zgents
+  labels:
+    app.kubernetes.io/name: python-agent
+    app.kubernetes.io/component: agent
+    app.kubernetes.io/part-of: zgents-platform
+    zgents.io/category: python
+    zgents.io/runtime: container
+spec:
+  type: Agent
+
+  source:
+    git:
+      url: "https://github.com/ricable/ruvector-slef-learning"
+      ref: main
+      path: "apps/fastapi"
+
+  build:
+    enabled: true
+    type: docker
+
+    # Use mise for reproducible builds
+    mise:
+      configPath: "agents/python/mise.toml"
+      tasks:
+        - setup
+        - build
+        - test
+
+    # Dockerfile location
+    dockerfile: Dockerfile
+    context: "."
+
+    # Build args
+    args:
+      PYTHON_VERSION: "3.12"
+
+    # Output artifact
+    output:
+      type: oci
+      registry: "ghcr.io/ruvnet"
+      image: "python-agent"
+
+  runtime:
+    # Standard container runtime
+    class: runc
+
+  deployment:
+    replicas: 2
+
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "100m"
+      limits:
+        memory: "1Gi"
+        cpu: "500m"
+
+    envFrom:
+      - secretRef:
+          name: agent-secrets
+      - configMapRef:
+          name: python-agent-config
+
+    healthCheck:
+      httpGet:
+        path: /health
+        port: 8000
+      initialDelaySeconds: 10
+      periodSeconds: 15
+
+    service:
+      ports:
+        - name: http
+          port: 8000
+          targetPort: 8000
+
+  a2a:
+    enabled: true
+    endpoints:
+      - name: invoke
+        path: /a2a/invoke
+        method: POST
+      - name: status
+        path: /a2a/status
+        method: GET
+      - name: capabilities
+        path: /a2a/capabilities
+        method: GET
+
+  mcp:
+    enabled: true
+    tools:
+      - name: ml-inference
+        description: "Run ML model inference"
+      - name: data-transform
+        description: "Transform data with pandas/numpy"
+      - name: langchain-chain
+        description: "Execute LangChain chains"
+
+---
+# ConfigMap for Python agent
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: python-agent-config
+  namespace: zgents
+data:
+  FASTAPI_ENV: "production"
+  UVICORN_HOST: "0.0.0.0"
+  UVICORN_PORT: "8000"
+  UVICORN_WORKERS: "2"
+  LOG_LEVEL: "INFO"
+  TOKENIZERS_PARALLELISM: "false"

@@ -1,0 +1,45 @@
+{
+  "name": "@ruvector/attention-wasm",
+  "version": "0.1.0",
+  "description": "WebAssembly bindings for ruvector-attention - high-performance attention mechanisms",
+  "main": "pkg/ruvector_attention_wasm.js",
+  "types": "js/index.ts",
+  "files": [
+    "pkg/",
+    "js/"
+  ],
+  "scripts": {
+    "build": "wasm-pack build --target web --out-dir pkg",
+    "build:node": "wasm-pack build --target nodejs --out-dir pkg-node",
+    "build:bundler": "wasm-pack build --target bundler --out-dir pkg-bundler",
+    "build:all": "npm run build && npm run build:node && npm run build:bundler",
+    "test": "wasm-pack test --headless --firefox",
+    "test:chrome": "wasm-pack test --headless --chrome",
+    "clean": "rm -rf pkg pkg-node pkg-bundler target"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/ruvector"
+  },
+  "keywords": [
+    "wasm",
+    "webassembly",
+    "attention",
+    "transformer",
+    "machine-learning",
+    "neural-networks",
+    "hyperbolic",
+    "moe",
+    "flash-attention"
+  ],
+  "author": "rUv",
+  "license": "MIT OR Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ruvnet/ruvector/issues"
+  },
+  "homepage": "https://ruv.io/ruvector",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

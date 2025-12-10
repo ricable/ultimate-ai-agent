@@ -1,0 +1,250 @@
+{
+  "file_hash": "e8459e5297288876cfb3813063d63c63",
+  "feature": {
+    "id": "121 4680",
+    "name": "Differential Uplink Power Control",
+    "cxc_code": "CXC4012089",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Differential Uplink Power Control feature introduces a SINR-based PUSCH closed-loop",
+    "parameters": [
+      {
+        "name": "EUtranCellFDD.enableSinrUplinkClpc  EUtranCellTDD.enableSinrUplinkClpc",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.interferenceThresholdSinrClpc  EUtranCellTDD.interferenceThresholdSinrClpc",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExBadEnabled  EUtranCellTDD.p0ClpcExBadEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodEnabled  EUtranCellTDD.p0ClpcExGoodEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExBadSinrThr  EUtranCellTDD.p0ClpcExBadSinrThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodSinrThr  EUtranCellTDD.p0ClpcExGoodSinrThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodSinrOffset64Qam  EUtranCellTDD.p0ClpcExGoodSinrOffset64Qam",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodSinrOffset256Qam  EUtranCellTDD.p0ClpcExGoodSinrOffset256Qam",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.rxSinrTargetClpc  EUtranCellTDD.rxSinrTargetClpc",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.ulPsdLoadThresholdSinrClpc  EUtranCellTDD.ulPsdLoadThresholdSinrClpc",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.ulTxPsdDistrThr  EUtranCellTDD.ulTxPsdDistrThr",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.assumedUePowerMsg3  EUtranCellTDD.assumedUePowerMsg3",
+        "type": "Affecting",
+        "description": "For users with optimal channel quality, these attributes can improve                                 power control optimization during the initial access procedure.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.ulTxPsdDistrThr",
+        "type": "20",
+        "description": "",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.ulTxPsdDistrThr",
+        "type": "40",
+        "description": "",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.enableSinrUplinkClpc  EUtranCellTDD.enableSinrUplinkClpc",
+        "type": "Affected",
+        "description": "The function of this parameter is changed to enable or disable                                     the feature enhancement.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExBadEnabled  EUtranCellTDD.p0ClpcExBadEnabled",
+        "type": "Introduced",
+        "description": "This parameter can enable or disable power control optimization                                     under poor channel conditions.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodEnabled  EUtranCellTDD.p0ClpcExGoodEnabled",
+        "type": "Introduced",
+        "description": "This parameter can enable or disable power control optimization                                     under optimal channel conditions.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExBadSinrThr  EUtranCellTDD.p0ClpcExBadSinrThr",
+        "type": "Introduced",
+        "description": "This parameter defines the SINR threshold that identifies UEs in                                     poor channel conditions. The UE is considered to be in poor                                     channel conditions if its SINR measurement is below this                                     threshold.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodSinrThr  EUtranCellTDD.p0ClpcExGoodSinrThr",
+        "type": "Introduced",
+        "description": "This parameter defines the SINR threshold that identifies UEs in                                     optimal channel conditions. The UE is considered to be in                                     optimal channel conditions if its SINR measurement is above this                                     threshold.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodSinrOffset64Qam  EUtranCellTDD.p0ClpcExGoodSinrOffset64Qam",
+        "type": "Introduced",
+        "description": "This parameter defines how much the                                         p0ClpcExGoodSinrThr parameter is to be                                     offset to protect the peak throughput of 64-QAM-capable UEs.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodSinrOffset256Qam  EUtranCellTDD.p0ClpcExGoodSinrOffset256Qam",
+        "type": "Introduced",
+        "description": "This parameter defines how much the                                         p0ClpcExGoodSinrThr parameter is to be                                     offset to protect the peak throughput of 256-QAM-capable                                     UEs.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "Uen.BH",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodSinrThr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodSinrOffset256Qam",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.p0ClpcExGoodSinrThr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.p0ClpcExGoodSinrOffset256Qam",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.p0ClpcExGoodSinrOffset64Qam",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.p0ClpcExGoodSinrOffset64Qam",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmClpcUlP0",
+        "description": "Performance counter pmClpcUlP0",
+        "category": "General"
+      },
+      {
+        "name": "pmClpcUlSinr",
+        "description": "Performance counter pmClpcUlSinr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRecInterferencePwr",
+        "description": "Performance counter pmRadioRecInterferencePwr",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRecInterferencePwrPrb1",
+        "description": "Performance counter pmRadioRecInterferencePwrPrb1",
+        "category": "General"
+      },
+      {
+        "name": "pmRadioRecInterferencePwrPrb100",
+        "description": "Performance counter pmRadioRecInterferencePwrPrb100",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabAtt",
+        "description": "Performance counter pmRrcConnEstabAtt",
+        "category": "General"
+      },
+      {
+        "name": "pmRrcConnEstabSucc",
+        "description": "Performance counter pmRrcConnEstabSucc",
+        "category": "General"
+      },
+      {
+        "name": "pmSinrPuschDistr",
+        "description": "Performance counter pmSinrPuschDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmTxPsdLoadUlDistr",
+        "description": "Performance counter pmTxPsdLoadUlDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012089 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012089 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/282_22104-LZA7016014_1Uen.BH.md",
+    "file_hash": "e8459e5297288876cfb3813063d63c63",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

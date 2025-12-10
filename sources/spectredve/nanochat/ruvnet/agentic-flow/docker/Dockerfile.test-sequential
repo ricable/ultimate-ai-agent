@@ -1,0 +1,18 @@
+FROM node:22-slim
+WORKDIR /app
+
+# Copy local built package
+COPY agentic-flow/package.json ./
+COPY agentic-flow/dist ./dist
+COPY agentic-flow/.claude ./.claude
+
+# Copy .env
+COPY .env ./.env
+
+# Install and link
+RUN npm install --omit=dev && npm link
+
+ENV NODE_ENV=production
+
+# Default: test Anthropic (fastest)
+CMD ["agentic-flow", "--agent", "coder", "--task", "Write hello world", "--provider", "anthropic"]

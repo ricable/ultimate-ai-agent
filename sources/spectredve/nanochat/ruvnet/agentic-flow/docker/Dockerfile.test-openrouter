@@ -1,0 +1,20 @@
+FROM node:22-slim
+WORKDIR /app
+
+# Copy .env from root (has OPENROUTER_API_KEY)
+COPY .env ./.env
+
+# Install latest published version
+RUN npm install -g agentic-flow@latest
+
+ENV NODE_ENV=production
+
+# Test with OpenRouter models
+CMD ["sh", "-c", "echo '🧪 Testing OpenRouter models...' && \
+  echo '1️⃣ Testing meta-llama/llama-3.1-8b-instruct...' && \
+  agentic-flow --agent coder --task 'Write a simple hello world function in Python' --model 'meta-llama/llama-3.1-8b-instruct' && \
+  echo '\\n2️⃣ Testing deepseek/deepseek-chat...' && \
+  agentic-flow --agent coder --task 'Write a simple hello world function in Python' --model 'deepseek/deepseek-chat' && \
+  echo '\\n3️⃣ Testing google/gemini-2.0-flash-exp:free...' && \
+  agentic-flow --agent coder --task 'Write a simple hello world function in Python' --model 'google/gemini-2.0-flash-exp:free' && \
+  echo '\\n✅ All OpenRouter models tested successfully!'"]

@@ -1,0 +1,134 @@
+# Testing Dockerfile for Synaptic Neural Mesh
+# Comprehensive testing environment with all testing tools
+
+FROM node:20-slim AS test-base
+
+# Install testing dependencies
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    git \
+    sqlite3 \
+    curl \
+    wget \
+    netcat-traditional \
+    jq \
+    bc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install global testing tools
+RUN npm install -g \
+    jest \
+    mocha \
+    chai \
+    supertest \
+    artillery \
+    clinic \
+    autocannon \
+    0x \
+    node-clinic \
+    @playwright/test \
+    puppeteer
+
+WORKDIR /app
+
+# Copy source code for testing
+COPY package*.json ./
+COPY src/ ./src/
+COPY tests/ ./tests/
+COPY benchmarks/ ./benchmarks/
+
+# Install all dependencies including dev dependencies
+RUN npm install
+
+# Copy test configurations
+COPY jest.config.js ./
+COPY .eslintrc.js ./
+COPY playwright.config.js ./
+
+# Create test directories
+RUN mkdir -p /app/test-results/{unit,integration,e2e,performance,security} \
+    && mkdir -p /app/coverage \
+    && mkdir -p /app/reports
+
+# Set test environment
+ENV NODE_ENV=test
+ENV CI=true
+ENV FORCE_COLOR=1
+
+# Copy test runner scripts
+COPY docker/test/ /app/docker/test/
+RUN chmod +x /app/docker/test/*.sh
+
+EXPOSE 8080 8081 3000 4001
+
+# Default test command
+CMD ["/app/docker/test/run-all-tests.sh"]
+
+# ==============================================================================
+# Performance Testing Stage
+# ==============================================================================
+FROM test-base AS performance-test
+
+# Install additional performance tools
+RUN npm install -g \
+    k6 \
+    wrk \
+    hey
+
+# Install wrk and hey manually if not available
+RUN wget https://github.com/wg/wrk/archive/refs/tags/4.2.0.tar.gz \
+    && tar -xzf 4.2.0.tar.gz \
+    && cd wrk-4.2.0 \
+    && make \
+    && cp wrk /usr/local/bin/ \
+    && cd .. \
+    && rm -rf wrk-4.2.0 4.2.0.tar.gz || true
+
+# Copy performance test configurations
+COPY benchmarks/ /app/benchmarks/
+COPY docker/test/performance/ /app/docker/test/performance/
+
+ENV TEST_TYPE=performance
+CMD ["/app/docker/test/performance/run-performance-tests.sh"]
+
+# ==============================================================================
+# Security Testing Stage  
+# ==============================================================================
+FROM test-base AS security-test
+
+# Install security testing tools
+RUN apt-get update && apt-get install -y \
+    nmap \
+    nikto \
+    sqlmap \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN npm install -g \
+    retire \
+    audit-ci \
+    snyk \
+    eslint-plugin-security
+
+# Copy security test configurations
+COPY docker/test/security/ /app/docker/test/security/
+
+ENV TEST_TYPE=security
+CMD ["/app/docker/test/security/run-security-tests.sh"]
+
+# ==============================================================================
+# Load Testing Stage
+# ==============================================================================
+FROM test-base AS load-test
+
+# Install load testing tools
+RUN npm install -g \
+    artillery \
+    autocannon
+
+# Copy load test configurations
+COPY docker/test/load/ /app/docker/test/load/
+
+ENV TEST_TYPE=load
+CMD ["/app/docker/test/load/run-load-tests.sh"]

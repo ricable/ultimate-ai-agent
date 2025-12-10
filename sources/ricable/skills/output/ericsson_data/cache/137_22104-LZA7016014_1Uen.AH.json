@@ -1,0 +1,121 @@
+{
+  "file_hash": "f5ae8338f399361c206041febc98d8b4",
+  "feature": {
+    "id": "121 3081",
+    "name": "Priority Paging",
+    "cxc_code": "CXC4011711",
+    "value_package": "LTE Base Package",
+    "value_package_id": "FAJ 801 0400",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Priority Paging feature supports the prioritization of paging messages in high-load",
+    "parameters": [
+      {
+        "name": "Uen.AH",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ENodeBFunction.pmPagS1RecDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.pmPagS1DiscDistr",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.pmPagS1Received",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "ENodeBFunction.pmPagS1Discarded",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ENodeBFunction"
+      },
+      {
+        "name": "EUtranCellFDD.pmPagReceived",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmPagReceived",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.pmPagDiscarded",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.pmPagDiscarded",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellTDD"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmPagDiscarded",
+        "description": "Performance counter pmPagDiscarded",
+        "category": "General"
+      },
+      {
+        "name": "pmPagReceived",
+        "description": "Performance counter pmPagReceived",
+        "category": "General"
+      },
+      {
+        "name": "pmPagS1DiscDistr",
+        "description": "Performance counter pmPagS1DiscDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPagS1Discarded",
+        "description": "Performance counter pmPagS1Discarded",
+        "category": "General"
+      },
+      {
+        "name": "pmPagS1RecDistr",
+        "description": "Performance counter pmPagS1RecDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmPagS1Received",
+        "description": "Performance counter pmPagS1Received",
+        "category": "General"
+      },
+      {
+        "name": "pment",
+        "description": "Performance counter pment",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011711 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011711 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch1/137_22104-LZA7016014_1Uen.AH.md",
+    "file_hash": "f5ae8338f399361c206041febc98d8b4",
+    "processed_at": "2025-10-19 15:48:54",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

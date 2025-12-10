@@ -1,0 +1,117 @@
+# Development and Build Artifacts
+node_modules/
+.git/
+.vscode/
+.idea/
+*.log
+*.tgz
+*.DS_Store
+
+# Build caches
+dist/
+.tsbuildinfo
+*.tsbuildinfo
+
+# Source files (only ship compiled dist/)
+src/
+tsconfig.json
+agentic-flow/src/
+agentic-flow/config/
+
+# Monorepo packages (excluded from main package)
+packages/
+agent-booster/src/
+agent-booster/tests/
+reasoningbank/src/
+reasoningbank/tests/
+
+# Rust build artifacts (causing hard link issues)
+**/target/
+**/.cargo/
+target/
+.cargo/
+crates/
+
+# ALL Rust-related that might have hard links
+*.rlib
+*.rmeta
+*.d
+*.rs
+build-script-build*
+build_script_build*
+Cargo.toml
+Cargo.lock
+
+# Test and development files
+tests/
+test-results/
+coverage/
+.nyc_output/
+*.test.ts
+*.test.js
+*.spec.ts
+*.spec.js
+agentic-flow/tests/
+agentic-flow/validation/
+agentic-flow/benchmark/
+
+# Docker and CI files
+docker/
+.dockerignore
+Dockerfile*
+docker-compose*.yml
+.github/
+
+# Documentation (keep only essential core docs)
+docs/archived/
+docs/development/
+docs/validation/
+docs/benchmarks/
+agentdb.db*
+open-lovable/
+analysis/
+
+# Environment and config
+.env
+.env.*
+*.local
+.env.docker-test
+
+# Temporary files
+tmp/
+temp/
+.cache/
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+
+# Large unnecessary directories
+examples/
+releases/
+scripts/
+benchmarks/
+bench/
+
+# Build scripts (keep only postinstall)
+agentic-flow/scripts/*
+!agentic-flow/scripts/postinstall.js
+
+# Web/frontend artifacts
+index.html
+vite.config.ts
+tailwind.config.ts
+
+# Python files
+*.py
+*.pyc
+__pycache__/
+Python/
+python/
+
+# Validation and test configs
+agentic-llm/
+validation/

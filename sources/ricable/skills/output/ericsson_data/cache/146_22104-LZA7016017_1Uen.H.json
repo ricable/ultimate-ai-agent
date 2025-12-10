@@ -1,0 +1,76 @@
+{
+  "file_hash": "31d8b8a1efdb46c71e967976beace0fc",
+  "feature": {
+    "id": "121 5477",
+    "name": "NR Configurable Maximum UE Throughput",
+    "cxc_code": "CXC4012611",
+    "value_package": "Advanced RAN Slicing",
+    "value_package_id": "FAJ 801 4019",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature allows the operator to limit the maximum throughput for a UE in the",
+    "parameters": [
+      {
+        "name": "LinkAdaptationUeCfg.dlMaxBitrate",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "LinkAdaptationUeCfg"
+      },
+      {
+        "name": "UeBbProfileUeCfg.ueGroupList",
+        "type": "Affecting",
+        "description": "The UeBbProfileUeCfg.ueGroupList and                                     UeBbProfileUeCfg.prefUeGroupList attributes                                 are used to determine the group to which the UE belongs.",
+        "mo_class": "UeBbProfileUeCfg"
+      },
+      {
+        "name": "UeBbProfileUeCfg.prefUeGroupList",
+        "type": "Affecting",
+        "description": "The UeBbProfileUeCfg.ueGroupList and                                     UeBbProfileUeCfg.prefUeGroupList attributes                                 are used to determine the group to which the UE belongs.",
+        "mo_class": "UeBbProfileUeCfg"
+      },
+      {
+        "name": "Uen.H",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsnMacTimeDlDrb",
+        "description": "Performance counter pmEbsnMacTimeDlDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacTimeDlDrbQos",
+        "description": "Performance counter pmEbsnMacTimeDlDrbQos",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacVolDlDrb",
+        "description": "Performance counter pmEbsnMacVolDlDrb",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsnMacVolDlDrbQos",
+        "description": "Performance counter pmEbsnMacVolDlDrbQos",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012611 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012611 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/146_22104-LZA7016017_1Uen.H.md",
+    "file_hash": "31d8b8a1efdb46c71e967976beace0fc",
+    "processed_at": "2025-10-19 15:48:56",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

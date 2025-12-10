@@ -1,0 +1,69 @@
+{
+  "name": "@daa/qudag-native",
+  "version": "0.1.0",
+  "description": "Native Node.js bindings for QuDAG quantum-resistant cryptography",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "bin": {
+    "qudag": "./bin/qudag-cli.js",
+    "qudag-native": "./bin/qudag-cli.js"
+  },
+  "napi": {
+    "name": "qudag-native",
+    "triples": {
+      "defaults": true,
+      "additional": [
+        "x86_64-unknown-linux-musl",
+        "aarch64-apple-darwin",
+        "aarch64-unknown-linux-gnu",
+        "aarch64-unknown-linux-musl"
+      ]
+    }
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release",
+    "build:debug": "napi build --platform",
+    "prepublishOnly": "napi prepublish -t npm",
+    "test": "node --test ../../tests/unit/qudag-*.test.js",
+    "test:all": "node --test ../../tests/**/*.test.js",
+    "test:unit": "node --test ../../tests/unit/**/*.test.js",
+    "test:integration": "node --test ../../tests/integration/**/*.test.js",
+    "test:e2e": "node --test ../../tests/e2e/**/*.test.js",
+    "test:watch": "node --test --watch ../../tests/**/*.test.js",
+    "test:coverage": "c8 node --test ../../tests/**/*.test.js",
+    "version": "napi version",
+    "benchmark": "node --test ../../tests/benchmarks/crypto-performance.bench.js"
+  },
+  "keywords": [
+    "qudag",
+    "quantum-resistant",
+    "post-quantum",
+    "cryptography",
+    "ml-kem",
+    "ml-dsa",
+    "blake3",
+    "napi-rs",
+    "native-addon"
+  ],
+  "author": "rUv",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/daa",
+    "directory": "qudag/qudag-napi"
+  },
+  "dependencies": {
+    "commander": "^11.1.0"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^2.18.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}

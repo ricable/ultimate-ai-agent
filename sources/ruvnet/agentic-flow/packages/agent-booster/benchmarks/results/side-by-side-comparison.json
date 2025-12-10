@@ -1,0 +1,317 @@
+{
+  "comparison": [
+    {
+      "id": "test-001",
+      "description": "Add type annotations to function",
+      "category": "typescript-conversion",
+      "morph": {
+        "latency": 466,
+        "success": true,
+        "output": "function add(a: number, b: number): number {\n  return a + b;\n}\n\n",
+        "tokens": {
+          "input": 70,
+          "output": 20
+        }
+      },
+      "agentBooster": {
+        "latency": 5,
+        "success": true,
+        "output": "function add(a, b) {\n  return a + b;\n}\n\nfunction add(a: number, b: number): number {\n  return a + b;\n}",
+        "confidence": 0.5737500190734863,
+        "strategy": "insert_after",
+        "tokens": {
+          "input": 10,
+          "output": 26
+        }
+      },
+      "speedup": 93.2
+    },
+    {
+      "id": "test-002",
+      "description": "Add error handling to async function",
+      "category": "error-handling",
+      "morph": {
+        "latency": 252,
+        "success": true,
+        "output": "async function fetchData(url) {\n  const response = await fetch(url);\n  return response.json();\n}\n\n",
+        "tokens": {
+          "input": 77,
+          "output": 21
+        }
+      },
+      "agentBooster": {
+        "latency": 1,
+        "success": false,
+        "output": "async function fetchData(url) {\n  const response = await fetch(url);\n  return response.json();\n}",
+        "confidence": 0,
+        "strategy": "failed",
+        "tokens": {
+          "input": 0,
+          "output": 0
+        }
+      },
+      "speedup": 252
+    },
+    {
+      "id": "test-003",
+      "description": "Convert var to const/let",
+      "category": "modernization",
+      "morph": {
+        "latency": 285,
+        "success": true,
+        "output": "const count = 0;\nconst name = 'John';\nfor (let i = 0; i < 10; i++) {\n  count++;\n}\n\n",
+        "tokens": {
+          "input": 90,
+          "output": 34
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": true,
+        "output": "let count = 0;\nconst name = 'John';\nfor (let i = 0; i < 10; i++) {\n  count++;\n}",
+        "confidence": 0.7955467104911804,
+        "strategy": "fuzzy_replace",
+        "tokens": {
+          "input": 20,
+          "output": 20
+        }
+      },
+      "speedup": null
+    },
+    {
+      "id": "test-004",
+      "description": "Add JSDoc comments",
+      "category": "documentation",
+      "morph": {
+        "latency": 541,
+        "success": true,
+        "output": "/**\n * Multiply two numbers.\n * @param {number} x - The first number.\n * @param {number} y - The second number.\n * @returns {number} The product of x and y.\n */\nfunction multiply(x, y) {\n  return x * y;\n}\n\n",
+        "tokens": {
+          "input": 70,
+          "output": 59
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": true,
+        "output": "function multiply(x, y) {\n  return x * y;\n}\n\n/**\n * Multiplies two numbers\n * @param {number} x - First number\n * @param {number} y - Second number\n * @returns {number} The product of x and y\n */\nfunction multiply(x: number, y: number): number {\n  return x * y;\n}",
+        "confidence": 0.5672115683555603,
+        "strategy": "insert_after",
+        "tokens": {
+          "input": 11,
+          "output": 66
+        }
+      },
+      "speedup": null
+    },
+    {
+      "id": "test-005",
+      "description": "Convert callback to Promise",
+      "category": "async-conversion",
+      "morph": {
+        "latency": 395,
+        "success": true,
+        "output": "function readFile(path) {\n  return new Promise((resolve, reject) => {\n    fs.readFile(path, 'utf8', (err, data) => {\n      if (err) reject(err);\n      else resolve(data);\n    });\n  });\n}",
+        "tokens": {
+          "input": 98,
+          "output": 51
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": true,
+        "output": "function readFile(path, callback) {\n  fs.readFile(path, 'utf8', (err, data) => {\n    if (err) callback(err, null);\n    else callback(null, data);\n  });\n}\n\nfunction readFile(path: string): Promise<string> {\n  return new Promise((resolve, reject) => {\n    fs.readFile(path, 'utf8', (err, data) => {\n      if (err) reject(err);\n      else resolve(data);\n    });\n  });\n}",
+        "confidence": 0.5106883645057678,
+        "strategy": "insert_after",
+        "tokens": {
+          "input": 39,
+          "output": 92
+        }
+      },
+      "speedup": null
+    },
+    {
+      "id": "test-006",
+      "description": "Add null checks",
+      "category": "safety",
+      "morph": {
+        "latency": 298,
+        "success": true,
+        "output": "function getUserName(user) {\n  return user.profile.name;\n}\n\n",
+        "tokens": {
+          "input": 67,
+          "output": 14
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": false,
+        "output": "function getUserName(user) {\n  return user.profile.name;\n}",
+        "confidence": 0,
+        "strategy": "failed",
+        "tokens": {
+          "input": 0,
+          "output": 0
+        }
+      },
+      "speedup": null
+    },
+    {
+      "id": "test-007",
+      "description": "Convert to arrow function",
+      "category": "modernization",
+      "morph": {
+        "latency": 292,
+        "success": true,
+        "output": "const numbers = [1, 2, 3, 4, 5];\nconst doubled = numbers.map(n => n * 2);\n\n",
+        "tokens": {
+          "input": 90,
+          "output": 31
+        }
+      },
+      "agentBooster": {
+        "latency": 1,
+        "success": true,
+        "output": "const numbers = [1, 2, 3, 4, 5];\nconst doubled = numbers.map(function(n) {\n  return n * 2;\n});\n\nconst numbers: number[] = [1, 2, 3, 4, 5];\nconst doubled = numbers.map((n) => n * 2);",
+        "confidence": 0.5705881714820862,
+        "strategy": "insert_after",
+        "tokens": {
+          "input": 24,
+          "output": 46
+        }
+      },
+      "speedup": 292
+    },
+    {
+      "id": "test-008",
+      "description": "Add input validation",
+      "category": "validation",
+      "morph": {
+        "latency": 394,
+        "success": true,
+        "output": "function divide(a, b) {\n  if (typeof a !== 'number' || typeof b !== 'number') {\n    throw new Error('Both arguments must be numbers');\n  }\n  return a / b;\n}",
+        "tokens": {
+          "input": 68,
+          "output": 45
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": false,
+        "output": "function divide(a, b) {\n  return a / b;\n}",
+        "confidence": 0,
+        "strategy": "failed",
+        "tokens": {
+          "input": 0,
+          "output": 0
+        }
+      },
+      "speedup": null
+    },
+    {
+      "id": "test-009",
+      "description": "Convert class to TypeScript",
+      "category": "typescript-conversion",
+      "morph": {
+        "latency": 269,
+        "success": true,
+        "output": "class Calculator {\n  constructor() {\n    this.result = 0;\n  }\n  add(value) {\n    this.result += value;\n  }\n}\n\n",
+        "tokens": {
+          "input": 85,
+          "output": 31
+        }
+      },
+      "agentBooster": {
+        "latency": 1,
+        "success": false,
+        "output": "class Calculator {\n  constructor() {\n    this.result = 0;\n  }\n  add(value) {\n    this.result += value;\n  }\n}",
+        "confidence": 0,
+        "strategy": "failed",
+        "tokens": {
+          "input": 0,
+          "output": 0
+        }
+      },
+      "speedup": 269
+    },
+    {
+      "id": "test-010",
+      "description": "Add destructuring",
+      "category": "modernization",
+      "morph": {
+        "latency": 319,
+        "success": true,
+        "output": "function formatUser(user) {\n  const { name, email, age } = user;\n  return `${name} (${email}) - ${age} years old`;\n}\n\n",
+        "tokens": {
+          "input": 97,
+          "output": 35
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": true,
+        "output": "function formatUser(user) {\n  const name = user.name;\n  const email = user.email;\n  const age = user.age;\n  return `${name} (${email}) - ${age} years old`;\n}\n\nfunction formatUser(user: { name: string; email: string; age: number }): string {\n  const { name, email, age } = user;\n  return `${name} (${email}) - ${age} years old`;\n}",
+        "confidence": 0.5604602098464966,
+        "strategy": "insert_after",
+        "tokens": {
+          "input": 40,
+          "output": 83
+        }
+      },
+      "speedup": null
+    },
+    {
+      "id": "test-011",
+      "description": "Add try-catch wrapper",
+      "category": "error-handling",
+      "morph": {
+        "latency": 331,
+        "success": true,
+        "output": "function parseJSON(str) {\n  try {\n    return JSON.parse(str);\n  } catch (e) {\n    return null;\n  }\n}",
+        "tokens": {
+          "input": 69,
+          "output": 30
+        }
+      },
+      "agentBooster": {
+        "latency": 0,
+        "success": false,
+        "output": "function parseJSON(str) {\n  return JSON.parse(str);\n}",
+        "confidence": 0,
+        "strategy": "failed",
+        "tokens": {
+          "input": 0,
+          "output": 0
+        }
+      },
+      "speedup": null
+    },
+    {
+      "id": "test-012",
+      "description": "Add async/await",
+      "category": "async-conversion",
+      "morph": {
+        "latency": 377,
+        "success": true,
+        "output": "function getData() {\n  return fetch('/api/data')\n    .then(res => res.json())\n    .then(data => data);\n}\n\nasync function getData() {\n  const res = await fetch('/api/data');\n  const data = await res.json();\n  return data;\n}",
+        "tokens": {
+          "input": 82,
+          "output": 56
+        }
+      },
+      "agentBooster": {
+        "latency": 1,
+        "success": false,
+        "output": "function getData() {\n  return fetch('/api/data')\n    .then(res => res.json())\n    .then(data => data);\n}",
+        "confidence": 0,
+        "strategy": "failed",
+        "tokens": {
+          "input": 0,
+          "output": 0
+        }
+      },
+      "speedup": 377
+    }
+  ],
+  "timestamp": "2025-10-07T22:57:45.716Z"
+}

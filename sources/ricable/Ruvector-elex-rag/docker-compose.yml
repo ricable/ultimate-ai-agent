@@ -1,0 +1,113 @@
+version: '3.8'
+
+services:
+  ruvector-rag:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ruvector-telecom-rag
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=8080
+      - LOG_LEVEL=info
+      - ENABLE_SWAGGER=true
+      # LLM Configuration (set via .env file)
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - EMBEDDING_MODEL=${EMBEDDING_MODEL:-text-embedding-3-large}
+      - EMBEDDING_DIMENSIONS=${EMBEDDING_DIMENSIONS:-3072}
+      # Vector Database
+      - RUVECTOR_STORAGE_PATH=/app/data/vector_store
+      - RUVECTOR_INDEX_TYPE=hnsw
+      - RUVECTOR_M=32
+      - RUVECTOR_EF_CONSTRUCTION=200
+      # GNN Configuration
+      - GNN_HIDDEN_DIM=256
+      - GNN_NUM_LAYERS=4
+      # Optimization
+      - OPTIMIZATION_POPULATION_SIZE=50
+      - OPTIMIZATION_GENERATIONS=100
+    volumes:
+      - ruvector-data:/app/data
+      - ruvector-logs:/app/logs
+      # Mount local documentation for ingestion
+      - ./data/elex:/app/data/elex:ro
+      - ./data/3gpp:/app/data/3gpp:ro
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - ruvector-network
+
+  # Optional: Redis for caching (production use)
+  redis:
+    image: redis:7-alpine
+    container_name: ruvector-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ruvector-network
+    profiles:
+      - with-cache
+
+  # Optional: Prometheus for metrics (production use)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: ruvector-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    networks:
+      - ruvector-network
+    profiles:
+      - with-monitoring
+
+  # Optional: Grafana for dashboards (production use)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: ruvector-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks:
+      - ruvector-network
+    profiles:
+      - with-monitoring
+
+volumes:
+  ruvector-data:
+    driver: local
+  ruvector-logs:
+    driver: local
+  redis-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+
+networks:
+  ruvector-network:
+    driver: bridge

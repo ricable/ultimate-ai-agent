@@ -1,0 +1,112 @@
+{
+  "file_hash": "27e23d251da66b2a477d48e910c744ac",
+  "feature": {
+    "id": "121 4570",
+    "name": "Adaptive RLC Poll-Retransmission",
+    "cxc_code": "CXC4012018",
+    "value_package": "High Load Handling",
+    "value_package_id": "FAJ 801 0415",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Adaptive RLC Poll-Retransmission feature introduces an efficient and flexible",
+    "parameters": [
+      {
+        "name": "DataRadioBearer.dlMaxRetxThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DataRadioBearer"
+      },
+      {
+        "name": "DataRadioBearer.tPollRetransmitDl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DataRadioBearer"
+      },
+      {
+        "name": "SignalingRadioBearer.dlMaxRetxThreshold",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SignalingRadioBearer"
+      },
+      {
+        "name": "SignalingRadioBearer.tPollRetransmitDl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "SignalingRadioBearer"
+      },
+      {
+        "name": "EUtranCellTDD.latencyLongThreshold or                   EUtranCellFDD.latencyLongThreshold",
+        "type": "Affected",
+        "description": "The value of parameter depends on whether the Adaptive RLC Poll-Retransmission                 feature is activated or not. If it is activated, a higher value must be set to allow                 for a number of RLC poll retransmissions.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellTDD.dlMaxRetxRrcReleaseThr",
+        "type": "Affecting",
+        "description": "If the Optimized RRC Connection Release Control is activated, the parameter can                 replace the SignalingRadioBearer.dlMaxRetxThreshold parameter of                 the Adaptive RLC Poll-Retransmission feature.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.dlMaxRetxRrcReleaseThr",
+        "type": "Affecting",
+        "description": "If the Optimized RRC Connection Release Control is activated, the parameter can                 replace the SignalingRadioBearer.dlMaxRetxThreshold parameter of                 the Adaptive RLC Poll-Retransmission feature.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellTDD.tPollRetxRrcReleaseDl",
+        "type": "Affecting",
+        "description": "If the Optimized RRC Connection Release Control is activated, the                 parameter can replace the                   SignalingRadioBearer.tPollRetransmitDl parameter of the                 Adaptive RLC Poll-Retransmission feature.",
+        "mo_class": "EUtranCellTDD"
+      },
+      {
+        "name": "EUtranCellFDD.tPollRetxRrcReleaseDl",
+        "type": "Affecting",
+        "description": "If the Optimized RRC Connection Release Control is activated, the                 parameter can replace the                   SignalingRadioBearer.tPollRetransmitDl parameter of the                 Adaptive RLC Poll-Retransmission feature.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "Uen.AG",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmPdcpPktDiscDlPelr",
+        "description": "Performance counter pmPdcpPktDiscDlPelr",
+        "category": "General"
+      },
+      {
+        "name": "pmPdcpPktDiscDlPelrUu",
+        "description": "Performance counter pmPdcpPktDiscDlPelrUu",
+        "category": "General"
+      },
+      {
+        "name": "pmRlcPollRetxDl",
+        "description": "Performance counter pmRlcPollRetxDl",
+        "category": "General"
+      },
+      {
+        "name": "pmUeCtxtRelAbnormalEnbUeLost",
+        "description": "Performance counter pmUeCtxtRelAbnormalEnbUeLost",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012018 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012018 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/209_22104-LZA7016014_1Uen.AG.md",
+    "file_hash": "27e23d251da66b2a477d48e910c744ac",
+    "processed_at": "2025-10-19 15:50:05",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

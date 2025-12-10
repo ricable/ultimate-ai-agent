@@ -1,0 +1,87 @@
+{
+  "file_hash": "f10ad1861f55e6e32f53c6587d987545",
+  "feature": {
+    "id": "121 5822",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012817",
+    "value_package": "5G Advanced Performance Boost",
+    "value_package_id": "FAJ 801 4029",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The feature introduces capacity boost for PDCCH by the utilization of a power boost",
+    "parameters": [
+      {
+        "name": "NRCellDU.pdcchCapacityBoostEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "Uen.C33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "SectorCarrier.configuredMaxTxPower",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "SectorCarrier"
+      },
+      {
+        "name": "SectorCarrier.maxAllowedEirpPsd",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "SectorCarrier"
+      },
+      {
+        "name": "NRCellDU.pmMacRBSymReservedPdcchCapacityBoost",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "NRCellDU"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmMacRBSymReservedPdcchCapacityBoost",
+        "description": "Performance counter pmMacRBSymReservedPdcchCapacityBoost",
+        "category": "General"
+      },
+      {
+        "name": "pmMacRBSymReservedPdcchCapacityBoostOfdmSymDistr",
+        "description": "Performance counter pmMacRBSymReservedPdcchCapacityBoostOfdmSymDistr",
+        "category": "General"
+      },
+      {
+        "name": "pmcounters",
+        "description": "Performance counter pmcounters",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012817 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012817 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/244_22104-LZA7016017_1Uen.C33B.md",
+    "file_hash": "f10ad1861f55e6e32f53c6587d987545",
+    "processed_at": "2025-10-19 15:50:10",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

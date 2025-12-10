@@ -1,0 +1,96 @@
+{
+  "file_hash": "7f6d0303458da9a24319adfcca61fc55",
+  "feature": {
+    "id": "121 5809",
+    "name": "Feature Identity",
+    "cxc_code": "CXC4012798",
+    "value_package": "5G Advanced Automation",
+    "value_package_id": "FAJ 801 4026",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature counts the number of DRBs in each radio resource partition and allocates",
+    "parameters": [
+      {
+        "name": "ResourceAllocationPolicy.overAllocationAllowed",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "RrpController.slopeInfoDl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RrpController"
+      },
+      {
+        "name": "RrpController.slopeInfoUl",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "RrpController"
+      },
+      {
+        "name": "ServicePolicy.resourceShareLimitRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "ServicePolicy.rrpControllerRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ServicePolicy"
+      },
+      {
+        "name": "RrpController.rrpControllerMode",
+        "type": "Affected",
+        "description": "This feature introduces the AUTO_CONTROL_2                                     setting for this attribute.",
+        "mo_class": "RrpController"
+      },
+      {
+        "name": "Uen.A",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ResourceAllocationPolicy.resourceShareLimitRef",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ResourceAllocationPolicy"
+      },
+      {
+        "name": "ResourceAllocationPolicy.rrpControllerRef",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ResourceAllocationPolicy"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012798 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012798 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/241_22104-LZA7016017_1Uen.A.md",
+    "file_hash": "7f6d0303458da9a24319adfcca61fc55",
+    "processed_at": "2025-10-19 15:50:11",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

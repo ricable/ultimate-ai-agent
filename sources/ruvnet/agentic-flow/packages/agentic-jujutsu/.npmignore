@@ -1,0 +1,38 @@
+# Source files
+src/
+target/
+Cargo.toml
+Cargo.lock
+
+# Development files
+.git/
+.github/
+.vscode/
+.idea/
+
+# Test files
+tests/
+benches/
+examples/
+
+# Documentation source
+docs/
+
+# Build artifacts
+*.log
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# CI/CD
+.travis.yml
+.gitlab-ci.yml
+azure-pipelines.yml
+
+# Only include compiled pkg/ and typescript/
+!pkg/
+!typescript/

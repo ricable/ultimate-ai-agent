@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  synaptic-mesh:
+    build: .
+    container_name: synaptic-mesh-node
+    ports:
+      - "8080:8080"   # P2P networking
+      - "9090:9090"   # Metrics/API
+    environment:
+      - NODE_ENV=production
+      - SYNAPTIC_NETWORK=mainnet
+      - SYNAPTIC_LOG_LEVEL=info
+    volumes:
+      - synaptic_data:/app/.synaptic
+      - ./logs:/app/.synaptic/logs
+    restart: unless-stopped
+    networks:
+      - synaptic_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  synaptic-bootstrap:
+    build: .
+    container_name: synaptic-bootstrap
+    command: ["./bin/synaptic-mesh", "start", "--port", "8081", "--no-ui"]
+    ports:
+      - "8081:8081"
+    environment:
+      - NODE_ENV=production
+      - SYNAPTIC_NETWORK=mainnet
+      - SYNAPTIC_BOOTSTRAP=true
+    volumes:
+      - bootstrap_data:/app/.synaptic
+    restart: unless-stopped
+    networks:
+      - synaptic_network
+
+  synaptic-monitor:
+    image: prom/prometheus:latest
+    container_name: synaptic-monitor
+    ports:
+      - "9091:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+    networks:
+      - synaptic_network
+
+volumes:
+  synaptic_data:
+    driver: local
+  bootstrap_data:
+    driver: local
+  prometheus_data:
+    driver: local
+
+networks:
+  synaptic_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

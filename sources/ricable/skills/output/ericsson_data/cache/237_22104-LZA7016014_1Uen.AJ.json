@@ -1,0 +1,132 @@
+{
+  "file_hash": "1dcc5f863916f9df8eed04e8a9c239c0",
+  "feature": {
+    "id": "121 4519",
+    "name": "Network-Assisted CRS Interference Cancellation",
+    "cxc_code": "CXC4012002",
+    "value_package": "Ericsson Lean Carrier",
+    "value_package_id": "FAJ 801 0567",
+    "access_type": "LTE",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "The Network-Assisted CRS Interference Cancellation feature increases throughput by",
+    "parameters": [
+      {
+        "name": "ExternalEUtranCellFDD.noOfTxAntennas(1)",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalEUtranCellFDD"
+      },
+      {
+        "name": "ExternalEUtranCellFDD.commonSFAllocList(1)",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "ExternalEUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.maxSentCrsAssistCells(2)",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellRelation.crsAssistanceInfoPriority(2)",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "EUtranCellRelation"
+      },
+      {
+        "name": "EUtranCellFDD.physicalLayerCellIdGroup",
+        "type": "Affecting",
+        "description": "The Network-Assisted CRS Interference Cancellation FDD feature uses this                 information to get the physical cell ID of internal eNodeB neighbor cells.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.physicalLayerSubCellId",
+        "type": "Affecting",
+        "description": "The Network-Assisted CRS Interference Cancellation FDD feature uses this                 information to get the physical cell ID of internal eNodeB neighbor cells.",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "SectorCarrier.noOfTxAntennas",
+        "type": "Affecting",
+        "description": "The UE uses this information to perform CRS interference cancellation.",
+        "mo_class": "SectorCarrier"
+      },
+      {
+        "name": "MbsfnArea.commonSFAllocList",
+        "type": "Affecting",
+        "description": "The UE uses this information to perform CRS interference cancellation.",
+        "mo_class": "MbsfnArea"
+      },
+      {
+        "name": "ExternalEUtranCellFDD.physicalLayerCellIdGroup",
+        "type": "Affecting",
+        "description": "The Network-Assisted CRS Interference Cancellation FDD feature uses this                 information to get the physical cell ID of external eNodeB neighbor cells.",
+        "mo_class": "ExternalEUtranCellFDD"
+      },
+      {
+        "name": "ExternalEUtranCellFDD.physicalLayerSubCellId",
+        "type": "Affecting",
+        "description": "The Network-Assisted CRS Interference Cancellation FDD feature uses this                 information to get the physical cell ID of external eNodeB neighbor cells.",
+        "mo_class": "ExternalEUtranCellFDD"
+      },
+      {
+        "name": "Uen.AJ",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      },
+      {
+        "name": "ExternalEUtranCellFDD.noOfTxAntennas",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ExternalEUtranCellFDD"
+      },
+      {
+        "name": "ExternalEUtranCellFDD.commonSFAllocList",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "ExternalEUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellFDD.maxSentCrsAssistCells",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellFDD"
+      },
+      {
+        "name": "EUtranCellRelation.crsAssistanceInfoPriority",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "EUtranCellRelation"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmCrsIcCapableSamp",
+        "description": "Performance counter pmCrsIcCapableSamp",
+        "category": "General"
+      },
+      {
+        "name": "pmCrsIcCapableSum",
+        "description": "Performance counter pmCrsIcCapableSum",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012002 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012002 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931040_r50f_batch2/237_22104-LZA7016014_1Uen.AJ.md",
+    "file_hash": "1dcc5f863916f9df8eed04e8a9c239c0",
+    "processed_at": "2025-10-19 15:50:04",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

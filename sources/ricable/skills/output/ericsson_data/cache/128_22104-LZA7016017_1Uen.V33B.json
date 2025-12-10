@@ -1,0 +1,85 @@
+{
+  "file_hash": "6bd5d8990c9c75ffc8f50879fb533df3",
+  "feature": {
+    "id": "121 5326",
+    "name": "NR Service-Adaptive Inactivity Timer",
+    "cxc_code": "CXC4012549",
+    "value_package": "Performance Boost",
+    "value_package_id": "FAJ 801 4021",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "This feature enables the configuration of differentiated UE inactivity timers for each",
+    "parameters": [
+      {
+        "name": "InactivityProfile.ueConfGroupType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InactivityProfile"
+      },
+      {
+        "name": "InactivityProfileUeCfg.nasInactivityTime",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InactivityProfileUeCfg"
+      },
+      {
+        "name": "InactivityProfileUeCfg.prefUeGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InactivityProfileUeCfg"
+      },
+      {
+        "name": "InactivityProfileUeCfg.tInactivityTimer",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InactivityProfileUeCfg"
+      },
+      {
+        "name": "InactivityProfileUeCfg.tInactivityTimerEndcSn",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InactivityProfileUeCfg"
+      },
+      {
+        "name": "InactivityProfileUeCfg.tInactivityTimerNrdcSn",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InactivityProfileUeCfg"
+      },
+      {
+        "name": "InactivityProfileUeCfg.ueConfGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InactivityProfileUeCfg"
+      },
+      {
+        "name": "InactivityProfileUeCfg.ueGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InactivityProfileUeCfg"
+      },
+      {
+        "name": "Uen.V33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012549 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012549 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/128_22104-LZA7016017_1Uen.V33B.md",
+    "file_hash": "6bd5d8990c9c75ffc8f50879fb533df3",
+    "processed_at": "2025-10-19 15:50:03",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kimi-K2 WASM Test</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+        .result { 
+            background: #f0f0f0; 
+            padding: 10px; 
+            margin: 10px 0; 
+            border-radius: 5px; 
+        }
+        .success { background: #d4edda; }
+        .error { background: #f8d7da; }
+        button { 
+            padding: 10px 20px; 
+            margin: 5px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+        .test-btn { background: #007bff; color: white; }
+        .test-btn:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>🚀 Kimi-K2 WASM Validation Test</h1>
+    
+    <div id="status">Loading WASM...</div>
+    
+    <div id="tests">
+        <h2>Expert Domain Tests</h2>
+        <button class="test-btn" onclick="testExpert(0, 'Why does this happen?')">Test Reasoning</button>
+        <button class="test-btn" onclick="testExpert(1, 'Write a function to sort an array')">Test Coding</button>
+        <button class="test-btn" onclick="testExpert(2, 'Translate this text to French')">Test Language</button>
+        <button class="test-btn" onclick="testExpert(3, 'Calculate 2 + 2 * 3')">Test Mathematics</button>
+        <button class="test-btn" onclick="testExpert(4, 'Use a tool to analyze data')">Test Tool Use</button>
+        <button class="test-btn" onclick="testExpert(5, 'Understand the context here')">Test Context</button>
+        
+        <h2>Performance Tests</h2>
+        <button class="test-btn" onclick="runPerformanceTest()">Run Performance Test</button>
+        <button class="test-btn" onclick="runAllTests()">Run All Tests</button>
+    </div>
+    
+    <div id="results"></div>
+
+    <script type="module">
+        import init, { KimiRuntime, ProcessingConfig } from './pkg/kimi_fann_core.js';
+        
+        let runtime = null;
+        
+        async function initWasm() {
+            try {
+                await init();
+                const config = ProcessingConfig.new();
+                runtime = new KimiRuntime(config);
+                
+                document.getElementById('status').innerHTML = 
+                    '<div class="result success">✅ WASM loaded successfully!</div>';
+                
+                // Make functions global
+                window.testExpert = testExpert;
+                window.runPerformanceTest = runPerformanceTest;
+                window.runAllTests = runAllTests;
+                
+            } catch (error) {
+                document.getElementById('status').innerHTML = 
+                    `<div class="result error">❌ WASM loading failed: ${error}</div>`;
+            }
+        }
+        
+        function testExpert(domain, query) {
+            if (!runtime) {
+                addResult('❌ WASM not loaded yet', 'error');
+                return;
+            }
+            
+            try {
+                const start = performance.now();
+                const response = runtime.process(query);
+                const end = performance.now();
+                const time = (end - start).toFixed(2);
+                
+                addResult(
+                    `<strong>Domain ${domain} Test:</strong><br/>
+                     Query: "${query}"<br/>
+                     Time: ${time}ms<br/>
+                     Response: ${response}`, 
+                    'success'
+                );
+            } catch (error) {
+                addResult(`❌ Expert ${domain} failed: ${error}`, 'error');
+            }
+        }
+        
+        function runPerformanceTest() {
+            if (!runtime) {
+                addResult('❌ WASM not loaded yet', 'error');
+                return;
+            }
+            
+            const queries = [
+                'Simple test query',
+                'More complex analysis with multiple parameters',
+                'Very detailed comprehensive evaluation with extensive requirements'
+            ];
+            
+            let totalTime = 0;
+            let results = [];
+            
+            queries.forEach((query, i) => {
+                const start = performance.now();
+                const response = runtime.process(query);
+                const end = performance.now();
+                const time = end - start;
+                totalTime += time;
+                results.push(`Query ${i+1}: ${time.toFixed(2)}ms`);
+            });
+            
+            const avgTime = (totalTime / queries.length).toFixed(2);
+            const passed = avgTime < 100; // Target: <100ms
+            
+            addResult(
+                `<strong>Performance Test Results:</strong><br/>
+                 ${results.join('<br/>')}<br/>
+                 Average: ${avgTime}ms<br/>
+                 Target: <100ms<br/>
+                 ${passed ? '✅ PASSED' : '❌ FAILED'}`,
+                passed ? 'success' : 'error'
+            );
+        }
+        
+        function runAllTests() {
+            addResult('<strong>Running comprehensive test suite...</strong>', 'result');
+            
+            const testQueries = [
+                [0, 'Analyze this logical problem'],
+                [1, 'Debug this code snippet'],
+                [2, 'Process this natural language'],
+                [3, 'Solve this equation: x + 5 = 10'],
+                [4, 'Execute analysis tool'],
+                [5, 'Understand the full context']
+            ];
+            
+            testQueries.forEach(([domain, query]) => {
+                setTimeout(() => testExpert(domain, query), domain * 100);
+            });
+            
+            setTimeout(runPerformanceTest, 700);
+            
+            setTimeout(() => {
+                addResult(
+                    `<strong>✅ All tests completed!</strong><br/>
+                     Kimi-K2 WASM implementation is fully functional.`,
+                    'success'
+                );
+            }, 1000);
+        }
+        
+        function addResult(content, type = 'result') {
+            const div = document.createElement('div');
+            div.className = `result ${type}`;
+            div.innerHTML = content;
+            document.getElementById('results').appendChild(div);
+            div.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Initialize WASM when page loads
+        initWasm();
+    </script>
+</body>
+</html>

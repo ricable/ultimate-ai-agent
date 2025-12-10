@@ -1,0 +1,536 @@
+{
+  "id": "121 3063",
+  "name": "Dynamic SCell Selection for Carrier Aggregation",
+  "cxc_code": "CXC4011559",
+  "value_package": "Carrier Aggregation",
+  "value_package_id": "FAJ 801 0405",
+  "access_type": "LTE",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "The feature provides SCell configuration options for carrier aggregation.",
+  "parameters": [
+    {
+      "name": "INTERNAL_EVENT_UETR_MEASUREMENT_REPORT_RECEIVED",
+      "type": "EVENT_PARAM_MEASUREMENT_ID      EVENT_PARAM_MEAS_REQUESTER      EVENT_PARAM_NEIGHBOR_CGI      EVENT_PARAM_AFFECTED_MEAS_TYPE      EVENT_PARAM_RAT_TYPE",
+      "description": "The measurement ID for this UE measurement.     Indicates the function that requested the UE                                             measurement.     Global Cell ID of the neighbor cell.     Reported RSRQ of the serving cell.     The measurement type that triggers the report.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_MEAS_CONFIG_A6",
+      "type": "EVENT_PARAM_EVENT_A6_OFFSET",
+      "description": "The offset value for eventA6.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UETR_RRC_SCELL_CONFIGURED",
+      "type": "EVENT_PARAM_GLOBAL_SCELL_ID       EVENT_PARAM_SCELL_SELECTION_METHOD       EVENT_PARAM_SERVING_RSRP       EVENT_PARAM_SERVING_RSRQ       EVENT_PARAM_SCELL_CONFIG_RESULT      EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR",
+      "description": "Identity of the cell used as SCell, defined in MOM, where                                             eNB ID (20 bits) + Cell ID (8 bits) .     Method used to select SCell.     Reported RSRP of the serving cell.     Reported RSRQ of the serving cell.     Result code for SCell configuration attempt.     Direction of configured SCell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UETR_RRC_SCELL_DECONFIGURED",
+      "type": "EVENT_PARAM_GLOBAL_SCELL_ID       EVENT_PARAM_DESELECTION_REASON       EVENT_PARAM_SERVING_RSRP       EVENT_PARAM_SERVING_RSRQ      EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR",
+      "description": "Identity of the cell used as SCell, defined in MOM, where                                             eNB ID (20 bits) + Cell ID (8 bits).     Reason for deconfiguring SCell.     Reported RSRP of the serving cell.     Reported RSRQ of the serving cell.     Direction of deconfigured SCell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_RRC_SCELL_CONFIG",
+      "type": "EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR     EVENT_PARAM_SCELL_CONFIG_RESULT     EVENT_PARAM_SCELL_SELECTION_METHOD",
+      "description": "Direction of configured SCell.     Result code for SCell configuration attempt.     Method used to select SCell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_RRC_SCELL_DECONFIGURED",
+      "type": "EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR     EVENT_PARAM_DESELECTION_REASON",
+      "description": "Direction of deconfigured SCell.     Reason for SCell deconfiguration.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CA_WAITING_FOR_COVERAGE",
+      "type": "EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_0     EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_1     EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_2     EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_3",
+      "description": "The waitForCaOpportunity or the waitForAdditionalScellOpportunity                                     timer with n cells configured triggered by a UE.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UETR_RRC_SCELL_CONFIGURED",
+      "type": "Added parameter  EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR",
+      "description": "Direction of configured SCell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_UETR_RRC_SCELL_CONFIGURED",
+      "type": "Modified parameters  EVENT_PARAM_SCELL_CONFIG_RESULT     EVENT_PARAM_SCELL_SELECTION_METHOD",
+      "description": "Result code for SCell configuration attempt.     Method used to select SCell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UETR_RRC_SCELL_DECONFIGURED",
+      "type": "Added parameter  EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR",
+      "description": "Direction of deconfigured SCell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_UETR_RRC_SCELL_DECONFIGURED",
+      "type": "Modified parameter  EVENT_PARAM_DESELECTION_REASON",
+      "description": "Reason for SCell deconfiguration.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_SCELL_CONFIGURED",
+      "type": "Added parameter  EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR",
+      "description": "Direction of configured SCell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_SCELL_CONFIGURED",
+      "type": "Modified parameters  EVENT_PARAM_SCELL_CONFIG_RESULT     EVENT_PARAM_SCELL_SELECTION_METHOD",
+      "description": "Result code for SCell configuration attempt.     Method used to select SCell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_RRC_SCELL_DECONFIGURED",
+      "type": "Added parameter  EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR",
+      "description": "Direction of deconfigured SCell.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_RRC_SCELL_DECONFIGURED",
+      "type": "Modified parameter  EVENT_PARAM_DESELECTION_REASON",
+      "description": "Reason for SCell deconfiguration.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "INTERNAL_EVENT_CA_WAITING_FOR_COVERAGE",
+      "type": "Added parameters  EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_0     EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_1     EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_2     EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_3",
+      "description": "The CarrierAggregationFunction.waitForCaOpportunity, or the                                         CarrierAggregationFunction.waitForAdditionalSCellOpportunity                                         timers with n cells configured triggered by a UE.",
+      "mo_class": "Unknown"
+    },
+    {
+      "name": "Uen.EM",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "CarrierAggregationFunction.sCellSelectionMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "CarrierAggregationFunction.waitForCaOpportunity",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "CarrierAggregationFunction.waitForAdditionalSCellOpportunity",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "CarrierAggregationFunction"
+    },
+    {
+      "name": "EUtranFreqRelation.allowedPlmnList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranFreqRelation"
+    },
+    {
+      "name": "EUtranCellFDD.activePlmnList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellFDD"
+    },
+    {
+      "name": "EUtranCellTDD.activePlmnList",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "EUtranCellTDD"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmCaConfigAtt",
+      "description": "Performance counter pmCaConfigAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfigAttBidirNoMeas",
+      "description": "Performance counter pmCaConfigAttBidirNoMeas",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfigAttMeas",
+      "description": "Performance counter pmCaConfigAttMeas",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfigAttNoMeas",
+      "description": "Performance counter pmCaConfigAttNoMeas",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfigCspCreditThreshUsage",
+      "description": "Performance counter pmCaConfigCspCreditThreshUsage",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfigFailPreemp",
+      "description": "Performance counter pmCaConfigFailPreemp",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfigSucc",
+      "description": "Performance counter pmCaConfigSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfigSuccBidirNoMeas",
+      "description": "Performance counter pmCaConfigSuccBidirNoMeas",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfigSuccMeas",
+      "description": "Performance counter pmCaConfigSuccMeas",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfigSuccNoMeas",
+      "description": "Performance counter pmCaConfigSuccNoMeas",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfiguredAttBidirNoMeas",
+      "description": "Performance counter pmCaConfiguredAttBidirNoMeas",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfiguredDlSum",
+      "description": "Performance counter pmCaConfiguredDlSum",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfiguredFailPreemp",
+      "description": "Performance counter pmCaConfiguredFailPreemp",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfiguredMeasAtt",
+      "description": "Performance counter pmCaConfiguredMeasAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfiguredMeasSucc",
+      "description": "Performance counter pmCaConfiguredMeasSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfiguredNoMeasAtt",
+      "description": "Performance counter pmCaConfiguredNoMeasAtt",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfiguredNoMeasSucc",
+      "description": "Performance counter pmCaConfiguredNoMeasSucc",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfiguredSuccBidirNoMeas",
+      "description": "Performance counter pmCaConfiguredSuccBidirNoMeas",
+      "category": "General"
+    },
+    {
+      "name": "pmCaConfiguredUlSum",
+      "description": "Performance counter pmCaConfiguredUlSum",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfig",
+      "description": "Performance counter pmCaDeconfig",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfigAddUl",
+      "description": "Performance counter pmCaDeconfigAddUl",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfigConnReest",
+      "description": "Performance counter pmCaDeconfigConnReest",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfigHo",
+      "description": "Performance counter pmCaDeconfigHo",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfigOoc",
+      "description": "Performance counter pmCaDeconfigOoc",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfigRemovedUl",
+      "description": "Performance counter pmCaDeconfigRemovedUl",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfigSCellChange",
+      "description": "Performance counter pmCaDeconfigSCellChange",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfigured",
+      "description": "Performance counter pmCaDeconfigured",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfiguredAddUl",
+      "description": "Performance counter pmCaDeconfiguredAddUl",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfiguredConnReest",
+      "description": "Performance counter pmCaDeconfiguredConnReest",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfiguredHo",
+      "description": "Performance counter pmCaDeconfiguredHo",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfiguredLostCoverage",
+      "description": "Performance counter pmCaDeconfiguredLostCoverage",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfiguredLostCoverageNoA1",
+      "description": "Performance counter pmCaDeconfiguredLostCoverageNoA1",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfiguredOoc",
+      "description": "Performance counter pmCaDeconfiguredOoc",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfiguredRemoveUl",
+      "description": "Performance counter pmCaDeconfiguredRemoveUl",
+      "category": "General"
+    },
+    {
+      "name": "pmCaDeconfiguredSCellChange",
+      "description": "Performance counter pmCaDeconfiguredSCellChange",
+      "category": "General"
+    },
+    {
+      "name": "pmCaWaitGoodCov",
+      "description": "Performance counter pmCaWaitGoodCov",
+      "category": "General"
+    },
+    {
+      "name": "pmCounter",
+      "description": "Performance counter pmCounter",
+      "category": "General"
+    },
+    {
+      "name": "pmCounters",
+      "description": "Performance counter pmCounters",
+      "category": "General"
+    },
+    {
+      "name": "pmEvent",
+      "description": "Performance counter pmEvent",
+      "category": "General"
+    },
+    {
+      "name": "pmEvents",
+      "description": "Performance counter pmEvents",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolDlDrb",
+      "description": "Performance counter pmPdcpVolDlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolDlDrbCa",
+      "description": "Performance counter pmPdcpVolDlDrbCa",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolDlDrbLastTTICa",
+      "description": "Performance counter pmPdcpVolDlDrbLastTTICa",
+      "category": "General"
+    },
+    {
+      "name": "pmPdcpVolUlDrb",
+      "description": "Performance counter pmPdcpVolUlDrb",
+      "category": "General"
+    },
+    {
+      "name": "pmUeThp2DlDistr",
+      "description": "Performance counter pmUeThp2DlDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmUeThp2UlDistr",
+      "description": "Performance counter pmUeThp2UlDistr",
+      "category": "General"
+    },
+    {
+      "name": "pmUeThpDlMbbFiltered2Distr",
+      "description": "Performance counter pmUeThpDlMbbFiltered2Distr",
+      "category": "General"
+    },
+    {
+      "name": "pmUeThpTimeDlCa",
+      "description": "Performance counter pmUeThpTimeDlCa",
+      "category": "General"
+    },
+    {
+      "name": "pmUeThpTimeUlCa",
+      "description": "Performance counter pmUeThpTimeUlCa",
+      "category": "General"
+    },
+    {
+      "name": "pmUeThpVolUl",
+      "description": "Performance counter pmUeThpVolUl",
+      "category": "General"
+    },
+    {
+      "name": "pmUeThpVolUlCa",
+      "description": "Performance counter pmUeThpVolUlCa",
+      "category": "General"
+    },
+    {
+      "name": "pmcounter",
+      "description": "Performance counter pmcounter",
+      "category": "General"
+    },
+    {
+      "name": "pmcounters",
+      "description": "Performance counter pmcounters",
+      "category": "General"
+    },
+    {
+      "name": "pment",
+      "description": "Performance counter pment",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [
+    {
+      "name": "INTERNAL_EVENT_UETR_MEASUREMENT_REPORT_RECEIVED",
+      "type": "EVENT_PARAM_MEASUREMENT_ID      EVENT_PARAM_MEAS_REQUESTER      EVENT_PARAM_NEIGHBOR_CGI      EVENT_PARAM_AFFECTED_MEAS_TYPE      EVENT_PARAM_RAT_TYPE",
+      "description": "The measurement ID for this UE measurement.     Indicates the function that requested the UE                                             measurement.     Global Cell ID of the neighbor cell.     Reported RSRQ of the serving cell.     The measurement type that triggers the report."
+    },
+    {
+      "name": "INTERNAL_EVENT_MEAS_CONFIG_A6",
+      "type": "EVENT_PARAM_EVENT_A6_OFFSET",
+      "description": "The offset value for eventA6."
+    },
+    {
+      "name": "INTERNAL_EVENT_UETR_RRC_SCELL_CONFIGURED",
+      "type": "EVENT_PARAM_GLOBAL_SCELL_ID       EVENT_PARAM_SCELL_SELECTION_METHOD       EVENT_PARAM_SERVING_RSRP       EVENT_PARAM_SERVING_RSRQ       EVENT_PARAM_SCELL_CONFIG_RESULT      EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR",
+      "description": "Identity of the cell used as SCell, defined in MOM, where                                             eNB ID (20 bits) + Cell ID (8 bits) .     Method used to select SCell.     Reported RSRP of the serving cell.     Reported RSRQ of the serving cell.     Result code for SCell configuration attempt.     Direction of configured SCell."
+    },
+    {
+      "name": "INTERNAL_EVENT_UETR_RRC_SCELL_DECONFIGURED",
+      "type": "EVENT_PARAM_GLOBAL_SCELL_ID       EVENT_PARAM_DESELECTION_REASON       EVENT_PARAM_SERVING_RSRP       EVENT_PARAM_SERVING_RSRQ      EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR",
+      "description": "Identity of the cell used as SCell, defined in MOM, where                                             eNB ID (20 bits) + Cell ID (8 bits).     Reason for deconfiguring SCell.     Reported RSRP of the serving cell.     Reported RSRQ of the serving cell.     Direction of deconfigured SCell."
+    },
+    {
+      "name": "INTERNAL_EVENT_RRC_SCELL_CONFIG",
+      "type": "EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR     EVENT_PARAM_SCELL_CONFIG_RESULT     EVENT_PARAM_SCELL_SELECTION_METHOD",
+      "description": "Direction of configured SCell.     Result code for SCell configuration attempt.     Method used to select SCell."
+    },
+    {
+      "name": "INTERNAL_EVENT_RRC_SCELL_DECONFIGURED",
+      "type": "EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR     EVENT_PARAM_DESELECTION_REASON",
+      "description": "Direction of deconfigured SCell.     Reason for SCell deconfiguration."
+    },
+    {
+      "name": "INTERNAL_EVENT_CA_WAITING_FOR_COVERAGE",
+      "type": "EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_0     EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_1     EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_2     EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_3",
+      "description": "The waitForCaOpportunity or the waitForAdditionalScellOpportunity                                     timer with n cells configured triggered by a UE."
+    },
+    {
+      "name": "INTERNAL_EVENT_UETR_RRC_SCELL_DECONFIGURED",
+      "type": "Generated when the SCell is deconfigured because no measurement report is received from                                  the UE when the SCell is disabled.",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_EVENT _RRC_SCELL_DECONFIGURED",
+      "type": "Generated when the SCell is deconfigured because no measurement report is received from                                  the UE when the SCell is disabled.",
+      "description": ""
+    },
+    {
+      "name": "INTERNAL_PROC_UETR_RRC_SCELL_CONFIGURED",
+      "type": "Added parameter  EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR",
+      "description": "Direction of configured SCell."
+    },
+    {
+      "name": "INTERNAL_PROC_UETR_RRC_SCELL_CONFIGURED",
+      "type": "Modified parameters  EVENT_PARAM_SCELL_CONFIG_RESULT     EVENT_PARAM_SCELL_SELECTION_METHOD",
+      "description": "Result code for SCell configuration attempt.     Method used to select SCell."
+    },
+    {
+      "name": "INTERNAL_EVENT_UETR_RRC_SCELL_DECONFIGURED",
+      "type": "Added parameter  EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR",
+      "description": "Direction of deconfigured SCell."
+    },
+    {
+      "name": "INTERNAL_EVENT_UETR_RRC_SCELL_DECONFIGURED",
+      "type": "Modified parameter  EVENT_PARAM_DESELECTION_REASON",
+      "description": "Reason for SCell deconfiguration."
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_SCELL_CONFIGURED",
+      "type": "Added parameter  EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR",
+      "description": "Direction of configured SCell."
+    },
+    {
+      "name": "INTERNAL_PROC_RRC_SCELL_CONFIGURED",
+      "type": "Modified parameters  EVENT_PARAM_SCELL_CONFIG_RESULT     EVENT_PARAM_SCELL_SELECTION_METHOD",
+      "description": "Result code for SCell configuration attempt.     Method used to select SCell."
+    },
+    {
+      "name": "INTERNAL_EVENT_RRC_SCELL_DECONFIGURED",
+      "type": "Added parameter  EVENT_PARAM_UE_SCELL_CONFIG_SCELL_DIR",
+      "description": "Direction of deconfigured SCell."
+    },
+    {
+      "name": "INTERNAL_EVENT_RRC_SCELL_DECONFIGURED",
+      "type": "Modified parameter  EVENT_PARAM_DESELECTION_REASON",
+      "description": "Reason for SCell deconfiguration."
+    },
+    {
+      "name": "INTERNAL_EVENT_CA_WAITING_FOR_COVERAGE",
+      "type": "Added parameters  EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_0     EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_1     EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_2     EVENT_PARAM_WAITING_WITH_CONFIGURED_SCELLS_3",
+      "description": "The CarrierAggregationFunction.waitForCaOpportunity, or the                                         CarrierAggregationFunction.waitForAdditionalSCellOpportunity                                         timers with n cells configured triggered by a UE."
+    }
+  ],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4011559 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4011559 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931040_r50f_batch4/56_22104-LZA7016014_1Uen.EM.md",
+  "file_hash": "e127568a02d738419fcbc3ee95963fe2",
+  "processed_at": "2025-10-19 15:50:06",
+  "network_impact": {},
+  "performance_impact": {
+    "kpi": "Affects KPI monitoring",
+    "counters": "New counters introduced"
+  }
+}

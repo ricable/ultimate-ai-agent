@@ -1,0 +1,154 @@
+{
+  "$schema": "../schemas/deployment-config.schema.json",
+  "name": "budget-deployment",
+  "version": "1.0.0",
+  "description": "Maximum cost savings configuration (95%+ reduction vs Claude 3.5 Sonnet). Optimized for development, testing, and cost-sensitive production workloads.",
+  "
+  "models": {
+    "primary": {
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-chat",
+      "pricing": {
+        "input": 0.15,
+        "output": 0.15,
+        "unit": "per_million_tokens"
+      },
+      "capabilities": {
+        "toolCalling": true,
+        "jsonMode": true,
+        "streaming": true,
+        "contextWindow": 128000,
+        "multimodal": false
+      },
+      "qualityScore": 88,
+      "specialization": ["general", "coding", "analysis"],
+      "rateLimits": {
+        "requestsPerMinute": 60,
+        "tokensPerMinute": 100000
+      }
+    },
+    "fallback": {
+      "provider": "openrouter",
+      "model": "thudm/glm-4-9b:free",
+      "pricing": {
+        "input": 0.0,
+        "output": 0.0,
+        "unit": "per_million_tokens"
+      },
+      "capabilities": {
+        "toolCalling": true,
+        "jsonMode": false,
+        "streaming": true,
+        "contextWindow": 32000,
+        "multimodal": false
+      },
+      "qualityScore": 75,
+      "specialization": ["simple_tasks", "testing"],
+      "rateLimits": {
+        "requestsPerMinute": 20,
+        "tokensPerMinute": 50000
+      }
+    }
+  },
+  "routing": {
+    "strategy": "cost-optimized",
+    "taskTypeMapping": {
+      "coding": "primary",
+      "general": "primary",
+      "analysis": "primary",
+      "simple": "fallback",
+      "testing": "fallback"
+    },
+    "complexityRouting": {
+      "simple": "fallback",
+      "medium": "primary",
+      "complex": "primary"
+    },
+    "fallbackRules": {
+      "onRateLimit": true,
+      "onError": true,
+      "onTimeout": true,
+      "maxRetries": 3,
+      "retryDelay": 1000
+    }
+  },
+  "monitoring": {
+    "costTracking": {
+      "enabled": true,
+      "realTime": true,
+      "monthlyBudget": 50,
+      "alertThresholds": {
+        "warning": 0.8,
+        "critical": 0.95
+      }
+    },
+    "performanceMetrics": {
+      "enabled": true,
+      "trackLatency": true,
+      "trackThroughput": true,
+      "trackTokenUsage": true
+    },
+    "errorTracking": {
+      "enabled": true,
+      "logErrors": true,
+      "alertOnCritical": true
+    },
+    "qualityAssurance": {
+      "enabled": true,
+      "samplingRate": 0.05,
+      "compareToBaseline": false
+    }
+  },
+  "optimization": {
+    "caching": {
+      "enabled": true,
+      "ttl": 3600,
+      "maxSize": 1000
+    },
+    "promptOptimization": {
+      "enabled": true,
+      "minimizeTokens": true,
+      "useShortPrompts": true
+    },
+    "batchRequests": {
+      "enabled": false,
+      "maxBatchSize": 10
+    },
+    "responseCompression": {
+      "enabled": false
+    }
+  },
+  "deployment": {
+    "environment": "development",
+    "region": "auto",
+    "scaling": {
+      "minAgents": 1,
+      "maxAgents": 10,
+      "autoScale": false
+    },
+    "healthCheck": {
+      "enabled": true,
+      "interval": 60000,
+      "timeout": 5000
+    }
+  },
+  "estimatedCosts": {
+    "monthly": {
+      "low": 0.5,
+      "typical": 2.5,
+      "high": 5.0
+    },
+    "perRequest": {
+      "simple": 0.00001,
+      "medium": 0.00005,
+      "complex": 0.0001
+    },
+    "savingsVsBaseline": 0.97
+  },
+  "metadata": {
+    "createdAt": "2025-10-07T00:00:00Z",
+    "updatedAt": "2025-10-07T00:00:00Z",
+    "author": "Claude Code SPARC-GOAP",
+    "tags": ["budget", "development", "cost-optimized", "95-percent-savings"]
+  }
+}

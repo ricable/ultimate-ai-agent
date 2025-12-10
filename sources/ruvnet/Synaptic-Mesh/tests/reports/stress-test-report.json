@@ -1,0 +1,36 @@
+{
+  "timestamp": "2025-07-13T02:11:50.668Z",
+  "systemInfo": {
+    "platform": "linux",
+    "arch": "x64",
+    "nodeVersion": "v22.16.0",
+    "cpuCores": 2,
+    "totalMemory": "8GB"
+  },
+  "testConfiguration": {
+    "maxConcurrentAgents": 100,
+    "testDuration": 30000,
+    "totalOperations": 600
+  },
+  "results": {
+    "agentCreation": {
+      "count": 100,
+      "averageTime": 49.90463532999998,
+      "p95Time": 95.757312,
+      "p99Time": 98.919702
+    },
+    "memory": {
+      "samples": 10,
+      "peakHeapUsed": 12416480,
+      "peakRSS": 61210624
+    },
+    "throughput": {
+      "averageOpsPerSec": 8333.333333333334,
+      "peakOpsPerSec": 8333.333333333334
+    },
+    "reliability": {
+      "errorRate": 5,
+      "totalOperations": 600
+    }
+  }
+}

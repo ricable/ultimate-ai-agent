@@ -1,0 +1,464 @@
+{
+  "file_hash": "0f8bc7adf30a5039ef7ab6e122b3cbf5",
+  "feature": {
+    "id": "121 5775",
+    "name": "Service-Adaptive Uplink User Plane Profile",
+    "cxc_code": "CXC4012776",
+    "value_package": "5G Advanced Differentiated Connectivity",
+    "value_package_id": "FAJ 801 4030",
+    "access_type": "NR",
+    "node_type": "Baseband Radio Node",
+    "description": "",
+    "summary": "feature allows for improved uplink cell group switching and uplink PDCP aggregation",
+    "parameters": [
+      {
+        "name": "CUCP5qi.endcUlDataSplitRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CUCP5qi"
+      },
+      {
+        "name": "CUCP5qi.nrdcUlDataSplitRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "CUCP5qi"
+      },
+      {
+        "name": "DcUlCfg.dcUlCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DcUlCfg"
+      },
+      {
+        "name": "DcUlCfg.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DcUlCfg"
+      },
+      {
+        "name": "DcUlCfg.ulPrimaryPathMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DcUlCfg"
+      },
+      {
+        "name": "DcUlCfg.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "DcUlCfg"
+      },
+      {
+        "name": "GNBCUCPFunction.servAdapUPProfUlDepHEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GNBCUCPFunction"
+      },
+      {
+        "name": "GNBCUUPFunction.servAdapUPProfUlDepHEnabled",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "GNBCUUPFunction"
+      },
+      {
+        "name": "InitialCg.initialCgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InitialCg"
+      },
+      {
+        "name": "InitialCg.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InitialCg"
+      },
+      {
+        "name": "InitialCg.ueConfGroupType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InitialCg"
+      },
+      {
+        "name": "InitialCg.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InitialCg"
+      },
+      {
+        "name": "InitialCgUeCfg.initialCgUeCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InitialCgUeCfg"
+      },
+      {
+        "name": "InitialCgUeCfg.prefUeGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InitialCgUeCfg"
+      },
+      {
+        "name": "InitialCgUeCfg.ueConfGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InitialCgUeCfg"
+      },
+      {
+        "name": "InitialCgUeCfg.ueGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InitialCgUeCfg"
+      },
+      {
+        "name": "InitialCgUeCfg.ulScgInitialLowRsrpThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InitialCgUeCfg"
+      },
+      {
+        "name": "InitialCgUeCfg.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "InitialCgUeCfg"
+      },
+      {
+        "name": "NRCellCU.endcInitialCgRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "NRCellCU.nrdcInitialCgRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellCU"
+      },
+      {
+        "name": "NRCellDU.endcUlCgSwitchRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "NRCellDU.nrdcUlCgSwitchRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "NRCellDU"
+      },
+      {
+        "name": "UlCgSwitch.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitch"
+      },
+      {
+        "name": "UlCgSwitch.ueConfGroupType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitch"
+      },
+      {
+        "name": "UlCgSwitch.ulCgSwitchId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitch"
+      },
+      {
+        "name": "UlCgSwitch.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitch"
+      },
+      {
+        "name": "UlCgSwitchCfg.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchCfg"
+      },
+      {
+        "name": "UlCgSwitchCfg.ulCgSwitchCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchCfg"
+      },
+      {
+        "name": "UlCgSwitchCfg.ulCgSwitchMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchCfg"
+      },
+      {
+        "name": "UlCgSwitchUeCfg.ulCgSwitchUeCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchUeCfg"
+      },
+      {
+        "name": "UlCgSwitchCfg.ulScgLowQualHyst",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchCfg"
+      },
+      {
+        "name": "UlCgSwitchCfg.ulScgLowQualThresh",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchCfg"
+      },
+      {
+        "name": "UlCgSwitchCfg.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchCfg"
+      },
+      {
+        "name": "UlCgSwitchUeCfg.prefUeGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchUeCfg"
+      },
+      {
+        "name": "UlCgSwitchUeCfg.ueConfGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchUeCfg"
+      },
+      {
+        "name": "UlCgSwitchUeCfg.ueGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchUeCfg"
+      },
+      {
+        "name": "UlCgSwitchUeCfg.ulCgSwitchCfgRef",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchUeCfg"
+      },
+      {
+        "name": "UlCgSwitchUeCfg.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlCgSwitchUeCfg"
+      },
+      {
+        "name": "UlDataSplitUeCfg.initialUlPrimaryPathMode",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplitUeCfg"
+      },
+      {
+        "name": "UlDataSplit.reservedBy",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplit"
+      },
+      {
+        "name": "UlDataSplit.ueConfGroupType",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplit"
+      },
+      {
+        "name": "UlDataSplit.ulDataSplitId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplit"
+      },
+      {
+        "name": "UlDataSplit.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplit"
+      },
+      {
+        "name": "UlDataSplitUeCfg.prefUeGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplitUeCfg"
+      },
+      {
+        "name": "UlDataSplitUeCfg.ueConfGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplitUeCfg"
+      },
+      {
+        "name": "UlDataSplitUeCfg.ueGroupList",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplitUeCfg"
+      },
+      {
+        "name": "UlDataSplitUeCfg.ulDataSplitUeCfgId",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplitUeCfg"
+      },
+      {
+        "name": "UlDataSplitUeCfg.ulDataSplitThreshMcg",
+        "type": "Introduced",
+        "description": "See MOM                                     description.",
+        "mo_class": "UlDataSplitUeCfg"
+      },
+      {
+        "name": "UlDataSplitUeCfg.ulDataSplitThreshScg",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplitUeCfg"
+      },
+      {
+        "name": "UlDataSplitUeCfg.ulDataSplitThreshScgLow",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplitUeCfg"
+      },
+      {
+        "name": "UlDataSplitUeCfg.userLabel",
+        "type": "Introduced",
+        "description": "See MOM description.",
+        "mo_class": "UlDataSplitUeCfg"
+      },
+      {
+        "name": "Uen.S33B",
+        "type": "Unknown",
+        "description": "Parameter mentioned in documentation",
+        "mo_class": "Uen"
+      }
+    ],
+    "counters": [
+      {
+        "name": "pmEbsEndcPrimaryCgSwitchUlMcgTrigger",
+        "description": "Performance counter pmEbsEndcPrimaryCgSwitchUlMcgTrigger",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEndcPrimaryCgSwitchUlMcgTrigger1",
+        "description": "Performance counter pmEbsEndcPrimaryCgSwitchUlMcgTrigger1",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEndcPrimaryCgSwitchUlMcgTrigger1Qci",
+        "description": "Performance counter pmEbsEndcPrimaryCgSwitchUlMcgTrigger1Qci",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEndcPrimaryCgSwitchUlMcgTrigger2",
+        "description": "Performance counter pmEbsEndcPrimaryCgSwitchUlMcgTrigger2",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEndcPrimaryCgSwitchUlMcgTrigger2Qci",
+        "description": "Performance counter pmEbsEndcPrimaryCgSwitchUlMcgTrigger2Qci",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEndcPrimaryCgSwitchUlScgTrigger",
+        "description": "Performance counter pmEbsEndcPrimaryCgSwitchUlScgTrigger",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEndcPrimaryCgSwitchUlScgTrigger1",
+        "description": "Performance counter pmEbsEndcPrimaryCgSwitchUlScgTrigger1",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEndcPrimaryCgSwitchUlScgTrigger1Qci",
+        "description": "Performance counter pmEbsEndcPrimaryCgSwitchUlScgTrigger1Qci",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEndcPrimaryCgSwitchUlScgTrigger2",
+        "description": "Performance counter pmEbsEndcPrimaryCgSwitchUlScgTrigger2",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsEndcPrimaryCgSwitchUlScgTrigger2Qci",
+        "description": "Performance counter pmEbsEndcPrimaryCgSwitchUlScgTrigger2Qci",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcPrimaryCgSwitchUlMcgTrigger",
+        "description": "Performance counter pmEbsNrdcPrimaryCgSwitchUlMcgTrigger",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcPrimaryCgSwitchUlMcgTrigger1",
+        "description": "Performance counter pmEbsNrdcPrimaryCgSwitchUlMcgTrigger1",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcPrimaryCgSwitchUlMcgTrigger15qi",
+        "description": "Performance counter pmEbsNrdcPrimaryCgSwitchUlMcgTrigger15qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcPrimaryCgSwitchUlMcgTrigger2",
+        "description": "Performance counter pmEbsNrdcPrimaryCgSwitchUlMcgTrigger2",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcPrimaryCgSwitchUlMcgTrigger25qi",
+        "description": "Performance counter pmEbsNrdcPrimaryCgSwitchUlMcgTrigger25qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcPrimaryCgSwitchUlScgTrigger",
+        "description": "Performance counter pmEbsNrdcPrimaryCgSwitchUlScgTrigger",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcPrimaryCgSwitchUlScgTrigger1",
+        "description": "Performance counter pmEbsNrdcPrimaryCgSwitchUlScgTrigger1",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcPrimaryCgSwitchUlScgTrigger15qi",
+        "description": "Performance counter pmEbsNrdcPrimaryCgSwitchUlScgTrigger15qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcPrimaryCgSwitchUlScgTrigger2",
+        "description": "Performance counter pmEbsNrdcPrimaryCgSwitchUlScgTrigger2",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsNrdcPrimaryCgSwitchUlScgTrigger25qi",
+        "description": "Performance counter pmEbsNrdcPrimaryCgSwitchUlScgTrigger25qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsProhibitTimerRefusePrimaryCgSwitchUl5qi",
+        "description": "Performance counter pmEbsProhibitTimerRefusePrimaryCgSwitchUl5qi",
+        "category": "General"
+      },
+      {
+        "name": "pmEbsProhibitTimerRefusePrimaryCgSwitchUlQci",
+        "description": "Performance counter pmEbsProhibitTimerRefusePrimaryCgSwitchUlQci",
+        "category": "General"
+      },
+      {
+        "name": "pmevent",
+        "description": "Performance counter pmevent",
+        "category": "General"
+      },
+      {
+        "name": "pmevents",
+        "description": "Performance counter pmevents",
+        "category": "General"
+      }
+    ],
+    "events": [],
+    "dependencies": {
+      "prerequisites": [],
+      "related": [],
+      "conflicts": []
+    },
+    "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012776 MO instance.",
+    "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012776 MO instance.",
+    "engineering_guidelines": "",
+    "source_file": "elex_features_only/en_lzn7931071_r38f_batch2/232_22104-LZA7016017_1Uen.S33B.md",
+    "file_hash": "0f8bc7adf30a5039ef7ab6e122b3cbf5",
+    "processed_at": "2025-10-19 15:50:11",
+    "network_impact": {},
+    "performance_impact": {}
+  }
+}

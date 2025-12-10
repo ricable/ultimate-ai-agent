@@ -1,0 +1,68 @@
+{
+  "id": "121 5628",
+  "name": "Feature Identity",
+  "cxc_code": "CXC4012681",
+  "value_package": "NR Base Package",
+  "value_package_id": "FAJ 801 4002",
+  "access_type": "NR",
+  "node_type": "Baseband Radio Node",
+  "description": "",
+  "summary": "This feature introduces NR Timing Advance support for NRPPa E-CID positioning",
+  "parameters": [
+    {
+      "name": "NRCellCu.advUePosMode",
+      "type": "Introduced",
+      "description": "See MOM description.",
+      "mo_class": "NRCellCu"
+    },
+    {
+      "name": "Uen.S",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "Uen"
+    },
+    {
+      "name": "NRCellCU.advUePosMode",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "NRCellCU"
+    },
+    {
+      "name": "FeatureState.featureState",
+      "type": "Unknown",
+      "description": "Parameter mentioned in documentation",
+      "mo_class": "FeatureState"
+    }
+  ],
+  "counters": [
+    {
+      "name": "pmEbsEcidMeasInitReqOnDemand",
+      "description": "Performance counter pmEbsEcidMeasInitReqOnDemand",
+      "category": "General"
+    },
+    {
+      "name": "pmEbsEcidMeasInitRespOnDemand",
+      "description": "Performance counter pmEbsEcidMeasInitRespOnDemand",
+      "category": "General"
+    },
+    {
+      "name": "pmevents",
+      "description": "Performance counter pmevents",
+      "category": "General"
+    }
+  ],
+  "events": [],
+  "dependencies": {
+    "prerequisites": [],
+    "related": [],
+    "conflicts": []
+  },
+  "activation_step": "1. Set the FeatureState.featureState attribute to ACTIVATED in the FeatureState=CXC4012681 MO instance.",
+  "deactivation_step": "1. Set the FeatureState.featureState attribute to DEACTIVATED in the FeatureState=CXC4012681 MO instance.",
+  "engineering_guidelines": "",
+  "source_file": "elex_features_only/en_lzn7931071_r38f_batch1/169_22104-LZA7016017_1Uen.S.md",
+  "file_hash": "7f5247fd976e56dff29ae96fedee75d2",
+  "processed_at": "2025-10-19 15:50:03",
+  "network_impact": {},
+  "performance_impact": {}
+}

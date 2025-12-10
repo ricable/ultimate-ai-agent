@@ -1,0 +1,44 @@
+{
+  "name": "@synaptic-mesh/unit-tests",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:rust": "cd ../../src/rs && cargo test --workspace",
+    "test:js": "jest src/js/**/*.test.js",
+    "test:wasm": "jest src/wasm/**/*.test.js",
+    "test:mcp": "jest src/mcp/**/*.test.js",
+    "test:all": "npm run test:rust && npm run test:js && npm run test:wasm && npm run test:mcp"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "extensionsToTreatAsEsm": [".js"],
+    "globals": {
+      "ts-jest": {
+        "useESM": true
+      }
+    },
+    "moduleNameMapping": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.js",
+      "!src/**/node_modules/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 95,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    }
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.8"
+  }
+}
