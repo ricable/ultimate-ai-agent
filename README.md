@@ -158,15 +158,131 @@ Core: agentdb, ruvector, claude-flow, skills, llm-council, vibe, worldvector, na
 Recent: ultimate-ran, ericsson-ran-automation-agentdb, improved-octo-enigma, vibe-test*, hackathon-tv5, exo, claude-web, claude-code-marketplace, Archon, code-mesh, Synaptic-Mesh, integrated-claude-flow, ruv-FANN, ran-opt, distributed-ai-mlx-exo, opencode, claude-squad, daa, PRPs-agentic-eng, mcp-crawl4ai-rag, and more
 
 ### ruvnet (105 repos)
-Orchestration: claude-flow, agentic-flow, flow-nexus, sparc, sparc-ide, ruv-swarm
 
-AI/ML: ruvector, dspy.ts, Synaptic-Mesh, ARCADIA, QuDAG, ruv-FANN, SAFLA, SynthLang, omnipotent
+#### Agent Orchestration & SPARC
+- **claude-flow** - Multi-agent swarm orchestration with MCP protocol
+- **agentic-flow** - LLM provider switching for Claude Code/Agent SDK
+- **flow-nexus** - Competitive agentic platform with 70+ MCP tools
+- **sparc** - SPARC methodology CLI tooling
+- **sparc-ide** - SPARC integrated development environment
+- **roomodes** - Roo Code modes and configurations
+- **Roo-Code-Docs** - Roo Code documentation
 
-Domain: musicai, vibecast, agentic-robotics, agentic-security, tribe-knowledgegraph, swarm-world, genesis, quantum-magnetic-navigation, Quantum-Virtual-Machine
+#### AI/ML & Neural Networks
+- **ruvector** - Distributed vector database with GNN learning (150x faster search)
+- **dspy.ts** - Declarative self-learning TypeScript/JavaScript
+- **Synaptic-Mesh** - Self-evolving P2P neural fabric with DAG substrate
+- **ARCADIA** - AI-driven game engine with cognitive reasoning (Rust/WASM)
+- **QuDAG** - Quantum-inspired DAG processing
+- **ruv-FANN** - Memory-safe neural network library (Rust)
+- **SAFLA** - Self-Adaptive Federated Learning Architecture
+- **SynthLang** - Synthetic language generation
+- **omnipotent** - Advanced AI capabilities framework
+- **onnx-agent** - ONNX model agent integration
+- **llamastack** - LLaMA model stack utilities
+- **strawberry-phi** - Phi model implementations
 
-Infrastructure: federated-mcp, vsc-remote-mcp, dynamo-mcp, open-claude-code, ruv-code, roomodes
+#### Agentic Applications
+- **agentic-artifacts** - AI artifact generation
+- **agentic-dashboard** - Agent monitoring dashboard
+- **agentic-devops** - DevOps automation agents
+- **agentic-difusion** - Diffusion model agents
+- **agentic-employment** - Employment/HR automation
+- **agentic-flows** - Workflow automation
+- **agentic-gradio** - Gradio UI for agents
+- **agentic-music** - Music generation agents
+- **agentic-preview** - Preview and demo system
+- **agentic-robotics** - Robotics framework
+- **agentic-scraper** - Web scraping agents
+- **agentic-search** - Search automation
+- **agentic-security** - Security scanning and analysis
+- **agentic-voice** - Voice interaction agents
+- **agenticsjs** - JavaScript agent utilities
+- **agentXNG** - Next-gen agent framework
+- **agileagents** - Agile methodology agents
 
-Applications: agentic-artifacts, agentic-dashboard, agentic-devops, agentic-employment, agentic-gradio, agentic-music, agentic-voice, agileagents, hacker-league, tariffic, and 60+ more
+#### Infrastructure & MCP
+- **federated-mcp** - Federated MCP server architecture
+- **vsc-remote-mcp** - VS Code remote MCP integration
+- **dynamo-mcp** - DynamoDB MCP server
+- **open-claude-code** - Open-source Claude Code implementation
+- **ruv-code** - Code utilities and tools
+- **rUv-dev** - Development utilities
+- **ruv-engineer** - Engineering automation
+- **ruv.io** - ruv.io platform
+
+#### Domain Applications
+- **musicai** - AI music generation
+- **vibecast** - Vibecast platform
+- **tribe-knowledgegraph** - Knowledge graph system
+- **swarm-world** - Multi-agent simulation environment
+- **genesis** - Procedural generation system
+- **alienator** - AI game/simulation
+- **dreamfactory** - Dream/creative generation
+- **hacker-league** - Hacker league platform
+- **tariffic** - Tariff calculation system
+- **inflight** - In-flight services
+- **nova** - Nova platform
+- **voicebot** - Voice bot system
+- **phone-agent** - Phone automation agent
+- **image-agent** - Image processing agent
+
+#### Quantum & Advanced Computing
+- **quantum-magnetic-navigation** - Quantum navigation systems
+- **Quantum-Virtual-Machine** - Quantum computing simulation
+- **quantum_cryptocurrency** - Quantum-safe cryptocurrency
+- **sublinear-time-solver** - Sublinear algorithm implementations
+
+#### Web & UI
+- **ai-browse** - AI-powered browsing
+- **auto-browser** - Browser automation
+- **infinity-ui** - Infinite UI components
+- **drupal** - Drupal integrations
+- **drupaljs** - Drupal JavaScript utilities
+- **demo-proxy-app** - Demo proxy application
+- **phoenix** - Phoenix framework utilities
+- **vibing** - Vibing platform
+
+#### Data & Analytics
+- **contextual-retrevial** - Contextual retrieval system
+- **swirl-search** - Swirl search integration
+- **local-logic** - Local logic processing
+- **hft** - High-frequency trading utilities
+- **AiCodeCalc** - AI code calculator
+- **reflective-engineer** - Reflective engineering tools
+
+#### Elections & Democracy
+- **Electo1** - Election system v1
+- **electo1-js** - Election system JavaScript
+- **FACT** - Fact-checking system
+
+#### Utilities & Tools
+- **Agent-Name-Service** - Agent naming service
+- **agentics-meetup** - Meetup organization tools
+- **anthropic-quickstarts** - Anthropic API quickstarts
+- **chatgpt-dev-mode** - ChatGPT development mode
+- **claude-test** - Claude testing utilities
+- **code-mesh** - Code mesh networking
+- **codespaces-jupyter** - GitHub Codespaces Jupyter
+- **codex-one** - Codex integration
+- **daa** - DAA utilities
+- **deco** - Decoration/styling tools
+- **fireflies-webook** - Fireflies webhook integration
+- **GenAI-Superstream** - GenAI streaming
+- **gpts** - GPT configurations
+- **hello_world_agent** - Hello world agent example
+- **midstream** - Midstream processing
+- **open-agentics** - Open agentic framework
+- **runme** - Run automation
+- **ruvnet** - ruvnet core utilities
+- **supabase-authentication** - Supabase auth integration
+- **symbolic-scribe** - Symbolic writing tools
+- **test-react-lib** - React testing library
+- **ultrasonic** - Ultrasonic utilities
+- **wifi-densepose** - WiFi pose estimation
+- **yyz-agentics-june** - YYZ agentics meetup June
+- **aido** - AI-DO automation
+- **aihl** - AI hockey league
 
 ### spectredve (5 repos)
 - nanochat, Synaptic-Mesh, claude-fann, FANN, dotfiles

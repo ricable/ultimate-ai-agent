@@ -20,11 +20,33 @@ A unified AI agent development platform consolidating **160 projects** from rica
 ```
 sources/
 ├── ricable/      # 50 repos: agentdb, ruvector, claude-flow, ultimate-ran, skills, etc.
-├── ruvnet/       # 105 repos: claude-flow, agentic-flow, sparc, ARCADIA, SAFLA, QuDAG, etc.
+├── ruvnet/       # 105 repos (see full list below)
 └── spectredve/   # 5 repos: nanochat, FANN, Synaptic-Mesh, claude-fann, dotfiles
 docs/sparc-phases/  # SPARC methodology documentation
 prompts/            # Multi-step phased prompts (discovery → deployment)
 ```
+
+### ruvnet Sources (105 repositories)
+
+**Orchestration**: claude-flow, agentic-flow, flow-nexus, sparc, sparc-ide, roomodes, Roo-Code-Docs
+
+**AI/ML**: ruvector, dspy.ts, Synaptic-Mesh, ARCADIA, QuDAG, ruv-FANN, SAFLA, SynthLang, omnipotent, onnx-agent, llamastack, strawberry-phi
+
+**Agentic Apps**: agentic-artifacts, agentic-dashboard, agentic-devops, agentic-difusion, agentic-employment, agentic-flows, agentic-gradio, agentic-music, agentic-preview, agentic-robotics, agentic-scraper, agentic-search, agentic-security, agentic-voice, agenticsjs, agentXNG, agileagents
+
+**Infrastructure**: federated-mcp, vsc-remote-mcp, dynamo-mcp, open-claude-code, ruv-code, rUv-dev, ruv-engineer, ruv.io
+
+**Domain**: musicai, vibecast, tribe-knowledgegraph, swarm-world, genesis, alienator, dreamfactory, hacker-league, tariffic, inflight, nova, voicebot, phone-agent, image-agent
+
+**Quantum**: quantum-magnetic-navigation, Quantum-Virtual-Machine, quantum_cryptocurrency, sublinear-time-solver
+
+**Web/UI**: ai-browse, auto-browser, infinity-ui, drupal, drupaljs, demo-proxy-app, phoenix, vibing
+
+**Data**: contextual-retrevial, swirl-search, local-logic, hft, AiCodeCalc, reflective-engineer
+
+**Elections**: Electo1, electo1-js, FACT
+
+**Utilities**: Agent-Name-Service, agentics-meetup, anthropic-quickstarts, chatgpt-dev-mode, claude-test, code-mesh, codespaces-jupyter, codex-one, daa, deco, fireflies-webook, GenAI-Superstream, gpts, hello_world_agent, midstream, open-agentics, runme, ruvnet, supabase-authentication, symbolic-scribe, test-react-lib, ultrasonic, wifi-densepose, yyz-agentics-june, aido, aihl
 
 ## Build Commands
 
